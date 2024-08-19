@@ -11,7 +11,7 @@ public class SceneManager : MonoBehaviour
     public void StartGame()
     {
         //var startingScene = "OpeningScene";
-        var startingScene = "CityOutside";
+        var startingScene = "DungeonEntrance";
         
         UnitySceneManager.LoadScene(startingScene, LoadSceneMode.Single);
     }

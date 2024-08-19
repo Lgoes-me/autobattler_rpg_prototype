@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 
 public class PlayerArenaController : MonoBehaviour
 {
@@ -52,6 +53,7 @@ public class PlayerArenaController : MonoBehaviour
         var pawn = Instantiate(SelectedPlayerCard.Pawn, ArenaController.transform);
         pawn.transform.position = SelectionFeedback.position;
         pawn.Init(ArenaController, SelectedPlayerCard.PawnData.ToDomain());
+        pawn.GetComponent<NavMeshAgent>().enabled = true;
         ArenaController.ActivePawns.Add(pawn);
         SelectedPlayerCard.gameObject.SetActive(false);
         SelectionFeedback.gameObject.SetActive(false);

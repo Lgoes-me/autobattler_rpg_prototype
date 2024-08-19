@@ -15,6 +15,11 @@ public class EnemyController : MonoBehaviour
     private int CurrentNode { get; set; }
     private bool Following { get; set; }
 
+    private void Start()
+    {
+        gameObject.SetActive(false);
+    }
+
     public void Activate(PlayerController player, Action onPlayerCollision)
     {
         Player = player;
@@ -22,7 +27,11 @@ public class EnemyController : MonoBehaviour
 
         Following = false;
         gameObject.SetActive(true);
-        NavMeshAgent.SetDestination(Nodes[CurrentNode].transform.position);
+
+        if (Nodes.Count > 0)
+        {
+            NavMeshAgent.SetDestination(Nodes[CurrentNode].transform.position);
+        }
     }
 
     public void Deactivate()
@@ -34,7 +43,7 @@ public class EnemyController : MonoBehaviour
     private void FixedUpdate()
     {
         SetDestination();
-        
+
         if (Player == null)
             return;
 
@@ -62,7 +71,9 @@ public class EnemyController : MonoBehaviour
         {
             NavMeshAgent.SetDestination(Player.transform.position);
         }
-        else if (NavMeshAgent.pathStatus == NavMeshPathStatus.PathComplete && NavMeshAgent.remainingDistance < 0.5f)
+        else if (Nodes.Count > 0 &&
+                 NavMeshAgent.pathStatus == NavMeshPathStatus.PathComplete &&
+                 NavMeshAgent.remainingDistance < 0.5f)
         {
             CurrentNode++;
 

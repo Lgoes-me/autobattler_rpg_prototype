@@ -9,18 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Bootstrapper.unity
     guid: 71f128a88d890cb4bb25badf9a9e8665
   - enabled: 1
-    path: Assets/Scenes/OpeningScene.unity
-    guid: ad91795beaca2974b807bd523d05e7fa
-  - enabled: 1
     path: Assets/Scenes/BattleScene.unity
     guid: ce95758871c53224b88cd17e42152a30
   - enabled: 1
-    path: Assets/Scenes/CityOutside.unity
-    guid: a6089a9f4741858489abd7c47e171dbe
+    path: Assets/Scenes/Dungeon/DungeonEntrance.unity
+    guid: 8a7d5aef53dfbd94abe44ffbb4d0f5ff
   - enabled: 1
-    path: Assets/Scenes/CityEntrance.unity
-    guid: fddabeae9df4764418f7f57de5abb70d
-  - enabled: 1
-    path: Assets/Scenes/House1.unity
-    guid: 03261e3ec3c69f346b1462dacbeeb463
+    path: Assets/Scenes/Dungeon/DungeonRoom1.unity
+    guid: da8b81bbfd01997469c25d605f6c8ec3
   m_configObjects: {}
