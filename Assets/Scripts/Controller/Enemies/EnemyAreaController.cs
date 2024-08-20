@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnemyAreaController : MonoBehaviour
 {
-    [field: SerializeField] private string Id { get; set; } = Guid.NewGuid().ToString();
+    [field: SerializeField] private string Id { get; set; }
     [field: SerializeField] private List<EnemyController> Enemies { get; set; }
     [field: SerializeField] private PlayerController Player { get; set; }
 
@@ -68,7 +68,12 @@ public class EnemyAreaController : MonoBehaviour
         {
             enemy.enabled = false;
         }
-        
+
         Application.Instance.SceneManager.StartBattleScene(Player, Id, Enemies);
+    }
+
+    private void OnValidate()
+    {
+        Id = Guid.NewGuid().ToString();
     }
 }

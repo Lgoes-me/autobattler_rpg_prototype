@@ -11,7 +11,7 @@ public class CameraAreaController : MonoBehaviour
         if (other.TryGetComponent<PlayerMovementController>(out var movementController))
         {
             movementController.SetNewCameraPosition(CinemachineVirtualCamera.transform);
-            CinemachineVirtualCamera.Priority = 1;
+            CinemachineVirtualCamera.Priority = 10;
         }
     }
 

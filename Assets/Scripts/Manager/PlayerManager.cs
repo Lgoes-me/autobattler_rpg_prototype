@@ -27,6 +27,8 @@ public class PlayerManager: MonoBehaviour
     {
         var player = FindObjectOfType<PlayerController>();
         
+        player.gameObject.SetActive(true);
+        
         player.enabled = true;
         player.GetComponent<PlayerMovementController>().enabled = true;
         player.GetComponent<PawnController>().enabled = false;

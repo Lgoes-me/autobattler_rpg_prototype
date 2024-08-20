@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2506f476fd0f4300b3c3cd3c8b600971, type: 3}
   m_Name: TestePawn
   m_EditorClassIdentifier: 
-  <Prefab>k__BackingField: {fileID: 4759648862371886847, guid: bf3e5b737f1f18949bbfd853b8d5bfe0, type: 3}
   <Health>k__BackingField: 10
-  <Attack>k__BackingField: 2
+  <Attack>k__BackingField: 5
   <AttackRange>k__BackingField: 2
   <Size>k__BackingField: 1
   <Initiative>k__BackingField: 1

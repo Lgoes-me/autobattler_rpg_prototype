@@ -23,8 +23,10 @@ public class SceneManager : MonoBehaviour
         task.completed += _ =>
         {
             var doors = FindObjectsByType<DoorController>(FindObjectsSortMode.None);
-            var spawn = doors.First(d => d.DoorName == doorName).SpawnPoint;
-
+            var door = doors.First(d => d.DoorName == doorName);
+            var spawn = door.SpawnPoint;
+            door.Camera.Priority = 10;
+            
             PlayerManager.SpawnPlayerAt(spawn);
         };
     }
