@@ -8,7 +8,9 @@ public class PlayerMovementController : MonoBehaviour
     [field: SerializeField] private float Speed { get; set; }
 
     private Vector2 MoveInput { get; set; }
-    private Matrix4x4 Matrix { get; set; }
+    
+    private Vector3 ForwardVector { get; set; }
+    private Vector3 RightVector { get; set; }
     private Coroutine Coroutine { get; set; }
 
     private void Start()
@@ -26,9 +28,8 @@ public class PlayerMovementController : MonoBehaviour
         if (MoveInput.sqrMagnitude < Mathf.Epsilon)
             return;
 
-        var input = new Vector3(MoveInput.x, 0, MoveInput.y);
+        var input = RightVector * MoveInput.x + ForwardVector * MoveInput.y;
         input = Vector3.ClampMagnitude(input, 1f);
-        input = Matrix.MultiplyVector(input);
 
         var destination = transform.position + input * Speed;
 
@@ -52,6 +53,8 @@ public class PlayerMovementController : MonoBehaviour
     private IEnumerator UpdateCameraPositionCoroutine(Transform cam)
     {
         yield return new WaitWhile(() => MoveInput != Vector2.zero);
-        Matrix = Matrix4x4.TRS(cam.position, cam.rotation, Vector3.one);
+
+        ForwardVector = Vector3.Dot(cam.forward, -transform.up) > 0.8f ? cam.up : cam.forward;
+        RightVector = Vector3.Cross(Vector3.up, ForwardVector).normalized;
     }
 }

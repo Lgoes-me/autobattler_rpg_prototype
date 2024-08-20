@@ -66,6 +66,7 @@ public class EnemyAreaController : MonoBehaviour
     {
         foreach (var enemy in Enemies)
         {
+            enemy.NavMeshAgent.enabled = false;
             enemy.enabled = false;
         }
 
