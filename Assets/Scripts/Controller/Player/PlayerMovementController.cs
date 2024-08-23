@@ -4,6 +4,7 @@ using UnityEngine.AI;
 
 public class PlayerMovementController : MonoBehaviour
 {
+    [field: SerializeField] private Animator Animator { get; set; }
     //Domain
     [field: SerializeField] private float Speed { get; set; }
 
@@ -21,6 +22,7 @@ public class PlayerMovementController : MonoBehaviour
     private void Update()
     {
         MoveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        Animator.SetFloat("Speed", MoveInput.magnitude);
     }
 
     private void FixedUpdate()
@@ -32,7 +34,8 @@ public class PlayerMovementController : MonoBehaviour
         input = Vector3.ClampMagnitude(input, 1f);
 
         var destination = transform.position + input * Speed;
-
+        
+        
         if (!NavMesh.SamplePosition(destination, out NavMeshHit hit, 1f, NavMesh.AllAreas))
             return;
 
@@ -48,6 +51,11 @@ public class PlayerMovementController : MonoBehaviour
         }
 
         Coroutine = StartCoroutine(UpdateCameraPositionCoroutine(cam));
+    }
+
+    public void Prepare()
+    {
+        Animator.SetFloat("Speed", 0);
     }
 
     private IEnumerator UpdateCameraPositionCoroutine(Transform cam)

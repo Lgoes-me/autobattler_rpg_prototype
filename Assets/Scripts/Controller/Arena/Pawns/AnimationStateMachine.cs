@@ -6,7 +6,7 @@ public class AnimationStateMachine : MonoBehaviour
 {
     [field: SerializeField] private Animator Animator { get; set; }
 
-    private AnimationState CurrentState { get; set; }
+    public AnimationState CurrentState { get; set; }
     private Coroutine OnAnimationEndCoroutine { get; set; }
 
     private void Awake()
@@ -14,32 +14,26 @@ public class AnimationStateMachine : MonoBehaviour
         SetAnimationState(new IdleState());
     }
 
-    public void SetAnimationState(AnimationState state)
+    public void SetAnimationState(AnimationState state, Action callback = null)
     {
         CurrentState = state;
         Animator.applyRootMotion = true;
-        
-        if (CurrentState.CanAttack)
-        {
-            Animator.SetLayerWeight(1, CurrentState.CanAttack ? 1 : 0);
-        }
+        Animator.CrossFade(CurrentState.Animation, 0f);
 
-        Animator.CrossFade(CurrentState.Animation, 0.3f);
-
-        if (CurrentState is not IdleState)
+        if (!CurrentState.Loopable)
         {
             if(OnAnimationEndCoroutine != null)
                 StopCoroutine(OnAnimationEndCoroutine);
             
-            OnAnimationEndCoroutine = StartCoroutine(OnAnimationComplete());
+            OnAnimationEndCoroutine = StartCoroutine(OnAnimationComplete(callback));
         }
     }
 
-    private IEnumerator OnAnimationComplete()
+    private IEnumerator OnAnimationComplete(Action callback)
     {
-        var clipInfo = Animator.GetCurrentAnimatorClipInfo(0)[0];
-        yield return new WaitForSeconds(clipInfo.clip.length - 0.3f);
-        SetAnimationState(new IdleState());
+        var clipInfo = Animator.GetCurrentAnimatorClipInfo(0);
+        yield return new WaitForSeconds(clipInfo[0].clip.length);
+        callback?.Invoke();
     }
 
     private void OnCollisionEnter(Collision _)

@@ -42,7 +42,10 @@ public class ArenaController : MonoBehaviour
     private void SpawnPlayerPawn()
     {
         Player.enabled = false;
-        Player.GetComponent<PlayerMovementController>().enabled = false;
+        
+        var playerMovementController = Player.GetComponent<PlayerMovementController>();
+        playerMovementController.enabled = false;
+        playerMovementController.Prepare();
         
         var pawn = Player.PawnData;
         var pawnController = Player.GetComponent<PawnController>();
@@ -74,8 +77,8 @@ public class ArenaController : MonoBehaviour
         {
             yield return RealizaTurno();
 
-            hasEnemies = EnemyPawns.Count(e => e.Pawn.State != StateType.Dead) > 0;
-            hasPlayers = ActivePawns.Count(e => e.Pawn.State != StateType.Dead) > 0;
+            hasEnemies = EnemyPawns.Count(e => e.PawnState.AbleToFight) > 0;
+            hasPlayers = ActivePawns.Count(e => e.PawnState.AbleToFight) > 0;
         }
 
         if (hasEnemies)
@@ -95,7 +98,7 @@ public class ArenaController : MonoBehaviour
     {
         foreach (var pawn in InitiativeList)
         {
-            if (pawn.Pawn.State != StateType.Idle) continue;
+            if (!pawn.PawnState.CanTakeTurn) continue;
             yield return pawn.Turno(InitiativeList);
         }
     }

@@ -7,11 +7,13 @@ using UnityEngine.AI;
 public class PawnController : MonoBehaviour
 {
     [field: SerializeField] protected NavMeshAgent NavMeshAgent { get; private set; }
-    [field: SerializeField] private Transform Visuals { get; set; }
+    [field: SerializeField] private AnimationStateMachine AnimationStateMachine { get; set; }
+    [field: SerializeField] private Animator Animator { get; set; }
     [field: SerializeField] private TeamType Team { get; set; }
     
     private ArenaController ArenaController { get; set; }
     public PawnDomain Pawn { get; protected set; }
+    public AnimationState PawnState => AnimationStateMachine.CurrentState;
     private PawnController Focus { get; set; }
 
     public void Init(ArenaController arenaController, PawnDomain pawn)
@@ -22,15 +24,12 @@ public class PawnController : MonoBehaviour
 
     public IEnumerator Turno(List<PawnController> basePawnControllers)
     {
-        var closestEnemies =
+        var closest =
             basePawnControllers
-                .Where(pawn => pawn.Team != Team && pawn.Pawn.State != StateType.Dead)
+                .Where(pawn => pawn.Team != Team && pawn.PawnState.CanBeTargeted)
                 .OrderBy(pawn => (pawn.transform.position - transform.position).sqrMagnitude)
-                .Take(3)
-                .ToList();
-
-        var closest = closestEnemies[Random.Range(0, closestEnemies.Count)];
-
+                .FirstOrDefault();
+        
         if (closest == null)
             yield break;
 
@@ -38,65 +37,50 @@ public class PawnController : MonoBehaviour
 
         if ((Focus.transform.position - transform.position).magnitude > Pawn.AttackRange)
         {
-            Pawn.State = StateType.Move;
+            AnimationStateMachine.SetAnimationState(new IdleState());
         }
         else
         {
-            Pawn.State = StateType.Attack;
-            DoAttack(Focus);
+            AnimationStateMachine.SetAnimationState(new AttackState(), () => AttackEnemy(Focus));
         }
     }
 
-    private void DoAttack(PawnController enemy)
+    
+    private void AttackEnemy(PawnController enemy)
     {
-        StartCoroutine(AttackCoroutine(enemy));
-    }
-
-    private IEnumerator AttackCoroutine(PawnController enemy)
-    {
-        Visuals.localPosition = Visuals.localPosition + Vector3.up * 0.5f;
-
-        yield return new WaitForSeconds(0.1f);
-
-        Visuals.localPosition = Vector3.up;
-
-        if (Pawn.State is not StateType.Attack)
-        {
-            Focus = null;
-            yield break;
-        }
-
         enemy.ReceiveAttack(Pawn.Attack);
-        Pawn.State = StateType.Idle;
-        Focus = null;
+        AnimationStateMachine.SetAnimationState(new IdleState());
     }
-
+    
     private void ReceiveAttack(int attack)
     {
         Pawn.Health -= attack;
 
         if (Pawn.Health <= 0)
         {
-            Visuals.gameObject.SetActive(false);
-            Pawn.State = StateType.Dead;
+            AnimationStateMachine.SetAnimationState(new DeadState());
+            NavMeshAgent.isStopped = true;
+            Focus = null;
         }
     }
 
     private void FixedUpdate()
     {
-        if (Focus == null || Pawn.State is not StateType.Move)
+        if (Focus == null || PawnState is not IdleState)
             return;
 
         if ((Focus.transform.position - transform.position).magnitude <= Pawn.AttackRange)
         {
             NavMeshAgent.isStopped = true;
             Focus = null;
-            Pawn.State = StateType.Idle;
+            Animator.SetFloat("Speed", 0f);
         }
         else
         {
             NavMeshAgent.isStopped = false;
             NavMeshAgent.SetDestination(Focus.transform.position);
+            Animator.SetFloat("Speed", NavMeshAgent.velocity.magnitude);
+            transform.rotation = transform.rotation.Rotate(Quaternion.LookRotation(NavMeshAgent.velocity, transform.up), 25);
         }
     }
 }

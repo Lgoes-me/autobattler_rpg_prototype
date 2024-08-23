@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class PlayerManager: MonoBehaviour
 {
@@ -26,12 +25,14 @@ public class PlayerManager: MonoBehaviour
     public void SpawnPlayer()
     {
         var player = FindObjectOfType<PlayerController>();
-        
+        player.GetComponent<PawnController>().enabled = false;
+
         player.gameObject.SetActive(true);
         
         player.enabled = true;
-        player.GetComponent<PlayerMovementController>().enabled = true;
-        player.GetComponent<PawnController>().enabled = false;
-        player.GetComponent<NavMeshAgent>().enabled = false;
+        
+        var playerMovementController = player.GetComponent<PlayerMovementController>();
+        playerMovementController.enabled = true;
+        playerMovementController.Prepare();
     }
 }

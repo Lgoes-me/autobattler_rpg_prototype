@@ -66,8 +66,7 @@ public class EnemyAreaController : MonoBehaviour
     {
         foreach (var enemy in Enemies)
         {
-            enemy.NavMeshAgent.enabled = false;
-            enemy.enabled = false;
+            enemy.Prepare();
         }
 
         Application.Instance.SceneManager.StartBattleScene(Player, Id, Enemies);

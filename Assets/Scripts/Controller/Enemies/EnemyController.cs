@@ -6,7 +6,8 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour
 {
     [field: SerializeField] public PawnData PawnData { get; private set; }
-    [field: SerializeField] public NavMeshAgent NavMeshAgent { get; private set; }
+    [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
+    [field: SerializeField] private Animator Animator { get; set; }
     [field: SerializeField] private List<Transform> Nodes { get; set; }
 
     private PlayerController Player { get; set; }
@@ -42,6 +43,7 @@ public class EnemyController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Animator.SetFloat("Speed", NavMeshAgent.velocity.magnitude);
         SetDestination();
 
         if (Player == null)
@@ -84,5 +86,14 @@ public class EnemyController : MonoBehaviour
 
             NavMeshAgent.SetDestination(Nodes[CurrentNode].transform.position);
         }
+        
+        transform.rotation = transform.rotation.Rotate(Quaternion.LookRotation(NavMeshAgent.velocity, transform.up), 25);
+    }
+
+    public void Prepare()
+    {
+        Animator.SetFloat("Speed", 0);
+        NavMeshAgent.enabled = false;
+        enabled = false;
     }
 }
