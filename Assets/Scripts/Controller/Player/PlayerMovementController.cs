@@ -5,11 +5,12 @@ using UnityEngine.AI;
 public class PlayerMovementController : MonoBehaviour
 {
     [field: SerializeField] private Animator Animator { get; set; }
+
     //Domain
     [field: SerializeField] private float Speed { get; set; }
 
     private Vector2 MoveInput { get; set; }
-    
+
     private Vector3 ForwardVector { get; set; }
     private Vector3 RightVector { get; set; }
     private Coroutine Coroutine { get; set; }
@@ -34,8 +35,8 @@ public class PlayerMovementController : MonoBehaviour
         input = Vector3.ClampMagnitude(input, 1f);
 
         var destination = transform.position + input * Speed;
-        
-        
+
+
         if (!NavMesh.SamplePosition(destination, out NavMeshHit hit, 1f, NavMesh.AllAreas))
             return;
 
@@ -61,6 +62,9 @@ public class PlayerMovementController : MonoBehaviour
     private IEnumerator UpdateCameraPositionCoroutine(Transform cam)
     {
         yield return new WaitWhile(() => MoveInput != Vector2.zero);
+        
+        if (cam == null)
+            yield break;
 
         ForwardVector = Vector3.Dot(cam.forward, -transform.up) > 0.8f ? cam.up : cam.forward;
         RightVector = Vector3.Cross(Vector3.up, ForwardVector).normalized;

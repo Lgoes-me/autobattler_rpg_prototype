@@ -7,10 +7,15 @@ public class EnemyAreaController : MonoBehaviour
 {
     [field: SerializeField] private string Id { get; set; }
     [field: SerializeField] private List<EnemyController> Enemies { get; set; }
-    [field: SerializeField] private PlayerController Player { get; set; }
+    private PlayerController Player { get; set; }
 
     private bool Active { get; set; }
     private Coroutine Coroutine { get; set; }
+
+    private void Awake()
+    {
+        Player = Application.Instance.PlayerManager.PlayerController;
+    }
 
     private void OnTriggerEnter(Collider other)
     {

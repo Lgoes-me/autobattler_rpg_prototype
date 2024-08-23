@@ -13,7 +13,18 @@ public class SceneManager : MonoBehaviour
         //var startingScene = "OpeningScene";
         var startingScene = "DungeonEntrance";
         
-        UnitySceneManager.LoadScene(startingScene, LoadSceneMode.Single);
+        var task = UnitySceneManager.LoadSceneAsync(startingScene, LoadSceneMode.Single);
+        
+        //Provisorio
+        task.completed += _ =>
+        {
+            var doors = FindObjectsByType<DoorController>(FindObjectsSortMode.None);
+            var door = doors.First(d => d.DoorName == "DungeonEntrance");
+            var spawn = door.SpawnPoint;
+            door.Camera.Priority = 10;
+            
+            PlayerManager.SpawnPlayerAt(spawn);
+        };
     }
     
     public void UseDoorToChangeScene(string doorName, string sceneName)
