@@ -7,6 +7,8 @@ using UnityEngine.AI;
 public class PawnController : MonoBehaviour
 {
     [field: SerializeField] protected NavMeshAgent NavMeshAgent { get; private set; }
+    [field: SerializeField] private CanvasFollowController CanvasFollowController { get; set; }
+    [field: SerializeField] private PawnCanvasController PawnCanvasController { get; set; }
     [field: SerializeField] private AnimationStateMachine AnimationStateMachine { get; set; }
     [field: SerializeField] private Animator Animator { get; set; }
     [field: SerializeField] private TeamType Team { get; set; }
@@ -18,6 +20,7 @@ public class PawnController : MonoBehaviour
 
     public void Init(ArenaController arenaController, PawnDomain pawn)
     {
+        CanvasFollowController.Show();
         ArenaController = arenaController;
         Pawn = pawn;
     }
@@ -55,7 +58,8 @@ public class PawnController : MonoBehaviour
     private void ReceiveAttack(int attack)
     {
         Pawn.Health -= attack;
-
+        PawnCanvasController.UpdateLife();
+        
         if (Pawn.Health <= 0)
         {
             AnimationStateMachine.SetAnimationState(new DeadState());
@@ -82,5 +86,11 @@ public class PawnController : MonoBehaviour
             Animator.SetFloat("Speed", NavMeshAgent.velocity.magnitude);
             transform.rotation = transform.rotation.Rotate(Quaternion.LookRotation(NavMeshAgent.velocity, transform.up), 25);
         }
+    }
+
+    public void Deactivate()
+    {
+        CanvasFollowController.Hide();
+        enabled = false;
     }
 }

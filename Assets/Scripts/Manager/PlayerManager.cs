@@ -28,7 +28,7 @@ public class PlayerManager: MonoBehaviour
     
     public void SpawnPlayer()
     {
-        PlayerController.GetComponent<PawnController>().enabled = false;
+        PlayerController.GetComponent<PawnController>().Deactivate();
         PlayerController.gameObject.SetActive(true);
         PlayerController.enabled = true;
         

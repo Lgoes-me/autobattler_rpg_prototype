@@ -1,6 +1,7 @@
 ﻿[System.Serializable]
 public class PawnDomain
 {
+    public int MaxHealth { get; set; }
     public int Health { get; set; }
     public int Attack { get; private set; }
     public int AttackRange { get; private set; }
@@ -9,6 +10,7 @@ public class PawnDomain
 
     public PawnDomain(int health, int attack, int attackRange, int size, int initiative)
     {
+        MaxHealth = health;
         Health = health;
         Attack = attack;
         AttackRange = attackRange;
