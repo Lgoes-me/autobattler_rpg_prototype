@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<IInteractable>(out var interactable))
+        if (other.TryGetComponent<InteractableController>(out var interactable))
         {
             interactable.Preselect();
         }
@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     
     private void OnTriggerExit(Collider other)
     {
-        if (other.TryGetComponent<IInteractable>(out var interactable))
+        if (other.TryGetComponent<InteractableController>(out var interactable))
         {
             interactable.Unselect();
         }

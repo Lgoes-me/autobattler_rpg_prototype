@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ItemController : MonoBehaviour, IInteractable
+public class InteractableController : MonoBehaviour
 {
     [field: SerializeField] private CanvasFollowController CanvasFollowController { get; set; }
     
