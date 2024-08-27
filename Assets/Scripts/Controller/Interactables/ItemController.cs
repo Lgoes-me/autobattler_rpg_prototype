@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class ItemController : MonoBehaviour, IInteractable
 {
+    [field: SerializeField] private CanvasFollowController CanvasFollowController { get; set; }
+    
     public void Preselect()
     {
-        Debug.Log($"Preselected {name}");
+        CanvasFollowController.Show();
     }
 
     public void Select()
@@ -14,6 +16,6 @@ public class ItemController : MonoBehaviour, IInteractable
 
     public void Unselect()
     {
-        Debug.Log($"Unselected {name}");
+        CanvasFollowController.Hide();
     }
 }

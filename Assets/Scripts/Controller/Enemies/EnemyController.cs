@@ -86,8 +86,12 @@ public class EnemyController : MonoBehaviour
 
             NavMeshAgent.SetDestination(Nodes[CurrentNode].transform.position);
         }
-        
-        transform.rotation = transform.rotation.Rotate(Quaternion.LookRotation(NavMeshAgent.velocity, transform.up), 25);
+
+        if (NavMeshAgent.velocity.sqrMagnitude > 0)
+        {
+            transform.rotation =
+                transform.rotation.Rotate(Quaternion.LookRotation(NavMeshAgent.velocity, transform.up), 25);
+        }
     }
 
     public void Prepare()
