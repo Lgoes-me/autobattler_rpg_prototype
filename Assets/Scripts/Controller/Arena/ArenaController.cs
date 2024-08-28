@@ -105,6 +105,11 @@ public class ArenaController : MonoBehaviour
 
     private void EndBattle()
     {
+        foreach (var enemyPawn in EnemyPawns)
+        {
+            enemyPawn.Deactivate();
+        }
+        
         Application.Instance.SceneManager.EndBattleScene();
     }
 }

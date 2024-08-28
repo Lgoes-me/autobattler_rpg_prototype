@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class PawnController : MonoBehaviour
 {
-    [field: SerializeField] protected NavMeshAgent NavMeshAgent { get; private set; }
+    [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
     [field: SerializeField] private CanvasFollowController CanvasFollowController { get; set; }
     [field: SerializeField] private PawnCanvasController PawnCanvasController { get; set; }
     [field: SerializeField] private AnimationStateMachine AnimationStateMachine { get; set; }
@@ -14,15 +14,16 @@ public class PawnController : MonoBehaviour
     [field: SerializeField] private TeamType Team { get; set; }
     
     private ArenaController ArenaController { get; set; }
-    public PawnDomain Pawn { get; protected set; }
+    public PawnDomain Pawn { get; private set; }
     public AnimationState PawnState => AnimationStateMachine.CurrentState;
     private PawnController Focus { get; set; }
 
     public void Init(ArenaController arenaController, PawnDomain pawn)
     {
-        CanvasFollowController.Show();
         ArenaController = arenaController;
         Pawn = pawn;
+
+        CanvasFollowController.Show();
     }
 
     public IEnumerator Turno(List<PawnController> basePawnControllers)
@@ -48,10 +49,13 @@ public class PawnController : MonoBehaviour
         }
     }
 
-    
     private void AttackEnemy(PawnController enemy)
     {
+        Pawn.Mana += 10;
+        PawnCanvasController.UpdateMana();
+        
         enemy.ReceiveAttack(Pawn.Attack);
+        
         AnimationStateMachine.SetAnimationState(new IdleState());
     }
     
@@ -62,6 +66,7 @@ public class PawnController : MonoBehaviour
         
         if (Pawn.Health <= 0)
         {
+            CanvasFollowController.Hide();
             AnimationStateMachine.SetAnimationState(new DeadState());
             NavMeshAgent.isStopped = true;
             Focus = null;
