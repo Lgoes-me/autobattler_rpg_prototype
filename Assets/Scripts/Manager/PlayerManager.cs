@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PlayerManager: MonoBehaviour
+public class PlayerManager : MonoBehaviour
 {
-    [field: SerializeField]
-    public PlayerController PlayerController { get; private set; }
+    [field: SerializeField] public PlayerController PlayerController { get; private set; }
+    [field: SerializeField] public PawnController PawnController { get; private set; }
     public List<string> Defeated { get; private set; }
 
     private void Start()
@@ -17,7 +17,7 @@ public class PlayerManager: MonoBehaviour
     {
         Defeated.Add(enemy);
     }
-    
+
     public void SpawnPlayerAt(Transform location)
     {
         PlayerController.GetComponent<NavMeshAgent>().enabled = false;
@@ -25,15 +25,33 @@ public class PlayerManager: MonoBehaviour
         PlayerController.transform.forward = location.forward;
         PlayerController.GetComponent<NavMeshAgent>().enabled = true;
     }
-    
-    public void SpawnPlayer()
+
+    public void PlayerToBattle()
+    {
+        PlayerController.enabled = false;
+
+        var playerMovementController = PlayerController.GetComponent<PlayerMovementController>();
+        playerMovementController.enabled = false;
+        playerMovementController.Prepare();
+
+        PawnController.enabled = true;
+        PlayerController.GetComponent<NavMeshAgent>().enabled = true;
+    }
+
+    public void PlayerToWorld()
     {
         PlayerController.GetComponent<PawnController>().Deactivate();
         PlayerController.gameObject.SetActive(true);
         PlayerController.enabled = true;
-        
+
         var playerMovementController = PlayerController.GetComponent<PlayerMovementController>();
         playerMovementController.enabled = true;
         playerMovementController.Prepare();
+    }
+
+    public void SetNewCameraPosition(Transform cameraTransform)
+    {
+        var playerMovementController = PlayerController.GetComponent<PlayerMovementController>();
+        playerMovementController.SetNewCameraPosition(cameraTransform);
     }
 }

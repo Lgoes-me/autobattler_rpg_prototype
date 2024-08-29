@@ -169,6 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <PlayerController>k__BackingField: {fileID: 225983749}
+  <PawnController>k__BackingField: {fileID: 225983751}
 --- !u!1001 &225983748
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -246,6 +247,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4609325096747976266, guid: d5ee7c7f7b1e13c46bb4ba1e5efa7882, type: 3}
   m_PrefabInstance: {fileID: 225983748}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &225983751 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8026178958687482945, guid: d5ee7c7f7b1e13c46bb4ba1e5efa7882, type: 3}
+  m_PrefabInstance: {fileID: 225983748}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dff2c4eeb144cc896ad3ba288bf7f6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &641743259
 GameObject:
   m_ObjectHideFlags: 0

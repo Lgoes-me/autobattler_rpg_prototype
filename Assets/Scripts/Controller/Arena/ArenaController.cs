@@ -9,12 +9,10 @@ public class ArenaController : MonoBehaviour
     public List<PawnController> ActivePawns { get; private set; }
     private List<PawnController> EnemyPawns { get; set; }
     private List<PawnController> InitiativeList { get; set; }
-    private PlayerController Player { get; set; }
     private List<EnemyController> Enemies { get; set; }
 
-    public void Init(PlayerController player, List<EnemyController> enemies)
+    public void Init(List<EnemyController> enemies)
     {
-        Player = player;
         Enemies = enemies;
     }
 
@@ -25,7 +23,7 @@ public class ArenaController : MonoBehaviour
         InitiativeList = new List<PawnController>();
 
         SpawnPlayerPawn();
-        
+
         foreach (var enemyController in Enemies)
         {
             var pawn = enemyController.PawnData;
@@ -33,7 +31,7 @@ public class ArenaController : MonoBehaviour
 
             pawnController.enabled = true;
             enemyController.GetComponent<NavMeshAgent>().enabled = true;
-            
+
             EnemyPawns.Add(pawnController);
             pawnController.Init(this, pawn.ToDomain());
         }
@@ -41,17 +39,9 @@ public class ArenaController : MonoBehaviour
 
     private void SpawnPlayerPawn()
     {
-        Player.enabled = false;
-        
-        var playerMovementController = Player.GetComponent<PlayerMovementController>();
-        playerMovementController.enabled = false;
-        playerMovementController.Prepare();
-        
-        var pawn = Player.PawnData;
-        var pawnController = Player.GetComponent<PawnController>();
-        
-        pawnController.enabled = true;
-        Player.GetComponent<NavMeshAgent>().enabled = true;
+        var playerController = Application.Instance.PlayerManager.PlayerController;
+        var pawn = playerController.PawnData;
+        var pawnController =Application.Instance.PlayerManager.PawnController;
         
         ActivePawns.Add(pawnController);
         pawnController.Init(this, pawn.ToDomain());
@@ -109,7 +99,7 @@ public class ArenaController : MonoBehaviour
         {
             enemyPawn.Deactivate();
         }
-        
+
         Application.Instance.SceneManager.EndBattleScene();
     }
 }

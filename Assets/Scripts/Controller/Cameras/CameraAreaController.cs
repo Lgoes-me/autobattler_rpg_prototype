@@ -8,10 +8,9 @@ public class CameraAreaController : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<PlayerMovementController>(out var movementController))
+        if (other.CompareTag("Player"))
         {
-            movementController.SetNewCameraPosition(CinemachineVirtualCamera.transform);
-            CinemachineVirtualCamera.Priority = 10;
+            ActivateCamera();
         }
     }
 
@@ -22,5 +21,11 @@ public class CameraAreaController : MonoBehaviour
             if (Camera.main is not null) Camera.main.transform.GetComponent<CinemachineBrain>().m_DefaultBlend = Blend;
             CinemachineVirtualCamera.Priority = 0;
         } 
+    }
+
+    public void ActivateCamera()
+    {
+        Application.Instance.PlayerManager.SetNewCameraPosition(CinemachineVirtualCamera.transform);
+        CinemachineVirtualCamera.Priority = 10;
     }
 }

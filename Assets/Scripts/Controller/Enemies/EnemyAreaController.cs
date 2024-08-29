@@ -12,9 +12,9 @@ public class EnemyAreaController : MonoBehaviour
     private bool Active { get; set; }
     private Coroutine Coroutine { get; set; }
 
-    private void Awake()
+    public void Init(PlayerController player)
     {
-        Player = Application.Instance.PlayerManager.PlayerController;
+        Player = player;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -74,7 +74,7 @@ public class EnemyAreaController : MonoBehaviour
             enemy.Prepare();
         }
 
-        Application.Instance.SceneManager.StartBattleScene(Player, Id, Enemies);
+        Application.Instance.SceneManager.StartBattleScene(Id, Enemies);
     }
 
     private void OnValidate()
