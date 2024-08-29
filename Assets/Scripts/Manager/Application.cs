@@ -6,6 +6,7 @@ public class Application : MonoBehaviour
     
     [field: SerializeField] public SceneManager SceneManager { get; private set; }
     [field: SerializeField] public PlayerManager PlayerManager { get; private set; }
+    [field: SerializeField] public PauseManager PauseManager { get; private set; }
     
     private void Awake()
     {  
