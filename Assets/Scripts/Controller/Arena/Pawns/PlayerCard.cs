@@ -1,12 +1,11 @@
-using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class PlayerCard : MonoBehaviour, IPointerClickHandler, IDragHandler, IEndDragHandler
 {
-    [field: SerializeField] public PawnController Pawn { get; private set; }
-    [field: SerializeField] public PawnData PawnData { get; private set; }
+    [field: SerializeField] private PawnController Pawn { get; set; }
+    [field: SerializeField] private PawnData PawnData { get; set; }
     [field: SerializeField] private Image Image { get; set; }
     [field: SerializeField] private PlayerArenaController PlayerArenaController { get; set; }
 
@@ -38,25 +37,40 @@ public class PlayerCard : MonoBehaviour, IPointerClickHandler, IDragHandler, IEn
         Image.color = Color.grey;
         IsDragging = false;
         transform.position = StartingPosition;
-        
+
         PlayerArenaController.UnselectPlayerPawn();
     }
-    
+
     private void Update()
     {
-        if(!IsDragging)
+        if (!IsDragging)
             return;
-        
+
         transform.position = Input.mousePosition;
     }
 
     public void Hide()
     {
-        Image.color = new Color(0,0,0,0);
+        Image.color = new Color(0, 0, 0, 0);
     }
 
     public void Show()
     {
-        Image.color =  IsDragging ? Color.blue : Color.grey;
+        Image.color = IsDragging ? Color.blue : Color.grey;
+    }
+
+    public PawnController GetPawnController(ArenaController arenaController, Transform spawnPosition)
+    {
+        enabled = false;
+
+        var pawnController = Instantiate(
+            Pawn,
+            spawnPosition.position,
+            spawnPosition.rotation,
+            arenaController.transform);
+
+        pawnController.Init(arenaController, PawnData.ToDomain());
+
+        return pawnController;
     }
 }

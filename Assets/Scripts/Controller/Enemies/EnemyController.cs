@@ -5,7 +5,8 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-    [field: SerializeField] public PawnData PawnData { get; private set; }
+    [field: SerializeField] private PawnController PawnController { get; set; }
+    [field: SerializeField] private PawnData PawnData { get; set; }
     [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
     [field: SerializeField] private Animator Animator { get; set; }
     [field: SerializeField] private List<Transform> Nodes { get; set; }
@@ -99,5 +100,12 @@ public class EnemyController : MonoBehaviour
         Animator.SetFloat("Speed", 0);
         NavMeshAgent.enabled = false;
         enabled = false;
+    }
+
+    public PawnController GetPawnController(ArenaController arenaController)
+    {
+        enabled = false;
+        PawnController.Init(arenaController, PawnData.ToDomain());
+        return PawnController;
     }
 }

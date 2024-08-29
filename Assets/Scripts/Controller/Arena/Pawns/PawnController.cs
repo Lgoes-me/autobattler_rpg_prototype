@@ -12,18 +12,22 @@ public class PawnController : MonoBehaviour
     [field: SerializeField] private AnimationStateMachine AnimationStateMachine { get; set; }
     [field: SerializeField] private Animator Animator { get; set; }
     [field: SerializeField] private TeamType Team { get; set; }
-    
+
     private ArenaController ArenaController { get; set; }
     public PawnDomain Pawn { get; private set; }
     public AnimationState PawnState => AnimationStateMachine.CurrentState;
     private PawnController Focus { get; set; }
 
-    public void Init(ArenaController arenaController, PawnDomain pawn)
+    public PawnController Init(ArenaController arenaController, PawnDomain pawn)
     {
         ArenaController = arenaController;
         Pawn = pawn;
 
+        enabled = true;
+        NavMeshAgent.enabled = true;
         CanvasFollowController.Show();
+        
+        return this;
     }
 
     public IEnumerator Turno(List<PawnController> basePawnControllers)
@@ -33,18 +37,20 @@ public class PawnController : MonoBehaviour
                 .Where(pawn => pawn.Team != Team && pawn.PawnState.CanBeTargeted)
                 .OrderBy(pawn => (pawn.transform.position - transform.position).sqrMagnitude)
                 .FirstOrDefault();
-        
+
         if (closest == null)
             yield break;
 
         Focus = closest;
-
-        if ((Focus.transform.position - transform.position).magnitude > Pawn.AttackRange)
+        var direction = Focus.transform.position - transform.position;
+        
+        if (direction.magnitude > Pawn.AttackRange)
         {
             AnimationStateMachine.SetAnimationState(new IdleState());
         }
         else
         {
+            transform.rotation = Quaternion.LookRotation(direction, transform.up);
             AnimationStateMachine.SetAnimationState(new AttackState(), () => AttackEnemy(Focus));
         }
     }
@@ -53,17 +59,17 @@ public class PawnController : MonoBehaviour
     {
         Pawn.Mana += 10;
         PawnCanvasController.UpdateMana();
-        
+
         enemy.ReceiveAttack(Pawn.Attack);
-        
+
         AnimationStateMachine.SetAnimationState(new IdleState());
     }
-    
+
     private void ReceiveAttack(int attack)
     {
         Pawn.Health -= attack;
         PawnCanvasController.UpdateLife();
-        
+
         if (Pawn.Health <= 0)
         {
             CanvasFollowController.Hide();
@@ -78,11 +84,13 @@ public class PawnController : MonoBehaviour
         if (Focus == null || PawnState is not IdleState)
             return;
 
-        if ((Focus.transform.position - transform.position).magnitude <= Pawn.AttackRange)
+        var direction = Focus.transform.position - transform.position;
+        if (direction.magnitude <= Pawn.AttackRange)
         {
             NavMeshAgent.isStopped = true;
             Focus = null;
-            Animator.SetFloat("Speed", 0f);
+            Animator.SetFloat("Speed", 0f);            
+            transform.rotation = Quaternion.LookRotation(direction, transform.up);
         }
         else
         {

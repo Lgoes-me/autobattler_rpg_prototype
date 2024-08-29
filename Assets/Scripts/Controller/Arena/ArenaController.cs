@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class ArenaController : MonoBehaviour
 {
-    public List<PawnController> ActivePawns { get; private set; }
+    private List<PawnController> ActivePawns { get; set; }
     private List<PawnController> EnemyPawns { get; set; }
     private List<PawnController> InitiativeList { get; set; }
     private List<EnemyController> Enemies { get; set; }
@@ -26,25 +25,20 @@ public class ArenaController : MonoBehaviour
 
         foreach (var enemyController in Enemies)
         {
-            var pawn = enemyController.PawnData;
-            var pawnController = enemyController.GetComponent<PawnController>();
-
-            pawnController.enabled = true;
-            enemyController.GetComponent<NavMeshAgent>().enabled = true;
-
+            var pawnController = enemyController.GetPawnController(this);
             EnemyPawns.Add(pawnController);
-            pawnController.Init(this, pawn.ToDomain());
         }
     }
 
     private void SpawnPlayerPawn()
     {
-        var playerController = Application.Instance.PlayerManager.PlayerController;
-        var pawn = playerController.PawnData;
-        var pawnController =Application.Instance.PlayerManager.PawnController;
-        
+        var pawnController = Application.Instance.PlayerManager.GetPawnController(this);
         ActivePawns.Add(pawnController);
-        pawnController.Init(this, pawn.ToDomain());
+    }
+
+    public void AddPlayerPawn(PawnController pawn)
+    {
+        ActivePawns.Add(pawn);
     }
 
     public void PlayBattle()

@@ -11,6 +11,6 @@ public class PawnData : ScriptableObject
 
     public PawnDomain ToDomain()
     {
-        return new PawnDomain(Health, Attack, AttackRange, Size,Initiative);
+        return new PawnDomain(Health, Attack, AttackRange, Size, Initiative);
     }
 }

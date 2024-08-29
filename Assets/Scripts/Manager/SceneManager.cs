@@ -7,7 +7,6 @@ public class SceneManager : MonoBehaviour
 {
     [field: SerializeField] private PlayerManager PlayerManager { get; set; }
 
-
     public void StartGame()
     {
         var startingScene = "DungeonEntrance";
@@ -17,7 +16,7 @@ public class SceneManager : MonoBehaviour
         task.completed += _ =>
         {
             var roomScene = FindObjectOfType<RoomScene>();
-            roomScene.ActivateRoomScene("DungeonEntrance");
+            roomScene.ActivateRoomScene(PlayerManager.PlayerController,"DungeonEntrance");
         };
     }
 
@@ -28,7 +27,7 @@ public class SceneManager : MonoBehaviour
         task.completed += _ =>
         {
             var roomScene = FindObjectOfType<RoomScene>();
-            roomScene.ActivateRoomScene(doorName);
+            roomScene.ActivateRoomScene(PlayerManager.PlayerController, doorName);
         };
     }
 
@@ -49,6 +48,7 @@ public class SceneManager : MonoBehaviour
     public void EndBattleScene()
     {
         var task = UnitySceneManager.UnloadSceneAsync("BattleScene");
+        
         task.completed += _ =>
         {
             PlayerManager.PlayerToWorld();

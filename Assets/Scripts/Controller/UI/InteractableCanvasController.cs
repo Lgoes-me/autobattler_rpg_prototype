@@ -6,7 +6,7 @@ public class InteractableCanvasController : MonoBehaviour
     [field: SerializeField] private InteractableController InteractableController { get; set; }
     [field: SerializeField] private Button Button { get; set; }
 
-    private void Start()
+    private void Awake()
     {
         Button.onClick.AddListener(() => InteractableController.Select());
     }

@@ -4,9 +4,10 @@ public class CanvasFollowController : MonoBehaviour
 {
     [field: SerializeField] private RectTransform Pivot { get; set; }
     [field: SerializeField] private Transform ToFollow { get; set; }
+    
     private Camera Camera { get; set; }
 
-    private void Start()
+    private void Awake()
     {
         Camera = Camera.main;
     }

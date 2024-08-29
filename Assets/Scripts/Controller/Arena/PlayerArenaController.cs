@@ -1,13 +1,22 @@
 ﻿using UnityEngine;
-using UnityEngine.AI;
 
 public class PlayerArenaController : MonoBehaviour
 {
     [field: SerializeField] private ArenaController ArenaController { get; set; }
     [field: SerializeField] private Transform SelectionFeedback { get; set; }
+    
+    [field: SerializeField] private Material Red { get; set; }
+    [field: SerializeField] private Material Blue { get; set; }
+    [field: SerializeField] private Renderer SelectionFeedbackRenderer { get; set; }
     private PlayerCard SelectedPlayerCard { get; set; }
 
+    private Camera Camera { get; set; }
     private bool CanPlacePawn { get; set; }
+
+    private void Start()
+    {
+        Camera = Camera.main;
+    }
 
     public void SelectPlayerPawn(PlayerCard playerCard)
     {
@@ -20,6 +29,10 @@ public class PlayerArenaController : MonoBehaviour
         {
             PlacePawn();
         }
+        else
+        {
+            UnselectCard();
+        }
 
         SelectedPlayerCard = null;
     }
@@ -30,7 +43,7 @@ public class PlayerArenaController : MonoBehaviour
             return;
 
         if (Physics.Raycast(
-            Camera.main.ScreenPointToRay(Input.mousePosition),
+            Camera.ScreenPointToRay(Input.mousePosition),
             out var hit,
             100f,
             LayerMask.GetMask("Ground")))
@@ -39,22 +52,25 @@ public class PlayerArenaController : MonoBehaviour
         }
         else
         {
-            SelectedPlayerCard.Show();
-            SelectionFeedback.gameObject.SetActive(false);
-            CanPlacePawn = false;
+            UnselectCard();
         }
+    }
+
+    private void UnselectCard()
+    {
+        SelectedPlayerCard.Show();
+        SelectionFeedback.gameObject.SetActive(false);
+        CanPlacePawn = false;
     }
 
     private void PlacePawn()
     {
         if (SelectedPlayerCard == null)
             return;
-
-        var pawn = Instantiate(SelectedPlayerCard.Pawn, ArenaController.transform);
-        pawn.transform.position = SelectionFeedback.position;
-        pawn.Init(ArenaController, SelectedPlayerCard.PawnData.ToDomain());
-        pawn.GetComponent<NavMeshAgent>().enabled = true;
-        ArenaController.ActivePawns.Add(pawn);
+        
+        var pawn = SelectedPlayerCard.GetPawnController(ArenaController, SelectionFeedback);
+        ArenaController.AddPlayerPawn(pawn);
+        
         SelectedPlayerCard.gameObject.SetActive(false);
         SelectionFeedback.gameObject.SetActive(false);
         CanPlacePawn = false;
@@ -68,6 +84,16 @@ public class PlayerArenaController : MonoBehaviour
         SelectedPlayerCard.Hide();
         SelectionFeedback.gameObject.SetActive(true);
         SelectionFeedback.transform.position = hit.point;
+
+        if ((Application.Instance.PlayerManager.PlayerController.transform.position - hit.point).magnitude > 3 ||
+            hit.normal.y <= 0)
+        {
+            SelectionFeedbackRenderer.material = Red;
+            CanPlacePawn = false;
+            return;
+        }
+        
+        SelectionFeedbackRenderer.material = Blue;
         CanPlacePawn = true;
     }
 }

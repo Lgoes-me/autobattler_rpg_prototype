@@ -4,8 +4,11 @@ using UnityEngine.AI;
 
 public class PlayerManager : MonoBehaviour
 {
+    [field: SerializeField] private PawnData PawnData { get; set; }
     [field: SerializeField] public PlayerController PlayerController { get; private set; }
-    [field: SerializeField] public PawnController PawnController { get; private set; }
+    [field: SerializeField] private PawnController PawnController { get; set; }
+    [field: SerializeField] private PlayerMovementController PlayerMovementController { get; set; }
+    [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
     public List<string> Defeated { get; private set; }
 
     private void Start()
@@ -20,38 +23,42 @@ public class PlayerManager : MonoBehaviour
 
     public void SpawnPlayerAt(Transform location)
     {
-        PlayerController.GetComponent<NavMeshAgent>().enabled = false;
+        NavMeshAgent.enabled = false;
         PlayerController.transform.position = location.position;
         PlayerController.transform.forward = location.forward;
-        PlayerController.GetComponent<NavMeshAgent>().enabled = true;
+        NavMeshAgent.enabled = true;
     }
 
     public void PlayerToBattle()
     {
         PlayerController.enabled = false;
 
-        var playerMovementController = PlayerController.GetComponent<PlayerMovementController>();
-        playerMovementController.enabled = false;
-        playerMovementController.Prepare();
+        PlayerMovementController.enabled = false;
+        PlayerMovementController.Prepare();
 
         PawnController.enabled = true;
-        PlayerController.GetComponent<NavMeshAgent>().enabled = true;
+        NavMeshAgent.enabled = true;
     }
 
     public void PlayerToWorld()
     {
-        PlayerController.GetComponent<PawnController>().Deactivate();
+        PawnController.Deactivate();
         PlayerController.gameObject.SetActive(true);
         PlayerController.enabled = true;
 
-        var playerMovementController = PlayerController.GetComponent<PlayerMovementController>();
-        playerMovementController.enabled = true;
-        playerMovementController.Prepare();
+        PlayerMovementController.enabled = true;
+        PlayerMovementController.Prepare();
     }
 
     public void SetNewCameraPosition(Transform cameraTransform)
     {
-        var playerMovementController = PlayerController.GetComponent<PlayerMovementController>();
-        playerMovementController.SetNewCameraPosition(cameraTransform);
+        PlayerMovementController.SetNewCameraPosition(cameraTransform);
+    }
+    
+    public PawnController GetPawnController(ArenaController arenaController)
+    {
+        enabled = false;
+        PawnController.Init(arenaController, PawnData.ToDomain());
+        return PawnController;
     }
 }

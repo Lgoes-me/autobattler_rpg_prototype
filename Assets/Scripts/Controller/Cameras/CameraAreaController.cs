@@ -5,7 +5,14 @@ public class CameraAreaController : MonoBehaviour
 {
     [field: SerializeField] private CinemachineVirtualCamera CinemachineVirtualCamera { get; set; }
     [field: SerializeField] private CinemachineBlendDefinition Blend { get; set; }
+
+    private CinemachineBrain CinemachineBrain { get; set; }
     
+    private void Awake()
+    {
+        CinemachineBrain = Camera.main.transform.GetComponent<CinemachineBrain>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -18,7 +25,7 @@ public class CameraAreaController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (Camera.main is not null) Camera.main.transform.GetComponent<CinemachineBrain>().m_DefaultBlend = Blend;
+            CinemachineBrain.m_DefaultBlend = Blend;
             CinemachineVirtualCamera.Priority = 0;
         } 
     }
