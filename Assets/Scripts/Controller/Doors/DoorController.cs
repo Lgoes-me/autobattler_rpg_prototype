@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class DoorController : MonoBehaviour
@@ -7,12 +8,18 @@ public class DoorController : MonoBehaviour
     [field: SerializeField] private string SceneName { get; set; }
     
     [field: SerializeField] private CameraAreaController CameraArea { get; set; }
+    private SceneManager SceneManager { get; set; }
+
+    public void Init(SceneManager sceneManager)
+    {
+        SceneManager = sceneManager;
+    }
     
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Application.Instance.SceneManager.UseDoorToChangeScene(DoorName, SceneName);
+            SceneManager.UseDoorToChangeScene(DoorName, SceneName);
         }
     }
 

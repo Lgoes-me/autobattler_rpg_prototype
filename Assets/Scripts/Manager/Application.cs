@@ -4,7 +4,7 @@ public class Application : MonoBehaviour
 {
     public static Application Instance { get; private set; }
     
-    [field: SerializeField] public SceneManager SceneManager { get; private set; }
+    [field: SerializeField] private SceneManager SceneManager { get; set; }
     [field: SerializeField] public PlayerManager PlayerManager { get; private set; }
     [field: SerializeField] public PauseManager PauseManager { get; private set; }
     

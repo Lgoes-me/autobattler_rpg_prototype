@@ -8,10 +8,13 @@ public class ArenaController : MonoBehaviour
     private List<PawnController> ActivePawns { get; set; }
     private List<PawnController> EnemyPawns { get; set; }
     private List<PawnController> InitiativeList { get; set; }
+    
+    private SceneManager SceneManager { get; set; }
     private List<EnemyController> Enemies { get; set; }
 
-    public void Init(List<EnemyController> enemies)
+    public void Init(SceneManager sceneManager, List<EnemyController> enemies)
     {
+        SceneManager = sceneManager;
         Enemies = enemies;
     }
 
@@ -94,6 +97,6 @@ public class ArenaController : MonoBehaviour
             enemyPawn.Deactivate();
         }
 
-        Application.Instance.SceneManager.EndBattleScene();
+        SceneManager.EndBattleScene();
     }
 }

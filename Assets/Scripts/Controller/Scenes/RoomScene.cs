@@ -7,9 +7,10 @@ public class RoomScene : BaseScene
     [field: SerializeField] private List<DoorController> Doors { get; set; }
     [field: SerializeField] private List<EnemyAreaController> EnemyAreas { get; set; }
 
-    public void ActivateRoomScene(PlayerController playerController, string doorName)
+    public void ActivateRoomScene(SceneManager sceneManager, PlayerController playerController, string doorName)
     {
-        InitEnemyAreas(playerController);
+        InitDoors(sceneManager);
+        InitEnemyAreas(sceneManager, playerController);
         SpawnPlayer(doorName);
     }
 
@@ -20,11 +21,19 @@ public class RoomScene : BaseScene
         Application.Instance.PlayerManager.SpawnPlayerAt(door.SpawnPoint);
     }
 
-    private void InitEnemyAreas(PlayerController playerController)
+    private void InitEnemyAreas(SceneManager sceneManager, PlayerController playerController)
     {
         foreach (var enemyArea in EnemyAreas)
         {
-            enemyArea.Init(playerController);
+            enemyArea.Init(sceneManager, playerController);
+        }
+    }
+
+    private void InitDoors(SceneManager sceneManager)
+    {
+        foreach (var door in Doors)
+        {
+            door.Init(sceneManager);
         }
     }
 }

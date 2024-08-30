@@ -16,7 +16,7 @@ public class SceneManager : MonoBehaviour
         task.completed += _ =>
         {
             var roomScene = FindObjectOfType<RoomScene>();
-            roomScene.ActivateRoomScene(PlayerManager.PlayerController,"DungeonEntrance");
+            roomScene.ActivateRoomScene(this, PlayerManager.PlayerController,"DungeonEntrance");
         };
     }
 
@@ -27,7 +27,7 @@ public class SceneManager : MonoBehaviour
         task.completed += _ =>
         {
             var roomScene = FindObjectOfType<RoomScene>();
-            roomScene.ActivateRoomScene(PlayerManager.PlayerController, doorName);
+            roomScene.ActivateRoomScene(this, PlayerManager.PlayerController, doorName);
         };
     }
 
@@ -41,7 +41,7 @@ public class SceneManager : MonoBehaviour
         {
             PlayerManager.PlayerToBattle();
             var battleScene = FindObjectOfType<BattleScene>();
-            battleScene.ActivateBattleScene(enemies);
+            battleScene.ActivateBattleScene(this, enemies);
         };
     }
 
