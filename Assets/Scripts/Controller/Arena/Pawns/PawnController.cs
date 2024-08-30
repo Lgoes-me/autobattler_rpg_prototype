@@ -65,10 +65,10 @@ public class PawnController : MonoBehaviour
         AnimationStateMachine.SetAnimationState(new IdleState());
     }
 
-    private void ReceiveAttack(int attack)
+    private async void ReceiveAttack(int attack)
     {
         Pawn.Health -= attack;
-        PawnCanvasController.UpdateLife();
+        await PawnCanvasController.UpdateLife();
 
         if (Pawn.Health <= 0)
         {

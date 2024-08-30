@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,18 +8,30 @@ public class PawnCanvasController : MonoBehaviour
     [field: SerializeField] private PawnController PawnController { get; set; }
 
     [field: SerializeField] private Image LifeBar { get; set; }
+    [field: SerializeField] private Image BackgroundLifeBar { get; set; }
     [field: SerializeField] private Image ManaBar { get; set; }
 
     private void OnEnable()
     {
-        UpdateLife();
-        UpdateMana();
+        var pawn = PawnController.Pawn;
+        var fillAmount = pawn.Health / (float) pawn.MaxHealth;
+        
+        LifeBar.fillAmount = fillAmount;
+        BackgroundLifeBar.fillAmount = fillAmount;
+        
+        ManaBar.fillAmount = pawn.Mana / (float) pawn.MaxMana;
     }
 
-    public void UpdateLife()
+    public async Task UpdateLife()
     {
         var pawn = PawnController.Pawn;
-        LifeBar.fillAmount = pawn.Health / (float) pawn.MaxHealth;
+        var fillAmount = pawn.Health / (float) pawn.MaxHealth;
+        
+        LifeBar.fillAmount = fillAmount;
+        
+        await Task.Delay(300);
+        
+        BackgroundLifeBar.fillAmount = fillAmount;
     }
 
     public void UpdateMana()
