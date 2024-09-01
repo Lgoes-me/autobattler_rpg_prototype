@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f9f19abc5c47e0ac1aacf04b055747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <PawnData>k__BackingField: {fileID: 11400000, guid: 6b9c85149f0ea8e418474a0f03b75058, type: 2}
+  <PawnData>k__BackingField: {fileID: 11400000, guid: e06c083c17fc0d44f8a2fb968c08b5d1, type: 2}
   <PlayerController>k__BackingField: {fileID: 225983749}
   <PawnController>k__BackingField: {fileID: 225983751}
   <PlayerMovementController>k__BackingField: {fileID: 225983753}

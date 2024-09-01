@@ -1,4 +1,7 @@
-﻿[System.Serializable]
+﻿using System.Collections.Generic;
+using UnityEngine;
+
+[System.Serializable]
 public class PawnDomain
 {
     public int MaxHealth { get; set; }
@@ -7,12 +10,12 @@ public class PawnDomain
     public int MaxMana { get; set; }
     public int Mana { get; set; }
     
-    public int Attack { get; private set; }
-    public int AttackRange { get; private set; }
-    public int Size { get; private set; }
+    private int Size { get; set; }
     public int Initiative { get; private set; }
+    
+    private List<Attack> Attacks { get; set; }
 
-    public PawnDomain(int health, int attack, int attackRange, int size, int initiative)
+    public PawnDomain(int health, int size, int initiative, List<Attack> attacks)
     {
         MaxHealth = health;
         Health = health;
@@ -20,10 +23,15 @@ public class PawnDomain
         MaxMana = 100;
         Mana = 0;
         
-        Attack = attack;
-        AttackRange = attackRange;
         Initiative = initiative;
         Size = size;
+
+        Attacks = attacks;
+    }
+
+    public Attack GetCurrentAttackIntent()
+    {
+        return Attacks[Random.Range(0, Attacks.Count)];
     }
 }
 

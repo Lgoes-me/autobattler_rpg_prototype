@@ -9,11 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2506f476fd0f4300b3c3cd3c8b600971, type: 3}
-  m_Name: TestePawn
+  m_Script: {fileID: 11500000, guid: 008927262a032b84eb44596894041913, type: 3}
+  m_Name: Mage
   m_EditorClassIdentifier: 
-  <Health>k__BackingField: 10
-  <Attack>k__BackingField: 5
-  <AttackRange>k__BackingField: 2
-  <Size>k__BackingField: 1
-  <Initiative>k__BackingField: 1
+  <Pawn>k__BackingField: {fileID: 256749590681607113, guid: be52f009e94960547b26667748f588ef, type: 3}
+  <PawnData>k__BackingField: {fileID: 11400000, guid: 16b9cee0dccaee346add62bcdff9524a, type: 2}

@@ -1,21 +1,25 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class PlayerCard : MonoBehaviour, IPointerClickHandler, IDragHandler, IEndDragHandler
 {
-    [field: SerializeField] private PawnController Pawn { get; set; }
-    [field: SerializeField] private PawnData PawnData { get; set; }
     [field: SerializeField] private Image Image { get; set; }
+    [field: SerializeField] private TextMeshProUGUI Name { get; set; }
     [field: SerializeField] private PlayerArenaController PlayerArenaController { get; set; }
+
+    private CardData CardData { get; set; }
 
     private Vector3 StartingPosition { get; set; }
     private bool IsDragging { get; set; }
 
-    private void Start()
+    public void Init(CardData cardData)
     {
-        StartingPosition = transform.position;
+        CardData = cardData;
+        Name.SetText(CardData.name);
         Image.color = Color.grey;
+        StartingPosition = transform.position;
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -64,12 +68,12 @@ public class PlayerCard : MonoBehaviour, IPointerClickHandler, IDragHandler, IEn
         enabled = false;
 
         var pawnController = Instantiate(
-            Pawn,
+            CardData.Pawn,
             spawnPosition.position,
             spawnPosition.rotation,
             arenaController.transform);
 
-        pawnController.Init(arenaController, PawnData.ToDomain());
+        pawnController.Init(arenaController, CardData.PawnData.ToDomain());
 
         return pawnController;
     }

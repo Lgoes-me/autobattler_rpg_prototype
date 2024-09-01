@@ -15,6 +15,7 @@ public class PawnController : MonoBehaviour
 
     private ArenaController ArenaController { get; set; }
     public PawnDomain Pawn { get; private set; }
+    public Attack AttackIntent { get; private set; }
     public AnimationState PawnState => AnimationStateMachine.CurrentState;
     private PawnController Focus { get; set; }
 
@@ -42,16 +43,18 @@ public class PawnController : MonoBehaviour
             yield break;
 
         Focus = closest;
-        var direction = Focus.transform.position - transform.position;
         
-        if (direction.magnitude > Pawn.AttackRange)
+        var direction = Focus.transform.position - transform.position;
+        AttackIntent = Pawn.GetCurrentAttackIntent();
+        
+        if (direction.magnitude > AttackIntent.Range)
         {
             AnimationStateMachine.SetAnimationState(new IdleState());
         }
         else
         {
             transform.rotation = Quaternion.LookRotation(direction, transform.up);
-            AnimationStateMachine.SetAnimationState(new AttackState(), () => AttackEnemy(Focus));
+            AnimationStateMachine.SetAnimationState(new AttackState(AttackIntent), () => AttackEnemy(Focus));
         }
     }
 
@@ -60,7 +63,7 @@ public class PawnController : MonoBehaviour
         Pawn.Mana += 10;
         PawnCanvasController.UpdateMana();
 
-        enemy.ReceiveAttack(Pawn.Attack);
+        enemy.ReceiveAttack(AttackIntent.Damage);
 
         AnimationStateMachine.SetAnimationState(new IdleState());
     }
@@ -85,7 +88,7 @@ public class PawnController : MonoBehaviour
             return;
 
         var direction = Focus.transform.position - transform.position;
-        if (direction.magnitude <= Pawn.AttackRange)
+        if (direction.magnitude <= AttackIntent.Range)
         {
             NavMeshAgent.isStopped = true;
             Focus = null;

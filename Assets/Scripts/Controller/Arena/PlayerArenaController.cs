@@ -1,7 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class PlayerArenaController : MonoBehaviour
 {
+    [field: SerializeField] private List<PlayerCard> PlayerCards { get; set; }
+    [field: SerializeField] private List<CardData> CardDatas { get; set; }
     [field: SerializeField] private ArenaController ArenaController { get; set; }
     [field: SerializeField] private Transform SelectionFeedback { get; set; }
     
@@ -16,6 +19,13 @@ public class PlayerArenaController : MonoBehaviour
     private void Start()
     {
         Camera = Camera.main;
+
+        foreach (var card in PlayerCards)
+        {
+            var data = CardDatas[Random.Range(0, CardDatas.Count)];
+            CardDatas.Remove(data);
+            card.Init(data);
+        }
     }
 
     public void SelectPlayerPawn(PlayerCard playerCard)

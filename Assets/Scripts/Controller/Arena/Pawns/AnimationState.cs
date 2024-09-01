@@ -3,7 +3,7 @@
 [System.Serializable]
 public class AnimationState
 {
-    [field: SerializeField] public virtual string Animation { get; }
+    [field: SerializeField] public virtual string Animation { get; set; }
     [field: SerializeField] public virtual bool Loopable { get; set; } = false;
     [field: SerializeField] public virtual bool CanTakeTurn { get; set; } = false;
     [field: SerializeField] public virtual bool CanBeTargeted { get; set; } = true;
@@ -19,7 +19,21 @@ public class IdleState : AnimationState
 
 public class AttackState : AnimationState
 {
-    public override string Animation => "Attack";
+    public override string Animation => Attack.Animation;
+    private Attack Attack { get; }
+
+    public AttackState(Attack attack)
+    {
+        Attack = attack;
+    }
+}
+
+[System.Serializable]
+public class Attack
+{
+    [field: SerializeField] public string Animation { get; set; }
+    [field: SerializeField] public int Damage { get; set; }
+    [field: SerializeField] public int Range { get; set; }
 }
 
 public class DeadState : AnimationState
