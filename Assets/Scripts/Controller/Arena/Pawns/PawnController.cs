@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -13,15 +14,13 @@ public class PawnController : MonoBehaviour
     [field: SerializeField] private Animator Animator { get; set; }
     [field: SerializeField] private TeamType Team { get; set; }
 
-    private ArenaController ArenaController { get; set; }
     public PawnDomain Pawn { get; private set; }
-    public Attack AttackIntent { get; private set; }
     public AnimationState PawnState => AnimationStateMachine.CurrentState;
+    private Attack Attack { get; set; }
     private PawnController Focus { get; set; }
 
-    public PawnController Init(ArenaController arenaController, PawnDomain pawn)
+    public PawnController Init(PawnDomain pawn)
     {
-        ArenaController = arenaController;
         Pawn = pawn;
 
         enabled = true;
@@ -33,38 +32,44 @@ public class PawnController : MonoBehaviour
 
     public IEnumerator Turno(List<PawnController> basePawnControllers)
     {
-        var closest =
-            basePawnControllers
-                .Where(pawn => pawn.Team != Team && pawn.PawnState.CanBeTargeted)
-                .OrderBy(pawn => (pawn.transform.position - transform.position).sqrMagnitude)
-                .FirstOrDefault();
+        if (Focus == null || !Focus.PawnState.CanBeTargeted)
+        {
+            var closest =
+                basePawnControllers
+                    .Where(pawn => pawn.Team != Team && pawn.PawnState.CanBeTargeted)
+                    .OrderBy(pawn => (pawn.transform.position - transform.position).sqrMagnitude)
+                    .Take(3)
+                    .ToList();
 
-        if (closest == null)
-            yield break;
+            if (closest.Count == 0)
+                yield break;
 
-        Focus = closest;
+            Focus = closest[Random.Range(0, closest.Count)];
+        }
         
         var direction = Focus.transform.position - transform.position;
-        AttackIntent = Pawn.GetCurrentAttackIntent();
+        Attack = Pawn.GetCurrentAttackIntent();
         
-        if (direction.magnitude > AttackIntent.Range)
+        if (direction.magnitude > Attack.Range)
         {
             AnimationStateMachine.SetAnimationState(new IdleState());
         }
         else
         {
             transform.rotation = Quaternion.LookRotation(direction, transform.up);
-            AnimationStateMachine.SetAnimationState(new AttackState(AttackIntent), () => AttackEnemy(Focus));
+            AnimationStateMachine.SetAnimationState(new AttackState(Attack), () => AttackEnemy(Focus));
         }
     }
 
-    private void AttackEnemy(PawnController enemy)
+    private async void AttackEnemy(PawnController enemy)
     {
         Pawn.Mana += 10;
         PawnCanvasController.UpdateMana();
 
-        enemy.ReceiveAttack(AttackIntent.Damage);
+        enemy.ReceiveAttack(Attack.Damage);
 
+        await Task.Delay(Attack.Delay);
+        
         AnimationStateMachine.SetAnimationState(new IdleState());
     }
 
@@ -88,7 +93,7 @@ public class PawnController : MonoBehaviour
             return;
 
         var direction = Focus.transform.position - transform.position;
-        if (direction.magnitude <= AttackIntent.Range)
+        if (direction.magnitude <= Attack.Range)
         {
             NavMeshAgent.isStopped = true;
             Focus = null;

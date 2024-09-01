@@ -19,3 +19,4 @@ MonoBehaviour:
   - <Animation>k__BackingField: Attack
     <Damage>k__BackingField: 1
     <Range>k__BackingField: 1
+    <Delay>k__BackingField: 0

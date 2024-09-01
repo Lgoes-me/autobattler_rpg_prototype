@@ -72,9 +72,7 @@ public class PlayerCard : MonoBehaviour, IPointerClickHandler, IDragHandler, IEn
             spawnPosition.position,
             spawnPosition.rotation,
             arenaController.transform);
-
-        pawnController.Init(arenaController, CardData.PawnData.ToDomain());
-
-        return pawnController;
+        
+        return pawnController.Init(CardData.PawnData.ToDomain());
     }
 }

@@ -102,10 +102,10 @@ public class EnemyController : MonoBehaviour
         enabled = false;
     }
 
-    public PawnController GetPawnController(ArenaController arenaController)
+    public PawnController GetPawnController()
     {
         enabled = false;
-        PawnController.Init(arenaController, PawnData.ToDomain());
+        PawnController.Init(PawnData.ToDomain());
         return PawnController;
     }
 }

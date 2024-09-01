@@ -28,14 +28,14 @@ public class ArenaController : MonoBehaviour
 
         foreach (var enemyController in Enemies)
         {
-            var pawnController = enemyController.GetPawnController(this);
+            var pawnController = enemyController.GetPawnController();
             EnemyPawns.Add(pawnController);
         }
     }
 
     private void SpawnPlayerPawn()
     {
-        var pawnController = Application.Instance.PlayerManager.GetPawnController(this);
+        var pawnController = Application.Instance.PlayerManager.GetPawnController();
         ActivePawns.Add(pawnController);
     }
 

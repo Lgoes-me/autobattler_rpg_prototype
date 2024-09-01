@@ -34,6 +34,7 @@ public class Attack
     [field: SerializeField] public string Animation { get; set; }
     [field: SerializeField] public int Damage { get; set; }
     [field: SerializeField] public int Range { get; set; }
+    [field: SerializeField] public int Delay { get; set; }
 }
 
 public class DeadState : AnimationState
