@@ -26,6 +26,8 @@ public class PawnController : MonoBehaviour
         enabled = true;
         NavMeshAgent.enabled = true;
         CanvasFollowController.Show();
+        Attack = null;
+        Focus = null;
         
         return this;
     }
@@ -96,7 +98,7 @@ public class PawnController : MonoBehaviour
         if (direction.magnitude <= Attack.Range)
         {
             NavMeshAgent.isStopped = true;
-            Focus = null;
+            NavMeshAgent.SetDestination(transform.position);
             Animator.SetFloat("Speed", 0f);            
             transform.rotation = Quaternion.LookRotation(direction, transform.up);
         }
