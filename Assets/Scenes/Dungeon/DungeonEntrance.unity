@@ -530,6 +530,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Npc
       objectReference: {fileID: 0}
+    - target: {fileID: 2004145519092876461, guid: f8158d2d7dde8c14c8bb4f107358e806, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.17364809
+      objectReference: {fileID: 0}
+    - target: {fileID: 2004145519092876461, guid: f8158d2d7dde8c14c8bb4f107358e806, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2004145519092876461, guid: f8158d2d7dde8c14c8bb4f107358e806, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.9848078
+      objectReference: {fileID: 0}
+    - target: {fileID: 2004145519092876461, guid: f8158d2d7dde8c14c8bb4f107358e806, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2004145519092876461, guid: f8158d2d7dde8c14c8bb4f107358e806, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2004145519092876461, guid: f8158d2d7dde8c14c8bb4f107358e806, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 7505508180381611282, guid: f8158d2d7dde8c14c8bb4f107358e806, type: 3}
       propertyPath: m_RootOrder
       value: 8
