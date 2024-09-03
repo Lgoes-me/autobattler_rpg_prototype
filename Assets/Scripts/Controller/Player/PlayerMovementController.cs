@@ -36,12 +36,10 @@ public class PlayerMovementController : MonoBehaviour
 
         var destination = transform.position + input * Speed;
 
-
         if (!NavMesh.SamplePosition(destination, out NavMeshHit hit, 1f, NavMesh.AllAreas))
             return;
 
         transform.position = transform.position.Follow(new Vector3(hit.position.x, transform.position.y, hit.position.z), 25);
-        transform.rotation = transform.rotation.Rotate(Quaternion.LookRotation(new Vector3(input.x, 0, input.z), transform.up), 25);
     }
 
     public void SetNewCameraPosition(Transform cam)

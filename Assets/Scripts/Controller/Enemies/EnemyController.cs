@@ -59,7 +59,7 @@ public class EnemyController : MonoBehaviour
                 NavMeshAgent.enabled = false;
                 OnPlayerCollision();
                 break;
-            case < 15f when Vector3.Dot(distance, transform.forward) > 1f:
+            case < 15f:
                 Following = true;
                 break;
             default:
@@ -86,12 +86,6 @@ public class EnemyController : MonoBehaviour
             }
 
             NavMeshAgent.SetDestination(Nodes[CurrentNode].transform.position);
-        }
-
-        if (NavMeshAgent.velocity.sqrMagnitude > 0)
-        {
-            transform.rotation =
-                transform.rotation.Rotate(Quaternion.LookRotation(NavMeshAgent.velocity, transform.up), 25);
         }
     }
 

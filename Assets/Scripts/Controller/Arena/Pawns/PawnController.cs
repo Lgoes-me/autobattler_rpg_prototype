@@ -28,7 +28,7 @@ public class PawnController : MonoBehaviour
         CanvasFollowController.Show();
         Attack = null;
         Focus = null;
-        
+
         return this;
     }
 
@@ -48,10 +48,10 @@ public class PawnController : MonoBehaviour
 
             Focus = closest[Random.Range(0, closest.Count)];
         }
-        
+
         var direction = Focus.transform.position - transform.position;
         Attack = Pawn.GetCurrentAttackIntent();
-        
+
         if (direction.magnitude > Attack.Range)
         {
             AnimationStateMachine.SetAnimationState(new IdleState());
@@ -71,7 +71,7 @@ public class PawnController : MonoBehaviour
         enemy.ReceiveAttack(Attack.Damage);
 
         await Task.Delay(Attack.Delay);
-        
+
         AnimationStateMachine.SetAnimationState(new IdleState());
     }
 
@@ -99,15 +99,13 @@ public class PawnController : MonoBehaviour
         {
             NavMeshAgent.isStopped = true;
             NavMeshAgent.SetDestination(transform.position);
-            Animator.SetFloat("Speed", 0f);            
-            transform.rotation = Quaternion.LookRotation(direction, transform.up);
+            Animator.SetFloat("Speed", 0f);
         }
         else
         {
             NavMeshAgent.isStopped = false;
             NavMeshAgent.SetDestination(Focus.transform.position);
             Animator.SetFloat("Speed", NavMeshAgent.velocity.magnitude);
-            transform.rotation = transform.rotation.Rotate(Quaternion.LookRotation(NavMeshAgent.velocity, transform.up), 25);
         }
     }
 

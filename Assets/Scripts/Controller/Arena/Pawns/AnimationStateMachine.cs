@@ -18,7 +18,7 @@ public class AnimationStateMachine : MonoBehaviour
     {
         CurrentState = state;
         Animator.applyRootMotion = true;
-        Animator.CrossFade(CurrentState.Animation, 0f);
+        Animator.Play(CurrentState.Animation);
 
         if (!CurrentState.Loopable)
         {
