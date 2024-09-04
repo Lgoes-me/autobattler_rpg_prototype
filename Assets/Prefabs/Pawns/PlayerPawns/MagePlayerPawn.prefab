@@ -16,6 +16,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: MagePlayerPawn
       objectReference: {fileID: 0}
+    - target: {fileID: 4325437516245746297, guid: bf3e5b737f1f18949bbfd853b8d5bfe0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1734326786, guid: e80992e1c20f3364ba17d11a4a9da45e, type: 3}
+    - target: {fileID: 4738806425893785783, guid: bf3e5b737f1f18949bbfd853b8d5bfe0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1749958046, guid: e80992e1c20f3364ba17d11a4a9da45e, type: 3}
+    - target: {fileID: 4759648862371886847, guid: bf3e5b737f1f18949bbfd853b8d5bfe0, type: 3}
+      propertyPath: <PawnData>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 16b9cee0dccaee346add62bcdff9524a, type: 2}
+    - target: {fileID: 5046930682348225887, guid: bf3e5b737f1f18949bbfd853b8d5bfe0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.542
+      objectReference: {fileID: 0}
+    - target: {fileID: 5046930682348225887, guid: bf3e5b737f1f18949bbfd853b8d5bfe0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.295
+      objectReference: {fileID: 0}
     - target: {fileID: 7761577622677726545, guid: bf3e5b737f1f18949bbfd853b8d5bfe0, type: 3}
       propertyPath: m_RootOrder
       value: 0

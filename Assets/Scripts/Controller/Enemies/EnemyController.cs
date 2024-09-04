@@ -99,7 +99,6 @@ public class EnemyController : MonoBehaviour
     public PawnController GetPawnController()
     {
         enabled = false;
-        PawnController.Init(PawnData.ToDomain());
-        return PawnController;
+        return PawnController.Init();
     }
 }

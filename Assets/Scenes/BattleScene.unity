@@ -1090,14 +1090,14 @@ MonoBehaviour:
   - {fileID: 1476829259}
   - {fileID: 1310713613}
   - {fileID: 344441136}
-  <CardDatas>k__BackingField:
-  - {fileID: 11400000, guid: f59285bfc18272740bac1de3e61eddf7, type: 2}
-  - {fileID: 11400000, guid: b3756af746c0f414ab27ce6793921033, type: 2}
-  - {fileID: 11400000, guid: ef2cf0a724f33b9468fb5315f2abb66d, type: 2}
-  - {fileID: 11400000, guid: bc21b54301f45074988350b0d16ec72c, type: 2}
-  - {fileID: 11400000, guid: 83618c667bcc0b240a370a6be083a0d9, type: 2}
-  - {fileID: 11400000, guid: 89e0d231fe4554540a47fcc42f7d73a2, type: 2}
-  - {fileID: 11400000, guid: 1fab05833ab311144abe762072316315, type: 2}
+  <Pawns>k__BackingField:
+  - {fileID: 5515285266085061211, guid: 1285c3fa67fc9a64abeca1041c3503b7, type: 3}
+  - {fileID: 4507170429347478588, guid: 46a1ab9cd3cce55478acc9dec9c1a8dc, type: 3}
+  - {fileID: 256749590681607113, guid: c62b7b27484c249489350486c7043f6f, type: 3}
+  - {fileID: 256749590681607113, guid: 96eecc068dbe3a74d9209d24c163fc29, type: 3}
+  - {fileID: 256749590681607113, guid: ca3658f18eb2df44a971eabe08b0ee6d, type: 3}
+  - {fileID: 256749590681607113, guid: be52f009e94960547b26667748f588ef, type: 3}
+  - {fileID: 256749590681607113, guid: 8eee90eb1de2cf2458ead3d0e1a18ec5, type: 3}
   <ArenaController>k__BackingField: {fileID: 1665406660}
   <SelectionFeedback>k__BackingField: {fileID: 1319671990}
   <Red>k__BackingField: {fileID: 2100000, guid: b378f1afcc144e243b2f164c69b93ef2, type: 2}

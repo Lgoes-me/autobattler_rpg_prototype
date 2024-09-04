@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerArenaController : MonoBehaviour
 {
     [field: SerializeField] private List<PlayerCard> PlayerCards { get; set; }
-    [field: SerializeField] private List<CardData> CardDatas { get; set; }
+    [field: SerializeField] private List<PawnController> Pawns { get; set; }
     [field: SerializeField] private ArenaController ArenaController { get; set; }
     [field: SerializeField] private Transform SelectionFeedback { get; set; }
     
@@ -22,8 +22,8 @@ public class PlayerArenaController : MonoBehaviour
 
         foreach (var card in PlayerCards)
         {
-            var data = CardDatas[Random.Range(0, CardDatas.Count)];
-            CardDatas.Remove(data);
+            var data = Pawns[Random.Range(0, Pawns.Count)];
+            Pawns.Remove(data);
             card.Init(data);
         }
     }

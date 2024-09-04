@@ -58,6 +58,6 @@ public class PlayerManager : MonoBehaviour
     public PawnController GetPawnController()
     {
         enabled = false;
-        return PawnController.Init(PawnData.ToDomain());
+        return PawnController.Init();
     }
 }

@@ -16,7 +16,7 @@ MonoBehaviour:
   <Size>k__BackingField: 1
   <Initiative>k__BackingField: 1
   <Attacks>k__BackingField:
-  - <Animation>k__BackingField: Assassiante
+  - <Animation>k__BackingField: Assassinate
     <Damage>k__BackingField: 4
     <Range>k__BackingField: 2
     <Delay>k__BackingField: 300

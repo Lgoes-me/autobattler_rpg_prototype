@@ -7,6 +7,7 @@ using UnityEngine.AI;
 
 public class PawnController : MonoBehaviour
 {
+    [field: SerializeField] private PawnData PawnData { get; set; }
     [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
     [field: SerializeField] private CanvasFollowController CanvasFollowController { get; set; }
     [field: SerializeField] private PawnCanvasController PawnCanvasController { get; set; }
@@ -19,9 +20,9 @@ public class PawnController : MonoBehaviour
     private Attack Attack { get; set; }
     private PawnController Focus { get; set; }
 
-    public PawnController Init(PawnDomain pawn)
+    public PawnController Init()
     {
-        Pawn = pawn;
+        Pawn = PawnData.ToDomain();
 
         enabled = true;
         NavMeshAgent.enabled = true;
@@ -58,7 +59,6 @@ public class PawnController : MonoBehaviour
         }
         else
         {
-            transform.rotation = Quaternion.LookRotation(direction, transform.up);
             AnimationStateMachine.SetAnimationState(new AttackState(Attack), () => AttackEnemy(Focus));
         }
     }

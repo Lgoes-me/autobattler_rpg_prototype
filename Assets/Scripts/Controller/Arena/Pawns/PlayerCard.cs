@@ -9,15 +9,15 @@ public class PlayerCard : MonoBehaviour, IPointerClickHandler, IDragHandler, IEn
     [field: SerializeField] private TextMeshProUGUI Name { get; set; }
     [field: SerializeField] private PlayerArenaController PlayerArenaController { get; set; }
 
-    private CardData CardData { get; set; }
+    private PawnController Pawn { get; set; }
 
     private Vector3 StartingPosition { get; set; }
     private bool IsDragging { get; set; }
 
-    public void Init(CardData cardData)
+    public void Init(PawnController pawn)
     {
-        CardData = cardData;
-        Name.SetText(CardData.name);
+        Pawn = pawn;
+        Name.SetText(pawn.name);
         Image.color = Color.grey;
         StartingPosition = transform.position;
     }
@@ -68,11 +68,11 @@ public class PlayerCard : MonoBehaviour, IPointerClickHandler, IDragHandler, IEn
         enabled = false;
 
         var pawnController = Instantiate(
-            CardData.Pawn,
+            Pawn,
             spawnPosition.position,
             spawnPosition.rotation,
             arenaController.transform);
         
-        return pawnController.Init(CardData.PawnData.ToDomain());
+        return pawnController.Init();
     }
 }

@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DefenderPlayerPawn
       objectReference: {fileID: 0}
+    - target: {fileID: 4759648862371886847, guid: bf3e5b737f1f18949bbfd853b8d5bfe0, type: 3}
+      propertyPath: <PawnData>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 3200547b4d697554ab66f8b4f77352bd, type: 2}
     - target: {fileID: 7761577622677726545, guid: bf3e5b737f1f18949bbfd853b8d5bfe0, type: 3}
       propertyPath: m_RootOrder
       value: 0
