@@ -4,9 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 
 public class PawnController : MonoBehaviour
 {
+    [field: SerializeField] private SpriteRenderer Body { get; set; }
     [field: SerializeField] private PawnData PawnData { get; set; }
     [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
     [field: SerializeField] private CanvasFollowController CanvasFollowController { get; set; }
@@ -65,8 +67,11 @@ public class PawnController : MonoBehaviour
 
     private async void AttackEnemy(PawnController enemy)
     {
-        Pawn.Mana += 10;
-        PawnCanvasController.UpdateMana();
+        if (Team == TeamType.Player)
+        {
+            Pawn.Mana += 10;
+            PawnCanvasController.UpdateMana();
+        }
 
         enemy.ReceiveAttack(Attack.Damage);
 
@@ -91,6 +96,8 @@ public class PawnController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Body.flipX = NavMeshAgent.velocity.x < 0;
+        
         if (Focus == null || PawnState is not IdleState)
             return;
 

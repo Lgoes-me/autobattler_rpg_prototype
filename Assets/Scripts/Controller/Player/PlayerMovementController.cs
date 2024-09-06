@@ -4,6 +4,7 @@ using UnityEngine.AI;
 
 public class PlayerMovementController : MonoBehaviour
 {
+    [field: SerializeField] private SpriteRenderer Body { get; set; }
     [field: SerializeField] private Animator Animator { get; set; }
 
     //Domain
@@ -33,6 +34,8 @@ public class PlayerMovementController : MonoBehaviour
 
         var input = RightVector * MoveInput.x + ForwardVector * MoveInput.y;
         input = Vector3.ClampMagnitude(input, 1f);
+
+        Body.flipX = MoveInput.x < 0;
 
         var destination = transform.position + input * Speed;
 

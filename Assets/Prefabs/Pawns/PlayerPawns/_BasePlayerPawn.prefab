@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2106570956837824938}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2066060999577994603}
@@ -52,14 +52,14 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.25
   m_Height: 1
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!195 &449031379433608940
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -78,7 +78,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 1
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -94,6 +94,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dff2c4eeb144cc896ad3ba288bf7f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Body>k__BackingField: {fileID: 4325437516245746297}
+  <PawnData>k__BackingField: {fileID: 0}
   <NavMeshAgent>k__BackingField: {fileID: 449031379433608940}
   <CanvasFollowController>k__BackingField: {fileID: 8943502789671398332}
   <PawnCanvasController>k__BackingField: {fileID: 2072282285907572949}
@@ -174,6 +176,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
+--- !u!212 &4325437516245746297 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3581964401337747027, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
+  m_PrefabInstance: {fileID: 987057039797453866}
+  m_PrefabAsset: {fileID: 0}
 --- !u!95 &5260572479046819627 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 4950570799420742401, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}

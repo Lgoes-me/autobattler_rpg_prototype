@@ -5,8 +5,8 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
+    [field: SerializeField] private SpriteRenderer Body { get; set; }
     [field: SerializeField] private PawnController PawnController { get; set; }
-    [field: SerializeField] private PawnData PawnData { get; set; }
     [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
     [field: SerializeField] private Animator Animator { get; set; }
     [field: SerializeField] private List<Transform> Nodes { get; set; }
@@ -76,7 +76,7 @@ public class EnemyController : MonoBehaviour
         }
         else if (Nodes.Count > 0 &&
                  NavMeshAgent.pathStatus == NavMeshPathStatus.PathComplete &&
-                 NavMeshAgent.remainingDistance < 0.5f)
+                 NavMeshAgent.remainingDistance < 1f)
         {
             CurrentNode++;
 
@@ -87,6 +87,8 @@ public class EnemyController : MonoBehaviour
 
             NavMeshAgent.SetDestination(Nodes[CurrentNode].transform.position);
         }
+        
+        Body.flipX = NavMeshAgent.velocity.x < 0;
     }
 
     public void Prepare()
