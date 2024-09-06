@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +9,7 @@ public class PawnCanvasController : MonoBehaviour
     [field: SerializeField] private Image LifeBar { get; set; }
     [field: SerializeField] private Image BackgroundLifeBar { get; set; }
     [field: SerializeField] private Image ManaBar { get; set; }
+    [field: SerializeField] private Button SpecialButton { get; set; }
 
     private void OnEnable()
     {
@@ -20,6 +20,9 @@ public class PawnCanvasController : MonoBehaviour
         BackgroundLifeBar.fillAmount = fillAmount;
         
         ManaBar.fillAmount = pawn.Mana / (float) pawn.MaxMana;
+        
+        SpecialButton.gameObject.SetActive(false);
+        SpecialButton.onClick.AddListener(PawnController.DoSpecial);
     }
 
     public async Task UpdateLife()
@@ -38,5 +41,7 @@ public class PawnCanvasController : MonoBehaviour
     {
         var pawn = PawnController.Pawn;
         ManaBar.fillAmount = pawn.Mana / (float) pawn.MaxMana;
+
+        SpecialButton.gameObject.SetActive(pawn.Mana == pawn.MaxMana);
     }
 }

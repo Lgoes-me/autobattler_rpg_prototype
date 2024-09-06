@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.EventSystems;
 
 public class PawnController : MonoBehaviour
 {
@@ -69,7 +68,7 @@ public class PawnController : MonoBehaviour
     {
         if (Team == TeamType.Player)
         {
-            Pawn.Mana += 10;
+            Pawn.Mana = Mathf.Clamp(Pawn.Mana + 10, 0, Pawn.MaxMana);
             PawnCanvasController.UpdateMana();
         }
 
@@ -94,7 +93,7 @@ public class PawnController : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         Body.flipX = NavMeshAgent.velocity.x < 0;
         
@@ -120,5 +119,10 @@ public class PawnController : MonoBehaviour
     {
         CanvasFollowController.Hide();
         enabled = false;
+    }
+
+    public void DoSpecial()
+    {
+        
     }
 }
