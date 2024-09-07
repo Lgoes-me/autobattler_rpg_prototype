@@ -127,7 +127,7 @@ public class PawnController : MonoBehaviour
             return;
 
         var direction = Focus.transform.position - transform.position;
-        if (direction.magnitude <= Attack.Range)
+        if (Attack != null && Attack.Range >= direction.magnitude)
         {
             NavMeshAgent.isStopped = true;
             NavMeshAgent.SetDestination(transform.position);

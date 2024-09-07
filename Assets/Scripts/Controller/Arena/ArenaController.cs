@@ -8,7 +8,7 @@ public class ArenaController : MonoBehaviour
     private List<PawnController> ActivePawns { get; set; }
     private List<PawnController> EnemyPawns { get; set; }
     private List<PawnController> InitiativeList { get; set; }
-    
+
     private SceneManager SceneManager { get; set; }
     private List<EnemyController> Enemies { get; set; }
 
@@ -28,13 +28,15 @@ public class ArenaController : MonoBehaviour
 
         foreach (var enemyController in Enemies)
         {
-            EnemyPawns.Add(enemyController.GetPawnController());
+            var pawnController = enemyController.GetPawnController();
+            EnemyPawns.Add(pawnController);
         }
     }
 
     private void SpawnPlayerPawn()
     {
-        ActivePawns.Add(Application.Instance.PlayerManager.GetPawnController());
+        var pawnController = Application.Instance.PlayerManager.GetPawnController();
+        ActivePawns.Add(pawnController);
     }
 
     public void AddPlayerPawn(PawnController pawn)
@@ -60,40 +62,43 @@ public class ArenaController : MonoBehaviour
 
         while (hasEnemies && hasPlayers)
         {
-            foreach (var pawn in InitiativeList)
-            {
-                if (!pawn.PawnState.CanTakeTurn) continue;
-                yield return pawn.Turno(InitiativeList);
-            }
+            yield return RealizaTurno();
 
-            hasEnemies = EnemyPawns.Any(e => e.PawnState.AbleToFight);
-            hasPlayers = ActivePawns.Any(e => e.PawnState.AbleToFight);
+            hasEnemies = EnemyPawns.Count(e => e.PawnState.AbleToFight) > 0;
+            hasPlayers = ActivePawns.Count(e => e.PawnState.AbleToFight) > 0;
         }
 
         if (hasEnemies)
         {
             Debug.Log("enemies win");
-            //Death
         }
 
         if (hasPlayers)
         {
             Debug.Log("player win");
-            
-            foreach (var activePawn in ActivePawns)
-            {
-                if (!activePawn.PawnState.AbleToFight) continue;
-                //activePawn.Dance();
-            }
-            
+
+
             yield return new WaitForSeconds(3f);
-
-            foreach (var enemyPawn in EnemyPawns)
-            {
-                enemyPawn.Deactivate();
-            }
-
-            SceneManager.EndBattleScene();
+            EndBattle();
         }
+    }
+
+    private IEnumerator RealizaTurno()
+    {
+        foreach (var pawn in InitiativeList)
+        {
+            if (!pawn.PawnState.CanTakeTurn) continue;
+            yield return pawn.Turno(InitiativeList);
+        }
+    }
+
+    private void EndBattle()
+    {
+        foreach (var enemyPawn in EnemyPawns)
+        {
+            enemyPawn.Deactivate();
+        }
+
+        SceneManager.EndBattleScene();
     }
 }
