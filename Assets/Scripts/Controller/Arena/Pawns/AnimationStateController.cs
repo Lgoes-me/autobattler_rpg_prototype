@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class AnimationStateMachine : MonoBehaviour
+public class AnimationStateController : MonoBehaviour
 {
     [field: SerializeField] private Animator Animator { get; set; }
 

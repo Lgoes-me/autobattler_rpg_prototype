@@ -7,17 +7,21 @@ using UnityEngine.AI;
 
 public class PawnController : MonoBehaviour
 {
-    [field: SerializeField] private SpriteRenderer Body { get; set; }
-    [field: SerializeField] private PawnData PawnData { get; set; }
+    [field: SerializeField] public PawnData PawnData { get; private set; }
+    
     [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
+    
     [field: SerializeField] private CanvasFollowController CanvasFollowController { get; set; }
     [field: SerializeField] private PawnCanvasController PawnCanvasController { get; set; }
-    [field: SerializeField] private AnimationStateMachine AnimationStateMachine { get; set; }
+    
+    [field: SerializeField] private AnimationStateController AnimationStateController { get; set; }
     [field: SerializeField] private Animator Animator { get; set; }
+    [field: SerializeField] private SpriteRenderer Body { get; set; }
+    
     [field: SerializeField] private TeamType Team { get; set; }
 
     public PawnDomain Pawn { get; private set; }
-    public AnimationState PawnState => AnimationStateMachine.CurrentState;
+    public AnimationState PawnState => AnimationStateController.CurrentState;
     private Attack Attack { get; set; }
     private PawnController Focus { get; set; }
 
@@ -56,11 +60,11 @@ public class PawnController : MonoBehaviour
 
         if (direction.magnitude > Attack.Range)
         {
-            AnimationStateMachine.SetAnimationState(new IdleState());
+            AnimationStateController.SetAnimationState(new IdleState());
         }
         else
         {
-            AnimationStateMachine.SetAnimationState(new AttackState(Attack), () => AttackEnemy(Focus));
+            AnimationStateController.SetAnimationState(new AttackState(Attack), () => AttackEnemy(Focus));
         }
     }
 
@@ -76,7 +80,7 @@ public class PawnController : MonoBehaviour
 
         await Task.Delay(Attack.Delay);
 
-        AnimationStateMachine.SetAnimationState(new IdleState());
+        AnimationStateController.SetAnimationState(new IdleState());
     }
 
     private async void ReceiveAttack(int attack)
@@ -87,7 +91,7 @@ public class PawnController : MonoBehaviour
         if (Pawn.Health <= 0)
         {
             CanvasFollowController.Hide();
-            AnimationStateMachine.SetAnimationState(new DeadState());
+            AnimationStateController.SetAnimationState(new DeadState());
             NavMeshAgent.isStopped = true;
             Focus = null;
         }

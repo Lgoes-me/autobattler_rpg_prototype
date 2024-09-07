@@ -5,10 +5,10 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-    [field: SerializeField] private SpriteRenderer Body { get; set; }
     [field: SerializeField] private PawnController PawnController { get; set; }
     [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
     [field: SerializeField] private Animator Animator { get; set; }
+    [field: SerializeField] private SpriteRenderer Body { get; set; }
     [field: SerializeField] private List<Transform> Nodes { get; set; }
 
     private PlayerController Player { get; set; }

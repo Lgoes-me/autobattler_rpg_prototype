@@ -151,13 +151,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dff2c4eeb144cc896ad3ba288bf7f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Body>k__BackingField: {fileID: 1009862345976250929}
   <PawnData>k__BackingField: {fileID: 11400000, guid: e06c083c17fc0d44f8a2fb968c08b5d1, type: 2}
   <NavMeshAgent>k__BackingField: {fileID: 4337259988784190384}
   <CanvasFollowController>k__BackingField: {fileID: 7061050474934962571}
   <PawnCanvasController>k__BackingField: {fileID: 682443677164174369}
-  <AnimationStateMachine>k__BackingField: {fileID: 2813822948962306330}
+  <AnimationStateController>k__BackingField: {fileID: 2813822948962306330}
   <Animator>k__BackingField: {fileID: 8864636820668079971}
+  <Body>k__BackingField: {fileID: 1009862345976250929}
   <Team>k__BackingField: 0
 --- !u!114 &2813822948962306330
 MonoBehaviour:

@@ -71,10 +71,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df25ac748746a2d42af84ee50df0728c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Body>k__BackingField: {fileID: 802901943445773288}
   <PawnController>k__BackingField: {fileID: 7272871157834895343}
   <NavMeshAgent>k__BackingField: {fileID: 210561987189506272}
   <Animator>k__BackingField: {fileID: 9088896666613810874}
+  <Body>k__BackingField: {fileID: 802901943445773288}
   <Nodes>k__BackingField: []
 --- !u!114 &7272871157834895343
 MonoBehaviour:
@@ -88,13 +88,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dff2c4eeb144cc896ad3ba288bf7f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Body>k__BackingField: {fileID: 802901943445773288}
   <PawnData>k__BackingField: {fileID: 11400000, guid: e61a228106332044d90770565651ab35, type: 2}
   <NavMeshAgent>k__BackingField: {fileID: 210561987189506272}
   <CanvasFollowController>k__BackingField: {fileID: 1313434931341642617}
   <PawnCanvasController>k__BackingField: {fileID: 5477685546574343105}
-  <AnimationStateMachine>k__BackingField: {fileID: 1278293731505163671}
+  <AnimationStateController>k__BackingField: {fileID: 1278293731505163671}
   <Animator>k__BackingField: {fileID: 9088896666613810874}
+  <Body>k__BackingField: {fileID: 802901943445773288}
   <Team>k__BackingField: 1
 --- !u!114 &1278293731505163671
 MonoBehaviour:
