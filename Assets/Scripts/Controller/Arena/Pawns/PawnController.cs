@@ -24,6 +24,7 @@ public class PawnController : MonoBehaviour
     public AnimationState PawnState => AnimationStateController.CurrentState;
     private Attack Attack { get; set; }
     private PawnController Focus { get; set; }
+    private Coroutine BackToIdleCoroutine { get; set; }
 
     public PawnController Init()
     {
@@ -64,29 +65,50 @@ public class PawnController : MonoBehaviour
         }
         else
         {
-            AnimationStateController.SetAnimationState(new AttackState(Attack), () => AttackEnemy(Focus));
+            AnimationStateController.SetAnimationState(new AttackState(Attack, AttackEnemy), GoBackToIdle);
         }
     }
 
-    private async void AttackEnemy(PawnController enemy)
+    private void AttackEnemy()
     {
+        if(Focus == null || !PawnState.AbleToFight)
+            return;
+        
+        Debug.Log($"AttackEnemy {gameObject.name} {Focus.name}");
+
         if (Team == TeamType.Player)
         {
             Pawn.Mana = Mathf.Clamp(Pawn.Mana + 10, 0, Pawn.MaxMana);
             PawnCanvasController.UpdateMana();
         }
 
-        enemy.ReceiveAttack(Attack.Damage);
+        Focus.ReceiveAttack(Attack.Damage);
+    }
 
-        await Task.Delay(Attack.Delay);
+    private void GoBackToIdle()
+    {
+        if(BackToIdleCoroutine != null)
+            StopCoroutine(BackToIdleCoroutine);
+        
+        BackToIdleCoroutine = StartCoroutine(GoBackToIdleCoroutine());
+    }
+    
+    private IEnumerator GoBackToIdleCoroutine()
+    {
+        Debug.Log($"GoBackToIdleCoroutine {gameObject.name}");
+        
+        yield return new WaitForSeconds(Attack.Delay);
 
+        if (!PawnState.AbleToFight)
+            yield break;
+        
         AnimationStateController.SetAnimationState(new IdleState());
     }
 
-    private async void ReceiveAttack(int attack)
+    private void ReceiveAttack(int attack)
     {
         Pawn.Health -= attack;
-        await PawnCanvasController.UpdateLife();
+        PawnCanvasController.UpdateLife();
 
         if (Pawn.Health <= 0)
         {

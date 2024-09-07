@@ -19,4 +19,4 @@ MonoBehaviour:
   - <Animation>k__BackingField: Fireball
     <Damage>k__BackingField: 2
     <Range>k__BackingField: 6
-    <Delay>k__BackingField: 500
+    <Delay>k__BackingField: 0.5

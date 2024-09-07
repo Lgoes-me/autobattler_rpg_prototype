@@ -19,4 +19,4 @@ MonoBehaviour:
   - <Animation>k__BackingField: Block_Attack
     <Damage>k__BackingField: 0
     <Range>k__BackingField: 1
-    <Delay>k__BackingField: 200
+    <Delay>k__BackingField: 0.2

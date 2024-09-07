@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,15 +26,18 @@ public class PawnCanvasController : MonoBehaviour
         SpecialButton.onClick.AddListener(PawnController.DoSpecial);
     }
 
-    public async Task UpdateLife()
+    public void UpdateLife()
     {
         var pawn = PawnController.Pawn;
         var fillAmount = pawn.Health / (float) pawn.MaxHealth;
         
         LifeBar.fillAmount = fillAmount;
-        
-        await Task.Delay(300);
-        
+        StartCoroutine(UpdateBackgroundLifeBar(fillAmount));
+    }
+
+    private IEnumerator UpdateBackgroundLifeBar(float fillAmount)
+    {
+        yield return new WaitForSeconds(0.5f);
         BackgroundLifeBar.fillAmount = fillAmount;
     }
 

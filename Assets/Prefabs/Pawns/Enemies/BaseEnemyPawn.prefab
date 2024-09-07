@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7272871157834895343}
   - component: {fileID: 1278293731505163671}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: BaseEnemyPawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -254,6 +254,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -1801674106, guid: e80992e1c20f3364ba17d11a4a9da45e, type: 3}
+    - target: {fileID: 3911377175279175832, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
+      propertyPath: <AnimationStateController>k__BackingField
+      value: 
+      objectReference: {fileID: 1278293731505163671}
     - target: {fileID: 6648848722526507185, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
       propertyPath: m_RootOrder
       value: 0

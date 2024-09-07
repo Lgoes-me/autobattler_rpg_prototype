@@ -19,4 +19,4 @@ MonoBehaviour:
   - <Animation>k__BackingField: Ranged_Shoot
     <Damage>k__BackingField: 1
     <Range>k__BackingField: 8
-    <Delay>k__BackingField: 150
+    <Delay>k__BackingField: 0.15
