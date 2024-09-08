@@ -14,8 +14,9 @@ public class PawnDomain
     public int Initiative { get; private set; }
     
     private List<Attack> Attacks { get; set; }
+    public Attack SpecialAttack { get; set; }
 
-    public PawnDomain(int health, int size, int initiative, List<Attack> attacks)
+    public PawnDomain(int health, int size, int initiative, List<Attack> attacks, Attack specialAttack)
     {
         MaxHealth = health;
         Health = health;
@@ -27,6 +28,7 @@ public class PawnDomain
         Size = size;
 
         Attacks = attacks;
+        SpecialAttack = specialAttack;
     }
 
     public Attack GetCurrentAttackIntent()

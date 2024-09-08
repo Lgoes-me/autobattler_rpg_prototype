@@ -4,6 +4,7 @@
 public class AnimationState
 {
     [field: SerializeField] public virtual string Animation { get; set; }
+    [field: SerializeField] public virtual bool CanWalk { get; set; } = false;
     [field: SerializeField] public virtual bool Loopable { get; set; } = false;
     [field: SerializeField] public virtual bool CanTakeTurn { get; set; } = false;
     [field: SerializeField] public virtual bool CanBeTargeted { get; set; } = true;

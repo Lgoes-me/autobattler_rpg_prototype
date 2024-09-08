@@ -1,13 +1,13 @@
 ﻿using System;
 
-public class AttackState : AnimationState
+public class SpecialAttackState : AnimationState
 {
     public override string Animation => Attack.Animation;
     public override bool CanWalk => true;
     private Attack Attack { get; }
     private Action Callback { get; }
 
-    public AttackState(Attack attack, Action callback)
+    public SpecialAttackState(Attack attack, Action callback)
     {
         Attack = attack;
         Callback = callback;
@@ -18,4 +18,5 @@ public class AttackState : AnimationState
         base.DoAnimationEvent();
         Callback?.Invoke();
     }
+        
 }

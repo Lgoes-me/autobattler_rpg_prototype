@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2506f476fd0f4300b3c3cd3c8b600971, type: 3}
   m_Name: Barbarian
   m_EditorClassIdentifier: 
-  <Health>k__BackingField: 30
+  <Health>k__BackingField: 40
   <Size>k__BackingField: 1
   <Initiative>k__BackingField: 1
   <Attacks>k__BackingField:
@@ -20,3 +20,8 @@ MonoBehaviour:
     <Damage>k__BackingField: 3
     <Range>k__BackingField: 3
     <Delay>k__BackingField: 0.4
+  <SpecialAttack>k__BackingField:
+    <Animation>k__BackingField: SpecialAttack
+    <Damage>k__BackingField: 10
+    <Range>k__BackingField: 3
+    <Delay>k__BackingField: 0.5

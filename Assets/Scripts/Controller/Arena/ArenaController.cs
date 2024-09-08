@@ -75,10 +75,14 @@ public class ArenaController : MonoBehaviour
 
         if (hasPlayers)
         {
-            Debug.Log("player win");
+            foreach (var playerPawn in ActivePawns)
+            {
+                if (!playerPawn.PawnState.AbleToFight) continue;
+                playerPawn.Dance();
+            }
 
-
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(2f);
+            
             EndBattle();
         }
     }

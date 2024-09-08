@@ -7,6 +7,9 @@ public class SceneManager : MonoBehaviour
 {
     [field: SerializeField] private PlayerManager PlayerManager { get; set; }
 
+    private bool BattleActive { get; set; }
+    private bool BonfireActive { get; set; }
+    
     public void StartGame()
     {
         var startingScene = "DungeonEntrance";
@@ -33,6 +36,9 @@ public class SceneManager : MonoBehaviour
 
     public void StartBattleScene(string id, List<EnemyController> enemies)
     {
+        if(BattleActive)
+            return;
+        
         PlayerManager.AddDefeated(id);
 
         var task = UnitySceneManager.LoadSceneAsync("BattleScene", LoadSceneMode.Additive);
@@ -42,36 +48,47 @@ public class SceneManager : MonoBehaviour
             PlayerManager.PlayerToBattle();
             var battleScene = FindObjectOfType<BattleScene>();
             battleScene.ActivateBattleScene(this, enemies);
+            BattleActive = true;
         };
     }
 
     public void EndBattleScene()
     {
+        if(!BattleActive)
+            return;
+        
         var task = UnitySceneManager.UnloadSceneAsync("BattleScene");
         
         task.completed += _ =>
         {
             PlayerManager.PlayerToWorld();
+            BattleActive = false;
         };
     }
     
     public void StartBonfireScene()
     {
+        if(BonfireActive)
+            return;
+        
         var task = UnitySceneManager.LoadSceneAsync("BonfireScene", LoadSceneMode.Additive);
 
         task.completed += _ =>
         {
-            
+            BonfireActive = true;
         };
     }
 
     public void EndBonfireScene()
     {
+        if(!BonfireActive)
+            return;
+
         var task = UnitySceneManager.UnloadSceneAsync("BonfireScene");
         
         task.completed += _ =>
         {
-            
+            BonfireActive = false;
         };
     }
 }

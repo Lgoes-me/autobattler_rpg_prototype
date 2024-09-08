@@ -9,9 +9,10 @@ public class PawnData : ScriptableObject
     [field: SerializeField] private int Initiative { get; set; } = 1;
 
     [field: SerializeField] private List<Attack> Attacks { get; set; }
+    [field: SerializeField] private Attack SpecialAttack { get; set; }
 
     public PawnDomain ToDomain()
     {
-        return new PawnDomain(Health, Size, Initiative, Attacks);
+        return new PawnDomain(Health, Size, Initiative, Attacks, SpecialAttack);
     }
 }

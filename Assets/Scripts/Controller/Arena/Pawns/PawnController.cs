@@ -25,6 +25,7 @@ public class PawnController : MonoBehaviour
     private Attack Attack { get; set; }
     private PawnController Focus { get; set; }
     private Coroutine BackToIdleCoroutine { get; set; }
+    private bool SpecialAttackRequested { get; set; }
 
     public PawnController Init()
     {
@@ -63,6 +64,10 @@ public class PawnController : MonoBehaviour
         {
             AnimationStateController.SetAnimationState(new IdleState());
         }
+        else if(SpecialAttackRequested)
+        {
+            AnimationStateController.SetAnimationState(new SpecialAttackState(Pawn.SpecialAttack, SpecialAttackEnemy), GoBackToIdle);
+        }
         else
         {
             AnimationStateController.SetAnimationState(new AttackState(Attack, AttackEnemy), GoBackToIdle);
@@ -77,12 +82,23 @@ public class PawnController : MonoBehaviour
         if (Team == TeamType.Player)
         {
             Pawn.Mana = Mathf.Clamp(Pawn.Mana + 10, 0, Pawn.MaxMana);
-            PawnCanvasController.UpdateMana();
+            PawnCanvasController.UpdateMana(!SpecialAttackRequested);
         }
 
         Focus.ReceiveAttack(Attack.Damage);
     }
+    
+    private void SpecialAttackEnemy()
+    {
+        if(Focus == null || !PawnState.AbleToFight)
+            return;
+        
+        SpecialAttackRequested = false;
+        Pawn.Mana = 0;
+        PawnCanvasController.UpdateMana(!SpecialAttackRequested);
 
+        Focus.ReceiveAttack(Attack.Damage);
+    }
     private void GoBackToIdle()
     {
         if(BackToIdleCoroutine != null)
@@ -120,7 +136,7 @@ public class PawnController : MonoBehaviour
     {
         Body.flipX = NavMeshAgent.velocity.x < 0;
         
-        if (Focus == null || PawnState is not IdleState)
+        if (Focus == null || !PawnState.CanWalk)
             return;
 
         var direction = Focus.transform.position - transform.position;
@@ -146,6 +162,12 @@ public class PawnController : MonoBehaviour
 
     public void DoSpecial()
     {
-        
+        SpecialAttackRequested = true;
+    }
+    
+    public void Dance()
+    {
+        CanvasFollowController.Hide();
+        AnimationStateController.SetAnimationState(new DanceState(), GoBackToIdle);
     }
 }

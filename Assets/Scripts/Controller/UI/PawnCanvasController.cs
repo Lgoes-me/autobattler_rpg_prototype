@@ -22,7 +22,12 @@ public class PawnCanvasController : MonoBehaviour
         ManaBar.fillAmount = pawn.Mana / (float) pawn.MaxMana;
         
         SpecialButton.gameObject.SetActive(false);
-        SpecialButton.onClick.AddListener(PawnController.DoSpecial);
+        
+        SpecialButton.onClick.AddListener(() =>
+        {
+            SpecialButton.gameObject.SetActive(false);
+            PawnController.DoSpecial();
+        });
     }
 
     public void UpdateLife(bool withAnimation)
@@ -47,11 +52,11 @@ public class PawnCanvasController : MonoBehaviour
         BackgroundLifeBar.fillAmount = fillAmount;
     }
 
-    public void UpdateMana()
+    public void UpdateMana(bool canActivateButton)
     {
         var pawn = PawnController.Pawn;
         ManaBar.fillAmount = pawn.Mana / (float) pawn.MaxMana;
 
-        SpecialButton.gameObject.SetActive(pawn.Mana == pawn.MaxMana);
+        SpecialButton.gameObject.SetActive(canActivateButton && pawn.Mana == pawn.MaxMana);
     }
 }
