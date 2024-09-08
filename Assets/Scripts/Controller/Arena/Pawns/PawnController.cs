@@ -58,15 +58,11 @@ public class PawnController : MonoBehaviour
         }
 
         var direction = Focus.transform.position - transform.position;
-        Attack = Pawn.GetCurrentAttackIntent();
+        Attack = Pawn.GetCurrentAttackIntent(SpecialAttackRequested);
 
         if (direction.magnitude > Attack.Range)
         {
             AnimationStateController.SetAnimationState(new IdleState());
-        }
-        else if(SpecialAttackRequested)
-        {
-            AnimationStateController.SetAnimationState(new SpecialAttackState(Pawn.SpecialAttack, SpecialAttackEnemy), GoBackToIdle);
         }
         else
         {
@@ -78,8 +74,14 @@ public class PawnController : MonoBehaviour
     {
         if(Focus == null || !PawnState.AbleToFight)
             return;
-        
-        if (Team == TeamType.Player)
+
+        if (Attack.SpecialAttack)
+        {
+            SpecialAttackRequested = false;
+            Pawn.Mana = 0;
+            PawnCanvasController.UpdateMana(!SpecialAttackRequested);
+        }
+        else if (Team == TeamType.Player)
         {
             Pawn.Mana = Mathf.Clamp(Pawn.Mana + 10, 0, Pawn.MaxMana);
             PawnCanvasController.UpdateMana(!SpecialAttackRequested);
@@ -88,17 +90,6 @@ public class PawnController : MonoBehaviour
         Focus.ReceiveAttack(Attack.Damage);
     }
     
-    private void SpecialAttackEnemy()
-    {
-        if(Focus == null || !PawnState.AbleToFight)
-            return;
-        
-        SpecialAttackRequested = false;
-        Pawn.Mana = 0;
-        PawnCanvasController.UpdateMana(!SpecialAttackRequested);
-
-        Focus.ReceiveAttack(Attack.Damage);
-    }
     private void GoBackToIdle()
     {
         if(BackToIdleCoroutine != null)

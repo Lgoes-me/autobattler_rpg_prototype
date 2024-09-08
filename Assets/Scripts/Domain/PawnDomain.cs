@@ -14,7 +14,7 @@ public class PawnDomain
     public int Initiative { get; private set; }
     
     private List<Attack> Attacks { get; set; }
-    public Attack SpecialAttack { get; set; }
+    private Attack SpecialAttack { get; set; }
 
     public PawnDomain(int health, int size, int initiative, List<Attack> attacks, Attack specialAttack)
     {
@@ -31,8 +31,11 @@ public class PawnDomain
         SpecialAttack = specialAttack;
     }
 
-    public Attack GetCurrentAttackIntent()
+    public Attack GetCurrentAttackIntent(bool specialAttackRequested)
     {
+        if (specialAttackRequested)
+            return SpecialAttack;
+        
         return Attacks[Random.Range(0, Attacks.Count)];
     }
 }

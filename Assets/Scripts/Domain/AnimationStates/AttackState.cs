@@ -3,7 +3,6 @@
 public class AttackState : AnimationState
 {
     public override string Animation => Attack.Animation;
-    public override bool CanWalk => true;
     private Attack Attack { get; }
     private Action Callback { get; }
 

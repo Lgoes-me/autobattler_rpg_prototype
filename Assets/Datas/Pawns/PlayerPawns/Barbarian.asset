@@ -20,8 +20,10 @@ MonoBehaviour:
     <Damage>k__BackingField: 3
     <Range>k__BackingField: 3
     <Delay>k__BackingField: 0.4
+    <SpecialAttack>k__BackingField: 0
   <SpecialAttack>k__BackingField:
     <Animation>k__BackingField: SpecialAttack
     <Damage>k__BackingField: 10
     <Range>k__BackingField: 3
     <Delay>k__BackingField: 0.5
+    <SpecialAttack>k__BackingField: 1
