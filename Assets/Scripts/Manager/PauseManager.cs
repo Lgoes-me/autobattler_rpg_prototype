@@ -10,7 +10,7 @@ public class PauseManager : MonoBehaviour
     
     private bool IsPaused { get; set; }
 
-    private void Start()
+    private void Awake()
     {
         PauseListeners = new List<IPauseListener>();
         IsPaused = false;

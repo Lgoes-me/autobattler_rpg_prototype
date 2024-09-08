@@ -180,6 +180,7 @@ GameObject:
   - component: {fileID: 8478399716505384373}
   - component: {fileID: 4950570799420742401}
   - component: {fileID: 3911377175279175832}
+  - component: {fileID: 5029195247004389606}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -250,6 +251,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff98d3dd548c4726b3913a0107369396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <AnimationStateController>k__BackingField: {fileID: 0}
+--- !u!114 &5029195247004389606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7076988159235207190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b65c53c7e2a86d49bc48a724ea16c09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Animator>k__BackingField: {fileID: 4950570799420742401}
+  <Sprite>k__BackingField: {fileID: 3581964401337747027}
 --- !u!1 &7395948057622204348
 GameObject:
   m_ObjectHideFlags: 0

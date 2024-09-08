@@ -18,6 +18,8 @@ public class PawnController : MonoBehaviour
     [field: SerializeField] private Animator Animator { get; set; }
     [field: SerializeField] private SpriteRenderer Body { get; set; }
     
+    [field: SerializeField] private HitStopController HitStopController { get; set; }
+    
     [field: SerializeField] private TeamType Team { get; set; }
 
     public PawnDomain Pawn { get; private set; }
@@ -112,7 +114,7 @@ public class PawnController : MonoBehaviour
     {
         Pawn.Health = Mathf.Clamp(Pawn.Health - attack, 0, Pawn.MaxHealth);
         var dead = Pawn.Health <= 0;
-        
+        HitStopController.HitStop(0f, 0.05f, false);
         PawnCanvasController.UpdateLife(!dead);
 
         if (!dead) return;

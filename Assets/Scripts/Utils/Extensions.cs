@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public static class Utils
+public static class Extensions
 {
     public static Vector3 Follow(this Vector3 origin, Vector3 destination, int decay)
     {

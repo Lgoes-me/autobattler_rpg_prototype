@@ -159,6 +159,7 @@ MonoBehaviour:
   <AnimationStateController>k__BackingField: {fileID: 2813822948962306330}
   <Animator>k__BackingField: {fileID: 8864636820668079971}
   <Body>k__BackingField: {fileID: 1009862345976250929}
+  <HitStopController>k__BackingField: {fileID: 8826276538185307268}
   <Team>k__BackingField: 0
 --- !u!114 &2813822948962306330
 MonoBehaviour:
@@ -369,6 +370,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6648848722526507185, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
   m_PrefabInstance: {fileID: 4590982013017769058}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8826276538185307268 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5029195247004389606, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
+  m_PrefabInstance: {fileID: 4590982013017769058}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b65c53c7e2a86d49bc48a724ea16c09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &8864636820668079971 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 4950570799420742401, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
