@@ -16,8 +16,6 @@ public class AnimationStateController : MonoBehaviour
 
     public void SetAnimationState(AnimationState state, Action callback = null)
     {
-        Debug.Log($"SetAnimation {gameObject.name} {state.Animation}");
-        
         CurrentState = state;
         Animator.applyRootMotion = true;
         Animator.Play(CurrentState.Animation);

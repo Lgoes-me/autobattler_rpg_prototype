@@ -54,4 +54,24 @@ public class SceneManager : MonoBehaviour
             PlayerManager.PlayerToWorld();
         };
     }
+    
+    public void StartBonfireScene()
+    {
+        var task = UnitySceneManager.LoadSceneAsync("BonfireScene", LoadSceneMode.Additive);
+
+        task.completed += _ =>
+        {
+            
+        };
+    }
+
+    public void EndBonfireScene()
+    {
+        var task = UnitySceneManager.UnloadSceneAsync("BonfireScene");
+        
+        task.completed += _ =>
+        {
+            
+        };
+    }
 }

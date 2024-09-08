@@ -4,7 +4,6 @@ using UnityEngine;
 public class PlayerArenaController : MonoBehaviour
 {
     [field: SerializeField] private List<PlayerCard> PlayerCards { get; set; }
-    [field: SerializeField] private List<PawnController> Pawns { get; set; }
     [field: SerializeField] private ArenaController ArenaController { get; set; }
     [field: SerializeField] private Transform SelectionFeedback { get; set; }
     
@@ -20,10 +19,18 @@ public class PlayerArenaController : MonoBehaviour
     {
         Camera = Camera.main;
 
+        var pawns = new List<PawnController>(Application.Instance.PartyManager.SelectedParty);
+        
         foreach (var card in PlayerCards)
         {
-            var data = Pawns[Random.Range(0, Pawns.Count)];
-            Pawns.Remove(data);
+            if (pawns.Count == 0)
+            {
+                card.gameObject.SetActive(false);
+                continue;
+            }
+            
+            var data = pawns[Random.Range(0, pawns.Count)];
+            pawns.Remove(data);
             card.Init(data);
         }
     }

@@ -3,19 +3,22 @@ using UnityEngine;
 public class InteractableController : MonoBehaviour
 {
     [field: SerializeField] private CanvasFollowController CanvasFollowController { get; set; }
+    [field: SerializeField] private InteractionListener InteractionListener { get; set; }
     
     public void Preselect()
     {
         CanvasFollowController.Show();
+        InteractionListener?.PreSelect();
     }
 
     public void Select()
     {
-        Debug.Log($"Selected {name}");
+        InteractionListener?.Interact();
     }
 
     public void Unselect()
     {
         CanvasFollowController.Hide();
+        InteractionListener?.UnSelect();
     }
 }

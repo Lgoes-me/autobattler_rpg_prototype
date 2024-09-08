@@ -74,8 +74,6 @@ public class PawnController : MonoBehaviour
         if(Focus == null || !PawnState.AbleToFight)
             return;
         
-        Debug.Log($"AttackEnemy {gameObject.name} {Focus.name}");
-
         if (Team == TeamType.Player)
         {
             Pawn.Mana = Mathf.Clamp(Pawn.Mana + 10, 0, Pawn.MaxMana);
@@ -95,8 +93,6 @@ public class PawnController : MonoBehaviour
     
     private IEnumerator GoBackToIdleCoroutine()
     {
-        Debug.Log($"GoBackToIdleCoroutine {gameObject.name}");
-        
         yield return new WaitForSeconds(Attack.Delay);
 
         if (!PawnState.AbleToFight)
@@ -107,16 +103,17 @@ public class PawnController : MonoBehaviour
 
     private void ReceiveAttack(int attack)
     {
-        Pawn.Health -= attack;
-        PawnCanvasController.UpdateLife();
+        Pawn.Health = Mathf.Clamp(Pawn.Health - attack, 0, Pawn.MaxHealth);
+        var dead = Pawn.Health <= 0;
+        
+        PawnCanvasController.UpdateLife(!dead);
 
-        if (Pawn.Health <= 0)
-        {
-            CanvasFollowController.Hide();
-            AnimationStateController.SetAnimationState(new DeadState());
-            NavMeshAgent.isStopped = true;
-            Focus = null;
-        }
+        if (!dead) return;
+        
+        CanvasFollowController.Hide();
+        AnimationStateController.SetAnimationState(new DeadState());
+        NavMeshAgent.isStopped = true;
+        Focus = null;
     }
 
     private void Update()

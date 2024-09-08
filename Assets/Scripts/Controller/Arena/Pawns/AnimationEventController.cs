@@ -6,7 +6,6 @@ public class AnimationEventController : MonoBehaviour
     
     public void DoAnimationEvent()
     {
-        Debug.Log($"DoAnimationEvent {gameObject.name} {AnimationStateController.CurrentState.Animation}");
         AnimationStateController.CurrentState.DoAnimationEvent();
     }
 }

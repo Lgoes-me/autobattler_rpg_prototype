@@ -17,7 +17,7 @@ public class PlayerCard : MonoBehaviour, IPointerClickHandler, IDragHandler, IEn
     public void Init(PawnController pawn)
     {
         Pawn = pawn;
-        Name.SetText(pawn.name);
+        Name.SetText(pawn.PawnData.name);
         Image.color = Color.grey;
         StartingPosition = transform.position;
     }

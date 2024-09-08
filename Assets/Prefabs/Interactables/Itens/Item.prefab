@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ecf30f7dfb4cb4412b78cb35f5c6db80, type: 2}
+  - {fileID: 2100000, guid: 1f46bbfb849560f43949bd76efd6da97, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -131,6 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <CanvasFollowController>k__BackingField: {fileID: 6864215721399541504}
+  <InteractionListener>k__BackingField: {fileID: 0}
 --- !u!135 &3403507040145066504
 SphereCollider:
   m_ObjectHideFlags: 0
