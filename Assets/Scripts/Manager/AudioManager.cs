@@ -46,6 +46,7 @@ public class AudioManager : MonoBehaviour
         MusicAudioSource.volume = 1;
         LoopAudioSource.volume = 0;
         
+        MusicAudioSource.pitch = Random.Range(0.9f, 1.15f);
         MusicAudioSource.loop = false;
         MusicAudioSource.Play(0);
 
@@ -61,6 +62,7 @@ public class AudioManager : MonoBehaviour
         yield return new WaitForSeconds(music.MainMusic.length - 5f);
 
         LoopAudioSource.clip = music.SecondaryLoop;
+        LoopAudioSource.pitch = Random.Range(0.9f, 1.15f);
         LoopAudioSource.loop = true;
         LoopAudioSource.Play(0);
         
@@ -91,8 +93,8 @@ public class Sfx
 
 public enum SfxType
 {
-    Unknown,
-    Slash,
+    Unknown = 0,
+    Slash = 1,
 }
 
 [System.Serializable]
@@ -105,7 +107,8 @@ public class Music
 
 public enum MusicType
 {
-    Unknown,
-    Dungeon,
-    Battle
+    Unknown = 0,
+    Dungeon = 1,
+    Battle = 2,
+    Victory = 3
 }

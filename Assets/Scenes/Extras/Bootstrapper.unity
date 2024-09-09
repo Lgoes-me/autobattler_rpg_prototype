@@ -1392,3 +1392,6 @@ MonoBehaviour:
   - <Type>k__BackingField: 2
     <MainMusic>k__BackingField: {fileID: 8300000, guid: 0f87f63676628594aa67af368fad05b6, type: 3}
     <SecondaryLoop>k__BackingField: {fileID: 8300000, guid: 0898487cebe250649be0c13ccea7e27e, type: 3}
+  - <Type>k__BackingField: 3
+    <MainMusic>k__BackingField: {fileID: 8300000, guid: 30b9e37dd0ff9f344b62db547970a29e, type: 3}
+    <SecondaryLoop>k__BackingField: {fileID: 8300000, guid: 35d1fc567618f83449323e7881e880e6, type: 3}

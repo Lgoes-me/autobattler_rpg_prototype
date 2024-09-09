@@ -75,13 +75,15 @@ public class ArenaController : MonoBehaviour
 
         if (hasPlayers)
         {
+            Application.Instance.AudioManager.PlayMusic(MusicType.Victory);
+            
             foreach (var playerPawn in ActivePawns)
             {
                 if (!playerPawn.PawnState.AbleToFight) continue;
                 playerPawn.Dance();
             }
 
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(5f);
             
             EndBattle();
         }
