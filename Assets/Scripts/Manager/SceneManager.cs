@@ -20,6 +20,7 @@ public class SceneManager : MonoBehaviour
         {
             var roomScene = FindObjectOfType<RoomScene>();
             roomScene.ActivateRoomScene(this, PlayerManager.PlayerController,"DungeonEntrance");
+            Application.Instance.AudioManager.PlayMusic();
         };
     }
 

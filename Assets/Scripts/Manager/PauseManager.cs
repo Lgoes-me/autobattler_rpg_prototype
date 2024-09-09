@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,7 +25,7 @@ public class PauseManager : MonoBehaviour
         PauseListeners.Remove(pauseListener);
     }
 
-    public void PauseGame()
+    private void PauseGame()
     {
         Time.timeScale = 0;
         PauseCanvas.gameObject.SetActive(true);
@@ -38,7 +37,7 @@ public class PauseManager : MonoBehaviour
         }
     }
 
-    public void ResumeGame()
+    private void ResumeGame()
     {
         Time.timeScale = 1;
         PauseCanvas.gameObject.SetActive(false);

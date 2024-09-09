@@ -88,6 +88,8 @@ public class PawnController : MonoBehaviour
             Pawn.Mana = Mathf.Clamp(Pawn.Mana + 10, 0, Pawn.MaxMana);
             PawnCanvasController.UpdateMana(!SpecialAttackRequested);
         }
+        
+        Application.Instance.AudioManager.PlaySound(SfxType.Slash);
 
         Focus.ReceiveAttack(Attack.Damage);
     }
