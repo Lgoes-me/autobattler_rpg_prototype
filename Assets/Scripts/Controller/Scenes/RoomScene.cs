@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RoomScene : BaseScene
 {
+    [field: SerializeField] public MusicType Music { get; private set; }
     [field: SerializeField] private List<DoorController> Doors { get; set; }
     [field: SerializeField] private List<EnemyAreaController> EnemyAreas { get; set; }
 

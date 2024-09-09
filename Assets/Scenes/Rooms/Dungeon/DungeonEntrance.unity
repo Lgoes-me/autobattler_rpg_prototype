@@ -663,6 +663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48aea20806894858acb1b042bfbd9fe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Music>k__BackingField: 1
   <Doors>k__BackingField:
   - {fileID: 1158165156}
   - {fileID: 423085790}

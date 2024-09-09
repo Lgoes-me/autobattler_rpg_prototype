@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -8,9 +9,13 @@ public class AudioManager : MonoBehaviour
 {
     [field: SerializeField] private AudioSource SfxAudioSource { get; set; }
     [field: SerializeField] private AudioSource MusicAudioSource { get; set; }
+    [field: SerializeField] private AudioSource LoopAudioSource { get; set; }
     [field: SerializeField] private List<Sfx> SoundEffects { get; set; }
-    [field: SerializeField] private AudioClip Music { get; set; }
-
+    [field: SerializeField] private List<Music> Musics { get; set; }
+    
+    private MusicType CurrentMusic { get; set; }
+    private Coroutine MusicCoroutine { get; set; }
+    
     public void PlaySound(SfxType type)
     {
         var sfx = SoundEffects.FirstOrDefault(sfx => sfx.Type == type);
@@ -23,11 +28,58 @@ public class AudioManager : MonoBehaviour
         SfxAudioSource.PlayOneShot(sound);
     }
     
-    public void PlayMusic()
+    public void PlayMusic(MusicType type)
     {
-        MusicAudioSource.clip = Music;
+        if(type == CurrentMusic)
+            return;
+        
+        var music = Musics.FirstOrDefault(sfx => sfx.Type == type);
+        
+        if (music == null)
+            throw new Exception($"musica do tipo: {type} não cadastrado");
+        
+        CurrentMusic = type;
+        
+        MusicAudioSource.clip = music.MainMusic;
+        
+        //TODO poder mudar o volume maximo da musica (aqui e no lerp do fade)
+        MusicAudioSource.volume = 1;
+        LoopAudioSource.volume = 0;
+        
+        MusicAudioSource.loop = false;
         MusicAudioSource.Play(0);
+
+        if (MusicCoroutine != null)
+            StopCoroutine(MusicCoroutine);
+        
+        
+        MusicCoroutine = StartCoroutine(MusicLoopCoroutine(music));
     }
+
+    private IEnumerator MusicLoopCoroutine(Music music)
+    {
+        yield return new WaitForSeconds(music.MainMusic.length - 5f);
+
+        LoopAudioSource.clip = music.SecondaryLoop;
+        LoopAudioSource.loop = true;
+        LoopAudioSource.Play(0);
+        
+        yield return Fade(5);
+    }
+    
+    private IEnumerator Fade(int delay) 
+    {
+        float timeElapsed = 0;
+
+        while (timeElapsed < delay) 
+        {
+            MusicAudioSource.volume = Mathf.Lerp(1, 0, timeElapsed / (float) delay);
+            LoopAudioSource.volume = Mathf.Lerp(0, 1, timeElapsed / (float) delay);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+    }
+
 }
 
 [System.Serializable]
@@ -39,5 +91,21 @@ public class Sfx
 
 public enum SfxType
 {
+    Unknown,
     Slash,
+}
+
+[System.Serializable]
+public class Music
+{
+    [field: SerializeField] public MusicType Type { get; set; }
+    [field: SerializeField] public AudioClip MainMusic { get; set; }
+    [field: SerializeField] public AudioClip SecondaryLoop { get; set; }
+}
+
+public enum MusicType
+{
+    Unknown,
+    Dungeon,
+    Battle
 }

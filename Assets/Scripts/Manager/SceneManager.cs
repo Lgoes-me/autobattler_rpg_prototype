@@ -20,7 +20,8 @@ public class SceneManager : MonoBehaviour
         {
             var roomScene = FindObjectOfType<RoomScene>();
             roomScene.ActivateRoomScene(this, PlayerManager.PlayerController,"DungeonEntrance");
-            Application.Instance.AudioManager.PlayMusic();
+            
+            Application.Instance.AudioManager.PlayMusic(roomScene.Music);
         };
     }
 
@@ -32,6 +33,8 @@ public class SceneManager : MonoBehaviour
         {
             var roomScene = FindObjectOfType<RoomScene>();
             roomScene.ActivateRoomScene(this, PlayerManager.PlayerController, doorName);
+            
+            Application.Instance.AudioManager.PlayMusic(roomScene.Music);
         };
     }
 
@@ -49,6 +52,9 @@ public class SceneManager : MonoBehaviour
             PlayerManager.PlayerToBattle();
             var battleScene = FindObjectOfType<BattleScene>();
             battleScene.ActivateBattleScene(this, enemies);
+            
+            Application.Instance.AudioManager.PlayMusic(MusicType.Battle);
+            
             BattleActive = true;
         };
     }
@@ -62,6 +68,9 @@ public class SceneManager : MonoBehaviour
         
         task.completed += _ =>
         {
+            var roomScene = FindObjectOfType<RoomScene>();
+            Application.Instance.AudioManager.PlayMusic(roomScene.Music);
+            
             PlayerManager.PlayerToWorld();
             BattleActive = false;
         };
