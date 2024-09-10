@@ -12,15 +12,14 @@ public class SceneManager : MonoBehaviour
     
     public void StartGame()
     {
-        var startingScene = "DungeonEntrance";
-
-        var task = UnitySceneManager.LoadSceneAsync(startingScene, LoadSceneMode.Single);
+        var save = Application.Instance.Save;
+        var task = UnitySceneManager.LoadSceneAsync(save.Room, LoadSceneMode.Single);
 
         task.completed += _ =>
         {
             var roomScene = FindObjectOfType<RoomScene>();
-            roomScene.ActivateRoomScene(this, PlayerManager.PlayerController,"DungeonEntrance");
             
+            roomScene.ActivateRoomScene(this, PlayerManager.PlayerController,save.Door);
             Application.Instance.AudioManager.PlayMusic(roomScene.Music);
         };
     }
@@ -33,8 +32,12 @@ public class SceneManager : MonoBehaviour
         {
             var roomScene = FindObjectOfType<RoomScene>();
             roomScene.ActivateRoomScene(this, PlayerManager.PlayerController, doorName);
-            
             Application.Instance.AudioManager.PlayMusic(roomScene.Music);
+
+            var save = Application.Instance.Save;
+            save.Room = sceneName;
+            save.Door = doorName;
+            Application.Instance.SaveManager.SaveData<Save, SaveState>(save);
         };
     }
 

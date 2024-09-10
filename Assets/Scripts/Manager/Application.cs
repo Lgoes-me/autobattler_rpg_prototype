@@ -3,6 +3,8 @@
 public class Application : MonoBehaviour
 {
     public static Application Instance { get; private set; }
+    
+    public Save Save { get; set; }
 
     [field: SerializeField] public SaveManager SaveManager { get; private set; }
     [field: SerializeField] public SceneManager SceneManager { get; private set; }
@@ -26,6 +28,8 @@ public class Application : MonoBehaviour
 
     private void Start()
     {
+        Save = SaveManager.LoadData<Save, SaveState>("SaveState.json") ?? new Save();
         SceneManager.StartGame();
     }
+    
 }
