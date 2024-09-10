@@ -1,14 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class PawnController : MonoBehaviour
 {
     [field: SerializeField] public PawnData PawnData { get; private set; }
-    
     [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
     
     [field: SerializeField] private CanvasFollowController CanvasFollowController { get; set; }

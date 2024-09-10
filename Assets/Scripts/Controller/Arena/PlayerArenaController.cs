@@ -19,7 +19,7 @@ public class PlayerArenaController : MonoBehaviour
     {
         Camera = Camera.main;
 
-        var pawns = new List<PawnController>(Application.Instance.PartyManager.SelectedParty);
+        var pawns = new List<PawnController>(Application.Instance.PartyManager.GetSelectedParty());
         
         foreach (var card in PlayerCards)
         {

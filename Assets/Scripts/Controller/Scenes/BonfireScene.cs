@@ -39,10 +39,11 @@ public class BonfireScene : BaseScene
         {
             var dropdown = Dropdowns[index];
             dropdown.options = availableParty;
+            var selectedParty = Application.Instance.PartyManager.GetSelectedParty();
 
-            if (Application.Instance.PartyManager.SelectedParty.Count > index)
+            if (selectedParty.Count > index)
             {
-                var currentSelectedPawn = Application.Instance.PartyManager.SelectedParty[index];
+                var currentSelectedPawn = selectedParty[index];
                 var selectedIndex = availableParty.FindIndex(o => ((PawnOptionData)o).PawnController == currentSelectedPawn);
                 dropdown.value = selectedIndex;
             }
@@ -67,7 +68,7 @@ public class BonfireScene : BaseScene
             selectedPawns.Add(pawnController);
         }
 
-        Application.Instance.PartyManager.SelectedParty = selectedPawns;
+        Application.Instance.PartyManager.SetSelectedParty(selectedPawns);
     }
 
     private void EndBonfireScene()
