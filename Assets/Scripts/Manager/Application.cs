@@ -28,7 +28,7 @@ public class Application : MonoBehaviour
 
     private void Start()
     {
-        Save = SaveManager.LoadData<Save, SaveState>("SaveState.json") ?? new Save();
+        Save = SaveManager.LoadData<Save>("Save.json") ?? new Save();
         SceneManager.StartGame();
     }
     

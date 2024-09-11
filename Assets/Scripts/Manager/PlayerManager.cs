@@ -9,18 +9,33 @@ public class PlayerManager : MonoBehaviour
     [field: SerializeField] public PawnController PawnController { get; private set; }
     [field: SerializeField] private PlayerMovementController PlayerMovementController { get; set; }
     [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
-    public List<string> Defeated { get; private set; }
+   
+    private List<string> Defeated { get; set; }
 
-    private void Start()
+    public List<string> GetDefeated()
     {
-        Defeated = new List<string>();
-    }
+        if (Defeated == null)
+        {
+            Defeated = new List<string>(Application.Instance.Save.DefeatedEnemies);
+        }
 
+        return Defeated;
+    }
+    
     public void AddDefeated(string enemy)
     {
         Defeated.Add(enemy);
+        Application.Instance.Save.DefeatedEnemies.Add(enemy);
+        Application.Instance.SaveManager.SaveData(Application.Instance.Save);
     }
-
+    
+    public void ClearDefeated()
+    {
+        Defeated.Clear();
+        Application.Instance.Save.DefeatedEnemies.Clear();
+        Application.Instance.SaveManager.SaveData(Application.Instance.Save);
+    }
+    
     public void SpawnPlayerAt(Transform location)
     {
         NavMeshAgent.enabled = false;

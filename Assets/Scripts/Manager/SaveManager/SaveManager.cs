@@ -43,129 +43,92 @@ public class SaveManager : MonoBehaviour
         Directory.CreateDirectory(BaseSavePath);
     }
     
-    //Save T data into TModel and Serialize TModel into file
-    public void SaveData<T, TModel>(T dataToSave) 
-        where T : class
-        where TModel : class, ISavable<T>, new()
+    //Save T data into file
+    public void SaveData<T>(T dataToSave) 
+        where T : class, ISavable
     {
-        var modelToBeSaved = new TModel();
-        modelToBeSaved.SaveData(dataToSave);
-        var fileName = modelToBeSaved.Id;
+        var fileName = dataToSave.Id;
 
-        var saveSystem = GetSaveSystem<TModel>(fileName);
-        saveSystem.SaveFile(FilePath<TModel>(fileName), modelToBeSaved);
+        var saveSystem = GetSaveSystem<T>(fileName);
+        saveSystem.SaveFile(FilePath<T>(fileName), dataToSave);
     }
 
-    //Load TModel data from model id and loads into T
-    public T LoadData<T, TModel>(T containerToLoadInto)
-        where T : class
-        where TModel : class, ILoadable<T>, new()
+    //Load T data from id
+    public T LoadData<T>(T containerToLoadInto)
+        where T : class, ISavable
     {
-        var modelToBeLoaded = new TModel();
-        var data = LoadFile<T, TModel>(modelToBeLoaded.Id);
-        return data?.LoadData(containerToLoadInto);
+        return LoadData<T>(containerToLoadInto.Id);
     }
 
-    //Load TModel data from fileName of file and loads into T
-    public T LoadData<T, TModel>(T containerToLoadInto, string fileName)
-        where T : class
-        where TModel : class, ILoadable<T>, new()
+    //Load T data from fileName
+    public T LoadData<T>(string fileName)
+        where T : class, ISavable
     {
-        var data = LoadFile<T, TModel>(fileName);
-        return data?.LoadData(containerToLoadInto);
-    }
-    
-    //Load TModel data from fileName of file and loads into new T
-    public T LoadData<T, TModel>(string fileName)
-        where T : class, new()
-        where TModel : class, ILoadable<T>, new()
-    {
-        var containerToLoadInto = new T();
-        var data = LoadFile<T, TModel>(fileName);
-        return data?.LoadData(containerToLoadInto);
-    }
-    
-    //Load TModel data from file
-    public TModel LoadFile<T, TModel>(string fileName)
-        where T : class
-        where TModel : class, ILoadable<T>, new()
-    {
-        var saveSystem = GetSaveSystem<TModel>(fileName);
-        return saveSystem?.LoadFile(FilePath<TModel>(fileName));
+        var saveSystem = GetSaveSystem<T>(fileName);
+        return saveSystem?.LoadFile(FilePath<T>(fileName));
     }
 
-    //Load list of TModels on the folder
+    //Load list of T names from the folder
     public List<string> LoadFilesNames<TModel>() where TModel : class
     {
         return Directory.GetFiles(FolderPath<TModel>()).ToList();
     }
 
-    //Loads list of TModels from folder
-    public List<TModel> LoadModelsList<T, TModel>() 
-        where T : class
-        where TModel : class, ILoadable<T>, new()  
+    //Loads list of T from folder
+    public List<T> LoadList<T>()
+        where T : class, ISavable
     {
-        var dataList = new List<TModel>();
+        var dataList = new List<T>();
         
-        foreach (var fileName in LoadFilesNames<TModel>())
+        foreach (var fileName in LoadFilesNames<T>())
         {
-            var data = LoadFile<T, TModel>(fileName);
+            var data = LoadData<T>(fileName);
             dataList.Add(data);
         }
 
         return dataList;
     }
     
-    //Loads list of new T with TModels from folder
-    public List<T> LoadFilesList<T, TModel>() 
-        where T : class, new()
-        where TModel : class, ILoadable<T>, new()  
-    {
-        var filesList = new List<T>();
-        
-        foreach (var fileName in LoadFilesNames<TModel>())
-        {
-            var loadedFile = LoadData<T, TModel>(fileName);
-            filesList.Add(loadedFile);
-        }
-
-        return filesList;
-    }
-    
     //Delete file of type T based on file Id
-    public void DeleteData<T>(ILoadable<T> loadable) where T : class
+    public void DeleteData<T>(ISavable loadable) 
+        where T : class
     {
         File.Delete(FilePath<T>(loadable.Id));
     }
     
-    //Delete file of type TModel based on file name
-    public void DeleteData<TModel>(string fileName) where TModel : class
+    //Delete file of type T based on file name
+    public void DeleteData<T>(string fileName)
+        where T : class
     {
-        File.Delete(FilePath<TModel>(fileName));
+        File.Delete(FilePath<T>(fileName));
     }
 
     //Open file of type T based on file Id
-    public void OpenData<T>(ILoadable<T> loadable) where T : class
+    public void OpenData<T>(ISavable loadable)
+        where T : class
     {
         Process.Start(FilePath<T>(loadable.Id));
     }
     
-    //Open file of type TModel based on file name
-    public void OpenData<TModel>(string fileName) where TModel : class
+    //Open file of type T based on file name
+    public void OpenData<T>(string fileName) 
+        where T : class
     {
-        Process.Start(FilePath<TModel>(fileName));
+        Process.Start(FilePath<T>(fileName));
     }
     
-    //Get filePath of TModel
-    private string FilePath<TModel>(string fileName) where TModel : class
+    //Get filePath of T
+    private string FilePath<T>(string fileName) 
+        where T : class
     {
-        return Path.Combine(FolderPath<TModel>(), $"{fileName}");
+        return Path.Combine(FolderPath<T>(), $"{fileName}");
     }
     
-    //Get folder of TModel
-    private string FolderPath<TModel>() where TModel : class
+    //Get folder of T
+    private string FolderPath<T>() 
+        where T : class
     {
-        var fileFolder = typeof(TModel).Name;
+        var fileFolder = typeof(T).Name;
         var folderPath = Path.Combine(BaseSavePath, fileFolder);
 
         if (!Directory.Exists(folderPath))
@@ -176,17 +139,18 @@ public class SaveManager : MonoBehaviour
         return folderPath;
     }
 
-    //Get saveSystem from TModel extension
-    private SaveSystem<TModel> GetSaveSystem<TModel>(string fileName) where TModel : class
+    //Get saveSystem from T extension
+    private SaveSystem<T> GetSaveSystem<T>(string fileName) 
+        where T : class
     {
-        var path = FilePath<TModel>(fileName);
+        var path = FilePath<T>(fileName);
         var extension = Path.GetExtension(path);
 
         return extension switch
         {
-            ".xml" => new XmlSaveSystem<TModel>(),
-            ".json" => new JsonSaveSystem<TModel>(),
-            ".bin" => new BinarySaveSystem<TModel>(),
+            ".xml" => new XmlSaveSystem<T>(),
+            ".json" => new JsonSaveSystem<T>(),
+            ".bin" => new BinarySaveSystem<T>(),
             _ => throw new NotImplementedException()
         };
     }

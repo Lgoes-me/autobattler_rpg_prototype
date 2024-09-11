@@ -1,5 +1,4 @@
-public interface ISavable<in T>
+public interface ISavable
 {
-    string Id { get; }
-    void SaveData(T data);
+    string Id { get; set; }
 }

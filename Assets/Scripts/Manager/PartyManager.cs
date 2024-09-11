@@ -31,6 +31,6 @@ public class PartyManager : MonoBehaviour
     {
         SelectedParty = selectedParty;
         Application.Instance.Save.SelectedParty = SelectedParty.Select(p => p.PawnData.name).ToList();
-        Application.Instance.SaveManager.SaveData<Save, SaveState>(Application.Instance.Save);
+        Application.Instance.SaveManager.SaveData(Application.Instance.Save);
     }
 }

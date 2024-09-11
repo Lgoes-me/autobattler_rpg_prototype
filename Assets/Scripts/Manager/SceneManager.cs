@@ -37,7 +37,7 @@ public class SceneManager : MonoBehaviour
             var save = Application.Instance.Save;
             save.Room = sceneName;
             save.Door = doorName;
-            Application.Instance.SaveManager.SaveData<Save, SaveState>(save);
+            Application.Instance.SaveManager.SaveData(save);
         };
     }
 
@@ -45,8 +45,6 @@ public class SceneManager : MonoBehaviour
     {
         if(BattleActive)
             return;
-        
-        PlayerManager.AddDefeated(id);
 
         var task = UnitySceneManager.LoadSceneAsync("BattleScene", LoadSceneMode.Additive);
 
@@ -54,7 +52,7 @@ public class SceneManager : MonoBehaviour
         {
             PlayerManager.PlayerToBattle();
             var battleScene = FindObjectOfType<BattleScene>();
-            battleScene.ActivateBattleScene(this, enemies);
+            battleScene.ActivateBattleScene(id,this, enemies);
             
             Application.Instance.AudioManager.PlayMusic(MusicType.Battle);
             
@@ -102,6 +100,7 @@ public class SceneManager : MonoBehaviour
         task.completed += _ =>
         {
             BonfireActive = false;
+            PlayerManager.ClearDefeated();
         };
     }
 }

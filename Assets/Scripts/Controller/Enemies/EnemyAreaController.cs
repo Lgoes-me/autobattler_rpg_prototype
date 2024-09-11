@@ -54,7 +54,7 @@ public class EnemyAreaController : MonoBehaviour
 
     private void TryActivateEnemyArea()
     {
-        if (Application.Instance.PlayerManager.Defeated.Contains(Id))
+        if (Application.Instance.PlayerManager.GetDefeated().Contains(Id))
             return;
 
         Active = true;
@@ -82,6 +82,9 @@ public class EnemyAreaController : MonoBehaviour
 
     private void OnValidate()
     {
+        if(Id != string.Empty)
+            return;
+        
         Id = Guid.NewGuid().ToString();
     }
 }
