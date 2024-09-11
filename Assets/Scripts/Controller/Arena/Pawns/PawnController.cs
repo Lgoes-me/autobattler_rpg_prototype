@@ -33,6 +33,7 @@ public class PawnController : MonoBehaviour
 
         enabled = true;
         NavMeshAgent.enabled = true;
+        NavMeshAgent.isStopped = true;
         CanvasFollowController.Show();
         Attack = null;
         Focus = null;
@@ -130,7 +131,7 @@ public class PawnController : MonoBehaviour
         if (Focus == null || !PawnState.CanWalk)
             return;
 
-        CharacterController.SetDirection(NavMeshAgent.velocity.x, NavMeshAgent.velocity.z);
+        CharacterController.SetDirection(NavMeshAgent.velocity);
         var direction = Focus.transform.position - transform.position;
         
         if (Attack != null && Attack.Range >= direction.magnitude)

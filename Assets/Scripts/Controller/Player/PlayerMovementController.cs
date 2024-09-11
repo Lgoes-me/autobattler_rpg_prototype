@@ -32,11 +32,11 @@ public class PlayerMovementController : MonoBehaviour
         if (MoveInput.sqrMagnitude < Mathf.Epsilon)
             return;
 
-        CharacterController.SetDirection(MoveInput.x, MoveInput.y);
         
         var input = RightVector * MoveInput.x + ForwardVector * MoveInput.y;
         input = Vector3.ClampMagnitude(input, 1f);
-
+        CharacterController.SetDirection(input);
+        
         var destination = transform.position + input * Speed;
 
         if (!NavMesh.SamplePosition(destination, out NavMeshHit hit, 1f, NavMesh.AllAreas))

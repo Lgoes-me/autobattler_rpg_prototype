@@ -8,8 +8,18 @@ public class CharacterController : MonoBehaviour
     [field: SerializeField] private Sprite FrontSprite { get; set; }
     [field: SerializeField] private Sprite BackSprite { get; set; }
 
-    public void SetDirection(float xDirection, float zDirection)
+    private Camera Camera { get; set; }
+    
+    private void Awake()
     {
+        Camera = Camera.main;
+    }
+
+    public void SetDirection(Vector3 movementVector)
+    {
+        var zDirection = Vector3.Dot(movementVector, Camera.transform.forward);
+        var xDirection = Vector3.Dot(movementVector, Camera.transform.right);
+        
         Body.flipX = xDirection < 0;
         Body.sprite = zDirection > 0.2f  ? BackSprite : FrontSprite;
         BodyMask.sprite = zDirection > 0.2f  ? BackSprite : FrontSprite;

@@ -45,7 +45,7 @@ public class EnemyController : MonoBehaviour
     private void FixedUpdate()
     {
         Animator.SetFloat("Speed", NavMeshAgent.velocity.magnitude);
-        CharacterController.SetDirection(NavMeshAgent.velocity.x, NavMeshAgent.velocity.z);
+        CharacterController.SetDirection(NavMeshAgent.velocity);
         
         SetDestination();
 
