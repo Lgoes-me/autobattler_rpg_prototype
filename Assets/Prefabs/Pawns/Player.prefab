@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 2688697331388356545}
   - component: {fileID: 2773188027107763236}
   - component: {fileID: 8026178958687482945}
-  - component: {fileID: 2813822948962306330}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -124,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef04b9b415fa4e388ba0c0c92c6c32fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <AnimationStateController>k__BackingField: {fileID: 2813822948962306330}
+  <AnimationStateController>k__BackingField: {fileID: 4196350814843790570}
 --- !u!114 &2773188027107763236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a60cec991e3414ebbd85c723693455e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Body>k__BackingField: {fileID: 1009862345976250929}
+  <CharacterController>k__BackingField: {fileID: 3615641895437824799}
   <Animator>k__BackingField: {fileID: 8864636820668079971}
   <Speed>k__BackingField: 0.15
 --- !u!114 &8026178958687482945
@@ -156,24 +155,11 @@ MonoBehaviour:
   <NavMeshAgent>k__BackingField: {fileID: 4337259988784190384}
   <CanvasFollowController>k__BackingField: {fileID: 7061050474934962571}
   <PawnCanvasController>k__BackingField: {fileID: 682443677164174369}
-  <AnimationStateController>k__BackingField: {fileID: 2813822948962306330}
+  <AnimationStateController>k__BackingField: {fileID: 4196350814843790570}
   <Animator>k__BackingField: {fileID: 8864636820668079971}
-  <Body>k__BackingField: {fileID: 1009862345976250929}
+  <CharacterController>k__BackingField: {fileID: 3615641895437824799}
   <HitStopController>k__BackingField: {fileID: 8826276538185307268}
   <Team>k__BackingField: 0
---- !u!114 &2813822948962306330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2405706905924013099}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 558cea401c0f8dd48996b0ffc5d70300, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Animator>k__BackingField: {fileID: 8864636820668079971}
 --- !u!1001 &570670497907879227
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -303,10 +289,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4609325096747976266}
     m_Modifications:
-    - target: {fileID: 3911377175279175832, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
-      propertyPath: <AnimationStateController>k__BackingField
-      value: 
-      objectReference: {fileID: 2813822948962306330}
     - target: {fileID: 6648848722526507185, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -360,11 +342,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
---- !u!212 &1009862345976250929 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 3581964401337747027, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
+--- !u!114 &3615641895437824799 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 980420176060528509, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
   m_PrefabInstance: {fileID: 4590982013017769058}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2247163a4842f7c4aa2f5991a0220edf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4196350814843790570 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 399165619813916808, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
+  m_PrefabInstance: {fileID: 4590982013017769058}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 558cea401c0f8dd48996b0ffc5d70300, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7202106270095070419 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6648848722526507185, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}

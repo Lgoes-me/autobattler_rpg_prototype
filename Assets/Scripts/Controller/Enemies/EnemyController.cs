@@ -7,8 +7,8 @@ public class EnemyController : MonoBehaviour
 {
     [field: SerializeField] private PawnController PawnController { get; set; }
     [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
-    [field: SerializeField] private Animator Animator { get; set; }
-    [field: SerializeField] private SpriteRenderer Body { get; set; }
+    [field: SerializeField] private Animator Animator { get; set; }    
+    [field: SerializeField] private CharacterController CharacterController { get; set; }
     [field: SerializeField] private List<Transform> Nodes { get; set; }
 
     private PlayerController Player { get; set; }
@@ -45,6 +45,8 @@ public class EnemyController : MonoBehaviour
     private void FixedUpdate()
     {
         Animator.SetFloat("Speed", NavMeshAgent.velocity.magnitude);
+        CharacterController.SetDirection(NavMeshAgent.velocity.x, NavMeshAgent.velocity.z);
+        
         SetDestination();
 
         if (Player == null)
@@ -87,8 +89,6 @@ public class EnemyController : MonoBehaviour
 
             NavMeshAgent.SetDestination(Nodes[CurrentNode].transform.position);
         }
-        
-        Body.flipX = NavMeshAgent.velocity.x < 0;
     }
 
     public void Prepare()

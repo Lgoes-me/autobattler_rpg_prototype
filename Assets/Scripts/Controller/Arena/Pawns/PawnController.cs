@@ -14,7 +14,7 @@ public class PawnController : MonoBehaviour
     
     [field: SerializeField] private AnimationStateController AnimationStateController { get; set; }
     [field: SerializeField] private Animator Animator { get; set; }
-    [field: SerializeField] private SpriteRenderer Body { get; set; }
+    [field: SerializeField] private CharacterController CharacterController { get; set; }
     
     [field: SerializeField] private HitStopController HitStopController { get; set; }
     
@@ -127,12 +127,12 @@ public class PawnController : MonoBehaviour
 
     private void Update()
     {
-        Body.flipX = NavMeshAgent.velocity.x < 0;
-        
         if (Focus == null || !PawnState.CanWalk)
             return;
 
+        CharacterController.SetDirection(NavMeshAgent.velocity.x, NavMeshAgent.velocity.z);
         var direction = Focus.transform.position - transform.position;
+        
         if (Attack != null && Attack.Range >= direction.magnitude)
         {
             NavMeshAgent.isStopped = true;
