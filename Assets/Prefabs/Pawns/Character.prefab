@@ -494,6 +494,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2247163a4842f7c4aa2f5991a0220edf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <AnimationStateController>k__BackingField: {fileID: 399165619813916808}
+  <HitStopController>k__BackingField: {fileID: 5029195247004389606}
+  <Animator>k__BackingField: {fileID: 4950570799420742401}
   <Arm>k__BackingField: {fileID: 9177996357650028892}
   <Body>k__BackingField: {fileID: 3581964401337747027}
   <BodyMask>k__BackingField: {fileID: 1397701187567142391}

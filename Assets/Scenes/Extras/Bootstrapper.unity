@@ -1018,7 +1018,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0e7eb75edc54657b43cb4a2661512cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <SelectedParty>k__BackingField: []
   <AvailableParty>k__BackingField:
   - {fileID: 5515285266085061211, guid: 1285c3fa67fc9a64abeca1041c3503b7, type: 3}
   - {fileID: 4507170429347478588, guid: 46a1ab9cd3cce55478acc9dec9c1a8dc, type: 3}

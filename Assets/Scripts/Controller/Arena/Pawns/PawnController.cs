@@ -13,10 +13,7 @@ public class PawnController : MonoBehaviour
     [field: SerializeField] private PawnCanvasController PawnCanvasController { get; set; }
     
     [field: SerializeField] private AnimationStateController AnimationStateController { get; set; }
-    [field: SerializeField] private Animator Animator { get; set; }
     [field: SerializeField] private CharacterController CharacterController { get; set; }
-    
-    [field: SerializeField] private HitStopController HitStopController { get; set; }
     
     [field: SerializeField] private TeamType Team { get; set; }
 
@@ -115,7 +112,7 @@ public class PawnController : MonoBehaviour
     {
         Pawn.Health = Mathf.Clamp(Pawn.Health - attack, 0, Pawn.MaxHealth);
         var dead = Pawn.Health <= 0;
-        HitStopController.HitStop(0f, 0.05f, false);
+        CharacterController.DoHitStop();
         PawnCanvasController.UpdateLife(!dead);
 
         if (!dead) return;
@@ -138,13 +135,13 @@ public class PawnController : MonoBehaviour
         {
             NavMeshAgent.isStopped = true;
             NavMeshAgent.SetDestination(transform.position);
-            Animator.SetFloat("Speed", 0f);
+            CharacterController.SetSpeed(0);
         }
         else
         {
             NavMeshAgent.isStopped = false;
             NavMeshAgent.SetDestination(Focus.transform.position);
-            Animator.SetFloat("Speed", NavMeshAgent.velocity.magnitude);
+            CharacterController.SetSpeed(NavMeshAgent.velocity.magnitude);
         }
     }
 

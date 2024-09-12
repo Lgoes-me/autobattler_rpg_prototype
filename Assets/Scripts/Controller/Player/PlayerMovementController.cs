@@ -5,7 +5,6 @@ using UnityEngine.AI;
 public class PlayerMovementController : MonoBehaviour
 {    
     [field: SerializeField] private CharacterController CharacterController { get; set; }
-    [field: SerializeField] private Animator Animator { get; set; }
 
     //Domain
     [field: SerializeField] private float Speed { get; set; }
@@ -24,7 +23,7 @@ public class PlayerMovementController : MonoBehaviour
     private void Update()
     {
         MoveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        Animator.SetFloat("Speed", MoveInput.magnitude);
+        CharacterController.SetSpeed(MoveInput.magnitude);
     }
 
     private void FixedUpdate()
@@ -57,7 +56,7 @@ public class PlayerMovementController : MonoBehaviour
 
     public void Prepare()
     {
-        Animator.SetFloat("Speed", 0);
+        CharacterController.SetSpeed(0);
     }
 
     private IEnumerator UpdateCameraPositionCoroutine(Transform cam)
