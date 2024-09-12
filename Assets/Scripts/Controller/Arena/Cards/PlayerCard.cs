@@ -67,12 +67,10 @@ public class PlayerCard : MonoBehaviour, IPointerClickHandler, IDragHandler, IEn
     {
         enabled = false;
 
-        var pawnController = Instantiate(
+        return Instantiate(
             Pawn,
             spawnPosition.position,
             spawnPosition.rotation,
             arenaController.transform);
-        
-        return pawnController.Init();
     }
 }

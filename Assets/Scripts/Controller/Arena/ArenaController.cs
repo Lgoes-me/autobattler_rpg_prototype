@@ -6,7 +6,8 @@ using UnityEngine;
 public class ArenaController : MonoBehaviour
 {
     [field: SerializeField] private GameObject PreBattleCanvas { get; set; }
-    
+    [field: SerializeField] private GameObject BattleCanvas { get; set; }
+    [field: SerializeField] private List<PawnCanvasController> PawnCanvases { get; set; }
     
     private List<PawnController> ActivePawns { get; set; }
     private List<PawnController> EnemyPawns { get; set; }
@@ -40,18 +41,20 @@ public class ArenaController : MonoBehaviour
 
     private void SpawnPlayerPawn()
     {
-        var pawnController = Application.Instance.PlayerManager.GetPawnController();
+        var pawnController = Application.Instance.PlayerManager.GetPawnController(PawnCanvases[0]);
         ActivePawns.Add(pawnController);
     }
 
     public void AddPlayerPawn(PawnController pawn)
     {
+        pawn.Init(PawnCanvases.First(c => !c.gameObject.activeInHierarchy));
         ActivePawns.Add(pawn);
     }
 
     public void PlayBattle()
     {
         PreBattleCanvas.gameObject.SetActive(false);
+        BattleCanvas.gameObject.SetActive(true);
 
         var pawnsList = new List<PawnController>();
         pawnsList.AddRange(ActivePawns);

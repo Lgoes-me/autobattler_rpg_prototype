@@ -29,6 +29,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2405706905924013099}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -37,7 +38,6 @@ Transform:
   - {fileID: 93528932899137372}
   - {fileID: 7202106270095070419}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &4337259988784190384
 NavMeshAgent:
@@ -137,7 +137,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <CharacterController>k__BackingField: {fileID: 3615641895437824799}
-  <Animator>k__BackingField: {fileID: 8864636820668079971}
   <Speed>k__BackingField: 0.15
 --- !u!114 &8026178958687482945
 MonoBehaviour:
@@ -153,12 +152,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <PawnData>k__BackingField: {fileID: 11400000, guid: e06c083c17fc0d44f8a2fb968c08b5d1, type: 2}
   <NavMeshAgent>k__BackingField: {fileID: 4337259988784190384}
-  <CanvasFollowController>k__BackingField: {fileID: 7061050474934962571}
   <PawnCanvasController>k__BackingField: {fileID: 682443677164174369}
   <AnimationStateController>k__BackingField: {fileID: 4196350814843790570}
-  <Animator>k__BackingField: {fileID: 8864636820668079971}
   <CharacterController>k__BackingField: {fileID: 3615641895437824799}
-  <HitStopController>k__BackingField: {fileID: 8826276538185307268}
   <Team>k__BackingField: 0
 --- !u!1001 &570670497907879227
 PrefabInstance:
@@ -172,6 +168,14 @@ PrefabInstance:
       propertyPath: <PawnController>k__BackingField
       value: 
       objectReference: {fileID: 8026178958687482945}
+    - target: {fileID: 1050441677070455066, guid: eeed3db9c42d50c4ca3e38dfebea8a4d, type: 3}
+      propertyPath: <CanvasController>k__BackingField
+      value: 
+      objectReference: {fileID: 7061050474934962571}
+    - target: {fileID: 1050441677070455066, guid: eeed3db9c42d50c4ca3e38dfebea8a4d, type: 3}
+      propertyPath: <CanvasFollowController>k__BackingField
+      value: 
+      objectReference: {fileID: 7061050474934962571}
     - target: {fileID: 3172328785591743336, guid: eeed3db9c42d50c4ca3e38dfebea8a4d, type: 3}
       propertyPath: m_Name
       value: PawnCanvas
@@ -367,22 +371,6 @@ MonoBehaviour:
 --- !u!4 &7202106270095070419 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6648848722526507185, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
-  m_PrefabInstance: {fileID: 4590982013017769058}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8826276538185307268 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5029195247004389606, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
-  m_PrefabInstance: {fileID: 4590982013017769058}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b65c53c7e2a86d49bc48a724ea16c09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!95 &8864636820668079971 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 4950570799420742401, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
   m_PrefabInstance: {fileID: 4590982013017769058}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4673924385188264801

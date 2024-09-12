@@ -4,13 +4,30 @@ using UnityEngine.UI;
 
 public class PawnCanvasController : MonoBehaviour
 {
-    [field: SerializeField] private PawnController PawnController { get; set; }
-
+    [field: SerializeField] private BaseCanvasController CanvasController { get; set; }
     [field: SerializeField] private Image LifeBar { get; set; }
     [field: SerializeField] private Image BackgroundLifeBar { get; set; }
     [field: SerializeField] private Image ManaBar { get; set; }
     [field: SerializeField] private Button SpecialButton { get; set; }
+    
+    public PawnController PawnController { get; private set; }
 
+    public void Init(PawnController pawnController)
+    {
+        PawnController = pawnController;
+        Show();
+    }
+
+    private void Show()
+    {
+        CanvasController.Show();
+    }
+    
+    public void Hide()
+    {
+        CanvasController.Hide();
+    }
+    
     private void OnEnable()
     {
         var pawn = PawnController.Pawn;
@@ -30,26 +47,25 @@ public class PawnCanvasController : MonoBehaviour
         });
     }
 
-    public void UpdateLife(bool withAnimation)
+    public void UpdateLife(bool hideAfter)
     {
         var pawn = PawnController.Pawn;
         var fillAmount = pawn.Health / (float) pawn.MaxHealth;
-        
         LifeBar.fillAmount = fillAmount;
-
-        if (!withAnimation)
-        {
-            BackgroundLifeBar.fillAmount = fillAmount;
-            return;
-        }
         
-        StartCoroutine(UpdateBackgroundLifeBar(fillAmount));
+        if(!gameObject.activeInHierarchy)
+            return;
+        
+        StartCoroutine(UpdateBackgroundLifeBar(fillAmount, hideAfter));
     }
 
-    private IEnumerator UpdateBackgroundLifeBar(float fillAmount)
+    private IEnumerator UpdateBackgroundLifeBar(float fillAmount, bool hideAfter)
     {
         yield return new WaitForSeconds(0.5f);
         BackgroundLifeBar.fillAmount = fillAmount;
+
+        if (hideAfter)
+            Hide();
     }
 
     public void UpdateMana(bool canActivateButton)

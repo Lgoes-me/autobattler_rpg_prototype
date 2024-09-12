@@ -8,8 +8,6 @@ public class PawnController : MonoBehaviour
 {
     [field: SerializeField] public PawnData PawnData { get; private set; }
     [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
-    
-    [field: SerializeField] private CanvasFollowController CanvasFollowController { get; set; }
     [field: SerializeField] private PawnCanvasController PawnCanvasController { get; set; }
     
     [field: SerializeField] private AnimationStateController AnimationStateController { get; set; }
@@ -24,14 +22,19 @@ public class PawnController : MonoBehaviour
     private Coroutine BackToIdleCoroutine { get; set; }
     private bool SpecialAttackRequested { get; set; }
 
-    public PawnController Init()
+    public PawnController Init(PawnCanvasController pawnCanvasController = null)
     {
         Pawn = PawnData.ToDomain();
 
         enabled = true;
         NavMeshAgent.enabled = true;
         NavMeshAgent.isStopped = true;
-        CanvasFollowController.Show();
+
+        if (pawnCanvasController != null)
+            PawnCanvasController = pawnCanvasController;
+
+        PawnCanvasController.Init(this);
+
         Attack = null;
         Focus = null;
 
@@ -113,11 +116,10 @@ public class PawnController : MonoBehaviour
         Pawn.Health = Mathf.Clamp(Pawn.Health - attack, 0, Pawn.MaxHealth);
         var dead = Pawn.Health <= 0;
         CharacterController.DoHitStop();
-        PawnCanvasController.UpdateLife(!dead);
+        PawnCanvasController.UpdateLife(dead);
 
         if (!dead) return;
         
-        CanvasFollowController.Hide();
         AnimationStateController.SetAnimationState(new DeadState());
         NavMeshAgent.isStopped = true;
         Focus = null;
@@ -147,7 +149,6 @@ public class PawnController : MonoBehaviour
 
     public void Deactivate()
     {
-        CanvasFollowController.Hide();
         enabled = false;
     }
 
@@ -158,7 +159,7 @@ public class PawnController : MonoBehaviour
     
     public void Dance()
     {
-        CanvasFollowController.Hide();
+        PawnCanvasController.Hide();
         AnimationStateController.SetAnimationState(new DanceState(), GoBackToIdle);
     }
 }
