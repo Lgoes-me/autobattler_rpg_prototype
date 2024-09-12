@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class ArenaController : MonoBehaviour
 {
+    [field: SerializeField] private GameObject PreBattleCanvas { get; set; }
+    
+    
     private List<PawnController> ActivePawns { get; set; }
     private List<PawnController> EnemyPawns { get; set; }
     private List<PawnController> InitiativeList { get; set; }
@@ -48,6 +51,8 @@ public class ArenaController : MonoBehaviour
 
     public void PlayBattle()
     {
+        PreBattleCanvas.gameObject.SetActive(false);
+
         var pawnsList = new List<PawnController>();
         pawnsList.AddRange(ActivePawns);
         pawnsList.AddRange(EnemyPawns);
@@ -78,7 +83,7 @@ public class ArenaController : MonoBehaviour
         if (hasPlayers)
         {
             Application.Instance.AudioManager.PlayMusic(MusicType.Victory);
-            
+
             foreach (var playerPawn in ActivePawns)
             {
                 if (!playerPawn.PawnState.AbleToFight) continue;
@@ -86,7 +91,7 @@ public class ArenaController : MonoBehaviour
             }
 
             yield return new WaitForSeconds(5f);
-            
+
             EndBattle();
         }
     }

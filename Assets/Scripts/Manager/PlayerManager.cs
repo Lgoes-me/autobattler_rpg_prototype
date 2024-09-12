@@ -31,7 +31,7 @@ public class PlayerManager : MonoBehaviour
     
     public void ClearDefeated()
     {
-        Defeated.Clear();
+        Defeated?.Clear();
         Application.Instance.Save.DefeatedEnemies.Clear();
         Application.Instance.SaveManager.SaveData(Application.Instance.Save);
     }

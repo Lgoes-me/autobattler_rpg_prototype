@@ -29,7 +29,7 @@ public class PartyManager : MonoBehaviour
     
     public void SetSelectedParty(List<PawnController> selectedParty)
     {
-        SelectedParty = selectedParty;
+        SelectedParty = new List<PawnController>(selectedParty);
         Application.Instance.Save.SelectedParty = SelectedParty.Select(p => p.PawnData.name).ToList();
         Application.Instance.SaveManager.SaveData(Application.Instance.Save);
     }

@@ -272,7 +272,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 999724924}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -281,7 +281,7 @@ RectTransform:
   - {fileID: 1476829258}
   - {fileID: 1310713612}
   - {fileID: 344441135}
-  m_Father: {fileID: 1215515987}
+  m_Father: {fileID: 1416693514}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -450,18 +450,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1206337908}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1149308350}
-  m_Father: {fileID: 1215515987}
+  m_Father: {fileID: 1416693514}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -25, y: 25}
+  m_AnchoredPosition: {x: 401.5, y: -193}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1206337910
@@ -652,8 +652,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1206337909}
-  - {fileID: 999724925}
+  - {fileID: 1416693514}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -888,6 +887,44 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1319671989}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1416693513
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1416693514}
+  m_Layer: 5
+  m_Name: PreBattleCanvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1416693514
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1416693513}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1206337909}
+  - {fileID: 999724925}
+  m_Father: {fileID: 1215515987}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1476829257
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1090,14 +1127,6 @@ MonoBehaviour:
   - {fileID: 1476829259}
   - {fileID: 1310713613}
   - {fileID: 344441136}
-  <Pawns>k__BackingField:
-  - {fileID: 5515285266085061211, guid: 1285c3fa67fc9a64abeca1041c3503b7, type: 3}
-  - {fileID: 4507170429347478588, guid: 46a1ab9cd3cce55478acc9dec9c1a8dc, type: 3}
-  - {fileID: 256749590681607113, guid: c62b7b27484c249489350486c7043f6f, type: 3}
-  - {fileID: 256749590681607113, guid: 96eecc068dbe3a74d9209d24c163fc29, type: 3}
-  - {fileID: 256749590681607113, guid: ca3658f18eb2df44a971eabe08b0ee6d, type: 3}
-  - {fileID: 256749590681607113, guid: be52f009e94960547b26667748f588ef, type: 3}
-  - {fileID: 256749590681607113, guid: 8eee90eb1de2cf2458ead3d0e1a18ec5, type: 3}
   <ArenaController>k__BackingField: {fileID: 1665406660}
   <SelectionFeedback>k__BackingField: {fileID: 1319671990}
   <Red>k__BackingField: {fileID: 2100000, guid: b378f1afcc144e243b2f164c69b93ef2, type: 2}
@@ -1115,6 +1144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb887b6aa535e61448d0a77926f9f4da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <PreBattleCanvas>k__BackingField: {fileID: 1416693513}
 --- !u!4 &1665406661
 Transform:
   m_ObjectHideFlags: 0
