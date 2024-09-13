@@ -35,19 +35,21 @@ public class ArenaController : MonoBehaviour
         foreach (var enemyController in Enemies)
         {
             var pawnController = enemyController.GetPawnController();
+            pawnController.Init();
             EnemyPawns.Add(pawnController);
         }
     }
 
     private void SpawnPlayerPawn()
     {
-        var pawnController = Application.Instance.PlayerManager.GetPawnController(PawnCanvases[0]);
+        var pawnController = Application.Instance.PlayerManager.GetPawnController();
+        pawnController.Init(PawnCanvases[0]);
         ActivePawns.Add(pawnController);
     }
 
     public void AddPlayerPawn(PawnController pawn)
     {
-        pawn.Init(PawnCanvases.First(c => !c.gameObject.activeInHierarchy));
+        pawn.Init(PawnCanvases.First(c => !c.Initiated));
         ActivePawns.Add(pawn);
     }
 

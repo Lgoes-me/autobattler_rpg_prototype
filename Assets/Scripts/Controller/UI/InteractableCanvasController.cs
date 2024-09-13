@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class InteractableCanvasController : MonoBehaviour
+public class InteractableCanvasController : BaseCanvasController
 {
-    [field: SerializeField] private InteractableController InteractableController { get; set; }
     [field: SerializeField] private Button Button { get; set; }
 
-    private void Awake()
+    public void Init(InteractableController interactableController)
     {
-        Button.onClick.AddListener(() => InteractableController.Select());
+        Button.onClick.AddListener(interactableController.Select);
     }
 }

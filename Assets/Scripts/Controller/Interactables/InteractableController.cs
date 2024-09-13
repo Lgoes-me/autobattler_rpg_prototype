@@ -2,23 +2,28 @@ using UnityEngine;
 
 public class InteractableController : MonoBehaviour
 {
-    [field: SerializeField] private CanvasFollowController CanvasFollowController { get; set; }
-    [field: SerializeField] private InteractionListener InteractionListener { get; set; }
-    
+    [field: SerializeField] private InteractableCanvasController InteractableCanvas { get; set; }
+    [field: SerializeField] private InteractableStrategy Interactable { get; set; }
+
+    private void Awake()
+    {
+        InteractableCanvas.Init(this);
+    }
+
     public void Preselect()
     {
-        CanvasFollowController.Show();
-        InteractionListener?.PreSelect();
+        InteractableCanvas.Show();
+        Interactable?.PreSelect();
     }
 
     public void Select()
     {
-        InteractionListener?.Interact();
+        Interactable?.Interact();
     }
 
     public void Unselect()
     {
-        CanvasFollowController.Hide();
-        InteractionListener?.UnSelect();
+        InteractableCanvas.Hide();
+        Interactable?.UnSelect();
     }
 }

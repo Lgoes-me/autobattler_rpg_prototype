@@ -1,14 +1,13 @@
 ﻿using TMPro;
 using UnityEngine;
 
-public class ProfileCanvasController : BaseCanvasController
+public class ProfileCanvasController : PawnCanvasController
 {
     [field: SerializeField] private TextMeshProUGUI Name { get; set; }
-    [field: SerializeField] private PawnCanvasController PawnCanvasController { get; set; }
 
-    public override void Show()
+    public override void Init(PawnController pawnController)
     {
-        Name.SetText(PawnCanvasController.PawnController.PawnData.name);
-        base.Show();
+        base.Init(pawnController);
+        Name.SetText(pawnController.PawnData.name);
     }
 }

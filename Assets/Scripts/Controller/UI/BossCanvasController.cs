@@ -1,4 +1,4 @@
-﻿public class BossCanvasController : BaseCanvasController
+﻿public class BossCanvasController : PawnCanvasController
 {
         
 }

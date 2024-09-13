@@ -2,13 +2,15 @@
 
 public class BaseCanvasController : MonoBehaviour
 {
+    [field: SerializeField] private GameObject Root { get; set; }
+
     public virtual void Show()
     {
-        gameObject.SetActive(true);
+        Root.SetActive(true);
     }
 
     public virtual void Hide()
     {
-        gameObject.SetActive(false);
+        Root.SetActive(false);
     }
 }

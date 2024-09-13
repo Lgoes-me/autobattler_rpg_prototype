@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class InteractionListener : MonoBehaviour
+public abstract class InteractableStrategy : MonoBehaviour
 {
     public abstract void Interact();
 

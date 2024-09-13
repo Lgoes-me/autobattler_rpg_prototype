@@ -2,34 +2,22 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PawnCanvasController : MonoBehaviour
+public class PawnCanvasController : BaseCanvasController
 {
-    [field: SerializeField] private BaseCanvasController CanvasController { get; set; }
     [field: SerializeField] private Image LifeBar { get; set; }
     [field: SerializeField] private Image BackgroundLifeBar { get; set; }
     [field: SerializeField] private Image ManaBar { get; set; }
     [field: SerializeField] private Button SpecialButton { get; set; }
     
-    public PawnController PawnController { get; private set; }
-
-    public void Init(PawnController pawnController)
+    public bool Initiated { get; private set; }
+    protected PawnController PawnController { get; private set; }
+    
+    public virtual void Init(PawnController pawnController)
     {
+        Initiated = true;
+        
         PawnController = pawnController;
-        Show();
-    }
 
-    private void Show()
-    {
-        CanvasController.Show();
-    }
-    
-    public void Hide()
-    {
-        CanvasController.Hide();
-    }
-    
-    private void OnEnable()
-    {
         var pawn = PawnController.Pawn;
         var fillAmount = pawn.Health / (float) pawn.MaxHealth;
         
@@ -45,6 +33,8 @@ public class PawnCanvasController : MonoBehaviour
             SpecialButton.gameObject.SetActive(false);
             PawnController.DoSpecial();
         });
+        
+        Show();
     }
 
     public void UpdateLife(bool hideAfter)

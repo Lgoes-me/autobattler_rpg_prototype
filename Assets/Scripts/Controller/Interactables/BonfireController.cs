@@ -1,4 +1,4 @@
-﻿public class BonfireController : InteractionListener
+﻿public class BonfireController : InteractableStrategy
 {
     public override void Interact()
     {

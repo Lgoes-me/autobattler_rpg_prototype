@@ -70,9 +70,9 @@ public class PlayerManager : MonoBehaviour
         PlayerMovementController.SetNewCameraPosition(cameraTransform);
     }
     
-    public PawnController GetPawnController(PawnCanvasController pawnCanvasController)
+    public PawnController GetPawnController()
     {
         enabled = false;
-        return PawnController.Init(pawnCanvasController);
+        return PawnController;
     }
 }
