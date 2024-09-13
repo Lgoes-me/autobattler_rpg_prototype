@@ -53,6 +53,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6669709783551750221, guid: 5d93463254bfcb94e9a10f6dca554c53, type: 3}
+      propertyPath: <Interactable>k__BackingField
+      value: 
+      objectReference: {fileID: 6321774086416421274}
+    - target: {fileID: 6669709783551750221, guid: 5d93463254bfcb94e9a10f6dca554c53, type: 3}
       propertyPath: <InteractionListener>k__BackingField
       value: 
       objectReference: {fileID: 6321774086416421274}

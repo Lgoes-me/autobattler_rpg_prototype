@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2506f476fd0f4300b3c3cd3c8b600971, type: 3}
-  m_Name: Assassin
+  m_Name: ZombieSoldierElite
   m_EditorClassIdentifier: 
-  <Health>k__BackingField: 30
+  <Health>k__BackingField: 20
   <Size>k__BackingField: 1
   <Initiative>k__BackingField: 1
-  <HasMana>k__BackingField: 1
+  <HasMana>k__BackingField: 0
   <Attacks>k__BackingField:
   - {fileID: 11400000, guid: 5c57ad6e1af9f124ca33df47f0abd8c6, type: 2}
-  <SpecialAttacks>k__BackingField:
-  - {fileID: 11400000, guid: 1b1ff43bcbd4cf346b8016abe8bad2f3, type: 2}
+  <SpecialAttacks>k__BackingField: []
