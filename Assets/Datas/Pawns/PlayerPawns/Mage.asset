@@ -15,15 +15,8 @@ MonoBehaviour:
   <Health>k__BackingField: 30
   <Size>k__BackingField: 1
   <Initiative>k__BackingField: 1
+  <HasMana>k__BackingField: 1
   <Attacks>k__BackingField:
-  - <Animation>k__BackingField: Fireball
-    <Damage>k__BackingField: 2
-    <Range>k__BackingField: 6
-    <Delay>k__BackingField: 0.5
-    <SpecialAttack>k__BackingField: 0
-  <SpecialAttack>k__BackingField:
-    <Animation>k__BackingField: SpecialAttack
-    <Damage>k__BackingField: 10
-    <Range>k__BackingField: 3
-    <Delay>k__BackingField: 0.5
-    <SpecialAttack>k__BackingField: 1
+  - {fileID: 11400000, guid: 5c57ad6e1af9f124ca33df47f0abd8c6, type: 2}
+  <SpecialAttacks>k__BackingField:
+  - {fileID: 11400000, guid: 1b1ff43bcbd4cf346b8016abe8bad2f3, type: 2}

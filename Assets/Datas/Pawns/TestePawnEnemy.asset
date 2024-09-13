@@ -15,8 +15,7 @@ MonoBehaviour:
   <Health>k__BackingField: 20
   <Size>k__BackingField: 1
   <Initiative>k__BackingField: 1
+  <HasMana>k__BackingField: 0
   <Attacks>k__BackingField:
-  - <Animation>k__BackingField: Attack
-    <Damage>k__BackingField: 1
-    <Range>k__BackingField: 1
-    <Delay>k__BackingField: 0
+  - {fileID: 11400000, guid: 5c57ad6e1af9f124ca33df47f0abd8c6, type: 2}
+  <SpecialAttacks>k__BackingField: []
