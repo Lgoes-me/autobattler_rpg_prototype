@@ -115,6 +115,7 @@ public class ArenaController : MonoBehaviour
         foreach (var enemyPawn in EnemyPawns)
         {
             enemyPawn.Deactivate();
+            enemyPawn.gameObject.SetActive(false);
         }
 
         Application.Instance.PlayerManager.AddDefeated(BattleId);

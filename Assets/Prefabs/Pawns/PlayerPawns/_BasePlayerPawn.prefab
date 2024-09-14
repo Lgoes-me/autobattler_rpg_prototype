@@ -94,6 +94,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <PawnData>k__BackingField: {fileID: 0}
   <NavMeshAgent>k__BackingField: {fileID: 449031379433608940}
+  <NavMeshObstacle>k__BackingField: {fileID: 0}
   <PawnCanvasController>k__BackingField: {fileID: 0}
   <AnimationStateController>k__BackingField: {fileID: 592403816023041186}
   <CharacterController>k__BackingField: {fileID: 11713996136362839}

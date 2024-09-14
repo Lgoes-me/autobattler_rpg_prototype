@@ -51,6 +51,11 @@ public class PawnController : MonoBehaviour
         }
         else
         {
+            NavMeshAgent.isStopped = true;
+            NavMeshAgent.SetDestination(transform.position);
+            CharacterController.SetSpeed(0);
+            CharacterController.SetDirection(direction);
+            
             AnimationStateController.SetAnimationState(new AttackState(Attack, AttackEnemy), GoBackToIdle);
         }
         

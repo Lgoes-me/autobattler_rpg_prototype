@@ -27,10 +27,12 @@ public class Damage
 
 public enum DamageType
 {
-    Heal,
-    Slash,
-    Magical,
-    Fire
+    Heal = 0,
+    Slash = 1,
+    Magical = 2,
+    Fire = 3,
+    Buff = 4,
+    Debug = 5
 }
 
 public enum TargetType

@@ -45,7 +45,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2405706905924013099}
-  m_Enabled: 0
+  m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.25
   m_Speed: 1.5
@@ -75,7 +75,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -105,7 +105,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
@@ -136,6 +136,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <CharacterController>k__BackingField: {fileID: 3615641895437824799}
+  <NavMeshAgent>k__BackingField: {fileID: 4337259988784190384}
+  <NavMeshObstacle>k__BackingField: {fileID: 0}
   <Speed>k__BackingField: 0.15
 --- !u!114 &8026178958687482945
 MonoBehaviour:
@@ -151,6 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <PawnData>k__BackingField: {fileID: 11400000, guid: e06c083c17fc0d44f8a2fb968c08b5d1, type: 2}
   <NavMeshAgent>k__BackingField: {fileID: 4337259988784190384}
+  <NavMeshObstacle>k__BackingField: {fileID: 0}
   <PawnCanvasController>k__BackingField: {fileID: 0}
   <AnimationStateController>k__BackingField: {fileID: 4196350814843790570}
   <CharacterController>k__BackingField: {fileID: 3615641895437824799}
