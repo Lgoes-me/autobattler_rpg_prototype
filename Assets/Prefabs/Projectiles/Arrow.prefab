@@ -94,7 +94,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 270967721341561841, guid: 9ee5eb8c622e3e84aac155098fd4bf7b, type: 3}
       propertyPath: <Speed>k__BackingField
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2115907329035991213, guid: 9ee5eb8c622e3e84aac155098fd4bf7b, type: 3}
       propertyPath: m_Name

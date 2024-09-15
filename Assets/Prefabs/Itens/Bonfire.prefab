@@ -8,6 +8,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3034815841088123483, guid: 5d93463254bfcb94e9a10f6dca554c53, type: 3}
+      propertyPath: m_Size.x
+      value: 0.9375
+      objectReference: {fileID: 0}
+    - target: {fileID: 3034815841088123483, guid: 5d93463254bfcb94e9a10f6dca554c53, type: 3}
+      propertyPath: m_Size.y
+      value: 0.8125
+      objectReference: {fileID: 0}
+    - target: {fileID: 3034815841088123483, guid: 5d93463254bfcb94e9a10f6dca554c53, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 6709808811608151196, guid: 2df9ee73a45a0b04ca81d4b25a2bce57, type: 3}
+    - target: {fileID: 3034815841088123483, guid: 5d93463254bfcb94e9a10f6dca554c53, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4178645211636202925, guid: 5d93463254bfcb94e9a10f6dca554c53, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -60,12 +76,18 @@ PrefabInstance:
       propertyPath: <InteractionListener>k__BackingField
       value: 
       objectReference: {fileID: 6321774086416421274}
+    - target: {fileID: 8000374033165958344, guid: 5d93463254bfcb94e9a10f6dca554c53, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 45
+      objectReference: {fileID: 0}
     - target: {fileID: 8721540178044028249, guid: 5d93463254bfcb94e9a10f6dca554c53, type: 3}
       propertyPath: m_Name
       value: Bonfire
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3011458212747843593, guid: 5d93463254bfcb94e9a10f6dca554c53, type: 3}
+    - {fileID: 7919247803856393844, guid: 5d93463254bfcb94e9a10f6dca554c53, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8721540178044028249, guid: 5d93463254bfcb94e9a10f6dca554c53, type: 3}
