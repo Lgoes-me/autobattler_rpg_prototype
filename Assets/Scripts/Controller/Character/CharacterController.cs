@@ -21,6 +21,7 @@ public class CharacterController : MonoBehaviour
     {
         Camera = Camera.main;
         CurrentDirection = Direction.Unknown;
+        SetDirection(-transform.forward);
     }
 
     public void SetDirection(Vector3 direction)
@@ -42,6 +43,7 @@ public class CharacterController : MonoBehaviour
         var back = CurrentDirection.HasFlag(Direction.Back);
 
         Body.flipX = left;
+        BodyMask.transform.localRotation = Quaternion.Euler(new Vector3(0, left ? 180 : 0, 0));
         Body.sprite = BodyMask.sprite = back ? BackSprite : FrontSprite;
         Arm.localScale = new Vector3(left ? -1 : 1, 1, back ? -1 : 1);
     }

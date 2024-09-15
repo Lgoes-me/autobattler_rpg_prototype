@@ -155,7 +155,6 @@ MonoBehaviour:
   <AnimationStateController>k__BackingField: {fileID: 4196350814843790570}
   <CharacterController>k__BackingField: {fileID: 3615641895437824799}
   <SpawnPoint>k__BackingField: {fileID: 6417034832175503229}
-  <Projectile>k__BackingField: {fileID: 270967721341561841, guid: 9ee5eb8c622e3e84aac155098fd4bf7b, type: 3}
   <Team>k__BackingField: 0
 --- !u!1001 &4590982013017769058
 PrefabInstance:
@@ -181,6 +180,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 470688622, guid: 2d2594c30bb6d2f429fcfec371190a0f, type: 3}
+    - target: {fileID: 3116719640897962255, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1734326786, guid: e80992e1c20f3364ba17d11a4a9da45e, type: 3}
     - target: {fileID: 3581964401337747027, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
       propertyPath: m_Sprite
       value: 

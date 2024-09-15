@@ -6,6 +6,7 @@ public class DoorController : MonoBehaviour
     [field: SerializeField] public string DoorName { get; private set; }
     [field: SerializeField] public Transform SpawnPoint { get; private set; }
     [field: SerializeField] private string SceneName { get; set; }
+    [field: SerializeField] public bool Active { get; set; } = true;
     
     [field: SerializeField] private CameraAreaController CameraArea { get; set; }
     private SceneManager SceneManager { get; set; }
@@ -17,7 +18,7 @@ public class DoorController : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && Active)
         {
             SceneManager.UseDoorToChangeScene(DoorName, SceneName);
         }
