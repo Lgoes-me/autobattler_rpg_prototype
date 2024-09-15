@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3323842776175515067}
   - component: {fileID: 210561987189506272}
+  - component: {fileID: 7642691255634114902}
   - component: {fileID: 451067968829074546}
   - component: {fileID: 7272871157834895343}
   m_Layer: 0
@@ -58,6 +59,29 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!136 &7642691255634114902
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4828403511849880662}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.25
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!114 &451067968829074546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,10 +112,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <PawnData>k__BackingField: {fileID: 11400000, guid: e61a228106332044d90770565651ab35, type: 2}
   <NavMeshAgent>k__BackingField: {fileID: 210561987189506272}
-  <NavMeshObstacle>k__BackingField: {fileID: 0}
   <PawnCanvasController>k__BackingField: {fileID: 5477685546574343105}
   <AnimationStateController>k__BackingField: {fileID: 4547463207040859443}
   <CharacterController>k__BackingField: {fileID: 3966242189929622214}
+  <SpawnPoint>k__BackingField: {fileID: 6641217675770613412}
+  <Projectile>k__BackingField: {fileID: 270967721341561841, guid: 9ee5eb8c622e3e84aac155098fd4bf7b, type: 3}
   <Team>k__BackingField: 1
 --- !u!1001 &3682462991242099091
 PrefabInstance:
@@ -314,6 +339,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 558cea401c0f8dd48996b0ffc5d70300, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &6641217675770613412 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7402672037686203167, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
+  m_PrefabInstance: {fileID: 4220377205959204283}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7409756309246577930 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6648848722526507185, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}

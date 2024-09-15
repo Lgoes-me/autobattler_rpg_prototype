@@ -11,10 +11,11 @@ public class AttackData : ScriptableObject
     [field: SerializeField] private FocusType Focus { get; set; }
     [field: SerializeField] private int Error { get; set; }
     [field: SerializeField] private float ManaCost { get; set; }
+    [field: SerializeField] private bool Projectile { get; set; }
 
     public Attack ToDomain(PawnController pawnController)
     {
-        return new Attack(pawnController, Animation, Damage, Range, Delay, Target, Focus, Error, ManaCost);
+        return new Attack(pawnController, Animation, Damage, Range, Delay, Target, Focus, Error, ManaCost, Projectile);
     }
 }
 

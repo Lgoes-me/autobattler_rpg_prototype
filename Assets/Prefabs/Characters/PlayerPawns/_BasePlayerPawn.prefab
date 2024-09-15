@@ -94,10 +94,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <PawnData>k__BackingField: {fileID: 0}
   <NavMeshAgent>k__BackingField: {fileID: 449031379433608940}
-  <NavMeshObstacle>k__BackingField: {fileID: 0}
   <PawnCanvasController>k__BackingField: {fileID: 0}
   <AnimationStateController>k__BackingField: {fileID: 592403816023041186}
   <CharacterController>k__BackingField: {fileID: 11713996136362839}
+  <SpawnPoint>k__BackingField: {fileID: 7712741856033756981}
+  <Projectile>k__BackingField: {fileID: 270967721341561841, guid: 9ee5eb8c622e3e84aac155098fd4bf7b, type: 3}
   <Team>k__BackingField: 0
 --- !u!1001 &987057039797453866
 PrefabInstance:
@@ -185,5 +186,10 @@ MonoBehaviour:
 --- !u!4 &5906417629973550235 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6648848722526507185, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
+  m_PrefabInstance: {fileID: 987057039797453866}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7712741856033756981 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7402672037686203167, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
   m_PrefabInstance: {fileID: 987057039797453866}
   m_PrefabAsset: {fileID: 0}

@@ -15,6 +15,7 @@ public class Attack
     private FocusType Focus { get; set; }
     private int Error { get; set; }
     public float ManaCost { get; set; }
+    public bool Projectile { get; set; }
     
     public Vector3 Destination => HasFocus ? FocusedPawn.transform.position : PawnController.transform.position;
     private bool HasFocus { get; set; }
@@ -29,7 +30,8 @@ public class Attack
         TargetType target, 
         FocusType focus,
         int error,
-        float manaCost)
+        float manaCost,
+        bool projectile)
     {
         PawnController = pawnController;
         Animation = animation;
@@ -40,6 +42,7 @@ public class Attack
         Focus = focus;
         Error = error;
         ManaCost = manaCost;
+        Projectile = projectile;
     }
 
     public void ChooseFocus(List<PawnController> pawns)
@@ -83,5 +86,10 @@ public class Attack
     public void DoAttack()
     {
         FocusedPawn.ReceiveAttack(this);
+    }
+    
+    public void DoAttackToPawn(PawnController pawn)
+    {
+        pawn.ReceiveAttack(this);
     }
 }

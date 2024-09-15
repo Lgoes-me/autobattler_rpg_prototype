@@ -11,6 +11,8 @@ public class PawnController : MonoBehaviour
     
     [field: SerializeField] private AnimationStateController AnimationStateController { get; set; }
     [field: SerializeField] private CharacterController CharacterController { get; set; }
+    [field: SerializeField] private Transform SpawnPoint { get; set; }
+    [field: SerializeField] private ProjectileController Projectile { get; set; }
     
     [field: SerializeField] public TeamType Team { get; private set; }
 
@@ -81,7 +83,15 @@ public class PawnController : MonoBehaviour
         
         Application.Instance.AudioManager.PlaySound(SfxType.Slash);
 
-        Attack.DoAttack();
+        if (Attack.Projectile)
+        {
+            var direction = Attack.Destination - SpawnPoint.position; 
+            Instantiate(Projectile, SpawnPoint.position, Quaternion.LookRotation(direction)).Init(this, Attack);
+        }
+        else
+        {
+            Attack.DoAttack();
+        }
     }
     
     private void GoBackToIdle()
