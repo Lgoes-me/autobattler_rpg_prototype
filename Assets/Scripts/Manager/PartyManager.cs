@@ -6,24 +6,26 @@ public class PartyManager : MonoBehaviour
 {
     [field: SerializeField] public List<PawnController> AvailableParty { get; set; }
     private List<PawnController> SelectedParty { get; set; }
+    
+    public void Start()
+    {
+        SelectedParty = new List<PawnController>();
+            
+        foreach (var pawnName in Application.Instance.Save.SelectedParty)
+        {
+            var pawn = AvailableParty.FirstOrDefault(p => p.PawnData.name == pawnName);
+                
+            if(pawn == null)
+                continue;
 
+            //var playerPosition = Application.Instance.PlayerManager.PawnController.transform.position;
+            //pawn = Instantiate(pawn, playerPosition, Quaternion.identity, transform);
+            
+            SelectedParty.Add(pawn);
+        }
+    }
     public List<PawnController> GetSelectedParty()
     {
-        if (SelectedParty == null)
-        {
-            SelectedParty = new List<PawnController>();
-            
-            foreach (var pawnName in Application.Instance.Save.SelectedParty)
-            {
-                var pawn = AvailableParty.FirstOrDefault(p => p.PawnData.name == pawnName);
-                
-                if(pawn == null)
-                    continue;
-                
-                SelectedParty.Add(pawn);
-            }
-        }
-
         return SelectedParty;
     }
     

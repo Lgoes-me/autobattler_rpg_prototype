@@ -45,4 +45,9 @@ public class AnimationStateController : MonoBehaviour
     {
         Animator.applyRootMotion = true;
     }
+    
+    public void DoAnimationEvent()
+    {
+        CurrentState.DoAnimationEvent();
+    }
 }

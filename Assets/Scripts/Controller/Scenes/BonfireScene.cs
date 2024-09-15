@@ -11,7 +11,7 @@ public class BonfireScene : BaseScene
     [field: SerializeField] private List<TMP_Dropdown> Dropdowns { get; set; }
     [field: SerializeField] private Button FinishButton { get; set; }
 
-    private void Awake()
+    public void Init()
     {
         FinishButton.onClick.AddListener(EndBonfireScene);
 

@@ -87,6 +87,8 @@ public class SceneManager : MonoBehaviour
         task.completed += _ =>
         {
             BonfireActive = true;
+            var bonfireScene = FindObjectOfType<BonfireScene>();
+            bonfireScene.Init();
         };
     }
 

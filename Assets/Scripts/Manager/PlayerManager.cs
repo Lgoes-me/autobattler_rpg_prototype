@@ -4,7 +4,6 @@ using UnityEngine.AI;
 
 public class PlayerManager : MonoBehaviour
 {
-    [field: SerializeField] private PawnData PawnData { get; set; }
     [field: SerializeField] public PlayerController PlayerController { get; private set; }
     [field: SerializeField] public PawnController PawnController { get; private set; }
     [field: SerializeField] private PlayerMovementController PlayerMovementController { get; set; }

@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb6f1ce5c87548b2a334115b0cbed9c7, type: 3}
-  m_Name: Attack
+  m_Name: Fireball
   m_EditorClassIdentifier: 
-  <Animation>k__BackingField: Attack
+  <Animation>k__BackingField: Fireball
   <Damage>k__BackingField:
-    <Value>k__BackingField: 2
-    <Type>k__BackingField: 1
-  <Range>k__BackingField: 1
+    <Value>k__BackingField: 3
+    <Type>k__BackingField: 3
+  <Range>k__BackingField: 3
   <Delay>k__BackingField: 0.5
   <Target>k__BackingField: 2
   <Focus>k__BackingField: 1
-  <Error>k__BackingField: 3
+  <Error>k__BackingField: 4
   <ManaCost>k__BackingField: 0

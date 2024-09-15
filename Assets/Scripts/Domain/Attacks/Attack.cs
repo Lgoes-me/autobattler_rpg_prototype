@@ -49,7 +49,7 @@ public class Attack
             return Target switch
             {
                 TargetType.Enemy => pawn.Team != PawnController.Team && pawn.PawnState.CanBeTargeted,
-                TargetType.Ally => pawn.Team == PawnController.Team && pawn.PawnState.AbleToFight,
+                TargetType.Ally => pawn.Team == PawnController.Team && pawn.PawnState.CanBeTargeted && pawn.PawnState.AbleToFight,
                 _ => throw new ArgumentOutOfRangeException()
             };
         };
@@ -59,10 +59,10 @@ public class Attack
             return Focus switch
             {
                 FocusType.Self => pawn == PawnController ? 0 : 1,
-                FocusType.Closest => (pawn.transform.position - PawnController.transform.position).sqrMagnitude,
-                FocusType.Farthest => 100 - (pawn.transform.position - PawnController.transform.position).sqrMagnitude,
-                FocusType.LowestLife => pawn.Pawn.Health,
-                FocusType.HighestLife => 100 - pawn.Pawn.Health,
+                FocusType.Closest => pawn == PawnController ? 1000 : (pawn.transform.position - PawnController.transform.position).sqrMagnitude,
+                FocusType.Farthest => pawn == PawnController ? 1000 : 1000 - (pawn.transform.position - PawnController.transform.position).sqrMagnitude,
+                FocusType.LowestLife => pawn == PawnController ? 1000 : pawn.Pawn.Health,
+                FocusType.HighestLife => pawn == PawnController ? 1000 : 1000 - pawn.Pawn.Health,
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
@@ -70,7 +70,7 @@ public class Attack
         var selectedPawns = pawns
                 .Where(WherePredicate)
                 .OrderBy(OrderPredicate)
-                .Take(Error)
+                .Take(1 + Error)
                 .ToList();
 
         if (selectedPawns.Count == 0)
