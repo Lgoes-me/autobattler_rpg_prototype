@@ -140,10 +140,11 @@ public class PawnController : MonoBehaviour
             NavMeshAgent.SetDestination(transform.position);
             CharacterController.SetSpeed(0);
         }
-        else
+        else if(NavMeshAgent.pathStatus == NavMeshPathStatus.PathComplete && NavMeshAgent.remainingDistance < 1f)
         {
+            var randomRotation =  Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)) * Vector3.one * (Attack.Range - 1);
             NavMeshAgent.isStopped = false;
-            NavMeshAgent.SetDestination(Attack.Destination);
+            NavMeshAgent.SetDestination(Attack.Destination + randomRotation);
             CharacterController.SetSpeed(NavMeshAgent.velocity.magnitude);
         }
     }

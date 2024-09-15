@@ -1,10 +1,10 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ProjectileController : MonoBehaviour
 {
+    [field:SerializeField] private float Duration { get; set; }
+    [field:SerializeField] private float Speed { get; set; }
     [field:SerializeField] private Rigidbody Rigidbody { get; set; }
     
     private PawnController Creator { get; set; }
@@ -14,20 +14,29 @@ public class ProjectileController : MonoBehaviour
     {
         Creator = creator;
         Attack = attack;
-        Rigidbody.velocity = transform.forward;
+        Rigidbody.velocity = transform.forward * Speed;
+
+        StartCoroutine(SelfDestructCoroutine());
     }
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<PawnController>(out var pawnController) && pawnController.Team != Creator.Team)
+        if (other.TryGetComponent<PawnController>(out var pawnController) &&
+            pawnController.Team != Creator.Team &&
+            pawnController.PawnState.CanBeTargeted)
         {
             Attack.DoAttackToPawn(pawnController);
             Destroy(this.gameObject);
         }
     }
     
-    private void OnBecameInvisible()
+    private IEnumerator SelfDestructCoroutine()
     {
+        yield return new WaitForSeconds(Duration);
+
+        if (!gameObject.activeInHierarchy)
+            yield break;
+        
         Destroy(this.gameObject);
     }
 }
