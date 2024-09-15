@@ -22,4 +22,4 @@ MonoBehaviour:
   <Focus>k__BackingField: 1
   <Error>k__BackingField: 4
   <ManaCost>k__BackingField: 0
-  <Projectile>k__BackingField: 1
+  <Projectile>k__BackingField: {fileID: 3883816015513118945, guid: 168bc8105127cf344a0b5af79c23baf8, type: 3}

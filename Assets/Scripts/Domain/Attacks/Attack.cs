@@ -15,7 +15,7 @@ public class Attack
     private FocusType Focus { get; set; }
     private int Error { get; set; }
     public float ManaCost { get; set; }
-    public bool Projectile { get; set; }
+    public ProjectileController Projectile { get; set; }
     
     public Vector3 Destination => HasFocus ? FocusedPawn.transform.position : PawnController.transform.position;
     private bool HasFocus { get; set; }
@@ -31,7 +31,7 @@ public class Attack
         FocusType focus,
         int error,
         float manaCost,
-        bool projectile)
+        ProjectileController projectile)
     {
         PawnController = pawnController;
         Animation = animation;

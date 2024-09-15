@@ -21,7 +21,6 @@ public class PawnDomain
         int health,
         int size,
         int initiative,
-        bool hasMana,
         List<AttackData> attacks,
         List<AttackData> specialAttacks)
     {
@@ -33,10 +32,10 @@ public class PawnDomain
 
         Size = size;
         Initiative = initiative;
-        HasMana = hasMana;
 
         Attacks = attacks;
         SpecialAttacks = specialAttacks;
+        HasMana = SpecialAttacks.Count > 0;
     }
 
     public AttackData GetCurrentAttackIntent(bool specialAttackRequested)

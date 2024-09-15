@@ -10,11 +10,11 @@ public class ProjectileController : MonoBehaviour
     private PawnController Creator { get; set; }
     private Attack Attack { get; set; }
     
-    public void Init(PawnController creator, Attack attack)
+    public void Init(PawnController creator, Attack attack, Vector3 direction)
     {
         Creator = creator;
         Attack = attack;
-        Rigidbody.velocity = transform.forward * Speed;
+        Rigidbody.velocity = direction * Speed;
 
         StartCoroutine(SelfDestructCoroutine());
     }
