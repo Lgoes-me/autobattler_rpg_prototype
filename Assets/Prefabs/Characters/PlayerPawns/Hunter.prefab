@@ -44,6 +44,10 @@ PrefabInstance:
       propertyPath: <PawnData>k__BackingField
       value: 
       objectReference: {fileID: 11400000, guid: c6302786fe4d8814484706224f21b480, type: 2}
+    - target: {fileID: 4759648862371886847, guid: bf3e5b737f1f18949bbfd853b8d5bfe0, type: 3}
+      propertyPath: <Projectile>k__BackingField
+      value: 
+      objectReference: {fileID: 3883816015513118945, guid: 1c196ea9bdbc3434ca8969f1aa74aedb, type: 3}
     - target: {fileID: 7712741856033756981, guid: bf3e5b737f1f18949bbfd853b8d5bfe0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.215
