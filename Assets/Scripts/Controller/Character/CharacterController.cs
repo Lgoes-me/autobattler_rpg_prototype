@@ -31,7 +31,7 @@ public class CharacterController : MonoBehaviour
 
         var newDirection = Direction.Unknown;
 
-        newDirection = xDirection >= 0 ? Direction.Right : Direction.Left;
+        newDirection = xDirection >= -0.2f ? Direction.Right : Direction.Left;
         newDirection |= zDirection <= 0.2f ? Direction.Front : Direction.Back;
 
         if (newDirection == CurrentDirection)
