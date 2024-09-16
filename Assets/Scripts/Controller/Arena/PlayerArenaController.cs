@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class PlayerArenaController : MonoBehaviour
 {
-    [field: SerializeField] private List<PlayerCard> PlayerCards { get; set; }
     [field: SerializeField] private ArenaController ArenaController { get; set; }
     [field: SerializeField] private Transform SelectionFeedback { get; set; }
     
     [field: SerializeField] private Material Red { get; set; }
     [field: SerializeField] private Material Blue { get; set; }
     [field: SerializeField] private Renderer SelectionFeedbackRenderer { get; set; }
-    private PlayerCard SelectedPlayerCard { get; set; }
+    
+    private PawnController SelectedPlayerPawn { get; set; }
 
     private Camera Camera { get; set; }
     private bool CanPlacePawn { get; set; }
@@ -18,26 +18,11 @@ public class PlayerArenaController : MonoBehaviour
     private void Start()
     {
         Camera = Camera.main;
-
-        var pawns = new List<PawnController>(Application.Instance.PartyManager.SelectedParty);
-        
-        foreach (var card in PlayerCards)
-        {
-            if (pawns.Count == 0)
-            {
-                card.gameObject.SetActive(false);
-                continue;
-            }
-            
-            var data = pawns[Random.Range(0, pawns.Count)];
-            pawns.Remove(data);
-            card.Init(data);
-        }
     }
 
-    public void SelectPlayerPawn(PlayerCard playerCard)
+    public void SelectPlayerPawn(PawnController pawn)
     {
-        SelectedPlayerCard = playerCard;
+        SelectedPlayerPawn = pawn;
     }
 
     public void UnselectPlayerPawn()
@@ -48,16 +33,34 @@ public class PlayerArenaController : MonoBehaviour
         }
         else
         {
-            UnselectCard();
+            UnselectPawn();
         }
 
-        SelectedPlayerCard = null;
+        SelectedPlayerPawn = null;
     }
 
     private void Update()
     {
-        if (SelectedPlayerCard == null)
+        if (SelectedPlayerPawn == null)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (Physics.Raycast(
+                    Camera.ScreenPointToRay(Input.mousePosition),
+                    out var pawnHit,
+                    100f,
+                    LayerMask.GetMask("PlayerPawn")))
+                {
+                    SelectPlayerPawn(pawnHit.collider.GetComponent<PawnController>());
+                }
+            }
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            UnselectPlayerPawn();
             return;
+        }
 
         if (Physics.Raycast(
             Camera.ScreenPointToRay(Input.mousePosition),
@@ -69,41 +72,42 @@ public class PlayerArenaController : MonoBehaviour
         }
         else
         {
-            UnselectCard();
+            UnselectPawn();
         }
     }
 
-    private void UnselectCard()
+    private void UnselectPawn()
     {
-        SelectedPlayerCard.Show();
+        if (SelectedPlayerPawn != null)
+        {
+            SelectedPlayerPawn.gameObject.SetActive(true);
+        }
+        
         SelectionFeedback.gameObject.SetActive(false);
         CanPlacePawn = false;
     }
 
     private void PlacePawn()
     {
-        if (SelectedPlayerCard == null)
+        if (SelectedPlayerPawn == null)
             return;
         
-        var pawn = SelectedPlayerCard.GetPawnController(ArenaController, SelectionFeedback);
-        ArenaController.AddPlayerPawn(pawn);
-        
-        SelectedPlayerCard.gameObject.SetActive(false);
         SelectionFeedback.gameObject.SetActive(false);
+        SelectedPlayerPawn.transform.position = SelectionFeedback.transform.position;
+        SelectedPlayerPawn.gameObject.SetActive(true);
         CanPlacePawn = false;
     }
 
     private void OnPointerHit(RaycastHit hit)
     {
-        if (SelectedPlayerCard == null)
+        if (SelectedPlayerPawn == null)
             return;
         
-        SelectedPlayerCard.Hide();
+        SelectedPlayerPawn.gameObject.SetActive(false);
         SelectionFeedback.gameObject.SetActive(true);
         SelectionFeedback.transform.position = hit.point;
 
-        if ((Application.Instance.PlayerManager.PlayerController.transform.position - hit.point).magnitude > 3 ||
-            hit.normal.y <= 0)
+        if ((SelectedPlayerPawn.transform.position - hit.point).magnitude > 3 || hit.normal.y <= 0)
         {
             SelectionFeedbackRenderer.material = Red;
             CanPlacePawn = false;

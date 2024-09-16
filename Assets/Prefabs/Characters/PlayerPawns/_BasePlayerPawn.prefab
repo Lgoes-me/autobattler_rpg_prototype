@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 449031379433608940}
   - component: {fileID: 4759648862371886847}
   - component: {fileID: 7903008837011009515}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: _BasePlayerPawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
