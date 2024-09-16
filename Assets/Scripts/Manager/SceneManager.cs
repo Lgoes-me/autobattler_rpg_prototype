@@ -20,18 +20,23 @@ public class SceneManager : MonoBehaviour
             var roomScene = FindObjectOfType<RoomScene>();
             
             roomScene.ActivateRoomScene(this, PlayerManager.PlayerController,save.Door);
+            
+            Application.Instance.PartyManager.SetPartyToFollow(true);
             Application.Instance.AudioManager.PlayMusic(roomScene.Music);
         };
     }
 
     public void UseDoorToChangeScene(string doorName, string sceneName)
     {
+        Application.Instance.PartyManager.StopPartyFollow();
         var task = UnitySceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
 
         task.completed += _ =>
         {
             var roomScene = FindObjectOfType<RoomScene>();
             roomScene.ActivateRoomScene(this, PlayerManager.PlayerController, doorName);
+            
+            Application.Instance.PartyManager.SetPartyToFollow(true);
             Application.Instance.AudioManager.PlayMusic(roomScene.Music);
 
             var save = Application.Instance.Save;
@@ -103,6 +108,7 @@ public class SceneManager : MonoBehaviour
         {
             BonfireActive = false;
             PlayerManager.ClearDefeated();
+            Application.Instance.PartyManager.SetPartyToFollow(false);
         };
     }
 }

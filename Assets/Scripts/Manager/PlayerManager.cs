@@ -62,6 +62,8 @@ public class PlayerManager : MonoBehaviour
 
         PlayerMovementController.enabled = true;
         PlayerMovementController.Prepare();
+        
+        Application.Instance.PartyManager.SetPartyToFollow(false);
     }
 
     public void SetNewCameraPosition(Transform cameraTransform)

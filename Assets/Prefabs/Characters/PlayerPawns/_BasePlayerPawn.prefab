@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8206254844400676555}
   - component: {fileID: 449031379433608940}
   - component: {fileID: 4759648862371886847}
+  - component: {fileID: 7903008837011009515}
   m_Layer: 0
   m_Name: _BasePlayerPawn
   m_TagString: Untagged
@@ -68,8 +69,8 @@ NavMeshAgent:
   m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.25
-  m_Speed: 1.5
-  m_Acceleration: 8
+  m_Speed: 4
+  m_Acceleration: 15
   avoidancePriority: 50
   m_AngularSpeed: 0
   m_StoppingDistance: 1
@@ -93,13 +94,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <PawnData>k__BackingField: {fileID: 0}
+  <PlayerFollowController>k__BackingField: {fileID: 7903008837011009515}
   <NavMeshAgent>k__BackingField: {fileID: 449031379433608940}
   <PawnCanvasController>k__BackingField: {fileID: 0}
   <AnimationStateController>k__BackingField: {fileID: 592403816023041186}
   <CharacterController>k__BackingField: {fileID: 11713996136362839}
   <SpawnPoint>k__BackingField: {fileID: 7712741856033756981}
-  <Projectile>k__BackingField: {fileID: 270967721341561841, guid: 9ee5eb8c622e3e84aac155098fd4bf7b, type: 3}
   <Team>k__BackingField: 0
+--- !u!114 &7903008837011009515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106570956837824938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fba19f0675d3f74ba498bb24657e646, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <CharacterController>k__BackingField: {fileID: 11713996136362839}
+  <NavMeshAgent>k__BackingField: {fileID: 449031379433608940}
 --- !u!1001 &987057039797453866
 PrefabInstance:
   m_ObjectHideFlags: 0

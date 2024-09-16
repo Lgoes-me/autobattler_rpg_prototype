@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class PawnController : MonoBehaviour
 {
     [field: SerializeField] public PawnData PawnData { get; private set; }
+    [field: SerializeField] public PlayerFollowController PlayerFollowController { get; private set; }
     [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
     [field: SerializeField] private PawnCanvasController PawnCanvasController { get; set; }
     
@@ -24,7 +25,6 @@ public class PawnController : MonoBehaviour
     public PawnController Init(PawnCanvasController pawnCanvasController = null)
     {
         Pawn = PawnData.ToDomain();
-
         enabled = true;
         NavMeshAgent.enabled = true;
         NavMeshAgent.isStopped = true;

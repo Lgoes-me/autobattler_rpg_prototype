@@ -39,12 +39,13 @@ public class BonfireScene : BaseScene
         {
             var dropdown = Dropdowns[index];
             dropdown.options = availableParty;
-            var selectedParty = Application.Instance.PartyManager.GetSelectedParty();
+            var selectedParty = Application.Instance.PartyManager.SelectedParty;
 
             if (selectedParty.Count > index)
             {
                 var currentSelectedPawn = selectedParty[index];
-                var selectedIndex = availableParty.FindIndex(o => ((PawnOptionData)o).PawnController == currentSelectedPawn);
+                var selectedIndex = availableParty
+                    .FindIndex(o => ((PawnOptionData)o).PawnController?.PawnData?.name == currentSelectedPawn.PawnData.name);
                 dropdown.value = selectedIndex;
             }
             else

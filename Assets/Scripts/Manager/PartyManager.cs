@@ -5,11 +5,12 @@ using UnityEngine;
 public class PartyManager : MonoBehaviour
 {
     [field: SerializeField] public List<PawnController> AvailableParty { get; set; }
-    private List<PawnController> SelectedParty { get; set; }
+    public List<PawnController> SelectedParty { get; private set; }
     
-    public void Start()
+    private void Start()
     {
         SelectedParty = new List<PawnController>();
+        var selectedParty = new List<PawnController>();
             
         foreach (var pawnName in Application.Instance.Save.SelectedParty)
         {
@@ -17,22 +18,67 @@ public class PartyManager : MonoBehaviour
                 
             if(pawn == null)
                 continue;
-
-            //var playerPosition = Application.Instance.PlayerManager.PawnController.transform.position;
-            //pawn = Instantiate(pawn, playerPosition, Quaternion.identity, transform);
             
-            SelectedParty.Add(pawn);
+            selectedParty.Add(pawn);
         }
+    
+        SpawnSelectedPawns(selectedParty);
     }
-    public List<PawnController> GetSelectedParty()
+
+    private void SpawnSelectedPawns(List<PawnController> pawns)
     {
-        return SelectedParty;
+        foreach (var pawn in SelectedParty)
+        {
+            Destroy(pawn.gameObject);
+        }
+        
+        SelectedParty.Clear();
+        
+        foreach (var pawn in pawns)
+        {
+            if(pawn == null)
+                continue;
+
+            var playerPosition = Application.Instance.PlayerManager.PawnController.transform.position;
+            
+            var randomRotation =  Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)) * Vector3.one * 0.5f;
+            var pawnInstance = Instantiate(pawn, playerPosition + randomRotation, Quaternion.identity, transform);
+            
+            SelectedParty.Add(pawnInstance);
+        }
     }
     
     public void SetSelectedParty(List<PawnController> selectedParty)
     {
-        SelectedParty = new List<PawnController>(selectedParty);
+        SpawnSelectedPawns(selectedParty);
         Application.Instance.Save.SelectedParty = SelectedParty.Select(p => p.PawnData.name).ToList();
         Application.Instance.SaveManager.SaveData(Application.Instance.Save);
+    }
+
+    public void SetPartyToFollow(bool transportToPlayer)
+    {
+        var party = Application.Instance.PartyManager.SelectedParty;
+        var player = Application.Instance.PlayerManager.PawnController;
+
+        for (var index = 0; index < party.Count; index++)
+        {
+            var pawn = party[index];
+            pawn.PlayerFollowController.StopFollow();
+            
+            var randomRotation =  Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)) * Vector3.one * 0.5f;
+            pawn.PlayerFollowController.StartFollow(
+                transportToPlayer ? player.transform.position + randomRotation : pawn.transform.position, 
+                index == 0 ? player : party[index -1]);
+        }
+    }
+    
+    public void StopPartyFollow()
+    {
+        var party = Application.Instance.PartyManager.SelectedParty;
+
+        foreach (var pawn in party)
+        {
+            pawn.PlayerFollowController.StopFollow();
+        }
     }
 }

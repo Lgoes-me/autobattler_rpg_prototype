@@ -38,6 +38,15 @@ public class ArenaController : MonoBehaviour
             pawnController.Init();
             EnemyPawns.Add(pawnController);
         }
+
+        var party = Application.Instance.PartyManager.SelectedParty;
+        
+        foreach (var alliedController in party)
+        {
+            alliedController.PlayerFollowController.StopFollow();
+            alliedController.Init(PawnCanvases.First(c => !c.Initiated));
+            ActivePawns.Add(alliedController);
+        }
     }
 
     private void SpawnPlayerPawn()
@@ -49,8 +58,7 @@ public class ArenaController : MonoBehaviour
 
     public void AddPlayerPawn(PawnController pawn)
     {
-        pawn.Init(PawnCanvases.First(c => !c.Initiated));
-        ActivePawns.Add(pawn);
+        
     }
 
     public void PlayBattle()
@@ -112,10 +120,12 @@ public class ArenaController : MonoBehaviour
 
     private void EndBattle()
     {
-        foreach (var enemyPawn in EnemyPawns)
+        foreach (var pawn in InitiativeList)
         {
-            enemyPawn.Deactivate();
-            enemyPawn.gameObject.SetActive(false);
+            pawn.Deactivate();
+            
+            if(pawn.Team == TeamType.Enemies)
+                pawn.gameObject.SetActive(false);
         }
 
         Application.Instance.PlayerManager.AddDefeated(BattleId);

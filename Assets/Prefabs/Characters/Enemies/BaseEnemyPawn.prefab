@@ -47,8 +47,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.25
-  m_Speed: 1.5
-  m_Acceleration: 8
+  m_Speed: 3
+  m_Acceleration: 15
   avoidancePriority: 50
   m_AngularSpeed: 0
   m_StoppingDistance: 1
@@ -111,12 +111,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <PawnData>k__BackingField: {fileID: 11400000, guid: e61a228106332044d90770565651ab35, type: 2}
+  <PlayerFollowController>k__BackingField: {fileID: 0}
   <NavMeshAgent>k__BackingField: {fileID: 210561987189506272}
   <PawnCanvasController>k__BackingField: {fileID: 5477685546574343105}
   <AnimationStateController>k__BackingField: {fileID: 4547463207040859443}
   <CharacterController>k__BackingField: {fileID: 3966242189929622214}
   <SpawnPoint>k__BackingField: {fileID: 6641217675770613412}
-  <Projectile>k__BackingField: {fileID: 270967721341561841, guid: 9ee5eb8c622e3e84aac155098fd4bf7b, type: 3}
   <Team>k__BackingField: 1
 --- !u!1001 &3682462991242099091
 PrefabInstance:
