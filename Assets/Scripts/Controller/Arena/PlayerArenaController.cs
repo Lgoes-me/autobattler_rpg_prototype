@@ -1,11 +1,8 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerArenaController : MonoBehaviour
 {
-    [field: SerializeField] private ArenaController ArenaController { get; set; }
     [field: SerializeField] private Transform SelectionFeedback { get; set; }
-    
     [field: SerializeField] private Material Red { get; set; }
     [field: SerializeField] private Material Blue { get; set; }
     [field: SerializeField] private Renderer SelectionFeedbackRenderer { get; set; }
@@ -20,12 +17,12 @@ public class PlayerArenaController : MonoBehaviour
         Camera = Camera.main;
     }
 
-    public void SelectPlayerPawn(PawnController pawn)
+    private void SelectPlayerPawn(PawnController pawn)
     {
         SelectedPlayerPawn = pawn;
     }
 
-    public void UnselectPlayerPawn()
+    private void TryPlacePlayerPawn()
     {
         if (CanPlacePawn)
         {
@@ -58,7 +55,7 @@ public class PlayerArenaController : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-            UnselectPlayerPawn();
+            TryPlacePlayerPawn();
             return;
         }
 

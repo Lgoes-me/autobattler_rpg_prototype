@@ -27,21 +27,25 @@ public class PartyManager : MonoBehaviour
 
     private void SpawnSelectedPawns(List<PawnController> pawns)
     {
-        foreach (var pawn in SelectedParty)
+        for (var index = SelectedParty.Count - 1; index >= 0 ; index--)
         {
+            var pawn = SelectedParty[index];
+            
+            if(pawns.Contains(pawn))
+                continue;
+            
             Destroy(pawn.gameObject);
+            SelectedParty.Remove(pawn);
         }
-        
-        SelectedParty.Clear();
         
         foreach (var pawn in pawns)
         {
-            if(pawn == null)
+            if(pawn == null || SelectedParty.Contains(pawn))
                 continue;
 
             var playerPosition = Application.Instance.PlayerManager.PawnController.transform.position;
             
-            var randomRotation =  Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)) * Vector3.one * 0.5f;
+            var randomRotation =  Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)) * Vector3.forward * 1f;
             var pawnInstance = Instantiate(pawn, playerPosition + randomRotation, Quaternion.identity, transform);
             
             SelectedParty.Add(pawnInstance);
@@ -65,10 +69,9 @@ public class PartyManager : MonoBehaviour
             var pawn = party[index];
             pawn.PlayerFollowController.StopFollow();
             
-            var randomRotation =  Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)) * Vector3.one * 0.5f;
-            pawn.PlayerFollowController.StartFollow(
-                transportToPlayer ? player.transform.position + randomRotation : pawn.transform.position, 
-                index == 0 ? player : party[index -1]);
+            pawn.PlayerFollowController.StartFollow( 
+                index == 0 ? player : party[index -1],
+                transportToPlayer ? player.transform.position : Vector3.zero);
         }
     }
     

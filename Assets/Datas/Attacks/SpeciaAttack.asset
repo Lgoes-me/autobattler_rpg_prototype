@@ -21,4 +21,5 @@ MonoBehaviour:
   <Target>k__BackingField: 2
   <Focus>k__BackingField: 1
   <Error>k__BackingField: 3
-  <ManaCost>k__BackingField: 0
+  <ManaCost>k__BackingField: 100
+  <Projectile>k__BackingField: {fileID: 0}

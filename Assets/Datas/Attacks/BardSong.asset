@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Animation>k__BackingField: BardSong
   <Damage>k__BackingField:
-    <Value>k__BackingField: -2
+    <Value>k__BackingField: -4
     <Type>k__BackingField: 0
   <Range>k__BackingField: 3
   <Delay>k__BackingField: 1
@@ -22,3 +22,4 @@ MonoBehaviour:
   <Focus>k__BackingField: 3
   <Error>k__BackingField: 0
   <ManaCost>k__BackingField: 0
+  <Projectile>k__BackingField: {fileID: 0}

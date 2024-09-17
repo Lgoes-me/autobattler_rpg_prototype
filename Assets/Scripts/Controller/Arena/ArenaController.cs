@@ -56,11 +56,6 @@ public class ArenaController : MonoBehaviour
         ActivePawns.Add(pawnController);
     }
 
-    public void AddPlayerPawn(PawnController pawn)
-    {
-        
-    }
-
     public void PlayBattle()
     {
         PreBattleCanvas.gameObject.SetActive(false);

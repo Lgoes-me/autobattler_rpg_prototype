@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -11,15 +9,19 @@ public class PlayerFollowController : MonoBehaviour
     [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
     private Coroutine FollowCoroutine { get; set; }
 
-    public void StartFollow(Vector3 position, PawnController toFollow)
+    public void StartFollow(PawnController toFollow, Vector3 position)
     {
         if (FollowCoroutine != null)
         {
             StopCoroutine(FollowCoroutine);
         }
 
-        var randomRotation = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)) * Vector3.one * 0.5f;
-        transform.position = position + randomRotation;
+        if (position != Vector3.zero)
+        {
+            var randomRotation = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)) * Vector3.forward * 0.5f;
+            transform.position = position + randomRotation;
+        }
+        
         NavMeshAgent.enabled = true;
         NavMeshAgent.isStopped = false;
         FollowCoroutine = StartCoroutine(DoFollowCoroutine(toFollow));
@@ -30,9 +32,9 @@ public class PlayerFollowController : MonoBehaviour
         while (gameObject.activeInHierarchy)
         {
             var destination = toFollow.transform.position;
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.25f);
 
-            var randomRotation = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)) * Vector3.one * 0.5f;
+            var randomRotation = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)) * Vector3.forward * 0.5f;
             CharacterController.SetDirection(destination - transform.position);
             NavMeshAgent.SetDestination(destination + randomRotation);
         }

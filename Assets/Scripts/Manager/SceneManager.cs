@@ -94,6 +94,7 @@ public class SceneManager : MonoBehaviour
             BonfireActive = true;
             var bonfireScene = FindObjectOfType<BonfireScene>();
             bonfireScene.Init();
+            Application.Instance.PartyManager.StopPartyFollow();
         };
     }
 

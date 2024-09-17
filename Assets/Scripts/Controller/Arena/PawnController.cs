@@ -68,18 +68,21 @@ public class PawnController : MonoBehaviour
         if(Attack == null || !PawnState.AbleToFight)
             return;
 
-        if (Attack.ManaCost > 0)
+        if (Pawn.HasMana)
         {
-            SpecialAttackRequested = false;
-            Pawn.Mana = 0;
-            PawnCanvasController.UpdateMana(!SpecialAttackRequested);
+            if (Attack.ManaCost > 0)
+            {
+                SpecialAttackRequested = false;
+                Pawn.Mana = 0;
+                PawnCanvasController.UpdateMana(!SpecialAttackRequested);
+            }
+            else 
+            {
+                Pawn.Mana = Mathf.Clamp(Pawn.Mana + 10, 0, Pawn.MaxMana);
+                PawnCanvasController.UpdateMana(!SpecialAttackRequested);
+            }
         }
-        else if (Pawn.HasMana)
-        {
-            Pawn.Mana = Mathf.Clamp(Pawn.Mana + 10, 0, Pawn.MaxMana);
-            PawnCanvasController.UpdateMana(!SpecialAttackRequested);
-        }
-        
+
         Application.Instance.AudioManager.PlaySound(SfxType.Slash);
 
         if (Attack.Projectile != null)
@@ -143,7 +146,7 @@ public class PawnController : MonoBehaviour
         }
         else if(NavMeshAgent.pathStatus == NavMeshPathStatus.PathComplete && NavMeshAgent.remainingDistance < 1f)
         {
-            var randomRotation =  Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)) * Vector3.one * (Attack.Range - 1);
+            var randomRotation = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)) * Vector3.forward * (Attack.Range - 1);
             NavMeshAgent.isStopped = false;
             NavMeshAgent.SetDestination(Attack.Destination + randomRotation);
             CharacterController.SetSpeed(NavMeshAgent.velocity.magnitude);
@@ -164,5 +167,23 @@ public class PawnController : MonoBehaviour
     {
         PawnCanvasController.Hide();
         AnimationStateController.SetAnimationState(new DanceState(), GoBackToIdle);
+    }
+    
+    public override bool Equals(System.Object obj)
+    {
+        if (obj == null)
+            return false;
+
+        PawnController pawnController = obj as PawnController;
+        
+        if (pawnController == null)
+            return false;
+
+        return pawnController.PawnData.name == PawnData.name;
+    }
+
+    public override int GetHashCode()
+    {
+        return base.GetHashCode();
     }
 }
