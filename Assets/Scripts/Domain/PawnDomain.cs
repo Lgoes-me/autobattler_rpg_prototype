@@ -15,7 +15,7 @@ public class PawnDomain
     public int Initiative { get; private set; }
 
     private List<AttackData> Attacks { get; set; }
-    private List<AttackData> SpecialAttacks { get; set; }
+    public List<AttackData> SpecialAttacks { get; private set; }
 
     public PawnDomain(
         int health,
@@ -38,13 +38,8 @@ public class PawnDomain
         HasMana = SpecialAttacks.Count > 0;
     }
 
-    public AttackData GetCurrentAttackIntent(bool specialAttackRequested)
+    public AttackData GetCurrentAttackIntent()
     {
-        if (specialAttackRequested)
-        {
-            return SpecialAttacks[Random.Range(0, SpecialAttacks.Count)];
-        }
-
         return Attacks[Random.Range(0, Attacks.Count)];
     }
 }

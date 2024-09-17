@@ -20,7 +20,7 @@ public class PawnController : MonoBehaviour
     public AnimationState PawnState => AnimationStateController.CurrentState;
     private Attack Attack { get; set; }
     private Coroutine BackToIdleCoroutine { get; set; }
-    private bool SpecialAttackRequested { get; set; }
+    private Attack SpecialAttackRequested { get; set; }
 
     public PawnController Init(PawnCanvasController pawnCanvasController = null)
     {
@@ -41,7 +41,8 @@ public class PawnController : MonoBehaviour
 
     public IEnumerator Turno(List<PawnController> pawns)
     {
-        Attack = Pawn.GetCurrentAttackIntent(SpecialAttackRequested).ToDomain(this);
+        
+        Attack = SpecialAttackRequested ?? Pawn.GetCurrentAttackIntent().ToDomain(this);
         Attack.ChooseFocus(pawns);
 
         var direction = Attack.Destination - transform.position;
@@ -72,14 +73,14 @@ public class PawnController : MonoBehaviour
         {
             if (Attack.ManaCost > 0)
             {
-                SpecialAttackRequested = false;
+                SpecialAttackRequested = null;
                 Pawn.Mana = 0;
-                PawnCanvasController.UpdateMana(!SpecialAttackRequested);
+                PawnCanvasController.UpdateMana();
             }
             else 
             {
                 Pawn.Mana = Mathf.Clamp(Pawn.Mana + 10, 0, Pawn.MaxMana);
-                PawnCanvasController.UpdateMana(!SpecialAttackRequested);
+                PawnCanvasController.UpdateMana();
             }
         }
 
@@ -158,9 +159,9 @@ public class PawnController : MonoBehaviour
         enabled = false;
     }
 
-    public void DoSpecial()
+    public void DoSpecial(AttackData attackData)
     {
-        SpecialAttackRequested = true;
+        SpecialAttackRequested = attackData.ToDomain(this);
     }
     
     public void Dance()

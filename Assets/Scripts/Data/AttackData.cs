@@ -10,7 +10,7 @@ public class AttackData : ScriptableObject
     [field: SerializeField] private TargetType Target { get; set; }
     [field: SerializeField] private FocusType Focus { get; set; }
     [field: SerializeField] private int Error { get; set; }
-    [field: SerializeField] private float ManaCost { get; set; }
+    [field: SerializeField] public int ManaCost { get; set; }
     [field: SerializeField] private ProjectileController Projectile { get; set; }
 
     public Attack ToDomain(PawnController pawnController)
