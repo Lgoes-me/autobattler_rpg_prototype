@@ -94,7 +94,6 @@ public class ArenaController : MonoBehaviour
 
             foreach (var playerPawn in ActivePawns)
             {
-                if (!playerPawn.PawnState.AbleToFight) continue;
                 playerPawn.Dance();
             }
 

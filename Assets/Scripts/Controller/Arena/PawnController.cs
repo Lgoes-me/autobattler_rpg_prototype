@@ -74,7 +74,7 @@ public class PawnController : MonoBehaviour
             if (Attack.ManaCost > 0)
             {
                 SpecialAttackRequested = null;
-                Pawn.Mana = 0;
+                Pawn.Mana -= Attack.ManaCost;
                 PawnCanvasController.UpdateMana();
             }
             else 
@@ -122,7 +122,7 @@ public class PawnController : MonoBehaviour
         Pawn.Health = Mathf.Clamp(Pawn.Health - attack.Damage.Value, 0, Pawn.MaxHealth);
         var dead = Pawn.Health <= 0;
         CharacterController.DoHitStop();
-        PawnCanvasController.UpdateLife(dead);
+        PawnCanvasController.UpdateLife();
 
         if (!dead) return;
         

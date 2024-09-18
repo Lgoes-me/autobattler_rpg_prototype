@@ -33,4 +33,9 @@ public class ProfileCanvasController : PawnCanvasController
             button.TryActivateButton(pawn.Mana);
         }
     }
+
+    protected override void Death()
+    {
+        
+    }
 }

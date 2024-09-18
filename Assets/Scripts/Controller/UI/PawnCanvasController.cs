@@ -28,7 +28,7 @@ public class PawnCanvasController : BaseCanvasController
         Show();
     }
 
-    public void UpdateLife(bool hideAfter)
+    public void UpdateLife()
     {
         var pawn = PawnController.Pawn;
         var fillAmount = pawn.Health / (float) pawn.MaxHealth;
@@ -37,21 +37,26 @@ public class PawnCanvasController : BaseCanvasController
         if(!gameObject.activeInHierarchy)
             return;
         
-        StartCoroutine(UpdateBackgroundLifeBar(fillAmount, hideAfter));
+        StartCoroutine(UpdateBackgroundLifeBar(fillAmount));
     }
 
-    private IEnumerator UpdateBackgroundLifeBar(float fillAmount, bool hideAfter)
+    private IEnumerator UpdateBackgroundLifeBar(float fillAmount)
     {
         yield return new WaitForSeconds(0.5f);
         BackgroundLifeBar.fillAmount = fillAmount;
 
-        if (hideAfter)
-            Hide();
+        if (fillAmount == 0)
+            Death();
     }
 
     public virtual void UpdateMana()
     {
         var pawn = PawnController.Pawn;
         ManaBar.fillAmount = pawn.Mana / (float) pawn.MaxMana;
+    }
+
+    protected virtual void Death()
+    {
+        Hide(); 
     }
 }
