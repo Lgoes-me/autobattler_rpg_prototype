@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2df9ee73a45a0b04ca81d4b25a2bce57
+guid: 497c84e71399e174ba288bd613365f0b
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -121,18 +121,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Characters
+  - name: teste
     originalName: 
-    pivot: {x: 0.5, y: -6.111111}
+    pivot: {x: 0.5157895, y: -0.5625}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 126
-      height: 18
-    spriteID: 82da80c191784f747a81c9c7970b58a9
+      width: 190
+      height: 128
+    spriteID: 67edfd5bcfd2cdd4c813b31c5a540283
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -144,21 +144,21 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 2031345770
-    name: Characters
+    guid: -824537041
+    name: teste
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Characters
+    - name: teste
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 1
-        y: 110
-        width: 126
-        height: 18
-      spriteId: 82da80c191784f747a81c9c7970b58a9
+        x: 2
+        y: 72
+        width: 190
+        height: 128
+      spriteId: 67edfd5bcfd2cdd4c813b31c5a540283
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -177,4 +177,4 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 128, y: 128}
+  canvasSize: {x: 200, y: 200}
