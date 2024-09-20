@@ -2,13 +2,13 @@
 
 public class AttackState : AnimationState
 {
-    public override string Animation => Attack.Animation;
-    private Attack Attack { get; }
+    public override string Animation => Ability.Animation;
+    private Ability Ability { get; }
     private Action Callback { get; }
 
-    public AttackState(Attack attack, Action callback)
+    public AttackState(Ability ability, Action callback)
     {
-        Attack = attack;
+        Ability = ability;
         Callback = callback;
     }
 

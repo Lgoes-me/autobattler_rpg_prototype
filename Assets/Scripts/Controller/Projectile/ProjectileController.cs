@@ -8,12 +8,12 @@ public class ProjectileController : MonoBehaviour
     [field:SerializeField] private Rigidbody Rigidbody { get; set; }
     
     private PawnController Creator { get; set; }
-    private Attack Attack { get; set; }
+    private AbilityEffect Effect { get; set; }
     
-    public void Init(PawnController creator, Attack attack, Vector3 direction)
+    public void Init(PawnController creator, AbilityEffect effect, Vector3 direction)
     {
         Creator = creator;
-        Attack = attack;
+        Effect = effect;
         Rigidbody.velocity = direction * Speed;
 
         StartCoroutine(SelfDestructCoroutine());
@@ -25,7 +25,7 @@ public class ProjectileController : MonoBehaviour
             pawnController.Team != Creator.Team &&
             pawnController.PawnState.CanBeTargeted)
         {
-            Attack.DoAttackToPawn(pawnController);
+            Effect.DoAbilityEffect(pawnController);
             Destroy(this.gameObject);
         }
     }

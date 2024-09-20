@@ -18,9 +18,9 @@ public class PawnController : MonoBehaviour
 
     public PawnDomain Pawn { get; private set; }
     public AnimationState PawnState => AnimationStateController.CurrentState;
-    private Attack Attack { get; set; }
     private Coroutine BackToIdleCoroutine { get; set; }
-    private Attack SpecialAttackRequested { get; set; }
+    private Ability Ability { get; set; }
+    private Ability RequestedSpecialAbility { get; set; }
 
     public PawnController Init(PawnCanvasController pawnCanvasController = null)
     {
@@ -33,8 +33,9 @@ public class PawnController : MonoBehaviour
             PawnCanvasController = pawnCanvasController;
 
         PawnCanvasController.Init(this);
-
-        Attack = null;
+        
+        Ability = null;
+        RequestedSpecialAbility = null;
 
         return this;
     }
@@ -42,12 +43,12 @@ public class PawnController : MonoBehaviour
     public IEnumerator Turno(List<PawnController> pawns)
     {
         
-        Attack = SpecialAttackRequested ?? Pawn.GetCurrentAttackIntent().ToDomain(this);
-        Attack.ChooseFocus(pawns);
+        Ability = RequestedSpecialAbility ?? Pawn.GetCurrentAttackIntent().ToDomain(this);
+        Ability.ChooseFocus(pawns);
 
-        var direction = Attack.Destination - transform.position;
+        var direction = Ability.Destination - transform.position;
         
-        if (direction.magnitude > Attack.Range)
+        if (direction.magnitude > Ability.Range)
         {
             AnimationStateController.SetAnimationState(new IdleState());
         }
@@ -58,7 +59,7 @@ public class PawnController : MonoBehaviour
             CharacterController.SetSpeed(0);
             CharacterController.SetDirection(direction);
             
-            AnimationStateController.SetAnimationState(new AttackState(Attack, AttackEnemy), GoBackToIdle);
+            AnimationStateController.SetAnimationState(new AttackState(Ability, AttackEnemy), GoBackToIdle);
         }
         
         yield break;
@@ -66,37 +67,20 @@ public class PawnController : MonoBehaviour
 
     private void AttackEnemy()
     {
-        if(Attack == null || !PawnState.AbleToFight)
+        if(Ability == null || !PawnState.AbleToFight)
             return;
 
-        if (Pawn.HasMana)
-        {
-            if (Attack.ManaCost > 0)
-            {
-                SpecialAttackRequested = null;
-                Pawn.Mana -= Attack.ManaCost;
-                PawnCanvasController.UpdateMana();
-            }
-            else 
-            {
-                Pawn.Mana = Mathf.Clamp(Pawn.Mana + 10, 0, Pawn.MaxMana);
-                PawnCanvasController.UpdateMana();
-            }
-        }
+        if(!Ability.HasResource())
+            return;
 
+        if (Ability == RequestedSpecialAbility)
+            RequestedSpecialAbility = null;
+
+        Ability.SpendResource();
+        
         Application.Instance.AudioManager.PlaySound(SfxType.Slash);
 
-        if (Attack.Projectile != null)
-        {
-            var direction = Attack.Destination - SpawnPoint.position;
-            direction = new Vector3(direction.x, 0, direction.z);
-            
-            Instantiate(Attack.Projectile, SpawnPoint.position, Quaternion.LookRotation(direction)).Init(this, Attack, direction);
-        }
-        else
-        {
-            Attack.DoAttack();
-        }
+        Ability.DoAction();
     }
     
     private void GoBackToIdle()
@@ -109,7 +93,7 @@ public class PawnController : MonoBehaviour
     
     private IEnumerator GoBackToIdleCoroutine()
     {
-        yield return new WaitForSeconds(Attack.Delay);
+        yield return new WaitForSeconds(Ability.Delay);
 
         if (!PawnState.AbleToFight)
             yield break;
@@ -117,9 +101,8 @@ public class PawnController : MonoBehaviour
         AnimationStateController.SetAnimationState(new IdleState());
     }
 
-    public void ReceiveAttack(Attack attack)
+    public void ReceiveAttack()
     {
-        Pawn.Health = Mathf.Clamp(Pawn.Health - attack.Damage.Value, 0, Pawn.MaxHealth);
         var dead = Pawn.Health <= 0;
         CharacterController.DoHitStop();
         PawnCanvasController.UpdateLife();
@@ -128,18 +111,18 @@ public class PawnController : MonoBehaviour
         
         AnimationStateController.SetAnimationState(new DeadState());
         NavMeshAgent.isStopped = true;
-        Attack = null;
+        Ability = null;
     }
 
     private void Update()
     {
-        if (Attack == null || !PawnState.CanWalk)
+        if (Ability == null || !PawnState.CanWalk)
             return;
 
         CharacterController.SetDirection(NavMeshAgent.velocity);
-        var direction = Attack.Destination - transform.position;
+        var direction = Ability.Destination - transform.position;
         
-        if (Attack != null && Attack.Range >= direction.magnitude)
+        if (Ability != null && Ability.Range >= direction.magnitude)
         {
             NavMeshAgent.isStopped = true;
             NavMeshAgent.SetDestination(transform.position);
@@ -147,9 +130,9 @@ public class PawnController : MonoBehaviour
         }
         else if(NavMeshAgent.pathStatus == NavMeshPathStatus.PathComplete && NavMeshAgent.remainingDistance < 1f)
         {
-            var randomRotation = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)) * Vector3.forward * (Attack.Range - 1);
+            var randomRotation = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)) * Vector3.forward * (Ability.Range - 1);
             NavMeshAgent.isStopped = false;
-            NavMeshAgent.SetDestination(Attack.Destination + randomRotation);
+            NavMeshAgent.SetDestination(Ability.Destination + randomRotation);
             CharacterController.SetSpeed(NavMeshAgent.velocity.magnitude);
         }
     }
@@ -161,13 +144,26 @@ public class PawnController : MonoBehaviour
 
     public void DoSpecial(AttackData attackData)
     {
-        SpecialAttackRequested = attackData.ToDomain(this);
+        RequestedSpecialAbility = attackData.ToDomain(this);
     }
     
     public void Dance()
     {
         PawnCanvasController.Hide();
         AnimationStateController.SetAnimationState(new DanceState(), GoBackToIdle);
+    }
+
+    public void SpawnProjectile(ProjectileController projectile, AbilityEffect effect)
+    {
+        var direction = Ability.Destination - SpawnPoint.position;
+        direction = new Vector3(direction.x, 0, direction.z);
+            
+        Instantiate(projectile, SpawnPoint.position, Quaternion.LookRotation(direction)).Init(this, effect, direction);
+    }
+    
+    public void UpdateMana()
+    {
+        PawnCanvasController.UpdateMana();
     }
     
     public override bool Equals(System.Object obj)

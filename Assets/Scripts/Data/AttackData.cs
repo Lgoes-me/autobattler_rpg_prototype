@@ -13,9 +13,9 @@ public class AttackData : ScriptableObject
     [field: SerializeField] public int ManaCost { get; set; }
     [field: SerializeField] private ProjectileController Projectile { get; set; }
 
-    public Attack ToDomain(PawnController pawnController)
+    public Ability ToDomain(PawnController abilityUser)
     {
-        return new Attack(pawnController, Animation, Damage, Range, Delay, Target, Focus, Error, ManaCost, Projectile);
+        return new Ability(abilityUser, Animation, Damage, Range, Delay, Target, Focus, Error, ManaCost, Projectile); 
     }
 }
 
