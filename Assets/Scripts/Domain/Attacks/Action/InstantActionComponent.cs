@@ -11,6 +11,6 @@
 
     public override void DoAction()
     {
-        Effect.DoAbilityEffect(FocusComponent.FocusedPawn);
+        Effect.DoAbilityEffect(FocusComponent.FocusedPawns);
     }
 }

@@ -31,7 +31,7 @@ public class Ability
         Delay = delay;
         Range = range;
 
-        Effect = new DamageEffect(AbilityUser, damage);
+        Effect = new DamageEffect(damage);
         
         FocusComponent = new AbilityFocusComponent(AbilityUser, target, focus, error);
         ResourceComponent = new AbilityResourceComponent(AbilityUser, manaCost);

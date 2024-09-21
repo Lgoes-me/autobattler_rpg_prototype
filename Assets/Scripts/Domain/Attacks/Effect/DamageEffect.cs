@@ -4,7 +4,7 @@ public class DamageEffect : AbilityEffect
 {
     private Damage Damage { get; set; }
 
-    public DamageEffect(PawnController abilityUser, Damage damage) : base(abilityUser)
+    public DamageEffect(Damage damage)
     {
         Damage = damage;
     }
@@ -16,4 +16,21 @@ public class DamageEffect : AbilityEffect
         
         pawnController.ReceiveAttack();
     }
+}
+
+[System.Serializable]
+public class Damage
+{
+    [field: SerializeField] public int Value { get; set; }
+    [field: SerializeField] public DamageType Type { get; set; }
+}
+
+public enum DamageType
+{
+    Heal = 0,
+    Slash = 1,
+    Magical = 2,
+    Fire = 3,
+    Buff = 4,
+    Debug = 5
 }

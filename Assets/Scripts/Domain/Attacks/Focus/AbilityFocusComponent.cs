@@ -9,11 +9,13 @@ public class AbilityFocusComponent
     private PawnController AbilityUser { get; set; }
     private TargetType Target { get; set; }
     private FocusType Focus { get; set; }
+    private int Quantidade { get; set; }
     private int Error { get; set; }
     
-    public Vector3 Destination => HasFocus ? FocusedPawn.transform.position : AbilityUser.transform.position;
+    public Vector3 Destination => HasFocus ? FocusedPawns[0].transform.position : AbilityUser.transform.position;
+    public List<PawnController> FocusedPawns { get; set; }
+    
     private bool HasFocus { get; set; }
-    internal PawnController FocusedPawn { get; set; }
 
     public AbilityFocusComponent(PawnController abilityUser, TargetType target, FocusType focus, int error)
     {
@@ -22,7 +24,8 @@ public class AbilityFocusComponent
         Focus = focus;
         Error = error;
         HasFocus = false;
-        FocusedPawn = null;
+        Quantidade = 1;
+        FocusedPawns = new List<PawnController>();
     }
 
     public void ChooseFocus(List<PawnController> pawns)
@@ -60,6 +63,29 @@ public class AbilityFocusComponent
             return;
         
         HasFocus = true;
-        FocusedPawn = selectedPawns[Random.Range(0, selectedPawns.Count)];
+
+        for (int i = 0; i < Mathf.Min(Quantidade, selectedPawns.Count); i++)
+        {
+            var randomPawn = selectedPawns[Random.Range(0, selectedPawns.Count)];
+            selectedPawns.Remove(randomPawn);
+            
+            FocusedPawns.Add(randomPawn);
+        }
     }
+}
+
+public enum TargetType
+{
+    Unknown = 0,
+    Ally = 1,
+    Enemy = 2
+}
+
+public enum FocusType
+{
+    Self = 0,
+    Closest = 1,
+    Farthest = 2,
+    LowestLife = 3,
+    HighestLife = 4
 }

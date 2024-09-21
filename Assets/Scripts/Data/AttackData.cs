@@ -18,36 +18,3 @@ public class AttackData : ScriptableObject
         return new Ability(abilityUser, Animation, Damage, Range, Delay, Target, Focus, Error, ManaCost, Projectile); 
     }
 }
-
-[System.Serializable]
-public class Damage
-{
-    [field: SerializeField] public int Value { get; set; }
-    [field: SerializeField] public DamageType Type { get; set; }
-}
-
-public enum DamageType
-{
-    Heal = 0,
-    Slash = 1,
-    Magical = 2,
-    Fire = 3,
-    Buff = 4,
-    Debug = 5
-}
-
-public enum TargetType
-{
-    Unknown = 0,
-    Ally = 1,
-    Enemy = 2
-}
-
-public enum FocusType
-{
-    Self = 0,
-    Closest = 1,
-    Farthest = 2,
-    LowestLife = 3,
-    HighestLife = 4
-}

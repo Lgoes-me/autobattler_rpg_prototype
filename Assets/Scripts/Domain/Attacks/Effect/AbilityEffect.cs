@@ -1,19 +1,14 @@
-﻿public abstract class AbilityEffect
+﻿using System.Collections.Generic;
+
+public abstract class AbilityEffect
 {
-    protected PawnController AbilityUser { get; set; }
-
-    protected AbilityEffect(PawnController abilityUser)
-    {
-        AbilityUser = abilityUser;
-    }
-
-    public abstract void DoAbilityEffect(PawnController pawnController);
-    
-    /*public void AbilityEffect(List<PawnController> pawns)
+    public void DoAbilityEffect(List<PawnController> pawns)
     {
         foreach (var pawn in pawns)
         {
-            //pawn.ReceiveAbilityEffect(Ability);
+            DoAbilityEffect(pawn);
         }
-    }*/
+    }
+    
+    public abstract void DoAbilityEffect(PawnController pawnController);
 }
