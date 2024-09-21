@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2506f476fd0f4300b3c3cd3c8b600971, type: 3}
   m_Name: ZombieSoldier
   m_EditorClassIdentifier: 
-  <Health>k__BackingField: 20
+  <Health>k__BackingField: 25
   <Size>k__BackingField: 1
   <Initiative>k__BackingField: 1
-  <HasMana>k__BackingField: 0
   <Attacks>k__BackingField:
   - {fileID: 11400000, guid: 694b2ac0f21e94d4cb35ad6f712a18b1, type: 2}
   <SpecialAttacks>k__BackingField: []

@@ -104,12 +104,12 @@ public class PlayerArenaController : MonoBehaviour
         SelectionFeedback.gameObject.SetActive(true);
         SelectionFeedback.transform.position = hit.point;
 
-        if ((SelectedPlayerPawn.transform.position - hit.point).magnitude > 3 || hit.normal.y <= 0)
+        /*if ((SelectedPlayerPawn.transform.position - hit.point).magnitude > 3 || hit.normal.y <= 0)
         {
             SelectionFeedbackRenderer.material = Red;
             CanPlacePawn = false;
             return;
-        }
+        }*/
         
         SelectionFeedbackRenderer.material = Blue;
         CanPlacePawn = true;

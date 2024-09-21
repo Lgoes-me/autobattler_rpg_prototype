@@ -113,6 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fba19f0675d3f74ba498bb24657e646, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <AnimationStateController>k__BackingField: {fileID: 592403816023041186}
   <CharacterController>k__BackingField: {fileID: 11713996136362839}
   <NavMeshAgent>k__BackingField: {fileID: 449031379433608940}
 --- !u!1001 &987057039797453866

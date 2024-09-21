@@ -7,6 +7,7 @@ public class ArenaController : MonoBehaviour
 {
     [field: SerializeField] private GameObject PreBattleCanvas { get; set; }
     [field: SerializeField] private GameObject BattleCanvas { get; set; }
+    [field: SerializeField] private GameObject BattleLostCanvas { get; set; }
     [field: SerializeField] private List<PawnCanvasController> PawnCanvases { get; set; }
     
     private List<PawnController> ActivePawns { get; set; }
@@ -85,7 +86,27 @@ public class ArenaController : MonoBehaviour
 
         if (hasEnemies)
         {
-            Debug.Log("enemies win");
+            foreach (var enemyPawn in EnemyPawns)
+            {
+                if (!enemyPawn.PawnState.AbleToFight)
+                    continue;
+                
+                enemyPawn.Dance();
+            }
+            
+            BattleLostCanvas.gameObject.SetActive(true);
+            
+            yield return new WaitForSeconds(2f);
+            
+            foreach (var pawn in InitiativeList)
+            {
+                pawn.Deactivate();
+            
+                if(pawn.Team == TeamType.Enemies)
+                    pawn.gameObject.SetActive(false);
+            }
+            
+            SceneManager.RespawnAtBonfire();
         }
 
         if (hasPlayers)
@@ -97,9 +118,18 @@ public class ArenaController : MonoBehaviour
                 playerPawn.Dance();
             }
 
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(3f);
 
-            EndBattle();
+            foreach (var pawn in InitiativeList)
+            {
+                pawn.Deactivate();
+            
+                if(pawn.Team == TeamType.Enemies)
+                    pawn.gameObject.SetActive(false);
+            }
+
+            Application.Instance.PlayerManager.AddDefeated(BattleId);
+            SceneManager.EndBattleScene();
         }
     }
 
@@ -112,17 +142,4 @@ public class ArenaController : MonoBehaviour
         }
     }
 
-    private void EndBattle()
-    {
-        foreach (var pawn in InitiativeList)
-        {
-            pawn.Deactivate();
-            
-            if(pawn.Team == TeamType.Enemies)
-                pawn.gameObject.SetActive(false);
-        }
-
-        Application.Instance.PlayerManager.AddDefeated(BattleId);
-        SceneManager.EndBattleScene();
-    }
 }
