@@ -14,25 +14,30 @@ public class RoomScene : BaseScene
     public void ActivateRoomScene(SceneManager sceneManager, PlayerController playerController)
     {
         InitDoors(sceneManager);
-        InitBonfires();
+        InitBonfires(sceneManager);
         InitEnemyAreas(sceneManager, playerController);
     }
 
-    public void SpawnPlayerAtDoor(string doorName)
+    public void SpawnPlayerAt(string spawnSpawnId)
     {
-        var door = Doors.First(d => d.DoorName == doorName);
-        door.ActivateCameraArea();
-        Application.Instance.PlayerManager.SpawnPlayerAt(door.SpawnPoint);
+        var door = Doors.FirstOrDefault(d => d.DoorName == spawnSpawnId);
+        
+        if (door != null)
+        {
+            door.ActivateCameraArea();
+            Application.Instance.PlayerManager.SpawnPlayerAt(door.SpawnPoint);
+        }
+        else
+        {
+            var bonfire = Bonfires.First(b => b.Id == spawnSpawnId);;
+            bonfire.Interact();
+            
+            bonfire.ActivateCameraArea();
+            Application.Instance.PlayerManager.SpawnPlayerAt(bonfire.SpawnPoint);
+        }
+        
     }
 
-    public void SpawnPlayerAtBonfire(string bonfireId)
-    {
-        var bonfire = Bonfires.First(b => b.Id == bonfireId);
-        bonfire.ActivateCameraArea();
-        Application.Instance.PlayerManager.SpawnPlayerAt(bonfire.SpawnPoint);
-        bonfire.Interact();
-    }
-    
     private void InitEnemyAreas(SceneManager sceneManager, PlayerController playerController)
     {
         foreach (var enemyArea in EnemyAreas)
@@ -49,11 +54,12 @@ public class RoomScene : BaseScene
         }
     }
     
-    private void InitBonfires()
+    private void InitBonfires(SceneManager sceneManager)
     {
         foreach (var bonfire in Bonfires)
         {
-            bonfire.Init(SceneName);
+            bonfire.Init(sceneManager, SceneName);
         }
     }
+
 }

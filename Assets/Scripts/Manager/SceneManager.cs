@@ -13,36 +13,35 @@ public class SceneManager : MonoBehaviour
     public void StartGame()
     {
         var save = Application.Instance.Save;
-        var task = UnitySceneManager.LoadSceneAsync(save.Room, LoadSceneMode.Single);
+        var task = UnitySceneManager.LoadSceneAsync(save.Spawn.SceneName, LoadSceneMode.Single);
 
         task.completed += _ =>
         {
             var roomScene = FindObjectOfType<RoomScene>();
             roomScene.ActivateRoomScene(this, PlayerManager.PlayerController);
-            roomScene.SpawnPlayerAtDoor(save.Door);
+            roomScene.SpawnPlayerAt(save.Spawn.SpawnId);
             
             Application.Instance.PartyManager.SetPartyToFollow(true);
             Application.Instance.AudioManager.PlayMusic(roomScene.Music);
         };
     }
 
-    public void UseDoorToChangeScene(string doorName, string sceneName)
+    public void UseDoorToChangeScene(SpawnDomain spawn)
     {
         Application.Instance.PartyManager.StopPartyFollow();
-        var task = UnitySceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+        var task = UnitySceneManager.LoadSceneAsync(spawn.SceneName, LoadSceneMode.Single);
 
         task.completed += _ =>
         {
             var roomScene = FindObjectOfType<RoomScene>();
             roomScene.ActivateRoomScene(this, PlayerManager.PlayerController);
-            roomScene.SpawnPlayerAtDoor(doorName);
+            roomScene.SpawnPlayerAt(spawn.SpawnId);
             
             Application.Instance.PartyManager.SetPartyToFollow(true);
             Application.Instance.AudioManager.PlayMusic(roomScene.Music);
 
             var save = Application.Instance.Save;
-            save.Room = sceneName;
-            save.Door = doorName;
+            save.Spawn = spawn;
             Application.Instance.SaveManager.SaveData(save);
         };
     }
@@ -94,14 +93,14 @@ public class SceneManager : MonoBehaviour
             BattleActive = false;
             
             var save = Application.Instance.Save;
-            var respawnTask = UnitySceneManager.LoadSceneAsync(save.LastBonfireRoom, LoadSceneMode.Single);
+            var respawnTask = UnitySceneManager.LoadSceneAsync(save.LastBonfireSpawn.SceneName, LoadSceneMode.Single);
 
             respawnTask.completed += _ =>
             {
                 PlayerManager.PlayerToWorld();
                 var roomScene = FindObjectOfType<RoomScene>();
                 roomScene.ActivateRoomScene(this, PlayerManager.PlayerController);
-                roomScene.SpawnPlayerAtBonfire(save.LastBonfire);
+                roomScene.SpawnPlayerAt(save.LastBonfireSpawn.SpawnId);
             
                 Application.Instance.PartyManager.SetPartyToFollow(true);
                 Application.Instance.AudioManager.PlayMusic(roomScene.Music);
@@ -110,7 +109,7 @@ public class SceneManager : MonoBehaviour
         };
     }
     
-    public void StartBonfireScene(string bonfireRoom, string bonfireId)
+    public void StartBonfireScene(SpawnDomain bonfireSpawn)
     {
         if(BonfireActive)
             return;
@@ -124,8 +123,8 @@ public class SceneManager : MonoBehaviour
             Application.Instance.PartyManager.StopPartyFollow();
             
             var save = Application.Instance.Save;
-            save.LastBonfireRoom = bonfireRoom;
-            save.LastBonfire = bonfireId;
+            save.Spawn = bonfireSpawn;
+            save.LastBonfireSpawn = bonfireSpawn;
             Application.Instance.SaveManager.SaveData(save);
         };
     }
