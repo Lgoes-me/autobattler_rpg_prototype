@@ -19,15 +19,15 @@ public class BonfireScene : BaseScene
         {
             new PawnOptionData(null)
         };
-            
-        availableParty.AddRange(Application.
-                Instance.
-                PartyManager.
-                AvailableParty.
-                Select(p => new PawnOptionData(p))
-                .ToList<TMP_Dropdown.OptionData>());
+
+        var pawns = Application.Instance.PartyManager.AvailableParty.Select(p => new PawnOptionData(p))
+            .ToList<TMP_Dropdown.OptionData>();
         
-        PlayerDropdown.options = availableParty;
+        availableParty.AddRange(pawns);
+
+        PlayerDropdown.options = pawns;
+        var player = Application.Instance.PlayerManager.PawnController.PawnData;
+        PlayerDropdown.value = availableParty.FindIndex(o => ((PawnOptionData)o).Pawn?.name == player.name);
         PlayerDropdown.onValueChanged.AddListener(SaveChangesToPlayer);
 
         for (var index = 0; index < Dropdowns.Count; index++)
@@ -71,7 +71,7 @@ public class BonfireScene : BaseScene
     {
         var pawn = ((PawnOptionData) PlayerDropdown.options[PlayerDropdown.value]).Pawn;
         
-        if(pawn != null)
+        if(pawn == null)
             return;
         
         Application.Instance.PlayerManager.SetNewPlayerPawn(pawn);
