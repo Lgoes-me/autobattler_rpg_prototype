@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2506f476fd0f4300b3c3cd3c8b600971, type: 3}
   m_Name: Hunter
   m_EditorClassIdentifier: 
+  <Id>k__BackingField: Hunter
   <Character>k__BackingField: {fileID: 601539699241707366, guid: 261ee29a2e9356544b5f79d5536b93b8, type: 3}
   <Health>k__BackingField: 30
   <Size>k__BackingField: 1

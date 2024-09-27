@@ -1,20 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class PlayerManager : MonoBehaviour
 {
-    [field: SerializeField] public PawnData PawnData { get; private set; }
     [field: SerializeField] public PlayerController PlayerController { get; private set; }
     [field: SerializeField] public PawnController PawnController { get; private set; }
     [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
    
     private List<string> Defeated { get; set; }
 
-    private void Awake()
+    public void Init()
     {
-        PawnController.SetCharacter(PawnData);
+        var save = Application.Instance.Save;
+        var pawnData = Application.Instance.PartyManager.AvailableParty.First(p => p.Id == save.PlayerPawn);
+        
+        PawnController.SetCharacter(pawnData);
+        PlayerController.Init();
+    }
+
+    public void SetNewPlayerPawn(PawnData pawn)
+    {
+        Application.Instance.Save.PlayerPawn = pawn.Id;
+        Application.Instance.SaveManager.SaveData(Application.Instance.Save);
+
+        Destroy(PawnController.transform.GetChild(0).gameObject);
+        PawnController.SetCharacter(pawn);
+        PlayerController.Init();
     }
 
     public List<string> GetDefeated()

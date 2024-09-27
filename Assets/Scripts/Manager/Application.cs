@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Application : MonoBehaviour
 {
@@ -29,7 +30,8 @@ public class Application : MonoBehaviour
     private void Start()
     {
         Save = SaveManager.LoadData<Save>("Save.json") ?? new Save();
+        PlayerManager.Init();
+        PartyManager.Init();
         SceneManager.StartGame();
     }
-    
 }

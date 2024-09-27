@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2506f476fd0f4300b3c3cd3c8b600971, type: 3}
   m_Name: Guts
   m_EditorClassIdentifier: 
+  <Id>k__BackingField: Guts
   <Character>k__BackingField: {fileID: 3097370054226994396, guid: c8d4669d437e7bf4699e3bd9df3432d8, type: 3}
   <Health>k__BackingField: 60
   <Size>k__BackingField: 1

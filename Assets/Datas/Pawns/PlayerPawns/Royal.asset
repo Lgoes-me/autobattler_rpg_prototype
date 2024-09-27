@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2506f476fd0f4300b3c3cd3c8b600971, type: 3}
   m_Name: Royal
   m_EditorClassIdentifier: 
+  <Id>k__BackingField: Royal
   <Character>k__BackingField: {fileID: 8064259813449772426, guid: f4259219a9d658a4b9eeb99c6325331e, type: 3}
   <Health>k__BackingField: 60
   <Size>k__BackingField: 1

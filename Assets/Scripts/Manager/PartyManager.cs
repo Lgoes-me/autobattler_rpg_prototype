@@ -10,7 +10,7 @@ public class PartyManager : MonoBehaviour
     public List<PawnData> SelectedPawns { get; private set; }
     public List<PawnController> Party { get; private set; }
     
-    private void Start()
+    public void Init()
     {
         SelectedPawns = new List<PawnData>();
         Party = new List<PawnController>();

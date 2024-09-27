@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     private Coroutine Coroutine { get; set; }
 
     
-    private void Start()
+    public void Init()
     {
         CharacterController.SetAnimationState(new IdleState());
         MoveInput = Vector2.zero;
@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if(CharacterController == null)
+            return;
+        
         MoveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         CharacterController.SetSpeed(MoveInput.magnitude);
     }

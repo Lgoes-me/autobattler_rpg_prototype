@@ -5,6 +5,7 @@ public class Save : ISavable
     public string Id { get; set; }
     public SpawnDomain Spawn { get; set; }
     public SpawnDomain LastBonfireSpawn { get; set; }
+    public string PlayerPawn { get; set; }
     public List<string> SelectedParty { get; set; }
     public List<string> DefeatedEnemies { get; set; }
 
@@ -13,6 +14,7 @@ public class Save : ISavable
         Id = "Save.json";
         Spawn = new SpawnDomain("DungeonEntrance", "DungeonEntrance");
         LastBonfireSpawn = new SpawnDomain("DungeonEntrance", "DungeonEntrance");
+        PlayerPawn = "Guts"; //Guts
         SelectedParty = new List<string>();
         DefeatedEnemies = new List<string>();
     }

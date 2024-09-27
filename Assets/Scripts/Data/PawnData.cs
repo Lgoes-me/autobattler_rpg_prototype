@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
@@ -25,6 +24,6 @@ public class PawnData : ScriptableObject
         if (Id != string.Empty)
             return;
 
-        Id = Guid.NewGuid().ToString();
+        Id = name;
     }
 }

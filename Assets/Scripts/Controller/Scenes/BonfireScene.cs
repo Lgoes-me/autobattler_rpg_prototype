@@ -28,6 +28,7 @@ public class BonfireScene : BaseScene
                 .ToList<TMP_Dropdown.OptionData>());
         
         PlayerDropdown.options = availableParty;
+        PlayerDropdown.onValueChanged.AddListener(SaveChangesToPlayer);
 
         for (var index = 0; index < Dropdowns.Count; index++)
         {
@@ -51,7 +52,7 @@ public class BonfireScene : BaseScene
         }
     }
 
-    private void SaveChanges(int arg0)
+    private void SaveChanges(int option)
     {
         var selectedPawns = new List<PawnData>();
         
@@ -64,6 +65,16 @@ public class BonfireScene : BaseScene
         }
 
         Application.Instance.PartyManager.SetSelectedParty(selectedPawns);
+    }
+
+    private void SaveChangesToPlayer(int option)
+    {
+        var pawn = ((PawnOptionData) PlayerDropdown.options[PlayerDropdown.value]).Pawn;
+        
+        if(pawn != null)
+            return;
+        
+        Application.Instance.PlayerManager.SetNewPlayerPawn(pawn);
     }
 
     private void EndBonfireScene()

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2506f476fd0f4300b3c3cd3c8b600971, type: 3}
   m_Name: Witch
   m_EditorClassIdentifier: 
+  <Id>k__BackingField: Witch
   <Character>k__BackingField: {fileID: 8745810780067649586, guid: ee7f9f35514576e4c87b47986eb03088, type: 3}
   <Health>k__BackingField: 30
   <Size>k__BackingField: 1
