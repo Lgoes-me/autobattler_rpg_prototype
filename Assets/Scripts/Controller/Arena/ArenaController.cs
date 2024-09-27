@@ -40,9 +40,7 @@ public class ArenaController : MonoBehaviour
             EnemyPawns.Add(pawnController);
         }
 
-        var party = Application.Instance.PartyManager.SelectedParty;
-        
-        foreach (var alliedController in party)
+        foreach (var alliedController in Application.Instance.PartyManager.Party)
         {
             alliedController.PlayerFollowController.StopFollow();
             alliedController.Init(PawnCanvases.First(c => !c.Initiated));

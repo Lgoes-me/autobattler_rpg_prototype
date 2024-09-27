@@ -6,6 +6,7 @@ public class CharacterController : MonoBehaviour
     private static readonly int Speed = Animator.StringToHash("Speed");
 
     [field: SerializeField] private AnimationStateController AnimationStateController { get; set; }
+    [field: SerializeField] public Transform SpawnPoint { get; private set; }
     [field: SerializeField] private HitStopController HitStopController { get; set; }
     [field: SerializeField] private Animator Animator { get; set; }
     [field: SerializeField] private Transform Arm { get; set; }

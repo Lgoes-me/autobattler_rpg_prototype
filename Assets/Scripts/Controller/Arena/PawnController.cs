@@ -10,7 +10,6 @@ public class PawnController : MonoBehaviour
     [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
     [field: SerializeField] private PawnCanvasController PawnCanvasController { get; set; }
     [field: SerializeField] private CharacterController CharacterController { get; set; }
-    [field: SerializeField] private Transform SpawnPoint { get; set; }
     
     [field: SerializeField] public TeamType Team { get; private set; }
 
@@ -153,32 +152,29 @@ public class PawnController : MonoBehaviour
 
     public void SpawnProjectile(ProjectileController projectile, AbilityEffect effect)
     {
-        var direction = Ability.Destination - SpawnPoint.position;
+        var direction = Ability.Destination - CharacterController.SpawnPoint.position;
         direction = new Vector3(direction.x, 0, direction.z);
             
-        Instantiate(projectile, SpawnPoint.position, Quaternion.LookRotation(direction)).Init(this, effect, direction);
+        Instantiate(projectile, CharacterController.SpawnPoint.position, Quaternion.LookRotation(direction)).Init(this, effect, direction);
     }
     
     public void UpdateMana()
     {
         PawnCanvasController.UpdateMana();
     }
-    
-    public override bool Equals(System.Object obj)
-    {
-        if (obj == null)
-            return false;
 
-        PawnController pawnController = obj as PawnController;
+    public void SetCharacter(PawnData pawnData)
+    {
+        PawnData = pawnData;
+        CharacterController = Instantiate(pawnData.Character, this.transform);
+        if(TryGetComponent<PlayerFollowController>(out var playerFollowController))
+        {
+            playerFollowController.CharacterController = CharacterController;
+        }
         
-        if (pawnController == null)
-            return false;
-
-        return pawnController.PawnData.name == PawnData.name;
-    }
-
-    public override int GetHashCode()
-    {
-        return base.GetHashCode();
+        if(TryGetComponent<PlayerController>(out var playerController))
+        {
+            playerController.CharacterController = CharacterController;
+        }
     }
 }

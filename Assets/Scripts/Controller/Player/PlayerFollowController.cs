@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 public class PlayerFollowController : MonoBehaviour
 {
-    [field: SerializeField] private CharacterController CharacterController { get; set; }
+    [field: SerializeField] public CharacterController CharacterController { get; set; }
     [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
     private Coroutine FollowCoroutine { get; set; }
 

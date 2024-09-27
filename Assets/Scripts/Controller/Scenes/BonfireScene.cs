@@ -14,13 +14,6 @@ public class BonfireScene : BaseScene
     public void Init()
     {
         FinishButton.onClick.AddListener(EndBonfireScene);
-
-        PlayerDropdown.options = new List<TMP_Dropdown.OptionData>()
-        {
-            new PawnOptionData(Application.Instance.PlayerManager.PawnController)
-        };
-
-        PlayerDropdown.interactable = false;
         
         var availableParty = new List<TMP_Dropdown.OptionData>()
         {
@@ -33,19 +26,20 @@ public class BonfireScene : BaseScene
                 AvailableParty.
                 Select(p => new PawnOptionData(p))
                 .ToList<TMP_Dropdown.OptionData>());
-
+        
+        PlayerDropdown.options = availableParty;
 
         for (var index = 0; index < Dropdowns.Count; index++)
         {
             var dropdown = Dropdowns[index];
             dropdown.options = availableParty;
-            var selectedParty = Application.Instance.PartyManager.SelectedParty;
+            var selectedParty = Application.Instance.PartyManager.SelectedPawns;
 
             if (selectedParty.Count > index)
             {
                 var currentSelectedPawn = selectedParty[index];
                 var selectedIndex = availableParty
-                    .FindIndex(o => ((PawnOptionData)o).PawnController?.PawnData?.name == currentSelectedPawn.PawnData.name);
+                    .FindIndex(o => ((PawnOptionData)o).Pawn?.name == currentSelectedPawn.name);
                 dropdown.value = selectedIndex;
             }
             else
@@ -59,14 +53,14 @@ public class BonfireScene : BaseScene
 
     private void SaveChanges(int arg0)
     {
-        var selectedPawns = new List<PawnController>();
+        var selectedPawns = new List<PawnData>();
         
         foreach (var dropdown in Dropdowns)
         {
-            var pawnController = ((PawnOptionData) dropdown.options[dropdown.value]).PawnController;
-            if(pawnController == null) continue;
+            var pawn = ((PawnOptionData) dropdown.options[dropdown.value]).Pawn;
+            if(pawn == null) continue;
             
-            selectedPawns.Add(pawnController);
+            selectedPawns.Add(pawn);
         }
 
         Application.Instance.PartyManager.SetSelectedParty(selectedPawns);
@@ -81,10 +75,10 @@ public class BonfireScene : BaseScene
 
 public class PawnOptionData : TMP_Dropdown.OptionData
 {
-    public PawnController PawnController;
+    public PawnData Pawn;
 
-    public PawnOptionData(PawnController pawnController) : base(pawnController?.PawnData.name ?? string.Empty)
+    public PawnOptionData(PawnData pawn) : base(pawn?.name ?? string.Empty)
     {
-        PawnController = pawnController;
+        Pawn = pawn;
     }
 }

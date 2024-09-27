@@ -4,7 +4,7 @@ using UnityEngine.AI;
 
 public class PlayerController : MonoBehaviour
 {
-    [field: SerializeField] private CharacterController CharacterController { get; set; }
+    [field: SerializeField] public CharacterController CharacterController { get; set; }
     [field: SerializeField] private float Speed { get; set; }
 
     private Vector2 MoveInput { get; set; }
@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     private Coroutine Coroutine { get; set; }
 
     
-    private void OnEnable()
+    private void Start()
     {
         CharacterController.SetAnimationState(new IdleState());
         MoveInput = Vector2.zero;
