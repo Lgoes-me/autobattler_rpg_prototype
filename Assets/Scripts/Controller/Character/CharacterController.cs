@@ -5,6 +5,7 @@ public class CharacterController : MonoBehaviour
 {
     private static readonly int Speed = Animator.StringToHash("Speed");
 
+    [field: SerializeField] private AnimationStateController AnimationStateController { get; set; }
     [field: SerializeField] private HitStopController HitStopController { get; set; }
     [field: SerializeField] private Animator Animator { get; set; }
     [field: SerializeField] private Transform Arm { get; set; }
@@ -16,6 +17,7 @@ public class CharacterController : MonoBehaviour
     private Camera Camera { get; set; }
 
     private Direction CurrentDirection { get; set; }
+    public AnimationState CurrentState => AnimationStateController.CurrentState;
 
     private void Awake()
     {
@@ -66,5 +68,10 @@ public class CharacterController : MonoBehaviour
         Left = 2,
         Back = 4,
         Front = 8
+    }
+
+    public void SetAnimationState(AnimationState state, Action callback = null)
+    {
+        AnimationStateController.SetAnimationState(state, callback);
     }
 }

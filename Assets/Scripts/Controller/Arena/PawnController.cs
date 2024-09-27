@@ -9,15 +9,13 @@ public class PawnController : MonoBehaviour
     [field: SerializeField] public PlayerFollowController PlayerFollowController { get; private set; }
     [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
     [field: SerializeField] private PawnCanvasController PawnCanvasController { get; set; }
-    
-    [field: SerializeField] private AnimationStateController AnimationStateController { get; set; }
     [field: SerializeField] private CharacterController CharacterController { get; set; }
     [field: SerializeField] private Transform SpawnPoint { get; set; }
     
     [field: SerializeField] public TeamType Team { get; private set; }
 
     public PawnDomain Pawn { get; private set; }
-    public AnimationState PawnState => AnimationStateController.CurrentState;
+    public AnimationState PawnState => CharacterController.CurrentState;
     private Coroutine BackToIdleCoroutine { get; set; }
     private Ability Ability { get; set; }
     private Ability RequestedSpecialAbility { get; set; }
@@ -50,7 +48,7 @@ public class PawnController : MonoBehaviour
         
         if (direction.magnitude > Ability.Range)
         {
-            AnimationStateController.SetAnimationState(new IdleState());
+            CharacterController.SetAnimationState(new IdleState());
         }
         else
         {
@@ -59,7 +57,7 @@ public class PawnController : MonoBehaviour
             CharacterController.SetSpeed(0);
             CharacterController.SetDirection(direction);
             
-            AnimationStateController.SetAnimationState(new AttackState(Ability, AttackEnemy), GoBackToIdle);
+            CharacterController.SetAnimationState(new AttackState(Ability, AttackEnemy), GoBackToIdle);
         }
         
         yield break;
@@ -98,7 +96,7 @@ public class PawnController : MonoBehaviour
         if (!PawnState.AbleToFight)
             yield break;
         
-        AnimationStateController.SetAnimationState(new IdleState());
+        CharacterController.SetAnimationState(new IdleState());
     }
 
     public void ReceiveAttack()
@@ -109,7 +107,7 @@ public class PawnController : MonoBehaviour
 
         if (!dead) return;
         
-        AnimationStateController.SetAnimationState(new DeadState());
+        CharacterController.SetAnimationState(new DeadState());
         NavMeshAgent.isStopped = true;
         Ability = null;
     }
@@ -150,7 +148,7 @@ public class PawnController : MonoBehaviour
     public void Dance()
     {
         PawnCanvasController.Hide();
-        AnimationStateController.SetAnimationState(new DanceState(), GoBackToIdle);
+        CharacterController.SetAnimationState(new DanceState(), GoBackToIdle);
     }
 
     public void SpawnProjectile(ProjectileController projectile, AbilityEffect effect)

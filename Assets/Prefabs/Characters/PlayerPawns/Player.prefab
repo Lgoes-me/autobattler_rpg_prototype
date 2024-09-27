@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 4005596945653964593}
   - component: {fileID: 5262953104120265464}
   - component: {fileID: 2688697331388356545}
-  - component: {fileID: 2773188027107763236}
   - component: {fileID: 8026178958687482945}
   m_Layer: 0
   m_Name: Player
@@ -45,7 +44,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2405706905924013099}
-  m_Enabled: 0
+  m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.25
   m_Speed: 4
@@ -122,19 +121,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef04b9b415fa4e388ba0c0c92c6c32fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <AnimationStateController>k__BackingField: {fileID: 4196350814843790570}
---- !u!114 &2773188027107763236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2405706905924013099}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a60cec991e3414ebbd85c723693455e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   <CharacterController>k__BackingField: {fileID: 3615641895437824799}
   <Speed>k__BackingField: 0.15
 --- !u!114 &8026178958687482945
@@ -153,7 +139,6 @@ MonoBehaviour:
   <PlayerFollowController>k__BackingField: {fileID: 0}
   <NavMeshAgent>k__BackingField: {fileID: 4337259988784190384}
   <PawnCanvasController>k__BackingField: {fileID: 0}
-  <AnimationStateController>k__BackingField: {fileID: 4196350814843790570}
   <CharacterController>k__BackingField: {fileID: 3615641895437824799}
   <SpawnPoint>k__BackingField: {fileID: 6417034832175503229}
   <Team>k__BackingField: 0
@@ -291,17 +276,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2247163a4842f7c4aa2f5991a0220edf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4196350814843790570 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 399165619813916808, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
-  m_PrefabInstance: {fileID: 4590982013017769058}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 558cea401c0f8dd48996b0ffc5d70300, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &6417034832175503229 stripped

@@ -6,7 +6,6 @@ public class PlayerManager : MonoBehaviour
 {
     [field: SerializeField] public PlayerController PlayerController { get; private set; }
     [field: SerializeField] public PawnController PawnController { get; private set; }
-    [field: SerializeField] private PlayerMovementController PlayerMovementController { get; set; }
     [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
    
     private List<string> Defeated { get; set; }
@@ -46,9 +45,7 @@ public class PlayerManager : MonoBehaviour
     public void PlayerToBattle()
     {
         PlayerController.enabled = false;
-
-        PlayerMovementController.enabled = false;
-        PlayerMovementController.Prepare();
+        PlayerController.Prepare();
 
         PawnController.enabled = true;
         NavMeshAgent.enabled = true;
@@ -59,16 +56,14 @@ public class PlayerManager : MonoBehaviour
         PawnController.Deactivate();
         PlayerController.gameObject.SetActive(true);
         PlayerController.enabled = true;
-
-        PlayerMovementController.enabled = true;
-        PlayerMovementController.Prepare();
+        PlayerController.Prepare();
         
         Application.Instance.PartyManager.SetPartyToFollow(false);
     }
 
     public void SetNewCameraPosition(Transform cameraTransform)
     {
-        PlayerMovementController.SetNewCameraPosition(cameraTransform);
+        PlayerController.SetNewCameraPosition(cameraTransform);
     }
     
     public PawnController GetPawnController()

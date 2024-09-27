@@ -5,14 +5,13 @@ using Random = UnityEngine.Random;
 
 public class PlayerFollowController : MonoBehaviour
 {
-    [field: SerializeField] private AnimationStateController AnimationStateController { get; set; }
     [field: SerializeField] private CharacterController CharacterController { get; set; }
     [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
     private Coroutine FollowCoroutine { get; set; }
 
     public void StartFollow(PawnController toFollow, Vector3 position)
     {
-        AnimationStateController.SetAnimationState(new IdleState());
+        CharacterController.SetAnimationState(new IdleState());
         
         if (FollowCoroutine != null)
         {
@@ -45,7 +44,7 @@ public class PlayerFollowController : MonoBehaviour
 
     public void StopFollow()
     {
-        AnimationStateController.SetAnimationState(new IdleState());
+        CharacterController.SetAnimationState(new IdleState());
         
         if (FollowCoroutine != null)
         {
