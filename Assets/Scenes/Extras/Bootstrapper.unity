@@ -957,6 +957,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7e5e3a3313c43548ea0fd1f57136239, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <PlayerStartingCharacter>k__BackingField: {fileID: 11400000, guid: 1fc8d338c9a0df94e8501a8d246293db, type: 2}
   <SaveManager>k__BackingField: {fileID: 25261271}
   <SceneManager>k__BackingField: {fileID: 641743261}
   <PlayerManager>k__BackingField: {fileID: 1553753}

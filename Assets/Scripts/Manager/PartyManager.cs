@@ -20,8 +20,8 @@ public class PartyManager : MonoBehaviour
     private void SpawnSelectedPawns()
     {
         SelectedPawns.Clear();
-        
-        foreach (var pawnId in Application.Instance.Save.SelectedParty)
+
+        foreach (var (pawnId, pawnInfo) in Application.Instance.Save.SelectedParty)
         {
             var pawn = AvailableParty.FirstOrDefault(p => p.Id == pawnId);
                 
@@ -59,7 +59,7 @@ public class PartyManager : MonoBehaviour
     
     public void SetSelectedParty(List<PawnData> newSelectedParty)
     {
-        Application.Instance.Save.SelectedParty = newSelectedParty.Select(p => p.Id).ToList();
+        Application.Instance.Save.SelectedParty = newSelectedParty.ToDictionary(p => p.Id, p => new PawnInfo(p.Id, p.Health));
         Application.Instance.SaveManager.SaveData(Application.Instance.Save);
 
         SpawnSelectedPawns();
