@@ -30,9 +30,12 @@ public class PartyManager : MonoBehaviour
             
             SelectedPawns.Add(pawn);
         }
+
+        var positionsDict = new Dictionary<PawnData, Vector3>();
         
         foreach (var pawn in Party)
         {
+            positionsDict.Add(pawn.PawnData, pawn.transform.position);
             Destroy(pawn.gameObject);
         }
         
@@ -40,10 +43,15 @@ public class PartyManager : MonoBehaviour
 
         foreach (var pawnData in SelectedPawns)
         {
+
             var playerPosition = Application.Instance.PlayerManager.PawnController.transform.position;
-            
             var randomRotation =  Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)) * Vector3.forward * 1f;
-            var pawnInstance = Instantiate(PawnController, playerPosition + randomRotation, Quaternion.identity, transform);
+
+            var pawnPosition = positionsDict.TryGetValue(pawnData, out var position)
+                ? position
+                : playerPosition + randomRotation;
+            
+            var pawnInstance = Instantiate(PawnController, pawnPosition, Quaternion.identity, transform);
             pawnInstance.SetCharacter(pawnData);
             Party.Add(pawnInstance);
         }

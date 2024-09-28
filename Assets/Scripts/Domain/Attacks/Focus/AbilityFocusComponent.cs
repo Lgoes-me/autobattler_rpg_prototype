@@ -30,6 +30,8 @@ public class AbilityFocusComponent
 
     public void ChooseFocus(List<PawnController> pawns)
     {
+        FocusedPawns.Clear();
+        
         bool WherePredicate(PawnController pawn)
         {
             return Target switch

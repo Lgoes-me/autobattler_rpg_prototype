@@ -27,7 +27,7 @@ public class BonfireScene : BaseScene
 
         PlayerDropdown.options = pawns;
         var player = Application.Instance.PlayerManager.PawnController.PawnData;
-        PlayerDropdown.value = availableParty.FindIndex(o => ((PawnOptionData)o).Pawn?.name == player.name);
+        PlayerDropdown.value = availableParty.FindIndex(o => ((PawnOptionData)o).Pawn?.name == player.name) - 1;
         PlayerDropdown.onValueChanged.AddListener(SaveChangesToPlayer);
 
         for (var index = 0; index < Dropdowns.Count; index++)
@@ -82,7 +82,6 @@ public class BonfireScene : BaseScene
         Application.Instance.SceneManager.EndBonfireScene();
     }
 }
-
 
 public class PawnOptionData : TMP_Dropdown.OptionData
 {
