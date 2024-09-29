@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 
+[System.Serializable]
 public class Save : ISavable
 {
     public string Id { get; set; }

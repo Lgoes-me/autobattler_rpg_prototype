@@ -61,6 +61,11 @@ public class CharacterController : MonoBehaviour
         HitStopController.HitStop(0f, 0.05f, false);
     }
 
+    public void SetAnimationState(AnimationState state, Action callback = null)
+    {
+        AnimationStateController.SetAnimationState(state, callback);
+    }
+
     [Flags]
     private enum Direction
     {
@@ -69,10 +74,5 @@ public class CharacterController : MonoBehaviour
         Left = 2,
         Back = 4,
         Front = 8
-    }
-
-    public void SetAnimationState(AnimationState state, Action callback = null)
-    {
-        AnimationStateController.SetAnimationState(state, callback);
     }
 }

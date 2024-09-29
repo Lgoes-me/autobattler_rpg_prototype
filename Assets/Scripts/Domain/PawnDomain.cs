@@ -50,7 +50,7 @@ public class PawnDomain
 
     public PawnInfo GetPawnInfo()
     {
-        return new PawnInfo(Id, Health != 0 ? Health : MaxHealth/2);
+        return new PawnInfo(Id, Health != 0 ? Health : 1);
     }
 
     public AttackData GetCurrentAttackIntent()

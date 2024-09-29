@@ -27,6 +27,10 @@ public class PawnController : MonoBehaviour
         {
             Pawn.SetPawnInfo(pawnInfo);
         }
+        else if (Application.Instance.Save.PlayerPawn.PawnName == PawnData.name)
+        {
+            Pawn.SetPawnInfo(Application.Instance.Save.PlayerPawn);
+        }
         
         enabled = true;
         NavMeshAgent.enabled = true;
@@ -40,7 +44,6 @@ public class PawnController : MonoBehaviour
 
     public IEnumerator Turno(List<PawnController> pawns)
     {
-        
         Ability = RequestedSpecialAbility ?? Pawn.GetCurrentAttackIntent().ToDomain(this);
         Ability.ChooseFocus(pawns);
 
@@ -137,6 +140,7 @@ public class PawnController : MonoBehaviour
 
     public void Deactivate()
     {
+        CharacterController.SetAnimationState(new IdleState());
         enabled = false;
     }
 
@@ -148,7 +152,7 @@ public class PawnController : MonoBehaviour
     public void Dance()
     {
         PawnCanvasController.Hide();
-        CharacterController.SetAnimationState(new DanceState(), GoBackToIdle);
+        CharacterController.SetAnimationState(new DanceState());
     }
 
     public void SpawnProjectile(ProjectileController projectile, AbilityEffect effect)
