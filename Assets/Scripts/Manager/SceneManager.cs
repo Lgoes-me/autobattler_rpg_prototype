@@ -18,7 +18,7 @@ public class SceneManager : MonoBehaviour
         task.completed += _ =>
         {
             var roomScene = FindObjectOfType<RoomScene>();
-            roomScene.ActivateRoomScene(this, PlayerManager.PlayerController);
+            roomScene.ActivateRoomScene();
             roomScene.SpawnPlayerAt(save.Spawn.SpawnId);
             
             Application.Instance.PartyManager.SetPartyToFollow(true);
@@ -34,7 +34,7 @@ public class SceneManager : MonoBehaviour
         task.completed += _ =>
         {
             var roomScene = FindObjectOfType<RoomScene>();
-            roomScene.ActivateRoomScene(this, PlayerManager.PlayerController);
+            roomScene.ActivateRoomScene();
             roomScene.SpawnPlayerAt(spawn.SpawnId);
             
             Application.Instance.PartyManager.SetPartyToFollow(true);
@@ -56,7 +56,7 @@ public class SceneManager : MonoBehaviour
         task.completed += _ =>
         {
             PlayerManager.PlayerToBattle();
-            FindObjectOfType<BattleScene>().ActivateBattleScene(id,this, enemies);
+            FindObjectOfType<BattleScene>().ActivateBattleScene(id, enemies);
             
             Application.Instance.AudioManager.PlayMusic(MusicType.Battle);
             
@@ -99,7 +99,7 @@ public class SceneManager : MonoBehaviour
             {
                 PlayerManager.PlayerToWorld();
                 var roomScene = FindObjectOfType<RoomScene>();
-                roomScene.ActivateRoomScene(this, PlayerManager.PlayerController);
+                roomScene.ActivateRoomScene();
                 roomScene.SpawnPlayerAt(save.LastBonfireSpawn.SpawnId);
             
                 Application.Instance.PartyManager.SetPartyToFollow(true);

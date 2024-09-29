@@ -6,24 +6,23 @@ public class BonfireController : InteractableStrategy
     [field: SerializeField] public string Id { get; private set; }
     [field: SerializeField] public Transform SpawnPoint { get; private set; }
     [field: SerializeField] private CameraAreaController CameraArea { get; set; }
-    private SceneManager SceneManager { get; set; }
+    
     private SpawnDomain Spawn { get; set; }
 
-    public void Init(SceneManager sceneManager, string scene)
+    public void Init(string scene)
     {
-        SceneManager = sceneManager;
         Spawn = new SpawnDomain(Id, scene);
     }
     
     public override void Interact()
     {
-        SceneManager.StartBonfireScene(Spawn);
+        Application.Instance.SceneManager.StartBonfireScene(Spawn);
     }
 
     public override void UnSelect()
     {
         base.UnSelect();
-        SceneManager.EndBonfireScene();
+        Application.Instance.SceneManager.EndBonfireScene();
     }
     
     public void ActivateCameraArea()

@@ -7,18 +7,9 @@ public class EnemyAreaController : MonoBehaviour
 {
     [field: SerializeField] private string Id { get; set; }
     [field: SerializeField] private List<EnemyController> Enemies { get; set; }
-    
-    private SceneManager SceneManager { get; set; }
-    private PlayerController Player { get; set; }
-    
+
     private bool Active { get; set; }
     private Coroutine Coroutine { get; set; }
-
-    public void Init(SceneManager sceneManager, PlayerController player)
-    {
-        SceneManager = sceneManager;
-        Player = player;
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -42,13 +33,13 @@ public class EnemyAreaController : MonoBehaviour
                 StopCoroutine(Coroutine);
             }
 
-            Coroutine = StartCoroutine(DeactivateEnemiesCoroutine());
+            Coroutine = StartCoroutine(DeactivateEnemiesCoroutine(other.transform));
         }
     }
 
-    private IEnumerator DeactivateEnemiesCoroutine()
+    private IEnumerator DeactivateEnemiesCoroutine(Transform other)
     {
-        yield return new WaitUntil(() => Vector3.Distance(Player.transform.position, transform.position) > 30);
+        yield return new WaitUntil(() => Vector3.Distance(other.position, transform.position) > 30);
         DeactivateEnemies();
     }
 
@@ -61,7 +52,7 @@ public class EnemyAreaController : MonoBehaviour
 
         foreach (var enemy in Enemies)
         {
-            enemy.Activate(Player, StartBattle);
+            enemy.Activate(StartBattle);
         }
     }
 
@@ -77,7 +68,7 @@ public class EnemyAreaController : MonoBehaviour
             enemy.Prepare();
         }
 
-        SceneManager.StartBattleScene(Id, Enemies);
+        Application.Instance.SceneManager.StartBattleScene(Id, Enemies);
     }
 
     private void OnValidate()

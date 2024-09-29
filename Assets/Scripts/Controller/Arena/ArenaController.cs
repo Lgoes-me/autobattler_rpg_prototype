@@ -15,13 +15,11 @@ public class ArenaController : MonoBehaviour
     private List<PawnController> InitiativeList { get; set; }
 
     private string BattleId { get; set; }
-    private SceneManager SceneManager { get; set; }
     private List<EnemyController> Enemies { get; set; }
 
-    public void Init(string battleId, SceneManager sceneManager, List<EnemyController> enemies)
+    public void Init(string battleId, List<EnemyController> enemies)
     {
         BattleId = battleId;
-        SceneManager = sceneManager;
         Enemies = enemies;
     }
 
@@ -104,7 +102,7 @@ public class ArenaController : MonoBehaviour
                     pawn.gameObject.SetActive(false);
             }
             
-            SceneManager.RespawnAtBonfire();
+            Application.Instance.SceneManager.RespawnAtBonfire();
         }
 
         if (hasPlayers)
@@ -127,7 +125,7 @@ public class ArenaController : MonoBehaviour
             }
 
             Application.Instance.PlayerManager.AddDefeated(BattleId);
-            SceneManager.EndBattleScene();
+            Application.Instance.SceneManager.EndBattleScene();
         }
     }
 

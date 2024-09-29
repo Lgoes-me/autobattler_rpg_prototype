@@ -9,13 +9,10 @@ public class RoomScene : BaseScene
     [field: SerializeField] public MusicType Music { get; private set; }
     [field: SerializeField] private List<DoorController> Doors { get; set; }
     [field: SerializeField] private List<BonfireController> Bonfires { get; set; }
-    [field: SerializeField] private List<EnemyAreaController> EnemyAreas { get; set; }
 
-    public void ActivateRoomScene(SceneManager sceneManager, PlayerController playerController)
+    public void ActivateRoomScene()
     {
-        InitDoors(sceneManager);
-        InitBonfires(sceneManager);
-        InitEnemyAreas(sceneManager, playerController);
+        InitBonfires();
     }
 
     public void SpawnPlayerAt(string spawnSpawnId)
@@ -35,30 +32,13 @@ public class RoomScene : BaseScene
             bonfire.ActivateCameraArea();
             Application.Instance.PlayerManager.SpawnPlayerAt(bonfire.SpawnPoint);
         }
-        
     }
 
-    private void InitEnemyAreas(SceneManager sceneManager, PlayerController playerController)
-    {
-        foreach (var enemyArea in EnemyAreas)
-        {
-            enemyArea.Init(sceneManager, playerController);
-        }
-    }
-
-    private void InitDoors(SceneManager sceneManager)
-    {
-        foreach (var door in Doors)
-        {
-            door.Init(sceneManager);
-        }
-    }
-    
-    private void InitBonfires(SceneManager sceneManager)
+    private void InitBonfires()
     {
         foreach (var bonfire in Bonfires)
         {
-            bonfire.Init(sceneManager, SceneName);
+            bonfire.Init(SceneName);
         }
     }
 

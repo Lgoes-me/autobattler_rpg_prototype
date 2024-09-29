@@ -10,7 +10,6 @@ public class EnemyController : MonoBehaviour
     [field: SerializeField] private CharacterController CharacterController { get; set; }
     [field: SerializeField] private List<Transform> Nodes { get; set; }
 
-    private PlayerController Player { get; set; }
     private Action OnPlayerCollision { get; set; }
 
     private int CurrentNode { get; set; }
@@ -21,9 +20,8 @@ public class EnemyController : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void Activate(PlayerController player, Action onPlayerCollision)
+    public void Activate(Action onPlayerCollision)
     {
-        Player = player;
         OnPlayerCollision = onPlayerCollision;
 
         Following = false;
@@ -37,7 +35,6 @@ public class EnemyController : MonoBehaviour
 
     public void Deactivate()
     {
-        Player = null;
         gameObject.SetActive(false);
     }
 
@@ -46,12 +43,26 @@ public class EnemyController : MonoBehaviour
         CharacterController.SetSpeed(NavMeshAgent.velocity.magnitude);
         CharacterController.SetDirection(NavMeshAgent.velocity);
         
-        SetDestination();
+        var player = Application.Instance.PlayerManager.PlayerController;
+        var distance = player.transform.position - transform.position;
+        
+        if (Following)
+        {
+            NavMeshAgent.SetDestination(player.transform.position);
+        }
+        else if (Nodes.Count > 0 &&
+                 NavMeshAgent.pathStatus == NavMeshPathStatus.PathComplete &&
+                 NavMeshAgent.remainingDistance < 1f)
+        {
+            CurrentNode++;
 
-        if (Player == null)
-            return;
+            if (CurrentNode >= Nodes.Count)
+            {
+                CurrentNode = 0;
+            }
 
-        var distance = Player.transform.position - transform.position;
+            NavMeshAgent.SetDestination(Nodes[CurrentNode].transform.position);
+        }
 
         switch (distance.sqrMagnitude)
         {
@@ -66,27 +77,6 @@ public class EnemyController : MonoBehaviour
             default:
                 Following = false;
                 break;
-        }
-    }
-
-    private void SetDestination()
-    {
-        if (Following)
-        {
-            NavMeshAgent.SetDestination(Player.transform.position);
-        }
-        else if (Nodes.Count > 0 &&
-                 NavMeshAgent.pathStatus == NavMeshPathStatus.PathComplete &&
-                 NavMeshAgent.remainingDistance < 1f)
-        {
-            CurrentNode++;
-
-            if (CurrentNode >= Nodes.Count)
-            {
-                CurrentNode = 0;
-            }
-
-            NavMeshAgent.SetDestination(Nodes[CurrentNode].transform.position);
         }
     }
 
