@@ -12,6 +12,10 @@ public class DamageEffect : AbilityEffect
     public override void DoAbilityEffect(PawnController pawnController)
     {
         var pawn = pawnController.Pawn;
+        
+        if(pawn.Health == 0)
+            return;
+        
         pawn.Health = Mathf.Clamp(pawn.Health - Damage.Value, 0, pawn.MaxHealth);
         
         pawnController.ReceiveAttack();
