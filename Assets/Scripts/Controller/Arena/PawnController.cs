@@ -8,7 +8,7 @@ public class PawnController : MonoBehaviour
     [field: SerializeField] public PawnData PawnData { get; private set; }
     [field: SerializeField] public PlayerFollowController PlayerFollowController { get; private set; }
     [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
-    [field: SerializeField] private PawnCanvasController PawnCanvasController { get; set; }
+    [field: SerializeField] public PawnCanvasController PawnCanvasController { get; set; }
     [field: SerializeField] private CharacterController CharacterController { get; set; }
     
     [field: SerializeField] public TeamType Team { get; private set; }
@@ -19,17 +19,18 @@ public class PawnController : MonoBehaviour
     private Ability Ability { get; set; }
     private Ability RequestedSpecialAbility { get; set; }
 
-    public PawnController Init(PawnCanvasController pawnCanvasController = null)
+    public PawnController Init()
     {
         Pawn = PawnData.ToDomain();
+        
+        if (Application.Instance.Save.SelectedParty.TryGetValue(PawnData.name, out var pawnInfo))
+        {
+            Pawn.SetPawnInfo(pawnInfo);
+        }
+        
         enabled = true;
         NavMeshAgent.enabled = true;
         NavMeshAgent.isStopped = true;
-
-        if (pawnCanvasController != null)
-            PawnCanvasController = pawnCanvasController;
-
-        PawnCanvasController.Init(this);
         
         Ability = null;
         RequestedSpecialAbility = null;

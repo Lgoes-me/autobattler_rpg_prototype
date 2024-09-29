@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
@@ -64,7 +65,7 @@ public class SceneManager : MonoBehaviour
         };
     }
 
-    public void EndBattleScene()
+    public void EndBattleScene(string battleId)
     {
         if(!BattleActive)
             return;
@@ -78,6 +79,12 @@ public class SceneManager : MonoBehaviour
             
             PlayerManager.PlayerToWorld();
             BattleActive = false;
+            
+            var save = Application.Instance.Save;
+            save.PlayerPawn = Application.Instance.PlayerManager.PawnController.Pawn.GetPawnInfo();
+            save.SelectedParty = Application.Instance.PartyManager.Party.ToDictionary(p => p.Pawn.Id, p => p.Pawn.GetPawnInfo());
+            save.DefeatedEnemies.Add(battleId);
+            Application.Instance.SaveManager.SaveData(save);
         };
     }
     
@@ -123,8 +130,13 @@ public class SceneManager : MonoBehaviour
             Application.Instance.PartyManager.StopPartyFollow();
             
             var save = Application.Instance.Save;
+            
             save.Spawn = bonfireSpawn;
             save.LastBonfireSpawn = bonfireSpawn;
+            save.PlayerPawn = Application.Instance.PlayerManager.PawnController.PawnData.ResetPawnInfo();
+            save.SelectedParty = Application.Instance.PartyManager.Party.ToDictionary(p => p.PawnData.Id, p => p.PawnData.ResetPawnInfo());
+            save.DefeatedEnemies.Clear();
+            
             Application.Instance.SaveManager.SaveData(save);
         };
     }
@@ -139,7 +151,6 @@ public class SceneManager : MonoBehaviour
         task.completed += _ =>
         {
             BonfireActive = false;
-            PlayerManager.ClearDefeated();
             Application.Instance.PartyManager.SetPartyToFollow(false);
         };
     }

@@ -34,14 +34,22 @@ public class ArenaController : MonoBehaviour
         foreach (var enemyController in Enemies)
         {
             var pawnController = enemyController.GetPawnController();
+            
             pawnController.Init();
+            pawnController.PawnCanvasController.Init(pawnController);
+            
             EnemyPawns.Add(pawnController);
         }
 
         foreach (var alliedController in Application.Instance.PartyManager.Party)
         {
             alliedController.PlayerFollowController.StopFollow();
-            alliedController.Init(PawnCanvases.First(c => !c.Initiated));
+            alliedController.Init();
+            
+            var canvasController = PawnCanvases.First(c => !c.Initiated);
+            alliedController.PawnCanvasController = canvasController;
+            canvasController.Init(alliedController);
+            
             ActivePawns.Add(alliedController);
         }
     }
@@ -49,7 +57,12 @@ public class ArenaController : MonoBehaviour
     private void SpawnPlayerPawn()
     {
         var pawnController = Application.Instance.PlayerManager.GetPawnController();
-        pawnController.Init(PawnCanvases[0]);
+        pawnController.Init();
+        
+        var canvasController = PawnCanvases[0];
+        pawnController.PawnCanvasController = canvasController;
+        canvasController.Init(pawnController);
+        
         ActivePawns.Add(pawnController);
     }
 
@@ -123,9 +136,8 @@ public class ArenaController : MonoBehaviour
                 if(pawn.Team == TeamType.Enemies)
                     pawn.gameObject.SetActive(false);
             }
-
-            Application.Instance.PlayerManager.AddDefeated(BattleId);
-            Application.Instance.SceneManager.EndBattleScene();
+            
+            Application.Instance.SceneManager.EndBattleScene(BattleId);
         }
     }
 

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,7 +8,6 @@ public class PlayerManager : MonoBehaviour
     [field: SerializeField] public PawnController PawnController { get; private set; }
     [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
    
-    private List<string> Defeated { get; set; }
 
     public void Init()
     {
@@ -31,30 +28,6 @@ public class PlayerManager : MonoBehaviour
         PlayerController.Init();
     }
 
-    public List<string> GetDefeated()
-    {
-        if (Defeated == null)
-        {
-            Defeated = new List<string>(Application.Instance.Save.DefeatedEnemies);
-        }
-
-        return Defeated;
-    }
-    
-    public void AddDefeated(string enemy)
-    {
-        Defeated.Add(enemy);
-        Application.Instance.Save.DefeatedEnemies.Add(enemy);
-        Application.Instance.SaveManager.SaveData(Application.Instance.Save);
-    }
-    
-    public void ClearDefeated()
-    {
-        Defeated?.Clear();
-        Application.Instance.Save.DefeatedEnemies.Clear();
-        Application.Instance.SaveManager.SaveData(Application.Instance.Save);
-    }
-    
     public void SpawnPlayerAt(Transform location)
     {
         NavMeshAgent.enabled = false;

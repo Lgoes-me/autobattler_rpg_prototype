@@ -6,7 +6,7 @@ public class Save : ISavable
     public SpawnDomain Spawn { get; set; }
     public SpawnDomain LastBonfireSpawn { get; set; }
     public PawnInfo PlayerPawn { get; set; }
-    public Dictionary<string, PawnInfo>SelectedParty { get; set; }
+    public Dictionary<string, PawnInfo> SelectedParty { get; set; }
     public List<string> DefeatedEnemies { get; set; }
 
     public Save()

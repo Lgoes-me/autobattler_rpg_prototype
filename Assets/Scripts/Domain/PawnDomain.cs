@@ -4,6 +4,8 @@ using UnityEngine;
 [System.Serializable]
 public class PawnDomain
 {
+    public string Id { get; set; }
+    
     public int MaxHealth { get; private set; }
     public int Health { get; set; }
 
@@ -18,12 +20,15 @@ public class PawnDomain
     public List<AttackData> SpecialAttacks { get; private set; }
 
     public PawnDomain(
+        string id,
         int health,
         int size,
         int initiative,
         List<AttackData> attacks,
         List<AttackData> specialAttacks)
     {
+        Id = id;
+        
         MaxHealth = health;
         Health = health;
 
@@ -36,6 +41,16 @@ public class PawnDomain
         Attacks = attacks;
         SpecialAttacks = specialAttacks;
         HasMana = SpecialAttacks.Count > 0;
+    }
+
+    public void SetPawnInfo(PawnInfo pawnInfo)
+    {
+        Health = pawnInfo.CurrentHealth;
+    }
+
+    public PawnInfo GetPawnInfo()
+    {
+        return new PawnInfo(Id, Health != 0 ? Health : MaxHealth/2);
     }
 
     public AttackData GetCurrentAttackIntent()
