@@ -395,7 +395,7 @@ PrefabInstance:
     - target: {fileID: 7942207700531127074, guid: 467015175607608439fd66f3cf34fa05, type: 3}
       propertyPath: <PlayerArenaController>k__BackingField
       value: 
-      objectReference: {fileID: 1665406659}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -520,7 +520,7 @@ PrefabInstance:
     - target: {fileID: 7942207700531127074, guid: 467015175607608439fd66f3cf34fa05, type: 3}
       propertyPath: <PlayerArenaController>k__BackingField
       value: 
-      objectReference: {fileID: 1665406659}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -748,7 +748,7 @@ PrefabInstance:
     - target: {fileID: 7942207700531127074, guid: 467015175607608439fd66f3cf34fa05, type: 3}
       propertyPath: <PlayerArenaController>k__BackingField
       value: 
-      objectReference: {fileID: 1665406659}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -987,7 +987,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1665406660}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ArenaController, Assembly-CSharp
         m_MethodName: PlayBattle
         m_Mode: 1
@@ -1131,8 +1131,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 354862734}
   - {fileID: 1416693514}
+  - {fileID: 354862734}
   - {fileID: 91817787}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1168,12 +1168,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1319671989}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1665406661}
+  m_Father: {fileID: 1570769306}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &1319671991
 SphereCollider:
@@ -1292,6 +1292,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1570769306}
   - component: {fileID: 1570769307}
+  - component: {fileID: 1570769308}
   m_Layer: 0
   m_Name: Scene
   m_TagString: Untagged
@@ -1311,7 +1312,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1319671990}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1570769307
@@ -1326,54 +1328,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 332de5cdbf144c1697e718620d1cc36f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <ArenaController>k__BackingField: {fileID: 1665406660}
-  <PlayerArenaController>k__BackingField: {fileID: 1665406659}
---- !u!1 &1665406658
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1665406661}
-  - component: {fileID: 1665406660}
-  - component: {fileID: 1665406659}
-  m_Layer: 0
-  m_Name: ArenaController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1665406659
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1665406658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0837fc8af9c47069b6b73e4a35802ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <SelectionFeedback>k__BackingField: {fileID: 1319671990}
-  <Red>k__BackingField: {fileID: 2100000, guid: b378f1afcc144e243b2f164c69b93ef2, type: 2}
-  <Blue>k__BackingField: {fileID: 2100000, guid: 1f46bbfb849560f43949bd76efd6da97, type: 2}
-  <SelectionFeedbackRenderer>k__BackingField: {fileID: 1319671992}
---- !u!114 &1665406660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1665406658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb887b6aa535e61448d0a77926f9f4da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   <PreBattleCanvas>k__BackingField: {fileID: 1416693513}
   <BattleCanvas>k__BackingField: {fileID: 354862733}
   <BattleLostCanvas>k__BackingField: {fileID: 91817786}
@@ -1383,22 +1337,22 @@ MonoBehaviour:
   - {fileID: 277564423}
   - {fileID: 1087573811}
   - {fileID: 1810426092}
---- !u!4 &1665406661
-Transform:
+--- !u!114 &1570769308
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1665406658}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1319671990}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 1570769305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0837fc8af9c47069b6b73e4a35802ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <SelectionFeedback>k__BackingField: {fileID: 1319671990}
+  <Red>k__BackingField: {fileID: 2100000, guid: b378f1afcc144e243b2f164c69b93ef2, type: 2}
+  <Blue>k__BackingField: {fileID: 2100000, guid: 1f46bbfb849560f43949bd76efd6da97, type: 2}
+  <SelectionFeedbackRenderer>k__BackingField: {fileID: 1319671992}
 --- !u!1001 &1810426090
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1502,7 +1456,7 @@ PrefabInstance:
     - target: {fileID: 7942207700531127074, guid: 467015175607608439fd66f3cf34fa05, type: 3}
       propertyPath: <PlayerArenaController>k__BackingField
       value: 
-      objectReference: {fileID: 1665406659}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1632,7 +1586,7 @@ PrefabInstance:
     - target: {fileID: 7942207700531127074, guid: 467015175607608439fd66f3cf34fa05, type: 3}
       propertyPath: <PlayerArenaController>k__BackingField
       value: 
-      objectReference: {fileID: 1665406659}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1655,4 +1609,3 @@ SceneRoots:
   m_Roots:
   - {fileID: 1570769306}
   - {fileID: 1215515987}
-  - {fileID: 1665406661}
