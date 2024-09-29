@@ -32,7 +32,7 @@ public class CameraAreaController : MonoBehaviour
 
     public void ActivateCamera()
     {
-        Application.Instance.PlayerManager.SetNewCameraPosition(CinemachineVirtualCamera.transform);
+        Application.Instance.InputManager.SetNewCameraPosition(CinemachineVirtualCamera.transform);
         CinemachineVirtualCamera.Priority = 10;
     }
 }

@@ -964,6 +964,7 @@ MonoBehaviour:
   <PauseManager>k__BackingField: {fileID: 847640159}
   <PartyManager>k__BackingField: {fileID: 1396296680}
   <AudioManager>k__BackingField: {fileID: 2129920862}
+  <InputManager>k__BackingField: {fileID: 1824029036}
 --- !u!1 &1396296678
 GameObject:
   m_ObjectHideFlags: 0
@@ -1185,6 +1186,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1824029035}
+  - component: {fileID: 1824029036}
   m_Layer: 0
   m_Name: InputManager
   m_TagString: Untagged
@@ -1207,6 +1209,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1282436504}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1824029036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1824029034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 065f2c79974348648bf39a7ac68ff9fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1918482238
 GameObject:
   m_ObjectHideFlags: 0

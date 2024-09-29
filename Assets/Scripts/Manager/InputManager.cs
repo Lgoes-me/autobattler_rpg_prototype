@@ -1,18 +1,31 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Coroutine Coroutine { get; set; }
+
+    public Vector3 ForwardVector { get; private set; }
+    public Vector3 RightVector { get; private set; }
+    
+    public void SetNewCameraPosition(Transform cameraTransform)
     {
-        
+        if (Coroutine != null)
+        {
+            StopCoroutine(Coroutine);
+        }
+
+        Coroutine = StartCoroutine(UpdateCameraPositionCoroutine(cameraTransform));
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator UpdateCameraPositionCoroutine(Transform cam)
     {
+        yield return new WaitWhile(() => Application.Instance.PlayerManager.PlayerController.MoveInput != Vector2.zero);
         
+        if (cam == null)
+            yield break;
+
+        ForwardVector = Vector3.Dot(cam.forward, -transform.up) > 0.8f ? cam.up : cam.forward;
+        RightVector = Vector3.Cross(Vector3.up, ForwardVector).normalized;
     }
 }

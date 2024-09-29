@@ -14,6 +14,7 @@ public class Application : MonoBehaviour
     [field: SerializeField] public PauseManager PauseManager { get; private set; }
     [field: SerializeField] public PartyManager PartyManager { get; private set; }
     [field: SerializeField] public AudioManager AudioManager { get; private set; }
+    [field: SerializeField] public InputManager InputManager { get; private set; }
     
     private void Awake()
     {  

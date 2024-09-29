@@ -82,11 +82,6 @@ public class PlayerManager : MonoBehaviour
         Application.Instance.PartyManager.SetPartyToFollow(false);
     }
 
-    public void SetNewCameraPosition(Transform cameraTransform)
-    {
-        PlayerController.SetNewCameraPosition(cameraTransform);
-    }
-    
     public PawnController GetPawnController()
     {
         enabled = false;
