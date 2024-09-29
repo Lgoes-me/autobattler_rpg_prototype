@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2506f476fd0f4300b3c3cd3c8b600971, type: 3}
   m_Name: ZombieSoldierElite
   m_EditorClassIdentifier: 
+  <Id>k__BackingField: ZombieSoldierElite
+  <Character>k__BackingField: {fileID: 1887707460061555812, guid: a64483913d1bef547b01ef0646203feb, type: 3}
   <Health>k__BackingField: 20
   <Size>k__BackingField: 1
   <Initiative>k__BackingField: 1
-  <HasMana>k__BackingField: 1
   <Attacks>k__BackingField:
   - {fileID: 11400000, guid: 4cecc2cec1b1c3f4883e626c22563282, type: 2}
   <SpecialAttacks>k__BackingField: []
