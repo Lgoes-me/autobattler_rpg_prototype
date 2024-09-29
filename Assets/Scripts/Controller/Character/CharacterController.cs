@@ -20,7 +20,7 @@ public class CharacterController : MonoBehaviour
     private Direction CurrentDirection { get; set; }
     public AnimationState CurrentState => AnimationStateController.CurrentState;
 
-    private void Awake()
+    private void Start()
     {
         Camera = Camera.main;
         CurrentDirection = Direction.Unknown;

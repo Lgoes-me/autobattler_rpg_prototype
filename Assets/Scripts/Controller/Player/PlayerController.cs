@@ -9,9 +9,9 @@ public class PlayerController : MonoBehaviour
 
     public Vector2 MoveInput { get; private set; }
 
-    
     public void Init()
     {
+        CharacterController.SetAnimationState(new IdleState());
         CharacterController.SetAnimationState(new IdleState());
         MoveInput = Vector2.zero;
     }

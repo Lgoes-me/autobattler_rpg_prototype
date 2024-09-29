@@ -5,9 +5,10 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-    [field: SerializeField] private PawnController PawnController { get; set; }
+    [field: SerializeField] public CharacterController CharacterController { get; set; }
+    [field: SerializeField] public PawnController PawnController { get; set; }
+    
     [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
-    [field: SerializeField] private CharacterController CharacterController { get; set; }
     [field: SerializeField] private List<Transform> Nodes { get; set; }
 
     private Action OnPlayerCollision { get; set; }
@@ -85,11 +86,5 @@ public class EnemyController : MonoBehaviour
         CharacterController.SetSpeed(0);
         NavMeshAgent.enabled = false;
         enabled = false;
-    }
-
-    public PawnController GetPawnController()
-    {
-        enabled = false;
-        return PawnController;
     }
 }

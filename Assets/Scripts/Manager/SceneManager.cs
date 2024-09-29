@@ -47,7 +47,7 @@ public class SceneManager : MonoBehaviour
         };
     }
 
-    public void StartBattleScene(string id, List<EnemyController> enemies)
+    public void StartBattleScene(string id, List<PawnController> enemies)
     {
         if(BattleActive)
             return;

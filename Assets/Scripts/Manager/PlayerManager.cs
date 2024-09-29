@@ -13,9 +13,8 @@ public class PlayerManager : MonoBehaviour
     {
         var save = Application.Instance.Save;
         var pawnData = Application.Instance.PartyManager.AvailableParty.First(p => p.Id == save.PlayerPawn.PawnName);
-        
-        PawnController.SetCharacter(pawnData);
-        PlayerController.Init();
+
+        SetNewPlayerPawn(pawnData);
     }
 
     public void SetNewPlayerPawn(PawnData pawn)
@@ -23,7 +22,9 @@ public class PlayerManager : MonoBehaviour
         Application.Instance.Save.PlayerPawn = new PawnInfo(pawn.Id, pawn.Health);
         Application.Instance.SaveManager.SaveData(Application.Instance.Save);
 
-        Destroy(PawnController.transform.GetChild(0).gameObject);
+        if(PawnController.transform.childCount > 0)
+            Destroy(PawnController.transform.GetChild(0).gameObject);
+        
         PawnController.SetCharacter(pawn);
         PlayerController.Init();
     }

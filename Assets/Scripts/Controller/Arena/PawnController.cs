@@ -171,7 +171,8 @@ public class PawnController : MonoBehaviour
     public void SetCharacter(PawnData pawnData)
     {
         PawnData = pawnData;
-        CharacterController = Instantiate(pawnData.Character, this.transform);
+        CharacterController = Instantiate(pawnData.Character, transform);
+        
         if(TryGetComponent<PlayerFollowController>(out var playerFollowController))
         {
             playerFollowController.CharacterController = CharacterController;
@@ -180,6 +181,11 @@ public class PawnController : MonoBehaviour
         if(TryGetComponent<PlayerController>(out var playerController))
         {
             playerController.CharacterController = CharacterController;
+        }
+        
+        if(TryGetComponent<EnemyController>(out var enemyController))
+        {
+            enemyController.CharacterController = CharacterController;
         }
     }
 }

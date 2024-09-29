@@ -15,9 +15,9 @@ public class ArenaController : MonoBehaviour
     private List<PawnController> InitiativeList { get; set; }
 
     private string BattleId { get; set; }
-    private List<EnemyController> Enemies { get; set; }
+    private List<PawnController> Enemies { get; set; }
 
-    public void Init(string battleId, List<EnemyController> enemies)
+    public void Init(string battleId, List<PawnController> enemies)
     {
         BattleId = battleId;
         Enemies = enemies;
@@ -33,12 +33,10 @@ public class ArenaController : MonoBehaviour
 
         foreach (var enemyController in Enemies)
         {
-            var pawnController = enemyController.GetPawnController();
+            enemyController.Init();
+            enemyController.PawnCanvasController.Init(enemyController);
             
-            pawnController.Init();
-            pawnController.PawnCanvasController.Init(pawnController);
-            
-            EnemyPawns.Add(pawnController);
+            EnemyPawns.Add(enemyController);
         }
 
         foreach (var alliedController in Application.Instance.PartyManager.Party)
