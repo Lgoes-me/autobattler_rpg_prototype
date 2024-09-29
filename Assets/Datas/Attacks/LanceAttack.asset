@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Animation>k__BackingField: LanceAttack
   <Damage>k__BackingField:
-    <Value>k__BackingField: 4
+    <Value>k__BackingField: 3
     <Type>k__BackingField: 1
   <Range>k__BackingField: 2
   <Delay>k__BackingField: 0.2
