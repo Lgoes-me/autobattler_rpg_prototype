@@ -9,15 +9,16 @@ public class BattleScene : BaseScene
     [field: SerializeField] private GameObject BattleCanvas { get; set; }
     [field: SerializeField] private GameObject BattleLostCanvas { get; set; }
     [field: SerializeField] private List<PawnCanvasController> PawnCanvases { get; set; }
+    [field: SerializeField] private BossCanvasController BossCanvas { get; set; }
     
     private List<PawnController> ActivePawns { get; set; }
     private List<PawnController> EnemyPawns { get; set; }
     private List<PawnController> InitiativeList { get; set; }
 
     private string BattleId { get; set; }
-    private List<PawnController> Enemies { get; set; }
+    private List<EnemyInfo> Enemies { get; set; }
 
-    public void ActivateBattleScene(string battleId, List<PawnController> enemies)
+    public void ActivateBattleScene(string battleId, List<EnemyInfo> enemies)
     {
         BattleId = battleId;
         Enemies = enemies;
@@ -31,9 +32,17 @@ public class BattleScene : BaseScene
 
         SpawnPlayerPawn();
 
-        foreach (var enemyController in Enemies)
+        foreach (var enemy in Enemies)
         {
+            var enemyController = enemy.PawnController;
+            
             enemyController.Init();
+            
+            if (enemy.IsBoss)
+            {
+                enemyController.PawnCanvasController = BossCanvas; 
+            }
+            
             enemyController.PawnCanvasController.Init(enemyController);
             
             EnemyPawns.Add(enemyController);

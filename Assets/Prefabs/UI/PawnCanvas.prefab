@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -7.5, y: 68.7}
+  m_AnchoredPosition: {x: 7.5, y: 68.7}
   m_SizeDelta: {x: 45, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4904226122915197297
@@ -72,7 +72,7 @@ MonoBehaviour:
   m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FillOrigin: 1
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!1 &1554527540830786939
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FillOrigin: 1
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!1 &3172328785591743336
@@ -205,7 +205,6 @@ MonoBehaviour:
   <LifeBar>k__BackingField: {fileID: 7273065323821243581}
   <BackgroundLifeBar>k__BackingField: {fileID: 3906155725776214603}
   <ManaBar>k__BackingField: {fileID: 5243357372120958277}
-  <SpecialButton>k__BackingField: {fileID: 0}
 --- !u!1 &3679989818350122633
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,6 +277,6 @@ MonoBehaviour:
   m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FillOrigin: 1
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1

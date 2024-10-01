@@ -836,6 +836,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
+      propertyPath: <Enemies>k__BackingField.Array.data[0].<IsBoss>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
       propertyPath: <Enemies>k__BackingField.Array.data[0].<PawnData>k__BackingField
       value: 
       objectReference: {fileID: 11400000, guid: 09561c465d61ad44ca6568e59d324cd3, type: 2}

@@ -7,7 +7,7 @@ using UnityEngine;
 public class EnemyAreaController : MonoBehaviour
 {
     [field: SerializeField] private string Id { get; set; }
-    [field: SerializeField] private List<EnemyData> Enemies { get; set; }
+    [field: SerializeField] private List<EnemyInfo> Enemies { get; set; }
 
     private bool Active { get; set; }
     private Coroutine Coroutine { get; set; }
@@ -77,9 +77,7 @@ public class EnemyAreaController : MonoBehaviour
             enemy.EnemyController.Prepare();
         }
 
-        Application.Instance.SceneManager.StartBattleScene(
-            Id,
-            Enemies.Select(e => e.EnemyController.PawnController).ToList());
+        Application.Instance.SceneManager.StartBattleScene(Id, Enemies);
     }
 
     private void OnValidate()
@@ -92,10 +90,11 @@ public class EnemyAreaController : MonoBehaviour
 }
 
 [System.Serializable]
-public class EnemyData
+public class EnemyInfo
 {
-    [field: SerializeField] public EnemyController EnemyController { get; set; }
+    [field: SerializeField] public bool IsBoss { get; set; }
     
+    [field: SerializeField] public EnemyController EnemyController { get; set; }
     [field: SerializeField] private PawnData PawnData { get; set; }
     
     public PawnController PawnController => EnemyController.PawnController;
