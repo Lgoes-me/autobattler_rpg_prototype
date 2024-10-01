@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Id>k__BackingField: Hunter
   <Character>k__BackingField: {fileID: 601539699241707366, guid: 261ee29a2e9356544b5f79d5536b93b8, type: 3}
+  <Weapon>k__BackingField: {fileID: 3501364879892670405, guid: 463ad0732b1d8e74196bb45029a54da8, type: 3}
   <Health>k__BackingField: 30
   <Size>k__BackingField: 1
   <Initiative>k__BackingField: 1

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Id>k__BackingField: Royal
   <Character>k__BackingField: {fileID: 8064259813449772426, guid: f4259219a9d658a4b9eeb99c6325331e, type: 3}
+  <Weapon>k__BackingField: {fileID: 3501364879892670405, guid: 146368a08f73ecf4c8633730a6891f1a, type: 3}
   <Health>k__BackingField: 60
   <Size>k__BackingField: 1
   <Initiative>k__BackingField: 1

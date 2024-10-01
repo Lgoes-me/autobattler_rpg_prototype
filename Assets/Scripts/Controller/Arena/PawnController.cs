@@ -157,10 +157,11 @@ public class PawnController : MonoBehaviour
 
     public void SpawnProjectile(ProjectileController projectile, AbilityEffect effect)
     {
-        var direction = Ability.Destination - CharacterController.SpawnPoint.position;
+        var direction = Ability.Destination - CharacterController.WeaponController.SpawnPoint.position;
         direction = new Vector3(direction.x, 0, direction.z);
-            
-        Instantiate(projectile, CharacterController.SpawnPoint.position, Quaternion.LookRotation(direction)).Init(this, effect, direction);
+
+        Instantiate(projectile, CharacterController.WeaponController.SpawnPoint.position,
+            Quaternion.LookRotation(direction)).Init(this, effect, direction);
     }
     
     public void UpdateMana()
@@ -172,6 +173,9 @@ public class PawnController : MonoBehaviour
     {
         PawnData = pawnData;
         CharacterController = Instantiate(pawnData.Character, transform);
+        
+        if(pawnData.Weapon != null)
+            CharacterController.SetWeapon(pawnData.Weapon);
         
         if(TryGetComponent<PlayerFollowController>(out var playerFollowController))
         {

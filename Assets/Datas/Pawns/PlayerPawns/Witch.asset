@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Id>k__BackingField: Witch
   <Character>k__BackingField: {fileID: 8745810780067649586, guid: ee7f9f35514576e4c87b47986eb03088, type: 3}
+  <Weapon>k__BackingField: {fileID: 3501364879892670405, guid: 6e0fc15202066bf44bf12f261bc1e4ba, type: 3}
   <Health>k__BackingField: 30
   <Size>k__BackingField: 1
   <Initiative>k__BackingField: 1
