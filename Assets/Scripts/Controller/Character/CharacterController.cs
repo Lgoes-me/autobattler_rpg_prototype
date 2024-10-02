@@ -69,6 +69,12 @@ public class CharacterController : MonoBehaviour
 
     public void SetWeapon(WeaponController weaponController)
     {
+        if (WeaponController != null)
+        {
+            Destroy(WeaponController.gameObject);
+            WeaponController = null;
+        }
+    
         WeaponController = Instantiate(weaponController, Hand);
     }
 

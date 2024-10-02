@@ -3,6 +3,7 @@ using UnityEngine;
 public class PointToCameraController : MonoBehaviour
 {
     private Camera Camera { get; set; }
+    private Vector3 Right { get; set; }
     
     private void Awake()
     {
@@ -11,6 +12,9 @@ public class PointToCameraController : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.right = Camera.transform.right;
+        if(Right == Camera.transform.right)
+            return;
+        
+        Right = transform.right = Camera.transform.right;
     }
 }
