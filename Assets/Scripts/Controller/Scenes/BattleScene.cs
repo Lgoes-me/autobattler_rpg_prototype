@@ -82,7 +82,7 @@ public class BattleScene : BaseScene
         pawnsList.AddRange(ActivePawns);
         pawnsList.AddRange(EnemyPawns);
 
-        InitiativeList = pawnsList.OrderBy(p => p.Pawn.Initiative).ToList();
+        InitiativeList = pawnsList.OrderByDescending(p => p.Pawn.Initiative).ToList();
 
         StartCoroutine(BattleCoroutine());
     }

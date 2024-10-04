@@ -44,7 +44,7 @@ public class PawnController : MonoBehaviour
 
     public IEnumerator Turno(List<PawnController> pawns)
     {
-        Ability = RequestedSpecialAbility ?? Pawn.GetCurrentAttackIntent().ToDomain(this);
+        Ability = RequestedSpecialAbility ?? Pawn.GetCurrentAttackIntent(Team is TeamType.Enemies).ToDomain(this);
         Ability.ChooseFocus(pawns);
 
         var direction = Ability.Destination - transform.position;
@@ -98,7 +98,7 @@ public class PawnController : MonoBehaviour
 
         if (!PawnState.AbleToFight)
             yield break;
-        
+        Pawn.SetInitiative(Ability.Delay);
         CharacterController.SetAnimationState(new IdleState());
     }
 

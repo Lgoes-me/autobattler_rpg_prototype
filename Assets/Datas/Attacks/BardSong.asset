@@ -19,7 +19,9 @@ MonoBehaviour:
   <Range>k__BackingField: 3
   <Delay>k__BackingField: 1
   <Target>k__BackingField: 1
+  <NumberOfTargets>k__BackingField: 1
   <Focus>k__BackingField: 3
   <Error>k__BackingField: 0
   <ManaCost>k__BackingField: 0
+  <BasePriority>k__BackingField: 1
   <Projectile>k__BackingField: {fileID: 0}

@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [System.Serializable]
@@ -11,10 +13,9 @@ public class PawnDomain
 
     public int MaxMana { get; private set; }
     public int Mana { get; set; }
-
+    
     public bool HasMana { get; private set; }
-    private int Size { get; set; }
-    public int Initiative { get; private set; }
+    public float Initiative { get; private set; }
 
     private List<AttackData> Attacks { get; set; }
     public List<AttackData> SpecialAttacks { get; private set; }
@@ -22,8 +23,7 @@ public class PawnDomain
     public PawnDomain(
         string id,
         int health,
-        int size,
-        int initiative,
+        int mana,
         List<AttackData> attacks,
         List<AttackData> specialAttacks)
     {
@@ -32,17 +32,21 @@ public class PawnDomain
         MaxHealth = health;
         Health = health;
 
-        MaxMana = 100;
+        MaxMana = mana;
         Mana = 0;
-
-        Size = size;
-        Initiative = initiative;
+        
+        Initiative = 0;
 
         Attacks = attacks;
         SpecialAttacks = specialAttacks;
-        HasMana = SpecialAttacks.Count > 0;
+        HasMana = SpecialAttacks.Count > 0 && mana > 0;
     }
 
+    public void SetInitiative(float initiative)
+    {
+        Initiative = initiative;
+    }
+    
     public void SetPawnInfo(PawnInfo pawnInfo)
     {
         Health = pawnInfo.CurrentHealth;
@@ -54,9 +58,19 @@ public class PawnDomain
         return new PawnInfo(Id, health);
     }
 
-    public AttackData GetCurrentAttackIntent()
+    public AttackData GetCurrentAttackIntent(bool automaticallyUseSpecials)
     {
-        return Attacks[Random.Range(0, Attacks.Count)];
+        var attacks = new List<AttackData>();
+
+        attacks.AddRange(Attacks);
+
+        if (automaticallyUseSpecials)
+        {
+            var specialAttacks = SpecialAttacks.Where(a => a.ManaCost <= Mana).ToList();
+            attacks.AddRange(specialAttacks);
+        }
+
+        return attacks.OrderBy(a => a.GetPriority()).Last();
     }
 }
 
