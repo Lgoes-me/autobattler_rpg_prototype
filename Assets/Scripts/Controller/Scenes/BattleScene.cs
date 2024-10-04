@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class BattleScene : BaseScene
 {
-    [field: SerializeField] private GameObject PreBattleCanvas { get; set; }
     [field: SerializeField] private GameObject BattleCanvas { get; set; }
     [field: SerializeField] private GameObject BattleLostCanvas { get; set; }
     [field: SerializeField] private List<PawnCanvasController> PawnCanvases { get; set; }
@@ -30,7 +29,13 @@ public class BattleScene : BaseScene
         EnemyPawns = new List<PawnController>();
         InitiativeList = new List<PawnController>();
 
-        SpawnPlayerPawn();
+        var pawnController = Application.Instance.PlayerManager.GetPawnController();
+        pawnController.Init();
+        
+        var playerCanvasController = PawnCanvases[0];
+        pawnController.PawnCanvasController = playerCanvasController;
+        playerCanvasController.Init(pawnController);
+        ActivePawns.Add(pawnController);
 
         foreach (var enemy in Enemies)
         {
@@ -59,23 +64,12 @@ public class BattleScene : BaseScene
             
             ActivePawns.Add(alliedController);
         }
-    }
 
-    private void SpawnPlayerPawn()
-    {
-        var pawnController = Application.Instance.PlayerManager.GetPawnController();
-        pawnController.Init();
-        
-        var canvasController = PawnCanvases[0];
-        pawnController.PawnCanvasController = canvasController;
-        canvasController.Init(pawnController);
-        
-        ActivePawns.Add(pawnController);
+        PlayBattle();
     }
 
     public void PlayBattle()
     {
-        PreBattleCanvas.gameObject.SetActive(false);
         BattleCanvas.gameObject.SetActive(true);
 
         var pawnsList = new List<PawnController>();
@@ -112,7 +106,7 @@ public class BattleScene : BaseScene
             
             BattleLostCanvas.gameObject.SetActive(true);
             
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1f);
             
             foreach (var pawn in InitiativeList)
             {
