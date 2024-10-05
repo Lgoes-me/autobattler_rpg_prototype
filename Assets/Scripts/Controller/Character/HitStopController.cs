@@ -14,7 +14,7 @@ public class HitStopController : MonoBehaviour, IPauseListener
         Application.Instance.PauseManager.SubscribePauseListener(this);
     }
 
-    public void HitStop(float percentage, float time, bool isGlobal)
+    public void HitStop(float percentage, float time, bool isGlobal, Color color)
     {
         if(Stopped) return;
 
@@ -24,7 +24,7 @@ public class HitStopController : MonoBehaviour, IPauseListener
         }
         
         Animator.speed = percentage;
-        Sprite.color = Color.red;
+        Sprite.color = color;
         
         StartCoroutine(HitStopCotoutine(time, isGlobal));
     }

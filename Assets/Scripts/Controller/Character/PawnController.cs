@@ -102,19 +102,6 @@ public class PawnController : MonoBehaviour
         CharacterController.SetAnimationState(new IdleState());
     }
 
-    public void ReceiveAttack()
-    {
-        var dead = Pawn.Health <= 0;
-        CharacterController.DoHitStop();
-        PawnCanvasController.UpdateLife();
-
-        if (!dead) return;
-        
-        CharacterController.SetAnimationState(new DeadState());
-        NavMeshAgent.isStopped = true;
-        Ability = null;
-    }
-
     private void Update()
     {
         if (Ability == null || !PawnState.CanWalk)
@@ -190,5 +177,30 @@ public class PawnController : MonoBehaviour
         {
             enemyController.CharacterController = CharacterController;
         }
+    }
+
+    public void ReceiveAttack()
+    {
+        var dead = Pawn.Health <= 0;
+        CharacterController.DoHitStop();
+        PawnCanvasController.UpdateLife();
+
+        if (!dead) return;
+        
+        CharacterController.SetAnimationState(new DeadState());
+        NavMeshAgent.isStopped = true;
+        Ability = null;
+    }
+
+    public void ReeceiveHeal(bool canRevive)
+    {
+        var dead = Pawn.Health <= 0;
+        CharacterController.DoNiceHitStop();
+        PawnCanvasController.UpdateLife();
+
+        if (!dead || !canRevive)
+            return;
+
+        CharacterController.SetAnimationState(new IdleState());
     }
 }

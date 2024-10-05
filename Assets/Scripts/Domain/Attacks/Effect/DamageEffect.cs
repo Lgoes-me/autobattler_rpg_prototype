@@ -31,7 +31,6 @@ public class Damage
 
 public enum DamageType
 {
-    Heal = 0,
     Slash = 1,
     Magical = 2,
     Fire = 3,

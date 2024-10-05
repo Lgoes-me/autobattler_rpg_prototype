@@ -59,9 +59,14 @@ public class CharacterController : MonoBehaviour
 
     public void DoHitStop()
     {
-        HitStopController.HitStop(0f, 0.05f, false);
+        HitStopController.HitStop(0f, 0.05f, false, Color.red);
     }
 
+    public void DoNiceHitStop()
+    {
+        HitStopController.HitStop(0f, 0.05f, false, Color.green);
+    }
+    
     public void SetAnimationState(AnimationState state, Action callback = null)
     {
         AnimationStateController.SetAnimationState(state, callback);

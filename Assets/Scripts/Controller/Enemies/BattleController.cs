@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BattleController : MonoBehaviour
 {
-    private List<PawnController> ActivePawns { get; set; }
+    private List<PawnController> PlayerPawns { get; set; }
     private List<PawnController> EnemyPawns { get; set; }
     private List<PawnController> InitiativeList { get; set; }
 
@@ -17,24 +17,13 @@ public class BattleController : MonoBehaviour
         
         BattleId = battleId;
         
-        ActivePawns = new List<PawnController>();
+        PlayerPawns = new List<PawnController>();
         EnemyPawns = new List<PawnController>();
         InitiativeList = new List<PawnController>();
-
-        var pawnController = Application.Instance.PlayerManager.GetPawnController();
-        pawnController.Init();
-
-        var pawnCanvases = Application.Instance.PawnCanvases;
-        
-        var playerCanvasController = pawnCanvases[0];
-        pawnController.PawnCanvasController = playerCanvasController;
-        playerCanvasController.Init(pawnController);
-        ActivePawns.Add(pawnController);
 
         foreach (var enemy in enemies)
         {
             var enemyController = enemy.PawnController;
-            
             enemyController.Init();
             
             if (enemy.IsBoss)
@@ -43,9 +32,18 @@ public class BattleController : MonoBehaviour
             }
             
             enemyController.PawnCanvasController.Init(enemyController);
-            
             EnemyPawns.Add(enemyController);
         }
+
+        var playerPawnController = Application.Instance.PlayerManager.GetPawnController();
+        playerPawnController.Init();
+
+        var pawnCanvases = Application.Instance.PawnCanvases;
+        
+        var playerCanvasController = pawnCanvases[0];
+        playerPawnController.PawnCanvasController = playerCanvasController;
+        playerCanvasController.Init(playerPawnController);
+        PlayerPawns.Add(playerPawnController);
 
         foreach (var alliedController in Application.Instance.PartyManager.Party)
         {
@@ -56,11 +54,11 @@ public class BattleController : MonoBehaviour
             alliedController.PawnCanvasController = canvasController;
             canvasController.Init(alliedController);
             
-            ActivePawns.Add(alliedController);
+            PlayerPawns.Add(alliedController);
         }
 
         var pawnsList = new List<PawnController>();
-        pawnsList.AddRange(ActivePawns);
+        pawnsList.AddRange(PlayerPawns);
         pawnsList.AddRange(EnemyPawns);
 
         InitiativeList = pawnsList.OrderByDescending(p => p.Pawn.Initiative).ToList();
@@ -78,76 +76,41 @@ public class BattleController : MonoBehaviour
             yield return RealizaTurno();
 
             hasEnemies = EnemyPawns.Count(e => e.PawnState.AbleToFight) > 0;
-            hasPlayers = ActivePawns.Count(e => e.PawnState.AbleToFight) > 0;
+            hasPlayers = PlayerPawns.Count(e => e.PawnState.AbleToFight) > 0;
         }
 
         if (hasEnemies)
         {
-            foreach (var enemyPawn in EnemyPawns)
-            {
-                if (!enemyPawn.PawnState.AbleToFight)
-                    continue;
-                
-                enemyPawn.Dance();
-            }
-            
-            foreach (var pawn in InitiativeList)
-            {
-                pawn.PawnCanvasController.Hide();
-            }
-            
-            Application.Instance.ShowDefeatCanvas();
-            
-            yield return new WaitForSeconds(1f);
-
-            Application.Instance.HideDefeatCanvas();
-            Application.Instance.SceneManager.RespawnAtBonfire();
+            yield return OnDefeat();
         }
 
         if (hasPlayers)
         {
-            Application.Instance.AudioManager.PlayMusic(MusicType.Victory);
-
-            foreach (var playerPawn in ActivePawns)
-            {
-                playerPawn.Dance();
-            }
-            
-            yield return new WaitForSeconds(1f);
-            
-            foreach (var playerPawn in ActivePawns)
-            {
-                var health = Mathf.Clamp(playerPawn.Pawn.Health + 15, 0, playerPawn.Pawn.MaxHealth);
-                playerPawn.Pawn.Health += health;
-                playerPawn.ReceiveAttack();
-            }
-            
-            yield return new WaitForSeconds(1f);
-            
-            foreach (var playerPawn in ActivePawns)
-            {
-                playerPawn.PawnCanvasController.Hide();
-            }
-            
-            foreach (var pawn in InitiativeList)
-            {
-                pawn.Deactivate();
-            
-                if(pawn.Team == TeamType.Enemies)
-                    pawn.gameObject.SetActive(false);
-            }
-            
-            var roomScene = FindObjectOfType<RoomScene>();
-            Application.Instance.AudioManager.PlayMusic(roomScene.Music);
-            
-            Application.Instance.PlayerManager.PlayerToWorld();
-            
-            var save = Application.Instance.Save;
-            save.PlayerPawn = Application.Instance.PlayerManager.PawnController.Pawn.GetPawnInfo();
-            save.SelectedParty = Application.Instance.PartyManager.Party.ToDictionary(p => p.Pawn.Id, p => p.Pawn.GetPawnInfo());
-            save.DefeatedEnemies.Add(BattleId);
-            Application.Instance.SaveManager.SaveData(save);
+            yield return OnVictory();
         }
+    }
+
+    private IEnumerator OnDefeat()
+    {
+        foreach (var enemyPawn in EnemyPawns)
+        {
+            if (!enemyPawn.PawnState.AbleToFight)
+                continue;
+
+            enemyPawn.Dance();
+        }
+
+        foreach (var pawn in InitiativeList)
+        {
+            pawn.PawnCanvasController.Hide();
+        }
+
+        Application.Instance.ShowDefeatCanvas();
+
+        yield return new WaitForSeconds(1f);
+
+        Application.Instance.HideDefeatCanvas();
+        Application.Instance.SceneManager.RespawnAtBonfire();
     }
 
     private IEnumerator RealizaTurno()
@@ -158,4 +121,51 @@ public class BattleController : MonoBehaviour
             yield return pawn.Turno(InitiativeList);
         }
     }
+
+    private IEnumerator OnVictory()
+    {
+        Application.Instance.AudioManager.PlayMusic(MusicType.Victory);
+
+        foreach (var playerPawn in PlayerPawns)
+        {
+            playerPawn.Dance();
+        }
+
+        yield return new WaitForSeconds(1f);
+
+        foreach (var playerPawn in PlayerPawns)
+        {
+            var health = Mathf.Clamp(playerPawn.Pawn.Health + 15, 0, playerPawn.Pawn.MaxHealth);
+            playerPawn.Pawn.Health += health;
+            playerPawn.ReeceiveHeal(true);
+        }
+
+        yield return new WaitForSeconds(1f);
+
+        foreach (var playerPawn in PlayerPawns)
+        {
+            playerPawn.PawnCanvasController.Hide();
+        }
+
+        foreach (var pawn in InitiativeList)
+        {
+            pawn.Deactivate();
+
+            if (pawn.Team == TeamType.Enemies)
+                pawn.gameObject.SetActive(false);
+        }
+
+        var roomScene = FindObjectOfType<RoomScene>();
+
+        Application.Instance.AudioManager.PlayMusic(roomScene.Music);
+
+        Application.Instance.PlayerManager.PlayerToWorld();
+
+        var save = Application.Instance.Save;
+        save.PlayerPawn = Application.Instance.PlayerManager.PawnController.Pawn.GetPawnInfo();
+        save.SelectedParty = Application.Instance.PartyManager.Party.ToDictionary(p => p.Pawn.Id, p => p.Pawn.GetPawnInfo());
+        save.DefeatedEnemies.Add(BattleId);
+        Application.Instance.SaveManager.SaveData(save);
+    }
+
 }

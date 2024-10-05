@@ -31,7 +31,14 @@ public class Ability
         Delay = delay;
         Range = range;
 
-        Effect = new DamageEffect(damage);
+        if (damage.Value > 0)
+        {
+            Effect = new DamageEffect(damage);
+        }
+        else
+        {
+            Effect = new HealEffect(-damage.Value, false);
+        }
         
         FocusComponent = new AbilityFocusComponent(AbilityUser, target, focus, error);
         ResourceComponent = new AbilityResourceComponent(AbilityUser, manaCost);
