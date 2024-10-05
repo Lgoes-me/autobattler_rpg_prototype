@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
     public void Init()
     {
         CharacterController.SetAnimationState(new IdleState());
-        CharacterController.SetAnimationState(new IdleState());
         MoveInput = Vector2.zero;
     }
 

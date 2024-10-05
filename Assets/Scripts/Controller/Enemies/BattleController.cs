@@ -3,41 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class BattleScene : BaseScene
+public class BattleController : MonoBehaviour
 {
-    [field: SerializeField] private GameObject BattleCanvas { get; set; }
-    [field: SerializeField] private GameObject BattleLostCanvas { get; set; }
-    [field: SerializeField] private List<PawnCanvasController> PawnCanvases { get; set; }
-    [field: SerializeField] private BossCanvasController BossCanvas { get; set; }
-    
     private List<PawnController> ActivePawns { get; set; }
     private List<PawnController> EnemyPawns { get; set; }
     private List<PawnController> InitiativeList { get; set; }
 
     private string BattleId { get; set; }
-    private List<EnemyInfo> Enemies { get; set; }
 
     public void ActivateBattleScene(string battleId, List<EnemyInfo> enemies)
     {
+        Application.Instance.AudioManager.PlayMusic(MusicType.Battle);
+        
         BattleId = battleId;
-        Enemies = enemies;
-    }
-    
-    private void Start()
-    {
+        
         ActivePawns = new List<PawnController>();
         EnemyPawns = new List<PawnController>();
         InitiativeList = new List<PawnController>();
 
         var pawnController = Application.Instance.PlayerManager.GetPawnController();
         pawnController.Init();
+
+        var pawnCanvases = Application.Instance.PawnCanvases;
         
-        var playerCanvasController = PawnCanvases[0];
+        var playerCanvasController = pawnCanvases[0];
         pawnController.PawnCanvasController = playerCanvasController;
         playerCanvasController.Init(pawnController);
         ActivePawns.Add(pawnController);
 
-        foreach (var enemy in Enemies)
+        foreach (var enemy in enemies)
         {
             var enemyController = enemy.PawnController;
             
@@ -45,7 +39,7 @@ public class BattleScene : BaseScene
             
             if (enemy.IsBoss)
             {
-                enemyController.PawnCanvasController = BossCanvas; 
+                enemyController.PawnCanvasController = Application.Instance.BossCanvas; 
             }
             
             enemyController.PawnCanvasController.Init(enemyController);
@@ -58,19 +52,12 @@ public class BattleScene : BaseScene
             alliedController.PlayerFollowController.StopFollow();
             alliedController.Init();
             
-            var canvasController = PawnCanvases.First(c => !c.Initiated);
+            var canvasController = pawnCanvases.First(c => !c.Initiated);
             alliedController.PawnCanvasController = canvasController;
             canvasController.Init(alliedController);
             
             ActivePawns.Add(alliedController);
         }
-
-        PlayBattle();
-    }
-
-    public void PlayBattle()
-    {
-        BattleCanvas.gameObject.SetActive(true);
 
         var pawnsList = new List<PawnController>();
         pawnsList.AddRange(ActivePawns);
@@ -80,7 +67,7 @@ public class BattleScene : BaseScene
 
         StartCoroutine(BattleCoroutine());
     }
-
+    
     private IEnumerator BattleCoroutine()
     {
         var hasEnemies = true;
@@ -104,7 +91,7 @@ public class BattleScene : BaseScene
                 enemyPawn.Dance();
             }
             
-            BattleLostCanvas.gameObject.SetActive(true);
+            Application.Instance.ShowDefeatCanvas();
             
             yield return new WaitForSeconds(1f);
             
@@ -116,6 +103,7 @@ public class BattleScene : BaseScene
                     pawn.gameObject.SetActive(false);
             }
             
+            Application.Instance.HideDefeatCanvas();
             Application.Instance.SceneManager.RespawnAtBonfire();
         }
 
@@ -138,7 +126,16 @@ public class BattleScene : BaseScene
                     pawn.gameObject.SetActive(false);
             }
             
-            Application.Instance.SceneManager.EndBattleScene(BattleId);
+            var roomScene = FindObjectOfType<RoomScene>();
+            Application.Instance.AudioManager.PlayMusic(roomScene.Music);
+            
+            Application.Instance.PlayerManager.PlayerToWorld();
+            
+            var save = Application.Instance.Save;
+            save.PlayerPawn = Application.Instance.PlayerManager.PawnController.Pawn.GetPawnInfo();
+            save.SelectedParty = Application.Instance.PartyManager.Party.ToDictionary(p => p.Pawn.Id, p => p.Pawn.GetPawnInfo());
+            save.DefeatedEnemies.Add(BattleId);
+            Application.Instance.SaveManager.SaveData(save);
         }
     }
 

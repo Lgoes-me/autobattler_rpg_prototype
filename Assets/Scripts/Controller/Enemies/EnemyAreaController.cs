@@ -8,6 +8,7 @@ public class EnemyAreaController : MonoBehaviour
 {
     [field: SerializeField] private string Id { get; set; }
     [field: SerializeField] private List<EnemyInfo> Enemies { get; set; }
+    [field: SerializeField] private BattleController BattleController { get; set; }
 
     private bool Active { get; set; }
     private Coroutine Coroutine { get; set; }
@@ -76,8 +77,9 @@ public class EnemyAreaController : MonoBehaviour
         {
             enemy.EnemyController.Prepare();
         }
-
-        Application.Instance.SceneManager.StartBattleScene(Id, Enemies);
+        
+        Application.Instance.PlayerManager.PlayerToBattle();
+        BattleController.ActivateBattleScene(Id, Enemies);
     }
 
     private void OnValidate()

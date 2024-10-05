@@ -47,47 +47,6 @@ public class SceneManager : MonoBehaviour
         };
     }
 
-    public void StartBattleScene(string id, List<EnemyInfo> enemies)
-    {
-        if(BattleActive)
-            return;
-
-        var task = UnitySceneManager.LoadSceneAsync("BattleScene", LoadSceneMode.Additive);
-
-        task.completed += _ =>
-        {
-            PlayerManager.PlayerToBattle();
-            FindObjectOfType<BattleScene>().ActivateBattleScene(id, enemies);
-            
-            Application.Instance.AudioManager.PlayMusic(MusicType.Battle);
-            
-            BattleActive = true;
-        };
-    }
-
-    public void EndBattleScene(string battleId)
-    {
-        if(!BattleActive)
-            return;
-        
-        var task = UnitySceneManager.UnloadSceneAsync("BattleScene");
-        
-        task.completed += _ =>
-        {
-            var roomScene = FindObjectOfType<RoomScene>();
-            Application.Instance.AudioManager.PlayMusic(roomScene.Music);
-            
-            PlayerManager.PlayerToWorld();
-            BattleActive = false;
-            
-            var save = Application.Instance.Save;
-            save.PlayerPawn = Application.Instance.PlayerManager.PawnController.Pawn.GetPawnInfo();
-            save.SelectedParty = Application.Instance.PartyManager.Party.ToDictionary(p => p.Pawn.Id, p => p.Pawn.GetPawnInfo());
-            save.DefeatedEnemies.Add(battleId);
-            Application.Instance.SaveManager.SaveData(save);
-        };
-    }
-    
     public void RespawnAtBonfire()
     {
         if(!BattleActive)
