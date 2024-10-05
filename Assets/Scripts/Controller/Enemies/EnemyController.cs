@@ -68,8 +68,8 @@ public class EnemyController : MonoBehaviour
         switch (distance.sqrMagnitude)
         {
             case < 2f:
-                transform.position -= distance * 0.25f;
-                NavMeshAgent.enabled = false;
+                NavMeshAgent.SetDestination(transform.position);
+                NavMeshAgent.isStopped = true;
                 OnPlayerCollision();
                 break;
             case < 15f:
@@ -84,7 +84,6 @@ public class EnemyController : MonoBehaviour
     public void Prepare()
     {
         CharacterController.SetSpeed(0);
-        NavMeshAgent.enabled = false;
         enabled = false;
     }
 }

@@ -38,4 +38,17 @@ public class ProfileCanvasController : PawnCanvasController
     {
         
     }
+
+    public override void Hide()
+    {
+        base.Hide();
+        
+        foreach (var specialButton in SpecialButtons)
+        {
+            Destroy(specialButton.gameObject);
+        }
+
+        SpecialButtons.Clear();
+        Initiated = false;
+    }
 }

@@ -5,7 +5,7 @@ public class AttackData : ScriptableObject
 {
     [field: SerializeField] private string Animation { get; set; }
     [field: SerializeField] private Damage Damage { get; set; }
-    [field: SerializeField] private int Range { get; set; }
+    [field: SerializeField] private float Range { get; set; }
     [field: SerializeField] private float Delay { get; set; }
     [field: SerializeField] private TargetType Target { get; set; }
     [field: SerializeField] public int NumberOfTargets { get; set; }

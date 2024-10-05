@@ -18,7 +18,7 @@ public class Ability
         PawnController abilityUser,
         string animation, 
         Damage damage,
-        int range, 
+        float range, 
         float delay, 
         TargetType target, 
         FocusType focus,

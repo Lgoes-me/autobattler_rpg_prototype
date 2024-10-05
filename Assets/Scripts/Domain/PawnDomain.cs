@@ -54,8 +54,7 @@ public class PawnDomain
 
     public PawnInfo GetPawnInfo()
     {
-        var health = Mathf.Clamp(Health + 15, 0, MaxHealth);
-        return new PawnInfo(Id, health);
+        return new PawnInfo(Id, Health);
     }
 
     public AttackData GetCurrentAttackIntent(bool automaticallyUseSpecials)

@@ -8,7 +8,7 @@ public class PawnCanvasController : BaseCanvasController
     [field: SerializeField] private Image BackgroundLifeBar { get; set; }
     [field: SerializeField] private Image ManaBar { get; set; }
     
-    public bool Initiated { get; private set; }
+    public bool Initiated { get; protected set; }
     protected PawnController PawnController { get;  set; }
     
     public virtual void Init(PawnController pawnController)

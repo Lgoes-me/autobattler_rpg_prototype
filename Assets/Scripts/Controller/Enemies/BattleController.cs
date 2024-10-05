@@ -115,9 +115,23 @@ public class BattleController : MonoBehaviour
             {
                 playerPawn.Dance();
             }
-
-            yield return new WaitForSeconds(3f);
-
+            
+            yield return new WaitForSeconds(1f);
+            
+            foreach (var playerPawn in ActivePawns)
+            {
+                var health = Mathf.Clamp(playerPawn.Pawn.Health + 15, 0, playerPawn.Pawn.MaxHealth);
+                playerPawn.Pawn.Health += health;
+                playerPawn.ReceiveAttack();
+            }
+            
+            yield return new WaitForSeconds(1f);
+            
+            foreach (var playerPawn in ActivePawns)
+            {
+                playerPawn.PawnCanvasController.Hide();
+            }
+            
             foreach (var pawn in InitiativeList)
             {
                 pawn.Deactivate();

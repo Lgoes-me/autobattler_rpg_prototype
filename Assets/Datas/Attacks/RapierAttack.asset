@@ -16,12 +16,11 @@ MonoBehaviour:
   <Damage>k__BackingField:
     <Value>k__BackingField: 2
     <Type>k__BackingField: 1
-  <Range>k__BackingField: 2
+  <Range>k__BackingField: 1
   <Delay>k__BackingField: 0.3
   <Target>k__BackingField: 2
   <NumberOfTargets>k__BackingField: 1
   <Focus>k__BackingField: 1
   <Error>k__BackingField: 3
   <ManaCost>k__BackingField: 0
-  <BasePriority>k__BackingField: 1
   <Projectile>k__BackingField: {fileID: 0}

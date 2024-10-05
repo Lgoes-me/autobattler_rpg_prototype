@@ -151,7 +151,6 @@ public class PawnController : MonoBehaviour
     
     public void Dance()
     {
-        PawnCanvasController.Hide();
         CharacterController.SetAnimationState(new DanceState());
     }
 

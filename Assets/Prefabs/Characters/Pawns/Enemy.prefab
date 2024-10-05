@@ -281,6 +281,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: PawnCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3906155725776214603, guid: eeed3db9c42d50c4ca3e38dfebea8a4d, type: 3}
+      propertyPath: m_FillOrigin
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5243357372120958277, guid: eeed3db9c42d50c4ca3e38dfebea8a4d, type: 3}
+      propertyPath: m_FillOrigin
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6105136456282717230, guid: eeed3db9c42d50c4ca3e38dfebea8a4d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7273065323821243581, guid: eeed3db9c42d50c4ca3e38dfebea8a4d, type: 3}
+      propertyPath: m_FillOrigin
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8054583791169020662, guid: eeed3db9c42d50c4ca3e38dfebea8a4d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
