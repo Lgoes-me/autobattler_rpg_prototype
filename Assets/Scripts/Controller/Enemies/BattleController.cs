@@ -91,18 +91,15 @@ public class BattleController : MonoBehaviour
                 enemyPawn.Dance();
             }
             
+            foreach (var pawn in InitiativeList)
+            {
+                pawn.PawnCanvasController.Hide();
+            }
+            
             Application.Instance.ShowDefeatCanvas();
             
             yield return new WaitForSeconds(1f);
-            
-            foreach (var pawn in InitiativeList)
-            {
-                pawn.Deactivate();
-            
-                if(pawn.Team == TeamType.Enemies)
-                    pawn.gameObject.SetActive(false);
-            }
-            
+
             Application.Instance.HideDefeatCanvas();
             Application.Instance.SceneManager.RespawnAtBonfire();
         }

@@ -48,6 +48,8 @@ public class PlayerManager : MonoBehaviour
 
     public void PlayerToWorld()
     {
+        NavMeshAgent.isStopped = true;
+        
         PawnController.Deactivate();
         PlayerController.gameObject.SetActive(true);
         PlayerController.enabled = true;

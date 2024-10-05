@@ -1661,6 +1661,7 @@ MonoBehaviour:
   <PartyManager>k__BackingField: {fileID: 1396296680}
   <AudioManager>k__BackingField: {fileID: 2129920862}
   <InputManager>k__BackingField: {fileID: 1824029036}
+  <BattleCanvas>k__BackingField: {fileID: 933428312}
   <BattleLostCanvas>k__BackingField: {fileID: 1496016703}
   <PawnCanvases>k__BackingField:
   - {fileID: 1860720134}

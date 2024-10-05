@@ -43,8 +43,7 @@ public class Application : MonoBehaviour
         PartyManager.Init();
         SceneManager.StartGame();
     }
-    
-    
+
     public void ShowDefeatCanvas()
     {
         BattleLostCanvas.SetActive(true);

@@ -8,7 +8,6 @@ public class SceneManager : MonoBehaviour
 {
     [field: SerializeField] private PlayerManager PlayerManager { get; set; }
 
-    private bool BattleActive { get; set; }
     private bool BonfireActive { get; set; }
     
     public void StartGame()
@@ -49,29 +48,24 @@ public class SceneManager : MonoBehaviour
 
     public void RespawnAtBonfire()
     {
-        if(!BattleActive)
-            return;
-        
-        var task = UnitySceneManager.UnloadSceneAsync("BattleScene");
-        
-        task.completed += _ =>
-        {
-            BattleActive = false;
-            
-            var save = Application.Instance.Save;
-            var respawnTask = UnitySceneManager.LoadSceneAsync(save.LastBonfireSpawn.SceneName, LoadSceneMode.Single);
+        var save = Application.Instance.Save;
+        var respawnTask = UnitySceneManager.LoadSceneAsync(save.LastBonfireSpawn.SceneName, LoadSceneMode.Single);
 
-            respawnTask.completed += _ =>
-            {
-                PlayerManager.PlayerToWorld();
-                var roomScene = FindObjectOfType<RoomScene>();
-                roomScene.ActivateRoomScene();
-                roomScene.SpawnPlayerAt(save.LastBonfireSpawn.SpawnId);
+        respawnTask.completed += _ =>
+        {
+            PlayerManager.PlayerToWorld();
+            var roomScene = FindObjectOfType<RoomScene>();
+            roomScene.ActivateRoomScene();
+            roomScene.SpawnPlayerAt(save.LastBonfireSpawn.SpawnId);
             
-                Application.Instance.PartyManager.SetPartyToFollow(true);
-                Application.Instance.AudioManager.PlayMusic(roomScene.Music);
-                Application.Instance.SaveManager.SaveData(save);
-            };
+            foreach (var pawn in Application.Instance.PartyManager.Party)
+            {
+                pawn.Deactivate();
+            }
+            
+            Application.Instance.PartyManager.SetPartyToFollow(true);
+            Application.Instance.AudioManager.PlayMusic(roomScene.Music);
+            Application.Instance.SaveManager.SaveData(save);
         };
     }
     
