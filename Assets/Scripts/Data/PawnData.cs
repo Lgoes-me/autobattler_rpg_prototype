@@ -8,14 +8,17 @@ public class PawnData : ScriptableObject
     
     [field: SerializeField] public CharacterController Character { get; private set; }
     [field: SerializeField] public WeaponController Weapon { get; private set; }
-    [field: SerializeField] public int Health { get; private set; } = 10;
-    [field: SerializeField] private int Mana { get; set; } = 100;
-    [field: SerializeField] private List<AttackData> Attacks { get; set; }
-    [field: SerializeField] private List<AttackData> SpecialAttacks { get; set; }
+    [field: SerializeField] public int Health { get; private set; }
+    [field: SerializeField] private int Mana { get; set; }
+    
+    [field: SerializeField] private int Strength { get; set; }
+    
+    [field: SerializeField] private List<AbilityData> Abilities { get; set; }
+    [field: SerializeField] private List<AbilityData> SpecialAbilities { get; set; }
 
     public PawnDomain ToDomain()
     {
-        return new PawnDomain(Id, Health, Mana, Attacks, SpecialAttacks);
+        return new PawnDomain(Id, Health, Mana, Strength, Abilities, SpecialAbilities);
     }
     
     public PawnInfo ResetPawnInfo()

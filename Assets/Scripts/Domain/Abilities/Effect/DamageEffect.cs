@@ -33,7 +33,5 @@ public enum DamageType
 {
     Slash = 1,
     Magical = 2,
-    Fire = 3,
-    Buff = 4,
-    Debug = 5
+    Fire = 3
 }

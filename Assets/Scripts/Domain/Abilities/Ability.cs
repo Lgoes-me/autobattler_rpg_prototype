@@ -14,39 +14,6 @@ public class Ability
     private AbilityResourceComponent ResourceComponent { get; set; }
     private AbilityActionComponent ActionComponent { get; set; }
     
-    public Ability(
-        PawnController abilityUser,
-        string animation, 
-        Damage damage,
-        float range, 
-        float delay, 
-        TargetType target, 
-        FocusType focus,
-        int error,
-        int manaCost,
-        ProjectileController projectile)
-    {
-        AbilityUser = abilityUser;
-        Animation = animation;
-        Delay = delay;
-        Range = range;
-
-        if (damage.Value > 0)
-        {
-            Effect = new DamageEffect(damage);
-        }
-        else
-        {
-            Effect = new HealEffect(-damage.Value, false);
-        }
-        
-        FocusComponent = new AbilityFocusComponent(AbilityUser, target, focus, 1, error);
-        ResourceComponent = new ManaResourceComponent(AbilityUser, manaCost);
-        
-        ActionComponent = projectile != null ? 
-            new ProjectileActionComponent(AbilityUser, FocusComponent, Effect, projectile) : 
-            new InstantActionComponent(AbilityUser, FocusComponent, Effect);
-    }
 
     public Ability(
         PawnController abilityUser,

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,14 +8,14 @@ public class ButtonItemController : MonoBehaviour
     [field: SerializeField] private TextMeshProUGUI AbilityName { get; set; }
     [field: SerializeField] private TextMeshProUGUI AbilityCost { get; set; }
     
-    private AttackData Ability { get; set; }
+    private AbilityData Ability { get; set; }
 
-    public ButtonItemController Init(PawnController pawnController, AttackData ability)
+    public ButtonItemController Init(PawnController pawnController, AbilityData ability)
     {
         Ability = ability;
         
         AbilityName.SetText(ability.name);
-        AbilityCost.SetText(ability.ManaCost.ToString());
+        AbilityCost.SetText(ability.ResourceData.GetCost().ToString());
 
         SpecialButton.gameObject.SetActive(false);
         
@@ -32,7 +30,7 @@ public class ButtonItemController : MonoBehaviour
 
     public void TryActivateButton(int mana)
     {
-        if(mana < Ability.ManaCost)
+        if(mana < Ability.ResourceData.GetCost())
             return;
         
         SpecialButton.gameObject.SetActive(true);

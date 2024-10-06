@@ -10,39 +10,39 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e3f2961cde84cc2bca5113224648ba8, type: 3}
-  m_Name: BowAttack
+  m_Name: Fireball
   m_EditorClassIdentifier: 
-  <Animation>k__BackingField: BowAttack
-  <Range>k__BackingField: 5
-  <Delay>k__BackingField: 1
+  <Animation>k__BackingField: Fireball
+  <Range>k__BackingField: 3
+  <Delay>k__BackingField: 1.5
   <EffectData>k__BackingField:
-    rid: 4871999933041868802
+    rid: 4871999933996597263
   <FocusData>k__BackingField:
-    rid: 4871999933996597251
+    rid: 4871999933996597262
   <ResourceData>k__BackingField:
-    rid: 4871999933996597250
+    rid: 4871999933996597261
   <ActionData>k__BackingField:
-    rid: 4871999933041868803
+    rid: 4871999933996597260
   references:
     version: 2
     RefIds:
-    - rid: 4871999933041868802
-      type: {class: DamageEffectData, ns: , asm: Assembly-CSharp}
-      data:
-        <Damage>k__BackingField:
-          <Value>k__BackingField: 10
-          <Type>k__BackingField: 1
-    - rid: 4871999933041868803
+    - rid: 4871999933996597260
       type: {class: ProjectileActionData, ns: , asm: Assembly-CSharp}
       data:
-        <Projectile>k__BackingField: {fileID: 3883816015513118945, guid: 1c196ea9bdbc3434ca8969f1aa74aedb, type: 3}
-    - rid: 4871999933996597250
+        <Projectile>k__BackingField: {fileID: 3883816015513118945, guid: 168bc8105127cf344a0b5af79c23baf8, type: 3}
+    - rid: 4871999933996597261
       type: {class: NoResourceData, ns: , asm: Assembly-CSharp}
       data: 
-    - rid: 4871999933996597251
+    - rid: 4871999933996597262
       type: {class: FocusComponent, ns: , asm: Assembly-CSharp}
       data:
         <Target>k__BackingField: 2
-        <Focus>k__BackingField: 0
+        <Focus>k__BackingField: 1
         <NumberOfTargets>k__BackingField: 1
-        <Error>k__BackingField: 2
+        <Error>k__BackingField: 3
+    - rid: 4871999933996597263
+      type: {class: DamageEffectData, ns: , asm: Assembly-CSharp}
+      data:
+        <Damage>k__BackingField:
+          <Value>k__BackingField: 3
+          <Type>k__BackingField: 3

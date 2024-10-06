@@ -6,4 +6,6 @@ public class NoResourceData : BaseResourceData
     {
         return new NoResourceComponent(abilityUser);
     }
+
+    public override int GetCost() => 0;
 }

@@ -8,7 +8,7 @@ public class AbilityData : ScriptableObject
     [field: SerializeField] private float Delay { get; set; }
     [field: SerializeField] [field: SerializeReference] private BaseEffectData EffectData { get; set; }
     [field: SerializeField] [field: SerializeReference] private BaseFocusData FocusData { get; set; }
-    [field: SerializeField] [field: SerializeReference] private BaseResourceData ResourceData { get; set; }
+    [field: SerializeField] [field: SerializeReference] public BaseResourceData ResourceData { get; private set; }
     [field: SerializeField] [field: SerializeReference] private BaseActionData ActionData { get; set; }
 
     public Ability ToDomain(PawnController abilityUser)

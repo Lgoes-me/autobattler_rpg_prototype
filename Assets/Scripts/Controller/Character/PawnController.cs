@@ -134,7 +134,7 @@ public class PawnController : MonoBehaviour
         enabled = false;
     }
 
-    public void DoSpecial(AttackData attackData)
+    public void DoSpecial(AbilityData attackData)
     {
         RequestedSpecialAbility = attackData.ToDomain(this);
     }

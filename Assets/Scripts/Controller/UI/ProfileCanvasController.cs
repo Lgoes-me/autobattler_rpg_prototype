@@ -16,7 +16,7 @@ public class ProfileCanvasController : PawnCanvasController
         SpecialButtons = new List<ButtonItemController>();
         Name.SetText(pawnController.PawnData.name);
 
-        foreach (var ability in pawnController.Pawn.SpecialAttacks)
+        foreach (var ability in pawnController.Pawn.SpecialAbilities)
         {
             SpecialButtons.Add(Instantiate(SpecialButtonPrefab, SpecialButtonsParent).Init(pawnController, ability));
         }

@@ -16,7 +16,7 @@ public class AttackData : ScriptableObject
 
     public Ability ToDomain(PawnController abilityUser)
     {
-        return new Ability(abilityUser, Animation, Damage, Range, Delay, Target, Focus, Error, ManaCost, Projectile); 
+        return null; 
     }
 
     public int GetPriority()

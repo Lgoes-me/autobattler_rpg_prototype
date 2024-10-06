@@ -16,9 +16,8 @@ MonoBehaviour:
   <Character>k__BackingField: {fileID: 3998067550890190194, guid: 285cea4008ea6fb4694f4054dbef2399, type: 3}
   <Weapon>k__BackingField: {fileID: 3501364879892670405, guid: 5cfb29910a0e40f489cdfb2185e68194, type: 3}
   <Health>k__BackingField: 30
-  <Size>k__BackingField: 1
-  <Initiative>k__BackingField: 1
-  <Attacks>k__BackingField:
-  - {fileID: 11400000, guid: d77bf209c34de0743b765f6915b3e172, type: 2}
-  <SpecialAttacks>k__BackingField:
-  - {fileID: 11400000, guid: 1b1ff43bcbd4cf346b8016abe8bad2f3, type: 2}
+  <Mana>k__BackingField: 0
+  <Strength>k__BackingField: 0
+  <Abilities>k__BackingField:
+  - {fileID: 11400000, guid: 80d0f901567ce6047847c53227bc72a9, type: 2}
+  <SpecialAbilities>k__BackingField: []

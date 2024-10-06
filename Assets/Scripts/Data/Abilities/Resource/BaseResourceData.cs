@@ -2,4 +2,5 @@
 public abstract class BaseResourceData : AbilityComponentData
 {
     public abstract AbilityResourceComponent ToDomain(PawnController abilityUser);
+    public abstract int GetCost();
 }
