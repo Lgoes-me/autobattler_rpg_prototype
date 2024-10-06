@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 [CreateAssetMenu]
 public class AbilityData : ScriptableObject
@@ -9,6 +10,7 @@ public class AbilityData : ScriptableObject
     [field: SerializeField] [field: SerializeReference] private BaseFocusData FocusData { get; set; }
     [field: SerializeField] [field: SerializeReference] public BaseResourceData ResourceData { get; private set; }
     [field: SerializeField] [field: SerializeReference] private BaseActionData ActionData { get; set; }
+    [field: SerializeField] [field: SerializeReference] private PriorityModifier[] Priorities { get; set; }
 
     public Ability ToDomain(PawnController abilityUser)
     {

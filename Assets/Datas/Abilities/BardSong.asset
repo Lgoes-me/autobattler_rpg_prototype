@@ -22,6 +22,8 @@ MonoBehaviour:
     rid: 4871999933996597254
   <ActionData>k__BackingField:
     rid: 4871999933996597255
+  <Priorities>k__BackingField:
+  - rid: 4871999947845402626
   references:
     version: 2
     RefIds:
@@ -43,3 +45,9 @@ MonoBehaviour:
     - rid: 4871999933996597255
       type: {class: InstantActionData, ns: , asm: Assembly-CSharp}
       data: 
+    - rid: 4871999947845402626
+      type: {class: LowHealthModifier, ns: , asm: Assembly-CSharp}
+      data:
+        <Target>k__BackingField: 1
+        <Focus>k__BackingField: 3
+        <Health>k__BackingField: 10

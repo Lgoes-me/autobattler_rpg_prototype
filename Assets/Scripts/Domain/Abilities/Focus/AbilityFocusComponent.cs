@@ -37,6 +37,7 @@ public class AbilityFocusComponent
         {
             return Target switch
             {
+                TargetType.Self => pawn == AbilityUser,
                 TargetType.Enemy => pawn.Team != AbilityUser.Team && pawn.PawnState.CanBeTargeted,
                 TargetType.Ally => pawn.Team == AbilityUser.Team && pawn.PawnState.CanBeTargeted &&
                                    pawn.PawnState.AbleToFight,
@@ -44,13 +45,11 @@ public class AbilityFocusComponent
             };
         }
 
-        ;
-
         float OrderPredicate(PawnController pawn)
         {
             return Focus switch
             {
-                FocusType.Self => pawn == AbilityUser ? 0 : 1,
+                FocusType.Unknown => 1,
                 FocusType.Closest => pawn == AbilityUser
                     ? 1000
                     : (pawn.transform.position - AbilityUser.transform.position).sqrMagnitude,
@@ -78,14 +77,14 @@ public class AbilityFocusComponent
 
 public enum TargetType
 {
-    Unknown = 0,
+    Self = 0,
     Ally = 1,
     Enemy = 2
 }
 
 public enum FocusType
 {
-    Self = 0,
+    Unknown = 0,
     Closest = 1,
     Farthest = 2,
     LowestLife = 3,

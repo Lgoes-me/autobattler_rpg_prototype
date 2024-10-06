@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using UnityEditor;
@@ -16,12 +15,7 @@ public class AbilityComponentDrawer : PropertyDrawer
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
-        Type t = fieldInfo.FieldType;
-        
-        if (t.IsArray && t.FullName.EndsWith("[]"))
-        {
-            t = Type.GetType(t.FullName.Substring(0, t.FullName.Length - 2));
-        }
+        Type t = GetFieldType();
 
         string typeName = property.managedReferenceValue?.GetType().Name ?? "Not set";
 
