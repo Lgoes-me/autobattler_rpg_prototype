@@ -16,6 +16,8 @@ MonoBehaviour:
     rid: 4871999933041868802
   <ActionData>k__BackingField:
     rid: 4871999933041868803
+  <ResourceData>k__BackingField:
+    rid: 4871999933996597250
   <Animation>k__BackingField: 
   <Range>k__BackingField: 5
   <Delay>k__BackingField: 1
@@ -23,7 +25,6 @@ MonoBehaviour:
   <NumberOfTargets>k__BackingField: 1
   <Focus>k__BackingField: 2
   <Error>k__BackingField: 2
-  <ManaCost>k__BackingField: 0
   references:
     version: 2
     RefIds:
@@ -37,3 +38,6 @@ MonoBehaviour:
       type: {class: ProjectileActionData, ns: , asm: Assembly-CSharp}
       data:
         <Projectile>k__BackingField: {fileID: 0}
+    - rid: 4871999933996597250
+      type: {class: NoResourceData, ns: , asm: Assembly-CSharp}
+      data: 

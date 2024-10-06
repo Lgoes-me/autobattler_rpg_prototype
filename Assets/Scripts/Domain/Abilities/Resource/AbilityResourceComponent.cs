@@ -1,34 +1,13 @@
-﻿using UnityEngine;
-
-public class AbilityResourceComponent
+﻿public abstract class AbilityResourceComponent
 {
-    private PawnController AbilityUser { get; set; }
-    private int ManaCost { get; set; }
+    protected PawnController AbilityUser { get; private set; }
 
-    public AbilityResourceComponent(PawnController abilityUser, int manaCost)
+    protected AbilityResourceComponent(PawnController abilityUser)
     {
         AbilityUser = abilityUser;
-        ManaCost = manaCost;
     }
 
-    public bool HasResource()
-    {
-        var pawn = AbilityUser.Pawn;
-        return pawn.Mana >= ManaCost;
-    }
-    
-    public void SpendResource()
-    {
-        var pawn = AbilityUser.Pawn;
-        
-        if(!pawn.HasMana)
-            return;
+    public abstract bool HasResource();
 
-        pawn.Mana = Mathf.Clamp(
-            ManaCost > 0 ? pawn.Mana - ManaCost : pawn.Mana + 10, 
-            0, 
-            pawn.MaxMana);
-        
-        AbilityUser.PawnCanvasController.UpdateMana();
-    }
+    public abstract void SpendResource();
 }

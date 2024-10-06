@@ -40,8 +40,8 @@ public class Ability
             Effect = new HealEffect(-damage.Value, false);
         }
         
-        FocusComponent = new AbilityFocusComponent(AbilityUser, target, focus, error);
-        ResourceComponent = new AbilityResourceComponent(AbilityUser, manaCost);
+        FocusComponent = new AbilityFocusComponent(AbilityUser, target, focus, 1, error);
+        ResourceComponent = new ManaResourceComponent(AbilityUser, manaCost);
         
         ActionComponent = projectile != null ? 
             new ProjectileActionComponent(AbilityUser, FocusComponent, Effect, projectile) : 

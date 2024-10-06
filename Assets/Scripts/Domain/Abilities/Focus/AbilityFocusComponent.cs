@@ -9,7 +9,7 @@ public class AbilityFocusComponent
     private PawnController AbilityUser { get; set; }
     private TargetType Target { get; set; }
     private FocusType Focus { get; set; }
-    private int Quantidade { get; set; }
+    private int NumberOfTargets { get; set; }
     private int Error { get; set; }
     
     public Vector3 Destination => HasFocus ? FocusedPawns[0].transform.position : AbilityUser.transform.position;
@@ -17,14 +17,14 @@ public class AbilityFocusComponent
     
     private bool HasFocus { get; set; }
 
-    public AbilityFocusComponent(PawnController abilityUser, TargetType target, FocusType focus, int error)
+    public AbilityFocusComponent(PawnController abilityUser, TargetType target, FocusType focus, int numberOfTargets, int error)
     {
         AbilityUser = abilityUser;
         Target = target;
         Focus = focus;
         Error = error;
         HasFocus = false;
-        Quantidade = 1;
+        NumberOfTargets = numberOfTargets;
         FocusedPawns = new List<PawnController>();
     }
 
@@ -66,7 +66,7 @@ public class AbilityFocusComponent
         
         HasFocus = true;
 
-        for (int i = 0; i < Mathf.Min(Quantidade, selectedPawns.Count); i++)
+        for (int i = 0; i < Mathf.Min(NumberOfTargets, selectedPawns.Count); i++)
         {
             var randomPawn = selectedPawns[Random.Range(0, selectedPawns.Count)];
             selectedPawns.Remove(randomPawn);
