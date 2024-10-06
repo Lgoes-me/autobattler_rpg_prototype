@@ -47,6 +47,27 @@ public class Ability
             new ProjectileActionComponent(AbilityUser, FocusComponent, Effect, projectile) : 
             new InstantActionComponent(AbilityUser, FocusComponent, Effect);
     }
+
+    public Ability(
+        PawnController abilityUser,
+        string animation,
+        float range,
+        float delay,
+        AbilityEffect effect,
+        AbilityFocusComponent focusComponent,
+        AbilityResourceComponent resourceComponent,
+        AbilityActionComponent actionComponent)
+    {
+        AbilityUser = abilityUser;
+        Animation = animation;
+        Range = range;
+        Delay = delay;
+
+        Effect = effect;
+        FocusComponent = focusComponent;
+        ResourceComponent = resourceComponent;
+        ActionComponent = actionComponent;
+    }
     
     public void ChooseFocus(List<PawnController> pawns)
     {

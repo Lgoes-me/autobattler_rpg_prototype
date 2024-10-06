@@ -44,9 +44,12 @@ public class PawnController : MonoBehaviour
 
     public IEnumerator Turno(List<PawnController> pawns)
     {
-        Ability = RequestedSpecialAbility ?? Pawn.GetCurrentAttackIntent(Team is TeamType.Enemies).ToDomain(this);
-        Ability.ChooseFocus(pawns);
-
+        if (Ability == null)
+        {
+            Ability = RequestedSpecialAbility ?? Pawn.GetCurrentAttackIntent(Team is TeamType.Enemies).ToDomain(this);
+            Ability.ChooseFocus(pawns);
+        }
+        
         var direction = Ability.Destination - transform.position;
         
         if (direction.magnitude > Ability.Range)
@@ -77,10 +80,9 @@ public class PawnController : MonoBehaviour
         if (Ability == RequestedSpecialAbility)
             RequestedSpecialAbility = null;
 
-        Ability.SpendResource();
-        
         Application.Instance.AudioManager.PlaySound(SfxType.Slash);
-
+        
+        Ability.SpendResource();
         Ability.DoAction();
     }
     
@@ -99,6 +101,8 @@ public class PawnController : MonoBehaviour
         if (!PawnState.AbleToFight)
             yield break;
         Pawn.SetInitiative(Ability.Delay);
+        
+        Ability = null;
         CharacterController.SetAnimationState(new IdleState());
     }
 
@@ -110,10 +114,9 @@ public class PawnController : MonoBehaviour
         CharacterController.SetDirection(NavMeshAgent.velocity);
         var direction = Ability.Destination - transform.position;
         
-        if (Ability != null && Ability.Range >= direction.magnitude)
+        if (Ability.Range >= direction.magnitude)
         {
             NavMeshAgent.isStopped = true;
-            NavMeshAgent.SetDestination(transform.position);
             CharacterController.SetSpeed(0);
         }
         else if(NavMeshAgent.pathStatus == NavMeshPathStatus.PathComplete && NavMeshAgent.remainingDistance < 1f)
@@ -148,11 +151,6 @@ public class PawnController : MonoBehaviour
 
         Instantiate(projectile, CharacterController.WeaponController.SpawnPoint.position,
             Quaternion.LookRotation(direction)).Init(this, effect, direction);
-    }
-    
-    public void UpdateMana()
-    {
-        PawnCanvasController.UpdateMana();
     }
 
     public void SetCharacter(PawnData pawnData)

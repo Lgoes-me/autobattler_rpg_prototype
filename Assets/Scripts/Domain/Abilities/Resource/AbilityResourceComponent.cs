@@ -29,6 +29,6 @@ public class AbilityResourceComponent
             0, 
             pawn.MaxMana);
         
-        AbilityUser.UpdateMana();
+        AbilityUser.PawnCanvasController.UpdateMana();
     }
 }
