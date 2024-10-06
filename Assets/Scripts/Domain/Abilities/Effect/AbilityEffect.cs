@@ -2,7 +2,7 @@
 
 public abstract class AbilityEffect
 {
-    public void DoAbilityEffect(List<PawnController> pawns)
+    public void DoAbilityEffect(IEnumerable<PawnController> pawns)
     {
         foreach (var pawn in pawns)
         {

@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: SpecialAttack
   m_EditorClassIdentifier: 
   <Animation>k__BackingField: SpecialAttack
-  <Range>k__BackingField: 1
   <Delay>k__BackingField: 0.75
   <EffectData>k__BackingField:
     rid: 4871999933996597272
@@ -37,7 +36,7 @@ MonoBehaviour:
       data:
         <Target>k__BackingField: 2
         <Focus>k__BackingField: 1
-        <NumberOfTargets>k__BackingField: 1
+        <Range>k__BackingField: 1
         <Error>k__BackingField: 2
     - rid: 4871999933996597274
       type: {class: InstantActionData, ns: , asm: Assembly-CSharp}

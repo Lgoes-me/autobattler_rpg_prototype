@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: BardSong
   m_EditorClassIdentifier: 
   <Animation>k__BackingField: BardSong
-  <Range>k__BackingField: 3
   <Delay>k__BackingField: 1
   <EffectData>k__BackingField:
     rid: 4871999933996597252
@@ -36,7 +35,7 @@ MonoBehaviour:
       data:
         <Target>k__BackingField: 1
         <Focus>k__BackingField: 3
-        <NumberOfTargets>k__BackingField: 3
+        <Range>k__BackingField: 3
         <Error>k__BackingField: 0
     - rid: 4871999933996597254
       type: {class: NoResourceData, ns: , asm: Assembly-CSharp}

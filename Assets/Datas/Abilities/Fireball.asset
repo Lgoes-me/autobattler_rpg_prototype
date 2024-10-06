@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Fireball
   m_EditorClassIdentifier: 
   <Animation>k__BackingField: Fireball
-  <Range>k__BackingField: 3
   <Delay>k__BackingField: 1.5
   <EffectData>k__BackingField:
     rid: 4871999933996597263
@@ -38,7 +37,7 @@ MonoBehaviour:
       data:
         <Target>k__BackingField: 2
         <Focus>k__BackingField: 1
-        <NumberOfTargets>k__BackingField: 1
+        <Range>k__BackingField: 3
         <Error>k__BackingField: 3
     - rid: 4871999933996597263
       type: {class: DamageEffectData, ns: , asm: Assembly-CSharp}

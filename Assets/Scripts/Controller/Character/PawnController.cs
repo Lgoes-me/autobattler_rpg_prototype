@@ -49,10 +49,8 @@ public class PawnController : MonoBehaviour
             Ability = RequestedSpecialAbility ?? Pawn.GetCurrentAttackIntent(Team is TeamType.Enemies).ToDomain(this);
             Ability.ChooseFocus(pawns);
         }
-        
-        var direction = Ability.Destination - transform.position;
-        
-        if (direction.magnitude > Ability.Range)
+
+        if (!Ability.Focus.IsInRange)
         {
             CharacterController.SetAnimationState(new IdleState());
         }
@@ -60,9 +58,6 @@ public class PawnController : MonoBehaviour
         {
             NavMeshAgent.isStopped = true;
             NavMeshAgent.SetDestination(transform.position);
-            CharacterController.SetSpeed(0);
-            CharacterController.SetDirection(direction);
-            
             CharacterController.SetAnimationState(new AttackState(Ability, AttackEnemy), GoBackToIdle);
         }
         
@@ -112,18 +107,16 @@ public class PawnController : MonoBehaviour
             return;
 
         CharacterController.SetDirection(NavMeshAgent.velocity);
-        var direction = Ability.Destination - transform.position;
         
-        if (Ability.Range >= direction.magnitude)
+        if (Ability.Focus.IsInRange)
         {
             NavMeshAgent.isStopped = true;
             CharacterController.SetSpeed(0);
         }
         else if(NavMeshAgent.pathStatus == NavMeshPathStatus.PathComplete && NavMeshAgent.remainingDistance < 1f)
         {
-            var randomRotation = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)) * Vector3.forward * (Ability.Range - 1);
             NavMeshAgent.isStopped = false;
-            NavMeshAgent.SetDestination(Ability.Destination + randomRotation);
+            NavMeshAgent.SetDestination(Ability.Focus.WalkingDestination);
             CharacterController.SetSpeed(NavMeshAgent.velocity.magnitude);
         }
     }
@@ -146,7 +139,7 @@ public class PawnController : MonoBehaviour
 
     public void SpawnProjectile(ProjectileController projectile, AbilityEffect effect)
     {
-        var direction = Ability.Destination - CharacterController.WeaponController.SpawnPoint.position;
+        var direction = Ability.Focus.FocusedPawnPosition - CharacterController.WeaponController.SpawnPoint.position;
         direction = new Vector3(direction.x, 0, direction.z);
 
         Instantiate(projectile, CharacterController.WeaponController.SpawnPoint.position,

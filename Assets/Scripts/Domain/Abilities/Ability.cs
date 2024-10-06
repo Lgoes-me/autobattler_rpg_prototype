@@ -6,53 +6,49 @@ public class Ability
     private PawnController AbilityUser { get; set; }
     public string Animation { get; set; }
     public float Delay { get; set; }
-    public float Range { get; set; }
-    public Vector3 Destination => FocusComponent.Destination;
 
     private AbilityEffect Effect { get; set; }
-    private AbilityFocusComponent FocusComponent { get; set; }
-    private AbilityResourceComponent ResourceComponent { get; set; }
-    private AbilityActionComponent ActionComponent { get; set; }
+    public AbilityFocusComponent Focus { get; private set; }
+    private AbilityResourceComponent Resource { get; set; }
+    private AbilityActionComponent Action { get; set; }
     
 
     public Ability(
         PawnController abilityUser,
         string animation,
-        float range,
         float delay,
         AbilityEffect effect,
-        AbilityFocusComponent focusComponent,
-        AbilityResourceComponent resourceComponent,
-        AbilityActionComponent actionComponent)
+        AbilityFocusComponent focus,
+        AbilityResourceComponent resource,
+        AbilityActionComponent action)
     {
         AbilityUser = abilityUser;
         Animation = animation;
-        Range = range;
         Delay = delay;
 
         Effect = effect;
-        FocusComponent = focusComponent;
-        ResourceComponent = resourceComponent;
-        ActionComponent = actionComponent;
+        Focus = focus;
+        Resource = resource;
+        Action = action;
     }
     
     public void ChooseFocus(List<PawnController> pawns)
     {
-        FocusComponent.ChooseFocus(pawns);
+        Focus.ChooseFocus(pawns);
     }
     
     public bool HasResource()
     {
-        return ResourceComponent.HasResource();
+        return Resource.HasResource();
     }
     
     public void SpendResource()
     {
-        ResourceComponent.SpendResource();
+        Resource.SpendResource();
     }
     
     public void DoAction()
     {
-        ActionComponent.DoAction();
+        Action.DoAction();
     }
 }

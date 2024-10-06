@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: LanceAttack
   m_EditorClassIdentifier: 
   <Animation>k__BackingField: LanceAttack
-  <Range>k__BackingField: 1.75
   <Delay>k__BackingField: 0.2
   <EffectData>k__BackingField:
     rid: 4871999933996597264
@@ -37,7 +36,7 @@ MonoBehaviour:
       data:
         <Target>k__BackingField: 2
         <Focus>k__BackingField: 1
-        <NumberOfTargets>k__BackingField: 1
+        <Range>k__BackingField: 1.75
         <Error>k__BackingField: 1
     - rid: 4871999933996597266
       type: {class: NoResourceData, ns: , asm: Assembly-CSharp}

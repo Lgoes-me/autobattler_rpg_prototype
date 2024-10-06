@@ -97,7 +97,6 @@ MonoBehaviour:
   <NavMeshAgent>k__BackingField: {fileID: 449031379433608940}
   <PawnCanvasController>k__BackingField: {fileID: 0}
   <CharacterController>k__BackingField: {fileID: 0}
-  <SpawnPoint>k__BackingField: {fileID: 0}
   <Team>k__BackingField: 0
 --- !u!114 &7903008837011009515
 MonoBehaviour:

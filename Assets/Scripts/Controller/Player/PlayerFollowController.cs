@@ -34,7 +34,7 @@ public class PlayerFollowController : MonoBehaviour
         while (gameObject.activeInHierarchy)
         {
             var destination = toFollow.transform.position;
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.1f);
 
             var randomRotation = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)) * Vector3.forward * 0.5f;
             CharacterController.SetDirection(destination - transform.position);

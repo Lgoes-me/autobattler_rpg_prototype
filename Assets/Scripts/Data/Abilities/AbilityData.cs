@@ -4,7 +4,6 @@
 public class AbilityData : ScriptableObject
 {
     [field: SerializeField] private string Animation { get; set; }
-    [field: SerializeField] private float Range { get; set; }
     [field: SerializeField] private float Delay { get; set; }
     [field: SerializeField] [field: SerializeReference] private BaseEffectData EffectData { get; set; }
     [field: SerializeField] [field: SerializeReference] private BaseFocusData FocusData { get; set; }
@@ -21,7 +20,6 @@ public class AbilityData : ScriptableObject
         return new Ability(
             abilityUser, 
             Animation,
-            Range, 
             Delay, 
             effect, 
             focusComponent, 

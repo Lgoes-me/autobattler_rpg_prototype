@@ -9,46 +9,54 @@ public class AbilityFocusComponent
     private PawnController AbilityUser { get; set; }
     private TargetType Target { get; set; }
     private FocusType Focus { get; set; }
-    private int NumberOfTargets { get; set; }
+    private float Range { get; set; }
     private int Error { get; set; }
-    
-    public Vector3 Destination => HasFocus ? FocusedPawns[0].transform.position : AbilityUser.transform.position;
-    public List<PawnController> FocusedPawns { get; set; }
-    
-    private bool HasFocus { get; set; }
 
-    public AbilityFocusComponent(PawnController abilityUser, TargetType target, FocusType focus, int numberOfTargets, int error)
+    public bool IsInRange => Range >= (FocusedPawnPosition - AbilityUser.transform.position).magnitude;
+    public Vector3 FocusedPawnPosition => FocusedPawn != null ? FocusedPawn.transform.position : AbilityUser.transform.position;
+    public Vector3 WalkingDestination =>
+        FocusedPawn != null ? 
+            FocusedPawn.transform.position + Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)) * Vector3.forward * (Range - 1)
+            : AbilityUser.transform.position;
+    
+    public PawnController FocusedPawn { get; private set; }
+
+    public AbilityFocusComponent(PawnController abilityUser, TargetType target, FocusType focus, float range, int error)
     {
         AbilityUser = abilityUser;
         Target = target;
         Focus = focus;
+        Range = range;
         Error = error;
-        HasFocus = false;
-        NumberOfTargets = numberOfTargets;
-        FocusedPawns = new List<PawnController>();
+        FocusedPawn = null;
     }
 
     public void ChooseFocus(List<PawnController> pawns)
     {
-        FocusedPawns.Clear();
-        
         bool WherePredicate(PawnController pawn)
         {
             return Target switch
             {
                 TargetType.Enemy => pawn.Team != AbilityUser.Team && pawn.PawnState.CanBeTargeted,
-                TargetType.Ally => pawn.Team == AbilityUser.Team && pawn.PawnState.CanBeTargeted && pawn.PawnState.AbleToFight,
+                TargetType.Ally => pawn.Team == AbilityUser.Team && pawn.PawnState.CanBeTargeted &&
+                                   pawn.PawnState.AbleToFight,
                 _ => throw new ArgumentOutOfRangeException()
             };
-        };
+        }
+
+        ;
 
         float OrderPredicate(PawnController pawn)
         {
             return Focus switch
             {
                 FocusType.Self => pawn == AbilityUser ? 0 : 1,
-                FocusType.Closest => pawn == AbilityUser ? 1000 : (pawn.transform.position - AbilityUser.transform.position).sqrMagnitude,
-                FocusType.Farthest => pawn == AbilityUser ? 1000 : 1000 - (pawn.transform.position - AbilityUser.transform.position).sqrMagnitude,
+                FocusType.Closest => pawn == AbilityUser
+                    ? 1000
+                    : (pawn.transform.position - AbilityUser.transform.position).sqrMagnitude,
+                FocusType.Farthest => pawn == AbilityUser
+                    ? 1000
+                    : 1000 - (pawn.transform.position - AbilityUser.transform.position).sqrMagnitude,
                 FocusType.LowestLife => pawn == AbilityUser ? 1000 : pawn.Pawn.Health,
                 FocusType.HighestLife => pawn == AbilityUser ? 1000 : 1000 - pawn.Pawn.Health,
                 _ => throw new ArgumentOutOfRangeException()
@@ -63,16 +71,8 @@ public class AbilityFocusComponent
 
         if (selectedPawns.Count == 0)
             return;
-        
-        HasFocus = true;
 
-        for (int i = 0; i < Mathf.Min(NumberOfTargets, selectedPawns.Count); i++)
-        {
-            var randomPawn = selectedPawns[Random.Range(0, selectedPawns.Count)];
-            selectedPawns.Remove(randomPawn);
-            
-            FocusedPawns.Add(randomPawn);
-        }
+        FocusedPawn = selectedPawns[Random.Range(0, selectedPawns.Count)];
     }
 }
 

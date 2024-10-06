@@ -1,16 +1,17 @@
-﻿public class InstantActionComponent : AbilityActionComponent
+﻿using System.Collections.Generic;
+
+public class InstantActionComponent : AbilityActionComponent
 {
     public InstantActionComponent(
-        PawnController abilityUser, 
+        PawnController abilityUser,
         AbilityFocusComponent focusComponent,
-        AbilityEffect effect) 
+        AbilityEffect effect)
         : base(abilityUser, focusComponent, effect)
     {
-        
     }
 
     public override void DoAction()
     {
-        Effect.DoAbilityEffect(FocusComponent.FocusedPawns);
+        Effect.DoAbilityEffect(FocusComponent.FocusedPawn);
     }
 }
