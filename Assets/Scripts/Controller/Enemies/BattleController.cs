@@ -5,21 +5,14 @@ using UnityEngine;
 
 public class BattleController : MonoBehaviour
 {
-    private List<PawnController> PlayerPawns { get; set; }
-    private List<PawnController> EnemyPawns { get; set; }
-    private List<PawnController> InitiativeList { get; set; }
-
-    private string BattleId { get; set; }
+    private Battle Battle { get; set; }
 
     public void ActivateBattleScene(string battleId, List<EnemyInfo> enemies)
     {
         Application.Instance.AudioManager.PlayMusic(MusicType.Battle);
         
-        BattleId = battleId;
-        
-        PlayerPawns = new List<PawnController>();
-        EnemyPawns = new List<PawnController>();
-        InitiativeList = new List<PawnController>();
+        var enemyPawns = new List<PawnController>();
+        var playerPawns = new List<PawnController>();
 
         foreach (var enemy in enemies)
         {
@@ -32,7 +25,7 @@ public class BattleController : MonoBehaviour
             }
             
             enemyController.PawnCanvasController.Init(enemyController);
-            EnemyPawns.Add(enemyController);
+            enemyPawns.Add(enemyController);
         }
 
         var playerPawnController = Application.Instance.PlayerManager.GetPawnController();
@@ -43,7 +36,7 @@ public class BattleController : MonoBehaviour
         var playerCanvasController = pawnCanvases[0];
         playerPawnController.PawnCanvasController = playerCanvasController;
         playerCanvasController.Init(playerPawnController);
-        PlayerPawns.Add(playerPawnController);
+        playerPawns.Add(playerPawnController);
 
         foreach (var alliedController in Application.Instance.PartyManager.Party)
         {
@@ -54,14 +47,10 @@ public class BattleController : MonoBehaviour
             alliedController.PawnCanvasController = canvasController;
             canvasController.Init(alliedController);
             
-            PlayerPawns.Add(alliedController);
+            playerPawns.Add(alliedController);
         }
 
-        var pawnsList = new List<PawnController>();
-        pawnsList.AddRange(PlayerPawns);
-        pawnsList.AddRange(EnemyPawns);
-
-        InitiativeList = pawnsList.OrderByDescending(p => p.Pawn.Initiative).ToList();
+        Battle = new Battle(battleId, enemyPawns, playerPawns);
 
         StartCoroutine(BattleCoroutine());
     }
@@ -75,8 +64,8 @@ public class BattleController : MonoBehaviour
         {
             yield return RealizaTurno();
 
-            hasEnemies = EnemyPawns.Count(e => e.PawnState.AbleToFight) > 0;
-            hasPlayers = PlayerPawns.Count(e => e.PawnState.AbleToFight) > 0;
+            hasEnemies = Battle.HasEnemies;
+            hasPlayers = Battle.HasPlayers;
         }
 
         if (hasEnemies)
@@ -90,9 +79,20 @@ public class BattleController : MonoBehaviour
         }
     }
 
+    private IEnumerator RealizaTurno()
+    {
+        var initiativeList = Battle.GetInitiativeList();
+        
+        foreach (var pawn in initiativeList)
+        {
+            if (!pawn.PawnState.CanTakeTurn) continue;
+            yield return pawn.Turno(Battle);
+        }
+    }
+
     private IEnumerator OnDefeat()
     {
-        foreach (var enemyPawn in EnemyPawns)
+        foreach (var enemyPawn in Battle.EnemyPawns)
         {
             if (!enemyPawn.PawnState.AbleToFight)
                 continue;
@@ -100,7 +100,7 @@ public class BattleController : MonoBehaviour
             enemyPawn.Dance();
         }
 
-        foreach (var pawn in InitiativeList)
+        foreach (var pawn in Battle.Pawns)
         {
             pawn.PawnCanvasController.Hide();
         }
@@ -113,27 +113,18 @@ public class BattleController : MonoBehaviour
         Application.Instance.SceneManager.RespawnAtBonfire();
     }
 
-    private IEnumerator RealizaTurno()
-    {
-        foreach (var pawn in InitiativeList)
-        {
-            if (!pawn.PawnState.CanTakeTurn) continue;
-            yield return pawn.Turno(InitiativeList);
-        }
-    }
-
     private IEnumerator OnVictory()
     {
         Application.Instance.AudioManager.PlayMusic(MusicType.Victory);
 
-        foreach (var playerPawn in PlayerPawns)
+        foreach (var playerPawn in Battle.PlayerPawns)
         {
             playerPawn.Dance();
         }
 
         yield return new WaitForSeconds(1f);
 
-        foreach (var playerPawn in PlayerPawns)
+        foreach (var playerPawn in Battle.PlayerPawns)
         {
             var health = Mathf.Clamp(playerPawn.Pawn.Health + 15, 0, playerPawn.Pawn.MaxHealth);
             playerPawn.Pawn.Health += health;
@@ -142,12 +133,12 @@ public class BattleController : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        foreach (var playerPawn in PlayerPawns)
+        foreach (var playerPawn in Battle.PlayerPawns)
         {
             playerPawn.PawnCanvasController.Hide();
         }
 
-        foreach (var pawn in InitiativeList)
+        foreach (var pawn in Battle.Pawns)
         {
             pawn.Deactivate();
 
@@ -164,7 +155,7 @@ public class BattleController : MonoBehaviour
         var save = Application.Instance.Save;
         save.PlayerPawn = Application.Instance.PlayerManager.PawnController.Pawn.GetPawnInfo();
         save.SelectedParty = Application.Instance.PartyManager.Party.ToDictionary(p => p.Pawn.Id, p => p.Pawn.GetPawnInfo());
-        save.DefeatedEnemies.Add(BattleId);
+        save.DefeatedEnemies.Add(Battle.Id);
         Application.Instance.SaveManager.SaveData(save);
     }
 

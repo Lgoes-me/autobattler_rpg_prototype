@@ -42,12 +42,12 @@ public class PawnController : MonoBehaviour
         return this;
     }
 
-    public IEnumerator Turno(List<PawnController> pawns)
+    public IEnumerator Turno(Battle battle)
     {
         if (Ability == null)
         {
-            Ability = RequestedSpecialAbility ?? Pawn.GetCurrentAttackIntent(this, pawns, Team is TeamType.Enemies).ToDomain(this);
-            Ability.ChooseFocus(pawns);
+            Ability = RequestedSpecialAbility ?? Pawn.GetCurrentAttackIntent(this, battle, Team is TeamType.Enemies).ToDomain(this);
+            Ability.ChooseFocus(battle);
         }
 
         if (!Ability.Focus.IsInRange)

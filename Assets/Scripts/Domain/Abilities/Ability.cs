@@ -32,9 +32,9 @@ public class Ability
         Action = action;
     }
     
-    public void ChooseFocus(List<PawnController> pawns)
+    public void ChooseFocus(Battle battle)
     {
-        Focus.ChooseFocus(pawns);
+        Focus.ChooseFocus(battle);
     }
     
     public bool HasResource()

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class AbilityFocusComponent
@@ -31,47 +28,9 @@ public class AbilityFocusComponent
         FocusedPawn = null;
     }
 
-    public void ChooseFocus(List<PawnController> pawns)
+    public void ChooseFocus(Battle battle)
     {
-        bool WherePredicate(PawnController pawn)
-        {
-            return Target switch
-            {
-                TargetType.Self => pawn == AbilityUser,
-                TargetType.Enemy => pawn.Team != AbilityUser.Team && pawn.PawnState.CanBeTargeted,
-                TargetType.Ally => pawn.Team == AbilityUser.Team && pawn.PawnState.CanBeTargeted &&
-                                   pawn.PawnState.AbleToFight,
-                _ => throw new ArgumentOutOfRangeException()
-            };
-        }
-
-        float OrderPredicate(PawnController pawn)
-        {
-            return Focus switch
-            {
-                FocusType.Unknown => 1,
-                FocusType.Closest => pawn == AbilityUser
-                    ? 1000
-                    : (pawn.transform.position - AbilityUser.transform.position).sqrMagnitude,
-                FocusType.Farthest => pawn == AbilityUser
-                    ? 1000
-                    : 1000 - (pawn.transform.position - AbilityUser.transform.position).sqrMagnitude,
-                FocusType.LowestLife => pawn == AbilityUser ? 1000 : pawn.Pawn.Health,
-                FocusType.HighestLife => pawn == AbilityUser ? 1000 : 1000 - pawn.Pawn.Health,
-                _ => throw new ArgumentOutOfRangeException()
-            };
-        }
-
-        var selectedPawns = pawns
-            .Where(WherePredicate)
-            .OrderBy(OrderPredicate)
-            .Take(1 + Error)
-            .ToList();
-
-        if (selectedPawns.Count == 0)
-            return;
-
-        FocusedPawn = selectedPawns[Random.Range(0, selectedPawns.Count)];
+        FocusedPawn = battle.Query(AbilityUser, Target, Focus, Error);
     }
 }
 

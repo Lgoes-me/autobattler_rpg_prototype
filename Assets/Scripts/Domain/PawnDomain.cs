@@ -64,7 +64,7 @@ public class PawnDomain
 
     public AbilityData GetCurrentAttackIntent(
         PawnController abilityUser, 
-        List<PawnController> pawns,
+        Battle battle,
         bool automaticallyUseSpecials)
     {
         var abilities = new List<AbilityData>();
@@ -77,7 +77,7 @@ public class PawnDomain
             abilities.AddRange(specialAttacks);
         }
 
-        return abilities.OrderBy(a => a.GetPriority(abilityUser, pawns)).Last();
+        return abilities.OrderBy(a => a.GetPriority(abilityUser, battle)).Last();
     }
 }
 

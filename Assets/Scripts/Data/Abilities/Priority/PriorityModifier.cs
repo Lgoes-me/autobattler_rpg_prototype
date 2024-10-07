@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [System.Serializable]
 public abstract class PriorityModifier : AbilityComponentData
@@ -8,7 +7,7 @@ public abstract class PriorityModifier : AbilityComponentData
     
     public abstract int AlterPriority(
         PawnController abilityUser,
-        List<PawnController> pawns,
+        Battle battle,
         BaseFocusData focusData,
         int priority);
 }
