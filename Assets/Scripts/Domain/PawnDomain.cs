@@ -7,15 +7,15 @@ using UnityEngine;
 public class PawnDomain
 {
     public string Id { get; set; }
-    
+
     public int MaxHealth { get; private set; }
     public int Health { get; set; }
 
     public int MaxMana { get; private set; }
     public int Mana { get; set; }
-    
+
     public int Strength { get; set; }
-    
+
     public bool HasMana { get; private set; }
     public float Initiative { get; private set; }
 
@@ -31,7 +31,7 @@ public class PawnDomain
         List<AbilityData> specialAbilities)
     {
         Id = id;
-        
+
         MaxHealth = health;
         Health = health;
 
@@ -43,7 +43,7 @@ public class PawnDomain
 
         Abilities = abilities;
         SpecialAbilities = specialAbilities;
-        
+
         HasMana = SpecialAbilities.Count > 0 && mana > 0;
     }
 
@@ -51,7 +51,7 @@ public class PawnDomain
     {
         Initiative = initiative;
     }
-    
+
     public void SetPawnInfo(PawnInfo pawnInfo)
     {
         Health = pawnInfo.CurrentHealth;
@@ -62,7 +62,10 @@ public class PawnDomain
         return new PawnInfo(Id, Health);
     }
 
-    public AbilityData GetCurrentAttackIntent(bool automaticallyUseSpecials)
+    public AbilityData GetCurrentAttackIntent(
+        PawnController abilityUser, 
+        List<PawnController> pawns,
+        bool automaticallyUseSpecials)
     {
         var abilities = new List<AbilityData>();
 
@@ -74,7 +77,7 @@ public class PawnDomain
             abilities.AddRange(specialAttacks);
         }
 
-        return abilities.OrderBy(a => a.GetPriority()).Last();
+        return abilities.OrderBy(a => a.GetPriority(abilityUser, pawns)).Last();
     }
 }
 

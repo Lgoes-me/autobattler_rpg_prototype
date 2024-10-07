@@ -46,7 +46,7 @@ public class PawnController : MonoBehaviour
     {
         if (Ability == null)
         {
-            Ability = RequestedSpecialAbility ?? Pawn.GetCurrentAttackIntent(Team is TeamType.Enemies).ToDomain(this);
+            Ability = RequestedSpecialAbility ?? Pawn.GetCurrentAttackIntent(this, pawns, Team is TeamType.Enemies).ToDomain(this);
             Ability.ChooseFocus(pawns);
         }
 

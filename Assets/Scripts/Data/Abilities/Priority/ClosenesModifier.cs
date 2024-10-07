@@ -4,11 +4,12 @@ using System.Linq;
 using UnityEngine;
 
 [System.Serializable]
-public class LowHealthModifier : PriorityModifier
+public class CloseEnemyModifier : PriorityModifier
 {
-    [field: SerializeField] private int Health { get; set; }
-    
-    public override int AlterPriority(PawnController abilityUser, List<PawnController> pawns, BaseFocusData focusData, int priority)
+    [field: SerializeField] private float Distance { get; set; }
+
+    public override int AlterPriority(PawnController abilityUser, List<PawnController> pawns, BaseFocusData focusData,
+        int priority)
     {
         bool WherePredicate(PawnController pawn)
         {
@@ -43,10 +44,10 @@ public class LowHealthModifier : PriorityModifier
             .Where(WherePredicate)
             .OrderBy(OrderPredicate)
             .FirstOrDefault();
-        
-        if (selectedPawn != null && selectedPawn.Pawn.Health < Health)
+
+        if (selectedPawn != null && (abilityUser.transform.position - selectedPawn.transform.position).magnitude < Distance)
             return priority + 1 * Multiplier;
-        
+
         return priority;
     }
 }

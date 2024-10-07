@@ -29,8 +29,15 @@ public class AbilityData : ScriptableObject
             actionComponent); 
     }
 
-    public int GetPriority()
+    public int GetPriority(PawnController abilityUser, List<PawnController> pawns)
     {
-        return 1;
+        var priority = 1;
+        
+        foreach (var priorityModifier in Priorities)
+        {
+            priority = priorityModifier.AlterPriority(abilityUser, pawns, FocusData, priority);
+        }
+        
+        return priority;
     }
 }
