@@ -25,7 +25,7 @@ public class Save : ISavable
         Id = "Save.json";
         Spawn = new SpawnDomain("DungeonEntrance", "DungeonEntrance");
         LastBonfireSpawn = new SpawnDomain("DungeonEntrance", "DungeonEntrance");
-        PlayerPawn = new PawnInfo(startingPlayer.name, startingPlayer.Health); 
+        PlayerPawn = new PawnInfo(startingPlayer.name, 0); 
         SelectedParty = new Dictionary<string, PawnInfo>();
         DefeatedEnemies = new List<string>();
     }

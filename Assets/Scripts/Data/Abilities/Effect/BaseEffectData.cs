@@ -1,5 +1,5 @@
 ﻿[System.Serializable]
-public abstract class BaseEffectData : AbilityComponentData
+public abstract class BaseEffectData : BaseComponentData
 {
     public abstract AbilityEffect ToDomain();
 }

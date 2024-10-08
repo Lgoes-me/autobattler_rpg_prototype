@@ -8,9 +8,8 @@ public class PawnData : ScriptableObject
     
     [field: SerializeField] public CharacterController Character { get; private set; }
     [field: SerializeField] public WeaponController Weapon { get; private set; }
-    [field: SerializeField] public int Health { get; private set; }
+    [field: SerializeField] private int Health { get; set; }
     [field: SerializeField] private int Mana { get; set; }
-    
     [field: SerializeField] private int Strength { get; set; }
     
     [field: SerializeField] private List<AbilityData> Abilities { get; set; }
@@ -23,7 +22,7 @@ public class PawnData : ScriptableObject
     
     public PawnInfo ResetPawnInfo()
     {
-        return new PawnInfo(Id, Health);
+        return new PawnInfo(Id, 0);
     }
 
     private void OnValidate()

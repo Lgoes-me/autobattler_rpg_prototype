@@ -54,12 +54,12 @@ public class PawnDomain
 
     public void SetPawnInfo(PawnInfo pawnInfo)
     {
-        Health = pawnInfo.CurrentHealth;
+        Health = MaxHealth - pawnInfo.MissingHealth;
     }
 
     public PawnInfo GetPawnInfo()
     {
-        return new PawnInfo(Id, Health);
+        return new PawnInfo(Id, MaxHealth - Health);
     }
 
     public AbilityData GetCurrentAttackIntent(

@@ -19,7 +19,7 @@ public class PlayerManager : MonoBehaviour
 
     public void SetNewPlayerPawn(PawnData pawn)
     {
-        Application.Instance.Save.PlayerPawn = new PawnInfo(pawn.Id, pawn.Health);
+        Application.Instance.Save.PlayerPawn = new PawnInfo(pawn.Id, 0);
         Application.Instance.SaveManager.SaveData(Application.Instance.Save);
 
         if(PawnController.transform.childCount > 0)

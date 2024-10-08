@@ -1,5 +1,5 @@
 ﻿[System.Serializable]
-public abstract class BaseActionData : AbilityComponentData
+public abstract class BaseActionData : BaseComponentData
 {
     public abstract AbilityActionComponent ToDomain(
         PawnController abilityUser,

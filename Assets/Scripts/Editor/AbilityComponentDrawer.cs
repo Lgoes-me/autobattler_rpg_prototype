@@ -5,7 +5,7 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
-[CustomPropertyDrawer(typeof(AbilityComponentData), true)]
+[CustomPropertyDrawer(typeof(BaseComponentData), true)]
 public class AbilityComponentDrawer : PropertyDrawer
 {
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)

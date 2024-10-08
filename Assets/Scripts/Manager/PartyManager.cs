@@ -59,7 +59,7 @@ public class PartyManager : MonoBehaviour
     
     public void SetSelectedParty(List<PawnData> newSelectedParty)
     {
-        Application.Instance.Save.SelectedParty = newSelectedParty.ToDictionary(p => p.Id, p => new PawnInfo(p.Id, p.Health));
+        Application.Instance.Save.SelectedParty = newSelectedParty.ToDictionary(p => p.Id, p => new PawnInfo(p.Id, 0));
         Application.Instance.SaveManager.SaveData(Application.Instance.Save);
 
         SpawnSelectedPawns();

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [System.Serializable]
-public abstract class PriorityModifier : AbilityComponentData
+public abstract class PriorityModifier : BaseComponentData
 {
     [field: SerializeField] protected int Multiplier { get; set; } = 1;
     
