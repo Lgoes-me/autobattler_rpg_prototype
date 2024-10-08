@@ -51,8 +51,8 @@ public class Battle
                 FocusType.Farthest => pawn == user
                     ? 1000
                     : 1000 - (pawn.transform.position - user.transform.position).sqrMagnitude,
-                FocusType.LowestLife => pawn == user ? 1000 : pawn.Pawn.Health,
-                FocusType.HighestLife => pawn == user ? 1000 : 1000 - pawn.Pawn.Health,
+                FocusType.LowestLife => pawn == user ? 1000 : pawn.Pawn.Stats.Health,
+                FocusType.HighestLife => pawn == user ? 1000 : 1000 - pawn.Pawn.Stats.Health,
                 _ => throw new ArgumentOutOfRangeException()
             };
         }

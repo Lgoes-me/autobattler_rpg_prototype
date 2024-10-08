@@ -14,10 +14,10 @@ public class HealEffect : AbilityEffect
     {
         var pawn = pawnController.Pawn;
 
-        if (pawn.Health == 0)
+        if (pawn.Stats.Health == 0)
             return;
 
-        pawn.Health = Mathf.Clamp(pawn.Health + HealValue, 0, pawn.MaxHealth);
+        pawn.Stats.Health = Mathf.Clamp(pawn.Stats.Health + HealValue, 0, pawn.Stats.MaxHealth);
         pawnController.ReeceiveHeal(CanRevive);
     }
 }

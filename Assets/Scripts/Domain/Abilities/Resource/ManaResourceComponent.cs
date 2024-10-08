@@ -12,7 +12,7 @@ public class ManaResourceComponent : AbilityResourceComponent
     public override bool HasResource()
     {
         var pawn = AbilityUser.Pawn;
-        return pawn.Mana >= ManaCost;
+        return pawn.Stats.Mana >= ManaCost;
     }
 
     public override void SpendResource()
@@ -22,10 +22,10 @@ public class ManaResourceComponent : AbilityResourceComponent
         if (!pawn.HasMana)
             return;
 
-        pawn.Mana = Mathf.Clamp(
-            ManaCost > 0 ? pawn.Mana - ManaCost : pawn.Mana + 10,
+        pawn.Stats.Mana = Mathf.Clamp(
+            ManaCost > 0 ? pawn.Stats.Mana - ManaCost : pawn.Stats.Mana + 10,
             0,
-            pawn.MaxMana);
+            pawn.Stats.MaxMana);
 
         AbilityUser.PawnCanvasController.UpdateMana();
     }

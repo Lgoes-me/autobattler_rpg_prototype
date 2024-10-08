@@ -15,9 +15,14 @@ MonoBehaviour:
   <Id>k__BackingField: Bard
   <Character>k__BackingField: {fileID: 3998067550890190194, guid: 285cea4008ea6fb4694f4054dbef2399, type: 3}
   <Weapon>k__BackingField: {fileID: 3501364879892670405, guid: 5cfb29910a0e40f489cdfb2185e68194, type: 3}
-  <Health>k__BackingField: 30
-  <Mana>k__BackingField: 0
-  <Strength>k__BackingField: 0
+  <Stats>k__BackingField:
+    <Health>k__BackingField: 30
+    <Mana>k__BackingField: 100
+    <Strength>k__BackingField: 0
+    <Inteligence>k__BackingField: 1
+    <Endurance>k__BackingField: 0
+    <SlashDefence>k__BackingField: 0
+    <MagicalDefence>k__BackingField: 0
   <Abilities>k__BackingField:
   - {fileID: 11400000, guid: 80d0f901567ce6047847c53227bc72a9, type: 2}
   <SpecialAbilities>k__BackingField: []

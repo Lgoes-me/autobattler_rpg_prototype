@@ -1,50 +1,31 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
-using UnityEngine;
 
 [System.Serializable]
 public class PawnDomain
 {
     public string Id { get; set; }
-
-    public int MaxHealth { get; private set; }
-    public int Health { get; set; }
-
-    public int MaxMana { get; private set; }
-    public int Mana { get; set; }
-
-    public int Strength { get; set; }
-
+    public Stats Stats { get; set; }
+    private List<AbilityData> Abilities { get; set; }
+    public List<AbilityData> SpecialAbilities { get; private set; }
+    
     public bool HasMana { get; private set; }
     public float Initiative { get; private set; }
 
-    private List<AbilityData> Abilities { get; set; }
-    public List<AbilityData> SpecialAbilities { get; private set; }
-
     public PawnDomain(
         string id,
-        int health,
-        int mana,
-        int strength,
+        Stats stats,
         List<AbilityData> abilities,
         List<AbilityData> specialAbilities)
     {
         Id = id;
-
-        MaxHealth = health;
-        Health = health;
-
-        MaxMana = mana;
-        Mana = 0;
-
-        Strength = strength;
+        Stats = stats;
         Initiative = 0;
 
         Abilities = abilities;
         SpecialAbilities = specialAbilities;
 
-        HasMana = SpecialAbilities.Count > 0 && mana > 0;
+        HasMana = SpecialAbilities.Count > 0 && Stats.MaxMana > 0;
     }
 
     public void SetInitiative(float initiative)
@@ -54,12 +35,12 @@ public class PawnDomain
 
     public void SetPawnInfo(PawnInfo pawnInfo)
     {
-        Health = MaxHealth - pawnInfo.MissingHealth;
+        Stats.Health = Stats.MaxHealth - pawnInfo.MissingHealth;
     }
 
     public PawnInfo GetPawnInfo()
     {
-        return new PawnInfo(Id, MaxHealth - Health);
+        return new PawnInfo(Id,  Stats.MaxHealth -  Stats.Health);
     }
 
     public AbilityData GetCurrentAttackIntent(
@@ -73,7 +54,7 @@ public class PawnDomain
 
         if (automaticallyUseSpecials)
         {
-            var specialAttacks = SpecialAbilities.Where(a => a.ResourceData.GetCost() <= Mana).ToList();
+            var specialAttacks = SpecialAbilities.Where(a => a.ResourceData.GetCost() <=  Stats.Mana).ToList();
             abilities.AddRange(specialAttacks);
         }
 

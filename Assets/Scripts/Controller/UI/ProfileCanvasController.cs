@@ -30,7 +30,7 @@ public class ProfileCanvasController : PawnCanvasController
         
         foreach (var button in SpecialButtons)
         {
-            button.TryActivateButton(pawn.Mana);
+            button.TryActivateButton(pawn.Stats.Mana);
         }
     }
 

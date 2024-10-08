@@ -18,12 +18,12 @@ public class PawnCanvasController : BaseCanvasController
         PawnController = pawnController;
 
         var pawn = PawnController.Pawn;
-        var fillAmount = pawn.Health / (float) pawn.MaxHealth;
+        var fillAmount = pawn.Stats.Health / (float) pawn.Stats.MaxHealth;
         
         LifeBar.fillAmount = fillAmount;
         BackgroundLifeBar.fillAmount = fillAmount;
         
-        ManaBar.fillAmount = pawn.Mana / (float) pawn.MaxMana;
+        ManaBar.fillAmount = pawn.Stats.Mana / (float) pawn.Stats.MaxMana;
         
         Show();
     }
@@ -31,7 +31,7 @@ public class PawnCanvasController : BaseCanvasController
     public void UpdateLife()
     {
         var pawn = PawnController.Pawn;
-        var fillAmount = pawn.Health / (float) pawn.MaxHealth;
+        var fillAmount = pawn.Stats.Health / (float) pawn.Stats.MaxHealth;
         LifeBar.fillAmount = fillAmount;
         
         if(!gameObject.activeInHierarchy)
@@ -52,7 +52,7 @@ public class PawnCanvasController : BaseCanvasController
     public virtual void UpdateMana()
     {
         var pawn = PawnController.Pawn;
-        ManaBar.fillAmount = pawn.Mana / (float) pawn.MaxMana;
+        ManaBar.fillAmount = pawn.Stats.Mana / (float) pawn.Stats.MaxMana;
     }
 
     protected virtual void Death()

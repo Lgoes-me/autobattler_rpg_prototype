@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class DamageEffect : AbilityEffect
 {
@@ -12,12 +13,19 @@ public class DamageEffect : AbilityEffect
     public override void DoAbilityEffect(PawnController pawnController)
     {
         var pawn = pawnController.Pawn;
-        
-        if(pawn.Health == 0)
+
+        if (pawn.Stats.Health == 0)
             return;
-        
-        pawn.Health = Mathf.Clamp(pawn.Health - Damage.Value, 0, pawn.MaxHealth);
-        
+
+        var damage = Damage.Type switch
+        {
+            DamageType.Slash => Damage.Multiplier * pawn.Stats.Strength,
+            DamageType.Magical => Damage.Multiplier * pawn.Stats.Inteligence,
+            _ => throw new ArgumentOutOfRangeException()
+        };
+
+        pawn.Stats.Health = Mathf.Clamp(pawn.Stats.Health - (int) damage, 0, pawn.Stats.MaxHealth);
+
         pawnController.ReceiveAttack();
     }
 }
@@ -25,7 +33,7 @@ public class DamageEffect : AbilityEffect
 [System.Serializable]
 public class Damage
 {
-    [field: SerializeField] public int Value { get; set; }
+    [field: SerializeField] public float Multiplier { get; set; }
     [field: SerializeField] public DamageType Type { get; set; }
 }
 
@@ -33,5 +41,4 @@ public enum DamageType
 {
     Slash = 1,
     Magical = 2,
-    Fire = 3
 }

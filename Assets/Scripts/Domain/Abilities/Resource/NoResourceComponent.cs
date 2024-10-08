@@ -15,10 +15,10 @@ public class NoResourceComponent : AbilityResourceComponent
         if (!pawn.HasMana)
             return;
 
-        pawn.Mana = Mathf.Clamp(
-            pawn.Mana + 10,
+        pawn.Stats.Mana = Mathf.Clamp(
+            pawn.Stats.Mana + 10,
             0,
-            pawn.MaxMana);
+            pawn.Stats.MaxMana);
 
         AbilityUser.PawnCanvasController.UpdateMana();
     }

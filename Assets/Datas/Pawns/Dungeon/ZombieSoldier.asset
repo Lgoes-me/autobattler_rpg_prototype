@@ -15,9 +15,14 @@ MonoBehaviour:
   <Id>k__BackingField: ZombieSoldier
   <Character>k__BackingField: {fileID: 8201863896689888091, guid: 5f7b15e6bd7c2c34cb8b766da777d2be, type: 3}
   <Weapon>k__BackingField: {fileID: 3501364879892670405, guid: 3d2abc87e1919ec4f8a85eca7691168a, type: 3}
-  <Health>k__BackingField: 20
-  <Mana>k__BackingField: 0
-  <Strength>k__BackingField: 0
+  <Stats>k__BackingField:
+    <Health>k__BackingField: 15
+    <Mana>k__BackingField: 0
+    <Strength>k__BackingField: 1
+    <Inteligence>k__BackingField: 0
+    <Endurance>k__BackingField: 0
+    <SlashDefence>k__BackingField: 0
+    <MagicalDefence>k__BackingField: 0
   <Abilities>k__BackingField:
   - {fileID: 11400000, guid: 0310e31ee1c2d1a43990c835c370c647, type: 2}
   <SpecialAbilities>k__BackingField: []

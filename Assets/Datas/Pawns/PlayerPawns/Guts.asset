@@ -15,9 +15,14 @@ MonoBehaviour:
   <Id>k__BackingField: Guts
   <Character>k__BackingField: {fileID: 3097370054226994396, guid: c8d4669d437e7bf4699e3bd9df3432d8, type: 3}
   <Weapon>k__BackingField: {fileID: 3501364879892670405, guid: 028e54fe8e0d9114a9bfec831d154130, type: 3}
-  <Health>k__BackingField: 60
-  <Mana>k__BackingField: 0
-  <Strength>k__BackingField: 0
+  <Stats>k__BackingField:
+    <Health>k__BackingField: 60
+    <Mana>k__BackingField: 100
+    <Strength>k__BackingField: 2
+    <Inteligence>k__BackingField: 0
+    <Endurance>k__BackingField: 0
+    <SlashDefence>k__BackingField: 0
+    <MagicalDefence>k__BackingField: 0
   <Abilities>k__BackingField:
   - {fileID: 11400000, guid: 28dbddbc3cb62724e91cb455cb55e134, type: 2}
   <SpecialAbilities>k__BackingField:

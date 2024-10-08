@@ -22,6 +22,7 @@ MonoBehaviour:
     rid: 4871999933996597261
   <ActionData>k__BackingField:
     rid: 4871999933996597260
+  <Priorities>k__BackingField: []
   references:
     version: 2
     RefIds:
@@ -43,5 +44,5 @@ MonoBehaviour:
       type: {class: DamageEffectData, ns: , asm: Assembly-CSharp}
       data:
         <Damage>k__BackingField:
-          <Value>k__BackingField: 3
-          <Type>k__BackingField: 3
+          <Multiplier>k__BackingField: 2
+          <Type>k__BackingField: 2

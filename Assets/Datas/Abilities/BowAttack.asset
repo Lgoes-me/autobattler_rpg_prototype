@@ -30,7 +30,7 @@ MonoBehaviour:
       type: {class: DamageEffectData, ns: , asm: Assembly-CSharp}
       data:
         <Damage>k__BackingField:
-          <Value>k__BackingField: 4
+          <Multiplier>k__BackingField: 2
           <Type>k__BackingField: 1
     - rid: 4871999933041868803
       type: {class: ProjectileActionData, ns: , asm: Assembly-CSharp}
@@ -43,6 +43,6 @@ MonoBehaviour:
       type: {class: FocusComponent, ns: , asm: Assembly-CSharp}
       data:
         <Target>k__BackingField: 2
-        <Focus>k__BackingField: 0
+        <Focus>k__BackingField: 2
         <Range>k__BackingField: 5
         <Error>k__BackingField: 2

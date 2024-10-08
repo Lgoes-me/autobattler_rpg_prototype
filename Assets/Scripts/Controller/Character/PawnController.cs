@@ -172,7 +172,7 @@ public class PawnController : MonoBehaviour
 
     public void ReceiveAttack()
     {
-        var dead = Pawn.Health <= 0;
+        var dead = Pawn.Stats.Health <= 0;
         CharacterController.DoHitStop();
         PawnCanvasController.UpdateLife();
 
@@ -185,7 +185,7 @@ public class PawnController : MonoBehaviour
 
     public void ReeceiveHeal(bool canRevive)
     {
-        var dead = Pawn.Health <= 0;
+        var dead = Pawn.Stats.Health <= 0;
         CharacterController.DoNiceHitStop();
         PawnCanvasController.UpdateLife();
 

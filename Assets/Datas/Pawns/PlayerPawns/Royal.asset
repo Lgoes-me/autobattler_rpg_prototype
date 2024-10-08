@@ -15,9 +15,14 @@ MonoBehaviour:
   <Id>k__BackingField: Royal
   <Character>k__BackingField: {fileID: 8064259813449772426, guid: f4259219a9d658a4b9eeb99c6325331e, type: 3}
   <Weapon>k__BackingField: {fileID: 3501364879892670405, guid: 146368a08f73ecf4c8633730a6891f1a, type: 3}
-  <Health>k__BackingField: 60
-  <Mana>k__BackingField: 0
-  <Strength>k__BackingField: 0
+  <Stats>k__BackingField:
+    <Health>k__BackingField: 50
+    <Mana>k__BackingField: 100
+    <Strength>k__BackingField: 1
+    <Inteligence>k__BackingField: 1
+    <Endurance>k__BackingField: 0
+    <SlashDefence>k__BackingField: 0
+    <MagicalDefence>k__BackingField: 0
   <Abilities>k__BackingField:
   - {fileID: 11400000, guid: 22a632d467328154e9a92b32910ae79d, type: 2}
   <SpecialAbilities>k__BackingField:
