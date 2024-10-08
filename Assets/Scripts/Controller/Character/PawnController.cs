@@ -52,6 +52,8 @@ public class PawnController : MonoBehaviour
 
         if (!Ability.Focus.IsInRange)
         {
+            NavMeshAgent.isStopped = false;
+            NavMeshAgent.SetDestination(Ability.Focus.WalkingDestination);
             CharacterController.SetAnimationState(new IdleState());
         }
         else

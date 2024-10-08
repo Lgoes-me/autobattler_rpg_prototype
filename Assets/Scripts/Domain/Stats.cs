@@ -20,7 +20,7 @@ public class Stats
         MaxHealth = health;
         Health = health;
         MaxMana = mana;
-        Mana = mana;
+        Mana = 0;
         Strength = strength;
         Arcane = arcane;
         PhysicalDefence = physicalDefence;
@@ -43,8 +43,8 @@ public class Stats
         
         var reducedDamage = damage.Type switch
         {
-            DamageType.Slash => (int) damageValue - PhysicalDefence,
-            DamageType.Magical => (int) damageValue - MagicalDefence,
+            DamageType.Slash => (int) damageValue - Mathf.CeilToInt(damageValue * PhysicalDefence * 10/100),
+            DamageType.Magical => (int) damageValue - Mathf.CeilToInt(damageValue * MagicalDefence * 10/100),
             _ => throw new ArgumentOutOfRangeException()
         };
         

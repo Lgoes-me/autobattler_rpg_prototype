@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1368399676912060737, guid: 70f0f860ff7bdf94d8cebe1e10ea50bc, type: 3}
       propertyPath: m_Name
-      value: Sword 3
+      value: GreatAxe
       objectReference: {fileID: 0}
     - target: {fileID: 1680259223700734375, guid: 70f0f860ff7bdf94d8cebe1e10ea50bc, type: 3}
       propertyPath: m_LocalPosition.y
@@ -22,11 +22,31 @@ PrefabInstance:
       objectReference: {fileID: 1073549187, guid: 2d2594c30bb6d2f429fcfec371190a0f, type: 3}
     - target: {fileID: 5033504231150783169, guid: 70f0f860ff7bdf94d8cebe1e10ea50bc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.123
+      value: -0.046
       objectReference: {fileID: 0}
     - target: {fileID: 5033504231150783169, guid: 70f0f860ff7bdf94d8cebe1e10ea50bc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.392
+      value: 0.439
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033504231150783169, guid: 70f0f860ff7bdf94d8cebe1e10ea50bc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.99137163
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033504231150783169, guid: 70f0f860ff7bdf94d8cebe1e10ea50bc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033504231150783169, guid: 70f0f860ff7bdf94d8cebe1e10ea50bc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033504231150783169, guid: 70f0f860ff7bdf94d8cebe1e10ea50bc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.13108152
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033504231150783169, guid: 70f0f860ff7bdf94d8cebe1e10ea50bc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 15.064
       objectReference: {fileID: 0}
     - target: {fileID: 5949571614746918590, guid: 70f0f860ff7bdf94d8cebe1e10ea50bc, type: 3}
       propertyPath: m_LocalPosition.y

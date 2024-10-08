@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1368399676912060737, guid: 70f0f860ff7bdf94d8cebe1e10ea50bc, type: 3}
       propertyPath: m_Name
-      value: GreatSword 3
+      value: Flute
       objectReference: {fileID: 0}
     - target: {fileID: 1680259223700734375, guid: 70f0f860ff7bdf94d8cebe1e10ea50bc, type: 3}
       propertyPath: m_LocalPosition.y
@@ -22,11 +22,11 @@ PrefabInstance:
       objectReference: {fileID: 1432744161, guid: 2d2594c30bb6d2f429fcfec371190a0f, type: 3}
     - target: {fileID: 5033504231150783169, guid: 70f0f860ff7bdf94d8cebe1e10ea50bc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.244
       objectReference: {fileID: 0}
     - target: {fileID: 5033504231150783169, guid: 70f0f860ff7bdf94d8cebe1e10ea50bc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.218
       objectReference: {fileID: 0}
     - target: {fileID: 5033504231150783169, guid: 70f0f860ff7bdf94d8cebe1e10ea50bc, type: 3}
       propertyPath: m_LocalRotation.w

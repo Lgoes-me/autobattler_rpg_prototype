@@ -13,8 +13,8 @@ public class Save : ISavable
     public Save()
     {
         Id = "Save.json";
-        Spawn = new SpawnDomain("DungeonEntrance", "DungeonEntrance");
-        LastBonfireSpawn = new SpawnDomain("DungeonEntrance", "DungeonEntrance");
+        Spawn = null;
+        LastBonfireSpawn = null;
         PlayerPawn = null;
         SelectedParty = new Dictionary<string, PawnInfo>();
         DefeatedEnemies = new List<string>();
