@@ -1661,7 +1661,6 @@ MonoBehaviour:
   <PartyManager>k__BackingField: {fileID: 1396296680}
   <AudioManager>k__BackingField: {fileID: 2129920862}
   <InputManager>k__BackingField: {fileID: 1824029036}
-  <BattleCanvas>k__BackingField: {fileID: 933428312}
   <BattleLostCanvas>k__BackingField: {fileID: 1496016703}
   <PawnCanvases>k__BackingField:
   - {fileID: 1860720134}
@@ -1720,6 +1719,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c6302786fe4d8814484706224f21b480, type: 2}
   - {fileID: 11400000, guid: 29bc395f21713254584f3233b80206a4, type: 2}
   - {fileID: 11400000, guid: 19a702c490691384c83cf1eb4c41de9a, type: 2}
+  - {fileID: 11400000, guid: 94baffc8fcc6e8648b3c4a2bacac160f, type: 2}
   <PawnController>k__BackingField: {fileID: 4759648862371886847, guid: bf3e5b737f1f18949bbfd853b8d5bfe0, type: 3}
 --- !u!1001 &1415370634
 PrefabInstance:
