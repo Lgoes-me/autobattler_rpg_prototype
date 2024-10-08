@@ -14,7 +14,7 @@ public class AbilityData : ScriptableObject
 
     public Ability ToDomain(PawnController abilityUser)
     {
-        var effect = EffectData.ToDomain();
+        var effect = EffectData.ToDomain(abilityUser);
         var focusComponent = FocusData.ToDomain(abilityUser);
         var resourceComponent = ResourceData.ToDomain(abilityUser);
         var actionComponent = ActionData.ToDomain(abilityUser, focusComponent, effect);

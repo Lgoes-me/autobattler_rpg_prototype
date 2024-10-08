@@ -183,7 +183,7 @@ public class PawnController : MonoBehaviour
         Ability = null;
     }
 
-    public void ReeceiveHeal(bool canRevive)
+    public void ReceiveHeal(bool canRevive)
     {
         var dead = Pawn.Stats.Health <= 0;
         CharacterController.DoNiceHitStop();

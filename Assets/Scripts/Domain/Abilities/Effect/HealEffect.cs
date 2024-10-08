@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
+
 public class HealEffect : AbilityEffect
 {
-    private int HealValue { get; set; }
+    private float HealValue { get; set; }
     private bool CanRevive { get; set; }
 
-    public HealEffect(int healValue, bool canRevive)
+    public HealEffect(PawnController abilityUser, float healValue, bool canRevive) : base(abilityUser)
     {
         HealValue = healValue;
         CanRevive = canRevive;
@@ -17,7 +18,7 @@ public class HealEffect : AbilityEffect
         if (pawn.Stats.Health == 0)
             return;
 
-        pawn.Stats.Health = Mathf.Clamp(pawn.Stats.Health + HealValue, 0, pawn.Stats.MaxHealth);
-        pawnController.ReeceiveHeal(CanRevive);
+        pawn.Stats.ReceiveHeal(AbilityUser.Pawn, HealValue, CanRevive);
+        pawnController.ReceiveHeal(CanRevive);
     }
 }

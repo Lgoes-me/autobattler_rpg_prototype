@@ -5,8 +5,8 @@ public class DamageEffectData : BaseEffectData
 {
     [field: SerializeField] private Damage Damage { get; set; }
 
-    public override AbilityEffect ToDomain()
+    public override AbilityEffect ToDomain(PawnController abilityUser)
     {
-        return new DamageEffect(Damage);
+        return new DamageEffect(abilityUser, Damage);
     }
 }

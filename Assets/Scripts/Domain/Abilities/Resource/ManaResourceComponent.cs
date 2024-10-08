@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class ManaResourceComponent : AbilityResourceComponent
+﻿public class ManaResourceComponent : AbilityResourceComponent
 {
     private int ManaCost { get; set; }
 
@@ -22,11 +20,7 @@ public class ManaResourceComponent : AbilityResourceComponent
         if (!pawn.HasMana)
             return;
 
-        pawn.Stats.Mana = Mathf.Clamp(
-            ManaCost > 0 ? pawn.Stats.Mana - ManaCost : pawn.Stats.Mana + 10,
-            0,
-            pawn.Stats.MaxMana);
-
+        pawn.Stats.SpentMana(ManaCost);
         AbilityUser.PawnCanvasController.UpdateMana();
     }
 }

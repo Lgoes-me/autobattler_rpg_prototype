@@ -4,8 +4,8 @@ using System.Linq;
 [System.Serializable]
 public class PawnDomain
 {
-    public string Id { get; set; }
-    public Stats Stats { get; set; }
+    public string Id { get; private set; }
+    public Stats Stats { get; private set; }
     private List<AbilityData> Abilities { get; set; }
     public List<AbilityData> SpecialAbilities { get; private set; }
     
@@ -35,7 +35,7 @@ public class PawnDomain
 
     public void SetPawnInfo(PawnInfo pawnInfo)
     {
-        Stats.Health = Stats.MaxHealth - pawnInfo.MissingHealth;
+        Stats.ApplyPawnInfo(pawnInfo);
     }
 
     public PawnInfo GetPawnInfo()

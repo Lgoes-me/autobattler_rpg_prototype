@@ -30,7 +30,7 @@ MonoBehaviour:
     - rid: 4871999933996597252
       type: {class: HealEffectData, ns: , asm: Assembly-CSharp}
       data:
-        <HealValue>k__BackingField: 4
+        <HealMultiplier>k__BackingField: 2
         <CanRevive>k__BackingField: 0
     - rid: 4871999933996597253
       type: {class: FocusComponent, ns: , asm: Assembly-CSharp}
@@ -48,6 +48,5 @@ MonoBehaviour:
     - rid: 4871999947845402626
       type: {class: LowHealthModifier, ns: , asm: Assembly-CSharp}
       data:
-        <Target>k__BackingField: 1
-        <Focus>k__BackingField: 3
+        <Multiplier>k__BackingField: 1
         <Health>k__BackingField: 10

@@ -19,9 +19,8 @@ MonoBehaviour:
     <Health>k__BackingField: 30
     <Mana>k__BackingField: 100
     <Strength>k__BackingField: 0
-    <Inteligence>k__BackingField: 2
-    <Endurance>k__BackingField: 0
-    <SlashDefence>k__BackingField: 0
+    <Arcane>k__BackingField: 2
+    <PhysicalDefence>k__BackingField: 0
     <MagicalDefence>k__BackingField: 0
   <Abilities>k__BackingField:
   - {fileID: 11400000, guid: 43b15364fb3710b43baa1c2cc1282f44, type: 2}

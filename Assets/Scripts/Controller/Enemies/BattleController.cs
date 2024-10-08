@@ -126,8 +126,8 @@ public class BattleController : MonoBehaviour
 
         foreach (var playerPawn in Battle.PlayerPawns)
         {
-            playerPawn.Pawn.Stats.Health = Mathf.Clamp(playerPawn.Pawn.Stats.Health + 15, 0, playerPawn.Pawn.Stats.MaxHealth);
-            playerPawn.ReeceiveHeal(true);
+            playerPawn.Pawn.Stats.EndOfBattleHeal();
+            playerPawn.ReceiveHeal(true);
         }
 
         yield return new WaitForSeconds(1f);

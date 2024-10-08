@@ -5,7 +5,7 @@ public class DamageEffect : AbilityEffect
 {
     private Damage Damage { get; set; }
 
-    public DamageEffect(Damage damage)
+    public DamageEffect(PawnController abilityUser, Damage damage) : base(abilityUser)
     {
         Damage = damage;
     }
@@ -17,15 +17,7 @@ public class DamageEffect : AbilityEffect
         if (pawn.Stats.Health == 0)
             return;
 
-        var damage = Damage.Type switch
-        {
-            DamageType.Slash => Damage.Multiplier * pawn.Stats.Strength,
-            DamageType.Magical => Damage.Multiplier * pawn.Stats.Inteligence,
-            _ => throw new ArgumentOutOfRangeException()
-        };
-
-        pawn.Stats.Health = Mathf.Clamp(pawn.Stats.Health - (int) damage, 0, pawn.Stats.MaxHealth);
-
+        pawn.Stats.ReceiveDamage(AbilityUser.Pawn, Damage);
         pawnController.ReceiveAttack();
     }
 }

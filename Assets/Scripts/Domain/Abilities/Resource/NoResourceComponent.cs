@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class NoResourceComponent : AbilityResourceComponent
+﻿public class NoResourceComponent : AbilityResourceComponent
 {
     public NoResourceComponent(PawnController abilityUser) : base(abilityUser)
     {
@@ -15,11 +13,7 @@ public class NoResourceComponent : AbilityResourceComponent
         if (!pawn.HasMana)
             return;
 
-        pawn.Stats.Mana = Mathf.Clamp(
-            pawn.Stats.Mana + 10,
-            0,
-            pawn.Stats.MaxMana);
-
+        pawn.Stats.GainMana();
         AbilityUser.PawnCanvasController.UpdateMana();
     }
 }
