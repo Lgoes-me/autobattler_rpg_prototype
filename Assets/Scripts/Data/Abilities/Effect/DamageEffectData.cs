@@ -3,10 +3,11 @@
 [System.Serializable]
 public class DamageEffectData : BaseEffectData
 {
-    [field: SerializeField] private Damage Damage { get; set; }
+    [field: SerializeField] private DamageData Damage { get; set; }
 
     public override AbilityEffect ToDomain(PawnController abilityUser)
     {
-        return new DamageEffect(abilityUser, Damage);
+        var damage = Damage.ToDomain(abilityUser.Pawn);
+        return new DamageEffect(abilityUser, damage);
     }
 }

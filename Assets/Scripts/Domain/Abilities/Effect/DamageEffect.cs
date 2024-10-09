@@ -1,11 +1,8 @@
-﻿using System;
-using UnityEngine;
-
-public class DamageEffect : AbilityEffect
+﻿public class DamageEffect : AbilityEffect
 {
-    private Damage Damage { get; set; }
+    private DamageDomain Damage { get; set; }
 
-    public DamageEffect(PawnController abilityUser, Damage damage) : base(abilityUser)
+    public DamageEffect(PawnController abilityUser, DamageDomain damage) : base(abilityUser)
     {
         Damage = damage;
     }
@@ -17,16 +14,9 @@ public class DamageEffect : AbilityEffect
         if (pawn.Stats.Health == 0)
             return;
 
-        pawn.Stats.ReceiveDamage(AbilityUser.Pawn, Damage);
+        pawn.Stats.ReceiveDamage(Damage);
         pawnController.ReceiveAttack();
     }
-}
-
-[System.Serializable]
-public class Damage
-{
-    [field: SerializeField] public float Multiplier { get; set; }
-    [field: SerializeField] public DamageType Type { get; set; }
 }
 
 public enum DamageType

@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e3f2961cde84cc2bca5113224648ba8, type: 3}
+  m_Name: VitalityBurst
+  m_EditorClassIdentifier: 
+  <Animation>k__BackingField: ColossalAttack
+  <Delay>k__BackingField: 0.6
+  <EffectData>k__BackingField:
+    rid: 4871999933996597256
+  <FocusData>k__BackingField:
+    rid: 4871999933996597257
+  <ResourceData>k__BackingField:
+    rid: 4871999933996597258
+  <ActionData>k__BackingField:
+    rid: 4871999933996597259
+  <Priorities>k__BackingField: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 4871999933996597256
+      type: {class: DamageEffectData, ns: , asm: Assembly-CSharp}
+      data:
+        <Damage>k__BackingField:
+          <Multiplier>k__BackingField: 1
+          <Type>k__BackingField: 1
+    - rid: 4871999933996597257
+      type: {class: FocusComponent, ns: , asm: Assembly-CSharp}
+      data:
+        <Target>k__BackingField: 2
+        <Focus>k__BackingField: 1
+        <Range>k__BackingField: 1.5
+        <Error>k__BackingField: 2
+    - rid: 4871999933996597258
+      type: {class: NoResourceData, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 4871999933996597259
+      type: {class: InstantActionData, ns: , asm: Assembly-CSharp}
+      data: 

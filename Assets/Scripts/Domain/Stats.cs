@@ -9,11 +9,11 @@ public class Stats
     public int MaxMana { get; }
     public int Mana { get;  private set; }
 
-    private int Strength { get; }
-    private int Arcane  { get; }
+    public int Strength { get; private set; }
+    public int Arcane { get; private set; }
     
-    private int PhysicalDefence { get; }
-    private int MagicalDefence { get; }
+    public int PhysicalDefence { get; private set; }
+    public int MagicalDefence { get; private set; }
     
     public Stats(int health, int mana, int strength, int arcane, int physicalDefence, int magicalDefence)
     {
@@ -32,19 +32,14 @@ public class Stats
         Health = MaxHealth - pawnInfo.MissingHealth;
     }
     
-    public void ReceiveDamage(PawnDomain attacker, Damage damage)
+    public void ReceiveDamage(DamageDomain damage)
     {
-        var damageValue = damage.Type switch
-        {
-            DamageType.Slash => damage.Multiplier * attacker.Stats.Strength,
-            DamageType.Magical => damage.Multiplier * attacker.Stats.Arcane,
-            _ => throw new ArgumentOutOfRangeException()
-        };
+        var damageValue = damage.CalculateDamageValue();
         
         var reducedDamage = damage.Type switch
         {
-            DamageType.Slash => (int) damageValue - Mathf.CeilToInt(damageValue * PhysicalDefence * 10/100),
-            DamageType.Magical => (int) damageValue - Mathf.CeilToInt(damageValue * MagicalDefence * 10/100),
+            DamageType.Slash => damageValue - (damageValue * PhysicalDefence * 10/100),
+            DamageType.Magical => damageValue - (damageValue * MagicalDefence * 10/100),
             _ => throw new ArgumentOutOfRangeException()
         };
         

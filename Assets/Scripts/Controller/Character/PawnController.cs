@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -121,6 +122,11 @@ public class PawnController : MonoBehaviour
             NavMeshAgent.SetDestination(Ability.Focus.WalkingDestination);
             CharacterController.SetSpeed(NavMeshAgent.velocity.magnitude);
         }
+    }
+
+    private void FixedUpdate()
+    {
+        Pawn.TickAllBuffs();
     }
 
     public void Deactivate()
