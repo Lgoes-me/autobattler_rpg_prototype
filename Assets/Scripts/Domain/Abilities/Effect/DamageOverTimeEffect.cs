@@ -16,6 +16,6 @@ public class DamageOverTimeEffect : AbilityEffect
 
         DamageOverTimeBuff.OnDamageDealt = pawnController.ReceiveAttack;
         pawn.AddBuff(DamageOverTimeBuff);
-        pawnController.ReceiveDebuff();
+        pawnController.ReceiveDebuff(DamageOverTimeBuff);
     }
 }

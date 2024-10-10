@@ -73,7 +73,7 @@ public class PawnController : MonoBehaviour
         if (Ability == null || !PawnState.AbleToFight)
             return;
 
-        if (!Ability.HasResource())
+        if (!Ability.CanUse())
             return;
 
         if (Ability == RequestedSpecialAbility)
@@ -135,6 +135,8 @@ public class PawnController : MonoBehaviour
 
     public void Deactivate()
     {
+        Pawn.RemoveAllBuffs();
+        
         CharacterController.SetAnimationState(new IdleState());
         enabled = false;
     }
@@ -207,7 +209,7 @@ public class PawnController : MonoBehaviour
         CharacterController.SetAnimationState(new IdleState());
     }
 
-    public void ReceiveDebuff()
+    public void ReceiveDebuff(Buff buff)
     {
     }
 }

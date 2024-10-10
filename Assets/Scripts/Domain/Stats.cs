@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
+[System.Serializable]
 public class Stats
 {
     public int MaxHealth { get; }
@@ -9,8 +10,8 @@ public class Stats
     public int MaxMana { get; }
     public int Mana { get;  private set; }
 
-    public int Strength { get; private set; }
-    public int Arcane { get; private set; }
+    public int Strength { get; set; }
+    public int Arcane { get; set; }
     
     public int PhysicalDefence { get; private set; }
     public int MagicalDefence { get; private set; }

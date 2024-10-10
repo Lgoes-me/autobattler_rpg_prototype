@@ -37,7 +37,7 @@ public class Ability
         Focus.ChooseFocus(battle);
     }
     
-    public bool HasResource()
+    public bool CanUse()
     {
         return Resource.HasResource();
     }

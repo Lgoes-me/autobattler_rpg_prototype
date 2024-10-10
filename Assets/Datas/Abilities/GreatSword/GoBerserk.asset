@@ -12,36 +12,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e3f2961cde84cc2bca5113224648ba8, type: 3}
   m_Name: GoBerserk
   m_EditorClassIdentifier: 
-  <Animation>k__BackingField: ColossalAttack
-  <Delay>k__BackingField: 0.6
+  <Animation>k__BackingField: BowAttack
+  <Delay>k__BackingField: 0.1
   <EffectData>k__BackingField:
-    rid: 4871999933996597256
+    rid: 4872000037008179200
   <FocusData>k__BackingField:
-    rid: 4871999933996597257
+    rid: 4872000037008179201
   <ResourceData>k__BackingField:
-    rid: 4871999933996597258
+    rid: 4872000037008179202
   <ActionData>k__BackingField:
     rid: 4871999933996597259
   <Priorities>k__BackingField: []
   references:
     version: 2
     RefIds:
-    - rid: 4871999933996597256
-      type: {class: DamageEffectData, ns: , asm: Assembly-CSharp}
-      data:
-        <Damage>k__BackingField:
-          <Multiplier>k__BackingField: 1
-          <Type>k__BackingField: 1
-    - rid: 4871999933996597257
-      type: {class: FocusComponent, ns: , asm: Assembly-CSharp}
-      data:
-        <Target>k__BackingField: 2
-        <Focus>k__BackingField: 1
-        <Range>k__BackingField: 1.5
-        <Error>k__BackingField: 2
-    - rid: 4871999933996597258
-      type: {class: NoResourceData, ns: , asm: Assembly-CSharp}
-      data: 
     - rid: 4871999933996597259
       type: {class: InstantActionData, ns: , asm: Assembly-CSharp}
       data: 
+    - rid: 4872000037008179200
+      type: {class: AttackBuffEffectData, ns: , asm: Assembly-CSharp}
+      data:
+        <Type>k__BackingField: 1
+        <Variation>k__BackingField: 3
+        <Duration>k__BackingField: -1
+    - rid: 4872000037008179201
+      type: {class: FocusComponent, ns: , asm: Assembly-CSharp}
+      data:
+        <Target>k__BackingField: 0
+        <Focus>k__BackingField: 0
+        <Range>k__BackingField: 1
+        <Error>k__BackingField: 0
+    - rid: 4872000037008179202
+      type: {class: ManaResourceData, ns: , asm: Assembly-CSharp}
+      data:
+        <ManaCost>k__BackingField: 10

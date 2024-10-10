@@ -8,7 +8,7 @@ public class PawnDomain
     public Stats Stats { get; private set; }
     private List<AbilityData> Abilities { get; set; }
     public List<AbilityData> SpecialAbilities { get; private set; }
-    public List<Buff> Buffs { get; private set; }
+    public Dictionary<string, Buff> Buffs { get; private set; }
     
     public bool HasMana { get; private set; }
     public float Initiative { get; private set; }
@@ -25,7 +25,7 @@ public class PawnDomain
 
         Abilities = abilities;
         SpecialAbilities = specialAbilities;
-        Buffs = new List<Buff>();
+        Buffs = new Dictionary<string, Buff>();
 
         HasMana = SpecialAbilities.Count > 0 && Stats.MaxMana > 0;
     }
@@ -42,22 +42,38 @@ public class PawnDomain
 
     public void AddBuff(Buff newBuff)
     {
+        if (Buffs.TryGetValue(newBuff.Id, out var buff))
+        {
+            buff.TryReapplyBuff();
+            return;
+        }
+        
         newBuff.Init(this);
-        Buffs.Add(newBuff);
+        Buffs.Add(newBuff.Id, newBuff);
     }
 
     public void TickAllBuffs()
     {
         for (var index = Buffs.Count - 1; index >= 0; index--)
         {
-            var buff = Buffs[index];
-            buff.Tick();
+            var buff = Buffs.ElementAt(index);
+            buff.Value.Tick();
         }
     }
     
     public void RemoveBuff(Buff buff)
     {
-        Buffs.Remove(buff);
+        buff.Deactivate();
+        Buffs.Remove(buff.Id);
+    }
+    
+    public void RemoveAllBuffs()
+    {
+        for (var index = Buffs.Count - 1; index >= 0; index--)
+        {
+            var buff = Buffs.ElementAt(index);
+            RemoveBuff(buff.Value);
+        }
     }
 
     public PawnInfo GetPawnInfo()
