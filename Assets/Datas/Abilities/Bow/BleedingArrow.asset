@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e3f2961cde84cc2bca5113224648ba8, type: 3}
-  m_Name: Assassinate
+  m_Name: BleedingArrow
   m_EditorClassIdentifier: 
   <Animation>k__BackingField: BowAttack
   <Delay>k__BackingField: 1

@@ -1,6 +1,6 @@
 ﻿public abstract class Buff
 {
-    private PawnDomain DebuffedPawn { get; set; }
+    protected PawnDomain DebuffedPawn { get; private set; }
     
     public virtual void Init(PawnDomain pawnDomain)
     {
@@ -14,6 +14,6 @@
 
     public virtual void Deactivate()
     {
-        
+        DebuffedPawn.RemoveBuff(this);
     }
 }

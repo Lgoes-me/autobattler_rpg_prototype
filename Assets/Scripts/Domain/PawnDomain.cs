@@ -48,8 +48,9 @@ public class PawnDomain
 
     public void TickAllBuffs()
     {
-        foreach (var buff in Buffs)
+        for (var index = Buffs.Count - 1; index >= 0; index--)
         {
+            var buff = Buffs[index];
             buff.Tick();
         }
     }
