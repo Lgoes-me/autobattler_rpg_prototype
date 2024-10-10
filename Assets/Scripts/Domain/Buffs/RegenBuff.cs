@@ -1,16 +1,16 @@
-﻿using UnityEngine;
+using UnityEngine;
 
-public class DamageOverTimeBuff : Buff
+public class RegenBuff : Buff
 {
     private PawnController PawnController { get; set; }
-    private DamageDomain Damage { get; set; }
+    private int Regen { get; set; }
     private float TickRate { get; set; }
 
     private float LastTick { get; set; }
 
-    public DamageOverTimeBuff(DamageDomain damage, float tickRate, string id, float duration) : base(id, duration)
+    public RegenBuff(int regen, float tickRate, string id, float duration) : base(id, duration)
     {
-        Damage = damage;
+        Regen = regen;
         TickRate = tickRate;
         LastTick = Time.time;
     }
@@ -20,8 +20,8 @@ public class DamageOverTimeBuff : Buff
         if (Time.time >= LastTick + TickRate)
         {
             LastTick = Time.time;
-            Pawn.Stats.ReceiveDamage(Damage);
-            PawnController.ReceiveAttack();
+            Pawn.Stats.ReceiveHeal(Regen, false);
+            PawnController.ReceiveHeal(false);
         }
 
         base.Tick();
@@ -30,10 +30,9 @@ public class DamageOverTimeBuff : Buff
     public override void TryReapplyBuff()
     {
         base.TryReapplyBuff();
-
         Duration = Time.time;
     }
-
+    
     public void SetPawnController(PawnController pawnController)
     {
         PawnController = pawnController;

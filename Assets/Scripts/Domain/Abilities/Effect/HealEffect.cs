@@ -15,10 +15,11 @@ public class HealEffect : AbilityEffect
     {
         var pawn = pawnController.Pawn;
 
-        if (pawn.Stats.Health == 0)
+        if (!CanRevive && pawn.Stats.Health == 0)
             return;
-
-        pawn.Stats.ReceiveHeal(AbilityUser.Pawn, HealValue, CanRevive);
+        
+        var heal = (int) (HealValue * AbilityUser.Pawn.Stats.Arcane);
+        pawn.Stats.ReceiveHeal(heal, CanRevive);
         pawnController.ReceiveHeal(CanRevive);
     }
 }

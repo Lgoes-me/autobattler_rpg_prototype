@@ -50,12 +50,12 @@ public class Stats
         Health = Mathf.Clamp(Health - reducedDamage, 0, MaxHealth);
     }
     
-    public void ReceiveHeal(PawnDomain healer, float healValue, bool canRevive)
+    public void ReceiveHeal(int healValue, bool canRevive)
     {
         if(Health == 0 && !canRevive)
             return;
         
-        Health = Mathf.Clamp(Health + (int) (healValue * healer.Stats.Arcane), 0, MaxHealth);
+        Health = Mathf.Clamp(Health + healValue, 0, MaxHealth);
     }
     
     public void EndOfBattleHeal()
