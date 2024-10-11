@@ -16,10 +16,10 @@ MonoBehaviour:
   <Delay>k__BackingField: 0.75
   <Range>k__BackingField: 1
   <AbilityBehaviours>k__BackingField:
-  - <EffectData>k__BackingField:
-      rid: 4872000037008179221
+  - <Effects>k__BackingField:
+    - rid: 4872000037008179245
     <FocusData>k__BackingField:
-      rid: 4872000037008179222
+      rid: 4872000037008179255
     <ActionData>k__BackingField:
       rid: 4872000037008179223
   <ResourceData>k__BackingField:
@@ -32,18 +32,18 @@ MonoBehaviour:
       type: {class: ManaResourceData, ns: , asm: Assembly-CSharp}
       data:
         <ManaCost>k__BackingField: 30
-    - rid: 4872000037008179221
+    - rid: 4872000037008179223
+      type: {class: InstantActionData, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 4872000037008179245
       type: {class: DamageEffectData, ns: , asm: Assembly-CSharp}
       data:
         <Damage>k__BackingField:
           <Multiplier>k__BackingField: 2
           <Type>k__BackingField: 1
-    - rid: 4872000037008179222
-      type: {class: FocusComponent, ns: , asm: Assembly-CSharp}
+    - rid: 4872000037008179255
+      type: {class: FocusComponentData, ns: , asm: Assembly-CSharp}
       data:
         <Target>k__BackingField: 2
-        <Focus>k__BackingField: 1
-        <Error>k__BackingField: 2
-    - rid: 4872000037008179223
-      type: {class: InstantActionData, ns: , asm: Assembly-CSharp}
-      data: 
+        <Focus>k__BackingField: 3
+        <Error>k__BackingField: 1

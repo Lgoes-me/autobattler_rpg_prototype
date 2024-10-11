@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -123,7 +124,7 @@ public class PawnController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Pawn == null)
+        if (Pawn == null || Pawn.Stats.Health == 0)
             return;
 
         Pawn.TickAllBuffs();
@@ -147,13 +148,13 @@ public class PawnController : MonoBehaviour
         CharacterController.SetAnimationState(new DanceState());
     }
 
-    public void SpawnProjectile(ProjectileController projectile, AbilityEffect effect)
+    public void SpawnProjectile(ProjectileController projectile, List<AbilityEffect> effects, PawnController focusedPawn)
     {
-        var direction = Ability.FocusedPawnPosition - CharacterController.WeaponController.SpawnPoint.position;
+        var direction = focusedPawn.transform.position - CharacterController.WeaponController.SpawnPoint.position;
         direction = new Vector3(direction.x, 0, direction.z);
 
         Instantiate(projectile, CharacterController.WeaponController.SpawnPoint.position,
-            Quaternion.LookRotation(direction)).Init(this, effect, direction);
+            Quaternion.LookRotation(direction)).Init(this, effects, direction);
     }
 
     public void SetCharacter(PawnData pawnData)

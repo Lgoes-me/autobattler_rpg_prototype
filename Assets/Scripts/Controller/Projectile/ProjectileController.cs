@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ProjectileController : MonoBehaviour
@@ -8,12 +9,12 @@ public class ProjectileController : MonoBehaviour
     [field:SerializeField] private Rigidbody Rigidbody { get; set; }
     
     private PawnController Creator { get; set; }
-    private AbilityEffect Effect { get; set; }
+    private List<AbilityEffect> Effects { get; set; }
     
-    public void Init(PawnController creator, AbilityEffect effect, Vector3 direction)
+    public void Init(PawnController creator, List<AbilityEffect> effects, Vector3 direction)
     {
         Creator = creator;
-        Effect = effect;
+        Effects = effects;
         Rigidbody.velocity = direction * Speed;
 
         StartCoroutine(SelfDestructCoroutine());
@@ -25,7 +26,10 @@ public class ProjectileController : MonoBehaviour
             pawnController.Team != Creator.Team &&
             pawnController.PawnState.CanBeTargeted)
         {
-            Effect.DoAbilityEffect(pawnController);
+            foreach (var effect in Effects)
+            {
+                effect.DoAbilityEffect(pawnController);
+            }
             Destroy(this.gameObject);
         }
     }

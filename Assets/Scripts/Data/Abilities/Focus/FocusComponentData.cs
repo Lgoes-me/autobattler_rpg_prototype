@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [System.Serializable]
-public class FocusComponent : BaseFocusData
+public class FocusComponentData : BaseFocusData
 {
     [field: SerializeField] private int Error { get; set; }
     

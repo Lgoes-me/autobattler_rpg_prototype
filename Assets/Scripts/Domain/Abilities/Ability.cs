@@ -11,7 +11,6 @@ public class Ability
     private List<AbilityBehaviour> AbilityBehaviours { get; set; }
     private AbilityResourceComponent Resource { get; set; }
 
-    public Vector3 FocusedPawnPosition => FocusedPawn.transform.position;
 
     public Vector3 WalkingDestination => 
         FocusedPawn.transform.position + 
@@ -19,7 +18,7 @@ public class Ability
 
     private List<PawnController> FocusedPawns { get; set; }
     public PawnController FocusedPawn => FocusedPawns[0];
-    private bool IsInRange => Range >= (FocusedPawnPosition - AbilityUser.transform.position).magnitude;
+    private bool IsInRange => Range >= (FocusedPawn.transform.position - AbilityUser.transform.position).magnitude;
 
     public Ability(
         PawnController abilityUser,

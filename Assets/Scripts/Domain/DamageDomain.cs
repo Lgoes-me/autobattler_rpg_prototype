@@ -17,11 +17,17 @@ public class DamageDomain
     {
         var value = Type switch
         {
-            DamageType.Slash => (int) Multiplier * Attacker.Stats.Strength,
+            DamageType.Physical => (int) Multiplier * Attacker.Stats.Strength,
             DamageType.Magical => (int) Multiplier * Attacker.Stats.Arcane,
             _ => throw new ArgumentOutOfRangeException()
         };
 
         return value > 0 ? value : 0;
     }
+}
+
+public enum DamageType
+{
+    Physical = 1,
+    Magical = 2,
 }

@@ -1,8 +1,13 @@
-﻿[System.Serializable]
+﻿using System.Collections.Generic;
+
+[System.Serializable]
 public class InstantActionData : BaseActionData
 {
-    public override AbilityActionComponent ToDomain(PawnController abilityUser, AbilityEffect effect)
+    public override AbilityActionComponent ToDomain(
+        PawnController abilityUser,
+        List<AbilityEffect> effects,
+        AbilityFocusComponent abilityFocusComponent)
     {
-        return new InstantActionComponent(abilityUser, effect);
+        return new InstantActionComponent(abilityUser, effects, abilityFocusComponent);
     }
 }

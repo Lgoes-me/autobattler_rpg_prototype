@@ -16,10 +16,11 @@ MonoBehaviour:
   <Delay>k__BackingField: 1
   <Range>k__BackingField: 5
   <AbilityBehaviours>k__BackingField:
-  - <EffectData>k__BackingField:
-      rid: 4872000037008179227
+  - <Effects>k__BackingField:
+    - rid: 4872000037008179246
+    - rid: 4872000037008179247
     <FocusData>k__BackingField:
-      rid: 4872000037008179228
+      rid: 4872000037008179256
     <ActionData>k__BackingField:
       rid: 4872000037008179229
   <ResourceData>k__BackingField:
@@ -32,22 +33,28 @@ MonoBehaviour:
       type: {class: ManaResourceData, ns: , asm: Assembly-CSharp}
       data:
         <ManaCost>k__BackingField: 10
-    - rid: 4872000037008179227
+    - rid: 4872000037008179229
+      type: {class: ProjectileActionData, ns: , asm: Assembly-CSharp}
+      data:
+        <Projectile>k__BackingField: {fileID: 3883816015513118945, guid: 1c196ea9bdbc3434ca8969f1aa74aedb, type: 3}
+    - rid: 4872000037008179246
+      type: {class: DamageEffectData, ns: , asm: Assembly-CSharp}
+      data:
+        <Damage>k__BackingField:
+          <Multiplier>k__BackingField: 1
+          <Type>k__BackingField: 1
+    - rid: 4872000037008179247
       type: {class: DamageOverTimeEffectData, ns: , asm: Assembly-CSharp}
       data:
-        <Id>k__BackingField: 
+        <Id>k__BackingField: Bleed
         <Damage>k__BackingField:
           <Multiplier>k__BackingField: 4
           <Type>k__BackingField: 1
         <Duration>k__BackingField: 10
         <TickRate>k__BackingField: 1
-    - rid: 4872000037008179228
-      type: {class: FocusComponent, ns: , asm: Assembly-CSharp}
+    - rid: 4872000037008179256
+      type: {class: FocusComponentData, ns: , asm: Assembly-CSharp}
       data:
         <Target>k__BackingField: 2
-        <Focus>k__BackingField: 2
-        <Error>k__BackingField: 2
-    - rid: 4872000037008179229
-      type: {class: ProjectileActionData, ns: , asm: Assembly-CSharp}
-      data:
-        <Projectile>k__BackingField: {fileID: 3883816015513118945, guid: 1c196ea9bdbc3434ca8969f1aa74aedb, type: 3}
+        <Focus>k__BackingField: 4
+        <Error>k__BackingField: 1

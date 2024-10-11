@@ -16,10 +16,10 @@ MonoBehaviour:
   <Delay>k__BackingField: 1
   <Range>k__BackingField: 5
   <AbilityBehaviours>k__BackingField:
-  - <EffectData>k__BackingField:
-      rid: 4872000037008179231
+  - <Effects>k__BackingField:
+    - rid: 4872000037008179248
     <FocusData>k__BackingField:
-      rid: 4872000037008179232
+      rid: 4872000037008179257
     <ActionData>k__BackingField:
       rid: 4872000037008179233
   <ResourceData>k__BackingField:
@@ -31,19 +31,19 @@ MonoBehaviour:
     - rid: 4871999933996597250
       type: {class: NoResourceData, ns: , asm: Assembly-CSharp}
       data: 
-    - rid: 4872000037008179231
+    - rid: 4872000037008179233
+      type: {class: ProjectileActionData, ns: , asm: Assembly-CSharp}
+      data:
+        <Projectile>k__BackingField: {fileID: 3883816015513118945, guid: 1c196ea9bdbc3434ca8969f1aa74aedb, type: 3}
+    - rid: 4872000037008179248
       type: {class: DamageEffectData, ns: , asm: Assembly-CSharp}
       data:
         <Damage>k__BackingField:
           <Multiplier>k__BackingField: 2
           <Type>k__BackingField: 1
-    - rid: 4872000037008179232
-      type: {class: FocusComponent, ns: , asm: Assembly-CSharp}
+    - rid: 4872000037008179257
+      type: {class: FocusComponentData, ns: , asm: Assembly-CSharp}
       data:
         <Target>k__BackingField: 2
         <Focus>k__BackingField: 2
-        <Error>k__BackingField: 2
-    - rid: 4872000037008179233
-      type: {class: ProjectileActionData, ns: , asm: Assembly-CSharp}
-      data:
-        <Projectile>k__BackingField: {fileID: 3883816015513118945, guid: 1c196ea9bdbc3434ca8969f1aa74aedb, type: 3}
+        <Error>k__BackingField: 1

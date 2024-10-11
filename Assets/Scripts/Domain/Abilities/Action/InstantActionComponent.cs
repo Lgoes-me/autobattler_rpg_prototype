@@ -1,11 +1,19 @@
-﻿public class InstantActionComponent : AbilityActionComponent
+﻿using System.Collections.Generic;
+
+public class InstantActionComponent : AbilityActionComponent
 {
-    public InstantActionComponent(PawnController abilityUser, AbilityEffect effect) : base(abilityUser, effect)
+    public InstantActionComponent(
+        PawnController abilityUser, 
+        List<AbilityEffect> effects,
+        AbilityFocusComponent abilityFocusComponent) : base(abilityUser, effects, abilityFocusComponent)
     {
     }
 
     public override void DoAction()
     {
-        Effect.DoAbilityEffect(AbilityUser.Ability.FocusedPawn);
+        foreach (var effect in Effects)
+        {
+            effect.DoAbilityEffect(AbilityFocusComponent.FocusedPawn);
+        }
     }
 }

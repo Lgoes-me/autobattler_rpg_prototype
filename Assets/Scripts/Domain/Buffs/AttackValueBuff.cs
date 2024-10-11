@@ -17,7 +17,7 @@ public class AttackValueBuff : Buff
         base.Init(pawn);
         switch (Type)
         {
-            case DamageType.Slash:
+            case DamageType.Physical:
                 Pawn.Stats.Strength += Variation;
                 break;
             case DamageType.Magical:
@@ -32,7 +32,7 @@ public class AttackValueBuff : Buff
     {
         switch (Type)
         {
-            case DamageType.Slash:
+            case DamageType.Physical:
                 Pawn.Stats.Strength -= Variation;
                 break;
             case DamageType.Magical:

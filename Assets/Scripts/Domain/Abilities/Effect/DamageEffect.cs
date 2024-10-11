@@ -18,9 +18,3 @@
         pawnController.ReceiveAttack();
     }
 }
-
-public enum DamageType
-{
-    Slash = 1,
-    Magical = 2,
-}

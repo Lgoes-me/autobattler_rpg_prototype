@@ -16,54 +16,33 @@ MonoBehaviour:
   <Delay>k__BackingField: 0.3
   <Range>k__BackingField: 1
   <AbilityBehaviours>k__BackingField:
-  - <EffectData>k__BackingField:
-      rid: 4872000037008179203
+  - <Effects>k__BackingField:
+    - rid: 4872000037008179240
     <FocusData>k__BackingField:
-      rid: 4872000037008179204
+      rid: 4872000037008179252
     <ActionData>k__BackingField:
       rid: 4872000037008179205
   <ResourceData>k__BackingField:
     rid: 4871999933996597270
-  <ActionData>k__BackingField:
-    rid: 4871999933996597271
-  <EffectData>k__BackingField:
-    rid: 4871999933996597268
-  <FocusData>k__BackingField:
-    rid: 4871999933996597269
   <Priorities>k__BackingField: []
   references:
     version: 2
     RefIds:
-    - rid: 4871999933996597268
-      type: {class: DamageEffectData, ns: , asm: Assembly-CSharp}
-      data:
-        <Damage>k__BackingField:
-          <Multiplier>k__BackingField: 1
-          <Type>k__BackingField: 1
-    - rid: 4871999933996597269
-      type: {class: FocusComponent, ns: , asm: Assembly-CSharp}
-      data:
-        <Target>k__BackingField: 2
-        <Focus>k__BackingField: 1
-        <Error>k__BackingField: 3
     - rid: 4871999933996597270
       type: {class: NoResourceData, ns: , asm: Assembly-CSharp}
       data: 
-    - rid: 4871999933996597271
+    - rid: 4872000037008179205
       type: {class: InstantActionData, ns: , asm: Assembly-CSharp}
       data: 
-    - rid: 4872000037008179203
+    - rid: 4872000037008179240
       type: {class: DamageEffectData, ns: , asm: Assembly-CSharp}
       data:
         <Damage>k__BackingField:
           <Multiplier>k__BackingField: 1
           <Type>k__BackingField: 1
-    - rid: 4872000037008179204
-      type: {class: FocusComponent, ns: , asm: Assembly-CSharp}
+    - rid: 4872000037008179252
+      type: {class: FocusComponentData, ns: , asm: Assembly-CSharp}
       data:
         <Target>k__BackingField: 2
         <Focus>k__BackingField: 1
-        <Error>k__BackingField: 3
-    - rid: 4872000037008179205
-      type: {class: InstantActionData, ns: , asm: Assembly-CSharp}
-      data: 
+        <Error>k__BackingField: 1

@@ -18,12 +18,16 @@ MonoBehaviour:
   <AbilityBehaviours>k__BackingField:
   - <EffectData>k__BackingField:
       rid: 4872000037008179218
+    <Effects>k__BackingField:
+    - rid: 4872000037008179242
     <FocusData>k__BackingField:
       rid: 4872000037008179219
     <ActionData>k__BackingField:
       rid: 4872000037008179220
   - <EffectData>k__BackingField:
       rid: 4872000037008179235
+    <Effects>k__BackingField:
+    - rid: 4872000037008179243
     <FocusData>k__BackingField:
       rid: 4872000037008179219
     <ActionData>k__BackingField:
@@ -34,6 +38,8 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 4872000037008179202
       type: {class: ManaResourceData, ns: , asm: Assembly-CSharp}
       data:
@@ -55,6 +61,20 @@ MonoBehaviour:
       type: {class: InstantActionData, ns: , asm: Assembly-CSharp}
       data: 
     - rid: 4872000037008179235
+      type: {class: RegenBuffEffectData, ns: , asm: Assembly-CSharp}
+      data:
+        <Id>k__BackingField: Regen
+        <Regen>k__BackingField: 3
+        <TickRate>k__BackingField: 1
+        <Duration>k__BackingField: -1
+    - rid: 4872000037008179242
+      type: {class: AttackBuffEffectData, ns: , asm: Assembly-CSharp}
+      data:
+        <Id>k__BackingField: AttackBuff
+        <Type>k__BackingField: 1
+        <Variation>k__BackingField: 3
+        <Duration>k__BackingField: -1
+    - rid: 4872000037008179243
       type: {class: RegenBuffEffectData, ns: , asm: Assembly-CSharp}
       data:
         <Id>k__BackingField: Regen

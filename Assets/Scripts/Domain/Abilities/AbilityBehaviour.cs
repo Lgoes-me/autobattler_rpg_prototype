@@ -1,15 +1,17 @@
-﻿public class AbilityBehaviour
+﻿using System.Collections.Generic;
+
+public class AbilityBehaviour
 {
-    private AbilityEffect Effect { get; set; }
+    private List<AbilityEffect> Effects { get; set; }
     private AbilityFocusComponent Focus { get; set; }
     private AbilityActionComponent Action { get; set; }
     
     public AbilityBehaviour(
-        AbilityEffect effect,
+        List<AbilityEffect> effects,
         AbilityFocusComponent focus,
         AbilityActionComponent action)
     {
-        Effect = effect;
+        Effects = effects;
         Focus = focus;
         Action = action;
     }

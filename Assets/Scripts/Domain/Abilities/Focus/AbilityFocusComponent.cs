@@ -1,5 +1,6 @@
 ﻿public class AbilityFocusComponent
 {
+    public PawnController FocusedPawn { get; set; }
     private PawnController AbilityUser { get; set; }
     private TargetType Target { get; set; }
     private FocusType Focus { get; set; }
@@ -15,7 +16,7 @@
 
     public PawnController ChooseFocus(Battle battle)
     {
-        return battle.Query(AbilityUser, Target, Focus, Error);
+        return FocusedPawn = battle.Query(AbilityUser, Target, Focus, Error);
     }
 }
 

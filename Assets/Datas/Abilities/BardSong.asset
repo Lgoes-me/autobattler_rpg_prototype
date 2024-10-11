@@ -18,6 +18,8 @@ MonoBehaviour:
   <AbilityBehaviours>k__BackingField:
   - <EffectData>k__BackingField:
       rid: 4872000037008179212
+    <Effects>k__BackingField:
+    - rid: 4872000037008179237
     <FocusData>k__BackingField:
       rid: 4872000037008179213
     <ActionData>k__BackingField:
@@ -29,6 +31,8 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 4871999933996597254
       type: {class: NoResourceData, ns: , asm: Assembly-CSharp}
       data: 
@@ -51,3 +55,8 @@ MonoBehaviour:
     - rid: 4872000037008179214
       type: {class: InstantActionData, ns: , asm: Assembly-CSharp}
       data: 
+    - rid: 4872000037008179237
+      type: {class: HealEffectData, ns: , asm: Assembly-CSharp}
+      data:
+        <HealMultiplier>k__BackingField: 2
+        <CanRevive>k__BackingField: 0

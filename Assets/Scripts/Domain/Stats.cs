@@ -39,7 +39,7 @@ public class Stats
         
         var reducedDamage = damage.Type switch
         {
-            DamageType.Slash => damageValue - (damageValue * PhysicalDefence * 10/100),
+            DamageType.Physical => damageValue - (damageValue * PhysicalDefence * 10/100),
             DamageType.Magical => damageValue - (damageValue * MagicalDefence * 10/100),
             _ => throw new ArgumentOutOfRangeException()
         };
