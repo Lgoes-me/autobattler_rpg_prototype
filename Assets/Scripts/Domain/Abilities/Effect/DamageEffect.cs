@@ -11,10 +11,10 @@
     {
         var pawn = pawnController.Pawn;
 
-        if (pawn.Stats.Health == 0)
+        if (!pawn.IsAlive)
             return;
 
-        pawn.Stats.ReceiveDamage(Damage);
+        pawn.ReceiveDamage(Damage);
         pawnController.ReceiveAttack();
     }
 }

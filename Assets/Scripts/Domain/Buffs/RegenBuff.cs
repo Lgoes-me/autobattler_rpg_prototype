@@ -20,7 +20,7 @@ public class RegenBuff : Buff
         if (Time.time >= LastTick + TickRate)
         {
             LastTick = Time.time;
-            Pawn.Stats.ReceiveHeal(Regen, false);
+            Pawn.ReceiveHeal(Regen, false);
             PawnController.ReceiveHeal(false);
         }
 

@@ -16,20 +16,11 @@ MonoBehaviour:
   <Delay>k__BackingField: 0.1
   <Range>k__BackingField: 1
   <AbilityBehaviours>k__BackingField:
-  - <EffectData>k__BackingField:
-      rid: 4872000037008179218
-    <Effects>k__BackingField:
-    - rid: 4872000037008179242
+  - <Effects>k__BackingField:
+    - rid: 4872000060460630016
+    - rid: 4872000060460630019
     <FocusData>k__BackingField:
-      rid: 4872000037008179219
-    <ActionData>k__BackingField:
-      rid: 4872000037008179220
-  - <EffectData>k__BackingField:
-      rid: 4872000037008179235
-    <Effects>k__BackingField:
-    - rid: 4872000037008179243
-    <FocusData>k__BackingField:
-      rid: 4872000037008179219
+      rid: 4872000060460630017
     <ActionData>k__BackingField:
       rid: 4872000037008179220
   <ResourceData>k__BackingField:
@@ -38,43 +29,30 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
     - rid: 4872000037008179202
       type: {class: ManaResourceData, ns: , asm: Assembly-CSharp}
       data:
         <ManaCost>k__BackingField: 10
-    - rid: 4872000037008179218
-      type: {class: AttackBuffEffectData, ns: , asm: Assembly-CSharp}
+    - rid: 4872000037008179220
+      type: {class: InstantActionData, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 4872000060460630016
+      type: {class: StatsBuffEffectData, ns: , asm: Assembly-CSharp}
       data:
-        <Id>k__BackingField: AttackBuff
-        <Type>k__BackingField: 1
-        <Variation>k__BackingField: 3
+        <Id>k__BackingField: Strenght
+        <StatsVariation>k__BackingField:
+          <Strength>k__BackingField: 3
+          <Arcane>k__BackingField: 0
+          <PhysicalDefence>k__BackingField: 0
+          <MagicalDefence>k__BackingField: 0
         <Duration>k__BackingField: -1
-    - rid: 4872000037008179219
-      type: {class: FocusComponent, ns: , asm: Assembly-CSharp}
+    - rid: 4872000060460630017
+      type: {class: FocusComponentData, ns: , asm: Assembly-CSharp}
       data:
         <Target>k__BackingField: 0
         <Focus>k__BackingField: 0
         <Error>k__BackingField: 0
-    - rid: 4872000037008179220
-      type: {class: InstantActionData, ns: , asm: Assembly-CSharp}
-      data: 
-    - rid: 4872000037008179235
-      type: {class: RegenBuffEffectData, ns: , asm: Assembly-CSharp}
-      data:
-        <Id>k__BackingField: Regen
-        <Regen>k__BackingField: 3
-        <TickRate>k__BackingField: 1
-        <Duration>k__BackingField: -1
-    - rid: 4872000037008179242
-      type: {class: AttackBuffEffectData, ns: , asm: Assembly-CSharp}
-      data:
-        <Id>k__BackingField: AttackBuff
-        <Type>k__BackingField: 1
-        <Variation>k__BackingField: 3
-        <Duration>k__BackingField: -1
-    - rid: 4872000037008179243
+    - rid: 4872000060460630019
       type: {class: RegenBuffEffectData, ns: , asm: Assembly-CSharp}
       data:
         <Id>k__BackingField: Regen

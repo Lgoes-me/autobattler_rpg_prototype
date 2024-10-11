@@ -11,7 +11,7 @@ public class SimpleBuffEffect : AbilityEffect
     {
         var pawn = pawnController.Pawn;
 
-        if (pawn.Stats.Health == 0)
+        if (!pawn.IsAlive)
             return;
 
         pawn.AddBuff(Buff);

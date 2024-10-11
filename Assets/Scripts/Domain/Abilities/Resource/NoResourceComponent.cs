@@ -13,7 +13,7 @@
         if (!pawn.HasMana)
             return;
 
-        pawn.Stats.GainMana();
+        pawn.GainMana();
         AbilityUser.PawnCanvasController.UpdateMana();
     }
 }

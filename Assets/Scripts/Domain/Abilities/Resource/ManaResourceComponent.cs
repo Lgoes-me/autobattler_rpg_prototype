@@ -10,7 +10,7 @@
     public override bool HasResource()
     {
         var pawn = AbilityUser.Pawn;
-        return pawn.Stats.Mana >= ManaCost;
+        return pawn.Mana >= ManaCost;
     }
 
     public override void SpendResource()
@@ -20,7 +20,7 @@
         if (!pawn.HasMana)
             return;
 
-        pawn.Stats.SpentMana(ManaCost);
+        pawn.SpentMana(ManaCost);
         AbilityUser.PawnCanvasController.UpdateMana();
     }
 }

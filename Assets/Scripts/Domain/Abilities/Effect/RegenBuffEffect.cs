@@ -11,7 +11,7 @@
     {
         var pawn = pawnController.Pawn;
 
-        if (pawn.Stats.Health == 0)
+        if (!pawn.IsAlive)
             return;
 
         RegenBuff.SetPawnController(pawnController);

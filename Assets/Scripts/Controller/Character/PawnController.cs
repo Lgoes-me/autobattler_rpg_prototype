@@ -16,7 +16,7 @@ public class PawnController : MonoBehaviour
     public PawnDomain Pawn { get; private set; }
     public AnimationState PawnState => CharacterController.CurrentState;
     private Coroutine BackToIdleCoroutine { get; set; }
-    public Ability Ability { get; private set; }
+    private Ability Ability { get; set; }
     private Ability RequestedSpecialAbility { get; set; }
 
     public PawnController Init()
@@ -124,7 +124,7 @@ public class PawnController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Pawn == null || Pawn.Stats.Health == 0)
+        if (Pawn == null || !Pawn.IsAlive)
             return;
 
         Pawn.TickAllBuffs();
@@ -183,11 +183,10 @@ public class PawnController : MonoBehaviour
 
     public void ReceiveAttack()
     {
-        var dead = Pawn.Stats.Health <= 0;
         CharacterController.DoHitStop();
         PawnCanvasController.UpdateLife();
 
-        if (!dead) return;
+        if (Pawn.IsAlive) return;
 
         CharacterController.SetAnimationState(new DeadState());
         NavMeshAgent.isStopped = true;
@@ -196,11 +195,10 @@ public class PawnController : MonoBehaviour
 
     public void ReceiveHeal(bool canRevive)
     {
-        var dead = Pawn.Stats.Health <= 0;
         CharacterController.DoNiceHitStop();
         PawnCanvasController.UpdateLife();
 
-        if (!dead || !canRevive)
+        if (!Pawn.IsAlive || !canRevive)
             return;
 
         CharacterController.SetAnimationState(new IdleState());

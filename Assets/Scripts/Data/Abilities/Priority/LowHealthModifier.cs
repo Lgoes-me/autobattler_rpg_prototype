@@ -9,7 +9,7 @@ public class LowHealthModifier : PriorityModifier
     {
         var selectedPawn = battle.Query(abilityUser, focusData.Target, focusData.Focus, 0);
         
-        if (selectedPawn != null && selectedPawn.Pawn.Stats.Health < Health)
+        if (selectedPawn != null && selectedPawn.Pawn.Health < Health)
             return priority + 1 * Multiplier;
         
         return priority;

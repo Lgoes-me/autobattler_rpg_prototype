@@ -5,7 +5,8 @@ using UnityEngine;
 public class PawnData : ScriptableObject
 {
     [field: SerializeField] public string Id { get; private set; }
-    
+    [field: SerializeField] private int Health { get; set; }
+    [field: SerializeField] private int Mana { get; set; }
     [field: SerializeField] public CharacterController Character { get; private set; }
     [field: SerializeField] public WeaponController Weapon { get; private set; }
     [field: SerializeField] private StatsData Stats { get; set; }
@@ -15,9 +16,9 @@ public class PawnData : ScriptableObject
     public PawnDomain ToDomain()
     {
         var stats = Stats.ToDomain();
-        return new PawnDomain(Id, stats, Abilities, SpecialAbilities);
+        return new PawnDomain(Id, Health, Mana, stats, Abilities, SpecialAbilities);
     }
-    
+
     public PawnInfo ResetPawnInfo()
     {
         return new PawnInfo(Id, 0);

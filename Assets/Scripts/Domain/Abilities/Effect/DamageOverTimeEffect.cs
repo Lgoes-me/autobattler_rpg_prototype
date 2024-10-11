@@ -11,7 +11,7 @@ public class DamageOverTimeEffect : AbilityEffect
     {
         var pawn = pawnController.Pawn;
 
-        if (pawn.Stats.Health == 0)
+        if (!pawn.IsAlive)
             return;
 
         DamageOverTimeBuff.SetPawnController(pawnController);

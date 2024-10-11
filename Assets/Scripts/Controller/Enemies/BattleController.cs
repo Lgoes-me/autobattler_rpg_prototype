@@ -126,7 +126,7 @@ public class BattleController : MonoBehaviour
 
         foreach (var playerPawn in Battle.PlayerPawns)
         {
-            playerPawn.Pawn.Stats.EndOfBattleHeal();
+            playerPawn.Pawn.EndOfBattleHeal();
             playerPawn.ReceiveHeal(true);
         }
 
