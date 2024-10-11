@@ -14,14 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Animation>k__BackingField: RapierAttack
   <Delay>k__BackingField: 0.3
-  <EffectData>k__BackingField:
-    rid: 4871999933996597268
-  <FocusData>k__BackingField:
-    rid: 4871999933996597269
+  <Range>k__BackingField: 1
+  <AbilityBehaviours>k__BackingField:
+  - <EffectData>k__BackingField:
+      rid: 4872000037008179203
+    <FocusData>k__BackingField:
+      rid: 4872000037008179204
+    <ActionData>k__BackingField:
+      rid: 4872000037008179205
   <ResourceData>k__BackingField:
     rid: 4871999933996597270
   <ActionData>k__BackingField:
     rid: 4871999933996597271
+  <EffectData>k__BackingField:
+    rid: 4871999933996597268
+  <FocusData>k__BackingField:
+    rid: 4871999933996597269
   <Priorities>k__BackingField: []
   references:
     version: 2
@@ -37,11 +45,25 @@ MonoBehaviour:
       data:
         <Target>k__BackingField: 2
         <Focus>k__BackingField: 1
-        <Range>k__BackingField: 1
         <Error>k__BackingField: 3
     - rid: 4871999933996597270
       type: {class: NoResourceData, ns: , asm: Assembly-CSharp}
       data: 
     - rid: 4871999933996597271
+      type: {class: InstantActionData, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 4872000037008179203
+      type: {class: DamageEffectData, ns: , asm: Assembly-CSharp}
+      data:
+        <Damage>k__BackingField:
+          <Multiplier>k__BackingField: 1
+          <Type>k__BackingField: 1
+    - rid: 4872000037008179204
+      type: {class: FocusComponent, ns: , asm: Assembly-CSharp}
+      data:
+        <Target>k__BackingField: 2
+        <Focus>k__BackingField: 1
+        <Error>k__BackingField: 3
+    - rid: 4872000037008179205
       type: {class: InstantActionData, ns: , asm: Assembly-CSharp}
       data: 

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -17,7 +15,7 @@ public class PawnController : MonoBehaviour
     public PawnDomain Pawn { get; private set; }
     public AnimationState PawnState => CharacterController.CurrentState;
     private Coroutine BackToIdleCoroutine { get; set; }
-    private Ability Ability { get; set; }
+    public Ability Ability { get; private set; }
     private Ability RequestedSpecialAbility { get; set; }
 
     public PawnController Init()
@@ -52,28 +50,25 @@ public class PawnController : MonoBehaviour
             Ability.ChooseFocus(battle);
         }
 
-        if (!Ability.Focus.IsInRange)
+        if (!Ability.ShoudUse())
         {
             NavMeshAgent.isStopped = false;
-            NavMeshAgent.SetDestination(Ability.Focus.WalkingDestination);
+            NavMeshAgent.SetDestination(Ability.WalkingDestination);
             CharacterController.SetAnimationState(new IdleState());
         }
         else
         {
             NavMeshAgent.isStopped = true;
             NavMeshAgent.SetDestination(transform.position);
-            CharacterController.SetAnimationState(new AttackState(Ability, AttackEnemy), GoBackToIdle);
+            CharacterController.SetAnimationState(new AbilityState(Ability, DoAbility), GoBackToIdle);
         }
 
         yield break;
     }
 
-    private void AttackEnemy()
+    private void DoAbility()
     {
         if (Ability == null || !PawnState.AbleToFight)
-            return;
-
-        if (!Ability.CanUse())
             return;
 
         if (Ability == RequestedSpecialAbility)
@@ -99,6 +94,7 @@ public class PawnController : MonoBehaviour
 
         if (!PawnState.AbleToFight)
             yield break;
+        
         Pawn.SetInitiative(Ability.Delay);
 
         Ability = null;
@@ -112,7 +108,7 @@ public class PawnController : MonoBehaviour
 
         CharacterController.SetDirection(NavMeshAgent.velocity);
 
-        if (Ability.Focus.IsInRange)
+        if (Ability.ShoudUse())
         {
             NavMeshAgent.isStopped = true;
             CharacterController.SetSpeed(0);
@@ -120,7 +116,7 @@ public class PawnController : MonoBehaviour
         else if (NavMeshAgent.pathStatus == NavMeshPathStatus.PathComplete && NavMeshAgent.remainingDistance < 1f)
         {
             NavMeshAgent.isStopped = false;
-            NavMeshAgent.SetDestination(Ability.Focus.WalkingDestination);
+            NavMeshAgent.SetDestination(Ability.WalkingDestination);
             CharacterController.SetSpeed(NavMeshAgent.velocity.magnitude);
         }
     }
@@ -153,7 +149,7 @@ public class PawnController : MonoBehaviour
 
     public void SpawnProjectile(ProjectileController projectile, AbilityEffect effect)
     {
-        var direction = Ability.Focus.FocusedPawnPosition - CharacterController.WeaponController.SpawnPoint.position;
+        var direction = Ability.FocusedPawnPosition - CharacterController.WeaponController.SpawnPoint.position;
         direction = new Vector3(direction.x, 0, direction.z);
 
         Instantiate(projectile, CharacterController.WeaponController.SpawnPoint.position,

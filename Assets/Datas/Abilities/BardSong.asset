@@ -14,39 +14,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Animation>k__BackingField: BardSong
   <Delay>k__BackingField: 1
-  <EffectData>k__BackingField:
-    rid: 4871999933996597252
-  <FocusData>k__BackingField:
-    rid: 4871999933996597253
+  <Range>k__BackingField: 3
+  <AbilityBehaviours>k__BackingField:
+  - <EffectData>k__BackingField:
+      rid: 4872000037008179212
+    <FocusData>k__BackingField:
+      rid: 4872000037008179213
+    <ActionData>k__BackingField:
+      rid: 4872000037008179214
   <ResourceData>k__BackingField:
     rid: 4871999933996597254
-  <ActionData>k__BackingField:
-    rid: 4871999933996597255
   <Priorities>k__BackingField:
   - rid: 4871999947845402626
   references:
     version: 2
     RefIds:
-    - rid: 4871999933996597252
-      type: {class: HealEffectData, ns: , asm: Assembly-CSharp}
-      data:
-        <HealMultiplier>k__BackingField: 2
-        <CanRevive>k__BackingField: 0
-    - rid: 4871999933996597253
-      type: {class: FocusComponent, ns: , asm: Assembly-CSharp}
-      data:
-        <Target>k__BackingField: 1
-        <Focus>k__BackingField: 3
-        <Range>k__BackingField: 3
-        <Error>k__BackingField: 0
     - rid: 4871999933996597254
       type: {class: NoResourceData, ns: , asm: Assembly-CSharp}
-      data: 
-    - rid: 4871999933996597255
-      type: {class: InstantActionData, ns: , asm: Assembly-CSharp}
       data: 
     - rid: 4871999947845402626
       type: {class: LowHealthModifier, ns: , asm: Assembly-CSharp}
       data:
         <Multiplier>k__BackingField: 1
         <Health>k__BackingField: 10
+    - rid: 4872000037008179212
+      type: {class: HealEffectData, ns: , asm: Assembly-CSharp}
+      data:
+        <HealMultiplier>k__BackingField: 2
+        <CanRevive>k__BackingField: 0
+    - rid: 4872000037008179213
+      type: {class: FocusComponent, ns: , asm: Assembly-CSharp}
+      data:
+        <Target>k__BackingField: 1
+        <Focus>k__BackingField: 3
+        <Error>k__BackingField: 0
+    - rid: 4872000037008179214
+      type: {class: InstantActionData, ns: , asm: Assembly-CSharp}
+      data: 

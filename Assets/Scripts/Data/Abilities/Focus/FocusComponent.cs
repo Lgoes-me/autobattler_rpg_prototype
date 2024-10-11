@@ -7,6 +7,6 @@ public class FocusComponent : BaseFocusData
     
     public override AbilityFocusComponent ToDomain(PawnController abilityUser)
     {
-        return new AbilityFocusComponent(abilityUser, Target, Focus, Range, Error);
+        return new AbilityFocusComponent(abilityUser, Target, Focus, Error);
     }
 }

@@ -96,7 +96,7 @@ public class PawnDomain
             abilities.AddRange(specialAttacks);
         }
 
-        return abilities.OrderBy(a => a.GetPriority(abilityUser, battle)).Last();
+        return abilities.OrderByDescending(a => a.GetPriority(abilityUser, battle)).First();
     }
 }
 

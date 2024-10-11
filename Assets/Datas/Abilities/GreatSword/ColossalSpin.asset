@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Animation>k__BackingField: ColossalAttack
   <Delay>k__BackingField: 0.6
+  <Range>k__BackingField: 1.5
   <EffectData>k__BackingField:
     rid: 4871999933996597256
   <FocusData>k__BackingField:

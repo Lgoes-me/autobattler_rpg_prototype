@@ -2,11 +2,8 @@
 {
     private ProjectileController Projectile { get; set; }
 
-    public ProjectileActionComponent(
-        PawnController abilityUser, 
-        AbilityFocusComponent focusComponent,
-        AbilityEffect effect,
-        ProjectileController projectile) : base(abilityUser, focusComponent, effect)
+    public ProjectileActionComponent(PawnController abilityUser, AbilityEffect effect, ProjectileController projectile)
+        : base(abilityUser, effect)
     {
         Projectile = projectile;
     }

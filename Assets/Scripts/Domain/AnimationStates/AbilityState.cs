@@ -1,13 +1,13 @@
 ﻿using System;
 
-public class AttackState : AnimationState
+public class AbilityState : AnimationState
 {
     public override string Animation => Ability.Animation;
     public override bool CanTakeTurn => false;
     private Ability Ability { get; }
     private Action Callback { get; }
 
-    public AttackState(Ability ability, Action callback)
+    public AbilityState(Ability ability, Action callback)
     {
         Ability = ability;
         Callback = callback;

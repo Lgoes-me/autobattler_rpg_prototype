@@ -5,11 +5,8 @@ public class ProjectileActionData : BaseActionData
 {
     [field: SerializeField] private ProjectileController Projectile { get; set; }
 
-    public override AbilityActionComponent ToDomain(
-        PawnController abilityUser,
-        AbilityFocusComponent focusComponent,
-        AbilityEffect effect)
+    public override AbilityActionComponent ToDomain(PawnController abilityUser, AbilityEffect effect)
     {
-        return new ProjectileActionComponent(abilityUser, focusComponent, effect, Projectile);
+        return new ProjectileActionComponent(abilityUser, effect, Projectile);
     }
 }

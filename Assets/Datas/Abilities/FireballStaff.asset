@@ -14,33 +14,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Animation>k__BackingField: FireballStaff
   <Delay>k__BackingField: 1.5
-  <EffectData>k__BackingField:
-    rid: 4871999933996597263
-  <FocusData>k__BackingField:
-    rid: 4871999933996597262
+  <Range>k__BackingField: 5
+  <AbilityBehaviours>k__BackingField:
+  - <EffectData>k__BackingField:
+      rid: 4872000037008179208
+    <FocusData>k__BackingField:
+      rid: 4872000037008179207
+    <ActionData>k__BackingField:
+      rid: 4872000037008179206
   <ResourceData>k__BackingField:
     rid: 4871999933996597261
-  <ActionData>k__BackingField:
-    rid: 4871999933996597260
   <Priorities>k__BackingField: []
   references:
     version: 2
     RefIds:
-    - rid: 4871999933996597260
-      type: {class: ProjectileActionData, ns: , asm: Assembly-CSharp}
-      data:
-        <Projectile>k__BackingField: {fileID: 3883816015513118945, guid: 168bc8105127cf344a0b5af79c23baf8, type: 3}
     - rid: 4871999933996597261
       type: {class: NoResourceData, ns: , asm: Assembly-CSharp}
       data: 
-    - rid: 4871999933996597262
+    - rid: 4872000037008179206
+      type: {class: ProjectileActionData, ns: , asm: Assembly-CSharp}
+      data:
+        <Projectile>k__BackingField: {fileID: 3883816015513118945, guid: 168bc8105127cf344a0b5af79c23baf8, type: 3}
+    - rid: 4872000037008179207
       type: {class: FocusComponent, ns: , asm: Assembly-CSharp}
       data:
         <Target>k__BackingField: 2
         <Focus>k__BackingField: 1
-        <Range>k__BackingField: 5
         <Error>k__BackingField: 3
-    - rid: 4871999933996597263
+    - rid: 4872000037008179208
       type: {class: DamageEffectData, ns: , asm: Assembly-CSharp}
       data:
         <Damage>k__BackingField:

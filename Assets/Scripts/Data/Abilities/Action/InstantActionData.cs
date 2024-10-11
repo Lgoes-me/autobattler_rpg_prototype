@@ -1,11 +1,8 @@
 ﻿[System.Serializable]
 public class InstantActionData : BaseActionData
 {
-    public override AbilityActionComponent ToDomain(
-        PawnController abilityUser,
-        AbilityFocusComponent focusComponent,
-        AbilityEffect effect)
+    public override AbilityActionComponent ToDomain(PawnController abilityUser, AbilityEffect effect)
     {
-        return new InstantActionComponent(abilityUser, focusComponent, effect);
+        return new InstantActionComponent(abilityUser, effect);
     }
 }

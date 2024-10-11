@@ -1,36 +1,21 @@
-﻿using UnityEngine;
-using Random = UnityEngine.Random;
-
-public class AbilityFocusComponent
+﻿public class AbilityFocusComponent
 {
     private PawnController AbilityUser { get; set; }
     private TargetType Target { get; set; }
     private FocusType Focus { get; set; }
-    private float Range { get; set; }
     private int Error { get; set; }
 
-    public bool IsInRange => Range >= (FocusedPawnPosition - AbilityUser.transform.position).magnitude;
-    public Vector3 FocusedPawnPosition => FocusedPawn != null ? FocusedPawn.transform.position : AbilityUser.transform.position;
-    public Vector3 WalkingDestination =>
-        FocusedPawn != null ? 
-            FocusedPawn.transform.position + Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)) * Vector3.forward * (Range - 1)
-            : AbilityUser.transform.position;
-    
-    public PawnController FocusedPawn { get; private set; }
-
-    public AbilityFocusComponent(PawnController abilityUser, TargetType target, FocusType focus, float range, int error)
+    public AbilityFocusComponent(PawnController abilityUser, TargetType target, FocusType focus, int error)
     {
         AbilityUser = abilityUser;
         Target = target;
         Focus = focus;
-        Range = range;
         Error = error;
-        FocusedPawn = null;
     }
 
-    public void ChooseFocus(Battle battle)
+    public PawnController ChooseFocus(Battle battle)
     {
-        FocusedPawn = battle.Query(AbilityUser, Target, Focus, Error);
+        return battle.Query(AbilityUser, Target, Focus, Error);
     }
 }
 

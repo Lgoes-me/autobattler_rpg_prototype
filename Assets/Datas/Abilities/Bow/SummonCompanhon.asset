@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Animation>k__BackingField: BowAttack
   <Delay>k__BackingField: 1
+  <Range>k__BackingField: 5
   <EffectData>k__BackingField:
     rid: 4871999933041868802
   <FocusData>k__BackingField:

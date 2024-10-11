@@ -14,38 +14,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Animation>k__BackingField: BowAttack
   <Delay>k__BackingField: 1
-  <EffectData>k__BackingField:
-    rid: 4872000021176254464
-  <FocusData>k__BackingField:
-    rid: 4871999933996597251
+  <Range>k__BackingField: 5
+  <AbilityBehaviours>k__BackingField:
+  - <EffectData>k__BackingField:
+      rid: 4872000037008179227
+    <FocusData>k__BackingField:
+      rid: 4872000037008179228
+    <ActionData>k__BackingField:
+      rid: 4872000037008179229
   <ResourceData>k__BackingField:
     rid: 4872000021176254468
-  <ActionData>k__BackingField:
-    rid: 4871999933041868803
   <Priorities>k__BackingField: []
   references:
     version: 2
     RefIds:
-    - rid: 4871999933041868803
-      type: {class: ProjectileActionData, ns: , asm: Assembly-CSharp}
-      data:
-        <Projectile>k__BackingField: {fileID: 3883816015513118945, guid: 1c196ea9bdbc3434ca8969f1aa74aedb, type: 3}
-    - rid: 4871999933996597251
-      type: {class: FocusComponent, ns: , asm: Assembly-CSharp}
-      data:
-        <Target>k__BackingField: 2
-        <Focus>k__BackingField: 2
-        <Range>k__BackingField: 5
-        <Error>k__BackingField: 2
-    - rid: 4872000021176254464
-      type: {class: DamageOverTimeEffectData, ns: , asm: Assembly-CSharp}
-      data:
-        <Damage>k__BackingField:
-          <Multiplier>k__BackingField: 4
-          <Type>k__BackingField: 1
-        <Duration>k__BackingField: 25
-        <TickRate>k__BackingField: 1
     - rid: 4872000021176254468
       type: {class: ManaResourceData, ns: , asm: Assembly-CSharp}
       data:
         <ManaCost>k__BackingField: 10
+    - rid: 4872000037008179227
+      type: {class: DamageOverTimeEffectData, ns: , asm: Assembly-CSharp}
+      data:
+        <Id>k__BackingField: 
+        <Damage>k__BackingField:
+          <Multiplier>k__BackingField: 4
+          <Type>k__BackingField: 1
+        <Duration>k__BackingField: 10
+        <TickRate>k__BackingField: 1
+    - rid: 4872000037008179228
+      type: {class: FocusComponent, ns: , asm: Assembly-CSharp}
+      data:
+        <Target>k__BackingField: 2
+        <Focus>k__BackingField: 2
+        <Error>k__BackingField: 2
+    - rid: 4872000037008179229
+      type: {class: ProjectileActionData, ns: , asm: Assembly-CSharp}
+      data:
+        <Projectile>k__BackingField: {fileID: 3883816015513118945, guid: 1c196ea9bdbc3434ca8969f1aa74aedb, type: 3}

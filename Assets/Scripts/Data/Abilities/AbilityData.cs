@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu]
@@ -6,27 +7,23 @@ public class AbilityData : ScriptableObject
 {
     [field: SerializeField] private string Animation { get; set; }
     [field: SerializeField] private float Delay { get; set; }
-    [field: SerializeField] [field: SerializeReference] private BaseEffectData EffectData { get; set; }
-    [field: SerializeField] [field: SerializeReference] private BaseFocusData FocusData { get; set; }
+    [field: SerializeField] private float Range { get; set; }
+    [field: SerializeField] private AbilityBehaviourData[] AbilityBehaviours { get; set; }
     [field: SerializeField] [field: SerializeReference] public BaseResourceData ResourceData { get; private set; }
-    [field: SerializeField] [field: SerializeReference] private BaseActionData ActionData { get; set; }
     [field: SerializeField] [field: SerializeReference] private PriorityModifier[] Priorities { get; set; }
 
     public Ability ToDomain(PawnController abilityUser)
     {
-        var effect = EffectData.ToDomain(abilityUser);
-        var focusComponent = FocusData.ToDomain(abilityUser);
         var resourceComponent = ResourceData.ToDomain(abilityUser);
-        var actionComponent = ActionData.ToDomain(abilityUser, focusComponent, effect);
+        var abilityBehaviours = AbilityBehaviours.Select(a => a.ToDomain(abilityUser)).ToList();
         
         return new Ability(
             abilityUser, 
             Animation,
             Delay, 
-            effect, 
-            focusComponent, 
-            resourceComponent,
-            actionComponent); 
+            Range,
+            abilityBehaviours,
+            resourceComponent); 
     }
 
     public int GetPriority(PawnController abilityUser, Battle battle)
@@ -35,7 +32,7 @@ public class AbilityData : ScriptableObject
         
         foreach (var priorityModifier in Priorities)
         {
-            priority = priorityModifier.AlterPriority(abilityUser, battle, FocusData, priority);
+            priority = priorityModifier.AlterPriority(abilityUser, battle, AbilityBehaviours[0].FocusData, priority);
         }
         
         return priority;

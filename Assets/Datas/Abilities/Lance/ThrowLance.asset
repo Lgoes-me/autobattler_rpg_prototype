@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Animation>k__BackingField: LanceAttack
   <Delay>k__BackingField: 0.2
+  <Range>k__BackingField: 1.75
   <EffectData>k__BackingField:
     rid: 4871999933996597264
   <FocusData>k__BackingField:
