@@ -136,13 +136,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Characters-TESTE_10
+      name: Characters-TESTE_0
       rect:
         serializedVersion: 2
-        x: 59
-        y: 2559
-        width: 249
-        height: 338
+        x: 56
+        y: 2575
+        width: 225
+        height: 293
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,8 +150,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ddbae4acba3f0d44b11e2219d838433
-      internalID: -451580881
+      spriteID: 24b2484e946409e468bfeab8333b6bfd
+      internalID: 1072560550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Characters-TESTE_1
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 2568
+        width: 230
+        height: 295
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab9842c13a3533c42b2a7c1774f6db67
+      internalID: 2102160020
       vertices: []
       indices: 
       edges: []
@@ -169,40 +190,6 @@ TextureImporter:
     nameFileIdTable:
       Characters-TESTE_0: 1072560550
       Characters-TESTE_1: 2102160020
-      Characters-TESTE_10: -451580881
-      Characters-TESTE_11: -278481728
-      Characters-TESTE_12: 256413190
-      Characters-TESTE_13: 1570518705
-      Characters-TESTE_14: 872093354
-      Characters-TESTE_15: 1466748731
-      Characters-TESTE_16: 2143747362
-      Characters-TESTE_17: 261620048
-      Characters-TESTE_18: 968826302
-      Characters-TESTE_19: 1584000324
-      Characters-TESTE_2: -659713763
-      Characters-TESTE_20: -697112590
-      Characters-TESTE_21: -482280989
-      Characters-TESTE_22: -401472606
-      Characters-TESTE_23: -672514948
-      Characters-TESTE_24: 1891083308
-      Characters-TESTE_25: -710734299
-      Characters-TESTE_26: -370141751
-      Characters-TESTE_27: 1370357336
-      Characters-TESTE_28: 2078600992
-      Characters-TESTE_29: 669525425
-      Characters-TESTE_3: -1739148622
-      Characters-TESTE_30: 1303117794
-      Characters-TESTE_31: 584113229
-      Characters-TESTE_32: -969986385
-      Characters-TESTE_33: -1513987924
-      Characters-TESTE_34: -2141253978
-      Characters-TESTE_35: 1154764599
-      Characters-TESTE_4: -999711275
-      Characters-TESTE_5: -1979302028
-      Characters-TESTE_6: 1771802566
-      Characters-TESTE_7: 1313967139
-      Characters-TESTE_8: -8538367
-      Characters-TESTE_9: -686949798
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
