@@ -11,11 +11,11 @@ PrefabInstance:
     - target: {fileID: 980420176060528509, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
       propertyPath: <BackSprite>k__BackingField
       value: 
-      objectReference: {fileID: 700924990, guid: e80992e1c20f3364ba17d11a4a9da45e, type: 3}
+      objectReference: {fileID: 188333951, guid: 636f51673b61ed548b817f56b31a98db, type: 3}
     - target: {fileID: 980420176060528509, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
       propertyPath: <FrontSprite>k__BackingField
       value: 
-      objectReference: {fileID: 769246717, guid: e80992e1c20f3364ba17d11a4a9da45e, type: 3}
+      objectReference: {fileID: -1596451084, guid: 636f51673b61ed548b817f56b31a98db, type: 3}
     - target: {fileID: 980420176060528509, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
       propertyPath: <WeaponController>k__BackingField
       value: 
@@ -27,11 +27,11 @@ PrefabInstance:
     - target: {fileID: 3116719640897962255, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 769246717, guid: e80992e1c20f3364ba17d11a4a9da45e, type: 3}
+      objectReference: {fileID: -1596451084, guid: 636f51673b61ed548b817f56b31a98db, type: 3}
     - target: {fileID: 3581964401337747027, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 769246717, guid: e80992e1c20f3364ba17d11a4a9da45e, type: 3}
+      objectReference: {fileID: -1596451084, guid: 636f51673b61ed548b817f56b31a98db, type: 3}
     - target: {fileID: 5508223898485904541, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
       propertyPath: m_Sprite
       value: 

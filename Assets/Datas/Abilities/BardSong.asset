@@ -16,9 +16,7 @@ MonoBehaviour:
   <Delay>k__BackingField: 1
   <Range>k__BackingField: 3
   <AbilityBehaviours>k__BackingField:
-  - <EffectData>k__BackingField:
-      rid: 4872000037008179212
-    <Effects>k__BackingField:
+  - <Effects>k__BackingField:
     - rid: 4872000037008179237
     <FocusData>k__BackingField:
       rid: 4872000037008179213
@@ -26,8 +24,7 @@ MonoBehaviour:
       rid: 4872000037008179214
   <ResourceData>k__BackingField:
     rid: 4871999933996597254
-  <Priorities>k__BackingField:
-  - rid: 4871999947845402626
+  <Priorities>k__BackingField: []
   references:
     version: 2
     RefIds:
@@ -36,16 +33,6 @@ MonoBehaviour:
     - rid: 4871999933996597254
       type: {class: NoResourceData, ns: , asm: Assembly-CSharp}
       data: 
-    - rid: 4871999947845402626
-      type: {class: LowHealthModifier, ns: , asm: Assembly-CSharp}
-      data:
-        <Multiplier>k__BackingField: 1
-        <Health>k__BackingField: 10
-    - rid: 4872000037008179212
-      type: {class: HealEffectData, ns: , asm: Assembly-CSharp}
-      data:
-        <HealMultiplier>k__BackingField: 2
-        <CanRevive>k__BackingField: 0
     - rid: 4872000037008179213
       type: {class: FocusComponent, ns: , asm: Assembly-CSharp}
       data:

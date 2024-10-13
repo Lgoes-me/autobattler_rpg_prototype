@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 350
+  spritePixelsToUnits: 250
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -139,10 +139,10 @@ TextureImporter:
       name: Characters-TESTE_0
       rect:
         serializedVersion: 2
-        x: 56
-        y: 2575
-        width: 225
-        height: 293
+        x: 82
+        y: 2603
+        width: 223
+        height: 288
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -160,10 +160,10 @@ TextureImporter:
       name: Characters-TESTE_1
       rect:
         serializedVersion: 2
-        x: 358
-        y: 2568
-        width: 230
-        height: 295
+        x: 387
+        y: 2598
+        width: 226
+        height: 286
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,6 +173,216 @@ TextureImporter:
       bones: []
       spriteID: ab9842c13a3533c42b2a7c1774f6db67
       internalID: 2102160020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Characters-TESTE_3
+      rect:
+        serializedVersion: 2
+        x: 762
+        y: 2589
+        width: 106
+        height: 235
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f64b2dfa05de140439596f01003663fe
+      internalID: -1596451084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Characters-TESTE_4
+      rect:
+        serializedVersion: 2
+        x: 1043
+        y: 2587
+        width: 105
+        height: 235
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1b8fd86982a2f64b8c8380eb78dacff
+      internalID: 188333951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Characters-TESTE_6
+      rect:
+        serializedVersion: 2
+        x: 752
+        y: 2244
+        width: 119
+        height: 243
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e51ab98ca4e1a934186c0971fa9ae3d3
+      internalID: 1193316310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Characters-TESTE_7
+      rect:
+        serializedVersion: 2
+        x: 1066
+        y: 2234
+        width: 117
+        height: 247
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7053f6fb4c765641909e6d1e71e3f62
+      internalID: -1634389572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Characters-TESTE_2
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 2242
+        width: 111
+        height: 255
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0048944bc1b35e4aa231dc68d48440c
+      internalID: 1541873701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Characters-TESTE_5
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 2235
+        width: 117
+        height: 261
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76cf4c3888135a346b061aa33629f923
+      internalID: 1612087090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Characters-TESTE_8
+      rect:
+        serializedVersion: 2
+        x: 1359
+        y: 2586
+        width: 139
+        height: 249
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b265c3fb221c0d428ebd2dece679025
+      internalID: -2075304543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Characters-TESTE_9
+      rect:
+        serializedVersion: 2
+        x: 1669
+        y: 2582
+        width: 144
+        height: 265
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6c0c843bbb34d243941f95b56e25fd2
+      internalID: 2138803914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Characters-TESTE_10
+      rect:
+        serializedVersion: 2
+        x: 1377
+        y: 2224
+        width: 131
+        height: 311
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cd95763c57b7e749a1387ea59e80083
+      internalID: 555456031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Characters-TESTE_11
+      rect:
+        serializedVersion: 2
+        x: 1663
+        y: 2226
+        width: 140
+        height: 306
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65ac2cdc45a7d5b4e9e7b65fde771e16
+      internalID: -2066415999
       vertices: []
       indices: 
       edges: []
@@ -190,6 +400,16 @@ TextureImporter:
     nameFileIdTable:
       Characters-TESTE_0: 1072560550
       Characters-TESTE_1: 2102160020
+      Characters-TESTE_10: 555456031
+      Characters-TESTE_11: -2066415999
+      Characters-TESTE_2: 1541873701
+      Characters-TESTE_3: -1596451084
+      Characters-TESTE_4: 188333951
+      Characters-TESTE_5: 1612087090
+      Characters-TESTE_6: 1193316310
+      Characters-TESTE_7: -1634389572
+      Characters-TESTE_8: -2075304543
+      Characters-TESTE_9: 2138803914
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
