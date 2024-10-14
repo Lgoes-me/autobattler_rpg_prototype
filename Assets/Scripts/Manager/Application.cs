@@ -17,6 +17,7 @@ public class Application : MonoBehaviour
     [field: SerializeField] public PartyManager PartyManager { get; private set; }
     [field: SerializeField] public AudioManager AudioManager { get; private set; }
     [field: SerializeField] public InputManager InputManager { get; private set; }
+    [field: SerializeField] public TextManager TextManager { get; private set; }
     
     [field: SerializeField] private GameObject BattleLostCanvas { get; set; }
     

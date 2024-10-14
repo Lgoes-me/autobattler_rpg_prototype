@@ -19,26 +19,19 @@ MonoBehaviour:
   - <Effects>k__BackingField:
     - rid: 4872000037008179237
     <FocusData>k__BackingField:
-      rid: 4872000037008179213
+      rid: 4872000115359088640
     <ActionData>k__BackingField:
       rid: 4872000037008179214
   <ResourceData>k__BackingField:
     rid: 4871999933996597254
-  <Priorities>k__BackingField: []
+  <Priorities>k__BackingField:
+  - rid: 4872000115359088641
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
     - rid: 4871999933996597254
       type: {class: NoResourceData, ns: , asm: Assembly-CSharp}
       data: 
-    - rid: 4872000037008179213
-      type: {class: FocusComponent, ns: , asm: Assembly-CSharp}
-      data:
-        <Target>k__BackingField: 1
-        <Focus>k__BackingField: 3
-        <Error>k__BackingField: 0
     - rid: 4872000037008179214
       type: {class: InstantActionData, ns: , asm: Assembly-CSharp}
       data: 
@@ -47,3 +40,14 @@ MonoBehaviour:
       data:
         <HealMultiplier>k__BackingField: 2
         <CanRevive>k__BackingField: 0
+    - rid: 4872000115359088640
+      type: {class: FocusComponentData, ns: , asm: Assembly-CSharp}
+      data:
+        <Target>k__BackingField: 1
+        <Focus>k__BackingField: 3
+        <Error>k__BackingField: 0
+    - rid: 4872000115359088641
+      type: {class: LowHealthModifier, ns: , asm: Assembly-CSharp}
+      data:
+        <Multiplier>k__BackingField: 1
+        <Health>k__BackingField: 0
