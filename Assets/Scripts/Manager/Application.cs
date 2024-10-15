@@ -18,6 +18,7 @@ public class Application : MonoBehaviour
     [field: SerializeField] public AudioManager AudioManager { get; private set; }
     [field: SerializeField] public InputManager InputManager { get; private set; }
     [field: SerializeField] public TextManager TextManager { get; private set; }
+    [field: SerializeField] public BattleEventsManager BattleEventsManager { get; private set; }
     
     [field: SerializeField] private GameObject BattleLostCanvas { get; set; }
     
@@ -42,6 +43,7 @@ public class Application : MonoBehaviour
         Save = SaveManager.LoadData<Save>("Save.json") ?? new Save(PlayerStartingCharacter);
         PlayerManager.Init();
         PartyManager.Init();
+        BattleEventsManager.Init();
         SceneManager.StartGame();
     }
 

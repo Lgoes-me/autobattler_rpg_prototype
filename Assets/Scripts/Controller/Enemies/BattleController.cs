@@ -51,7 +51,8 @@ public class BattleController : MonoBehaviour
         }
 
         Battle = new Battle(battleId, enemyPawns, playerPawns);
-
+        Application.Instance.BattleEventsManager.DoBattleStartEvent(Battle);
+        
         StartCoroutine(BattleCoroutine());
     }
     
