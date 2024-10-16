@@ -58,7 +58,7 @@ public class BattleEventsManager : MonoBehaviour
         }
     }
     
-    public void DoAttackEvent(PawnDomain abilityUser, Ability ability)
+    public void DoAttackEvent(PawnController abilityUser, Ability ability)
     {
         foreach (Joker joker in Jokers)
         {
@@ -72,7 +72,7 @@ public class BattleEventsManager : MonoBehaviour
         }
     }
     
-    public void DoSpecialAttackEvent(PawnDomain abilityUser, Ability ability)
+    public void DoSpecialAttackEvent(PawnController abilityUser, Ability ability)
     {
         foreach (Joker joker in Jokers)
         {

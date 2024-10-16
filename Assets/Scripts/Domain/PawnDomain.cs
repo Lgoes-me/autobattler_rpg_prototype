@@ -17,7 +17,6 @@ public class PawnDomain
     
     private List<AbilityData> Abilities { get; set; }
     public List<AbilityData> SpecialAbilities { get; private set; }
-    
     public Dictionary<string, Buff> Buffs { get; private set; }
 
     public bool HasMana => SpecialAbilities.Count > 0 && MaxMana > 0;

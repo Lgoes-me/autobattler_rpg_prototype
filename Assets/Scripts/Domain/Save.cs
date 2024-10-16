@@ -30,6 +30,6 @@ public class Save : ISavable
         PlayerPawn = new PawnInfo(startingPlayer.name, 0); 
         SelectedParty = new Dictionary<string, PawnInfo>();
         DefeatedEnemies = new List<string>();
-        Jokers = new List<JokerIdentifier>() {JokerIdentifier.BattleStartGainMana};
+        Jokers = new List<JokerIdentifier>() {JokerIdentifier.OnAttackHeal};
     }
 }

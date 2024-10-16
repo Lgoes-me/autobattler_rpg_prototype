@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 
-public class OnSpecialAttackEventListener : BaseBattleEventListener<Func<PawnDomain, Ability, bool>, AttackDelegate>
+public class OnSpecialAttackEventListener : BaseBattleEventListener<Func<PawnController, Ability, bool>, AttackDelegate>
 {
-    public void OnSpecialAttack(PawnDomain abilityUser, Ability ability)
+    public void OnSpecialAttack(PawnController abilityUser, Ability ability)
     {
         if (Validators.Any(validator => !validator(abilityUser, ability)))
             return;

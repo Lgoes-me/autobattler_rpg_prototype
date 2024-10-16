@@ -5,9 +5,9 @@ public class Application : MonoBehaviour
 {
     public static Application Instance { get; private set; }
     
-    public Save Save { get; set; }
+    public Save Save { get; private set; }
     
-    [field: SerializeField] public PawnData PlayerStartingCharacter { get; private set; }
+    [field: SerializeField] private PawnData PlayerStartingCharacter { get; set; }
     [field: SerializeField] public Camera MainCamera { get; private set; }
     
     [field: SerializeField] public SaveManager SaveManager { get; private set; }
