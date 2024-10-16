@@ -132,7 +132,7 @@ public class PawnController : MonoBehaviour
 
     public void Deactivate()
     {
-        Pawn.RemoveAllBuffs();
+        Pawn?.RemoveAllBuffs();
         
         CharacterController.SetAnimationState(new IdleState());
         enabled = false;

@@ -7,24 +7,24 @@ public class PawnCanvasController : BaseCanvasController
     [field: SerializeField] private Image LifeBar { get; set; }
     [field: SerializeField] private Image BackgroundLifeBar { get; set; }
     [field: SerializeField] private Image ManaBar { get; set; }
-    
+
     public bool Initiated { get; protected set; }
-    protected PawnController PawnController { get;  set; }
-    
+    protected PawnController PawnController { get; set; }
+
     public virtual void Init(PawnController pawnController)
     {
         Initiated = true;
-        
+
         PawnController = pawnController;
 
         var pawn = PawnController.Pawn;
         var fillAmount = pawn.Health / (float) pawn.MaxHealth;
-        
+
         LifeBar.fillAmount = fillAmount;
         BackgroundLifeBar.fillAmount = fillAmount;
-        
-        ManaBar.fillAmount = pawn.Mana / (float) pawn.MaxMana;
-        
+
+        ManaBar.fillAmount = pawn.HasMana ? pawn.Mana / (float) pawn.MaxMana : 0;
+
         Show();
     }
 
@@ -33,10 +33,10 @@ public class PawnCanvasController : BaseCanvasController
         var pawn = PawnController.Pawn;
         var fillAmount = pawn.Health / (float) pawn.MaxHealth;
         LifeBar.fillAmount = fillAmount;
-        
-        if(!gameObject.activeInHierarchy)
+
+        if (!gameObject.activeInHierarchy)
             return;
-        
+
         StartCoroutine(UpdateBackgroundLifeBar(fillAmount));
     }
 
@@ -52,11 +52,15 @@ public class PawnCanvasController : BaseCanvasController
     public virtual void UpdateMana()
     {
         var pawn = PawnController.Pawn;
+        
+        if (!pawn.HasMana)
+            return;
+        
         ManaBar.fillAmount = pawn.Mana / (float) pawn.MaxMana;
     }
 
     protected virtual void Death()
     {
-        Hide(); 
+        Hide();
     }
 }

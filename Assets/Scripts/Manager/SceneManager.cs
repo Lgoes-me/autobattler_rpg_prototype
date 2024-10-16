@@ -9,7 +9,7 @@ public class SceneManager : MonoBehaviour
     [field: SerializeField] private PlayerManager PlayerManager { get; set; }
 
     private bool BonfireActive { get; set; }
-    
+
     public void StartGame()
     {
         var save = Application.Instance.Save;
@@ -36,7 +36,7 @@ public class SceneManager : MonoBehaviour
             var roomScene = FindObjectOfType<RoomScene>();
             roomScene.ActivateRoomScene();
             roomScene.SpawnPlayerAt(spawn.SpawnId);
-            
+
             Application.Instance.PartyManager.SetPartyToFollow(true);
             Application.Instance.AudioManager.PlayMusic(roomScene.Music);
 
@@ -48,32 +48,35 @@ public class SceneManager : MonoBehaviour
 
     public void RespawnAtBonfire()
     {
+        PlayerManager.PlayerToWorld();
+
+        foreach (var pawn in Application.Instance.PartyManager.Party)
+        {
+            pawn.Deactivate();
+        }
+
         var save = Application.Instance.Save;
         var respawnTask = UnitySceneManager.LoadSceneAsync(save.LastBonfireSpawn.SceneName, LoadSceneMode.Single);
 
         respawnTask.completed += _ =>
         {
-            PlayerManager.PlayerToWorld();
             var roomScene = FindObjectOfType<RoomScene>();
             roomScene.ActivateRoomScene();
             roomScene.SpawnPlayerAt(save.LastBonfireSpawn.SpawnId);
-            
-            foreach (var pawn in Application.Instance.PartyManager.Party)
-            {
-                pawn.Deactivate();
-            }
-            
+
             Application.Instance.PartyManager.SetPartyToFollow(true);
             Application.Instance.AudioManager.PlayMusic(roomScene.Music);
+
+            save.Spawn = save.LastBonfireSpawn;
             Application.Instance.SaveManager.SaveData(save);
         };
     }
-    
+
     public void StartBonfireScene(SpawnDomain bonfireSpawn)
     {
-        if(BonfireActive)
+        if (BonfireActive)
             return;
-        
+
         var task = UnitySceneManager.LoadSceneAsync("BonfireScene", LoadSceneMode.Additive);
 
         task.completed += _ =>
@@ -81,26 +84,28 @@ public class SceneManager : MonoBehaviour
             BonfireActive = true;
             FindObjectOfType<BonfireScene>().Init();
             Application.Instance.PartyManager.StopPartyFollow();
-            
+
             var save = Application.Instance.Save;
-            
+
             save.Spawn = bonfireSpawn;
             save.LastBonfireSpawn = bonfireSpawn;
             save.PlayerPawn = Application.Instance.PlayerManager.PawnController.PawnData.ResetPawnInfo();
-            save.SelectedParty = Application.Instance.PartyManager.Party.ToDictionary(p => p.PawnData.Id, p => p.PawnData.ResetPawnInfo());
+            save.SelectedParty =
+                Application.Instance.PartyManager.Party.ToDictionary(p => p.PawnData.Id,
+                    p => p.PawnData.ResetPawnInfo());
             save.DefeatedEnemies.Clear();
-            
+
             Application.Instance.SaveManager.SaveData(save);
         };
     }
 
     public void EndBonfireScene()
     {
-        if(!BonfireActive)
+        if (!BonfireActive)
             return;
 
         var task = UnitySceneManager.UnloadSceneAsync("BonfireScene");
-        
+
         task.completed += _ =>
         {
             BonfireActive = false;
