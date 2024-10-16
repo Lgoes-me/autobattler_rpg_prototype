@@ -16,6 +16,6 @@ public class DamageOverTimeEffect : AbilityEffect
 
         DamageOverTimeBuff.SetPawnController(pawnController);
         pawn.AddBuff(DamageOverTimeBuff);
-        pawnController.ReceiveDebuff(DamageOverTimeBuff);
+        pawnController.ReceiveBuff(DamageOverTimeBuff);
     }
 }

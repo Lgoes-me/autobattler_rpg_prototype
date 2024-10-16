@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PartyManager : MonoBehaviour
 {
-    [field: SerializeField] public List<PawnData> AvailableParty { get; set; }
+    [field: SerializeField] public List<PawnData> AvailableParty { get; private set; }
     [field: SerializeField] private PawnController PawnController { get; set; }
     
     public List<PawnData> SelectedPawns { get; private set; }

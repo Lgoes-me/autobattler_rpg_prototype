@@ -1,6 +1,6 @@
 ﻿public class AbilityFocusComponent
 {
-    public PawnController FocusedPawn { get; set; }
+    public PawnController FocusedPawn { get; private set; }
     private PawnController AbilityUser { get; set; }
     private TargetType Target { get; set; }
     private FocusType Focus { get; set; }

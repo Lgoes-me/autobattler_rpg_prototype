@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour
 {
     [field: SerializeField] public CharacterController CharacterController { get; set; }
-    [field: SerializeField] public PawnController PawnController { get; set; }
+    [field: SerializeField] public PawnController PawnController { get; private set; }
     
     [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
     [field: SerializeField] private List<Transform> Nodes { get; set; }

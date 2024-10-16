@@ -35,16 +35,6 @@ public class AnimationStateController : MonoBehaviour
         yield return new WaitForSeconds(clipInfo[0].clip.length);
         callback?.Invoke();
     }
-
-    private void OnCollisionEnter(Collision _)
-    {
-        Animator.applyRootMotion = false;
-    }
-
-    private void OnCollisionExit(Collision _)
-    {
-        Animator.applyRootMotion = true;
-    }
     
     public void DoAnimationEvent()
     {

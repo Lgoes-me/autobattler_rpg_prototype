@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class HealEffect : AbilityEffect
+﻿public class HealEffect : AbilityEffect
 {
     private float HealValue { get; set; }
     private bool CanRevive { get; set; }

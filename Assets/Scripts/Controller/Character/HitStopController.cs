@@ -26,10 +26,10 @@ public class HitStopController : MonoBehaviour, IPauseListener
         Animator.speed = percentage;
         Sprite.color = color;
         
-        StartCoroutine(HitStopCotoutine(time, isGlobal));
+        StartCoroutine(HitStopCoroutine(time, isGlobal));
     }
 
-    private IEnumerator HitStopCotoutine(float time, bool isGlobal)
+    private IEnumerator HitStopCoroutine(float time, bool isGlobal)
     {
         yield return new WaitForSecondsRealtime(time);
         yield return new WaitWhile(() => Paused);

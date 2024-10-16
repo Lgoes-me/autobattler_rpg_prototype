@@ -10,7 +10,7 @@ public class CameraAreaController : MonoBehaviour
     
     private void Awake()
     {
-        CinemachineBrain = Camera.main.transform.GetComponent<CinemachineBrain>();
+        CinemachineBrain = Application.Instance.MainCamera.transform.GetComponent<CinemachineBrain>();
     }
 
     private void OnTriggerEnter(Collider other)

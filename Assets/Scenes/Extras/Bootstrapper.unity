@@ -1745,6 +1745,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <PlayerStartingCharacter>k__BackingField: {fileID: 11400000, guid: 1fc8d338c9a0df94e8501a8d246293db, type: 2}
+  <MainCamera>k__BackingField: {fileID: 1918482242}
   <SaveManager>k__BackingField: {fileID: 25261271}
   <SceneManager>k__BackingField: {fileID: 641743261}
   <PlayerManager>k__BackingField: {fileID: 1553753}

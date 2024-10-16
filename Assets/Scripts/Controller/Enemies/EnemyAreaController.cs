@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class EnemyAreaController : MonoBehaviour
@@ -91,7 +90,7 @@ public class EnemyAreaController : MonoBehaviour
     }
 }
 
-[System.Serializable]
+[Serializable]
 public class EnemyInfo
 {
     [field: SerializeField] public bool IsBoss { get; set; }

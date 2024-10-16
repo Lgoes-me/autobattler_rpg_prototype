@@ -147,7 +147,7 @@ public class PawnDomain
     {
         var stats = Stats;
         
-        foreach (var(key, buff) in Buffs)
+        foreach (var(_, buff) in Buffs)
         {
             if (buff is not StatModifierBuff statModifierBuff)
                 continue;

@@ -23,7 +23,7 @@ public class CharacterController : MonoBehaviour
 
     private void Start()
     {
-        Camera = Camera.main;
+        Camera = Application.Instance.MainCamera;
         CurrentDirection = Direction.Unknown;
         SetDirection(-transform.forward);
     }
@@ -33,9 +33,7 @@ public class CharacterController : MonoBehaviour
         var zDirection = Vector3.Dot(direction, Camera.transform.forward);
         var xDirection = Vector3.Dot(direction, Camera.transform.right);
 
-        var newDirection = Direction.Unknown;
-
-        newDirection = xDirection >= -0.2f ? Direction.Right : Direction.Left;
+        var newDirection = xDirection >= -0.2f ? Direction.Right : Direction.Left;
         newDirection |= zDirection <= 0.2f ? Direction.Front : Direction.Back;
 
         if (newDirection == CurrentDirection)

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class InteractableController : MonoBehaviour , IPauseListener
@@ -21,7 +20,7 @@ public class InteractableController : MonoBehaviour , IPauseListener
             return;
         
         InteractableCanvas.Show();
-        Interactable?.PreSelect();
+        Interactable.PreSelect();
     }
 
     public void Select()
@@ -29,7 +28,7 @@ public class InteractableController : MonoBehaviour , IPauseListener
         if(!Enabled)
             return;
         
-        Interactable?.Interact();
+        Interactable.Interact();
     }
 
     public void Unselect()
@@ -38,7 +37,7 @@ public class InteractableController : MonoBehaviour , IPauseListener
             return;
         
         InteractableCanvas.Hide();
-        Interactable?.UnSelect();
+        Interactable.UnSelect();
     }
 
     public void Pause()

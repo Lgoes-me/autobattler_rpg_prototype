@@ -15,6 +15,6 @@ public class SimpleBuffEffect : AbilityEffect
             return;
 
         pawn.AddBuff(Buff);
-        pawnController.ReceiveDebuff(Buff);
+        pawnController.ReceiveBuff(Buff);
     }
 }

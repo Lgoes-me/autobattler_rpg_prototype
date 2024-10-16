@@ -2,8 +2,8 @@
 
 public class DamageDomain
 {
-    public PawnDomain Attacker { get; private set; }
-    public float Multiplier { get; private set; }
+    private PawnDomain Attacker { get; set; }
+    private float Multiplier { get; set; }
     public DamageType Type { get; private set; }
 
     public DamageDomain(PawnDomain attacker, float multiplier, DamageType type)

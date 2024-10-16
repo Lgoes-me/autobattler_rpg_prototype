@@ -9,7 +9,7 @@ public class PawnController : MonoBehaviour
     [field: SerializeField] public PlayerFollowController PlayerFollowController { get; private set; }
     [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
     [field: SerializeField] public PawnCanvasController PawnCanvasController { get; set; }
-    [field: SerializeField] private CharacterController CharacterController { get; set; }
+    [field: SerializeField] public CharacterController CharacterController { get; set; }
 
     [field: SerializeField] public TeamType Team { get; private set; }
 
@@ -42,7 +42,7 @@ public class PawnController : MonoBehaviour
         return this;
     }
 
-    public IEnumerator Turno(Battle battle)
+    public IEnumerator PawnTurn(Battle battle)
     {
         if (Ability == null)
         {
@@ -51,7 +51,7 @@ public class PawnController : MonoBehaviour
             Ability.ChooseFocus(battle);
         }
 
-        if (!Ability.ShoudUse())
+        if (!Ability.ShouldUse())
         {
             NavMeshAgent.isStopped = false;
             NavMeshAgent.SetDestination(Ability.WalkingDestination);
@@ -95,7 +95,7 @@ public class PawnController : MonoBehaviour
 
         if (!PawnState.AbleToFight)
             yield break;
-        
+
         Pawn.SetInitiative(Ability.Delay);
 
         Ability = null;
@@ -109,7 +109,7 @@ public class PawnController : MonoBehaviour
 
         CharacterController.SetDirection(NavMeshAgent.velocity);
 
-        if (Ability.ShoudUse())
+        if (Ability.ShouldUse())
         {
             NavMeshAgent.isStopped = true;
             CharacterController.SetSpeed(0);
@@ -133,7 +133,7 @@ public class PawnController : MonoBehaviour
     public void Deactivate()
     {
         Pawn?.RemoveAllBuffs();
-        
+
         CharacterController.SetAnimationState(new IdleState());
         enabled = false;
     }
@@ -148,13 +148,17 @@ public class PawnController : MonoBehaviour
         CharacterController.SetAnimationState(new DanceState());
     }
 
-    public void SpawnProjectile(ProjectileController projectile, List<AbilityEffect> effects, PawnController focusedPawn)
+    public void SpawnProjectile(
+        ProjectileController projectile, 
+        List<AbilityEffect> effects,
+        PawnController focusedPawn)
     {
-        var direction = focusedPawn.transform.position - CharacterController.WeaponController.SpawnPoint.position;
+        var weaponPosition = CharacterController.WeaponController.SpawnPoint.position;
+
+        var direction = focusedPawn.transform.position - weaponPosition;
         direction = new Vector3(direction.x, 0, direction.z);
 
-        Instantiate(projectile, CharacterController.WeaponController.SpawnPoint.position,
-            Quaternion.LookRotation(direction)).Init(this, effects, direction);
+        Instantiate(projectile, weaponPosition, Quaternion.LookRotation(direction)).Init(this, effects, direction);
     }
 
     public void SetCharacter(PawnData pawnData)
@@ -204,7 +208,8 @@ public class PawnController : MonoBehaviour
         CharacterController.SetAnimationState(new IdleState());
     }
 
-    public void ReceiveDebuff(Buff buff)
+    public void ReceiveBuff(Buff buff)
     {
+        Debug.Log(buff.Id);
     }
 }

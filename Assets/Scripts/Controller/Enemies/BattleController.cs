@@ -87,7 +87,7 @@ public class BattleController : MonoBehaviour
         foreach (var pawn in initiativeList)
         {
             if (!pawn.PawnState.CanTakeTurn) continue;
-            yield return pawn.Turno(Battle);
+            yield return pawn.PawnTurn(Battle);
         }
     }
 

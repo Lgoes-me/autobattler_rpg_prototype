@@ -17,7 +17,7 @@ public class Ability
         Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)) * Vector3.forward * (Range - 1);
 
     private List<PawnController> FocusedPawns { get; set; }
-    public PawnController FocusedPawn => FocusedPawns[0];
+    private PawnController FocusedPawn => FocusedPawns[0];
     private bool IsInRange => Range >= (FocusedPawn.transform.position - AbilityUser.transform.position).magnitude;
 
     public Ability(
@@ -47,7 +47,7 @@ public class Ability
         }
     }
 
-    public bool ShoudUse()
+    public bool ShouldUse()
     {
         return IsInRange;
     }

@@ -16,6 +16,6 @@
 
         RegenBuff.SetPawnController(pawnController);
         pawn.AddBuff(RegenBuff);
-        pawnController.ReceiveDebuff(RegenBuff);
+        pawnController.ReceiveBuff(RegenBuff);
     }
 }

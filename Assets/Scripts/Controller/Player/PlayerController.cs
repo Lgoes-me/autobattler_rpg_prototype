@@ -28,8 +28,8 @@ public class PlayerController : MonoBehaviour
         if (MoveInput.sqrMagnitude < Mathf.Epsilon)
             return;
 
-        var InputManager = Application.Instance.InputManager;
-        var input = InputManager.RightVector * MoveInput.x + InputManager.ForwardVector * MoveInput.y;
+        var inputManager = Application.Instance.InputManager;
+        var input = inputManager.RightVector * MoveInput.x + inputManager.ForwardVector * MoveInput.y;
         input = Vector3.ClampMagnitude(input, 1f);
         CharacterController.SetDirection(input);
         

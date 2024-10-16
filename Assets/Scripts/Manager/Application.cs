@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Application : MonoBehaviour
@@ -9,6 +8,7 @@ public class Application : MonoBehaviour
     public Save Save { get; set; }
     
     [field: SerializeField] public PawnData PlayerStartingCharacter { get; private set; }
+    [field: SerializeField] public Camera MainCamera { get; private set; }
     
     [field: SerializeField] public SaveManager SaveManager { get; private set; }
     [field: SerializeField] public SceneManager SceneManager { get; private set; }
@@ -22,8 +22,8 @@ public class Application : MonoBehaviour
     
     [field: SerializeField] private GameObject BattleLostCanvas { get; set; }
     
-    [field: SerializeField] public List<PawnCanvasController> PawnCanvases { get; set; }
-    [field: SerializeField] public BossCanvasController BossCanvas { get; set; }
+    [field: SerializeField] public List<PawnCanvasController> PawnCanvases { get; private set; }
+    [field: SerializeField] public BossCanvasController BossCanvas { get; private set; }
     
     private void Awake()
     {  

@@ -11,6 +11,6 @@ public class PawnInfo
     }
     
     //Level
-    //Status, Buff, Debuff
+    //Status, Buff
     //Equips
 }

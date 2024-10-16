@@ -75,8 +75,8 @@ public class AudioManager : MonoBehaviour
 
         while (timeElapsed < delay) 
         {
-            MusicAudioSource.volume = Mathf.Lerp(1, 0, timeElapsed / (float) delay);
-            LoopAudioSource.volume = Mathf.Lerp(0, 1, timeElapsed / (float) delay);
+            MusicAudioSource.volume = Mathf.Lerp(1, 0, timeElapsed / delay);
+            LoopAudioSource.volume = Mathf.Lerp(0, 1, timeElapsed / delay);
             timeElapsed += Time.deltaTime;
             yield return null;
         }
@@ -84,7 +84,7 @@ public class AudioManager : MonoBehaviour
 
 }
 
-[System.Serializable]
+[Serializable]
 public class Sfx
 {
     [field: SerializeField] public SfxType Type { get; set; }
@@ -97,7 +97,7 @@ public enum SfxType
     Slash = 1,
 }
 
-[System.Serializable]
+[Serializable]
 public class Music
 {
     [field: SerializeField] public MusicType Type { get; set; }

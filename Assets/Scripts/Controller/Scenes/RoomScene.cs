@@ -26,7 +26,7 @@ public class RoomScene : BaseScene
         }
         else
         {
-            var bonfire = Bonfires.First(b => b.Id == spawnSpawnId);;
+            var bonfire = Bonfires.First(b => b.Id == spawnSpawnId);
             bonfire.Interact();
             
             bonfire.ActivateCameraArea();

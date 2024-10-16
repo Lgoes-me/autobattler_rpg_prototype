@@ -8,7 +8,7 @@ public class StatModifierBuff : Buff
         Variation = variation;
     }
 
-    public virtual Stats ProcessStats(Stats stats)
+    public Stats ProcessStats(Stats stats)
     {
         return new Stats(
             stats.Strength + Variation.Strength, 

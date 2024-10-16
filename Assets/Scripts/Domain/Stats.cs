@@ -1,7 +1,6 @@
 ﻿using System;
-using UnityEngine;
 
-[System.Serializable]
+[Serializable]
 public class Stats
 {
     public int Strength { get; set; }
