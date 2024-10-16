@@ -57,4 +57,32 @@ public class BattleEventsManager : MonoBehaviour
             }
         }
     }
+    
+    public void DoAttackEvent(PawnDomain abilityUser, Ability ability)
+    {
+        foreach (Joker joker in Jokers)
+        {
+            foreach (BaseBattleEventListener listener in joker)
+            {
+                if (listener is not OnAttackEventListener onAttackEventListener)
+                    continue;
+
+                onAttackEventListener.OnAttack(abilityUser, ability);
+            }
+        }
+    }
+    
+    public void DoSpecialAttackEvent(PawnDomain abilityUser, Ability ability)
+    {
+        foreach (Joker joker in Jokers)
+        {
+            foreach (BaseBattleEventListener listener in joker)
+            {
+                if (listener is not OnSpecialAttackEventListener onSpecialAttackEventListener)
+                    continue;
+
+                onSpecialAttackEventListener.OnSpecialAttack(abilityUser, ability);
+            }
+        }
+    }
 }

@@ -73,7 +73,14 @@ public class PawnController : MonoBehaviour
             return;
 
         if (Ability == RequestedSpecialAbility)
+        {
             RequestedSpecialAbility = null;
+            Application.Instance.BattleEventsManager.DoSpecialAttackEvent(Pawn, Ability);
+        }
+        else
+        {
+            Application.Instance.BattleEventsManager.DoAttackEvent(Pawn, Ability);
+        }
 
         Application.Instance.AudioManager.PlaySound(SfxType.Slash);
 
