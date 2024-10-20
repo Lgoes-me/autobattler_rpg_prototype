@@ -9,11 +9,18 @@ public class PartyManager : MonoBehaviour
     
     public List<PawnData> SelectedPawns { get; private set; }
     public List<PawnController> Party { get; private set; }
+    public List<Archetype> Archetypes { get; private set; }
+    
+    private ArchetypeFactory ArchetypeFactory { get; set; }
     
     public void Init()
     {
         SelectedPawns = new List<PawnData>();
         Party = new List<PawnController>();
+        
+        Archetypes = new List<Archetype>();
+        ArchetypeFactory = new ArchetypeFactory();
+        
         SpawnSelectedPawns();
     }
 
@@ -54,6 +61,17 @@ public class PartyManager : MonoBehaviour
             var pawnInstance = Instantiate(PawnController, pawnPosition, Quaternion.identity, transform);
             pawnInstance.SetCharacter(pawnData);
             Party.Add(pawnInstance);
+        }
+
+        var archetypes = SelectedPawns
+            .Select(p => p.Archetypes)
+            .GroupBy(a => a)
+            .Select(g =>  new { Key = g.Key.First(), Count = g.Count()})
+            .ToList();
+        
+        foreach (var pair in archetypes)
+        {
+           Archetypes.Add(ArchetypeFactory.CreateArchetype(pair.Key, pair.Count));
         }
     }
     

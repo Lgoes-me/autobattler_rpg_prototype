@@ -9,7 +9,7 @@ public class Save : ISavable
     public PawnInfo PlayerPawn { get; set; }
     public Dictionary<string, PawnInfo> SelectedParty { get; set; }
     public List<string> DefeatedEnemies { get; set; }
-    public List<JokerIdentifier> Jokers { get; set; }
+    public List<BlessingIdentifier> Blessings { get; set; }
 
     public Save()
     {
@@ -19,7 +19,7 @@ public class Save : ISavable
         PlayerPawn = null;
         SelectedParty = new Dictionary<string, PawnInfo>();
         DefeatedEnemies = new List<string>();
-        Jokers = new List<JokerIdentifier>();
+        Blessings = new List<BlessingIdentifier>();
     }
 
     public Save(PawnData startingPlayer)
@@ -30,6 +30,6 @@ public class Save : ISavable
         PlayerPawn = new PawnInfo(startingPlayer.name, 0); 
         SelectedParty = new Dictionary<string, PawnInfo>();
         DefeatedEnemies = new List<string>();
-        Jokers = new List<JokerIdentifier>() {JokerIdentifier.OnAttackHeal};
+        Blessings = new List<BlessingIdentifier>() {BlessingIdentifier.OnAttackHeal};
     }
 }

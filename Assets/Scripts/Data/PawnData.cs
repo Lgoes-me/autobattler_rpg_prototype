@@ -12,7 +12,8 @@ public class PawnData : ScriptableObject
     [field: SerializeField] private StatsData Stats { get; set; }
     [field: SerializeField] private List<AbilityData> Abilities { get; set; }
     [field: SerializeField] private List<AbilityData> SpecialAbilities { get; set; }
-
+    [field: SerializeField] public List<ArchetypeIdentifier> Archetypes { get; private set; }
+    
     public PawnDomain ToDomain()
     {
         var stats = Stats.ToDomain();

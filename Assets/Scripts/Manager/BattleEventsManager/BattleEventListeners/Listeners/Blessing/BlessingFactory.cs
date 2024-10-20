@@ -1,12 +1,12 @@
 ﻿using System;
 
-public class JokerFactory
+public class BlessingFactory
 {
-    public Joker CreateJoker(JokerIdentifier id)
+    public Blessing CreateBlessing(BlessingIdentifier id)
     {
         return id switch
         {
-            JokerIdentifier.BattleStartGainMana => new Joker(id)
+            BlessingIdentifier.BattleStartGainMana => new Blessing(id)
             {
                 new OnBattleStartedListener()
                 {
@@ -18,7 +18,7 @@ public class JokerFactory
                 }
             },
             
-            JokerIdentifier.OnAttackHeal => new Joker(id)
+            BlessingIdentifier.OnAttackHeal => new Blessing(id)
             {
                 new OnAttackEventListener()
                 {
@@ -36,10 +36,4 @@ public class JokerFactory
     }
 
     private bool IsPlayerTeam(PawnController pawn) => pawn.Team == TeamType.Player;
-}
-
-public enum JokerIdentifier
-{
-    BattleStartGainMana,
-    OnAttackHeal,
 }

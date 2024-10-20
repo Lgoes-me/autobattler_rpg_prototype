@@ -339,6 +339,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4349f2c9738247d9a0d79ed6866b99e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &148296404
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 148296405}
+  - component: {fileID: 148296406}
+  m_Layer: 0
+  m_Name: BlessingManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &148296405
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148296404}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1282436504}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &148296406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148296404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c5f3ad593f44a1b8e6762704ff32b2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &225983748
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1643,6 +1687,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae8e2558f8562234a9410cee0323ef6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <BlessingManager>k__BackingField: {fileID: 148296406}
+  <PartyManager>k__BackingField: {fileID: 1396296680}
 --- !u!1 &1252425369
 GameObject:
   m_ObjectHideFlags: 0
@@ -1720,7 +1766,6 @@ Transform:
   m_Children:
   - {fileID: 1918482239}
   - {fileID: 2129920861}
-  - {fileID: 1396296679}
   - {fileID: 847640158}
   - {fileID: 1553752}
   - {fileID: 641743260}
@@ -1728,6 +1773,8 @@ Transform:
   - {fileID: 25261270}
   - {fileID: 1252425370}
   - {fileID: 1238457632}
+  - {fileID: 148296405}
+  - {fileID: 1396296679}
   - {fileID: 422823314}
   - {fileID: 989014757}
   m_Father: {fileID: 0}
@@ -1755,6 +1802,7 @@ MonoBehaviour:
   <InputManager>k__BackingField: {fileID: 1824029036}
   <TextManager>k__BackingField: {fileID: 1252425371}
   <BattleEventsManager>k__BackingField: {fileID: 1238457633}
+  <BlessingManager>k__BackingField: {fileID: 148296406}
   <BattleLostCanvas>k__BackingField: {fileID: 1496016703}
   <PawnCanvases>k__BackingField:
   - {fileID: 1860720134}
