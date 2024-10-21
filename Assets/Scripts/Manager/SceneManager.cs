@@ -88,10 +88,8 @@ public class SceneManager : MonoBehaviour
 
             save.Spawn = bonfireSpawn;
             save.LastBonfireSpawn = bonfireSpawn;
-            save.PlayerPawn = Application.Instance.PlayerManager.PawnController.PawnData.ResetPawnInfo();
-            save.SelectedParty =
-                Application.Instance.PartyManager.Party.ToDictionary(p => p.PawnData.Id,
-                    p => p.PawnData.ResetPawnInfo());
+            save.PlayerPawn = Application.Instance.PlayerManager.PawnController.Pawn.ResetPawnInfo();
+            save.SelectedParty = Application.Instance.PartyManager.Party.ToDictionary(p => p.Pawn.Id, p => p.Pawn.ResetPawnInfo());
             save.DefeatedEnemies.Clear();
 
             Application.Instance.SaveManager.SaveData(save);

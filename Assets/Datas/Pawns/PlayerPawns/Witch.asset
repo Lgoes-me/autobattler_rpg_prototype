@@ -25,3 +25,4 @@ MonoBehaviour:
   <Abilities>k__BackingField:
   - {fileID: 11400000, guid: 43b15364fb3710b43baa1c2cc1282f44, type: 2}
   <SpecialAbilities>k__BackingField: []
+  <Archetypes>k__BackingField: 01000000

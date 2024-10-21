@@ -9,28 +9,26 @@ public class PawnCanvasController : BaseCanvasController
     [field: SerializeField] private Image ManaBar { get; set; }
 
     public bool Initiated { get; protected set; }
-    protected PawnController PawnController { get; private set; }
+    protected PawnDomain Pawn { get; private set; }
 
-    public virtual void Init(PawnController pawnController)
+    public virtual void Init(PawnDomain pawn)
     {
+        Pawn = pawn;
         Initiated = true;
-
-        PawnController = pawnController;
-
-        var pawn = PawnController.Pawn;
-        var fillAmount = pawn.Health / (float) pawn.MaxHealth;
+        
+        var fillAmount = Pawn.Health / (float) Pawn.MaxHealth;
 
         LifeBar.fillAmount = fillAmount;
         BackgroundLifeBar.fillAmount = fillAmount;
 
-        ManaBar.fillAmount = pawn.HasMana ? pawn.Mana / (float) pawn.MaxMana : 0;
+        ManaBar.fillAmount = Pawn.HasMana ? Pawn.Mana / (float) Pawn.MaxMana : 0;
 
         Show();
     }
 
     public void UpdateLife()
     {
-        var pawn = PawnController.Pawn;
+        var pawn = Pawn;
         var fillAmount = pawn.Health / (float) pawn.MaxHealth;
         LifeBar.fillAmount = fillAmount;
 
@@ -51,12 +49,15 @@ public class PawnCanvasController : BaseCanvasController
 
     public virtual void UpdateMana()
     {
-        var pawn = PawnController.Pawn;
-        
-        if (!pawn.HasMana)
+        if (!Pawn.HasMana)
             return;
         
-        ManaBar.fillAmount = pawn.Mana / (float) pawn.MaxMana;
+        ManaBar.fillAmount = Pawn.Mana / (float) Pawn.MaxMana;
+    }
+    
+    public virtual void HideMana()
+    {
+        ManaBar.fillAmount = 0;
     }
 
     protected virtual void Death()

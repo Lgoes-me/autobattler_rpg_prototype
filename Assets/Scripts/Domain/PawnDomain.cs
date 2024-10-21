@@ -22,6 +22,7 @@ public class PawnDomain
     public bool HasMana => SpecialAbilities.Count > 0 && MaxMana > 0;
     public bool IsAlive => Health > 0;
     public float Initiative { get; private set; }
+    public AbilityData RequestedSpecialAbility { get; private set; }
 
     public PawnDomain(
         string id,
@@ -42,6 +43,7 @@ public class PawnDomain
         Abilities = abilities;
         SpecialAbilities = specialAbilities;
         Buffs = new Dictionary<string, Buff>();
+        RequestedSpecialAbility = null;
     }
 
     public void SetInitiative(float initiative)
@@ -52,6 +54,7 @@ public class PawnDomain
     public void SetPawnInfo(PawnInfo pawnInfo)
     {
         Health = MaxHealth - pawnInfo.MissingHealth;
+        Mana = 0;
     }
 
     public void AddBuff(Buff newBuff)
@@ -90,16 +93,28 @@ public class PawnDomain
         }
     }
 
+    public PawnInfo ResetPawnInfo()
+    {
+        return new PawnInfo(Id, 0);
+    }
+
     public PawnInfo GetPawnInfo()
     {
         return new PawnInfo(Id,  MaxHealth -  Health);
     }
 
-    public AbilityData GetCurrentAttackIntent(
+    public Ability GetCurrentAttackIntent(
         PawnController abilityUser, 
         Battle battle,
         bool automaticallyUseSpecials)
     {
+        if (RequestedSpecialAbility != null)
+        {
+            var requestedAbility = RequestedSpecialAbility.ToDomain(abilityUser, true);
+            RequestedSpecialAbility = null;
+            return requestedAbility;
+        }
+        
         var abilities = new List<AbilityData>();
 
         abilities.AddRange(Abilities);
@@ -110,7 +125,7 @@ public class PawnDomain
             abilities.AddRange(specialAttacks);
         }
 
-        return abilities.OrderByDescending(a => a.GetPriority(abilityUser, battle)).First();
+        return abilities.OrderByDescending(a => a.GetPriority(abilityUser, battle)).First().ToDomain(abilityUser, false);
     }
 
     public void ReceiveDamage(DamageDomain damage)
@@ -155,6 +170,11 @@ public class PawnDomain
         }
         
         return stats;
+    }
+
+    public void DoSpecial(AbilityData ability)
+    {
+        RequestedSpecialAbility = ability;
     }
 }
 

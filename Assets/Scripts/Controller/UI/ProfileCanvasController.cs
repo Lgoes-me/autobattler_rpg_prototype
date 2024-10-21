@@ -10,27 +10,25 @@ public class ProfileCanvasController : PawnCanvasController
 
     private List<ButtonItemController> SpecialButtons { get; set; }
     
-    public override void Init(PawnController pawnController)
+    public override void Init(PawnDomain pawn)
     {
-        base.Init(pawnController);
+        base.Init(pawn);
         SpecialButtons = new List<ButtonItemController>();
-        Name.SetText(pawnController.PawnData.name);
+        Name.SetText(Pawn.Id);
 
-        foreach (var ability in pawnController.Pawn.SpecialAbilities)
+        foreach (var ability in Pawn.SpecialAbilities)
         {
-            SpecialButtons.Add(Instantiate(SpecialButtonPrefab, SpecialButtonsParent).Init(pawnController, ability));
+            SpecialButtons.Add(Instantiate(SpecialButtonPrefab, SpecialButtonsParent).Init(Pawn, ability));
         }
     }
 
     public override void UpdateMana()
     {
         base.UpdateMana();
-
-        var pawn = PawnController.Pawn;
         
         foreach (var button in SpecialButtons)
         {
-            button.TryActivateButton(pawn.Mana);
+            button.TryActivateButton(Pawn.Mana);
         }
     }
 
@@ -41,14 +39,14 @@ public class ProfileCanvasController : PawnCanvasController
 
     public override void Hide()
     {
-        base.Hide();
-        
         foreach (var specialButton in SpecialButtons)
         {
             Destroy(specialButton.gameObject);
         }
 
         SpecialButtons.Clear();
+        HideMana();
+        
         Initiated = false;
     }
 }

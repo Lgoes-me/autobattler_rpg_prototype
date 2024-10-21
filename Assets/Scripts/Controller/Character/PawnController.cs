@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class PawnController : MonoBehaviour
 {
-    [field: SerializeField] public PawnData PawnData { get; private set; }
     [field: SerializeField] public PlayerFollowController PlayerFollowController { get; private set; }
     [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
     [field: SerializeField] public PawnCanvasController PawnCanvasController { get; set; }
@@ -17,17 +16,14 @@ public class PawnController : MonoBehaviour
     public AnimationState PawnState => CharacterController.CurrentState;
     private Coroutine BackToIdleCoroutine { get; set; }
     private Ability Ability { get; set; }
-    private Ability RequestedSpecialAbility { get; set; }
 
     public PawnController Init()
     {
-        Pawn = PawnData.ToDomain();
-
-        if (Application.Instance.Save.SelectedParty.TryGetValue(PawnData.name, out var pawnInfo))
+        if (Application.Instance.Save.SelectedParty.TryGetValue(Pawn.Id, out var pawnInfo))
         {
             Pawn.SetPawnInfo(pawnInfo);
         }
-        else if (Application.Instance.Save.PlayerPawn.PawnName == PawnData.name)
+        else if (Application.Instance.Save.PlayerPawn.PawnName == Pawn.Id)
         {
             Pawn.SetPawnInfo(Application.Instance.Save.PlayerPawn);
         }
@@ -37,7 +33,6 @@ public class PawnController : MonoBehaviour
         NavMeshAgent.isStopped = true;
 
         Ability = null;
-        RequestedSpecialAbility = null;
 
         return this;
     }
@@ -46,8 +41,7 @@ public class PawnController : MonoBehaviour
     {
         if (Ability == null)
         {
-            Ability = RequestedSpecialAbility ??
-                      Pawn.GetCurrentAttackIntent(this, battle, Team is TeamType.Enemies).ToDomain(this);
+            Ability = Pawn.GetCurrentAttackIntent(this, battle, Team is TeamType.Enemies);
             Ability.ChooseFocus(battle);
         }
 
@@ -72,9 +66,8 @@ public class PawnController : MonoBehaviour
         if (Ability == null || !PawnState.AbleToFight)
             return;
 
-        if (Ability == RequestedSpecialAbility)
+        if (Ability.IsSpecial)
         {
-            RequestedSpecialAbility = null;
             Application.Instance.BattleEventsManager.DoSpecialAttackEvent(this, Ability);
         }
         else
@@ -145,11 +138,6 @@ public class PawnController : MonoBehaviour
         enabled = false;
     }
 
-    public void DoSpecial(AbilityData attackData)
-    {
-        RequestedSpecialAbility = attackData.ToDomain(this);
-    }
-
     public void Dance()
     {
         CharacterController.SetAnimationState(new DanceState());
@@ -170,7 +158,7 @@ public class PawnController : MonoBehaviour
 
     public void SetCharacter(PawnData pawnData)
     {
-        PawnData = pawnData;
+        Pawn = pawnData.ToDomain();
         CharacterController = Instantiate(pawnData.Character, transform);
 
         if (pawnData.Weapon != null)

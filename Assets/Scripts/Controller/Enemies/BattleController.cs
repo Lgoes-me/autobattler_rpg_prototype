@@ -24,7 +24,7 @@ public class BattleController : MonoBehaviour
                 enemyController.PawnCanvasController = Application.Instance.BossCanvas; 
             }
             
-            enemyController.PawnCanvasController.Init(enemyController);
+            enemyController.PawnCanvasController.Init(enemyController.Pawn);
             enemyPawns.Add(enemyController);
         }
 
@@ -35,7 +35,7 @@ public class BattleController : MonoBehaviour
         
         var playerCanvasController = pawnCanvases[0];
         playerPawnController.PawnCanvasController = playerCanvasController;
-        playerCanvasController.Init(playerPawnController);
+        playerCanvasController.Init(playerPawnController.Pawn);
         playerPawns.Add(playerPawnController);
 
         foreach (var alliedController in Application.Instance.PartyManager.Party)
@@ -45,7 +45,7 @@ public class BattleController : MonoBehaviour
             
             var canvasController = pawnCanvases.First(c => !c.Initiated);
             alliedController.PawnCanvasController = canvasController;
-            canvasController.Init(alliedController);
+            canvasController.Init(alliedController.Pawn);
             
             playerPawns.Add(alliedController);
         }

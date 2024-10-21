@@ -20,11 +20,6 @@ public class PawnData : ScriptableObject
         return new PawnDomain(Id, Health, Mana, stats, Abilities, SpecialAbilities);
     }
 
-    public PawnInfo ResetPawnInfo()
-    {
-        return new PawnInfo(Id, 0);
-    }
-
     private void OnValidate()
     {
         if (Id != string.Empty)
