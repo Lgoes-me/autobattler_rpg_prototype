@@ -48,6 +48,18 @@ public class Application : MonoBehaviour
         SceneManager.StartGame();
     }
 
+    public void InitProfileCanvas(List<PawnController> playerPawns)
+    {
+        for (var index = 0; index < PawnCanvases.Count && index < playerPawns.Count; index++)
+        {
+            var pawnCanvas = PawnCanvases[index];
+            var playerPawn = playerPawns[index];
+
+            playerPawn.PawnCanvasController = pawnCanvas;
+            pawnCanvas.Init(playerPawn.Pawn);
+        }
+    }
+
     public void ShowDefeatCanvas()
     {
         BattleLostCanvas.SetActive(true);

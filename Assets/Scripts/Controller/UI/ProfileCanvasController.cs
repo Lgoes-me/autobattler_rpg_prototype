@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ProfileCanvasController : PawnCanvasController
 {
+    [field: SerializeField] private CanvasGroup CanvasGroup { get; set; }
     [field: SerializeField] private ButtonItemController SpecialButtonPrefab { get; set; }
     [field: SerializeField] private Transform SpecialButtonsParent { get; set; }
     [field: SerializeField] private TextMeshProUGUI Name { get; set; }
@@ -15,11 +16,29 @@ public class ProfileCanvasController : PawnCanvasController
         base.Init(pawn);
         SpecialButtons = new List<ButtonItemController>();
         Name.SetText(Pawn.Id);
+        CanvasGroup.alpha = 0.5f;
+    }
 
+    public void StartBattle()
+    {
+        CanvasGroup.alpha = 1;
         foreach (var ability in Pawn.SpecialAbilities)
         {
             SpecialButtons.Add(Instantiate(SpecialButtonPrefab, SpecialButtonsParent).Init(Pawn, ability));
         }
+    }
+
+    public void EndBattle()
+    {
+        CanvasGroup.alpha = 0.5f;
+        
+        foreach (var specialButton in SpecialButtons)
+        {
+            Destroy(specialButton.gameObject);
+        }
+
+        SpecialButtons.Clear();
+        HideMana();
     }
 
     public override void UpdateMana()
@@ -34,19 +53,6 @@ public class ProfileCanvasController : PawnCanvasController
 
     protected override void Death()
     {
-        
-    }
-
-    public override void Hide()
-    {
-        foreach (var specialButton in SpecialButtons)
-        {
-            Destroy(specialButton.gameObject);
-        }
-
-        SpecialButtons.Clear();
-        HideMana();
-        
-        Initiated = false;
+        EndBattle();
     }
 }

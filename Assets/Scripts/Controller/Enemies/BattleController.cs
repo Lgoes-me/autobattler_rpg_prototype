@@ -10,7 +10,7 @@ public class BattleController : MonoBehaviour
     public void ActivateBattleScene(string battleId, List<EnemyInfo> enemies)
     {
         Application.Instance.AudioManager.PlayMusic(MusicType.Battle);
-        
+
         var enemyPawns = new List<PawnController>();
         var playerPawns = new List<PawnController>();
 
@@ -18,44 +18,42 @@ public class BattleController : MonoBehaviour
         {
             var enemyController = enemy.PawnController;
             enemyController.Init();
-            
+
             if (enemy.IsBoss)
             {
-                enemyController.PawnCanvasController = Application.Instance.BossCanvas; 
+                enemyController.PawnCanvasController = Application.Instance.BossCanvas;
             }
-            
+
             enemyController.PawnCanvasController.Init(enemyController.Pawn);
             enemyPawns.Add(enemyController);
         }
 
         var playerPawnController = Application.Instance.PlayerManager.GetPawnController();
         playerPawnController.Init();
-
-        var pawnCanvases = Application.Instance.PawnCanvases;
-        
-        var playerCanvasController = pawnCanvases[0];
-        playerPawnController.PawnCanvasController = playerCanvasController;
-        playerCanvasController.Init(playerPawnController.Pawn);
         playerPawns.Add(playerPawnController);
 
         foreach (var alliedController in Application.Instance.PartyManager.Party)
         {
             alliedController.PlayerFollowController.StopFollow();
             alliedController.Init();
-            
-            var canvasController = pawnCanvases.First(c => !c.Initiated);
-            alliedController.PawnCanvasController = canvasController;
-            canvasController.Init(alliedController.Pawn);
-            
+
             playerPawns.Add(alliedController);
         }
 
+        foreach (var playerPawn in playerPawns)
+        {
+            if (playerPawn.PawnCanvasController is not ProfileCanvasController profileCanvasController) 
+                continue;
+            
+            profileCanvasController.StartBattle();
+        }
+        
         Battle = new Battle(battleId, enemyPawns, playerPawns);
         Application.Instance.BattleEventsManager.DoBattleStartEvent(Battle);
-        
+
         StartCoroutine(BattleCoroutine());
     }
-    
+
     private IEnumerator BattleCoroutine()
     {
         var hasEnemies = true;
@@ -83,7 +81,7 @@ public class BattleController : MonoBehaviour
     private IEnumerator RealizaTurno()
     {
         var initiativeList = Battle.GetInitiativeList();
-        
+
         foreach (var pawn in initiativeList)
         {
             if (!pawn.PawnState.CanTakeTurn) continue;
@@ -135,7 +133,10 @@ public class BattleController : MonoBehaviour
 
         foreach (var playerPawn in Battle.PlayerPawns)
         {
-            playerPawn.PawnCanvasController.Hide();
+            if (playerPawn.PawnCanvasController is not ProfileCanvasController profileCanvasController) 
+                continue;
+            
+            profileCanvasController.EndBattle();
         }
 
         foreach (var pawn in Battle.Pawns)
@@ -154,9 +155,9 @@ public class BattleController : MonoBehaviour
 
         var save = Application.Instance.Save;
         save.PlayerPawn = Application.Instance.PlayerManager.PawnController.Pawn.GetPawnInfo();
-        save.SelectedParty = Application.Instance.PartyManager.Party.ToDictionary(p => p.Pawn.Id, p => p.Pawn.GetPawnInfo());
+        save.SelectedParty =
+            Application.Instance.PartyManager.Party.ToDictionary(p => p.Pawn.Id, p => p.Pawn.GetPawnInfo());
         save.DefeatedEnemies.Add(Battle.Id);
         Application.Instance.SaveManager.SaveData(save);
     }
-
 }

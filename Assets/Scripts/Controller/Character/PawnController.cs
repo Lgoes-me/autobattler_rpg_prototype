@@ -159,6 +159,16 @@ public class PawnController : MonoBehaviour
     public void SetCharacter(PawnData pawnData)
     {
         Pawn = pawnData.ToDomain();
+        
+        if (Application.Instance.Save.SelectedParty.TryGetValue(Pawn.Id, out var pawnInfo))
+        {
+            Pawn.SetPawnInfo(pawnInfo);
+        }
+        else if (Application.Instance.Save.PlayerPawn.PawnName == Pawn.Id)
+        {
+            Pawn.SetPawnInfo(Application.Instance.Save.PlayerPawn);
+        }
+
         CharacterController = Instantiate(pawnData.Character, transform);
 
         if (pawnData.Weapon != null)

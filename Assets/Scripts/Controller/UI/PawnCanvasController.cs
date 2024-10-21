@@ -7,14 +7,11 @@ public class PawnCanvasController : BaseCanvasController
     [field: SerializeField] private Image LifeBar { get; set; }
     [field: SerializeField] private Image BackgroundLifeBar { get; set; }
     [field: SerializeField] private Image ManaBar { get; set; }
-
-    public bool Initiated { get; protected set; }
     protected PawnDomain Pawn { get; private set; }
 
     public virtual void Init(PawnDomain pawn)
     {
         Pawn = pawn;
-        Initiated = true;
         
         var fillAmount = Pawn.Health / (float) Pawn.MaxHealth;
 

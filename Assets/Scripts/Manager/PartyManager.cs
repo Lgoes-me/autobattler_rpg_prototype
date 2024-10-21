@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PartyManager : MonoBehaviour
@@ -73,6 +74,13 @@ public class PartyManager : MonoBehaviour
         {
            Archetypes.Add(ArchetypeFactory.CreateArchetype(pair.Key, pair.Count));
         }
+
+        var playerPawns = new List<PawnController>();
+
+        playerPawns.Add(Application.Instance.PlayerManager.PawnController);
+        playerPawns.AddRange(Party);
+        
+        Application.Instance.InitProfileCanvas(playerPawns);
     }
     
     public void SetSelectedParty(List<PawnData> newSelectedParty)
