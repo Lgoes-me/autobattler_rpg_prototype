@@ -20,10 +20,13 @@ public class PawnCanvasController : BaseCanvasController
 
         ManaBar.fillAmount = Pawn.HasMana ? Pawn.Mana / (float) Pawn.MaxMana : 0;
 
+        Pawn.LifeChanged += UpdateLife;
+        Pawn.ManaChanged += UpdateMana;
+        
         Show();
     }
 
-    public void UpdateLife()
+    private void UpdateLife()
     {
         var pawn = Pawn;
         var fillAmount = pawn.Health / (float) pawn.MaxHealth;
@@ -44,7 +47,7 @@ public class PawnCanvasController : BaseCanvasController
             Death();
     }
 
-    public virtual void UpdateMana()
+    protected virtual void UpdateMana()
     {
         if (!Pawn.HasMana)
             return;
@@ -52,13 +55,16 @@ public class PawnCanvasController : BaseCanvasController
         ManaBar.fillAmount = Pawn.Mana / (float) Pawn.MaxMana;
     }
     
-    public virtual void HideMana()
+    protected void HideMana()
     {
         ManaBar.fillAmount = 0;
     }
 
     protected virtual void Death()
     {
+        Pawn.LifeChanged -= UpdateLife;
+        Pawn.ManaChanged -= UpdateMana;
+        
         Hide();
     }
 }

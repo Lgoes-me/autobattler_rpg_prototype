@@ -10,11 +10,7 @@ public class BlessingFactory
             {
                 new OnBattleStartedListener()
                 {
-                    battle => battle.PlayerPawns.ForEach(p =>
-                    {
-                       p.Pawn.GainMana(); 
-                       p.PawnCanvasController.UpdateMana();
-                    })
+                    battle => battle.PlayerPawns.ForEach(p => p.Pawn.GainMana())
                 }
             },
             

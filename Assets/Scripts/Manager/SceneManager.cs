@@ -65,9 +65,6 @@ public class SceneManager : MonoBehaviour
 
             Application.Instance.PartyManager.SetPartyToFollow(true);
             Application.Instance.AudioManager.PlayMusic(roomScene.Music);
-
-            save.Spawn = save.LastBonfireSpawn;
-            Application.Instance.SaveManager.SaveData(save);
         };
     }
 

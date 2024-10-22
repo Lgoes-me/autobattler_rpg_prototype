@@ -21,6 +21,5 @@
             return;
 
         pawn.SpentMana(ManaCost);
-        AbilityUser.PawnCanvasController.UpdateMana();
     }
 }

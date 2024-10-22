@@ -28,7 +28,6 @@ public class RoomScene : BaseScene
         {
             var bonfire = Bonfires.First(b => b.Id == spawnSpawnId);
             bonfire.Interact();
-            
             bonfire.ActivateCameraArea();
             Application.Instance.PlayerManager.SpawnPlayerAt(bonfire.SpawnPoint);
         }

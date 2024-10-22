@@ -99,11 +99,6 @@ public class BattleController : MonoBehaviour
             enemyPawn.Dance();
         }
 
-        foreach (var pawn in Battle.Pawns)
-        {
-            pawn.PawnCanvasController.Hide();
-        }
-
         Application.Instance.ShowDefeatCanvas();
 
         yield return new WaitForSeconds(1f);

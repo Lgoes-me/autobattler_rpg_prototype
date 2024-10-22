@@ -41,7 +41,7 @@ public class ProfileCanvasController : PawnCanvasController
         HideMana();
     }
 
-    public override void UpdateMana()
+    protected override void UpdateMana()
     {
         base.UpdateMana();
         

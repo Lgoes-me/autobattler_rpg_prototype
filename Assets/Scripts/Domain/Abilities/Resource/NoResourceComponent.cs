@@ -14,6 +14,5 @@
             return;
 
         pawn.GainMana();
-        AbilityUser.PawnCanvasController.UpdateMana();
     }
 }

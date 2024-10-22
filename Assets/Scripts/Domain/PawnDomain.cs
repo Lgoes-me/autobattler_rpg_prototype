@@ -23,6 +23,10 @@ public class PawnDomain
     public bool IsAlive => Health > 0;
     public float Initiative { get; private set; }
     public AbilityData RequestedSpecialAbility { get; private set; }
+    public delegate void PawnDomainChanged();
+    public event PawnDomainChanged LifeChanged;
+    public event PawnDomainChanged ManaChanged;
+    public event PawnDomainChanged BuffsChanged;
 
     public PawnDomain(
         string id,
@@ -55,6 +59,11 @@ public class PawnDomain
     {
         Health = MaxHealth - pawnInfo.MissingHealth;
         Mana = 0;
+        Buffs = new Dictionary<string, Buff>();
+        
+        LifeChanged?.Invoke();
+        ManaChanged?.Invoke();
+        BuffsChanged?.Invoke();
     }
 
     public void AddBuff(Buff newBuff)
@@ -67,6 +76,8 @@ public class PawnDomain
         
         newBuff.Init(this);
         Buffs.Add(newBuff.Id, newBuff);
+        
+        BuffsChanged?.Invoke();
     }
 
     public void TickAllBuffs()
@@ -82,6 +93,8 @@ public class PawnDomain
     {
         buff.Deactivate();
         Buffs.Remove(buff.Id);
+        
+        BuffsChanged?.Invoke();
     }
     
     public void RemoveAllBuffs()
@@ -95,7 +108,9 @@ public class PawnDomain
 
     public PawnInfo ResetPawnInfo()
     {
-        return new PawnInfo(Id, 0);
+        var pawnInfo = new PawnInfo(Id, 0);
+        SetPawnInfo(pawnInfo);
+        return pawnInfo;
     }
 
     public PawnInfo GetPawnInfo()
@@ -132,6 +147,7 @@ public class PawnDomain
     {
         var reducedDamage = GetPawnStats().GetReducedDamage(damage);
         Health = Mathf.Clamp(Health - reducedDamage, 0, MaxHealth);
+        LifeChanged?.Invoke();
     }
     
     public void ReceiveHeal(int healValue, bool canRevive)
@@ -140,21 +156,25 @@ public class PawnDomain
             return;
         
         Health = Mathf.Clamp(Health + healValue, 0, MaxHealth);
+        LifeChanged?.Invoke();
     }
     
     public void EndOfBattleHeal()
     {
         Health = Mathf.Clamp(Health + 15, 0, MaxHealth);
+        LifeChanged?.Invoke();
     }
 
     public void GainMana()
     {
         Mana = Mathf.Clamp(Mana + 10, 0,MaxMana);
+        ManaChanged?.Invoke();
     }
     
     public void SpentMana(int manaCost)
     {
         Mana = Mathf.Clamp(Mana - manaCost, 0, MaxMana);
+        ManaChanged?.Invoke();
     }
 
     public Stats GetPawnStats()

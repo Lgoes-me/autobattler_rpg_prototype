@@ -19,15 +19,8 @@ public class PawnController : MonoBehaviour
 
     public PawnController Init()
     {
-        if (Application.Instance.Save.SelectedParty.TryGetValue(Pawn.Id, out var pawnInfo))
-        {
-            Pawn.SetPawnInfo(pawnInfo);
-        }
-        else if (Application.Instance.Save.PlayerPawn.PawnName == Pawn.Id)
-        {
-            Pawn.SetPawnInfo(Application.Instance.Save.PlayerPawn);
-        }
-
+        ApplyPawnInfo();
+        
         enabled = true;
         NavMeshAgent.enabled = true;
         NavMeshAgent.isStopped = true;
@@ -37,6 +30,18 @@ public class PawnController : MonoBehaviour
         return this;
     }
 
+    public void ApplyPawnInfo()
+    {
+        if (Application.Instance.Save.SelectedParty.TryGetValue(Pawn.Id, out var pawnInfo))
+        {
+            Pawn.SetPawnInfo(pawnInfo);
+        }
+        else if (Application.Instance.Save.PlayerPawn.PawnName == Pawn.Id)
+        {
+            Pawn.SetPawnInfo(Application.Instance.Save.PlayerPawn);
+        }
+    }
+    
     public IEnumerator PawnTurn(Battle battle)
     {
         if (Ability == null)
@@ -159,16 +164,8 @@ public class PawnController : MonoBehaviour
     public void SetCharacter(PawnData pawnData)
     {
         Pawn = pawnData.ToDomain();
+        ApplyPawnInfo();
         
-        if (Application.Instance.Save.SelectedParty.TryGetValue(Pawn.Id, out var pawnInfo))
-        {
-            Pawn.SetPawnInfo(pawnInfo);
-        }
-        else if (Application.Instance.Save.PlayerPawn.PawnName == Pawn.Id)
-        {
-            Pawn.SetPawnInfo(Application.Instance.Save.PlayerPawn);
-        }
-
         CharacterController = Instantiate(pawnData.Character, transform);
 
         if (pawnData.Weapon != null)
@@ -193,7 +190,6 @@ public class PawnController : MonoBehaviour
     public void ReceiveAttack()
     {
         CharacterController.DoHitStop();
-        PawnCanvasController.UpdateLife();
 
         if (Pawn.IsAlive) return;
 
@@ -205,7 +201,6 @@ public class PawnController : MonoBehaviour
     public void ReceiveHeal(bool canRevive)
     {
         CharacterController.DoNiceHitStop();
-        PawnCanvasController.UpdateLife();
 
         if (!Pawn.IsAlive || !canRevive)
             return;
