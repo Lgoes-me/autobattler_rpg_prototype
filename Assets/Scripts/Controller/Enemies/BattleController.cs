@@ -21,7 +21,7 @@ public class BattleController : MonoBehaviour
 
             if (enemy.IsBoss)
             {
-                enemyController.PawnCanvasController = Application.Instance.BossCanvas;
+                enemyController.PawnCanvasController = Application.Instance.InterfaceManager.BossCanvas;
             }
 
             enemyController.PawnCanvasController.Init(enemyController.Pawn);
@@ -99,11 +99,11 @@ public class BattleController : MonoBehaviour
             enemyPawn.Dance();
         }
 
-        Application.Instance.ShowDefeatCanvas();
+        Application.Instance.InterfaceManager.ShowDefeatCanvas();
 
         yield return new WaitForSeconds(1f);
 
-        Application.Instance.HideDefeatCanvas();
+        Application.Instance.InterfaceManager.HideDefeatCanvas();
         Application.Instance.SceneManager.RespawnAtBonfire();
     }
 

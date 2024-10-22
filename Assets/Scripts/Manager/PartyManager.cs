@@ -80,7 +80,8 @@ public class PartyManager : MonoBehaviour
         playerPawns.Add(Application.Instance.PlayerManager.PawnController);
         playerPawns.AddRange(Party);
         
-        Application.Instance.InitProfileCanvas(playerPawns);
+        Application.Instance.InterfaceManager.InitProfileCanvas(playerPawns);
+        Application.Instance.InterfaceManager.InitArchetypesCanvas(playerPawns);
     }
     
     public void SetSelectedParty(List<PawnData> newSelectedParty)

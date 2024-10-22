@@ -20,11 +20,7 @@ public class Application : MonoBehaviour
     [field: SerializeField] public TextManager TextManager { get; private set; }
     [field: SerializeField] public BattleEventsManager BattleEventsManager { get; private set; }
     [field: SerializeField] private BlessingManager BlessingManager { get; set; }
-    
-    [field: SerializeField] private GameObject BattleLostCanvas { get; set; }
-    
-    [field: SerializeField] public List<PawnCanvasController> PawnCanvases { get; private set; }
-    [field: SerializeField] public BossCanvasController BossCanvas { get; private set; }
+    [field: SerializeField] public InterfaceManager InterfaceManager { get; set; }
     
     private void Awake()
     {  
@@ -46,27 +42,5 @@ public class Application : MonoBehaviour
         PartyManager.Init();
         BlessingManager.Init();
         SceneManager.StartGame();
-    }
-
-    public void InitProfileCanvas(List<PawnController> playerPawns)
-    {
-        for (var index = 0; index < PawnCanvases.Count && index < playerPawns.Count; index++)
-        {
-            var pawnCanvas = PawnCanvases[index];
-            var playerPawn = playerPawns[index];
-
-            playerPawn.PawnCanvasController = pawnCanvas;
-            pawnCanvas.Init(playerPawn.Pawn);
-        }
-    }
-
-    public void ShowDefeatCanvas()
-    {
-        BattleLostCanvas.SetActive(true);
-    }
-
-    public void HideDefeatCanvas()
-    {
-        BattleLostCanvas.SetActive(false);
     }
 }
