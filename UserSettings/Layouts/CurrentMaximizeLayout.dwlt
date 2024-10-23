@@ -23,7 +23,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 11357
+  controlID: 27430
   draggingID: 0
 --- !u!114 &2
 MonoBehaviour:
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 11358
+  controlID: 27431
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -173,7 +173,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 11359
+  controlID: 27432
   draggingID: 0
 --- !u!114 &5
 MonoBehaviour:
@@ -199,7 +199,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 11360
+  controlID: 27433
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -264,9 +264,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 22d7ffff
+      m_SelectedIDs: aefffeff
       m_LastClickedID: 0
-      m_ExpandedIDs: 94b7ffffead8ffff92f2fffffcfaffff727800007678000098780000aa780000
+      m_ExpandedIDs: 8ef1feffb4fffeff0601ffff961cffff94b7ffffead8ffff92f2fffffcfafffff4ffffff4a780000727800007678000098780000aa780000def20000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -317,7 +317,7 @@ MonoBehaviour:
   - {fileID: 9}
   - {fileID: 10}
   m_Selected: 0
-  m_LastSelected: 1
+  m_LastSelected: 2
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -726,9 +726,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 716.35126, y: 330.315, z: -11.629552}
+    m_Target: {x: 867.8047, y: 504.36197, z: 0}
     speed: 2
-    m_Value: {x: 716.35126, y: 330.315, z: -11.629552}
+    m_Value: {x: 867.8047, y: 504.36197, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -774,13 +774,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.05966858, y: -0.03838092, z: -0.023342382, w: -0.99865353}
+    m_Target: {x: -0.18637119, y: -0.051449466, z: -0.016830107, w: -0.9824594}
     speed: 2
-    m_Value: {x: -0.05958263, y: -0.038325634, z: -0.023308758, w: -0.997215}
+    m_Value: {x: -0.18610238, y: -0.05137526, z: -0.016805831, w: -0.9810423}
   m_Size:
-    m_Target: 591.3659
+    m_Target: 376.88214
     speed: 2
-    m_Value: 591.3659
+    m_Value: 376.88214
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -948,7 +948,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs/UI
+    - Assets/Scenes/Rooms/Dungeon
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -956,15 +956,15 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Prefabs/UI
+  - Assets/Scenes/Rooms/Dungeon
   m_LastFoldersGridSize: 16
   m_LastProjectPath: D:\Lucas\PROJETOS\MyProjects\_IncompleteGames\RpgPrototype
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 303}
-    m_SelectedIDs: fa7e0000
-    m_LastClickedID: 32506
+    scrollPos: {x: 0, y: 663}
+    m_SelectedIDs: 487d0000
+    m_LastClickedID: 32072
     m_ExpandedIDs: 00000000247d0000267d0000287d00002a7d00002c7d00002e7d0000307d0000327d0000347d0000367d0000387d00003a7d00003c7d00003e7d0000407d0000427d0000447d0000467d0000487d00004a7d00004c7d00004e7d0000507d0000527d0000547d0000567d0000587d00005a7d00005c7d00005e7d0000607d000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1018,9 +1018,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 22d7ffff
-    m_LastClickedInstanceID: -10462
-    m_HadKeyboardFocusLastEvent: 0
+    m_SelectedInstanceIDs: aefffeff
+    m_LastClickedInstanceID: -65618
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c62300007e70000056700000986b00005e6d0000dc0a0100d00a0100960a0100d0f70000b0f8000078f800006af70000b0f600009c6e0000b06e0000aa6e0000ee7600009c7000002eae0000000000009ed30000c47e0000ea3b000088790000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1119,7 +1119,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -10462
+  m_LastSelectedObjectID: -1346
 --- !u!114 &15
 MonoBehaviour:
   m_ObjectHideFlags: 52
