@@ -4,6 +4,7 @@ using UnityEngine.AI;
 
 public class PlayerManager : MonoBehaviour
 {
+    [field: SerializeField] public PawnData PawnData { get; private set; }
     [field: SerializeField] public PlayerController PlayerController { get; private set; }
     [field: SerializeField] public PawnController PawnController { get; private set; }
     [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
@@ -19,6 +20,8 @@ public class PlayerManager : MonoBehaviour
 
     public void SetNewPlayerPawn(PawnData pawn)
     {
+        PawnData = pawn;
+        
         Application.Instance.Save.PlayerPawn = new PawnInfo(pawn.Id, 0);
         Application.Instance.SaveManager.SaveData(Application.Instance.Save);
 

@@ -1,10 +1,12 @@
 ﻿public class Archetype : BaseIEnumerableGameEventListener
 {
     public ArchetypeIdentifier Identifier { get; set; }
-
-    public Archetype(ArchetypeIdentifier identifier)
+    public int Quantidade { get; set; }
+    
+    public Archetype(ArchetypeIdentifier identifier, int quantidade)
     {
         Identifier = identifier;
+        Quantidade = quantidade;
     }
 }
 

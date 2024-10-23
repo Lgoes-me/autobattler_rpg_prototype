@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PartyManager : MonoBehaviour
@@ -29,7 +28,7 @@ public class PartyManager : MonoBehaviour
     {
         SelectedPawns.Clear();
 
-        foreach (var (pawnId, pawnInfo) in Application.Instance.Save.SelectedParty)
+        foreach (var (pawnId, _) in Application.Instance.Save.SelectedParty)
         {
             var pawn = AvailableParty.FirstOrDefault(p => p.Id == pawnId);
                 
@@ -51,7 +50,6 @@ public class PartyManager : MonoBehaviour
 
         foreach (var pawnData in SelectedPawns)
         {
-
             var playerPosition = Application.Instance.PlayerManager.PawnController.transform.position;
             var randomRotation =  Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)) * Vector3.forward * 1f;
 
@@ -63,11 +61,18 @@ public class PartyManager : MonoBehaviour
             pawnInstance.SetCharacter(pawnData);
             Party.Add(pawnInstance);
         }
+        
+        Archetypes.Clear();
 
-        var archetypes = SelectedPawns
+        var pawns = new List<PawnData>();
+        pawns.Add(Application.Instance.PlayerManager.PawnData);
+        pawns.AddRange(SelectedPawns);
+
+        var archetypes = pawns
             .Select(p => p.Archetypes)
+            .SelectMany(a => a)
             .GroupBy(a => a)
-            .Select(g =>  new { Key = g.Key.First(), Count = g.Count()})
+            .Select(g =>  new { g.Key, Count = g.Count()})
             .ToList();
         
         foreach (var pair in archetypes)
@@ -81,7 +86,7 @@ public class PartyManager : MonoBehaviour
         playerPawns.AddRange(Party);
         
         Application.Instance.InterfaceManager.InitProfileCanvas(playerPawns);
-        Application.Instance.InterfaceManager.InitArchetypesCanvas(playerPawns);
+        Application.Instance.InterfaceManager.InitArchetypesCanvas(Archetypes);
     }
     
     public void SetSelectedParty(List<PawnData> newSelectedParty)

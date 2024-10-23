@@ -53,6 +53,7 @@ public class ProfileCanvasController : PawnCanvasController
 
     protected override void Death()
     {
+        base.Death();
         EndBattle();
     }
 }

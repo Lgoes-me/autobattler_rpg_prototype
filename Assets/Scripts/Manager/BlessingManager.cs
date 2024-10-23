@@ -12,6 +12,8 @@ public class BlessingManager : MonoBehaviour
     {
         BlessingFactory = new BlessingFactory();
         Blessings = Application.Instance.Save.Blessings.Select(j => BlessingFactory.CreateBlessing(j)).ToList();
+        
+        Application.Instance.InterfaceManager.InitBlessingsCanvas(BlessingsReadOnly);
     }
 
     public void AddBlessing(BlessingIdentifier identifier)

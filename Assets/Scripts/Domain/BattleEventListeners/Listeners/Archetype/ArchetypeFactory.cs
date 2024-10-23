@@ -6,7 +6,7 @@ public class ArchetypeFactory
     {
         return id switch
         {
-            ArchetypeIdentifier.Teste => new Archetype(id)
+            ArchetypeIdentifier.Teste => new Archetype(id, quantidade)
             {
                 
             },
