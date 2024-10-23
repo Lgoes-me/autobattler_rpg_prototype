@@ -22,6 +22,7 @@ public class PawnCanvasController : BaseCanvasController
 
         Pawn.LifeChanged += UpdateLife;
         Pawn.ManaChanged += UpdateMana;
+        Pawn.BuffsChanged += UpdateBuffs;
         
         Show();
     }
@@ -55,6 +56,11 @@ public class PawnCanvasController : BaseCanvasController
         ManaBar.fillAmount = Pawn.Mana / (float) Pawn.MaxMana;
     }
     
+    protected virtual void UpdateBuffs()
+    {
+        
+    }
+    
     protected void HideMana()
     {
         ManaBar.fillAmount = 0;
@@ -64,6 +70,7 @@ public class PawnCanvasController : BaseCanvasController
     {
         Pawn.LifeChanged -= UpdateLife;
         Pawn.ManaChanged -= UpdateMana;
+        Pawn.BuffsChanged -= UpdateBuffs;
         
         Hide();
     }
