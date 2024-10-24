@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class ArchetypeCanvasController : BaseCanvasController
@@ -9,7 +10,20 @@ public class ArchetypeCanvasController : BaseCanvasController
     public ArchetypeCanvasController Init(Archetype archetype)
     {
         Name.SetText(archetype.Identifier.ToString());
-        Quantidade.SetText(archetype.Quantidade.ToString());
+
+        var nextStep = archetype.CurrentAmount;
+        
+        foreach (var step in archetype.AmountSteps)
+        {
+            if (step < archetype.CurrentAmount) 
+                continue;
+            
+            nextStep = step;
+            break;
+        }
+
+        Quantidade.SetText($"{archetype.CurrentAmount} / {nextStep}");
+        
         Show();
         
         return this;
