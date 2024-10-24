@@ -17,7 +17,7 @@ public class BattleController : MonoBehaviour
         foreach (var enemy in enemies)
         {
             var enemyController = enemy.PawnController;
-            enemyController.Init();
+            enemyController.StartBattle();
 
             if (enemy.IsBoss)
             {
@@ -29,13 +29,13 @@ public class BattleController : MonoBehaviour
         }
 
         var playerPawnController = Application.Instance.PlayerManager.GetPawnController();
-        playerPawnController.Init();
+        playerPawnController.StartBattle();
         playerPawns.Add(playerPawnController);
 
         foreach (var alliedController in Application.Instance.PartyManager.Party)
         {
             alliedController.PlayerFollowController.StopFollow();
-            alliedController.Init();
+            alliedController.StartBattle();
 
             playerPawns.Add(alliedController);
         }
@@ -136,7 +136,7 @@ public class BattleController : MonoBehaviour
 
         foreach (var pawn in Battle.Pawns)
         {
-            pawn.Deactivate();
+            pawn.FinishBattle();
 
             if (pawn.Team == TeamType.Enemies)
                 pawn.gameObject.SetActive(false);

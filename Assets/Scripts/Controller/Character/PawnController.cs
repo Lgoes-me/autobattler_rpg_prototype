@@ -17,17 +17,40 @@ public class PawnController : MonoBehaviour
     private Coroutine BackToIdleCoroutine { get; set; }
     private Ability Ability { get; set; }
 
-    public PawnController Init()
+    public void Init(PawnDomain pawn)
     {
-        Application.Instance.GameSaveManager.ApplyPawnInfo(Pawn);
+        Pawn = pawn;
+        
+        CharacterController = Instantiate(pawn.Character, transform);
+
+        if (pawn.Weapon != null)
+            CharacterController.SetWeapon(pawn.Weapon);
+
+        if (TryGetComponent<PlayerFollowController>(out var playerFollowController))
+        {
+            playerFollowController.CharacterController = CharacterController;
+        }
+
+        if (TryGetComponent<PlayerController>(out var playerController))
+        {
+            playerController.CharacterController = CharacterController;
+        }
+
+        if (TryGetComponent<EnemyController>(out var enemyController))
+        {
+            enemyController.CharacterController = CharacterController;
+        }
+    }
+
+    public void StartBattle()
+    {
+        Pawn.StartBattle();
         
         enabled = true;
         NavMeshAgent.enabled = true;
         NavMeshAgent.isStopped = true;
 
         Ability = null;
-
-        return this;
     }
 
     public IEnumerator PawnTurn(Battle battle)
@@ -123,7 +146,7 @@ public class PawnController : MonoBehaviour
         Pawn.TickAllBuffs();
     }
 
-    public void Deactivate()
+    public void FinishBattle()
     {
         Pawn?.RemoveAllBuffs();
 
@@ -147,33 +170,6 @@ public class PawnController : MonoBehaviour
         direction = new Vector3(direction.x, 0, direction.z);
 
         Instantiate(projectile, weaponPosition, Quaternion.LookRotation(direction)).Init(this, effects, direction);
-    }
-
-    public void SetCharacter(PawnData pawnData)
-    {
-        Pawn = pawnData.ToDomain();
-        
-        Application.Instance.GameSaveManager.ApplyPawnInfo(Pawn);
-        
-        CharacterController = Instantiate(pawnData.Character, transform);
-
-        if (pawnData.Weapon != null)
-            CharacterController.SetWeapon(pawnData.Weapon);
-
-        if (TryGetComponent<PlayerFollowController>(out var playerFollowController))
-        {
-            playerFollowController.CharacterController = CharacterController;
-        }
-
-        if (TryGetComponent<PlayerController>(out var playerController))
-        {
-            playerController.CharacterController = CharacterController;
-        }
-
-        if (TryGetComponent<EnemyController>(out var enemyController))
-        {
-            enemyController.CharacterController = CharacterController;
-        }
     }
 
     public void ReceiveAttack()

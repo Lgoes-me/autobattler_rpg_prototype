@@ -13,11 +13,20 @@ public class PawnData : ScriptableObject
     [field: SerializeField] private List<AbilityData> Abilities { get; set; }
     [field: SerializeField] private List<AbilityData> SpecialAbilities { get; set; }
     [field: SerializeField] private List<ArchetypeIdentifier> Archetypes { get; set; }
-    
+
     public PawnDomain ToDomain()
     {
         var stats = Stats.ToDomain();
-        return new PawnDomain(Id, Health, Mana, stats, Abilities, SpecialAbilities, Archetypes);
+        return new PawnDomain(
+            Id, 
+            Health, 
+            Mana, 
+            Character, 
+            Weapon, 
+            stats,
+            Abilities, 
+            SpecialAbilities, 
+            Archetypes);
     }
 
     private void OnValidate()

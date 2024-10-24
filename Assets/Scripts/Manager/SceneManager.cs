@@ -52,7 +52,7 @@ public class SceneManager : MonoBehaviour
 
         foreach (var pawn in PartyManager.Party)
         {
-            pawn.Deactivate();
+            pawn.FinishBattle();
         }
 
         var spawn = Application.Instance.GameSaveManager.GetBonfireSpawn();

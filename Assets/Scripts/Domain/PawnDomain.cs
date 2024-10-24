@@ -13,6 +13,9 @@ public class PawnDomain
     public int MaxMana { get; internal set; }
     public int Mana { get;  private set; }
     
+    public CharacterController Character { get;  private set; }
+    public WeaponController Weapon { get;  private set; }
+    
     private Stats Stats { get; set; }
     
     private List<AbilityData> Abilities { get; set; }
@@ -34,6 +37,8 @@ public class PawnDomain
     public PawnDomain(string id,
         int health,
         int mana,
+        CharacterController character,
+        WeaponController weapon,
         Stats stats,
         List<AbilityData> abilities,
         List<AbilityData> specialAbilities, 
@@ -44,6 +49,8 @@ public class PawnDomain
         Health = health;
         MaxMana = mana;
         Mana = 0;
+        Character = character;
+        Weapon = weapon;
         Stats = stats;
 
         Abilities = abilities;
@@ -60,6 +67,16 @@ public class PawnDomain
         Initiative = initiative;
     }
 
+    public void StartBattle()
+    {
+        Mana = 0;
+        Buffs = new Dictionary<string, Buff>();
+        RequestedSpecialAbility = null;
+        
+        ManaChanged?.Invoke();
+        BuffsChanged?.Invoke();
+    }
+    
     public void SetPawnInfo(PawnInfo pawnInfo)
     {
         Health = MaxHealth - pawnInfo.MissingHealth;

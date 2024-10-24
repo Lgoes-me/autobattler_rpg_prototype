@@ -102,6 +102,7 @@ public class EnemyInfo
 
     public void PreparePawn()
     {
-        PawnController.SetCharacter(PawnData);
+        var pawn = PawnData.ToDomain();
+        PawnController.Init(pawn);
     }
 }

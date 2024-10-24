@@ -60,7 +60,11 @@ public class PartyManager : MonoBehaviour
                 : playerPosition + randomRotation;
 
             var pawnInstance = Instantiate(PawnControllerPrefab, pawnPosition, Quaternion.identity, transform);
-            pawnInstance.SetCharacter(pawnData);
+            
+            var pawn = pawnData.ToDomain();
+            GameSaveManager.ApplyPawnInfo(pawn);
+            
+            pawnInstance.Init(pawn);
             Party.Add(pawnInstance);
         }
 

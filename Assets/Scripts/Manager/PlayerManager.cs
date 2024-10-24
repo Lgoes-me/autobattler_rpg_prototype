@@ -18,14 +18,17 @@ public class PlayerManager : MonoBehaviour
         SetNewPlayerPawn(pawnData);
     }
 
-    public void SetNewPlayerPawn(PawnData pawn)
+    public void SetNewPlayerPawn(PawnData pawnData)
     {
-        GameSaveManager.SetPlayerPawn(pawn);
+        GameSaveManager.SetPlayerPawn(pawnData);
         
         if(PawnController.transform.childCount > 0)
             Destroy(PawnController.transform.GetChild(0).gameObject);
         
-        PawnController.SetCharacter(pawn);
+        var pawn = pawnData.ToDomain();
+        GameSaveManager.ApplyPawnInfo(pawn);
+        
+        PawnController.Init(pawn);
         PlayerController.Init();
     }
 
@@ -50,7 +53,7 @@ public class PlayerManager : MonoBehaviour
     {
         NavMeshAgent.isStopped = true;
         
-        PawnController.Deactivate();
+        PawnController.FinishBattle();
         PlayerController.gameObject.SetActive(true);
         PlayerController.enabled = true;
         PlayerController.Prepare();
