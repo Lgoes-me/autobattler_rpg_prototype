@@ -145,14 +145,7 @@ public class BattleController : MonoBehaviour
         var roomScene = FindObjectOfType<RoomScene>();
 
         Application.Instance.AudioManager.PlayMusic(roomScene.Music);
-
         Application.Instance.PlayerManager.PlayerToWorld();
-
-        var save = Application.Instance.Save;
-        save.PlayerPawn = Application.Instance.PlayerManager.PawnController.Pawn.GetPawnInfo();
-        save.SelectedParty =
-            Application.Instance.PartyManager.Party.ToDictionary(p => p.Pawn.Id, p => p.Pawn.GetPawnInfo());
-        save.DefeatedEnemies.Add(Battle.Id);
-        Application.Instance.SaveManager.SaveData(save);
+        Application.Instance.GameSaveManager.SaveBattle(Battle);
     }
 }

@@ -1,12 +1,12 @@
 ﻿[System.Serializable]
 public class SpawnDomain
 {
-    public string SpawnId { get; set; }
+    public string Id { get; set; }
     public string SceneName { get; set; }
 
-    public SpawnDomain(string spawnId, string sceneName)
+    public SpawnDomain(string id, string sceneName)
     {
-        SpawnId = spawnId;
+        Id = id;
         SceneName = sceneName;
     }
 }

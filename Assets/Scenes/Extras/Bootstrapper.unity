@@ -167,7 +167,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f9f19abc5c47e0ac1aacf04b055747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <PawnData>k__BackingField: {fileID: 0}
+  <GameSaveManager>k__BackingField: {fileID: 1020555034}
+  <PartyManager>k__BackingField: {fileID: 1396296680}
   <PlayerController>k__BackingField: {fileID: 225983749}
   <PawnController>k__BackingField: {fileID: 225983751}
   <NavMeshAgent>k__BackingField: {fileID: 225983752}
@@ -225,7 +226,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 254830307986349657, guid: 921d0f6503d5f7245a8a89e0f5214dbb, type: 3}
       propertyPath: m_fontSize
-      value: 72
+      value: 66.15
       objectReference: {fileID: 0}
     - target: {fileID: 3014980148514600521, guid: 921d0f6503d5f7245a8a89e0f5214dbb, type: 3}
       propertyPath: m_Name
@@ -490,6 +491,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c5f3ad593f44a1b8e6762704ff32b2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <InterfaceManager>k__BackingField: {fileID: 1853319444}
+  <GameSaveManager>k__BackingField: {fileID: 1020555034}
 --- !u!1001 &225983748
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -673,7 +676,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 254830307986349657, guid: 921d0f6503d5f7245a8a89e0f5214dbb, type: 3}
       propertyPath: m_fontSize
-      value: 72
+      value: 66.15
       objectReference: {fileID: 0}
     - target: {fileID: 3014980148514600521, guid: 921d0f6503d5f7245a8a89e0f5214dbb, type: 3}
       propertyPath: m_Name
@@ -1204,7 +1207,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00328ecadddd24849b8a48734768524f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <GameSaveManager>k__BackingField: {fileID: 1020555034}
   <PlayerManager>k__BackingField: {fileID: 1553753}
+  <PartyManager>k__BackingField: {fileID: 1396296680}
+  <AudioManager>k__BackingField: {fileID: 2129920862}
 --- !u!1 &643530972
 GameObject:
   m_ObjectHideFlags: 0
@@ -1550,7 +1556,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 254830307986349657, guid: 921d0f6503d5f7245a8a89e0f5214dbb, type: 3}
       propertyPath: m_fontSize
-      value: 72
+      value: 66.15
       objectReference: {fileID: 0}
     - target: {fileID: 3014980148514600521, guid: 921d0f6503d5f7245a8a89e0f5214dbb, type: 3}
       propertyPath: m_Name
@@ -1788,6 +1794,55 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &1020555032
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1020555033}
+  - component: {fileID: 1020555034}
+  m_Layer: 0
+  m_Name: GameSaveManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1020555033
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020555032}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1282436504}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1020555034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020555032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce92c0dd73ae4a56b0d402ac7f65b539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <PlayerManager>k__BackingField: {fileID: 1553753}
+  <BlessingManager>k__BackingField: {fileID: 148296406}
+  <PartyManager>k__BackingField: {fileID: 1396296680}
+  <SaveManager>k__BackingField: {fileID: 25261271}
+  <PlayerStartingCharacter>k__BackingField: {fileID: 11400000, guid: 1fc8d338c9a0df94e8501a8d246293db, type: 2}
 --- !u!114 &1046201841 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7122821440175886598, guid: 921d0f6503d5f7245a8a89e0f5214dbb, type: 3}
@@ -2206,6 +2261,7 @@ Transform:
   - {fileID: 1238457632}
   - {fileID: 148296405}
   - {fileID: 1396296679}
+  - {fileID: 1020555033}
   - {fileID: 1853319443}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2221,7 +2277,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7e5e3a3313c43548ea0fd1f57136239, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <PlayerStartingCharacter>k__BackingField: {fileID: 11400000, guid: 1fc8d338c9a0df94e8501a8d246293db, type: 2}
   <MainCamera>k__BackingField: {fileID: 1918482242}
   <SaveManager>k__BackingField: {fileID: 25261271}
   <SceneManager>k__BackingField: {fileID: 641743261}
@@ -2234,6 +2289,7 @@ MonoBehaviour:
   <BattleEventsManager>k__BackingField: {fileID: 1238457633}
   <BlessingManager>k__BackingField: {fileID: 148296406}
   <InterfaceManager>k__BackingField: {fileID: 1853319444}
+  <GameSaveManager>k__BackingField: {fileID: 1020555034}
 --- !u!1 &1313876088
 GameObject:
   m_ObjectHideFlags: 0
@@ -2363,7 +2419,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 29bc395f21713254584f3233b80206a4, type: 2}
   - {fileID: 11400000, guid: 19a702c490691384c83cf1eb4c41de9a, type: 2}
   - {fileID: 11400000, guid: 94baffc8fcc6e8648b3c4a2bacac160f, type: 2}
-  <PawnController>k__BackingField: {fileID: 4759648862371886847, guid: bf3e5b737f1f18949bbfd853b8d5bfe0, type: 3}
+  <PawnControllerPrefab>k__BackingField: {fileID: 4759648862371886847, guid: bf3e5b737f1f18949bbfd853b8d5bfe0, type: 3}
+  <PlayerManager>k__BackingField: {fileID: 1553753}
+  <GameSaveManager>k__BackingField: {fileID: 1020555034}
+  <InterfaceManager>k__BackingField: {fileID: 1853319444}
 --- !u!1001 &1415370634
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2499,7 +2558,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 254830307986349657, guid: 921d0f6503d5f7245a8a89e0f5214dbb, type: 3}
       propertyPath: m_fontSize
-      value: 72
+      value: 66.15
       objectReference: {fileID: 0}
     - target: {fileID: 3014980148514600521, guid: 921d0f6503d5f7245a8a89e0f5214dbb, type: 3}
       propertyPath: m_Name
@@ -3189,7 +3248,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 254830307986349657, guid: 921d0f6503d5f7245a8a89e0f5214dbb, type: 3}
       propertyPath: m_fontSize
-      value: 72
+      value: 66.15
       objectReference: {fileID: 0}
     - target: {fileID: 3014980148514600521, guid: 921d0f6503d5f7245a8a89e0f5214dbb, type: 3}
       propertyPath: m_Name

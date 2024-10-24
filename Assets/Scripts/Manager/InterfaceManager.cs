@@ -41,7 +41,7 @@ public class InterfaceManager : MonoBehaviour
         }
     }
 
-    public void InitBlessingsCanvas(List<BlessingIdentifier> blessings)
+    public void InitBlessingsCanvas(List<Blessing> blessings)
     {
         for (var index = 0; index < BlessingCanvases.Count && index < blessings.Count; index++)
         {

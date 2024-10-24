@@ -4,27 +4,24 @@ using UnityEngine.AI;
 
 public class PlayerManager : MonoBehaviour
 {
-    [field: SerializeField] public PawnData PawnData { get; private set; }
+    [field: SerializeField] private GameSaveManager GameSaveManager { get; set; }
+    [field: SerializeField] private PartyManager PartyManager { get; set; }
     [field: SerializeField] public PlayerController PlayerController { get; private set; }
     [field: SerializeField] public PawnController PawnController { get; private set; }
     [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
    
-
     public void Init()
     {
-        var save = Application.Instance.Save;
-        var pawnData = Application.Instance.PartyManager.AvailableParty.First(p => p.Id == save.PlayerPawn.PawnName);
+        var playerPawn = GameSaveManager.GetPlayerPawn();
+        var pawnData = PartyManager.AvailableParty.First(p => p.Id == playerPawn.PawnName);
 
         SetNewPlayerPawn(pawnData);
     }
 
     public void SetNewPlayerPawn(PawnData pawn)
     {
-        PawnData = pawn;
+        GameSaveManager.SetPlayerPawn(pawn);
         
-        Application.Instance.Save.PlayerPawn = new PawnInfo(pawn.Id, 0);
-        Application.Instance.SaveManager.SaveData(Application.Instance.Save);
-
         if(PawnController.transform.childCount > 0)
             Destroy(PawnController.transform.GetChild(0).gameObject);
         

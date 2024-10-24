@@ -17,24 +17,27 @@ public class PawnDomain
     
     private List<AbilityData> Abilities { get; set; }
     public List<AbilityData> SpecialAbilities { get; private set; }
+    public List<ArchetypeIdentifier> Archetypes { get; private set; }
+    
     public Dictionary<string, Buff> Buffs { get; private set; }
+    public AbilityData RequestedSpecialAbility { get; private set; }
+    public float Initiative { get; private set; }
 
     public bool HasMana => SpecialAbilities.Count > 0 && MaxMana > 0;
     public bool IsAlive => Health > 0;
-    public float Initiative { get; private set; }
-    public AbilityData RequestedSpecialAbility { get; private set; }
+
     public delegate void PawnDomainChanged();
     public event PawnDomainChanged LifeChanged;
     public event PawnDomainChanged ManaChanged;
     public event PawnDomainChanged BuffsChanged;
 
-    public PawnDomain(
-        string id,
+    public PawnDomain(string id,
         int health,
         int mana,
         Stats stats,
         List<AbilityData> abilities,
-        List<AbilityData> specialAbilities)
+        List<AbilityData> specialAbilities, 
+        List<ArchetypeIdentifier> archetypes)
     {
         Id = id;
         MaxHealth = health;
@@ -42,12 +45,14 @@ public class PawnDomain
         MaxMana = mana;
         Mana = 0;
         Stats = stats;
-        Initiative = 0;
 
         Abilities = abilities;
         SpecialAbilities = specialAbilities;
+        Archetypes = archetypes;
+        
         Buffs = new Dictionary<string, Buff>();
         RequestedSpecialAbility = null;
+        Initiative = 0;
     }
 
     public void SetInitiative(float initiative)

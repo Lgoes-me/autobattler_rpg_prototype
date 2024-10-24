@@ -19,7 +19,7 @@ public class PawnController : MonoBehaviour
 
     public PawnController Init()
     {
-        ApplyPawnInfo();
+        Application.Instance.GameSaveManager.ApplyPawnInfo(Pawn);
         
         enabled = true;
         NavMeshAgent.enabled = true;
@@ -30,18 +30,6 @@ public class PawnController : MonoBehaviour
         return this;
     }
 
-    public void ApplyPawnInfo()
-    {
-        if (Application.Instance.Save.SelectedParty.TryGetValue(Pawn.Id, out var pawnInfo))
-        {
-            Pawn.SetPawnInfo(pawnInfo);
-        }
-        else if (Application.Instance.Save.PlayerPawn.PawnName == Pawn.Id)
-        {
-            Pawn.SetPawnInfo(Application.Instance.Save.PlayerPawn);
-        }
-    }
-    
     public IEnumerator PawnTurn(Battle battle)
     {
         if (Ability == null)
@@ -164,7 +152,8 @@ public class PawnController : MonoBehaviour
     public void SetCharacter(PawnData pawnData)
     {
         Pawn = pawnData.ToDomain();
-        ApplyPawnInfo();
+        
+        Application.Instance.GameSaveManager.ApplyPawnInfo(Pawn);
         
         CharacterController = Instantiate(pawnData.Character, transform);
 

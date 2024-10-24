@@ -5,9 +5,9 @@ public class BlessingCanvasController : BaseCanvasController
 {
     [field: SerializeField] private TextMeshProUGUI Name { get; set; }
     
-    public void Init(BlessingIdentifier blessing)
+    public void Init(Blessing blessing)
     {
-        Name.SetText(blessing.ToString());
+        Name.SetText(blessing.Identifier.ToString());
         Show();
     }
 }

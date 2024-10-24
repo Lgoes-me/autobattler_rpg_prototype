@@ -54,7 +54,7 @@ public class EnemyAreaController : MonoBehaviour
 
     private void TryActivateEnemyArea()
     {
-        if (Application.Instance.Save.DefeatedEnemies.Contains(Id))
+        if (Application.Instance.GameSaveManager.ContainsBattle(Id))
             return;
 
         Active = true;

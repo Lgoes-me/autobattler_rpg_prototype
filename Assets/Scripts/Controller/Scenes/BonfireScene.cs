@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -34,13 +33,13 @@ public class BonfireScene : BaseScene
         {
             var dropdown = Dropdowns[index];
             dropdown.options = availableParty;
-            var selectedParty = Application.Instance.PartyManager.SelectedPawns;
+            var selectedParty = Application.Instance.PartyManager.Party;
 
             if (selectedParty.Count > index)
             {
                 var currentSelectedPawn = selectedParty[index];
                 var selectedIndex = availableParty
-                    .FindIndex(o => ((PawnOptionData)o).Pawn?.Id == currentSelectedPawn.Id);
+                    .FindIndex(o => ((PawnOptionData)o).Pawn?.Id == currentSelectedPawn.Pawn.Id);
                 dropdown.value = selectedIndex;
             }
             else
@@ -87,7 +86,7 @@ public class PawnOptionData : TMP_Dropdown.OptionData
 {
     public PawnData Pawn;
 
-    public PawnOptionData(PawnData pawn) : base(pawn?.name ?? string.Empty)
+    public PawnOptionData(PawnData pawn) : base(pawn?.Id ?? string.Empty)
     {
         Pawn = pawn;
     }

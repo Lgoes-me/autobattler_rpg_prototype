@@ -4,22 +4,23 @@ using UnityEngine;
 
 public class BlessingManager : MonoBehaviour
 {
-    public List<BlessingIdentifier> BlessingsReadOnly => Blessings.Select(j => j.Identifier).ToList();
-    public List<Blessing> Blessings { get; set; }
+    [field: SerializeField] private InterfaceManager InterfaceManager { get; set; }
+    [field: SerializeField] private GameSaveManager GameSaveManager { get; set; }
+
+    public List<Blessing> Blessings { get; private set; }
     private BlessingFactory BlessingFactory { get; set; }
 
     public void Init()
     {
         BlessingFactory = new BlessingFactory();
-        Blessings = Application.Instance.Save.Blessings.Select(j => BlessingFactory.CreateBlessing(j)).ToList();
-        
-        Application.Instance.InterfaceManager.InitBlessingsCanvas(BlessingsReadOnly);
+        Blessings = GameSaveManager.GetBlessings().Select(j => BlessingFactory.CreateBlessing(j)).ToList();
+        InterfaceManager.InitBlessingsCanvas(Blessings);
     }
 
     public void AddBlessing(BlessingIdentifier identifier)
     {
         Blessings.Add(BlessingFactory.CreateBlessing(identifier));
-        SaveOperation();
+        GameSaveManager.SetBlessings();
     }
 
     public void RemoveBlessing(BlessingIdentifier identifier)
@@ -29,20 +30,12 @@ public class BlessingManager : MonoBehaviour
             return;
 
         Blessings.Remove(jokerToRemove);
-        SaveOperation();
+        GameSaveManager.SetBlessings();
     }
 
     public void ReorderBlessings(List<BlessingIdentifier> identifiers)
     {
         Blessings = identifiers.Select(j => BlessingFactory.CreateBlessing(j)).ToList();
-        SaveOperation();
+        GameSaveManager.SetBlessings();
     }
-
-    private void SaveOperation()
-    {
-        var save = Application.Instance.Save;
-        save.Blessings = Blessings.Select(j => j.Identifier).ToList();
-        Application.Instance.SaveManager.SaveData(save);
-    }
-
 }
