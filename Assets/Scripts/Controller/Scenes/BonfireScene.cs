@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class BonfireScene : BaseScene
 {
-    [field: SerializeField] private TMP_Dropdown PlayerDropdown { get; set; }
     [field: SerializeField] private List<TMP_Dropdown> Dropdowns { get; set; }
     [field: SerializeField] private Button FinishButton { get; set; }
 
@@ -23,11 +22,6 @@ public class BonfireScene : BaseScene
             .ToList<TMP_Dropdown.OptionData>();
         
         availableParty.AddRange(pawns);
-
-        PlayerDropdown.options = pawns;
-        var player = Application.Instance.PlayerManager.PawnController.Pawn;
-        PlayerDropdown.value = availableParty.FindIndex(o => ((PawnOptionData)o).Pawn?.Id == player.Id) - 1;
-        PlayerDropdown.onValueChanged.AddListener(SaveChangesToPlayer);
 
         for (var index = 0; index < Dropdowns.Count; index++)
         {
@@ -64,16 +58,6 @@ public class BonfireScene : BaseScene
         }
 
         Application.Instance.PartyManager.SetSelectedParty(selectedPawns);
-    }
-
-    private void SaveChangesToPlayer(int option)
-    {
-        var pawn = ((PawnOptionData) PlayerDropdown.options[PlayerDropdown.value]).Pawn;
-        
-        if(pawn == null)
-            return;
-        
-        Application.Instance.PlayerManager.SetNewPlayerPawn(pawn);
     }
 
     private void EndBonfireScene()

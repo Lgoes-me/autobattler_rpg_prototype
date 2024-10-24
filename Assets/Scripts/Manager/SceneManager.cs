@@ -13,7 +13,7 @@ public class SceneManager : MonoBehaviour
 
     public void StartGame()
     {
-        var spawn = Application.Instance.GameSaveManager.GetSpawn();
+        var spawn = GameSaveManager.GetSpawn();
 
         var task = UnitySceneManager.LoadSceneAsync(spawn.SceneName, LoadSceneMode.Single);
 
@@ -42,7 +42,7 @@ public class SceneManager : MonoBehaviour
             PartyManager.SetPartyToFollow(true);
             AudioManager.PlayMusic(roomScene.Music);
 
-            Application.Instance.GameSaveManager.SetSpawn(spawn);
+            GameSaveManager.SetSpawn(spawn);
         };
     }
 
@@ -55,7 +55,7 @@ public class SceneManager : MonoBehaviour
             pawn.FinishBattle();
         }
 
-        var spawn = Application.Instance.GameSaveManager.GetBonfireSpawn();
+        var spawn = GameSaveManager.GetBonfireSpawn();
 
         var respawnTask = UnitySceneManager.LoadSceneAsync(spawn.SceneName, LoadSceneMode.Single);
 

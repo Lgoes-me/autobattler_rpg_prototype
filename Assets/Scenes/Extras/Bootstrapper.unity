@@ -168,7 +168,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <GameSaveManager>k__BackingField: {fileID: 1020555034}
-  <PartyManager>k__BackingField: {fileID: 1396296680}
   <PlayerController>k__BackingField: {fileID: 225983749}
   <PawnController>k__BackingField: {fileID: 225983751}
   <NavMeshAgent>k__BackingField: {fileID: 225983752}
@@ -2278,14 +2277,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MainCamera>k__BackingField: {fileID: 1918482242}
-  <SaveManager>k__BackingField: {fileID: 25261271}
   <SceneManager>k__BackingField: {fileID: 641743261}
   <PlayerManager>k__BackingField: {fileID: 1553753}
   <PauseManager>k__BackingField: {fileID: 847640159}
   <PartyManager>k__BackingField: {fileID: 1396296680}
   <AudioManager>k__BackingField: {fileID: 2129920862}
   <InputManager>k__BackingField: {fileID: 1824029036}
-  <TextManager>k__BackingField: {fileID: 1252425371}
   <BattleEventsManager>k__BackingField: {fileID: 1238457633}
   <BlessingManager>k__BackingField: {fileID: 148296406}
   <InterfaceManager>k__BackingField: {fileID: 1853319444}
@@ -3051,6 +3048,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 065f2c79974348648bf39a7ac68ff9fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <PlayerManager>k__BackingField: {fileID: 1553753}
 --- !u!1 &1853319442
 GameObject:
   m_ObjectHideFlags: 0

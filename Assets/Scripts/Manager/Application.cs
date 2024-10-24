@@ -32,7 +32,6 @@ public class Application : MonoBehaviour
     private void Start()
     {
         GameSaveManager.Init();
-        PlayerManager.Init();
         PartyManager.Init();
         BlessingManager.Init();
         SceneManager.StartGame();

@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
+    [field: SerializeField] private PlayerManager PlayerManager { get; set; }
+    
     private Coroutine Coroutine { get; set; }
 
     public Vector3 ForwardVector { get; private set; }
@@ -20,7 +22,7 @@ public class InputManager : MonoBehaviour
 
     private IEnumerator UpdateCameraPositionCoroutine(Transform cam)
     {
-        yield return new WaitWhile(() => Application.Instance.PlayerManager.PlayerController.MoveInput != Vector2.zero);
+        yield return new WaitWhile(() => PlayerManager.PlayerController.MoveInput != Vector2.zero);
         
         if (cam == null)
             yield break;

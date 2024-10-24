@@ -1,27 +1,15 @@
-﻿using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 public class PlayerManager : MonoBehaviour
 {
     [field: SerializeField] private GameSaveManager GameSaveManager { get; set; }
-    [field: SerializeField] private PartyManager PartyManager { get; set; }
     [field: SerializeField] public PlayerController PlayerController { get; private set; }
     [field: SerializeField] public PawnController PawnController { get; private set; }
     [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
    
-    public void Init()
-    {
-        var playerPawn = GameSaveManager.GetPlayerPawn();
-        var pawnData = PartyManager.AvailableParty.First(p => p.Id == playerPawn.PawnName);
-
-        SetNewPlayerPawn(pawnData);
-    }
-
     public void SetNewPlayerPawn(PawnData pawnData)
     {
-        GameSaveManager.SetPlayerPawn(pawnData);
-        
         if(PawnController.transform.childCount > 0)
             Destroy(PawnController.transform.GetChild(0).gameObject);
         
@@ -57,8 +45,6 @@ public class PlayerManager : MonoBehaviour
         PlayerController.gameObject.SetActive(true);
         PlayerController.enabled = true;
         PlayerController.Prepare();
-        
-        Application.Instance.PartyManager.SetPartyToFollow(false);
     }
 
     public PawnController GetPawnController()

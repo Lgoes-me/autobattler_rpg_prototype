@@ -37,7 +37,6 @@ public class GameSaveManager : MonoBehaviour
     {
         Save.Spawn = spawn;
         Save.LastBonfireSpawn = spawn;
-        Save.PlayerPawn = PlayerManager.PawnController.Pawn.ResetPawnInfo();
         Save.SelectedParty = PartyManager.Party.ToDictionary(p => p.Pawn.Id, p => p.Pawn.ResetPawnInfo());
         Save.DefeatedEnemies.Clear();
 
@@ -46,7 +45,6 @@ public class GameSaveManager : MonoBehaviour
     
     public void SaveBattle(Battle battle)
     {
-        Save.PlayerPawn = PlayerManager.PawnController.Pawn.GetPawnInfo();
         Save.SelectedParty = PartyManager.Party.ToDictionary(p => p.Pawn.Id, p => p.Pawn.GetPawnInfo());
         Save.DefeatedEnemies.Add(battle.Id);
         
@@ -69,17 +67,6 @@ public class GameSaveManager : MonoBehaviour
         return Save.SelectedParty;
     }
 
-    public PawnInfo GetPlayerPawn()
-    {
-        return Save.PlayerPawn;
-    }
-    
-    public void SetPlayerPawn(PawnData pawn)
-    {
-        Save.PlayerPawn = new PawnInfo(pawn.Id, 0);
-        SaveManager.SaveData(Save);
-    }
-
     public List<BlessingIdentifier> GetBlessings()
     {
         return Save.Blessings;
@@ -96,10 +83,6 @@ public class GameSaveManager : MonoBehaviour
         if (Save.SelectedParty.TryGetValue(pawn.Id, out var pawnInfo))
         {
             pawn.SetPawnInfo(pawnInfo);
-        }
-        else if (Save.PlayerPawn.PawnName == pawn.Id)
-        {
-            pawn.SetPawnInfo(Save.PlayerPawn);
         }
     }
 }

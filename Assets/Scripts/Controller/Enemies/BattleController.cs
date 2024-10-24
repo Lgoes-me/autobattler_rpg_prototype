@@ -27,16 +27,12 @@ public class BattleController : MonoBehaviour
             enemyController.PawnCanvasController.Init(enemyController.Pawn);
             enemyPawns.Add(enemyController);
         }
-
-        var playerPawnController = Application.Instance.PlayerManager.GetPawnController();
-        playerPawnController.StartBattle();
-        playerPawns.Add(playerPawnController);
+        
+        Application.Instance.PartyManager.StopPartyFollow();
 
         foreach (var alliedController in Application.Instance.PartyManager.Party)
         {
-            alliedController.PlayerFollowController.StopFollow();
             alliedController.StartBattle();
-
             playerPawns.Add(alliedController);
         }
 
