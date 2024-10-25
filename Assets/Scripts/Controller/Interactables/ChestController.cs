@@ -1,7 +1,4 @@
-﻿public class ChestController : InteractableStrategy
+﻿public class ChestController : InteractableController
 {
-    public override void Interact()
-    {
-        
-    }
+    
 }

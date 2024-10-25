@@ -4,6 +4,7 @@ using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
 public class SceneManager : MonoBehaviour
 {
+    [field: SerializeField] private InterfaceManager InterfaceManager { get; set; }
     [field: SerializeField] private GameSaveManager GameSaveManager { get; set; }
     [field: SerializeField] private PlayerManager PlayerManager { get; set; }
     [field: SerializeField] private PartyManager PartyManager { get; set; }
@@ -70,19 +71,21 @@ public class SceneManager : MonoBehaviour
         };
     }
 
-    public void StartBonfireScene(SpawnDomain bonfireSpawn)
+    public void StartBonfireScene(BonfireController bonfireController, SpawnDomain bonfireSpawn)
     {
         if (BonfireActive)
             return;
 
+        BonfireActive = true;
+        
         var task = UnitySceneManager.LoadSceneAsync("BonfireScene", LoadSceneMode.Additive);
 
         task.completed += _ =>
         {
-            BonfireActive = true;
-            FindObjectOfType<BonfireScene>().Init();
+            FindObjectOfType<BonfireScene>().Init(bonfireController);
             PartyManager.StopPartyFollow();
 
+            InterfaceManager.HideBattleCanvas();
             GameSaveManager.SetBonfireSpawn(bonfireSpawn);
         };
     }
@@ -92,12 +95,14 @@ public class SceneManager : MonoBehaviour
         if (!BonfireActive)
             return;
 
+        BonfireActive = false;
+        
         var task = UnitySceneManager.UnloadSceneAsync("BonfireScene");
 
         task.completed += _ =>
         {
-            BonfireActive = false;
             PartyManager.SetPartyToFollow(false);
+            InterfaceManager.ShowBattleCanvas();
         };
     }
 }

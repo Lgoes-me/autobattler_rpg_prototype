@@ -1206,6 +1206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00328ecadddd24849b8a48734768524f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <InterfaceManager>k__BackingField: {fileID: 1853319444}
   <GameSaveManager>k__BackingField: {fileID: 1020555034}
   <PlayerManager>k__BackingField: {fileID: 1553753}
   <PartyManager>k__BackingField: {fileID: 1396296680}

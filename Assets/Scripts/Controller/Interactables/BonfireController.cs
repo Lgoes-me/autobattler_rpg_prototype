@@ -1,28 +1,30 @@
 ﻿using System;
 using UnityEngine;
 
-public class BonfireController : InteractableStrategy
+public class BonfireController : InteractableController
 {
     [field: SerializeField] public string Id { get; private set; }
     [field: SerializeField] public Transform SpawnPoint { get; private set; }
     [field: SerializeField] private CameraAreaController CameraArea { get; set; }
     
     private SpawnDomain Spawn { get; set; }
+    private bool Selected { get; set; }
 
     public void Init(string scene)
     {
         Spawn = new SpawnDomain(Id, scene);
     }
     
-    public override void Interact()
+    protected override void InternalSelect()
     {
-        Application.Instance.SceneManager.StartBonfireScene(Spawn);
+        Selected = true;
+        Application.Instance.SceneManager.StartBonfireScene(this, Spawn);
     }
 
-    public override void UnSelect()
+    protected override void InternalUnSelect()
     {
-        base.UnSelect();
         Application.Instance.SceneManager.EndBonfireScene();
+        Selected = false;
     }
     
     public void ActivateCameraArea()

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +5,7 @@ public class InterfaceManager : MonoBehaviour
 {
     [field: SerializeField] private GameObject BattleCanvas { get; set; }
     [field: SerializeField] private GameObject BattleLostCanvas { get; set; }
+    
     [field: SerializeField] private List<BlessingCanvasController> BlessingCanvases { get; set; }
     [field: SerializeField] private List<PawnCanvasController> PawnCanvases { get; set; }
     [field: SerializeField] private RectTransform ArchetypeCanvasParent { get; set; }
@@ -71,11 +71,24 @@ public class InterfaceManager : MonoBehaviour
 
     public void ShowDefeatCanvas()
     {
+        HideBattleCanvas();
         BattleLostCanvas.SetActive(true);
     }
 
     public void HideDefeatCanvas()
     {
-        BattleLostCanvas.SetActive(false);
+        ShowBattleCanvas();
+        BattleCanvas.SetActive(true);
     }
+
+    public void HideBattleCanvas()
+    {
+        BattleCanvas.SetActive(false);
+    }
+    
+    public void ShowBattleCanvas()
+    {
+        BattleCanvas.SetActive(true);
+    }
+    
 }

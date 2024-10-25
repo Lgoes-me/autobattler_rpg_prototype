@@ -1,9 +1,8 @@
 using UnityEngine;
 
-public class InteractableController : MonoBehaviour , IPauseListener
+public abstract class InteractableController : MonoBehaviour , IPauseListener
 {
     [field: SerializeField] private InteractableCanvasController InteractableCanvas { get; set; }
-    [field: SerializeField] private InteractableStrategy Interactable { get; set; }
     
     private bool Enabled { get; set; }
 
@@ -20,7 +19,12 @@ public class InteractableController : MonoBehaviour , IPauseListener
             return;
         
         InteractableCanvas.Show();
-        Interactable.PreSelect();
+        InternalPreselect();
+    }
+
+    protected virtual void InternalPreselect()
+    {
+        
     }
 
     public void Select()
@@ -28,18 +32,29 @@ public class InteractableController : MonoBehaviour , IPauseListener
         if(!Enabled)
             return;
         
-        Interactable.Interact();
+        InternalSelect();
+        InteractableCanvas.Hide();
     }
 
+    protected virtual void InternalSelect()
+    {
+        
+    }
+    
     public void Unselect()
     {
         if(!Enabled)
             return;
         
         InteractableCanvas.Hide();
-        Interactable.UnSelect();
+        InternalUnSelect();
     }
 
+    protected virtual void InternalUnSelect()
+    {
+        
+    }
+    
     public void Pause()
     {
         Enabled = false;

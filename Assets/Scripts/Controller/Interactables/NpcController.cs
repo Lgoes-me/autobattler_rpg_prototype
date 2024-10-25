@@ -1,7 +1,4 @@
-﻿public class NpcController : InteractableStrategy
+﻿public class NpcController : InteractableController
 {
-    public override void Interact()
-    {
-        
-    }
+    
 }

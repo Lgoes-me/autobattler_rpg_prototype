@@ -9,10 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7505508180381611282}
-  - component: {fileID: 7363300541936493160}
+  - component: {fileID: 8342873165883822696}
   - component: {fileID: 8369018754535391965}
   - component: {fileID: 5892572470939642579}
-  - component: {fileID: 8342873165883822696}
   m_Layer: 0
   m_Name: Npc
   m_TagString: Untagged
@@ -37,7 +36,7 @@ Transform:
   - {fileID: 7144858285671825978}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7363300541936493160
+--- !u!114 &8342873165883822696
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,11 +45,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 343435726964277853}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65e637bf26be6f743b99320b6a15815a, type: 3}
+  m_Script: {fileID: 11500000, guid: a454ae49569e4438b8563b5a011ff6fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <InteractableCanvas>k__BackingField: {fileID: 8628380865387114122}
-  <Interactable>k__BackingField: {fileID: 8342873165883822696}
 --- !u!195 &8369018754535391965
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -94,18 +92,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 3
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &8342873165883822696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 343435726964277853}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a454ae49569e4438b8563b5a011ff6fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &396894953325494404
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -180,10 +166,6 @@ PrefabInstance:
       propertyPath: <Root>k__BackingField
       value: 
       objectReference: {fileID: 1673738547626169432}
-    - target: {fileID: 2833438713692772361, guid: c75c14612c5d8da47a499067cff82c1a, type: 3}
-      propertyPath: <InteractableController>k__BackingField
-      value: 
-      objectReference: {fileID: 7363300541936493160}
     - target: {fileID: 3172328785591743336, guid: c75c14612c5d8da47a499067cff82c1a, type: 3}
       propertyPath: m_Name
       value: InteractableCanvas
