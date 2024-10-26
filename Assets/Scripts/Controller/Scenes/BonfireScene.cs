@@ -9,14 +9,25 @@ public class BonfireScene : BaseScene
     [field: SerializeField] private List<TMP_Dropdown> Dropdowns { get; set; }
     [field: SerializeField] private Button FinishButton { get; set; }
 
+    [field: SerializeField] private Transform Content { get; set; }
+    [field: SerializeField] private FriendItemController FriendItemPrefab { get; set; }
+    
+    private List<FriendItemController> FriendItems { get; set; }
     private BonfireController BonfireController { get; set; }
 
     public void Init(BonfireController bonfireController)
     {
+        FriendItems = new List<FriendItemController>();
         BonfireController = bonfireController;
 
         FinishButton.onClick.AddListener(EndBonfireScene);
 
+        foreach (var pawnData in Application.Instance.PartyManager.AvailableParty)
+        {
+            FriendItems.Add(Instantiate(FriendItemPrefab, Content).Init(pawnData));
+        }
+        
+        return;
         var availableParty = new List<TMP_Dropdown.OptionData>()
         {
             new PawnOptionData(null)
