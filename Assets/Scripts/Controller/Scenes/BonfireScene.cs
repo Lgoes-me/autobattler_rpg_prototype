@@ -1,77 +1,48 @@
 using System.Collections.Generic;
 using System.Linq;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class BonfireScene : BaseScene
 {
-    [field: SerializeField] private List<TMP_Dropdown> Dropdowns { get; set; }
+    [field: SerializeField] private RectTransform FriendsContent { get; set; }
+    [field: SerializeField] private RectTransform PartyContent { get; set; }
+    [field: SerializeField] private FriendItemController FriendItemPrefab { get; set; }
+
     [field: SerializeField] private Button FinishButton { get; set; }
 
-    [field: SerializeField] private Transform Content { get; set; }
-    [field: SerializeField] private FriendItemController FriendItemPrefab { get; set; }
-    
+    private List<FriendItemController> PartyItems { get; set; }
     private List<FriendItemController> FriendItems { get; set; }
     private BonfireController BonfireController { get; set; }
 
     public void Init(BonfireController bonfireController)
     {
+        PartyItems = new List<FriendItemController>();
         FriendItems = new List<FriendItemController>();
         BonfireController = bonfireController;
 
         FinishButton.onClick.AddListener(EndBonfireScene);
 
-        foreach (var pawnData in Application.Instance.PartyManager.AvailableParty)
+        var partyManager = Application.Instance.PartyManager;
+
+        foreach (var pawnController in partyManager.Party)
         {
-            FriendItems.Add(Instantiate(FriendItemPrefab, Content).Init(pawnData));
+            var pawnData = partyManager.AvailableParty.First(p => pawnController.Pawn.Id == p.Id);
+            PartyItems.Add(Instantiate(FriendItemPrefab, PartyContent).Init(true, pawnData, OnMouseDrop));
         }
-        
-        return;
-        var availableParty = new List<TMP_Dropdown.OptionData>()
+
+        foreach (var pawnData in partyManager.AvailableParty)
         {
-            new PawnOptionData(null)
-        };
+            if (PartyItems.Any(i => i.PawnData.Id == pawnData.Id))
+                continue;
 
-        var pawns = Application.Instance.PartyManager.AvailableParty.Select(p => new PawnOptionData(p))
-            .ToList<TMP_Dropdown.OptionData>();
-
-        availableParty.AddRange(pawns);
-
-        for (var index = 0; index < Dropdowns.Count; index++)
-        {
-            var dropdown = Dropdowns[index];
-            dropdown.options = availableParty;
-            var selectedParty = Application.Instance.PartyManager.Party;
-
-            if (selectedParty.Count > index)
-            {
-                var currentSelectedPawn = selectedParty[index];
-                var selectedIndex = availableParty
-                    .FindIndex(o => ((PawnOptionData) o).Pawn?.Id == currentSelectedPawn.Pawn.Id);
-                dropdown.value = selectedIndex;
-            }
-            else
-            {
-                dropdown.value = 0;
-            }
-
-            dropdown.onValueChanged.AddListener(SaveChanges);
+            FriendItems.Add(Instantiate(FriendItemPrefab, FriendsContent).Init(false, pawnData, OnMouseDrop));
         }
     }
 
-    private void SaveChanges(int option)
+    private void SaveChanges()
     {
-        var selectedPawns = new List<PawnData>();
-
-        foreach (var dropdown in Dropdowns)
-        {
-            var pawn = ((PawnOptionData) dropdown.options[dropdown.value]).Pawn;
-            if (pawn == null) continue;
-
-            selectedPawns.Add(pawn);
-        }
-
+        var selectedPawns = PartyItems.Select(i => i.PawnData).ToList();
         Application.Instance.PartyManager.SetSelectedParty(selectedPawns);
     }
 
@@ -80,14 +51,50 @@ public class BonfireScene : BaseScene
         Application.Instance.SceneManager.EndBonfireScene();
         BonfireController.Preselect();
     }
-}
 
-public class PawnOptionData : TMP_Dropdown.OptionData
-{
-    public PawnData Pawn;
-
-    public PawnOptionData(PawnData pawn) : base(pawn?.Id ?? string.Empty)
+    private void OnMouseDrop(FriendItemController friendItemController)
     {
-        Pawn = pawn;
+        if (friendItemController.IsInParty)
+        {
+            OnPartyItemDrop(friendItemController);
+        }
+        else
+        {
+            OnFriendListItemDrop(friendItemController);
+        }
+    }
+
+    private void OnPartyItemDrop(FriendItemController friendItemController)
+    {
+        Vector2 localMousePosition = FriendsContent.InverseTransformPoint(Input.mousePosition);
+
+        if (FriendsContent.rect.Contains(localMousePosition))
+        {
+            friendItemController.IsInParty = false;
+            friendItemController.transform.SetParent(FriendsContent);
+            PartyItems.Remove(friendItemController);
+            FriendItems.Add(friendItemController);
+            SaveChanges();
+            return;
+        }
+
+        friendItemController.ResetPosition();
+    }
+
+    private void OnFriendListItemDrop(FriendItemController friendItemController)
+    {
+        Vector2 localMousePosition = PartyContent.InverseTransformPoint(Input.mousePosition);
+        
+        if (FriendsContent.rect.Contains(localMousePosition))
+        {
+            friendItemController.IsInParty = true;
+            friendItemController.transform.SetParent(PartyContent);
+            FriendItems.Remove(friendItemController);
+            PartyItems.Add(friendItemController);
+            SaveChanges();
+            return;
+        }
+
+        friendItemController.ResetPosition();
     }
 }
