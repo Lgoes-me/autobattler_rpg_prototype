@@ -9,6 +9,8 @@ public class BonfireScene : BaseScene
     [field: SerializeField] private RectTransform PartyContent { get; set; }
     [field: SerializeField] private FriendItemController FriendItemPrefab { get; set; }
 
+    [field: SerializeField] private Transform FriendsDivider { get; set; }
+    [field: SerializeField] private Transform PartyDivider { get; set; }
     [field: SerializeField] private Button FinishButton { get; set; }
 
     private List<FriendItemController> PartyItems { get; set; }
@@ -28,7 +30,8 @@ public class BonfireScene : BaseScene
         foreach (var pawnController in partyManager.Party)
         {
             var pawnData = partyManager.AvailableParty.First(p => pawnController.Pawn.Id == p.Id);
-            PartyItems.Add(Instantiate(FriendItemPrefab, PartyContent).Init(true, pawnData, OnMouseDrop));
+            PartyItems.Add(Instantiate(FriendItemPrefab, PartyContent)
+                .Init(pawnData, OnMouseHover, OnMouseDrop));
         }
 
         foreach (var pawnData in partyManager.AvailableParty)
@@ -36,7 +39,8 @@ public class BonfireScene : BaseScene
             if (PartyItems.Any(i => i.PawnData.Id == pawnData.Id))
                 continue;
 
-            FriendItems.Add(Instantiate(FriendItemPrefab, FriendsContent).Init(false, pawnData, OnMouseDrop));
+            FriendItems.Add(Instantiate(FriendItemPrefab, FriendsContent)
+                .Init(pawnData, OnMouseHover, OnMouseDrop));
         }
     }
 
@@ -54,7 +58,7 @@ public class BonfireScene : BaseScene
 
     private void OnMouseDrop(FriendItemController friendItemController)
     {
-        if (friendItemController.IsInParty)
+        if (PartyItems.Contains(friendItemController))
         {
             OnPartyItemDrop(friendItemController);
         }
@@ -64,14 +68,60 @@ public class BonfireScene : BaseScene
         }
     }
 
-    private void OnPartyItemDrop(FriendItemController friendItemController)
+    private void OnMouseHover(FriendItemController friendItemController)
+    {
+        if (PartyItems.Contains(friendItemController))
+        {
+            OnPartyItemHover();
+        }
+        else
+        {
+            OnFriendListHover();
+        }
+    }
+
+    private void OnPartyItemHover()
     {
         Vector2 localMousePosition = FriendsContent.InverseTransformPoint(Input.mousePosition);
 
         if (FriendsContent.rect.Contains(localMousePosition))
         {
-            friendItemController.IsInParty = false;
+            FriendsDivider.gameObject.SetActive(true);
+            
+            var under = FriendItems.FirstOrDefault(i => i.transform.localPosition.y <= localMousePosition.y);
+
+            if (under != null)
+            {
+                FriendsDivider.SetSiblingIndex(under.transform.GetSiblingIndex() - 1);
+            }
+            else
+            {
+                FriendsDivider.SetSiblingIndex(FriendsContent.childCount);
+            }
+        }
+        else
+        {
+            FriendsDivider.gameObject.SetActive(false);
+        }
+    }
+
+    private void OnPartyItemDrop(FriendItemController friendItemController)
+    {
+        FriendsDivider.gameObject.SetActive(false);
+        
+        Vector2 localMousePosition = FriendsContent.InverseTransformPoint(Input.mousePosition);
+
+        if (FriendsContent.rect.Contains(localMousePosition))
+        {
             friendItemController.transform.SetParent(FriendsContent);
+
+            var under = FriendItems.FirstOrDefault(i => i.transform.localPosition.y <= localMousePosition.y);
+
+            if (under != null)
+            {
+                friendItemController.transform.SetSiblingIndex(under.transform.GetSiblingIndex() - 1);
+            }
+
             PartyItems.Remove(friendItemController);
             FriendItems.Add(friendItemController);
             SaveChanges();
@@ -81,14 +131,48 @@ public class BonfireScene : BaseScene
         friendItemController.ResetPosition();
     }
 
-    private void OnFriendListItemDrop(FriendItemController friendItemController)
+    private void OnFriendListHover()
     {
         Vector2 localMousePosition = PartyContent.InverseTransformPoint(Input.mousePosition);
-        
-        if (FriendsContent.rect.Contains(localMousePosition))
+
+        if (PartyContent.rect.Contains(localMousePosition))
         {
-            friendItemController.IsInParty = true;
+            PartyDivider.gameObject.SetActive(true);
+            
+            var under = PartyItems.FirstOrDefault(i => i.transform.localPosition.y <= localMousePosition.y);
+
+            if (under != null)
+            {
+                PartyDivider.SetSiblingIndex(under.transform.GetSiblingIndex() - 1);
+            }
+            else
+            {
+                PartyDivider.SetSiblingIndex(PartyContent.childCount);
+            }
+        }
+        else
+        {
+            PartyDivider.gameObject.SetActive(false);
+        }
+    }
+
+    private void OnFriendListItemDrop(FriendItemController friendItemController)
+    {
+        PartyDivider.gameObject.SetActive(false);
+        
+        Vector2 localMousePosition = PartyContent.InverseTransformPoint(Input.mousePosition);
+
+        if (PartyContent.rect.Contains(localMousePosition))
+        {
             friendItemController.transform.SetParent(PartyContent);
+
+            var under = PartyItems.FirstOrDefault(i => i.transform.localPosition.y <= localMousePosition.y);
+
+            if (under != null)
+            {
+                friendItemController.transform.SetSiblingIndex(under.transform.GetSiblingIndex() - 1);
+            }
+
             FriendItems.Remove(friendItemController);
             PartyItems.Add(friendItemController);
             SaveChanges();

@@ -7,17 +7,20 @@ public class FriendItemController : MonoBehaviour, IBeginDragHandler, IDragHandl
 {
     [field: SerializeField] private TextMeshProUGUI PawnName { get; set; }
 
-    public bool IsInParty { get; set; }
     public PawnData PawnData { get; private set; }
+    private Action<FriendItemController> OnDragHover { get; set; }
     private Action<FriendItemController> OnDragEnd { get; set; }
 
     private bool IsDragging { get; set; }
     private Vector3 StartingPosition { get; set; }
 
-    public FriendItemController Init(bool isInParty, PawnData pawnData, Action<FriendItemController> onDragEnd)
+    public FriendItemController Init(
+        PawnData pawnData, 
+        Action<FriendItemController> onDragHover,
+        Action<FriendItemController> onDragEnd)
     {
-        IsInParty = isInParty;
         PawnData = pawnData;
+        OnDragHover = onDragHover;
         OnDragEnd = onDragEnd;
         IsDragging = false;
 
@@ -41,6 +44,7 @@ public class FriendItemController : MonoBehaviour, IBeginDragHandler, IDragHandl
     public void OnDrag(PointerEventData eventData)
     {
         IsDragging = true;
+        OnDragHover(this);
     }
 
     public void OnEndDrag(PointerEventData eventData)
