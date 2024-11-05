@@ -1,4 +1,3 @@
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,7 +5,11 @@ public class BonfireScene : BaseScene
 {
     [field: SerializeField] private FriendsPanelController FriendsPanelController { get; set; }
     [field: SerializeField] private PartyPanelController PartyPanelController { get; set; }
+    [field: SerializeField] private ProfilePanel ProfilePanel { get; set; }
     [field: SerializeField] private Button FinishButton { get; set; }
+
+    [field: SerializeField] private ArchetypeCanvasController ArchetypeCanvasPrefab { get; set; }
+    [field: SerializeField] private Transform TeamInfoContent { get; set; }
 
     private BonfireController BonfireController { get; set; }
     public IBonfirePanel BonfirePanel { get; set; }
@@ -21,6 +24,8 @@ public class BonfireScene : BaseScene
 
         FriendsPanelController.Init(partyManager, this);
         PartyPanelController.Init(partyManager, this);
+        
+        UpdateArchetypes();
     }
 
     public void SaveChanges()
@@ -33,11 +38,29 @@ public class BonfireScene : BaseScene
         Application.Instance.SceneManager.EndBonfireScene();
         BonfireController.Preselect();
     }
-}
 
-public interface IBonfirePanel
-{
-    void OnPick(FriendItemController friendItemController);
-    void OnHover(FriendItemController friendItemController);
-    void OnDrop(FriendItemController friendItemController);
+    public void Select(PawnData pawnData)
+    {
+        ProfilePanel.Select(pawnData);
+    }
+
+    public void Unselect()
+    {
+        ProfilePanel.Unselect();
+    }
+
+    public void UpdateArchetypes()
+    {
+        foreach (Transform archetypeCanvas in TeamInfoContent)
+        {
+            Destroy(archetypeCanvas.gameObject);
+        }
+
+        var archetypes = Application.Instance.PartyManager.Archetypes;
+        
+        foreach (var archetype in archetypes)
+        {
+            Instantiate(ArchetypeCanvasPrefab, TeamInfoContent).Init(archetype);
+        }
+    }
 }

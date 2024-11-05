@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class FriendItemController : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class FriendItemController : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [field: SerializeField] private TextMeshProUGUI PawnName { get; set; }
     [field: SerializeField] private Image Background { get; set; }
@@ -58,6 +58,21 @@ public class FriendItemController : MonoBehaviour, IBeginDragHandler, IDragHandl
             return;
 
         transform.position = Input.mousePosition;
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (State == FriendItemState.Inactive)
+            return;
+        
+        if (BonfireScene.BonfirePanel != null)
+        {
+            BonfireScene.BonfirePanel.OnClick(this);
+        }
+        else
+        {
+            BonfirePanel.OnClick(this);
+        }
     }
 
     public void OnBeginDrag(PointerEventData eventData)

@@ -1,53 +1,45 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PartyPanelController : MonoBehaviour, IBonfirePanel, IPointerEnterHandler, IPointerExitHandler
+public class PartyPanelController : BaseFriendItemPanelController
 {
-    [field: SerializeField] private FriendItemController FriendItemPrefab { get; set; }
-    
-    [field: SerializeField] private RectTransform PartyContent { get; set; }
-
     [field: SerializeField] private Transform PartyDivider { get; set; }
 
-    private PartyManager PartyManager { get; set; }
-    private BonfireScene BonfireScene { get; set; }
-    private List<FriendItemController> PartyItems { get; set; }
-    public List<PawnData> Party => PartyContent.GetComponentsInChildren<FriendItemController>().Select(f => f.PawnData).ToList();
+    public List<PawnData> Party => Content.GetComponentsInChildren<FriendItemController>().Select(f => f.PawnData).ToList();
 
-    public void Init(PartyManager partyManager, BonfireScene bonfireScene)
+    public override void Init(PartyManager partyManager, BonfireScene bonfireScene)
     {
-        PartyItems = new List<FriendItemController>();
-        PartyManager = partyManager;
-        BonfireScene = bonfireScene;
+        base.Init(partyManager, bonfireScene);
         
-        foreach (var pawnController in partyManager.Party)
+        foreach (var pawnController in PartyManager.Party)
         {
-            var pawnData = partyManager.AvailableParty.First(p => pawnController.Pawn.Id == p.Id);
-            PartyItems.Add(Instantiate(FriendItemPrefab, PartyContent).Init(pawnData, bonfireScene, this, FriendItemState.Active));
+            var pawnData = PartyManager.AvailableParty.First(p => pawnController.Pawn.Id == p.Id);
+            FriendItems.Add(Instantiate(FriendItemPrefab, Content).Init(pawnData, bonfireScene, this, FriendItemState.Active));
         }
         
         PartyDivider.gameObject.SetActive(false);
     }
 
-    public void OnPick(FriendItemController friendItemController)
+    public override void OnPick(FriendItemController friendItemController)
     {
-        PartyDivider.gameObject.SetActive(true);
+        base.OnPick(friendItemController);
         
-        PartyItems.Remove(friendItemController);
+        PartyDivider.gameObject.SetActive(true);
         friendItemController.transform.SetParent(transform.parent);
 
-        if (PartyItems.Count == 1)
+        if (FriendItems.Count == 1)
         {
-            PartyItems[0].ChangeState(FriendItemState.Inactive);
+            FriendItems[0].ChangeState(FriendItemState.Inactive);
         }
     }
 
-    public void OnHover(FriendItemController friendItemController)
+    public override void OnHover(FriendItemController friendItemController)
     {
-        var under = PartyItems.FirstOrDefault(i => i.transform.position.y <= Input.mousePosition.y);
+        base.OnHover(friendItemController);
+
+        var under = FriendItems.FirstOrDefault(i => i.transform.position.y <= Input.mousePosition.y);
 
         if (under != null)
         {
@@ -55,41 +47,42 @@ public class PartyPanelController : MonoBehaviour, IBonfirePanel, IPointerEnterH
         }
         else
         {
-            PartyDivider.SetSiblingIndex(PartyContent.childCount);
+            PartyDivider.SetSiblingIndex(Content.childCount);
         }
     }
 
-    public void OnDrop(FriendItemController friendItemController)
+    public override void OnDrop(FriendItemController friendItemController)
     {
+        base.OnDrop(friendItemController);
         PartyDivider.gameObject.SetActive(false);
         
-        friendItemController.transform.SetParent(PartyContent);
+        friendItemController.transform.SetParent(Content);
 
-        var under = PartyItems.FirstOrDefault(i => i.transform.position.y <= Input.mousePosition.y);
+        var under = FriendItems.FirstOrDefault(i => i.transform.position.y <= Input.mousePosition.y);
 
         if (under != null)
         {
             friendItemController.transform.SetSiblingIndex(under.transform.GetSiblingIndex() - 1);
         }
 
-        PartyItems.Add(friendItemController);
+        FriendItems.Add(friendItemController);
         BonfireScene.SaveChanges();
             
-        if (PartyItems.Count > 1)
+        if (FriendItems.Count > 1)
         {
-            PartyItems[0].ChangeState(FriendItemState.Active);
+            FriendItems[0].ChangeState(FriendItemState.Active);
         }
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public override void OnPointerEnter(PointerEventData eventData)
     {
+        base.OnPointerEnter(eventData);
         PartyDivider.gameObject.SetActive(BonfireScene.IsDragging);
-        BonfireScene.BonfirePanel = this;
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    public override void OnPointerExit(PointerEventData eventData)
     {
+        base.OnPointerExit(eventData);
         PartyDivider.gameObject.SetActive(false);
-        BonfireScene.BonfirePanel = null;
     }
 }
