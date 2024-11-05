@@ -188,6 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <PawnName>k__BackingField: {fileID: 22544491375222127}
+  <Background>k__BackingField: {fileID: 1730523471485737920}
 --- !u!222 &5301851802514252833
 CanvasRenderer:
   m_ObjectHideFlags: 0
