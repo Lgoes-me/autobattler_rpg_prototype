@@ -189,6 +189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <PawnName>k__BackingField: {fileID: 22544491375222127}
   <Background>k__BackingField: {fileID: 1730523471485737920}
+  <GraphicRaycaster>k__BackingField: {fileID: 4430148483583335818}
 --- !u!222 &5301851802514252833
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -236,7 +237,7 @@ Canvas:
   m_GameObject: {fileID: 4837458634251095882}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 2
+  m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0

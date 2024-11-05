@@ -82,11 +82,11 @@ public class SceneManager : MonoBehaviour
 
         task.completed += _ =>
         {
-            FindObjectOfType<BonfireScene>().Init(bonfireController);
             PartyManager.StopPartyFollow();
-
             InterfaceManager.HideBattleCanvas();
             GameSaveManager.SetBonfireSpawn(bonfireSpawn);
+            
+            FindObjectOfType<BonfireScene>().Init(bonfireController);
         };
     }
 

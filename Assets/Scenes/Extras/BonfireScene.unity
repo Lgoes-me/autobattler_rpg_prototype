@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 208926260}
   - component: {fileID: 208926259}
   - component: {fileID: 208926261}
+  - component: {fileID: 208926263}
   - component: {fileID: 208926262}
   m_Layer: 5
   m_Name: FriendsPanel
@@ -235,8 +236,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97c32cf543ca5cb4b9319072181d9aeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <FriendsContent>k__BackingField: {fileID: 664150637}
   <FriendItemPrefab>k__BackingField: {fileID: 3609669522049258200, guid: 27c60b0b08cfe794a9e13c4105f734e9, type: 3}
+  <FriendsContent>k__BackingField: {fileID: 664150637}
+--- !u!114 &208926263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 208926257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &345356052
 GameObject:
   m_ObjectHideFlags: 0
@@ -1144,6 +1162,8 @@ GameObject:
   - component: {fileID: 1299730077}
   - component: {fileID: 1299730076}
   - component: {fileID: 1299730078}
+  - component: {fileID: 1299730079}
+  - component: {fileID: 1299730080}
   m_Layer: 5
   m_Name: PartyPanel
   m_TagString: Untagged
@@ -1232,6 +1252,38 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 1
   m_TargetDisplay: 0
+--- !u!114 &1299730079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299730074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3578a576cd04c0c93d01428a59af920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <FriendItemPrefab>k__BackingField: {fileID: 3609669522049258200, guid: 27c60b0b08cfe794a9e13c4105f734e9, type: 3}
+  <PartyContent>k__BackingField: {fileID: 448490746}
+  <PartyDivider>k__BackingField: {fileID: 1830544458}
+--- !u!114 &1299730080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299730074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &1302234306
 GameObject:
   m_ObjectHideFlags: 0
@@ -1317,9 +1369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <FriendsPanelController>k__BackingField: {fileID: 208926262}
-  <PartyContent>k__BackingField: {fileID: 448490746}
-  <FriendItemPrefab>k__BackingField: {fileID: 3609669522049258200, guid: 27c60b0b08cfe794a9e13c4105f734e9, type: 3}
-  <PartyDivider>k__BackingField: {fileID: 1830544458}
+  <PartyPanelController>k__BackingField: {fileID: 1299730079}
   <FinishButton>k__BackingField: {fileID: 1206337910}
 --- !u!1 &1687872671
 GameObject:

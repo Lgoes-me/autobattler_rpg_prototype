@@ -10,7 +10,7 @@ public class PartyManager : MonoBehaviour
     [field: SerializeField] private PlayerManager PlayerManager { get; set; }
     [field: SerializeField] private GameSaveManager GameSaveManager { get; set; }
     [field: SerializeField] private InterfaceManager InterfaceManager { get; set; }
-    
+
     public List<PawnController> Party { get; private set; }
     public List<Archetype> Archetypes { get; private set; }
 
@@ -40,14 +40,9 @@ public class PartyManager : MonoBehaviour
             selectedPawns.Add(pawn);
         }
 
-        var positionsDict = new Dictionary<string, Vector3>();
-
-        foreach (var pawnController in Party)
+        for (var index = 1; index < Party.Count; index++)
         {
-            if(pawnController == PlayerManager.PawnController)
-                continue;
-            
-            positionsDict.Add(pawnController.Pawn.Id, pawnController.transform.position);
+            var pawnController = Party[index];
             Destroy(pawnController.gameObject);
         }
 
@@ -55,19 +50,15 @@ public class PartyManager : MonoBehaviour
 
         PlayerManager.SetNewPlayerPawn(selectedPawns[0]);
         Party.Add(PlayerManager.PawnController);
-        
+
         for (var index = 1; index < selectedPawns.Count; index++)
         {
             var pawnData = selectedPawns[index];
 
-            var playerPosition = PlayerManager.PawnController.transform.position;
+            var playerPosition = Party[0].transform.position;
             var randomRotation = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)) * Vector3.forward * 1f;
-
-            var pawnPosition = positionsDict.TryGetValue(pawnData.Id, out var position)
-                ? position
-                : playerPosition + randomRotation;
-
-            var pawnInstance = Instantiate(PawnControllerPrefab, pawnPosition, Quaternion.identity, transform);
+            var pawnInstance = Instantiate(PawnControllerPrefab, playerPosition + randomRotation, Quaternion.identity,
+                transform);
 
             var pawn = pawnData.ToDomain();
             GameSaveManager.ApplyPawnInfo(pawn);

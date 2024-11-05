@@ -8,24 +8,38 @@ public class FriendItemController : MonoBehaviour, IBeginDragHandler, IDragHandl
 {
     [field: SerializeField] private TextMeshProUGUI PawnName { get; set; }
     [field: SerializeField] private Image Background { get; set; }
+    [field: SerializeField] private GraphicRaycaster GraphicRaycaster { get; set; }
 
     public PawnData PawnData { get; private set; }
-    public FriendItemState State { get; private set; }
-    public BonfireScene BonfireScene { get; private set; }
+    
+    private FriendItemState State { get; set; }
+    private BonfireScene BonfireScene { get; set; }
+    private IBonfirePanel BonfirePanel { get; set; }
 
     private bool IsDragging { get; set; }
-    private Vector3 StartingPosition { get; set; }
 
     public FriendItemController Init(
         PawnData pawnData,
         BonfireScene bonfireScene,
+        IBonfirePanel bonfirePanel,
         FriendItemState state)
     {
         PawnData = pawnData;
         BonfireScene = bonfireScene;
+        BonfirePanel = bonfirePanel;
         State = state;
 
-        switch (state)
+        UpdateState();
+
+        IsDragging = false;
+
+        PawnName.SetText(PawnData.Id);
+        return this;
+    }
+
+    private void UpdateState()
+    {
+        switch (State)
         {
             case FriendItemState.Active:
                 Background.color = Color.green;
@@ -34,13 +48,8 @@ public class FriendItemController : MonoBehaviour, IBeginDragHandler, IDragHandl
                 Background.color = Color.gray;
                 break;
             default:
-                throw new ArgumentOutOfRangeException(nameof(state), state, null);
+                throw new ArgumentOutOfRangeException(nameof(State), State, null);
         }
-
-        IsDragging = false;
-
-        PawnName.SetText(PawnData.Id);
-        return this;
     }
 
     private void Update()
@@ -56,8 +65,14 @@ public class FriendItemController : MonoBehaviour, IBeginDragHandler, IDragHandl
         if (State == FriendItemState.Inactive)
             return;
 
-        StartingPosition = transform.localPosition;
-        BonfireScene.BonfirePanel?.OnPick(this);
+        if (BonfireScene.BonfirePanel != null)
+        {
+            BonfireScene.BonfirePanel.OnPick(this);
+        }
+        else
+        {
+            BonfirePanel.OnPick(this);
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -66,7 +81,17 @@ public class FriendItemController : MonoBehaviour, IBeginDragHandler, IDragHandl
             return;
 
         IsDragging = true;
-        BonfireScene.BonfirePanel?.OnHover(this);
+        BonfireScene.IsDragging = true;
+        GraphicRaycaster.enabled = false;
+        
+        if (BonfireScene.BonfirePanel != null)
+        {
+            BonfireScene.BonfirePanel.OnHover(this);
+        }
+        else
+        {
+            BonfirePanel.OnHover(this);
+        }
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -75,17 +100,23 @@ public class FriendItemController : MonoBehaviour, IBeginDragHandler, IDragHandl
             return;
 
         IsDragging = false;
-        BonfireScene.BonfirePanel?.OnDrop(this);
+        BonfireScene.IsDragging = false;
+        GraphicRaycaster.enabled = true;
+        
+        if (BonfireScene.BonfirePanel != null)
+        {
+            BonfireScene.BonfirePanel.OnDrop(this);
+        }
+        else
+        {
+            BonfirePanel.OnDrop(this);
+        }
     }
 
-    public void Activate()
+    public void ChangeState(FriendItemState state)
     {
-        State = FriendItemState.Active;
-    }
-
-    public void ResetPosition()
-    {
-        transform.localPosition = StartingPosition;
+        State = state;
+        UpdateState();
     }
 }
 

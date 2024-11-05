@@ -46,10 +46,4 @@ public class PlayerManager : MonoBehaviour
         PlayerController.enabled = true;
         PlayerController.Prepare();
     }
-
-    public PawnController GetPawnController()
-    {
-        enabled = false;
-        return PawnController;
-    }
 }

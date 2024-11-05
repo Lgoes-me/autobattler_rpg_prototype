@@ -31,6 +31,11 @@ public class InterfaceManager : MonoBehaviour
 
     public void InitProfileCanvas(List<PawnController> playerPawns)
     {
+        foreach (var pawnCanvas in PawnCanvases)
+        {
+            pawnCanvas.Hide();
+        }
+
         for (var index = 0; index < PawnCanvases.Count && index < playerPawns.Count; index++)
         {
             var pawnCanvas = PawnCanvases[index];
@@ -43,6 +48,11 @@ public class InterfaceManager : MonoBehaviour
 
     public void InitBlessingsCanvas(List<Blessing> blessings)
     {
+        foreach (var blessingCanvas in BlessingCanvases)
+        {
+            blessingCanvas.Hide();
+        }
+        
         for (var index = 0; index < BlessingCanvases.Count && index < blessings.Count; index++)
         {
             var blessingCanvas = BlessingCanvases[index];
