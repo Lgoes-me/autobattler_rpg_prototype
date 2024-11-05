@@ -99,7 +99,7 @@ public class FriendItemController : MonoBehaviour, IPointerClickHandler, IBeginD
         BonfireScene.IsDragging = true;
         GraphicRaycaster.enabled = false;
         
-        if (BonfireScene.BonfirePanel != null)
+        if (BonfireScene.BonfirePanel != null && BonfireScene.BonfirePanel.CanDrop())
         {
             BonfireScene.BonfirePanel.OnHover(this);
         }
@@ -118,7 +118,7 @@ public class FriendItemController : MonoBehaviour, IPointerClickHandler, IBeginD
         BonfireScene.IsDragging = false;
         GraphicRaycaster.enabled = true;
         
-        if (BonfireScene.BonfirePanel != null)
+        if (BonfireScene.BonfirePanel != null && BonfireScene.BonfirePanel.CanDrop())
         {
             BonfireScene.BonfirePanel.OnDrop(this);
         }

@@ -11,6 +11,7 @@ public class PartyManager : MonoBehaviour
     [field: SerializeField] private GameSaveManager GameSaveManager { get; set; }
     [field: SerializeField] private InterfaceManager InterfaceManager { get; set; }
 
+    public int PartySizeLimit { get; private set; }
     public List<PawnController> Party { get; private set; }
     public List<Archetype> Archetypes { get; private set; }
 
@@ -18,6 +19,7 @@ public class PartyManager : MonoBehaviour
 
     public void Init()
     {
+        PartySizeLimit = 5;
         Party = new List<PawnController>();
 
         Archetypes = new List<Archetype>();

@@ -20,10 +20,11 @@ public class FriendsPanelController : BaseFriendItemPanelController
 
     public override void OnPick(FriendItemController friendItemController)
     {
-        base.OnPick(friendItemController);
-        
         var pawnData = friendItemController.PawnData;
         var index = FriendItems.IndexOf(friendItemController);
+        
+        base.OnPick(friendItemController);
+        
         var friendItem = Instantiate(FriendItemPrefab, Content).Init(pawnData, BonfireScene, this, FriendItemState.Inactive);
         
         FriendItems.Add(friendItem);
@@ -33,8 +34,6 @@ public class FriendsPanelController : BaseFriendItemPanelController
     
     public override void OnDrop(FriendItemController friendItemController)
     {
-        base.OnDrop(friendItemController);
-        
         var pawnData = friendItemController.PawnData;
         Destroy(friendItemController.gameObject);
         
@@ -42,5 +41,7 @@ public class FriendsPanelController : BaseFriendItemPanelController
         inactiveItem.ChangeState(FriendItemState.Active);
         
         BonfireScene.SaveChanges();
+        
+        base.OnDrop(friendItemController);
     }
 }

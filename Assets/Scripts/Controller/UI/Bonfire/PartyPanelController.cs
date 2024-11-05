@@ -38,22 +38,17 @@ public class PartyPanelController : BaseFriendItemPanelController
     public override void OnHover(FriendItemController friendItemController)
     {
         base.OnHover(friendItemController);
-
         var under = FriendItems.FirstOrDefault(i => i.transform.position.y <= Input.mousePosition.y);
+        PartyDivider.SetSiblingIndex(under != null ? Mathf.Clamp(under.transform.GetSiblingIndex() - 1, 0, Content.childCount) : Content.childCount);
+    }
 
-        if (under != null)
-        {
-            PartyDivider.SetSiblingIndex(under.transform.GetSiblingIndex() - 1);
-        }
-        else
-        {
-            PartyDivider.SetSiblingIndex(Content.childCount);
-        }
+    public override bool CanDrop()
+    {
+        return FriendItems.Count < PartyManager.PartySizeLimit;
     }
 
     public override void OnDrop(FriendItemController friendItemController)
     {
-        base.OnDrop(friendItemController);
         PartyDivider.gameObject.SetActive(false);
         
         friendItemController.transform.SetParent(Content);
@@ -72,6 +67,8 @@ public class PartyPanelController : BaseFriendItemPanelController
         {
             FriendItems[0].ChangeState(FriendItemState.Active);
         }
+        
+        base.OnDrop(friendItemController);
     }
 
     public override void OnPointerEnter(PointerEventData eventData)
