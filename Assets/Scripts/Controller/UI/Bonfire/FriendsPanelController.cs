@@ -12,22 +12,19 @@ public class FriendsPanelController : BaseFriendItemPanelController
         foreach (var pawnData in friends)
         {
             var state = party.Any(i => i.Pawn.Id == pawnData.Id) ? FriendItemState.Inactive : FriendItemState.Active;
-            var friendItem = Instantiate(FriendItemPrefab, Content).Init(pawnData, bonfireScene, this, state);
-
-            FriendItems.Add(friendItem);
+            Instantiate(FriendItemPrefab, Content).Init(pawnData, bonfireScene, this, state);
         }
     }
 
     public override void OnPick(FriendItemController friendItemController)
     {
         var pawnData = friendItemController.PawnData;
-        var index = FriendItems.IndexOf(friendItemController);
+        var index = friendItemController.transform.GetSiblingIndex();
         
         base.OnPick(friendItemController);
         
         var friendItem = Instantiate(FriendItemPrefab, Content).Init(pawnData, BonfireScene, this, FriendItemState.Inactive);
         
-        FriendItems.Add(friendItem);
         friendItem.transform.SetSiblingIndex(index);
         friendItemController.transform.SetParent(transform.parent);
     }
@@ -37,7 +34,9 @@ public class FriendsPanelController : BaseFriendItemPanelController
         var pawnData = friendItemController.PawnData;
         Destroy(friendItemController.gameObject);
         
-        var inactiveItem = FriendItems.First(i => i.PawnData.Id == pawnData.Id);
+        var items = Content.GetComponentsInChildren<FriendItemController>();
+        
+        var inactiveItem = items.First(i => i.PawnData.Id == pawnData.Id);
         inactiveItem.ChangeState(FriendItemState.Active);
         
         BonfireScene.SaveChanges();

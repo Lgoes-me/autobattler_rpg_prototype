@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class BaseFriendItemPanelController : MonoBehaviour, IBonfirePanel
@@ -9,11 +8,9 @@ public class BaseFriendItemPanelController : MonoBehaviour, IBonfirePanel
 
     protected PartyManager PartyManager { get; private set; }
     protected BonfireScene BonfireScene { get; private set; }
-    protected List<FriendItemController> FriendItems { get; private set; }
 
     public virtual void Init(PartyManager partyManager, BonfireScene bonfireScene)
     {
-        FriendItems = new List<FriendItemController>();
         PartyManager = partyManager;
         BonfireScene = bonfireScene;
     }
@@ -26,7 +23,6 @@ public class BaseFriendItemPanelController : MonoBehaviour, IBonfirePanel
     public virtual void OnPick(FriendItemController friendItemController)
     {
         BonfireScene.Select(friendItemController.PawnData);
-        FriendItems.Remove(friendItemController);
     }
 
     public virtual void OnHover(FriendItemController friendItemController)
