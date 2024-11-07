@@ -78,7 +78,7 @@ public class PartyPanelController : MonoBehaviour, IBonfirePanel
 
         if (PartyItems.Count > 1)
         {
-            PartyItems[0].ChangeState(FriendItemState.Active);
+            PartyItems.First(i => i.State == FriendItemState.Inactive).ChangeState(FriendItemState.Active);
         }
 
         BonfireScene.Unselect();

@@ -11,7 +11,7 @@ public class FriendItemController : MonoBehaviour, IPointerClickHandler, IBeginD
     [field: SerializeField] private GraphicRaycaster GraphicRaycaster { get; set; }
 
     public PawnFacade Pawn { get; private set; }
-    private FriendItemState State { get; set; }
+    public FriendItemState State { get; private set; }
     private BonfireScene BonfireScene { get; set; }
     private IBonfirePanel BonfirePanel { get; set; }
 
