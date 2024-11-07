@@ -31,17 +31,16 @@ public class FriendsPanelController : MonoBehaviour, IBonfirePanel
     
     public void OnClick(FriendItemController friendItemController)
     {
-        BonfireScene.Select(friendItemController.PawnData);
+        BonfireScene.Select(friendItemController.Pawn);
     }
     
     public void OnPick(FriendItemController friendItemController)
     {
-        var pawnData = friendItemController.PawnData;
+        var pawn = friendItemController.Pawn;
         var index = friendItemController.transform.GetSiblingIndex();
         
-        BonfireScene.Select(friendItemController.PawnData);
-        
-        var friendItem = Instantiate(FriendItemPrefab, Content).Init(pawnData, BonfireScene, this, FriendItemState.Inactive);
+        BonfireScene.Select(pawn);
+        var friendItem = Instantiate(FriendItemPrefab, Content).Init(pawn, BonfireScene, this, FriendItemState.Inactive);
         
         friendItem.transform.SetSiblingIndex(index);
         friendItemController.transform.SetParent(transform.parent);
@@ -59,10 +58,10 @@ public class FriendsPanelController : MonoBehaviour, IBonfirePanel
     
     public void OnDrop(FriendItemController friendItemController)
     {
-        var pawnData = friendItemController.PawnData;
+        var pawn = friendItemController.Pawn;
         Destroy(friendItemController.gameObject);
         
-        var inactiveItem = PartyItems.First(i => i.PawnData.Id == pawnData.Id);
+        var inactiveItem = PartyItems.First(i => i.Pawn.Id == pawn.Id);
         inactiveItem.ChangeState(FriendItemState.Active);
         
         BonfireScene.SaveChanges();

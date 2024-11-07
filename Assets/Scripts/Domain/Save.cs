@@ -9,6 +9,7 @@ public class Save : ISavable
     public Dictionary<string, PawnInfo> SelectedParty { get; set; }
     public List<string> DefeatedEnemies { get; set; }
     public List<BlessingIdentifier> Blessings { get; set; }
+    public List<string> AvailableParty { get; set; }
 
     public Save()
     {
@@ -18,6 +19,7 @@ public class Save : ISavable
         SelectedParty = new Dictionary<string, PawnInfo>();
         DefeatedEnemies = new List<string>();
         Blessings = new List<BlessingIdentifier>();
+        AvailableParty = new List<string>();
     }
 
     public Save(PawnData startingPlayer)
@@ -28,5 +30,6 @@ public class Save : ISavable
         SelectedParty = new Dictionary<string, PawnInfo> {{startingPlayer.name, new PawnInfo(startingPlayer.name, 0)}};
         DefeatedEnemies = new List<string>();
         Blessings = new List<BlessingIdentifier>() {BlessingIdentifier.OnAttackHeal};
+        AvailableParty = new List<string> {"Guts", "Hunter"};
     }
 }

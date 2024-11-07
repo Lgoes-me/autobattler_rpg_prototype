@@ -15,7 +15,7 @@ public class ProfileCanvasController : PawnCanvasController
     private List<ButtonItemController> SpecialButtons { get; set; }
     private List<BuffItemController> BuffItems { get; set; }
 
-    public override void Init(PawnDomain pawn)
+    public override void Init(Pawn pawn)
     {
         base.Init(pawn);
         SpecialButtons = new List<ButtonItemController>();

@@ -15,6 +15,7 @@ public class Application : MonoBehaviour
     [field: SerializeField] private BlessingManager BlessingManager { get; set; }
     [field: SerializeField] public InterfaceManager InterfaceManager { get; private set; }
     [field: SerializeField] public GameSaveManager GameSaveManager { get; private set; }
+    [field: SerializeField] public ContentManager ContentManager { get; private set; }
     
     private void Awake()
     {  

@@ -13,7 +13,7 @@ public class PartyPanelController : MonoBehaviour, IBonfirePanel
     private BonfireScene BonfireScene { get; set; }
     private List<FriendItemController> PartyItems { get; set; }
     
-    public List<PawnData> Party => PartyItems.Select(f => f.PawnData).ToList();
+    public List<PawnFacade> Party => PartyItems.Select(f => f.Pawn).ToList();
 
     public void Init(PartyManager partyManager, BonfireScene bonfireScene)
     {
@@ -33,12 +33,12 @@ public class PartyPanelController : MonoBehaviour, IBonfirePanel
     
     public void OnClick(FriendItemController friendItemController)
     {
-        BonfireScene.Select(friendItemController.PawnData);
+        BonfireScene.Select(friendItemController.Pawn);
     }
     
     public void OnPick(FriendItemController friendItemController)
     {
-        BonfireScene.Select(friendItemController.PawnData);
+        BonfireScene.Select(friendItemController.Pawn);
 
         PartyDivider.gameObject.SetActive(true);
         

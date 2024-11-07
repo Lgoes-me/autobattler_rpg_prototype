@@ -8,12 +8,11 @@ public class PlayerManager : MonoBehaviour
     [field: SerializeField] public PawnController PawnController { get; private set; }
     [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
    
-    public void SetNewPlayerPawn(PawnData pawnData)
+    public void SetNewPlayerPawn(Pawn pawn)
     {
         if(PawnController.transform.childCount > 0)
             Destroy(PawnController.transform.GetChild(0).gameObject);
         
-        var pawn = pawnData.ToDomain();
         GameSaveManager.ApplyPawnInfo(pawn);
         
         PawnController.Init(pawn);

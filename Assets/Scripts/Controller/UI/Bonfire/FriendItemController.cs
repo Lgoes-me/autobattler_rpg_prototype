@@ -10,8 +10,7 @@ public class FriendItemController : MonoBehaviour, IPointerClickHandler, IBeginD
     [field: SerializeField] private Image Background { get; set; }
     [field: SerializeField] private GraphicRaycaster GraphicRaycaster { get; set; }
 
-    public PawnData PawnData { get; private set; }
-    
+    public PawnFacade Pawn { get; private set; }
     private FriendItemState State { get; set; }
     private BonfireScene BonfireScene { get; set; }
     private IBonfirePanel BonfirePanel { get; set; }
@@ -19,12 +18,12 @@ public class FriendItemController : MonoBehaviour, IPointerClickHandler, IBeginD
     private bool IsDragging { get; set; }
 
     public FriendItemController Init(
-        PawnData pawnData,
+        PawnFacade pawn,
         BonfireScene bonfireScene,
         IBonfirePanel bonfirePanel,
         FriendItemState state)
     {
-        PawnData = pawnData;
+        Pawn = pawn;
         BonfireScene = bonfireScene;
         BonfirePanel = bonfirePanel;
         State = state;
@@ -33,7 +32,7 @@ public class FriendItemController : MonoBehaviour, IPointerClickHandler, IBeginD
 
         IsDragging = false;
 
-        PawnName.SetText(PawnData.Id);
+        PawnName.SetText(Pawn.Id);
         return this;
     }
 

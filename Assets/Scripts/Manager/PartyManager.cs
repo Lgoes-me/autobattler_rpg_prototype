@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class PartyManager : MonoBehaviour
 {
-    [field: SerializeField] public List<PawnData> AvailableParty { get; private set; }
     [field: SerializeField] private PawnController PawnControllerPrefab { get; set; }
 
     [field: SerializeField] private PlayerManager PlayerManager { get; set; }
     [field: SerializeField] private GameSaveManager GameSaveManager { get; set; }
     [field: SerializeField] private InterfaceManager InterfaceManager { get; set; }
+    [field: SerializeField] private ContentManager ContentManager { get; set; }
 
+    public List<PawnFacade> AvailableParty { get; private set; }
     public int PartySizeLimit { get; private set; }
     public List<PawnController> Party { get; private set; }
     public List<Archetype> Archetypes { get; private set; }
@@ -19,6 +20,7 @@ public class PartyManager : MonoBehaviour
 
     public void Init()
     {
+        AvailableParty = GameSaveManager.GetAvailableParty();
         PartySizeLimit = 5;
         Party = new List<PawnController>();
 
@@ -30,7 +32,7 @@ public class PartyManager : MonoBehaviour
 
     private void SpawnSelectedPawns()
     {
-        var selectedPawns = new List<PawnData>();
+        var selectedPawns = new List<PawnFacade>();
 
         foreach (var (pawnId, _) in GameSaveManager.GetSelectedParty())
         {
@@ -50,19 +52,18 @@ public class PartyManager : MonoBehaviour
 
         Party.Clear();
 
-        PlayerManager.SetNewPlayerPawn(selectedPawns[0]);
+        var playerPawn = ContentManager.GetPawnDomainFromFacade(selectedPawns[0]);
+        PlayerManager.SetNewPlayerPawn(playerPawn);
         Party.Add(PlayerManager.PawnController);
 
         for (var index = 1; index < selectedPawns.Count; index++)
         {
-            var pawnData = selectedPawns[index];
-
             var playerPosition = Party[0].transform.position;
             var randomRotation = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)) * Vector3.forward * 1f;
             var pawnInstance = Instantiate(PawnControllerPrefab, playerPosition + randomRotation, Quaternion.identity,
                 transform);
 
-            var pawn = pawnData.ToDomain();
+            var pawn = ContentManager.GetPawnDomainFromFacade(selectedPawns[index]);
             GameSaveManager.ApplyPawnInfo(pawn);
 
             pawnInstance.Init(pawn);
@@ -87,7 +88,7 @@ public class PartyManager : MonoBehaviour
         InterfaceManager.InitArchetypesCanvas(Archetypes);
     }
 
-    public void SetSelectedParty(List<PawnData> newSelectedParty)
+    public void SetSelectedParty(List<PawnFacade> newSelectedParty)
     {
         GameSaveManager.SetParty(newSelectedParty);
         SpawnSelectedPawns();

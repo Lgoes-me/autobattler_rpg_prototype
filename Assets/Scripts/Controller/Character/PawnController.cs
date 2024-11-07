@@ -12,12 +12,12 @@ public class PawnController : MonoBehaviour
 
     [field: SerializeField] public TeamType Team { get; private set; }
 
-    public PawnDomain Pawn { get; private set; }
+    public Pawn Pawn { get; private set; }
     public AnimationState PawnState => CharacterController.CurrentState;
     private Coroutine BackToIdleCoroutine { get; set; }
     private Ability Ability { get; set; }
 
-    public void Init(PawnDomain pawn)
+    public void Init(Pawn pawn)
     {
         Pawn = pawn;
         

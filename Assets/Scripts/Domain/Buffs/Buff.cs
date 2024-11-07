@@ -4,7 +4,7 @@
 public abstract class Buff
 {
     public string Id { get; private set; }
-    protected PawnDomain Pawn { get; private set; }
+    protected Pawn Pawn { get; private set; }
 
     protected float Duration { get; set; }
     private float StartingTime { get; set; }
@@ -16,7 +16,7 @@ public abstract class Buff
         StartingTime = Time.time;
     }
 
-    public virtual void Init(PawnDomain pawn)
+    public virtual void Init(Pawn pawn)
     {
         Pawn = pawn;
     }

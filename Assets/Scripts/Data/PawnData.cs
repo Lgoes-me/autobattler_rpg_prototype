@@ -4,20 +4,20 @@ using UnityEngine;
 [CreateAssetMenu]
 public class PawnData : ScriptableObject
 {
-    [field: SerializeField] public string Id { get; private set; }
+    [field: SerializeField] public string Id { get;  set; }
     [field: SerializeField] private int Health { get; set; }
     [field: SerializeField] private int Mana { get; set; }
-    [field: SerializeField] public CharacterController Character { get; private set; }
-    [field: SerializeField] public WeaponController Weapon { get; private set; }
+    [field: SerializeField] private CharacterController Character { get; set; }
+    [field: SerializeField] private WeaponController Weapon { get; set; }
     [field: SerializeField] private StatsData Stats { get; set; }
     [field: SerializeField] private List<AbilityData> Abilities { get; set; }
     [field: SerializeField] private List<AbilityData> SpecialAbilities { get; set; }
     [field: SerializeField] private List<ArchetypeIdentifier> Archetypes { get; set; }
 
-    public PawnDomain ToDomain()
+    public Pawn ToDomain()
     {
         var stats = Stats.ToDomain();
-        return new PawnDomain(
+        return new Pawn(
             Id, 
             Health, 
             Mana, 
@@ -27,6 +27,14 @@ public class PawnData : ScriptableObject
             Abilities, 
             SpecialAbilities, 
             Archetypes);
+    }
+    
+    public PawnFacade ToFacade()
+    {
+        return new PawnFacade(
+            Id,
+            Character, 
+            Weapon);
     }
 
     private void OnValidate()

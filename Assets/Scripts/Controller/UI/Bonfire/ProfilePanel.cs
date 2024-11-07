@@ -6,9 +6,9 @@ public class ProfilePanel : MonoBehaviour
     [field: SerializeField] private TextMeshProUGUI PawnName { get; set; }
     [field: SerializeField] private Transform Content { get; set; }
     
-    public void Select(PawnData pawnData)
+    public void Select(PawnFacade pawn)
     {
-        PawnName.SetText(pawnData.Id);
+        PawnName.SetText(pawn.Id);
         Content.gameObject.SetActive(true);
     }
 

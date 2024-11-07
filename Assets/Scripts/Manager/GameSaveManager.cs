@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameSaveManager : MonoBehaviour
 {
-    [field: SerializeField] private PlayerManager PlayerManager { get; set; }
+    [field: SerializeField] private ContentManager ContentManager { get; set; }
     [field: SerializeField] private BlessingManager BlessingManager { get; set; }
     [field: SerializeField] private PartyManager PartyManager { get; set; }
     [field: SerializeField] private SaveManager SaveManager { get; set; }
@@ -56,7 +56,7 @@ public class GameSaveManager : MonoBehaviour
         return Save.DefeatedEnemies.Contains(battleId);
     }
     
-    public void SetParty(List<PawnData> newSelectedParty)
+    public void SetParty(List<PawnFacade> newSelectedParty)
     {
         Save.SelectedParty = newSelectedParty.ToDictionary(p => p.Id, p => new PawnInfo(p.Id, 0));
         SaveManager.SaveData(Save);
@@ -78,11 +78,16 @@ public class GameSaveManager : MonoBehaviour
         SaveManager.SaveData(Save);
     }
 
-    public void ApplyPawnInfo(PawnDomain pawn)
+    public void ApplyPawnInfo(Pawn pawn)
     {
         if (Save.SelectedParty.TryGetValue(pawn.Id, out var pawnInfo))
         {
             pawn.SetPawnInfo(pawnInfo);
         }
+    }
+    
+    public List<PawnFacade> GetAvailableParty()
+    {
+        return Save.AvailableParty.Select(id => ContentManager.GetPawnFacadeFromId(id)).ToList();
     }
 }

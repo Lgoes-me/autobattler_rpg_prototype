@@ -7,9 +7,9 @@ public class PawnCanvasController : BaseCanvasController
     [field: SerializeField] private Image LifeBar { get; set; }
     [field: SerializeField] private Image BackgroundLifeBar { get; set; }
     [field: SerializeField] private Image ManaBar { get; set; }
-    protected PawnDomain Pawn { get; private set; }
+    protected Pawn Pawn { get; private set; }
 
-    public virtual void Init(PawnDomain pawn)
+    public virtual void Init(Pawn pawn)
     {
         Pawn = pawn;
         

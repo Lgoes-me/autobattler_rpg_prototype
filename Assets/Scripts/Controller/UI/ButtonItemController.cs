@@ -10,7 +10,7 @@ public class ButtonItemController : MonoBehaviour
     
     private AbilityData Ability { get; set; }
 
-    public ButtonItemController Init(PawnDomain pawn, AbilityData ability)
+    public ButtonItemController Init(Pawn pawn, AbilityData ability)
     {
         Ability = ability;
         

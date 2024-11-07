@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 
 [System.Serializable]
-public class PawnDomain
+public class Pawn
 {
     public string Id { get; private set; }
     
@@ -34,7 +34,7 @@ public class PawnDomain
     public event PawnDomainChanged ManaChanged;
     public event PawnDomainChanged BuffsChanged;
 
-    public PawnDomain(string id,
+    public Pawn(string id,
         int health,
         int mana,
         CharacterController character,
