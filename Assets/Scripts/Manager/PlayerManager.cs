@@ -23,7 +23,7 @@ public class PlayerManager : MonoBehaviour
     {
         NavMeshAgent.enabled = false;
         PlayerController.transform.position = location.position;
-        PlayerController.CharacterController.SetDirection(location.forward);
+        PawnController.CharacterController.SetDirection(location.forward);
         NavMeshAgent.enabled = true;
     }
 

@@ -5,13 +5,13 @@ using Random = UnityEngine.Random;
 
 public class PlayerFollowController : MonoBehaviour
 {
-    [field: SerializeField] public CharacterController CharacterController { get; set; }
+    [field: SerializeField] private PawnController PawnController { get; set; }
     [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
     private Coroutine FollowCoroutine { get; set; }
 
     public void StartFollow(PawnController toFollow, Vector3 position)
     {
-        CharacterController.SetAnimationState(new IdleState());
+        PawnController.CharacterController.SetAnimationState(new IdleState());
         
         if (FollowCoroutine != null)
         {
@@ -37,14 +37,14 @@ public class PlayerFollowController : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
 
             var randomRotation = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)) * Vector3.forward * 0.5f;
-            CharacterController.SetDirection(destination - transform.position);
+            PawnController.CharacterController.SetDirection(destination - transform.position);
             NavMeshAgent.SetDestination(destination + randomRotation);
         }
     }
 
     public void StopFollow()
     {
-        CharacterController.SetAnimationState(new IdleState());
+        PawnController.CharacterController.SetAnimationState(new IdleState());
         
         if (FollowCoroutine != null)
         {
@@ -64,6 +64,6 @@ public class PlayerFollowController : MonoBehaviour
         if (FollowCoroutine == null)
             return;
 
-        CharacterController.SetSpeed(NavMeshAgent.velocity.magnitude);
+        PawnController.CharacterController.SetSpeed(NavMeshAgent.velocity.magnitude);
     }
 }

@@ -5,12 +5,11 @@ using UnityEngine.AI;
 
 public class PawnController : MonoBehaviour
 {
-    [field: SerializeField] public PlayerFollowController PlayerFollowController { get; private set; }
-    [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
     [field: SerializeField] public PawnCanvasController PawnCanvasController { get; set; }
-    [field: SerializeField] public CharacterController CharacterController { get; set; }
-
+    [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
+    
     public Pawn Pawn { get; private set; }
+    public CharacterController CharacterController { get; private set; }
     public AnimationState PawnState => CharacterController.CurrentState;
     private Coroutine BackToIdleCoroutine { get; set; }
     private Ability Ability { get; set; }
@@ -18,25 +17,11 @@ public class PawnController : MonoBehaviour
     public void Init(Pawn pawn)
     {
         Pawn = pawn;
-        
         CharacterController = Instantiate(pawn.Character, transform);
-
+        
         if (pawn.Weapon != null)
+        {
             CharacterController.SetWeapon(pawn.Weapon);
-
-        if (TryGetComponent<PlayerFollowController>(out var playerFollowController))
-        {
-            playerFollowController.CharacterController = CharacterController;
-        }
-
-        if (TryGetComponent<PlayerController>(out var playerController))
-        {
-            playerController.CharacterController = CharacterController;
-        }
-
-        if (TryGetComponent<EnemyController>(out var enemyController))
-        {
-            enemyController.CharacterController = CharacterController;
         }
     }
 

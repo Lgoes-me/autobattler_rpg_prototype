@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-    [field: SerializeField] public CharacterController CharacterController { get; set; }
     [field: SerializeField] public PawnController PawnController { get; private set; }
     
     [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
@@ -41,8 +40,8 @@ public class EnemyController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        CharacterController.SetSpeed(NavMeshAgent.velocity.magnitude);
-        CharacterController.SetDirection(NavMeshAgent.velocity);
+        PawnController.CharacterController.SetSpeed(NavMeshAgent.velocity.magnitude);
+        PawnController.CharacterController.SetDirection(NavMeshAgent.velocity);
         
         var player = Application.Instance.PlayerManager.PlayerController;
         var distance = player.transform.position - transform.position;
@@ -83,7 +82,7 @@ public class EnemyController : MonoBehaviour
 
     public void Prepare()
     {
-        CharacterController.SetSpeed(0);
+        PawnController.CharacterController.SetSpeed(0);
         enabled = false;
     }
 }

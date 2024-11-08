@@ -92,12 +92,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dff2c4eeb144cc896ad3ba288bf7f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <PawnData>k__BackingField: {fileID: 0}
   <PlayerFollowController>k__BackingField: {fileID: 7903008837011009515}
   <NavMeshAgent>k__BackingField: {fileID: 449031379433608940}
   <PawnCanvasController>k__BackingField: {fileID: 0}
   <CharacterController>k__BackingField: {fileID: 0}
-  <Team>k__BackingField: 0
 --- !u!114 &7903008837011009515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,5 +108,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fba19f0675d3f74ba498bb24657e646, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CharacterController>k__BackingField: {fileID: 0}
+  <PawnController>k__BackingField: {fileID: 4759648862371886847}
   <NavMeshAgent>k__BackingField: {fileID: 449031379433608940}

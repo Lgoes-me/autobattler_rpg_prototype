@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PartyManager : MonoBehaviour
@@ -101,9 +102,11 @@ public class PartyManager : MonoBehaviour
         for (var index = 1; index < Party.Count; index++)
         {
             var pawn = Party[index];
-            pawn.PlayerFollowController.StopFollow();
-
-            pawn.PlayerFollowController.StartFollow(
+            var playerFollow = pawn.GetComponent<PlayerFollowController>();
+            
+            playerFollow.StopFollow();
+            
+            playerFollow.StartFollow(
                 index == 0 ? player : Party[index - 1],
                 transportToPlayer ? player.transform.position : Vector3.zero);
         }
@@ -113,7 +116,10 @@ public class PartyManager : MonoBehaviour
     {
         for (var index = 1; index < Party.Count; index++)
         {
-            Party[index].PlayerFollowController.StopFollow();
+            var pawn = Party[index];
+            var playerFollow = pawn.GetComponent<PlayerFollowController>();
+            
+            playerFollow.StopFollow();
         }
     }
 }

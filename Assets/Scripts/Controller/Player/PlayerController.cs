@@ -3,24 +3,24 @@ using UnityEngine.AI;
 
 public class PlayerController : MonoBehaviour
 {
-    [field: SerializeField] public CharacterController CharacterController { get; set; }
+    [field: SerializeField] private PawnController PawnController { get; set; }
     [field: SerializeField] private float Speed { get; set; }
 
     public Vector2 MoveInput { get; private set; }
 
     public void Init()
     {
-        CharacterController.SetAnimationState(new IdleState());
+        PawnController.CharacterController.SetAnimationState(new IdleState());
         MoveInput = Vector2.zero;
     }
 
     private void Update()
     {
-        if(CharacterController == null)
+        if(PawnController.CharacterController == null)
             return;
         
         MoveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        CharacterController.SetSpeed(MoveInput.magnitude);
+        PawnController.CharacterController.SetSpeed(MoveInput.magnitude);
     }
 
     private void FixedUpdate()
@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
         var inputManager = Application.Instance.InputManager;
         var input = inputManager.RightVector * MoveInput.x + inputManager.ForwardVector * MoveInput.y;
         input = Vector3.ClampMagnitude(input, 1f);
-        CharacterController.SetDirection(input);
+        PawnController.CharacterController.SetDirection(input);
         
         var destination = transform.position + input * Speed;
 
@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
 
     public void Prepare()
     {
-        CharacterController.SetSpeed(0);
+        PawnController.CharacterController.SetSpeed(0);
     }
 
     private void OnTriggerEnter(Collider other)
