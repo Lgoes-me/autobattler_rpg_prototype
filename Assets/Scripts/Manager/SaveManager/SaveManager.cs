@@ -60,6 +60,14 @@ public class SaveManager : MonoBehaviour
         return LoadData<T>(containerToLoadInto.Id);
     }
 
+    //Load T data from static fileName
+    public T LoadData<T>()
+        where T : class, ISavable, new()
+    {
+        var instance = new T();
+        return LoadData<T>(instance.Id);
+    }
+    
     //Load T data from fileName
     public T LoadData<T>(string fileName)
         where T : class, ISavable

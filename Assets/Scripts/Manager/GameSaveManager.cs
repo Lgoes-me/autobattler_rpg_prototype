@@ -14,7 +14,7 @@ public class GameSaveManager : MonoBehaviour
 
     public void Init()
     {
-        Save = SaveManager.LoadData<Save>("Save.json") ?? new Save(PlayerStartingCharacter);
+        Save = SaveManager.LoadData<Save>() ?? new Save(PlayerStartingCharacter);
     }
 
     public SpawnDomain GetSpawn()

@@ -16,6 +16,9 @@ public class Application : MonoBehaviour
     [field: SerializeField] public InterfaceManager InterfaceManager { get; private set; }
     [field: SerializeField] public GameSaveManager GameSaveManager { get; private set; }
     [field: SerializeField] public ContentManager ContentManager { get; private set; }
+    [field: SerializeField] public ConfigManager ConfigManager { get; private set; }
+    [field: SerializeField] public DialogueManager DialogueManager { get; private set; }
+    [field: SerializeField] public TutorialManager TutorialManager { get; private set; }
     
     private void Awake()
     {  

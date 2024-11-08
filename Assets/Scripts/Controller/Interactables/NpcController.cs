@@ -9,4 +9,9 @@ public class NpcController : InteractableController
     {
         PawnController.Init(PawnData.ToDomain(TeamType.Player));
     }
+    
+    protected override void InternalSelect()
+    {
+        
+    }
 }
