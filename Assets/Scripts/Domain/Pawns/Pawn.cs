@@ -13,18 +13,19 @@ public class Pawn
     public int MaxMana { get; internal set; }
     public int Mana { get;  private set; }
     
-    public CharacterController Character { get;  private set; }
-    public WeaponController Weapon { get;  private set; }
+    public CharacterController Character { get; }
+    public WeaponController Weapon { get; }
     
-    private Stats Stats { get; set; }
+    private Stats Stats { get; }
     
-    private List<AbilityData> Abilities { get; set; }
-    public List<AbilityData> SpecialAbilities { get; private set; }
-    public List<ArchetypeIdentifier> Archetypes { get; private set; }
+    private List<AbilityData> Abilities { get; }
+    public List<AbilityData> SpecialAbilities { get; }
+    public List<ArchetypeIdentifier> Archetypes { get; }
     
     public Dictionary<string, Buff> Buffs { get; private set; }
     public AbilityData RequestedSpecialAbility { get; private set; }
     public float Initiative { get; private set; }
+    public TeamType Team { get; }
 
     public bool HasMana => SpecialAbilities.Count > 0 && MaxMana > 0;
     public bool IsAlive => Health > 0;
@@ -42,7 +43,8 @@ public class Pawn
         Stats stats,
         List<AbilityData> abilities,
         List<AbilityData> specialAbilities, 
-        List<ArchetypeIdentifier> archetypes)
+        List<ArchetypeIdentifier> archetypes,
+        TeamType team)
     {
         Id = id;
         MaxHealth = health;
@@ -60,6 +62,7 @@ public class Pawn
         Buffs = new Dictionary<string, Buff>();
         RequestedSpecialAbility = null;
         Initiative = 0;
+        Team = team;
     }
 
     public void SetInitiative(float initiative)

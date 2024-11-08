@@ -4,12 +4,11 @@ using System.Linq;
 
 public class Battle
 {
-    public string Id { get; private set; }
+    public string Id { get; }
 
-    public List<PawnController> EnemyPawns { get; private set; }
-    public List<PawnController> PlayerPawns { get; private set; }
-
-    public List<PawnController> Pawns { get; private set; }
+    public List<PawnController> EnemyPawns { get; }
+    public List<PawnController> PlayerPawns { get; }
+    public List<PawnController> Pawns { get; }
 
     public bool HasEnemies => EnemyPawns.Count(e => e.PawnState.AbleToFight) > 0;
     public bool HasPlayers => PlayerPawns.Count(e => e.PawnState.AbleToFight) > 0;
@@ -33,8 +32,8 @@ public class Battle
             return targetType switch
             {
                 TargetType.Self => pawn == user,
-                TargetType.Enemy => pawn.Team != user.Team && pawn.PawnState.CanBeTargeted,
-                TargetType.Ally => pawn.Team == user.Team && pawn.PawnState.CanBeTargeted &&
+                TargetType.Enemy => pawn.Pawn.Team != user.Pawn.Team && pawn.PawnState.CanBeTargeted,
+                TargetType.Ally => pawn.Pawn.Team == user.Pawn.Team && pawn.PawnState.CanBeTargeted &&
                                    pawn.PawnState.AbleToFight,
                 _ => throw new ArgumentOutOfRangeException()
             };

@@ -10,8 +10,6 @@ public class PawnController : MonoBehaviour
     [field: SerializeField] public PawnCanvasController PawnCanvasController { get; set; }
     [field: SerializeField] public CharacterController CharacterController { get; set; }
 
-    [field: SerializeField] public TeamType Team { get; private set; }
-
     public Pawn Pawn { get; private set; }
     public AnimationState PawnState => CharacterController.CurrentState;
     private Coroutine BackToIdleCoroutine { get; set; }
@@ -57,7 +55,7 @@ public class PawnController : MonoBehaviour
     {
         if (Ability == null)
         {
-            Ability = Pawn.GetCurrentAttackIntent(this, battle, Team is TeamType.Enemies);
+            Ability = Pawn.GetCurrentAttackIntent(this, battle, Pawn.Team is TeamType.Enemies);
             Ability.ChooseFocus(battle);
         }
 

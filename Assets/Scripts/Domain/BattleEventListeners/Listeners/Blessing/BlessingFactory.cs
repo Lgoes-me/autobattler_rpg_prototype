@@ -31,5 +31,5 @@ public class BlessingFactory
         };
     }
 
-    private bool IsPlayerTeam(PawnController pawn) => pawn.Team == TeamType.Player;
+    private bool IsPlayerTeam(PawnController pawn) => pawn.Pawn.Team == TeamType.Player;
 }

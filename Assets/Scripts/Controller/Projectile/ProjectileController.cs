@@ -23,7 +23,7 @@ public class ProjectileController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<PawnController>(out var pawnController) &&
-            pawnController.Team != Creator.Team &&
+            pawnController.Pawn.Team != Creator.Pawn.Team &&
             pawnController.PawnState.CanBeTargeted)
         {
             foreach (var effect in Effects)

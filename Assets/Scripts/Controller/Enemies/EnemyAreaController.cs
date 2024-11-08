@@ -102,7 +102,7 @@ public class EnemyInfo
 
     public void PreparePawn()
     {
-        var pawn = PawnData.ToDomain();
+        var pawn = PawnData.ToDomain(TeamType.Enemies);
         PawnController.Init(pawn);
     }
 }

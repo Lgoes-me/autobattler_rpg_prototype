@@ -14,9 +14,10 @@ public class PawnData : ScriptableObject
     [field: SerializeField] private List<AbilityData> SpecialAbilities { get; set; }
     [field: SerializeField] private List<ArchetypeIdentifier> Archetypes { get; set; }
 
-    public Pawn ToDomain()
+    public Pawn ToDomain(TeamType team)
     {
         var stats = Stats.ToDomain();
+        
         return new Pawn(
             Id, 
             Health, 
@@ -26,7 +27,8 @@ public class PawnData : ScriptableObject
             stats,
             Abilities, 
             SpecialAbilities, 
-            Archetypes);
+            Archetypes,
+            team);
     }
     
     public PawnFacade ToFacade()

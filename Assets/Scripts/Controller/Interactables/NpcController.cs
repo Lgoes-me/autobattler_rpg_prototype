@@ -7,6 +7,6 @@ public class NpcController : InteractableController
 
     private void Start()
     {
-        PawnController.Init(PawnData.ToDomain());
+        PawnController.Init(PawnData.ToDomain(TeamType.Player));
     }
 }

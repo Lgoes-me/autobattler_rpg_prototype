@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class BattleController : MonoBehaviour
@@ -134,7 +133,7 @@ public class BattleController : MonoBehaviour
         {
             pawn.FinishBattle();
 
-            if (pawn.Team == TeamType.Enemies)
+            if (pawn.Pawn.Team == TeamType.Enemies)
                 pawn.gameObject.SetActive(false);
         }
 
