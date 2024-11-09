@@ -4,9 +4,9 @@ using UnityEngine;
 [System.Serializable]
 public class AbilityBehaviourData
 {
-    [field: SerializeField] [field: SerializeReference] private BaseEffectData[] Effects { get; set; }
-    [field: SerializeField] [field: SerializeReference] public BaseFocusData FocusData { get; private set; }
-    [field: SerializeField] [field: SerializeReference] private BaseActionData ActionData { get; set; }
+    [field: SerializeField] [field: SerializeReference] private EffectData[] Effects { get; set; }
+    [field: SerializeField] [field: SerializeReference] public FocusData FocusData { get; private set; }
+    [field: SerializeField] [field: SerializeReference] private ActionData ActionData { get; set; }
     
     public AbilityBehaviour ToDomain(PawnController abilityUser)
     {

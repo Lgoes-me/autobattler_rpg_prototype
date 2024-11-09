@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [System.Serializable]
-public class ManaResourceData : BaseResourceData
+public class ManaResourceData : ResourceData
 {
     [field: SerializeField] private int ManaCost { get; set; }
 

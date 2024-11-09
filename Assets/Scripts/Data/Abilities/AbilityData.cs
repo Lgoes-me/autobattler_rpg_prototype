@@ -8,7 +8,7 @@ public class AbilityData : ScriptableObject
     [field: SerializeField] private float Delay { get; set; }
     [field: SerializeField] private float Range { get; set; }
     [field: SerializeField] private AbilityBehaviourData[] AbilityBehaviours { get; set; }
-    [field: SerializeField] [field: SerializeReference] public BaseResourceData ResourceData { get; private set; }
+    [field: SerializeField] [field: SerializeReference] public ResourceData ResourceData { get; private set; }
     [field: SerializeField] [field: SerializeReference] private PriorityModifier[] Priorities { get; set; }
 
     public Ability ToDomain(PawnController abilityUser, bool isSpecial)

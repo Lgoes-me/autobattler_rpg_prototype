@@ -5,7 +5,7 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
-[CustomPropertyDrawer(typeof(BaseComponentData), true)]
+[CustomPropertyDrawer(typeof(IComponentData), true)]
 public class AbilityComponentDrawer : PropertyDrawer
 {
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
@@ -37,6 +37,19 @@ public class AbilityComponentDrawer : PropertyDrawer
             // inherited types
             foreach (Type type in FindDerivedTypes(t))
             {
+                if (typeof(ScriptableObject).IsAssignableFrom(type))
+                {
+                    menu.AddItem(new GUIContent(type.Name), typeName == type.Name, () =>
+                    {
+                        EditorGUI.BeginProperty (position, label, property);
+                        EditorGUI.ObjectField(dropdownRect, property, type);
+                        EditorGUI.EndProperty();
+                        property.serializedObject.ApplyModifiedProperties();
+                    });
+
+                    continue;
+                }
+
                 menu.AddItem(new GUIContent(type.Name), typeName == type.Name, () =>
                 {
                     property.managedReferenceValue = type.GetConstructor(Type.EmptyTypes)?.Invoke(null);
@@ -64,7 +77,10 @@ public class AbilityComponentDrawer : PropertyDrawer
         return Assembly
             .GetAssembly(baseType)
             .GetTypes()
-            .Where(t => baseType.IsAssignableFrom(t) && t.IsClass && !t.IsAbstract)
+            .Where(t =>
+                baseType.IsAssignableFrom(t) &&
+                t.IsClass &&
+                !t.IsAbstract)
             .ToList();
     }
 }

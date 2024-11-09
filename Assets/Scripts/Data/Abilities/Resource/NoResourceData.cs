@@ -1,6 +1,6 @@
 ﻿
 [System.Serializable]
-public class NoResourceData : BaseResourceData
+public class NoResourceData : ResourceData
 {
     public override AbilityResourceComponent ToDomain(PawnController abilityUser)
     {

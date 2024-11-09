@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [System.Serializable]
-public class StatsBuffEffectData : BaseEffectData
+public class StatsBuffEffectData : EffectData
 {
     [field: SerializeField] private string Id { get; set; }
     [field: SerializeField] private StatsData StatsVariation { get; set; }

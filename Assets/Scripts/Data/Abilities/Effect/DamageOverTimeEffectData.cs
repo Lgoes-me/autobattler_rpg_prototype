@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [System.Serializable]
-public class DamageOverTimeEffectData : BaseEffectData
+public class DamageOverTimeEffectData : EffectData
 {
     [field: SerializeField] private string Id { get; set; }
     [field: SerializeField] private DamageData Damage { get; set; }

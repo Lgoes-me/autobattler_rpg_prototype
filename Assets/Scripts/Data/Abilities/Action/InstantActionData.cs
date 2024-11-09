@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 [System.Serializable]
-public class InstantActionData : BaseActionData
+public class InstantActionData : ActionData
 {
     public override AbilityActionComponent ToDomain(
         PawnController abilityUser,

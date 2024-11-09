@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [System.Serializable]
-public class ProjectileActionData : BaseActionData
+public class ProjectileActionData : ActionData
 {
     [field: SerializeField] private ProjectileController Projectile { get; set; }
 

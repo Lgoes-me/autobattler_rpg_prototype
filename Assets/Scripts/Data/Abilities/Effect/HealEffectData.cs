@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [System.Serializable]
-public class HealEffectData : BaseEffectData
+public class HealEffectData : EffectData
 {
     [field: SerializeField] private float HealMultiplier { get; set; }
     [field: SerializeField] private bool CanRevive { get; set; }

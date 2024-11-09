@@ -5,7 +5,7 @@ public class LowHealthModifier : PriorityModifier
 {
     [field: SerializeField] private int Health { get; set; }
     
-    public override int AlterPriority(PawnController abilityUser, Battle battle, BaseFocusData focusData, int priority)
+    public override int AlterPriority(PawnController abilityUser, Battle battle, FocusData focusData, int priority)
     {
         var selectedPawn = battle.Query(abilityUser, focusData.Target, focusData.Focus, 0);
         

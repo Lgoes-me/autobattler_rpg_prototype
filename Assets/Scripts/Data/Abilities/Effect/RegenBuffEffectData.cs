@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [System.Serializable]
-public class RegenBuffEffectData: BaseEffectData
+public class RegenBuffEffectData: EffectData
 {
     [field: SerializeField] private string Id { get; set; }
     [field: SerializeField] private int Regen { get; set; }
