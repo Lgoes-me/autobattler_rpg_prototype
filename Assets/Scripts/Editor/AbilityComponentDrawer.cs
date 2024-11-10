@@ -37,19 +37,6 @@ public class AbilityComponentDrawer : PropertyDrawer
             // inherited types
             foreach (Type type in FindDerivedTypes(t))
             {
-                if (typeof(ScriptableObject).IsAssignableFrom(type))
-                {
-                    menu.AddItem(new GUIContent(type.Name), typeName == type.Name, () =>
-                    {
-                        EditorGUI.BeginProperty (position, label, property);
-                        EditorGUI.ObjectField(dropdownRect, property, type);
-                        EditorGUI.EndProperty();
-                        property.serializedObject.ApplyModifiedProperties();
-                    });
-
-                    continue;
-                }
-
                 menu.AddItem(new GUIContent(type.Name), typeName == type.Name, () =>
                 {
                     property.managedReferenceValue = type.GetConstructor(Type.EmptyTypes)?.Invoke(null);
@@ -80,7 +67,8 @@ public class AbilityComponentDrawer : PropertyDrawer
             .Where(t =>
                 baseType.IsAssignableFrom(t) &&
                 t.IsClass &&
-                !t.IsAbstract)
+                !t.IsAbstract &&
+                !typeof(UnityEngine.Object).IsAssignableFrom(t))
             .ToList();
     }
 }

@@ -12,10 +12,86 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4daecf96b9e460fba37aa4e87f58092, type: 3}
   m_Name: New Dialogue
   m_EditorClassIdentifier: 
-  <Lines>k__BackingField:
-  - rid: -2
+  <Dialogue>k__BackingField:
+    rid: 5882033410274754560
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+    - rid: 5882033410274754560
+      type: {class: Dialogue, ns: , asm: Assembly-CSharp}
+      data:
+        <Lines>k__BackingField:
+        - rid: 5882033410274754561
+        - rid: 5882033410274754562
+        - rid: 5882033410274754563
+    - rid: 5882033410274754561
+      type: {class: Line, ns: , asm: Assembly-CSharp}
+      data:
+        <Text>k__BackingField: Oi
+    - rid: 5882033410274754562
+      type: {class: Line, ns: , asm: Assembly-CSharp}
+      data:
+        <Text>k__BackingField: Precisa de ajuda?
+    - rid: 5882033410274754563
+      type: {class: DialogueOptions, ns: , asm: Assembly-CSharp}
+      data:
+        <Options>k__BackingField:
+        - <Choice>k__BackingField: "N\xE3o"
+          <Response>k__BackingField:
+            rid: 5882033410274754566
+        - <Choice>k__BackingField: Sim
+          <Response>k__BackingField:
+            rid: 5882033410274754577
+    - rid: 5882033410274754566
+      type: {class: Dialogue, ns: , asm: Assembly-CSharp}
+      data:
+        <Lines>k__BackingField:
+        - rid: 5882033410274754567
+    - rid: 5882033410274754567
+      type: {class: Dialogue, ns: , asm: Assembly-CSharp}
+      data:
+        <Lines>k__BackingField:
+        - rid: 5882033410274754568
+        - rid: 5882033410274754569
+        - rid: 5882033410274754574
+    - rid: 5882033410274754568
+      type: {class: Line, ns: , asm: Assembly-CSharp}
+      data:
+        <Text>k__BackingField: Cuidado com as suas escolhas
+    - rid: 5882033410274754569
+      type: {class: Dialogue, ns: , asm: Assembly-CSharp}
+      data:
+        <Lines>k__BackingField:
+        - rid: 5882033410274754570
+        - rid: 5882033410274754571
+        - rid: 5882033410274754572
+    - rid: 5882033410274754570
+      type: {class: Line, ns: , asm: Assembly-CSharp}
+      data:
+        <Text>k__BackingField: "N\xE3o esque\xE7a da sua miss\xE3o"
+    - rid: 5882033410274754571
+      type: {class: Line, ns: , asm: Assembly-CSharp}
+      data:
+        <Text>k__BackingField: "Se precisar de ajuda s\xF3 avisar"
+    - rid: 5882033410274754572
+      type: {class: Line, ns: , asm: Assembly-CSharp}
+      data:
+        <Text>k__BackingField: Estou aqui se precisar
+    - rid: 5882033410274754574
+      type: {class: Line, ns: , asm: Assembly-CSharp}
+      data:
+        <Text>k__BackingField: Estou aqui a sua espera
+    - rid: 5882033410274754577
+      type: {class: Dialogue, ns: , asm: Assembly-CSharp}
+      data:
+        <Lines>k__BackingField:
+        - rid: 5882033410274754578
+        - rid: 5882033410274754579
+    - rid: 5882033410274754578
+      type: {class: Line, ns: , asm: Assembly-CSharp}
+      data:
+        <Text>k__BackingField: "Ent\xE3o vamos juntos"
+    - rid: 5882033410274754579
+      type: {class: AddFriendDialogueEvent, ns: , asm: Assembly-CSharp}
+      data:
+        <PawnData>k__BackingField: {fileID: 11400000, guid: 41bae653165f78748b456c8346ffda6c, type: 2}

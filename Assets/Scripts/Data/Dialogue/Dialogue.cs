@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
-public class Dialogue : ScriptableObject, IDialogue
+public class Dialogue : IDialogue
 {
-    [field: SerializeReference] [field: SerializeField] public List<IDialogue> Lines { get; private set; }
+    [field: SerializeReference] [field: SerializeField] public List<IDialogue> Lines { get; private set; }    
 }
