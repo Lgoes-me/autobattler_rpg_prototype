@@ -1260,6 +1260,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Npc
       objectReference: {fileID: 0}
+    - target: {fileID: 5639184684231170965, guid: 78a2eed7dbdd53c468cff72ff5269d93, type: 3}
+      propertyPath: <Dialogue>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 425a0059c1a929b4a8c7dbc224d0b23e, type: 2}
     - target: {fileID: 7761577622677726545, guid: 78a2eed7dbdd53c468cff72ff5269d93, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.24

@@ -4,6 +4,7 @@ public class NpcController : InteractableController
 {
     [field: SerializeField] private PawnData PawnData { get; set; }
     [field: SerializeField] private PawnController PawnController { get; set; }
+    [field: SerializeField] private DialogueData Dialogue { get; set; }
 
     private void Start()
     {
@@ -12,6 +13,6 @@ public class NpcController : InteractableController
     
     protected override void InternalSelect()
     {
-        
+        Application.Instance.DialogueManager.OpenDialogue(Dialogue);
     }
 }

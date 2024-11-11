@@ -1,7 +1,15 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using UnityEngine;
 
-[System.Serializable]
+[Serializable]
 public class AddFriendDialogueEvent : DialogueEvent
 {
     [field: SerializeField] private PawnData PawnData { get; set; }
+    
+    public override IEnumerator ReadDialogue(DialogueManager dialogueManager)
+    {
+        Application.Instance.PartyManager.AddToAvailableParty(PawnData);
+        yield return null;
+    }
 }

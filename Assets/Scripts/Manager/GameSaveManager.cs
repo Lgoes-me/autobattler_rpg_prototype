@@ -90,4 +90,11 @@ public class GameSaveManager : MonoBehaviour
     {
         return Save.AvailableParty.Select(id => ContentManager.GetPawnFacadeFromId(id)).ToList();
     }
+    
+    
+    public void AddToAvailableParty(PawnData pawnData)
+    {
+        Save.AvailableParty.Add(pawnData.Id);
+        SaveManager.SaveData(Save);
+    }
 }
