@@ -97,4 +97,15 @@ public class GameSaveManager : MonoBehaviour
         Save.AvailableParty.Add(pawnData.Id);
         SaveManager.SaveData(Save);
     }
+
+    public bool HasReadDialogue(string id)
+    {
+        return Save.Dialogues.Contains(id);
+    }
+
+    public void SaveDialogue(SkippableDialogue dialogue)
+    {
+        Save.Dialogues.Add(dialogue.Id);
+        SaveManager.SaveData(Save);
+    }
 }

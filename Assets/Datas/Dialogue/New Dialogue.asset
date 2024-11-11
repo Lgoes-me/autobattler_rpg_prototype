@@ -52,31 +52,12 @@ MonoBehaviour:
       data:
         <Lines>k__BackingField:
         - rid: 5882033410274754568
-        - rid: 5882033410274754569
+        - rid: 5882033436445376514
         - rid: 5882033410274754574
     - rid: 5882033410274754568
       type: {class: Line, ns: , asm: Assembly-CSharp}
       data:
         <Text>k__BackingField: Cuidado com as suas escolhas
-    - rid: 5882033410274754569
-      type: {class: Dialogue, ns: , asm: Assembly-CSharp}
-      data:
-        <Lines>k__BackingField:
-        - rid: 5882033410274754570
-        - rid: 5882033410274754571
-        - rid: 5882033410274754572
-    - rid: 5882033410274754570
-      type: {class: Line, ns: , asm: Assembly-CSharp}
-      data:
-        <Text>k__BackingField: "N\xE3o esque\xE7a da sua miss\xE3o"
-    - rid: 5882033410274754571
-      type: {class: Line, ns: , asm: Assembly-CSharp}
-      data:
-        <Text>k__BackingField: "Se precisar de ajuda s\xF3 avisar"
-    - rid: 5882033410274754572
-      type: {class: Line, ns: , asm: Assembly-CSharp}
-      data:
-        <Text>k__BackingField: Estou aqui se precisar
     - rid: 5882033410274754574
       type: {class: Line, ns: , asm: Assembly-CSharp}
       data:
@@ -95,3 +76,18 @@ MonoBehaviour:
       type: {class: AddFriendDialogueEvent, ns: , asm: Assembly-CSharp}
       data:
         <PawnData>k__BackingField: {fileID: 11400000, guid: 41bae653165f78748b456c8346ffda6c, type: 2}
+    - rid: 5882033436445376514
+      type: {class: SkippableDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        <Id>k__BackingField: testeSkip
+        <Lines>k__BackingField:
+        - rid: 5882033436445376518
+        - rid: 5882033436445376516
+    - rid: 5882033436445376516
+      type: {class: Line, ns: , asm: Assembly-CSharp}
+      data:
+        <Text>k__BackingField: "N\xE3o esque\xE7a da sua miss\xE3o"
+    - rid: 5882033436445376518
+      type: {class: Line, ns: , asm: Assembly-CSharp}
+      data:
+        <Text>k__BackingField: Estou aqui se precisar

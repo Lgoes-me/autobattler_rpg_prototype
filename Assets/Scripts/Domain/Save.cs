@@ -10,6 +10,7 @@ public class Save : ISavable
     public List<string> DefeatedEnemies { get; set; }
     public List<BlessingIdentifier> Blessings { get; set; }
     public List<string> AvailableParty { get; set; }
+    public List<string> Dialogues { get; set; }
 
     public Save()
     {
@@ -20,6 +21,7 @@ public class Save : ISavable
         DefeatedEnemies = new List<string>();
         Blessings = new List<BlessingIdentifier>();
         AvailableParty = new List<string>();
+        Dialogues = new List<string>();
     }
 
     public Save(PawnData startingPlayer)
@@ -31,5 +33,6 @@ public class Save : ISavable
         DefeatedEnemies = new List<string>();
         Blessings = new List<BlessingIdentifier>() {BlessingIdentifier.OnAttackHeal};
         AvailableParty = new List<string> {"Guts", "Hunter"};
+        Dialogues = new List<string>();
     }
 }
