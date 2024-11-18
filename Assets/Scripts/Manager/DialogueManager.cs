@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class DialogueManager : MonoBehaviour
 {
+    [field: SerializeField] private GameObject DialogueCanvas { get; set; }
+    [field: SerializeField] private Transform DialogueContent { get; set; }
+    [field: SerializeField] private DialogueBoxItemController DialogueBoxItemControllerPrefab { get; set; }
+
     public void OpenDialogue(DialogueData dialogueData)
     {
         StartCoroutine(Read(dialogueData));
@@ -11,41 +15,29 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator Read(DialogueData dialogueData)
     {
+        DialogueCanvas.SetActive(true);
         yield return dialogueData.ReadDialogue(this);
+        DialogueCanvas.SetActive(false);
     }
 
     public IEnumerator ShowText(string text)
     {
-        Debug.Log(text);
-        yield return new WaitForSeconds(1f);
+        var canContinue = false;
+        Instantiate(DialogueBoxItemControllerPrefab, DialogueContent).Init(text, () => canContinue = true);
+        yield return new WaitUntil(() => canContinue);
     }
 
     public IEnumerator ShowOptions(List<Option> options)
     {
+        Option selectedOption = null;
+        
         foreach (var option in options)
         {
-            Debug.Log(option.Choice);
+            Instantiate(DialogueBoxItemControllerPrefab, DialogueContent).Init(option.Choice, () => selectedOption = option);
         }
-
-        var selectedOption = -1;
-
-        yield return new WaitUntil(() =>
-        {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                selectedOption = 0;
-                return true;
-            }
-
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                selectedOption = 1;
-                return true;
-            }
-
-            return false;
-        });
-
-        yield return options[selectedOption].ChooseOption(this);
+        
+        yield return new WaitUntil(() => selectedOption != null);
+        
+        yield return selectedOption?.ChooseOption(this);
     }
 }

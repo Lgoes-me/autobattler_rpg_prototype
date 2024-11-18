@@ -1,18 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DialogueBoxItemController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [field: SerializeField] private TextMeshProUGUI TextMesh { get; set; }
+    [field: SerializeField] private Button ContinueButton { get; set; }
 
-    // Update is called once per frame
-    void Update()
+    public void Init(string text, Action callback)
     {
-        
+        TextMesh.SetText(text);
+        ContinueButton.onClick.AddListener(() => callback());
     }
 }
