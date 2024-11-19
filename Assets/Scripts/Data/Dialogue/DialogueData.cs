@@ -12,7 +12,7 @@ public class DialogueData : ScriptableObject, IDialogue
     public IEnumerator ReadDialogue(DialogueManager dialogueManager)
     {
         yield return DialogueVariation
-            .First(d => d.Language == LanguageType.Pt)
+            .First(d => d.Language == Application.Instance.ConfigManager.GetLanguage())
             .Dialogue
             .ReadDialogue(dialogueManager);
     }

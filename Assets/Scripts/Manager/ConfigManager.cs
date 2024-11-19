@@ -10,4 +10,9 @@ public class ConfigManager : MonoBehaviour
     {
         Config = SaveManager.LoadData<Config>() ?? new Config();
     }
+
+    public LanguageType GetLanguage()
+    {
+        return Config.Language;
+    }
 }
