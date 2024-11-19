@@ -2504,7 +2504,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19f54ec8ba6848fb81f1deb3a4d5e3cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <LanguagesFile>k__BackingField: {fileID: 4900000, guid: efd5a089e9f99fa46a10de2da9c04beb, type: 3}
+  <StringsData>k__BackingField:
+    <NewGameButton>k__BackingField:
+      <Pt>k__BackingField: Novo Jogo
+      <En>k__BackingField: New Game
 --- !u!1 &1282436503
 GameObject:
   m_ObjectHideFlags: 0
@@ -2548,11 +2551,11 @@ Transform:
   - {fileID: 148296405}
   - {fileID: 1396296679}
   - {fileID: 1020555033}
-  - {fileID: 1853319443}
   - {fileID: 1163192587}
   - {fileID: 1427351123}
   - {fileID: 1989302730}
   - {fileID: 1962773076}
+  - {fileID: 1853319443}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1282436505
