@@ -1,13 +1,26 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu]
 public class DialogueData : ScriptableObject, IDialogue
 {
-    [field: SerializeReference] [field: SerializeField] private IDialogue Dialogue { get; set; }
+    [field: SerializeField] private List<DialogueTranslations> DialogueVariation { get; set; }
 
     public IEnumerator ReadDialogue(DialogueManager dialogueManager)
     {
-        yield return Dialogue.ReadDialogue(dialogueManager);
+        yield return DialogueVariation
+            .First(d => d.Language == LanguageType.Pt)
+            .Dialogue
+            .ReadDialogue(dialogueManager);
     }
+}
+
+[Serializable]
+public class DialogueTranslations
+{
+    [field: SerializeField] public LanguageType Language { get; private set; }
+    [field: SerializeReference] [field: SerializeField] public IDialogue Dialogue { get; private set; }
 }

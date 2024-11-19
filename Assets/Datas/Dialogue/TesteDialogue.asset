@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4daecf96b9e460fba37aa4e87f58092, type: 3}
+  m_Name: TesteDialogue
+  m_EditorClassIdentifier: 
+  <DialogueVariation>k__BackingField:
+  - <Language>k__BackingField: 1
+    <Dialogue>k__BackingField:
+      rid: 5882033611665833984
+  references:
+    version: 2
+    RefIds:
+    - rid: 5882033611665833984
+      type: {class: Dialogue, ns: , asm: Assembly-CSharp}
+      data:
+        <Lines>k__BackingField:
+        - rid: 5882033611665833985
+        - rid: 5882033611665833987
+    - rid: 5882033611665833985
+      type: {class: Line, ns: , asm: Assembly-CSharp}
+      data:
+        <Text>k__BackingField: Oi
+    - rid: 5882033611665833987
+      type: {class: DialogueOptions, ns: , asm: Assembly-CSharp}
+      data:
+        <Text>k__BackingField: Precisa de ajuda
+        <Options>k__BackingField:
+        - <Choice>k__BackingField: sim
+          <Response>k__BackingField:
+            rid: 5882033611665833988
+        - <Choice>k__BackingField: "n\xE3o"
+          <Response>k__BackingField:
+            rid: 5882033611665833990
+    - rid: 5882033611665833988
+      type: {class: Dialogue, ns: , asm: Assembly-CSharp}
+      data:
+        <Lines>k__BackingField:
+        - rid: 5882033611665834000
+    - rid: 5882033611665833990
+      type: {class: Dialogue, ns: , asm: Assembly-CSharp}
+      data:
+        <Lines>k__BackingField:
+        - rid: 5882033611665833992
+        - rid: 5882033611665833994
+    - rid: 5882033611665833992
+      type: {class: Line, ns: , asm: Assembly-CSharp}
+      data:
+        <Text>k__BackingField: Cuidado com suas escolhas
+    - rid: 5882033611665833994
+      type: {class: SkippableDialogue, ns: , asm: Assembly-CSharp}
+      data:
+        <Id>k__BackingField: teste
+        <Lines>k__BackingField:
+        - rid: 5882033611665833995
+        - rid: 5882033611665833996
+    - rid: 5882033611665833995
+      type: {class: Line, ns: , asm: Assembly-CSharp}
+      data:
+        <Text>k__BackingField: Qualquer coisa estou aqui
+    - rid: 5882033611665833996
+      type: {class: Line, ns: , asm: Assembly-CSharp}
+      data:
+        <Text>k__BackingField: "N\xE3o seja arrogante"
+    - rid: 5882033611665834000
+      type: {class: Dialogue, ns: , asm: Assembly-CSharp}
+      data:
+        <Lines>k__BackingField:
+        - rid: 5882033611665834001
+        - rid: 5882033611665834002
+    - rid: 5882033611665834001
+      type: {class: Line, ns: , asm: Assembly-CSharp}
+      data:
+        <Text>k__BackingField: "Certo ent\xE3o"
+    - rid: 5882033611665834002
+      type: {class: AddFriendDialogueEvent, ns: , asm: Assembly-CSharp}
+      data:
+        <PawnData>k__BackingField: {fileID: 11400000, guid: 41bae653165f78748b456c8346ffda6c, type: 2}
