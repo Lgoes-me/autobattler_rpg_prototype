@@ -8,9 +8,23 @@ public class DialogueBoxItemController : MonoBehaviour
     [field: SerializeField] private TextMeshProUGUI TextMesh { get; set; }
     [field: SerializeField] private Button ContinueButton { get; set; }
 
-    public void Init(string text, Action callback)
+    public bool CanContinue { get; private set; }
+    
+    public DialogueBoxItemController Init(Line line)
     {
-        TextMesh.SetText(text);
-        ContinueButton.onClick.AddListener(() => callback());
+        gameObject.SetActive(true);
+        CanContinue = false;
+        
+        TextMesh.SetText(line.Text);
+        ContinueButton.onClick.AddListener(() => CanContinue = true);
+
+        return this;
+    }
+
+    public void Hide()
+    {
+        gameObject.SetActive(false);
+        TextMesh.SetText("");
+        ContinueButton.onClick.RemoveAllListeners();
     }
 }

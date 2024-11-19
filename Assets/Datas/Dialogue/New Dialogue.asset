@@ -22,19 +22,15 @@ MonoBehaviour:
       data:
         <Lines>k__BackingField:
         - rid: 5882033410274754561
-        - rid: 5882033410274754562
         - rid: 5882033410274754563
     - rid: 5882033410274754561
       type: {class: Line, ns: , asm: Assembly-CSharp}
       data:
         <Text>k__BackingField: Oi
-    - rid: 5882033410274754562
-      type: {class: Line, ns: , asm: Assembly-CSharp}
-      data:
-        <Text>k__BackingField: Precisa de ajuda?
     - rid: 5882033410274754563
       type: {class: DialogueOptions, ns: , asm: Assembly-CSharp}
       data:
+        <Text>k__BackingField: Precisa de ajuda?
         <Options>k__BackingField:
         - <Choice>k__BackingField: "N\xE3o"
           <Response>k__BackingField:

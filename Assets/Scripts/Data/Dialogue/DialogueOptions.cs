@@ -6,11 +6,12 @@ using UnityEngine;
 [Serializable]
 public class DialogueOptions : IDialogue
 {
-    [field: SerializeField] private List<Option> Options { get; set; }
+    [field: SerializeField] public string Text { get; private set; }
+    [field: SerializeField] public List<Option> Options { get; private set; }
 
     public IEnumerator ReadDialogue(DialogueManager dialogueManager)
     {
-        yield return dialogueManager.ShowOptions(Options);
+        yield return dialogueManager.ShowOptions(this);
     }
 }
 
