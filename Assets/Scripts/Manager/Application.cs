@@ -36,8 +36,19 @@ public class Application : MonoBehaviour
     private void Start()
     {
         GameSaveManager.Init();
+        ConfigManager.Init();
+        TutorialManager.Init();
+        
         PartyManager.Init();
         BlessingManager.Init();
-        SceneManager.StartGame();
+
+        if (TutorialManager.CompletedOnboard())
+        {
+            SceneManager.StartGameMenu();
+        }
+        else
+        {
+            SceneManager.StartGame();
+        }
     }
 }

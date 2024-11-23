@@ -11,7 +11,17 @@ public class SceneManager : MonoBehaviour
     [field: SerializeField] private AudioManager AudioManager { get; set; }
 
     private bool BonfireActive { get; set; }
-
+    
+    public void StartGameMenu()
+    {
+        var task = UnitySceneManager.LoadSceneAsync("StartMenu", LoadSceneMode.Single);
+        
+        task.completed += _ =>
+        {
+            var roomScene = FindObjectOfType<StartMenuScene>();
+        };
+    }
+    
     public void StartGame()
     {
         var spawn = GameSaveManager.GetSpawn();
@@ -26,6 +36,7 @@ public class SceneManager : MonoBehaviour
 
             PartyManager.SetPartyToFollow(true);
             AudioManager.PlayMusic(roomScene.Music);
+            InterfaceManager.ShowBattleCanvas();
         };
     }
 

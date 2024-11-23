@@ -100,5 +100,4 @@ public class InterfaceManager : MonoBehaviour
     {
         BattleCanvas.SetActive(true);
     }
-    
 }
