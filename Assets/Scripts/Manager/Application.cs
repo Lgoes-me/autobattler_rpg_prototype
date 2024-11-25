@@ -48,7 +48,8 @@ public class Application : MonoBehaviour
         }
         else
         {
-            SceneManager.StartGame();
+            SceneManager.StartGameIntro();
+            //SceneManager.StartGame();
         }
     }
 }

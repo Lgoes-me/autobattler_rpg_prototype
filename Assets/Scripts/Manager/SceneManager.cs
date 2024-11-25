@@ -18,8 +18,15 @@ public class SceneManager : MonoBehaviour
         
         task.completed += _ =>
         {
-            var roomScene = FindObjectOfType<StartMenuScene>();
+            //var roomScene = FindObjectOfType<StartMenuScene>();
         };
+    }
+    
+    public void StartGameIntro()
+    {
+        //Custece
+        //then start game
+        StartGame();
     }
     
     public void StartGame()
