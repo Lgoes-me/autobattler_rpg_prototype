@@ -167,7 +167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f9f19abc5c47e0ac1aacf04b055747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <GameSaveManager>k__BackingField: {fileID: 1020555034}
   <PlayerController>k__BackingField: {fileID: 225983749}
   <PawnController>k__BackingField: {fileID: 225983751}
   <NavMeshAgent>k__BackingField: {fileID: 225983752}
@@ -490,8 +489,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c5f3ad593f44a1b8e6762704ff32b2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <InterfaceManager>k__BackingField: {fileID: 1853319444}
-  <GameSaveManager>k__BackingField: {fileID: 1020555034}
 --- !u!1001 &225983748
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1206,11 +1203,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00328ecadddd24849b8a48734768524f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <InterfaceManager>k__BackingField: {fileID: 1853319444}
-  <GameSaveManager>k__BackingField: {fileID: 1020555034}
-  <PlayerManager>k__BackingField: {fileID: 1553753}
-  <PartyManager>k__BackingField: {fileID: 1396296680}
-  <AudioManager>k__BackingField: {fileID: 2129920862}
 --- !u!1001 &642898424
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1955,10 +1947,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce92c0dd73ae4a56b0d402ac7f65b539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <ContentManager>k__BackingField: {fileID: 1163192588}
-  <BlessingManager>k__BackingField: {fileID: 148296406}
-  <PartyManager>k__BackingField: {fileID: 1396296680}
-  <SaveManager>k__BackingField: {fileID: 25261271}
   <PlayerStartingCharacter>k__BackingField: {fileID: 11400000, guid: 1fc8d338c9a0df94e8501a8d246293db, type: 2}
 --- !u!114 &1046201841 stripped
 MonoBehaviour:
@@ -2457,8 +2445,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae8e2558f8562234a9410cee0323ef6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <BlessingManager>k__BackingField: {fileID: 148296406}
-  <PartyManager>k__BackingField: {fileID: 1396296680}
 --- !u!1 &1252425369
 GameObject:
   m_ObjectHideFlags: 0
@@ -2539,12 +2525,12 @@ Transform:
   m_Children:
   - {fileID: 422823314}
   - {fileID: 1918482239}
+  - {fileID: 25261270}
   - {fileID: 2129920861}
   - {fileID: 847640158}
   - {fileID: 1553752}
   - {fileID: 641743260}
   - {fileID: 1824029035}
-  - {fileID: 25261270}
   - {fileID: 1252425370}
   - {fileID: 1238457632}
   - {fileID: 148296405}
@@ -2570,6 +2556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MainCamera>k__BackingField: {fileID: 1918482242}
+  <SaveManager>k__BackingField: {fileID: 25261271}
   <SceneManager>k__BackingField: {fileID: 641743261}
   <PlayerManager>k__BackingField: {fileID: 1553753}
   <PauseManager>k__BackingField: {fileID: 847640159}
@@ -2707,10 +2694,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <PawnControllerPrefab>k__BackingField: {fileID: 4759648862371886847, guid: bf3e5b737f1f18949bbfd853b8d5bfe0, type: 3}
-  <PlayerManager>k__BackingField: {fileID: 1553753}
-  <GameSaveManager>k__BackingField: {fileID: 1020555034}
-  <InterfaceManager>k__BackingField: {fileID: 1853319444}
-  <ContentManager>k__BackingField: {fileID: 1163192588}
 --- !u!1 &1398462131
 GameObject:
   m_ObjectHideFlags: 0
@@ -2917,7 +2900,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 451a366745c24d79a79470904415d1bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <SaveManager>k__BackingField: {fileID: 25261271}
 --- !u!1001 &1484309816
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3421,7 +3403,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 065f2c79974348648bf39a7ac68ff9fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <PlayerManager>k__BackingField: {fileID: 1553753}
 --- !u!1 &1853319442
 GameObject:
   m_ObjectHideFlags: 0
@@ -3959,7 +3940,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9617db9820d4e6fb081e16203c4322e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <SaveManager>k__BackingField: {fileID: 25261271}
 --- !u!1 &1989302729
 GameObject:
   m_ObjectHideFlags: 0

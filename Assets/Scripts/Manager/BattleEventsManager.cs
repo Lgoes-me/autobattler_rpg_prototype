@@ -2,8 +2,14 @@ using UnityEngine;
 
 public class BattleEventsManager : MonoBehaviour
 {
-    [field: SerializeField] private BlessingManager BlessingManager { get; set; }
-    [field: SerializeField] private PartyManager PartyManager { get; set; }
+    private BlessingManager BlessingManager { get; set; }
+    private PartyManager PartyManager { get; set; }
+
+    private void Start()
+    {
+        BlessingManager = Application.Instance.BlessingManager;
+        PartyManager = Application.Instance.PartyManager;
+    }
 
     public void DoBattleStartEvent(Battle battle)
     {

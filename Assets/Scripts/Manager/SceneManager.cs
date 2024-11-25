@@ -4,33 +4,47 @@ using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
 public class SceneManager : MonoBehaviour
 {
-    [field: SerializeField] private InterfaceManager InterfaceManager { get; set; }
-    [field: SerializeField] private GameSaveManager GameSaveManager { get; set; }
-    [field: SerializeField] private PlayerManager PlayerManager { get; set; }
-    [field: SerializeField] private PartyManager PartyManager { get; set; }
-    [field: SerializeField] private AudioManager AudioManager { get; set; }
-
     private bool BonfireActive { get; set; }
+
+    private InterfaceManager InterfaceManager { get; set; }
+    private GameSaveManager GameSaveManager { get; set; }
+    private PlayerManager PlayerManager { get; set; }
+    private PartyManager PartyManager { get; set; }
+    private BlessingManager BlessingManager { get; set; }
+    private AudioManager AudioManager { get; set; }
     
+    private void Start()
+    {
+        InterfaceManager = Application.Instance.InterfaceManager;
+        GameSaveManager = Application.Instance.GameSaveManager;
+        PlayerManager = Application.Instance.PlayerManager;
+        PartyManager = Application.Instance.PartyManager;
+        BlessingManager = Application.Instance.BlessingManager;
+        AudioManager = Application.Instance.AudioManager;
+    }
+
     public void StartGameMenu()
     {
         var task = UnitySceneManager.LoadSceneAsync("StartMenu", LoadSceneMode.Single);
-        
+
         task.completed += _ =>
         {
             //var roomScene = FindObjectOfType<StartMenuScene>();
         };
     }
-    
+
     public void StartGameIntro()
     {
         GameSaveManager.StartNewSave();
         //Cutscene
         StartGame();
     }
-    
+
     public void StartGame()
     {
+        PartyManager.Init();
+        BlessingManager.Init();
+
         var spawn = GameSaveManager.GetSpawn();
 
         var task = UnitySceneManager.LoadSceneAsync(spawn.SceneName, LoadSceneMode.Single);
@@ -95,7 +109,7 @@ public class SceneManager : MonoBehaviour
             return;
 
         BonfireActive = true;
-        
+
         var task = UnitySceneManager.LoadSceneAsync("BonfireScene", LoadSceneMode.Additive);
 
         task.completed += _ =>
@@ -103,7 +117,7 @@ public class SceneManager : MonoBehaviour
             PartyManager.StopPartyFollow();
             InterfaceManager.HideBattleCanvas();
             GameSaveManager.SetBonfireSpawn(bonfireSpawn);
-            
+
             FindObjectOfType<BonfireScene>().Init(bonfireController);
         };
     }
@@ -114,7 +128,7 @@ public class SceneManager : MonoBehaviour
             return;
 
         BonfireActive = false;
-        
+
         var task = UnitySceneManager.UnloadSceneAsync("BonfireScene");
 
         task.completed += _ =>

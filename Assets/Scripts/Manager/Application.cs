@@ -5,6 +5,7 @@ public class Application : MonoBehaviour
     public static Application Instance { get; private set; }
     
     [field: SerializeField] public Camera MainCamera { get; private set; }
+    [field: SerializeField] public SaveManager SaveManager { get; private set; }
     [field: SerializeField] public SceneManager SceneManager { get; private set; }
     [field: SerializeField] public PlayerManager PlayerManager { get; private set; }
     [field: SerializeField] public PauseManager PauseManager { get; private set; }
@@ -12,7 +13,7 @@ public class Application : MonoBehaviour
     [field: SerializeField] public AudioManager AudioManager { get; private set; }
     [field: SerializeField] public InputManager InputManager { get; private set; }
     [field: SerializeField] public BattleEventsManager BattleEventsManager { get; private set; }
-    [field: SerializeField] private BlessingManager BlessingManager { get; set; }
+    [field: SerializeField] public BlessingManager BlessingManager { get; private set; }
     [field: SerializeField] public InterfaceManager InterfaceManager { get; private set; }
     [field: SerializeField] public GameSaveManager GameSaveManager { get; private set; }
     [field: SerializeField] public ContentManager ContentManager { get; private set; }
@@ -35,20 +36,15 @@ public class Application : MonoBehaviour
 
     private void Start()
     {
-        GameSaveManager.Init();
         ConfigManager.Init();
-        TutorialManager.Init();
-        
-        PartyManager.Init();
-        BlessingManager.Init();
 
-        if (GameSaveManager.HasASave())
+        if (GameSaveManager.FirstTimePlaying())
         {
-            SceneManager.StartGameMenu();
+            SceneManager.StartGameIntro();
         }
         else
         {
-            SceneManager.StartGameIntro();
+            SceneManager.StartGameMenu();
         }
     }
 }

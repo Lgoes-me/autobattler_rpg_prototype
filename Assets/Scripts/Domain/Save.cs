@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
-[System.Serializable]
+[Serializable]
 public class Save : ISavable
 {
     public string Id { get; set; }
@@ -14,7 +15,6 @@ public class Save : ISavable
 
     public Save()
     {
-        Id = "Save.json";
         Spawn = null;
         LastBonfireSpawn = null;
         SelectedParty = new Dictionary<string, PawnInfo>();
@@ -26,7 +26,7 @@ public class Save : ISavable
 
     public Save(PawnData startingPlayer)
     {
-        Id = "Save.json";
+        Id = $"{Guid.NewGuid()}.json";
         Spawn = new SpawnDomain("DungeonEntrance", "DungeonEntrance");
         LastBonfireSpawn = new SpawnDomain("DungeonEntrance", "DungeonEntrance");
         SelectedParty = new Dictionary<string, PawnInfo> {{startingPlayer.name, new PawnInfo(startingPlayer.name, 0)}};

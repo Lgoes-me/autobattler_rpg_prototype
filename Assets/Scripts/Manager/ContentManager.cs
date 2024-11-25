@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentManager : MonoBehaviour
 {
-    [field: SerializeField] public List<PawnData> AvailablePawns { get; private set; }
+    [field: SerializeField] private List<PawnData> AvailablePawns { get; set; }
 
     public PawnFacade GetPawnFacadeFromId(string id)
     {

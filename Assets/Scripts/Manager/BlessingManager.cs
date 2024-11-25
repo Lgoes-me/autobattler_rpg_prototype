@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class BlessingManager : MonoBehaviour
 {
-    [field: SerializeField] private InterfaceManager InterfaceManager { get; set; }
-    [field: SerializeField] private GameSaveManager GameSaveManager { get; set; }
-
     public List<Blessing> Blessings { get; private set; }
     private BlessingFactory BlessingFactory { get; set; }
+
+    private InterfaceManager InterfaceManager { get; set; }
+    private GameSaveManager GameSaveManager { get; set; }
+    
+    private void Start()
+    {
+        InterfaceManager = Application.Instance.InterfaceManager;
+        GameSaveManager = Application.Instance.GameSaveManager;
+    }
 
     public void Init()
     {

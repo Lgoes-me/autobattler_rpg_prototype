@@ -23,6 +23,7 @@ public class StartMenuScene : BaseScene
 
     private void ContinueGame()
     {
+        Application.Instance.GameSaveManager.LoadSave();
         Application.Instance.SceneManager.StartGame();
     }
 

@@ -3,13 +3,17 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    [field: SerializeField] private PlayerManager PlayerManager { get; set; }
-    
-    private Coroutine Coroutine { get; set; }
-
     public Vector3 ForwardVector { get; private set; }
     public Vector3 RightVector { get; private set; }
     
+    private Coroutine Coroutine { get; set; }
+    private PlayerManager PlayerManager { get; set; }
+
+    private void Start()
+    {
+        PlayerManager = Application.Instance.PlayerManager;
+    }
+
     public void SetNewCameraPosition(Transform cameraTransform)
     {
         if (Coroutine != null)

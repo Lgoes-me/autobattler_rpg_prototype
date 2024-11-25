@@ -4,27 +4,37 @@ using UnityEngine;
 
 public class GameSaveManager : MonoBehaviour
 {
-    [field: SerializeField] private ContentManager ContentManager { get; set; }
-    [field: SerializeField] private BlessingManager BlessingManager { get; set; }
-    [field: SerializeField] private PartyManager PartyManager { get; set; }
-    [field: SerializeField] private SaveManager SaveManager { get; set; }
     [field: SerializeField] private PawnData PlayerStartingCharacter { get; set; }
 
     private Save Save { get; set; }
 
-    public void Init()
+    private ContentManager ContentManager { get; set; }
+    private BlessingManager BlessingManager { get; set; }
+    private PartyManager PartyManager { get; set; }
+    private SaveManager SaveManager { get; set; }
+
+    private void Start()
     {
-        Save = SaveManager.LoadData<Save>();
+        ContentManager = Application.Instance.ContentManager;
+        BlessingManager = Application.Instance.BlessingManager;
+        PartyManager = Application.Instance.PartyManager;
+        SaveManager = Application.Instance.SaveManager;
     }
 
-    public bool HasASave()
+    public bool FirstTimePlaying()
     {
-        return Save == null;
+        return SaveManager.LoadList<Save>().Count == 0;
     }
 
     public void StartNewSave()
     {
         Save = new Save(PlayerStartingCharacter);
+        SaveManager.SaveData(Save);
+    }
+
+    public void LoadSave()
+    {
+        Save = SaveManager.LoadList<Save>().First();
     }
 
     public SpawnDomain GetSpawn()
@@ -52,20 +62,20 @@ public class GameSaveManager : MonoBehaviour
 
         SaveManager.SaveData(Save);
     }
-    
+
     public void SaveBattle(Battle battle)
     {
         Save.SelectedParty = PartyManager.Party.ToDictionary(p => p.Pawn.Id, p => p.Pawn.GetPawnInfo());
         Save.DefeatedEnemies.Add(battle.Id);
-        
+
         SaveManager.SaveData(Save);
     }
-    
+
     public bool ContainsBattle(string battleId)
     {
         return Save.DefeatedEnemies.Contains(battleId);
     }
-    
+
     public void SetParty(List<PawnFacade> newSelectedParty)
     {
         Save.SelectedParty = newSelectedParty.ToDictionary(p => p.Id, p => new PawnInfo(p.Id, 0));
@@ -81,7 +91,7 @@ public class GameSaveManager : MonoBehaviour
     {
         return Save.Blessings;
     }
-    
+
     public void SetBlessings()
     {
         Save.Blessings = BlessingManager.Blessings.Select(j => j.Identifier).ToList();
@@ -95,13 +105,12 @@ public class GameSaveManager : MonoBehaviour
             pawn.SetPawnInfo(pawnInfo);
         }
     }
-    
+
     public List<PawnFacade> GetAvailableParty()
     {
         return Save.AvailableParty.Select(id => ContentManager.GetPawnFacadeFromId(id)).ToList();
     }
-    
-    
+
     public void AddToAvailableParty(PawnData pawnData)
     {
         Save.AvailableParty.Add(pawnData.Id);

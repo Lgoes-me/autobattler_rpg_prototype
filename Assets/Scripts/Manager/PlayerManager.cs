@@ -3,11 +3,17 @@ using UnityEngine.AI;
 
 public class PlayerManager : MonoBehaviour
 {
-    [field: SerializeField] private GameSaveManager GameSaveManager { get; set; }
     [field: SerializeField] public PlayerController PlayerController { get; private set; }
     [field: SerializeField] public PawnController PawnController { get; private set; }
     [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
-   
+
+    private GameSaveManager GameSaveManager { get; set; }
+    
+    private void Start()
+    {
+        GameSaveManager = Application.Instance.GameSaveManager;
+    }
+
     public void SetNewPlayerPawn(Pawn pawn)
     {
         if(PawnController.transform.childCount > 0)

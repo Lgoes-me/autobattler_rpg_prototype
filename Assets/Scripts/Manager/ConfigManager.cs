@@ -2,13 +2,23 @@
 
 public class ConfigManager : MonoBehaviour
 {
-    [field: SerializeField] private SaveManager SaveManager { get; set; }
-    
     private Config Config { get; set; }
+    private SaveManager SaveManager { get; set; }
+
+    private void Start()
+    {
+        SaveManager = Application.Instance.SaveManager;
+    }
 
     public void Init()
     {
-        Config = SaveManager.LoadData<Config>() ?? new Config();
+        Config = SaveManager.LoadData<Config>();
+
+        if (Config == null)
+        {
+            Config = new Config();
+            SaveManager.SaveData(Config);
+        }
     }
 
     public LanguageType GetLanguage()

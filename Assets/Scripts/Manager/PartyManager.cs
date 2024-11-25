@@ -1,15 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PartyManager : MonoBehaviour
 {
     [field: SerializeField] private PawnController PawnControllerPrefab { get; set; }
-
-    [field: SerializeField] private PlayerManager PlayerManager { get; set; }
-    [field: SerializeField] private GameSaveManager GameSaveManager { get; set; }
-    [field: SerializeField] private InterfaceManager InterfaceManager { get; set; }
-    [field: SerializeField] private ContentManager ContentManager { get; set; }
 
     public List<PawnFacade> AvailableParty { get; private set; }
     public int PartySizeLimit { get; private set; }
@@ -17,6 +13,19 @@ public class PartyManager : MonoBehaviour
     public List<Archetype> Archetypes { get; private set; }
 
     private ArchetypeFactory ArchetypeFactory { get; set; }
+
+    private PlayerManager PlayerManager { get; set; }
+    private GameSaveManager GameSaveManager { get; set; }
+    private InterfaceManager InterfaceManager { get; set; }
+    private ContentManager ContentManager { get; set; }
+    
+    private void Start()
+    {
+        PlayerManager = Application.Instance.PlayerManager;
+        GameSaveManager = Application.Instance.GameSaveManager;
+        InterfaceManager = Application.Instance.InterfaceManager;
+        ContentManager = Application.Instance.ContentManager;
+    }
 
     public void Init()
     {
@@ -102,9 +111,9 @@ public class PartyManager : MonoBehaviour
         {
             var pawn = Party[index];
             var playerFollow = pawn.GetComponent<PlayerFollowController>();
-            
+
             playerFollow.StopFollow();
-            
+
             playerFollow.StartFollow(
                 index == 0 ? player : Party[index - 1],
                 transportToPlayer ? player.transform.position : Vector3.zero);
@@ -117,7 +126,7 @@ public class PartyManager : MonoBehaviour
         {
             var pawn = Party[index];
             var playerFollow = pawn.GetComponent<PlayerFollowController>();
-            
+
             playerFollow.StopFollow();
         }
     }
