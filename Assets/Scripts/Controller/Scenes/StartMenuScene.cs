@@ -19,13 +19,22 @@ public class StartMenuScene : BaseScene
     private void StartGame()
     {
         Application.Instance.GameSaveManager.StartNewSave();
+        
+        Application.Instance.PartyManager.GetAndSpawnAvailableParty();
+        Application.Instance.BlessingManager.GetBlessingsAndInitCanvas();
+        
         Application.Instance.SceneManager.StartGameIntro();
     }
 
     private void ContinueGame()
     {
         Application.Instance.GameSaveManager.LoadSave();
-        Application.Instance.SceneManager.SpawnPlayerAtWord();
+        
+        Application.Instance.PartyManager.GetAndSpawnAvailableParty();
+        Application.Instance.BlessingManager.GetBlessingsAndInitCanvas();
+        
+        var spawn =  Application.Instance.GameSaveManager.GetSpawn();
+        Application.Instance.SceneManager.UseDoorToChangeScene(spawn);
     }
 
     private void OpenSettings()

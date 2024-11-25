@@ -59,6 +59,10 @@ public class Application : MonoBehaviour
         if (GameSaveManager.FirstTimePlaying())
         {
             GameSaveManager.StartNewSave();
+            
+            PartyManager.GetAndSpawnAvailableParty();
+            BlessingManager.GetBlessingsAndInitCanvas();
+            
             SceneManager.StartGameIntro();
         }
         else

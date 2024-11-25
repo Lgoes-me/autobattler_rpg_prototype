@@ -9,15 +9,19 @@ public class BlessingManager
     private InterfaceManager InterfaceManager { get; set; }
     private GameSaveManager GameSaveManager { get; set; }
 
+    public BlessingManager()
+    {
+        BlessingFactory = new BlessingFactory();
+    }
+    
     public void Prepare()
     {
         InterfaceManager = Application.Instance.InterfaceManager;
         GameSaveManager = Application.Instance.GameSaveManager;
     }
 
-    public void Init()
+    public void GetBlessingsAndInitCanvas()
     {
-        BlessingFactory = new BlessingFactory();
         Blessings = GameSaveManager.GetBlessings().Select(j => BlessingFactory.CreateBlessing(j)).ToList();
         InterfaceManager.InitBlessingsCanvas(Blessings);
     }

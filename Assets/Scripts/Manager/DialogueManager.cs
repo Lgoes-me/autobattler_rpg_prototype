@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class DialogueManager : MonoBehaviour
@@ -9,17 +10,17 @@ public class DialogueManager : MonoBehaviour
 
     private Coroutine DialogueCoroutine { get; set; }
     
-    public void OpenDialogue(NpcController npcController, DialogueData dialogueData)
+    public void OpenDialogue(DialogueData dialogueData, Action callback)
     {
         if (DialogueCoroutine != null)
         {
             StopCoroutine(DialogueCoroutine);
         }
         
-        DialogueCoroutine = StartCoroutine(Read(npcController, dialogueData));
+        DialogueCoroutine = StartCoroutine(Read(dialogueData, callback));
     }
-
-    private IEnumerator Read(NpcController npcController, DialogueData dialogueData)
+    
+    private IEnumerator Read(DialogueData dialogueData, Action callback)
     {
         DialogueBoxItemController.Hide();
         OptionBoxItemController.Hide();
@@ -29,7 +30,7 @@ public class DialogueManager : MonoBehaviour
         yield return dialogueData.ReadDialogue(this);
         
         DialogueCanvas.SetActive(false);
-        npcController.Preselect();
+        callback();
     }
 
     public IEnumerator ShowText(Line line)

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -19,6 +20,15 @@ public class PartyManager : MonoBehaviour
     private InterfaceManager InterfaceManager { get; set; }
     private ContentManager ContentManager { get; set; }
 
+    private void Start()
+    {
+        PartySizeLimit = 8;
+        Party = new List<PawnController>();
+
+        Archetypes = new List<Archetype>();
+        ArchetypeFactory = new ArchetypeFactory();
+    }
+
     public void Prepare()
     {
         PlayerManager = Application.Instance.PlayerManager;
@@ -27,15 +37,9 @@ public class PartyManager : MonoBehaviour
         ContentManager = Application.Instance.ContentManager;
     }
 
-    public void Init()
+    public void GetAndSpawnAvailableParty()
     {
         AvailableParty = GameSaveManager.GetAvailableParty();
-        PartySizeLimit = 5;
-        Party = new List<PawnController>();
-
-        Archetypes = new List<Archetype>();
-        ArchetypeFactory = new ArchetypeFactory();
-
         SpawnSelectedPawns();
     }
 

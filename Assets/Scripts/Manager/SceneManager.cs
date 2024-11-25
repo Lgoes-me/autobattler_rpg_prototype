@@ -29,34 +29,18 @@ public class SceneManager : MonoBehaviour
 
         task.completed += _ =>
         {
-            //var roomScene = FindObjectOfType<StartMenuScene>();
+            var roomScene = FindObjectOfType<StartMenuScene>();
         };
     }
 
     public void StartGameIntro()
     {
-        //Cutscene
-        SpawnPlayerAtWord();
-    }
-
-    public void SpawnPlayerAtWord()
-    {
-        PartyManager.Init();
-        BlessingManager.Init();
-
-        var spawn = GameSaveManager.GetSpawn();
-
-        var task = UnitySceneManager.LoadSceneAsync(spawn.SceneName, LoadSceneMode.Single);
+        var task = UnitySceneManager.LoadSceneAsync("DungeonCutscene", LoadSceneMode.Single);
 
         task.completed += _ =>
         {
-            var roomScene = FindObjectOfType<RoomScene>();
-            roomScene.ActivateRoomScene();
-            roomScene.SpawnPlayerAt(spawn.Id);
-
-            PartyManager.SetPartyToFollow(true);
-            AudioManager.PlayMusic(roomScene.Music);
-            InterfaceManager.ShowBattleCanvas();
+            var cutsceneScene = FindObjectOfType<CutsceneScene>();
+            cutsceneScene.Init();
         };
     }
 
@@ -74,6 +58,7 @@ public class SceneManager : MonoBehaviour
             PartyManager.SetPartyToFollow(true);
             AudioManager.PlayMusic(roomScene.Music);
 
+            InterfaceManager.ShowBattleCanvas();
             GameSaveManager.SetSpawn(spawn);
         };
     }

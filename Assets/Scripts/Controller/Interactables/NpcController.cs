@@ -13,7 +13,7 @@ public class NpcController : InteractableController
     
     protected override void InternalSelect()
     {
-        Application.Instance.DialogueManager.OpenDialogue(this, Dialogue);
+        Application.Instance.DialogueManager.OpenDialogue(Dialogue, Preselect);
     }
     
     protected override void InternalUnSelect()
