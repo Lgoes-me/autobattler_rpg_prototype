@@ -8,8 +8,8 @@ public class PlayerManager : MonoBehaviour
     [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
 
     private GameSaveManager GameSaveManager { get; set; }
-    
-    private void Start()
+
+    public void Prepare()
     {
         GameSaveManager = Application.Instance.GameSaveManager;
     }

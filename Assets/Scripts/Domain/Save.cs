@@ -24,15 +24,17 @@ public class Save : ISavable
         Dialogues = new List<string>();
     }
 
-    public Save(PawnData startingPlayer)
+    public Save CreateNewSaveForIntro()
     {
         Id = $"{Guid.NewGuid()}.json";
         Spawn = new SpawnDomain("DungeonEntrance", "DungeonEntrance");
         LastBonfireSpawn = new SpawnDomain("DungeonEntrance", "DungeonEntrance");
-        SelectedParty = new Dictionary<string, PawnInfo> {{startingPlayer.name, new PawnInfo(startingPlayer.name, 0)}};
+        SelectedParty = new Dictionary<string, PawnInfo> {{"Guts", new PawnInfo("Guts", 0)}};
         DefeatedEnemies = new List<string>();
         Blessings = new List<BlessingIdentifier>() {BlessingIdentifier.OnAttackHeal};
         AvailableParty = new List<string> {"Guts", "Hunter"};
         Dialogues = new List<string>();
+
+        return this;
     }
 }

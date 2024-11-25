@@ -18,8 +18,8 @@ public class PartyManager : MonoBehaviour
     private GameSaveManager GameSaveManager { get; set; }
     private InterfaceManager InterfaceManager { get; set; }
     private ContentManager ContentManager { get; set; }
-    
-    private void Start()
+
+    public void Prepare()
     {
         PlayerManager = Application.Instance.PlayerManager;
         GameSaveManager = Application.Instance.GameSaveManager;

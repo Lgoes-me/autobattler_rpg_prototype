@@ -9,7 +9,7 @@ public class InputManager : MonoBehaviour
     private Coroutine Coroutine { get; set; }
     private PlayerManager PlayerManager { get; set; }
 
-    private void Start()
+    public void Prepare()
     {
         PlayerManager = Application.Instance.PlayerManager;
     }

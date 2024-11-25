@@ -1,11 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
-public class GameSaveManager : MonoBehaviour
+public class GameSaveManager
 {
-    [field: SerializeField] private PawnData PlayerStartingCharacter { get; set; }
-
     private Save Save { get; set; }
 
     private ContentManager ContentManager { get; set; }
@@ -13,7 +10,7 @@ public class GameSaveManager : MonoBehaviour
     private PartyManager PartyManager { get; set; }
     private SaveManager SaveManager { get; set; }
 
-    private void Start()
+    public void Prepare()
     {
         ContentManager = Application.Instance.ContentManager;
         BlessingManager = Application.Instance.BlessingManager;
@@ -28,7 +25,9 @@ public class GameSaveManager : MonoBehaviour
 
     public void StartNewSave()
     {
-        Save = new Save(PlayerStartingCharacter);
+        Save = new Save();
+        Save.CreateNewSaveForIntro();
+        
         SaveManager.SaveData(Save);
     }
 

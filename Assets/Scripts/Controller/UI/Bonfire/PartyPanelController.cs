@@ -12,7 +12,7 @@ public class PartyPanelController : MonoBehaviour, IBonfirePanel
     private PartyManager PartyManager { get; set; }
     private BonfireScene BonfireScene { get; set; }
     private List<FriendItemController> PartyItems { get; set; }
-    
+
     public List<PawnFacade> Party => PartyItems.Select(f => f.Pawn).ToList();
 
     public void Init(PartyManager partyManager, BonfireScene bonfireScene)
@@ -24,24 +24,25 @@ public class PartyPanelController : MonoBehaviour, IBonfirePanel
         foreach (var pawnController in PartyManager.Party)
         {
             var pawnData = PartyManager.AvailableParty.First(p => pawnController.Pawn.Id == p.Id);
-            var item = Instantiate(FriendItemPrefab, Content).Init(pawnData, bonfireScene, this, FriendItemState.Active);
+            var item = Instantiate(FriendItemPrefab, Content)
+                .Init(pawnData, bonfireScene, this, FriendItemState.Active);
             PartyItems.Add(item);
         }
 
         PartyDivider.gameObject.SetActive(false);
     }
-    
+
     public void OnClick(FriendItemController friendItemController)
     {
         BonfireScene.Select(friendItemController.Pawn);
     }
-    
+
     public void OnPick(FriendItemController friendItemController)
     {
         BonfireScene.Select(friendItemController.Pawn);
 
         PartyDivider.gameObject.SetActive(true);
-        
+
         PartyItems.Remove(friendItemController);
         friendItemController.transform.SetParent(transform.parent);
 
@@ -54,7 +55,9 @@ public class PartyPanelController : MonoBehaviour, IBonfirePanel
     public void OnHover(FriendItemController friendItemController)
     {
         var under = PartyItems.FirstOrDefault(i => i.transform.position.y <= Input.mousePosition.y);
-        PartyDivider.SetSiblingIndex(under != null ? Mathf.Clamp(under.transform.GetSiblingIndex() - 1, 0, PartyItems.Count) : PartyItems.Count);
+        PartyDivider.SetSiblingIndex(under != null
+            ? Mathf.Clamp(under.transform.GetSiblingIndex() - 1, 0, PartyItems.Count)
+            : PartyItems.Count);
     }
 
     public bool CanDrop()
@@ -65,20 +68,22 @@ public class PartyPanelController : MonoBehaviour, IBonfirePanel
     public void OnDrop(FriendItemController friendItemController)
     {
         PartyDivider.gameObject.SetActive(false);
-        
+
         var under = PartyItems.FirstOrDefault(i => i.transform.position.y <= Input.mousePosition.y);
-        var index = under != null ? Mathf.Clamp(under.transform.GetSiblingIndex() - 1, 0, PartyItems.Count) : PartyItems.Count;
-        
+        var index = under != null
+            ? Mathf.Clamp(under.transform.GetSiblingIndex() - 1, 0, PartyItems.Count)
+            : PartyItems.Count;
+
         friendItemController.transform.SetParent(Content);
         friendItemController.transform.SetSiblingIndex(index);
-        
+
         PartyItems.Insert(index, friendItemController);
-        
+
         BonfireScene.SaveChanges();
 
         if (PartyItems.Count > 1)
         {
-            PartyItems.First(i => i.State == FriendItemState.Inactive).ChangeState(FriendItemState.Active);
+            PartyItems.FirstOrDefault(i => i.State == FriendItemState.Inactive)?.ChangeState(FriendItemState.Active);
         }
 
         BonfireScene.Unselect();

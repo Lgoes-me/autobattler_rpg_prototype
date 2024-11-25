@@ -52,8 +52,7 @@ public class AudioManager : MonoBehaviour
 
         if (MusicCoroutine != null)
             StopCoroutine(MusicCoroutine);
-        
-        
+
         MusicCoroutine = StartCoroutine(MusicLoopCoroutine(music));
     }
 

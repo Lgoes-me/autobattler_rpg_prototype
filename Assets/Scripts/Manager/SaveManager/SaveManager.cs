@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Diagnostics;
-using UnityEngine;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -11,17 +10,17 @@ using UnityEditor;
 
 // ReSharper disable MemberCanBePrivate.Global
 
-public class SaveManager : MonoBehaviour
+public class SaveManager
 {
     private static string Folder => UnityEngine.Application.persistentDataPath;
     private static string BaseSavePath => Path.Combine(Folder, "Save");
 
-    private void Awake()
+    public SaveManager()
     {
-        if (!Directory.Exists(BaseSavePath))
-        {
-            Directory.CreateDirectory(BaseSavePath);
-        }
+        if (Directory.Exists(BaseSavePath)) 
+            return;
+        
+        Directory.CreateDirectory(BaseSavePath);
     }
     
     //Open folder

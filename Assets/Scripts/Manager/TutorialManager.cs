@@ -1,11 +1,9 @@
-﻿using UnityEngine;
-
-public class TutorialManager : MonoBehaviour
+﻿public class TutorialManager
 {
     private Tutorial Tutorial { get; set; }
     private SaveManager SaveManager { get; set; }
 
-    private void Start()
+    public void Prepare()
     {
         SaveManager = Application.Instance.SaveManager;
     }

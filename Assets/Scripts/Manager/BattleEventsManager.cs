@@ -1,11 +1,9 @@
-using UnityEngine;
-
-public class BattleEventsManager : MonoBehaviour
+public class BattleEventsManager
 {
     private BlessingManager BlessingManager { get; set; }
     private PartyManager PartyManager { get; set; }
 
-    private void Start()
+    public void Prepare()
     {
         BlessingManager = Application.Instance.BlessingManager;
         PartyManager = Application.Instance.PartyManager;

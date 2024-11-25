@@ -141,6 +141,7 @@ public class BattleController : MonoBehaviour
 
         Application.Instance.AudioManager.PlayMusic(roomScene.Music);
         Application.Instance.PlayerManager.PlayerToWorld();
+        Application.Instance.PartyManager.SetPartyToFollow(false);
         Application.Instance.GameSaveManager.SaveBattle(Battle);
     }
 }

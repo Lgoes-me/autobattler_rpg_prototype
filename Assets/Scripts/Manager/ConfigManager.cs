@@ -1,11 +1,9 @@
-﻿using UnityEngine;
-
-public class ConfigManager : MonoBehaviour
+﻿public class ConfigManager
 {
     private Config Config { get; set; }
     private SaveManager SaveManager { get; set; }
 
-    private void Start()
+    public void Prepare()
     {
         SaveManager = Application.Instance.SaveManager;
     }

@@ -12,8 +12,8 @@ public class SceneManager : MonoBehaviour
     private PartyManager PartyManager { get; set; }
     private BlessingManager BlessingManager { get; set; }
     private AudioManager AudioManager { get; set; }
-    
-    private void Start()
+
+    public void Prepare()
     {
         InterfaceManager = Application.Instance.InterfaceManager;
         GameSaveManager = Application.Instance.GameSaveManager;
@@ -35,12 +35,11 @@ public class SceneManager : MonoBehaviour
 
     public void StartGameIntro()
     {
-        GameSaveManager.StartNewSave();
         //Cutscene
-        StartGame();
+        SpawnPlayerAtWord();
     }
 
-    public void StartGame()
+    public void SpawnPlayerAtWord()
     {
         PartyManager.Init();
         BlessingManager.Init();

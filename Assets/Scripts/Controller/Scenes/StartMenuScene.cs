@@ -18,13 +18,14 @@ public class StartMenuScene : BaseScene
 
     private void StartGame()
     {
+        Application.Instance.GameSaveManager.StartNewSave();
         Application.Instance.SceneManager.StartGameIntro();
     }
 
     private void ContinueGame()
     {
         Application.Instance.GameSaveManager.LoadSave();
-        Application.Instance.SceneManager.StartGame();
+        Application.Instance.SceneManager.SpawnPlayerAtWord();
     }
 
     private void OpenSettings()

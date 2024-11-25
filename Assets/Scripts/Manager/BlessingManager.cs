@@ -1,16 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
-public class BlessingManager : MonoBehaviour
+public class BlessingManager
 {
     public List<Blessing> Blessings { get; private set; }
     private BlessingFactory BlessingFactory { get; set; }
 
     private InterfaceManager InterfaceManager { get; set; }
     private GameSaveManager GameSaveManager { get; set; }
-    
-    private void Start()
+
+    public void Prepare()
     {
         InterfaceManager = Application.Instance.InterfaceManager;
         GameSaveManager = Application.Instance.GameSaveManager;
