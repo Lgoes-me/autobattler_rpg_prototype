@@ -42,14 +42,13 @@ public class Application : MonoBehaviour
         PartyManager.Init();
         BlessingManager.Init();
 
-        if (TutorialManager.CompletedOnboard())
+        if (GameSaveManager.HasASave())
         {
             SceneManager.StartGameMenu();
         }
         else
         {
             SceneManager.StartGameIntro();
-            //SceneManager.StartGame();
         }
     }
 }

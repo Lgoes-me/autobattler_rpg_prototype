@@ -14,7 +14,17 @@ public class GameSaveManager : MonoBehaviour
 
     public void Init()
     {
-        Save = SaveManager.LoadData<Save>() ?? new Save(PlayerStartingCharacter);
+        Save = SaveManager.LoadData<Save>();
+    }
+
+    public bool HasASave()
+    {
+        return Save == null;
+    }
+
+    public void StartNewSave()
+    {
+        Save = new Save(PlayerStartingCharacter);
     }
 
     public SpawnDomain GetSpawn()

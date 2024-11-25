@@ -24,8 +24,8 @@ public class SceneManager : MonoBehaviour
     
     public void StartGameIntro()
     {
-        //Custece
-        //then start game
+        GameSaveManager.StartNewSave();
+        //Cutscene
         StartGame();
     }
     
