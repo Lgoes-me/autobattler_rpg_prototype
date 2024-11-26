@@ -3,19 +3,13 @@ using System.Linq;
 using UnityEngine;
 
 [System.Serializable]
-public class Pawn
+public class Pawn : BasePawn
 {
-    public string Id { get; private set; }
-    
     public int MaxHealth { get; internal set; }
     public int Health { get; internal set; }
 
     public int MaxMana { get; internal set; }
     public int Mana { get;  private set; }
-    
-    public CharacterController Character { get; }
-    public WeaponController Weapon { get; }
-    
     private Stats Stats { get; }
     
     private List<AbilityData> Abilities { get; }
@@ -44,15 +38,13 @@ public class Pawn
         List<AbilityData> abilities,
         List<AbilityData> specialAbilities, 
         List<ArchetypeIdentifier> archetypes,
-        TeamType team)
+        TeamType team,
+        List<CharacterInfo> characterInfos) : base(id, character, weapon, characterInfos)
     {
-        Id = id;
         MaxHealth = health;
         Health = health;
         MaxMana = mana;
         Mana = 0;
-        Character = character;
-        Weapon = weapon;
         Stats = stats;
 
         Abilities = abilities;

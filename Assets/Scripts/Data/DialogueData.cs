@@ -12,10 +12,12 @@ public class DialogueData : ScriptableObject
 
     public IEnumerator ReadDialogue(DialogueManager dialogueManager)
     {
+        var pawn = Pawn.ToBaseDomain();
+        
         yield return DialogueVariation
             .First(d => d.Language == Application.Instance.ConfigManager.GetLanguage())
             .Dialogue
-            .ReadDialogue(dialogueManager, Pawn);
+            .ReadDialogue(dialogueManager, pawn);
     }
 }
 

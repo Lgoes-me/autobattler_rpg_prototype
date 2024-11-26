@@ -26,3 +26,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6f2f2b76df349c2438a94b852a1ecfd4, type: 2}
   <SpecialAbilities>k__BackingField: []
   <Archetypes>k__BackingField: 01000000
+  <CharacterInfos>k__BackingField:
+  - <Identifier>k__BackingField: default
+    <Portrait>k__BackingField: {fileID: 0}
+    <Audio>k__BackingField:
+      <Type>k__BackingField: 2
+      <Sounds>k__BackingField: []

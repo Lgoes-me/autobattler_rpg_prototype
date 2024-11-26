@@ -8,7 +8,7 @@ public class PartyManager : MonoBehaviour
 {
     [field: SerializeField] private PawnController PawnControllerPrefab { get; set; }
 
-    public List<PawnFacade> AvailableParty { get; private set; }
+    public List<BasePawn> AvailableParty { get; private set; }
     public int PartySizeLimit { get; private set; }
     public List<PawnController> Party { get; private set; }
     public List<Archetype> Archetypes { get; private set; }
@@ -45,7 +45,7 @@ public class PartyManager : MonoBehaviour
 
     private void SpawnSelectedPawns()
     {
-        var selectedPawns = new List<PawnFacade>();
+        var selectedPawns = new List<BasePawn>();
 
         foreach (var (pawnId, _) in GameSaveManager.GetSelectedParty())
         {
@@ -65,7 +65,7 @@ public class PartyManager : MonoBehaviour
 
         Party.Clear();
 
-        var playerPawn = ContentManager.GetPawnDomainFromFacade(selectedPawns[0]);
+        var playerPawn = ContentManager.GetPawnDomainFromBase(selectedPawns[0]);
         PlayerManager.SetNewPlayerPawn(playerPawn);
         Party.Add(PlayerManager.PawnController);
 
@@ -76,7 +76,7 @@ public class PartyManager : MonoBehaviour
             var pawnInstance = Instantiate(PawnControllerPrefab, playerPosition + randomRotation, Quaternion.identity,
                 transform);
 
-            var pawn = ContentManager.GetPawnDomainFromFacade(selectedPawns[index]);
+            var pawn = ContentManager.GetPawnDomainFromBase(selectedPawns[index]);
             GameSaveManager.ApplyPawnInfo(pawn);
 
             pawnInstance.Init(pawn);
@@ -101,7 +101,7 @@ public class PartyManager : MonoBehaviour
         InterfaceManager.InitArchetypesCanvas(Archetypes);
     }
 
-    public void SetSelectedParty(List<PawnFacade> newSelectedParty)
+    public void SetSelectedParty(List<BasePawn> newSelectedParty)
     {
         GameSaveManager.SetParty(newSelectedParty);
         SpawnSelectedPawns();

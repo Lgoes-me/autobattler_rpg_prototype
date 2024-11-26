@@ -8,6 +8,9 @@ public abstract class Buff
 
     protected float Duration { get; set; }
     private float StartingTime { get; set; }
+    
+    public int Priority { get; set; }
+    public string CharacterInfoIdentifier { get; set; }
 
     protected Buff(string id, float duration)
     {

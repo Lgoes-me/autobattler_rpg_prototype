@@ -24,6 +24,8 @@ public class ProfileCanvasController : PawnCanvasController
         BuffItems = new List<BuffItemController>();
         Name.SetText(Pawn.Id);
         CanvasGroup.alpha = 0.5f;
+        
+        UpdateProfile("default");
     }
 
     public void StartBattle()
@@ -33,6 +35,8 @@ public class ProfileCanvasController : PawnCanvasController
         {
             SpecialButtons.Add(Instantiate(SpecialButtonPrefab, SpecialButtonsParent).Init(Pawn, ability));
         }
+
+        UpdateProfile("battle");
     }
 
     public void EndBattle()
@@ -44,6 +48,8 @@ public class ProfileCanvasController : PawnCanvasController
             Destroy(specialButton.gameObject);
         }
 
+        UpdateProfile("default");
+        
         SpecialButtons.Clear();
         HideMana();
     }
@@ -69,14 +75,34 @@ public class ProfileCanvasController : PawnCanvasController
 
         BuffItems.Clear();
 
-        foreach (var (key, buff) in Pawn.Buffs)
+        var buffIdentifier = "default";
+        var buffPriority = 0;
+        
+        foreach (var (_, buff) in Pawn.Buffs)
         {
+            if (buff.Priority > buffPriority)
+            {
+                buffIdentifier = buff.CharacterInfoIdentifier;
+                buffPriority = buff.Priority;
+            }
+            
             BuffItems.Add(Instantiate(BuffItemPrefab, BuffsParent).Init(buff));
         }
+        
+        UpdateProfile(buffIdentifier);
     }
 
     protected override void Death()
     {
+        UpdateProfile("death");
         EndBattle();
+    }
+
+    private void UpdateProfile(string identificador)
+    {
+        var info = Pawn.GetCharacterInfo(identificador);
+            
+        ProfilePicture.sprite = info.Portrait;
+        Application.Instance.AudioManager.PlaySfx(info.Audio);
     }
 }

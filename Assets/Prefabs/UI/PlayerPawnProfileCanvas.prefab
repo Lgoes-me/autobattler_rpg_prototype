@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3773585, g: 0.3773585, b: 0.3773585, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -343,6 +343,7 @@ MonoBehaviour:
   <CanvasGroup>k__BackingField: {fileID: 2164563045219888889}
   <SpecialButtonPrefab>k__BackingField: {fileID: 7887012259483403010, guid: 0920af9f0dd56fd4a8281d7b0bce180f, type: 3}
   <BuffItemPrefab>k__BackingField: {fileID: 7122821440175886598, guid: 806719620c770714a8e805152fdd31c8, type: 3}
+  <ProfilePicture>k__BackingField: {fileID: 6748113670182405019}
   <Name>k__BackingField: {fileID: 254830307986349657}
   <BuffsParent>k__BackingField: {fileID: 5130302016822632991}
   <SpecialButtonsParent>k__BackingField: {fileID: 6435343129379206763}
@@ -476,7 +477,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -493,14 +494,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42.85
+  m_fontSize: 18
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0

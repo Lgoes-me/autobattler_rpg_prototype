@@ -75,7 +75,7 @@ public class GameSaveManager
         return Save.DefeatedEnemies.Contains(battleId);
     }
 
-    public void SetParty(List<PawnFacade> newSelectedParty)
+    public void SetParty(List<BasePawn> newSelectedParty)
     {
         Save.SelectedParty = newSelectedParty.ToDictionary(p => p.Id, p => new PawnInfo(p.Id, 0));
         SaveManager.SaveData(Save);
@@ -105,9 +105,9 @@ public class GameSaveManager
         }
     }
 
-    public List<PawnFacade> GetAvailableParty()
+    public List<BasePawn> GetAvailableParty()
     {
-        return Save.AvailableParty.Select(id => ContentManager.GetPawnFacadeFromId(id)).ToList();
+        return Save.AvailableParty.Select(id => ContentManager.GetBasePawnFromId(id)).ToList();
     }
 
     public void AddToAvailableParty(PawnData pawnData)

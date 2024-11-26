@@ -6,13 +6,13 @@ public class ContentManager : MonoBehaviour
 {
     [field: SerializeField] private List<PawnData> AvailablePawns { get; set; }
 
-    public PawnFacade GetPawnFacadeFromId(string id)
+    public BasePawn GetBasePawnFromId(string id)
     {
-        return AvailablePawns.First(p => p.Id == id).ToFacade();
+        return AvailablePawns.First(p => p.Id == id).ToBaseDomain();
     }
     
-    public Pawn GetPawnDomainFromFacade(PawnFacade facade)
+    public Pawn GetPawnDomainFromBase(BasePawn basePawn)
     {
-        return AvailablePawns.First(p => p.Id == facade.Id).ToDomain(TeamType.Player);
+        return AvailablePawns.First(p => p.Id == basePawn.Id).ToDomain(TeamType.Player);
     }
 }

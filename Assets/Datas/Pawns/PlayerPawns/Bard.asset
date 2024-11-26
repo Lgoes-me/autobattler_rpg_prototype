@@ -30,10 +30,10 @@ MonoBehaviour:
   - <Identifier>k__BackingField: default
     <Portrait>k__BackingField: {fileID: 769246717, guid: e80992e1c20f3364ba17d11a4a9da45e, type: 3}
     <Audio>k__BackingField:
-      <Type>k__BackingField: 1
+      <Type>k__BackingField: 2
       <Sounds>k__BackingField: []
   - <Identifier>k__BackingField: teste
     <Portrait>k__BackingField: {fileID: 27585906, guid: c5b8e41f96064fd43beeda70d9853e9e, type: 3}
     <Audio>k__BackingField:
-      <Type>k__BackingField: 1
+      <Type>k__BackingField: 2
       <Sounds>k__BackingField: []

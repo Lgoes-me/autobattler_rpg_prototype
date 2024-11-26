@@ -9,7 +9,7 @@ public class SkippableDialogue : IDialogue
     [field: SerializeField] public string Id { get; set; }
     [field: SerializeReference] [field: SerializeField] private List<IDialogue> Lines { get; set; }
     
-    public IEnumerator ReadDialogue(DialogueManager dialogueManager, PawnData pawn)
+    public IEnumerator ReadDialogue(DialogueManager dialogueManager, BasePawn pawn)
     {
         if (Application.Instance.GameSaveManager.HasReadDialogue(Id))
         {

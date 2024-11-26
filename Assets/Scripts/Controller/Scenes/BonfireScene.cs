@@ -39,9 +39,9 @@ public class BonfireScene : BaseScene
         BonfireController.Preselect();
     }
 
-    public void Select(PawnFacade pawn)
+    public void Select(BasePawn basePawn)
     {
-        ProfilePanel.Select(pawn);
+        ProfilePanel.Select(basePawn);
     }
 
     public void Unselect()

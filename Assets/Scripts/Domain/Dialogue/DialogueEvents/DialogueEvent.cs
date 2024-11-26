@@ -2,5 +2,5 @@
 
 public abstract class DialogueEvent : IDialogue
 {
-    public abstract IEnumerator ReadDialogue(DialogueManager dialogueManager, PawnData pawn);
+    public abstract IEnumerator ReadDialogue(DialogueManager dialogueManager, BasePawn pawn);
 }

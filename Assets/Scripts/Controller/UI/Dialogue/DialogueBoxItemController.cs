@@ -11,7 +11,7 @@ public class DialogueBoxItemController : MonoBehaviour
 
     public bool CanContinue { get; private set; }
     
-    public DialogueBoxItemController Init(Line line, PawnData pawn)
+    public DialogueBoxItemController Init(Line line, BasePawn pawn)
     {
         gameObject.SetActive(true);
         CanContinue = false;
@@ -21,9 +21,8 @@ public class DialogueBoxItemController : MonoBehaviour
 
         if (!string.IsNullOrWhiteSpace(line.CharacterInfoIdentifier))
         {
-            var info = pawn.CharacterInfos.FirstOrDefault(i => i.Identifier == line.CharacterInfoIdentifier) ??
-                       pawn.CharacterInfos.First(i => i.Identifier == "default");
-
+            var info = pawn.GetCharacterInfo(line.CharacterInfoIdentifier);
+            
             Picture.sprite = info.Portrait;
             Application.Instance.AudioManager.PlaySfx(info.Audio);
         }
