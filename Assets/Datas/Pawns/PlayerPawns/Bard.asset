@@ -26,3 +26,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 80d0f901567ce6047847c53227bc72a9, type: 2}
   <SpecialAbilities>k__BackingField: []
   <Archetypes>k__BackingField: 01000000
+  <CharacterInfos>k__BackingField:
+  - <Identifier>k__BackingField: default
+    <Portrait>k__BackingField: {fileID: 769246717, guid: e80992e1c20f3364ba17d11a4a9da45e, type: 3}
+    <Audio>k__BackingField:
+      <Type>k__BackingField: 1
+      <Sounds>k__BackingField: []
+  - <Identifier>k__BackingField: teste
+    <Portrait>k__BackingField: {fileID: 27585906, guid: c5b8e41f96064fd43beeda70d9853e9e, type: 3}
+    <Audio>k__BackingField:
+      <Type>k__BackingField: 1
+      <Sounds>k__BackingField: []

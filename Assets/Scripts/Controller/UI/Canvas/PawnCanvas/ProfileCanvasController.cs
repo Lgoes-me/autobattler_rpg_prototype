@@ -1,13 +1,15 @@
 ﻿using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ProfileCanvasController : PawnCanvasController
 {
     [field: SerializeField] private CanvasGroup CanvasGroup { get; set; }
     [field: SerializeField] private ButtonItemController SpecialButtonPrefab { get; set; }
     [field: SerializeField] private BuffItemController BuffItemPrefab { get; set; }
-
+    
+    [field: SerializeField] private Image ProfilePicture { get; set; }
     [field: SerializeField] private TextMeshProUGUI Name { get; set; }
     [field: SerializeField] private Transform BuffsParent { get; set; }
     [field: SerializeField] private Transform SpecialButtonsParent { get; set; }

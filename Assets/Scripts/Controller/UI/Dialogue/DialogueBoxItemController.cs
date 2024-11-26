@@ -1,4 +1,4 @@
-using System;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,16 +7,26 @@ public class DialogueBoxItemController : MonoBehaviour
 {
     [field: SerializeField] private TextMeshProUGUI TextMesh { get; set; }
     [field: SerializeField] private Button ContinueButton { get; set; }
+    [field: SerializeField] private Image Picture { get; set; }
 
     public bool CanContinue { get; private set; }
     
-    public DialogueBoxItemController Init(Line line)
+    public DialogueBoxItemController Init(Line line, PawnData pawn)
     {
         gameObject.SetActive(true);
         CanContinue = false;
         
         TextMesh.SetText(line.Text);
         ContinueButton.onClick.AddListener(() => CanContinue = true);
+
+        if (!string.IsNullOrWhiteSpace(line.CharacterInfoIdentifier))
+        {
+            var info = pawn.CharacterInfos.FirstOrDefault(i => i.Identifier == line.CharacterInfoIdentifier) ??
+                       pawn.CharacterInfos.First(i => i.Identifier == "default");
+
+            Picture.sprite = info.Portrait;
+            Application.Instance.AudioManager.PlaySfx(info.Audio);
+        }
 
         return this;
     }

@@ -35,7 +35,7 @@ public class DialogueManager : MonoBehaviour
 
     public IEnumerator ShowText(Line line, PawnData pawnData)
     {
-        DialogueBoxItemController.Init(line);
+        DialogueBoxItemController.Init(line, pawnData);
         yield return new WaitUntil(() => DialogueBoxItemController.CanContinue);
         DialogueBoxItemController.Hide();
     }

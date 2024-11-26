@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4daecf96b9e460fba37aa4e87f58092, type: 3}
   m_Name: TesteCutscene
   m_EditorClassIdentifier: 
+  <Pawn>k__BackingField: {fileID: 11400000, guid: 41bae653165f78748b456c8346ffda6c, type: 2}
   <DialogueVariation>k__BackingField:
   - <Language>k__BackingField: 1
     <Dialogue>k__BackingField:
@@ -29,7 +30,9 @@ MonoBehaviour:
       type: {class: Line, ns: , asm: Assembly-CSharp}
       data:
         <Text>k__BackingField: Era uma vez...
+        <CharacterInfoIdentifier>k__BackingField: default
     - rid: 5882033753707511810
       type: {class: Line, ns: , asm: Assembly-CSharp}
       data:
         <Text>k__BackingField: Em uma dungeon...
+        <CharacterInfoIdentifier>k__BackingField: teste

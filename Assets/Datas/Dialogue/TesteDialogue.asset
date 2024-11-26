@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4daecf96b9e460fba37aa4e87f58092, type: 3}
   m_Name: TesteDialogue
   m_EditorClassIdentifier: 
+  <Pawn>k__BackingField: {fileID: 11400000, guid: 41bae653165f78748b456c8346ffda6c, type: 2}
   <DialogueVariation>k__BackingField:
   - <Language>k__BackingField: 1
     <Dialogue>k__BackingField:
@@ -29,6 +30,7 @@ MonoBehaviour:
       type: {class: Line, ns: , asm: Assembly-CSharp}
       data:
         <Text>k__BackingField: Oi
+        <CharacterInfoIdentifier>k__BackingField: default
     - rid: 5882033611665833987
       type: {class: DialogueOptions, ns: , asm: Assembly-CSharp}
       data:
@@ -55,6 +57,7 @@ MonoBehaviour:
       type: {class: Line, ns: , asm: Assembly-CSharp}
       data:
         <Text>k__BackingField: Cuidado com suas escolhas
+        <CharacterInfoIdentifier>k__BackingField: 
     - rid: 5882033611665833994
       type: {class: SkippableDialogue, ns: , asm: Assembly-CSharp}
       data:
@@ -66,10 +69,12 @@ MonoBehaviour:
       type: {class: Line, ns: , asm: Assembly-CSharp}
       data:
         <Text>k__BackingField: Qualquer coisa estou aqui
+        <CharacterInfoIdentifier>k__BackingField: 
     - rid: 5882033611665833996
       type: {class: Line, ns: , asm: Assembly-CSharp}
       data:
         <Text>k__BackingField: "N\xE3o seja arrogante"
+        <CharacterInfoIdentifier>k__BackingField: 
     - rid: 5882033611665834000
       type: {class: Dialogue, ns: , asm: Assembly-CSharp}
       data:
@@ -80,6 +85,7 @@ MonoBehaviour:
       type: {class: Line, ns: , asm: Assembly-CSharp}
       data:
         <Text>k__BackingField: "Certo ent\xE3o"
+        <CharacterInfoIdentifier>k__BackingField: 
     - rid: 5882033611665834002
       type: {class: AddFriendDialogueEvent, ns: , asm: Assembly-CSharp}
       data:

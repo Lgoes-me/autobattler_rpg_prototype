@@ -28,6 +28,9 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySfx(Sfx sfx)
     {
+        if(sfx.Sounds.Count == 0)
+            return;
+        
         var sound = sfx.Sounds[Random.Range(0, sfx.Sounds.Count)];
         SfxAudioSource.pitch = Random.Range(0.9f, 1.15f);
         SfxAudioSource.PlayOneShot(sound);

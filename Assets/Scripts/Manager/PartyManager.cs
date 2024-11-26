@@ -20,7 +20,7 @@ public class PartyManager : MonoBehaviour
     private InterfaceManager InterfaceManager { get; set; }
     private ContentManager ContentManager { get; set; }
 
-    private void Start()
+    private void Awake()
     {
         PartySizeLimit = 8;
         Party = new List<PawnController>();
