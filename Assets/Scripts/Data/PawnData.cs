@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
@@ -13,6 +14,7 @@ public class PawnData : ScriptableObject
     [field: SerializeField] private List<AbilityData> Abilities { get; set; }
     [field: SerializeField] private List<AbilityData> SpecialAbilities { get; set; }
     [field: SerializeField] private List<ArchetypeIdentifier> Archetypes { get; set; }
+    [field: SerializeField] public List<CharacterInfo> CharacterInfos { get; private set; }
 
     public Pawn ToDomain(TeamType team)
     {
@@ -46,4 +48,12 @@ public class PawnData : ScriptableObject
 
         Id = name;
     }
+}
+
+[Serializable]
+public class CharacterInfo
+{
+    [field:SerializeField] public string Identifier { get; set; }
+    [field:SerializeField] public Sprite Portrait { get; set; }
+    [field:SerializeField] public Sfx Audio { get; set; }
 }

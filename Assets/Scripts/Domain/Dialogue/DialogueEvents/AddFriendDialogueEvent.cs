@@ -7,7 +7,7 @@ public class AddFriendDialogueEvent : DialogueEvent
 {
     [field: SerializeField] private PawnData PawnData { get; set; }
     
-    public override IEnumerator ReadDialogue(DialogueManager dialogueManager)
+    public override IEnumerator ReadDialogue(DialogueManager dialogueManager, PawnData pawn)
     {
         Application.Instance.PartyManager.AddToAvailableParty(PawnData);
         yield return null;

@@ -23,6 +23,11 @@ public class AudioManager : MonoBehaviour
         if (sfx == null)
             throw new Exception($"som do tipo: {type} não cadastrado");
         
+        PlaySfx(sfx);
+    }
+
+    public void PlaySfx(Sfx sfx)
+    {
         var sound = sfx.Sounds[Random.Range(0, sfx.Sounds.Count)];
         SfxAudioSource.pitch = Random.Range(0.9f, 1.15f);
         SfxAudioSource.PlayOneShot(sound);
@@ -94,6 +99,7 @@ public enum SfxType
 {
     Unknown = 0,
     Slash = 1,
+    Voice = 2,
 }
 
 [Serializable]

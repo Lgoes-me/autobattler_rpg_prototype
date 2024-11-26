@@ -7,7 +7,7 @@ public class DialogueDataReference : IDialogue
 {
     [field: SerializeField] private DialogueData Dialogue { get; set; }
     
-    public IEnumerator ReadDialogue(DialogueManager dialogueManager)
+    public IEnumerator ReadDialogue(DialogueManager dialogueManager, PawnData pawn)
     {
         return Dialogue.ReadDialogue(dialogueManager);
     }

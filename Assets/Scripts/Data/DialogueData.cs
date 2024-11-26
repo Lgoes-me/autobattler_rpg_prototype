@@ -5,8 +5,9 @@ using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class DialogueData : ScriptableObject, IDialogue
+public class DialogueData : ScriptableObject
 {
+    [field: SerializeField] private PawnData Pawn { get; set; }
     [field: SerializeField] private List<DialogueTranslations> DialogueVariation { get; set; }
 
     public IEnumerator ReadDialogue(DialogueManager dialogueManager)
@@ -14,7 +15,7 @@ public class DialogueData : ScriptableObject, IDialogue
         yield return DialogueVariation
             .First(d => d.Language == Application.Instance.ConfigManager.GetLanguage())
             .Dialogue
-            .ReadDialogue(dialogueManager);
+            .ReadDialogue(dialogueManager, Pawn);
     }
 }
 

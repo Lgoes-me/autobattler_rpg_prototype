@@ -9,9 +9,9 @@ public class DialogueOptions : IDialogue
     [field: SerializeField] public string Text { get; private set; }
     [field: SerializeField] public List<Option> Options { get; private set; }
 
-    public IEnumerator ReadDialogue(DialogueManager dialogueManager)
+    public IEnumerator ReadDialogue(DialogueManager dialogueManager, PawnData pawn)
     {
-        yield return dialogueManager.ShowOptions(this);
+        yield return dialogueManager.ShowOptions(this, pawn);
     }
 }
 
@@ -22,8 +22,8 @@ public class Option
     [field: SerializeField] public string Choice { get; private set; }  
     [field: SerializeReference] [field: SerializeField] private IDialogue Response { get; set; }  
     
-    public IEnumerator ChooseOption(DialogueManager dialogueManager)
+    public IEnumerator ChooseOption(DialogueManager dialogueManager, PawnData pawn)
     {
-        yield return Response.ReadDialogue(dialogueManager);
+        yield return Response.ReadDialogue(dialogueManager, pawn);
     }
 }
