@@ -15,5 +15,7 @@
 public enum ArchetypeIdentifier
 {
     Unknown,
-    Teste,
+    Cavaleiros,
+    Magos,
+    Herois
 }

@@ -3,8 +3,8 @@
 [Serializable]
 public class Stats
 {
-    public int Strength { get; set; }
-    public int Arcane { get; set; }
+    public int Strength { get; private set; }
+    public int Arcane { get; private set; }
     
     public int PhysicalDefence { get; private set; }
     public int MagicalDefence { get; private set; }
@@ -29,6 +29,13 @@ public class Stats
         };
 
         return reducedDamage >= 0 ? reducedDamage : 0;
+    }
 
+    public void Add(Stats stats)
+    {
+        Strength += stats.Strength;
+        Arcane += stats.Arcane;
+        PhysicalDefence += stats.PhysicalDefence;
+        MagicalDefence += stats.MagicalDefence;
     }
 }

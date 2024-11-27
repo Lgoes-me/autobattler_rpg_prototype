@@ -21,25 +21,25 @@ public abstract class BaseIEnumerableGameEventListener : IEnumerable
         }
     }
 
-    public void DoAttackEvent(PawnController abilityUser, Ability ability)
+    public void DoAttackEvent(Battle battle, PawnController abilityUser, Ability ability)
     {
         foreach (BaseBattleEventListener listener in GameEventListeners)
         {
             if (listener is not OnAttackEventListener onAttackEventListener)
                 continue;
 
-            onAttackEventListener.OnAttack(abilityUser, ability);
+            onAttackEventListener.OnAttack(battle, abilityUser, ability);
         }
     }
 
-    public void DoSpecialAttackEvent(PawnController abilityUser, Ability ability)
+    public void DoSpecialAttackEvent(Battle battle, PawnController abilityUser, Ability ability)
     {
         foreach (BaseBattleEventListener listener in GameEventListeners)
         {
             if (listener is not OnSpecialAttackEventListener onSpecialAttackEventListener)
                 continue;
 
-            onSpecialAttackEventListener.OnSpecialAttack(abilityUser, ability);
+            onSpecialAttackEventListener.OnSpecialAttack(battle, abilityUser, ability);
         }
     }
 

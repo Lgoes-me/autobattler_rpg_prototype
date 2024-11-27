@@ -18,8 +18,8 @@ public class BlessingFactory
             {
                 new OnAttackEventListener()
                 {
-                    (abilityUser, ability) => IsPlayerTeam(abilityUser),
-                    (abilityUser, ability) =>
+                    (battle, abilityUser, ability) => IsPlayerTeam(abilityUser),
+                    (battle, abilityUser, ability) =>
                     {
                         abilityUser.Pawn.ReceiveHeal(5, false);
                         abilityUser.ReceiveHeal(false);

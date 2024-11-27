@@ -22,29 +22,29 @@ public class BattleEventsManager
         }
     }
 
-    public void DoAttackEvent(PawnController abilityUser, Ability ability)
+    public void DoAttackEvent(Battle battle, PawnController abilityUser, Ability ability)
     {
         foreach (var blessing in BlessingManager.Blessings)
         {
-            blessing.DoAttackEvent(abilityUser, ability);
+            blessing.DoAttackEvent(battle, abilityUser, ability);
         }
         
         foreach (var archetype in PartyManager.Archetypes)
         {
-            archetype.DoAttackEvent(abilityUser, ability);
+            archetype.DoAttackEvent(battle, abilityUser, ability);
         }
     }
 
-    public void DoSpecialAttackEvent(PawnController abilityUser, Ability ability)
+    public void DoSpecialAttackEvent(Battle battle, PawnController abilityUser, Ability ability)
     {
         foreach (var blessing in BlessingManager.Blessings)
         {
-            blessing.DoSpecialAttackEvent(abilityUser, ability);
+            blessing.DoSpecialAttackEvent(battle, abilityUser, ability);
         }
         
         foreach (var archetype in PartyManager.Archetypes)
         {
-            archetype.DoSpecialAttackEvent(abilityUser, ability);
+            archetype.DoSpecialAttackEvent(battle, abilityUser, ability);
         }
     }
 }
