@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BattleController : MonoBehaviour
 {
-    private Battle Battle { get; set; }
+    public Battle Battle { get; private set; }
 
     public void ActivateBattleScene(string battleId, List<EnemyInfo> enemies)
     {
@@ -16,7 +16,7 @@ public class BattleController : MonoBehaviour
         foreach (var enemy in enemies)
         {
             var enemyController = enemy.PawnController;
-            enemyController.StartBattle();
+            enemyController.StartBattle(this);
 
             if (enemy.IsBoss)
             {
@@ -31,7 +31,7 @@ public class BattleController : MonoBehaviour
 
         foreach (var alliedController in Application.Instance.PartyManager.Party)
         {
-            alliedController.StartBattle();
+            alliedController.StartBattle(this);
             playerPawns.Add(alliedController);
         }
 
@@ -80,7 +80,7 @@ public class BattleController : MonoBehaviour
         foreach (var pawn in initiativeList)
         {
             if (!pawn.PawnState.CanTakeTurn) continue;
-            yield return pawn.PawnTurn(Battle);
+            yield return pawn.PawnTurn();
         }
     }
 

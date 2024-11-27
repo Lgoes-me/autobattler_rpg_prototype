@@ -7,41 +7,43 @@ public class PawnController : MonoBehaviour
 {
     [field: SerializeField] public PawnCanvasController PawnCanvasController { get; set; }
     [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
-    
+
     public Pawn Pawn { get; private set; }
     public CharacterController CharacterController { get; private set; }
     public AnimationState PawnState => CharacterController.CurrentState;
     private Coroutine BackToIdleCoroutine { get; set; }
     private Ability Ability { get; set; }
+    private BattleController BattleController { get; set; }
 
     public void Init(Pawn pawn)
     {
         Pawn = pawn;
         CharacterController = Instantiate(pawn.Character, transform);
-        
+
         if (pawn.Weapon != null)
         {
             CharacterController.SetWeapon(pawn.Weapon);
         }
     }
 
-    public void StartBattle()
+    public void StartBattle(BattleController battleController)
     {
         Pawn.StartBattle();
-        
+
         enabled = true;
         NavMeshAgent.enabled = true;
         NavMeshAgent.isStopped = true;
 
         Ability = null;
+        BattleController = battleController;
     }
 
-    public IEnumerator PawnTurn(Battle battle)
+    public IEnumerator PawnTurn()
     {
         if (Ability == null)
         {
-            Ability = Pawn.GetCurrentAttackIntent(this, battle, Pawn.Team is TeamType.Enemies);
-            Ability.ChooseFocus(battle);
+            Ability = Pawn.GetCurrentAttackIntent(this, BattleController.Battle, Pawn.Team is TeamType.Enemies);
+            Ability.ChooseFocus(BattleController.Battle);
         }
 
         if (!Ability.ShouldUse())
@@ -67,11 +69,11 @@ public class PawnController : MonoBehaviour
 
         if (Ability.IsSpecial)
         {
-            Application.Instance.BattleEventsManager.DoSpecialAttackEvent(this, Ability);
+            Application.Instance.BattleEventsManager.DoSpecialAttackEvent(BattleController.Battle, this, Ability);
         }
         else
         {
-            Application.Instance.BattleEventsManager.DoAttackEvent(this, Ability);
+            Application.Instance.BattleEventsManager.DoAttackEvent(BattleController.Battle, this, Ability);
         }
 
         Application.Instance.AudioManager.PlaySound(SfxType.Slash);
@@ -135,6 +137,7 @@ public class PawnController : MonoBehaviour
 
         CharacterController.SetAnimationState(new IdleState());
         enabled = false;
+        BattleController = null;
     }
 
     public void Dance()
@@ -143,7 +146,7 @@ public class PawnController : MonoBehaviour
     }
 
     public void SpawnProjectile(
-        ProjectileController projectile, 
+        ProjectileController projectile,
         List<AbilityEffect> effects,
         PawnController focusedPawn)
     {
