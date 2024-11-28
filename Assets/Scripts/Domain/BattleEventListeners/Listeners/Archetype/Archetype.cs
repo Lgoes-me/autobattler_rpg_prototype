@@ -17,5 +17,7 @@ public enum ArchetypeIdentifier
     Unknown,
     Cavaleiros,
     Magos,
-    Herois
+    Herois,
+    Weakener,
+    
 }
