@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 40598ecf603ac4d41b1f525da75d9d89, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -113,6 +113,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1746845235742427982, guid: 5d93463254bfcb94e9a10f6dca554c53, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4178645211636202925, guid: 5d93463254bfcb94e9a10f6dca554c53, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -166,7 +170,10 @@ PrefabInstance:
       value: Chest
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3011458212747843593, guid: 5d93463254bfcb94e9a10f6dca554c53, type: 3}
+    - {fileID: 7919247803856393844, guid: 5d93463254bfcb94e9a10f6dca554c53, type: 3}
+    - {fileID: 1746845235742427982, guid: 5d93463254bfcb94e9a10f6dca554c53, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5527041699460428873, guid: 5d93463254bfcb94e9a10f6dca554c53, type: 3}
       insertIndex: -1
