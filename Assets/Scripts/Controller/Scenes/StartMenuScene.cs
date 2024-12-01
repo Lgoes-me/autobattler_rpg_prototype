@@ -22,6 +22,7 @@ public class StartMenuScene : BaseScene
         
         Application.Instance.PartyManager.GetAndSpawnAvailableParty();
         Application.Instance.BlessingManager.GetBlessingsAndInitCanvas();
+        Application.Instance.TimeManager.StartClock();
         
         Application.Instance.SceneManager.StartGameIntro();
     }
@@ -32,6 +33,7 @@ public class StartMenuScene : BaseScene
         
         Application.Instance.PartyManager.GetAndSpawnAvailableParty();
         Application.Instance.BlessingManager.GetBlessingsAndInitCanvas();
+        Application.Instance.TimeManager.StartClock();
         
         var spawn =  Application.Instance.GameSaveManager.GetSpawn();
         Application.Instance.SceneManager.UseDoorToChangeScene(spawn);

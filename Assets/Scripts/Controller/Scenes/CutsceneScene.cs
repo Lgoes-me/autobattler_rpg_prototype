@@ -9,7 +9,13 @@ public class CutsceneScene : BaseScene
 
     public void Init()
     {
-        Application.Instance.DialogueManager.OpenDialogue(Dialogue,
-            () => { Application.Instance.SceneManager.UseDoorToChangeScene(new SpawnDomain(DoorName, SceneName)); });
+        Application.Instance.PauseManager.PauseGame();
+        Application.Instance.DialogueManager.OpenDialogue(Dialogue, GoToNextScene);
+    }
+
+    private void GoToNextScene()
+    {
+        Application.Instance.PauseManager.ResumeGame();
+        Application.Instance.SceneManager.UseDoorToChangeScene(new SpawnDomain(DoorName, SceneName));
     }
 }

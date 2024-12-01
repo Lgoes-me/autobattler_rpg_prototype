@@ -8,11 +8,13 @@ public class PauseManager : MonoBehaviour
     private List<IPauseListener> PauseListeners { get; set; }
     
     private bool IsPaused { get; set; }
+    private bool CanResume { get; set; }
 
     private void Awake()
     {
         PauseListeners = new List<IPauseListener>();
         IsPaused = false;
+        CanResume = false;
     }
 
     public void SubscribePauseListener(IPauseListener pauseListener)
@@ -25,10 +27,9 @@ public class PauseManager : MonoBehaviour
         PauseListeners.Remove(pauseListener);
     }
 
-    private void PauseGame()
+    public void PauseGame()
     {
         Time.timeScale = 0;
-        PauseCanvas.gameObject.SetActive(true);
         IsPaused = true;
 
         foreach (var pauseListener in PauseListeners)
@@ -37,11 +38,11 @@ public class PauseManager : MonoBehaviour
         }
     }
 
-    private void ResumeGame()
+    public void ResumeGame()
     {
         Time.timeScale = 1;
-        PauseCanvas.gameObject.SetActive(false);
         IsPaused = false;
+        CanResume = false;
 
         foreach (var pauseListener in PauseListeners)
         {
@@ -55,10 +56,13 @@ public class PauseManager : MonoBehaviour
         {
             if (!IsPaused)
             {
+                PauseCanvas.gameObject.SetActive(true);
+                CanResume = true;
                 PauseGame();
             }
-            else
+            else if(CanResume)
             {
+                PauseCanvas.gameObject.SetActive(false);
                 ResumeGame();
             }
         }

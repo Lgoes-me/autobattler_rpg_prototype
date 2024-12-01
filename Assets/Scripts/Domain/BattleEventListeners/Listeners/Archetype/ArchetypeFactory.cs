@@ -12,11 +12,11 @@ public class ArchetypeFactory
                 {
                     battle =>
                     {
-                        var s = new StatsData(0, 0, 2, 0);
+                        var s = new StatsData(0, 0, 1, 0);
                         var b = new StatModifierBuff(s.ToDomain(), "ProtecaoCavalereica", -1);
                         GiveBuffToPlayerTeam(battle, b);
 
-                        var s2 = new StatsData(0, 0, 10, 0);
+                        var s2 = new StatsData(0, 0, 1, 0);
                         var b2 = new StatModifierBuff(s2.ToDomain(), "Cavaleiros", -1);
 
                         GiveBuffToArchetypeInPlayerTeam(battle, b2, ArchetypeIdentifier.Cavaleiros);

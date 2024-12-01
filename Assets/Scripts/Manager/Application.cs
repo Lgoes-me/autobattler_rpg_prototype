@@ -14,6 +14,7 @@ public class Application : MonoBehaviour
     [field: SerializeField] public InterfaceManager InterfaceManager { get; private set; }
     [field: SerializeField] public ContentManager ContentManager { get; private set; }
     [field: SerializeField] public DialogueManager DialogueManager { get; private set; }
+    [field: SerializeField] public TimeManager TimeManager { get; private set; }
     
     public SaveManager SaveManager { get; private set; }
     public GameSaveManager GameSaveManager { get; private set; }
@@ -62,6 +63,7 @@ public class Application : MonoBehaviour
             
             PartyManager.GetAndSpawnAvailableParty();
             BlessingManager.GetBlessingsAndInitCanvas();
+            TimeManager.StartClock();
             
             SceneManager.StartGameIntro();
         }

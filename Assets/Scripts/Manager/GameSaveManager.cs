@@ -6,6 +6,7 @@ public class GameSaveManager
     private Save Save { get; set; }
 
     private ContentManager ContentManager { get; set; }
+    private TimeManager TimeManager { get; set; }
     private BlessingManager BlessingManager { get; set; }
     private PartyManager PartyManager { get; set; }
     private SaveManager SaveManager { get; set; }
@@ -13,6 +14,7 @@ public class GameSaveManager
     public void Prepare()
     {
         ContentManager = Application.Instance.ContentManager;
+        TimeManager = Application.Instance.TimeManager;
         BlessingManager = Application.Instance.BlessingManager;
         PartyManager = Application.Instance.PartyManager;
         SaveManager = Application.Instance.SaveManager;
@@ -27,8 +29,6 @@ public class GameSaveManager
     {
         Save = new Save();
         Save.CreateNewSaveForIntro();
-        
-        SaveManager.SaveData(Save);
     }
 
     public void LoadSave()
@@ -44,7 +44,7 @@ public class GameSaveManager
     public void SetSpawn(SpawnDomain spawn)
     {
         Save.Spawn = spawn;
-        SaveManager.SaveData(Save);
+        SaveData();
     }
 
     public SpawnDomain GetBonfireSpawn()
@@ -59,7 +59,7 @@ public class GameSaveManager
         Save.SelectedParty = PartyManager.Party.ToDictionary(p => p.Pawn.Id, p => p.Pawn.ResetPawnInfo());
         Save.DefeatedEnemies.Clear();
 
-        SaveManager.SaveData(Save);
+        SaveData();
     }
 
     public void SaveBattle(Battle battle)
@@ -67,7 +67,7 @@ public class GameSaveManager
         Save.SelectedParty = PartyManager.Party.ToDictionary(p => p.Pawn.Id, p => p.Pawn.GetPawnInfo());
         Save.DefeatedEnemies.Add(battle.Id);
 
-        SaveManager.SaveData(Save);
+        SaveData();
     }
 
     public bool ContainsBattle(string battleId)
@@ -78,7 +78,8 @@ public class GameSaveManager
     public void SetParty(List<BasePawn> newSelectedParty)
     {
         Save.SelectedParty = newSelectedParty.ToDictionary(p => p.Id, p => new PawnInfo(p.Id, 0));
-        SaveManager.SaveData(Save);
+        
+        SaveData();
     }
 
     public Dictionary<string, PawnInfo> GetSelectedParty()
@@ -94,7 +95,8 @@ public class GameSaveManager
     public void SetBlessings()
     {
         Save.Blessings = BlessingManager.Blessings.Select(j => j.Identifier).ToList();
-        SaveManager.SaveData(Save);
+        
+        SaveData();
     }
 
     public void ApplyPawnInfo(Pawn pawn)
@@ -113,7 +115,8 @@ public class GameSaveManager
     public void AddToAvailableParty(PawnData pawnData)
     {
         Save.AvailableParty.Add(pawnData.Id);
-        SaveManager.SaveData(Save);
+        
+        SaveData();
     }
 
     public bool HasReadDialogue(string id)
@@ -125,5 +128,16 @@ public class GameSaveManager
     {
         Save.Dialogues.Add(dialogue.Id);
         SaveManager.SaveData(Save);
+    }
+
+    private void SaveData()
+    {
+        Save.CurrentTime = TimeManager.HorarioEmJogo;
+        SaveManager.SaveData(Save);
+    }
+
+    public float GetSavedTime()
+    {
+        return Save.CurrentTime;
     }
 }
