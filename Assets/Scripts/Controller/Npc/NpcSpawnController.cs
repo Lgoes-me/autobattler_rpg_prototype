@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class NpcSpawnController : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class NpcSpawnController : MonoBehaviour
 
     private TimeManager TimeManager { get; set; }
     private int CurrentState { get; set; }
+    private NpcController NpcController { get; set; }
 
     private void Awake()
     {
@@ -31,6 +33,33 @@ public class NpcSpawnController : MonoBehaviour
 
     private void ActivatePlacementState(NpcPlacementData placementData)
     {
-        Debug.Log(placementData.Placement.name);
+        if (NpcController == null)
+        {
+            NpcController = Instantiate(NpcControllerPrefab, placementData.Placement.position, Quaternion.identity)
+                .Init(NpcSchedule.PawnData);
+        }
+
+        switch (placementData.ScheduleEventType)
+        {
+            case ScheduleEventType.Spawn:
+            {
+                NpcController.WithDialogue(placementData.DialogueData);
+                break;
+            }
+            case ScheduleEventType.WaitAt:
+            {
+                NpcController.WithPath(placementData.Placement).WithDialogue(placementData.DialogueData);
+                break;
+            }
+            case ScheduleEventType.Despawn:
+            {
+                NpcController.WithPath(placementData.Placement).WithDialogue(placementData.DialogueData);
+                break;
+            }
+            default:
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+        }
     }
 }

@@ -53,6 +53,8 @@ MonoBehaviour:
   <InteractableCanvas>k__BackingField: {fileID: 3458484401805304797}
   <PawnData>k__BackingField: {fileID: 11400000, guid: 41bae653165f78748b456c8346ffda6c, type: 2}
   <PawnController>k__BackingField: {fileID: 4759648862371886847}
+  <NavMeshAgent>k__BackingField: {fileID: 449031379433608940}
+  <Dialogue>k__BackingField: {fileID: 0}
 --- !u!136 &8206254844400676555
 CapsuleCollider:
   m_ObjectHideFlags: 0

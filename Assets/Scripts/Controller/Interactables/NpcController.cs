@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 
 public class NpcController : InteractableController
 {
     [field: SerializeField] private PawnData PawnData { get; set; }
     [field: SerializeField] private PawnController PawnController { get; set; }
+    [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
     [field: SerializeField] private DialogueData Dialogue { get; set; }
 
     public NpcController Init(PawnData pawnData)
@@ -12,10 +14,21 @@ public class NpcController : InteractableController
         return this;
     }
 
-    public void SetDialogue(DialogueData dialogue)
+    public NpcController WithDialogue(DialogueData dialogue)
     {
         Dialogue = dialogue;
+        return this;
     }
+    
+    public NpcController WithPath(Transform destination)
+    {
+        NavMeshAgent.enabled = true;
+        NavMeshAgent.isStopped = false;
+        NavMeshAgent.destination = destination.position;
+        
+        return this;
+    }
+
     
     private void Start()
     {
