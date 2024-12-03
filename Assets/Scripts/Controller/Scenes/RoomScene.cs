@@ -39,5 +39,4 @@ public class RoomScene : BaseScene
             bonfire.Init(SceneName);
         }
     }
-
 }

@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class TimeManager : MonoBehaviour, IPauseListener
 {
@@ -14,23 +16,29 @@ public class TimeManager : MonoBehaviour, IPauseListener
     {
         PauseManager = Application.Instance.PauseManager;
         GameSaveManager = Application.Instance.GameSaveManager;
-
         PauseManager.SubscribePauseListener(this);
 
         var h = Mathf.InverseLerp(0f, 24f, GameSaveManager.GetSavedTime());
         Tempo = Mathf.Lerp(0f, DuracaoDaHoraEmSegundos * 24, h);
         IsTimePassing = true;
+
+        StartCoroutine(ClockCoroutine());
     }
 
-    private void FixedUpdate()
+    private IEnumerator ClockCoroutine()
     {
-        if (!IsTimePassing)
-            return;
+        while (true)
+        {
+            yield return new WaitForSeconds(1f);
+            
+            if (!IsTimePassing)
+                continue;
 
-        Tempo = (Tempo + Time.deltaTime) % (DuracaoDaHoraEmSegundos * 24);
+            Tempo = (Tempo + 1f) % (DuracaoDaHoraEmSegundos * 24);
 
-        var t = Mathf.InverseLerp(0f, (DuracaoDaHoraEmSegundos * 24), Tempo);
-        HorarioEmJogo = Mathf.Lerp(0f, 24f, t);
+            var t = Mathf.InverseLerp(0f, (DuracaoDaHoraEmSegundos * 24), Tempo);
+            HorarioEmJogo = Mathf.Lerp(0f, 24f, t);
+        }
     }
 
     public void Pause()

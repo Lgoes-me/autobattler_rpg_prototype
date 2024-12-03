@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <PawnData>k__BackingField: {fileID: 11400000, guid: 41bae653165f78748b456c8346ffda6c, type: 2}
   <Routine>k__BackingField:
-  - <Spawn>k__BackingField:
-      <Id>k__BackingField: DungeonEntrance
-      <SceneName>k__BackingField: DungeonEntrance
-    <Time>k__BackingField: 8.2
-    <DialogueData>k__BackingField: {fileID: 11400000, guid: 425a0059c1a929b4a8c7dbc224d0b23e, type: 2}
+  - <SceneName>k__BackingField: DungeonEntrance
+    <NpcPlacementData>k__BackingField:
+    - {<Placement>k__BackingField: {fileID: 0}, <Time>k__BackingField: 0, <ScheduleEventType>k__BackingField: 0, <DialogueData>k__BackingField: {fileID: 0}}
+    - {<Placement>k__BackingField: {fileID: 0}, <Time>k__BackingField: 0, <ScheduleEventType>k__BackingField: 0, <DialogueData>k__BackingField: {fileID: 0}}
+    - {<Placement>k__BackingField: {fileID: 0}, <Time>k__BackingField: 0, <ScheduleEventType>k__BackingField: 0, <DialogueData>k__BackingField: {fileID: 0}}
+    - {<Placement>k__BackingField: {fileID: 0}, <Time>k__BackingField: 0, <ScheduleEventType>k__BackingField: 0, <DialogueData>k__BackingField: {fileID: 0}}

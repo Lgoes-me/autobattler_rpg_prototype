@@ -3709,7 +3709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b13d3cbca4b466b8185677f6ee1de4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <DuracaoDaHoraEmSegundos>k__BackingField: 60
+  <DuracaoDaHoraEmSegundos>k__BackingField: 30
 --- !u!1 &1989302729
 GameObject:
   m_ObjectHideFlags: 0

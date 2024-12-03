@@ -6,9 +6,21 @@ public class NpcController : InteractableController
     [field: SerializeField] private PawnController PawnController { get; set; }
     [field: SerializeField] private DialogueData Dialogue { get; set; }
 
+    public NpcController Init(PawnData pawnData)
+    {
+        PawnData = pawnData;
+        return this;
+    }
+
+    public void SetDialogue(DialogueData dialogue)
+    {
+        Dialogue = dialogue;
+    }
+    
     private void Start()
     {
-        PawnController.Init(PawnData.ToDomain(TeamType.Player));
+        var pawn = PawnData.ToDomain(TeamType.Player);
+        PawnController.Init(pawn);
     }
     
     protected override void InternalSelect()
