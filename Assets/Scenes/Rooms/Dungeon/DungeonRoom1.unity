@@ -815,6 +815,10 @@ PrefabInstance:
       value: -3.096328
       objectReference: {fileID: 0}
     - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
+      propertyPath: <Id>k__BackingField
+      value: 03f2bee4-0859-4d47-813d-8a81fe1376cb
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
       propertyPath: <Player>k__BackingField
       value: 
       objectReference: {fileID: 0}

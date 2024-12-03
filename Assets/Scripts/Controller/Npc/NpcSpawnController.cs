@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class NpcSpawnController : MonoBehaviour
 {
@@ -13,7 +12,40 @@ public class NpcSpawnController : MonoBehaviour
     private void Awake()
     {
         TimeManager = Application.Instance.TimeManager;
+        CheckInitialSate();
+    }
+
+    private void CheckInitialSate()
+    {
         CurrentState = -1;
+
+        for (var index = 0; index < NpcSchedule.RoutinePlacement.Count; index++)
+        {
+            var npcPlacement = NpcSchedule.RoutinePlacement[index];
+
+            if (index == NpcSchedule.RoutinePlacement.Count - 1)
+                return;
+
+            var nextPlacement = NpcSchedule.RoutinePlacement[index + 1];
+
+            if (nextPlacement.Time > TimeManager.HorarioEmJogo && npcPlacement.Time < TimeManager.HorarioEmJogo)
+            {
+                CurrentState = index;
+                SpawnPlacementState(NpcSchedule.RoutinePlacement[CurrentState]);
+                return;
+            }
+        }
+    }
+
+    private void SpawnPlacementState(NpcPlacement placementData)
+    {
+        if (NpcController == null)
+        {
+            NpcController = Instantiate(NpcControllerPrefab, transform.position, Quaternion.identity)
+                .Init(NpcSchedule.PawnData);
+        }
+
+        placementData.WithDialogue(NpcController).SpawnCharacterAt(NpcController);
     }
 
     private void FixedUpdate()
@@ -35,9 +67,10 @@ public class NpcSpawnController : MonoBehaviour
     {
         if (NpcController == null)
         {
-            NpcController = Instantiate(NpcControllerPrefab, transform.position, Quaternion.identity).Init(NpcSchedule.PawnData);
+            NpcController = Instantiate(NpcControllerPrefab, transform.position, Quaternion.identity)
+                .Init(NpcSchedule.PawnData);
         }
-        
-        placementData.ControlCharacterController(NpcController);
+
+        placementData.WithDialogue(NpcController).ControlCharacterController(NpcController);
     }
 }
