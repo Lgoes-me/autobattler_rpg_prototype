@@ -6,21 +6,101 @@ using UnityEngine;
 public class NpcSchedule
 {
     [field: SerializeField] public PawnData PawnData { get; set; }
-    [field: SerializeField] public List<NpcPlacementData> Routine { get; set; }
+
+    [field: SerializeField]
+    [field: SerializeReference]
+    public List<NpcPlacement> RoutinePlacement { get; set; }
 }
 
 [Serializable]
-public class NpcPlacementData
+public abstract class NpcPlacement : IComponentData
 {
-    [field: SerializeField] public Transform Placement { get; set; }
     [field: SerializeField] public float Time { get; set; }
-    [field: SerializeField] public ScheduleEventType ScheduleEventType { get; set; }
-    [field: SerializeField] public DialogueData DialogueData { get; set; }
+
+    public abstract void ControlCharacterController(NpcController npcController);
 }
 
-public enum ScheduleEventType
+[Serializable]
+public class SpawnNpcPlacement : NpcPlacement
 {
-    Spawn,
-    WaitAt,
-    Despawn
+    [field: SerializeField] private Transform SpawnPlacement { get; set; }
+    [field: SerializeField] private DialogueData DialogueData { get; set; }
+
+    public override void ControlCharacterController(NpcController npcController)
+    {
+        if (DialogueData != null)
+        {
+            npcController.WithDialogue(DialogueData);
+        }
+
+        npcController.transform.position = SpawnPlacement.position;
+    }
+}
+
+[Serializable]
+public class SpawnAndMoveNpcPlacement : NpcPlacement
+{
+    [field: SerializeField] private Transform SpawnPlacement { get; set; }
+    [field: SerializeField] private Transform Destination { get; set; }
+    [field: SerializeField] private DialogueData DialogueData { get; set; }
+
+    public override void ControlCharacterController(NpcController npcController)
+    {
+        if (DialogueData != null)
+        {
+            npcController.WithDialogue(DialogueData);
+        }
+
+        npcController.transform.position = SpawnPlacement.position;
+        npcController.WithPath(Destination, () => { });
+    }
+}
+
+[Serializable]
+public class MoveToNpcPlacement : NpcPlacement
+{
+    [field: SerializeField] private Transform DestinationPlacement { get; set; }
+    [field: SerializeField] private DialogueData DialogueData { get; set; }
+
+    public override void ControlCharacterController(NpcController npcController)
+    {
+        if (DialogueData != null)
+        {
+            npcController.WithDialogue(DialogueData);
+        }
+
+        npcController.WithPath(DestinationPlacement, () => { });
+    }
+}
+
+
+[Serializable]
+public class WaitAtNpcPlacement : NpcPlacement
+{
+    [field: SerializeField] private DialogueData DialogueData { get; set; }
+
+    public override void ControlCharacterController(NpcController npcController)
+    {
+        if (DialogueData != null)
+        {
+            npcController.WithDialogue(DialogueData);
+        }
+    }
+}
+
+[Serializable]
+public class DeSpawnNpcPlacement : NpcPlacement
+{
+    [field: SerializeField] private Transform DestinationPlacement { get; set; }
+    [field: SerializeField] private DialogueData DialogueData { get; set; }
+
+    public override void ControlCharacterController(NpcController npcController)
+    {
+        if (DialogueData != null)
+        {
+            npcController.WithDialogue(DialogueData);
+        }
+        
+        npcController.WithPath(DestinationPlacement, npcController.DeSpawn);
+    }
 }

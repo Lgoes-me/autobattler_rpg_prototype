@@ -18,48 +18,26 @@ public class NpcSpawnController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (NpcSchedule.Routine.Count <= CurrentState + 1)
+        if (NpcSchedule.RoutinePlacement.Count <= CurrentState + 1)
         {
             CurrentState = -1;
             return;
         }
 
-        if (Mathf.Abs(TimeManager.HorarioEmJogo - NpcSchedule.Routine[CurrentState + 1].Time) < 0.1f)
+        if (Mathf.Abs(TimeManager.HorarioEmJogo - NpcSchedule.RoutinePlacement[CurrentState + 1].Time) < 0.1f)
         {
             CurrentState += 1;
-            ActivatePlacementState(NpcSchedule.Routine[CurrentState]);
+            ActivatePlacementState(NpcSchedule.RoutinePlacement[CurrentState]);
         }
     }
 
-    private void ActivatePlacementState(NpcPlacementData placementData)
+    private void ActivatePlacementState(NpcPlacement placementData)
     {
         if (NpcController == null)
         {
-            NpcController = Instantiate(NpcControllerPrefab, placementData.Placement.position, Quaternion.identity)
-                .Init(NpcSchedule.PawnData);
+            NpcController = Instantiate(NpcControllerPrefab, transform.position, Quaternion.identity).Init(NpcSchedule.PawnData);
         }
-
-        switch (placementData.ScheduleEventType)
-        {
-            case ScheduleEventType.Spawn:
-            {
-                NpcController.WithDialogue(placementData.DialogueData);
-                break;
-            }
-            case ScheduleEventType.WaitAt:
-            {
-                NpcController.WithPath(placementData.Placement).WithDialogue(placementData.DialogueData);
-                break;
-            }
-            case ScheduleEventType.Despawn:
-            {
-                NpcController.WithPath(placementData.Placement).WithDialogue(placementData.DialogueData);
-                break;
-            }
-            default:
-            {
-                throw new ArgumentOutOfRangeException();
-            }
-        }
+        
+        placementData.ControlCharacterController(NpcController);
     }
 }
