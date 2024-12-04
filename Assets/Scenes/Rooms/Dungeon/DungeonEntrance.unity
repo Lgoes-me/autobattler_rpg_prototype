@@ -3163,6 +3163,26 @@ PrefabInstance:
       value: Assembly-CSharp SpawnAndMoveNpcPlacement
       objectReference: {fileID: 0}
     - target: {fileID: 7611794463562009531, guid: da7ca6b1fb5701c45b7869cf4f1eaff3, type: 3}
+      propertyPath: managedReferences[8813334553124667395]
+      value: Assembly-CSharp MoveToNpcPlacement
+      objectReference: {fileID: 0}
+    - target: {fileID: 7611794463562009531, guid: da7ca6b1fb5701c45b7869cf4f1eaff3, type: 3}
+      propertyPath: managedReferences[8813334553124667396]
+      value: Assembly-CSharp DeSpawnNpcPlacement
+      objectReference: {fileID: 0}
+    - target: {fileID: 7611794463562009531, guid: da7ca6b1fb5701c45b7869cf4f1eaff3, type: 3}
+      propertyPath: managedReferences[8813334553124667397]
+      value: Assembly-CSharp MoveToNpcPlacement
+      objectReference: {fileID: 0}
+    - target: {fileID: 7611794463562009531, guid: da7ca6b1fb5701c45b7869cf4f1eaff3, type: 3}
+      propertyPath: managedReferences[8813334553124667398]
+      value: Assembly-CSharp SpawnAndMoveNpcPlacement
+      objectReference: {fileID: 0}
+    - target: {fileID: 7611794463562009531, guid: da7ca6b1fb5701c45b7869cf4f1eaff3, type: 3}
+      propertyPath: managedReferences[8813334553124667399]
+      value: Assembly-CSharp MoveToNpcPlacement
+      objectReference: {fileID: 0}
+    - target: {fileID: 7611794463562009531, guid: da7ca6b1fb5701c45b7869cf4f1eaff3, type: 3}
       propertyPath: managedReferences[8813334536799649794].<Time>k__BackingField
       value: 20.5
       objectReference: {fileID: 0}
@@ -3183,6 +3203,26 @@ PrefabInstance:
       value: 20.5
       objectReference: {fileID: 0}
     - target: {fileID: 7611794463562009531, guid: da7ca6b1fb5701c45b7869cf4f1eaff3, type: 3}
+      propertyPath: managedReferences[8813334553124667395].<Time>k__BackingField
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7611794463562009531, guid: da7ca6b1fb5701c45b7869cf4f1eaff3, type: 3}
+      propertyPath: managedReferences[8813334553124667396].<Time>k__BackingField
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7611794463562009531, guid: da7ca6b1fb5701c45b7869cf4f1eaff3, type: 3}
+      propertyPath: managedReferences[8813334553124667397].<Time>k__BackingField
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7611794463562009531, guid: da7ca6b1fb5701c45b7869cf4f1eaff3, type: 3}
+      propertyPath: managedReferences[8813334553124667398].<Time>k__BackingField
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7611794463562009531, guid: da7ca6b1fb5701c45b7869cf4f1eaff3, type: 3}
+      propertyPath: managedReferences[8813334553124667399].<Time>k__BackingField
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7611794463562009531, guid: da7ca6b1fb5701c45b7869cf4f1eaff3, type: 3}
       propertyPath: managedReferences[8813334536799649796].<Destination>k__BackingField
       value: 
       objectReference: {fileID: 4585045336829955614}
@@ -3194,6 +3234,26 @@ PrefabInstance:
       propertyPath: managedReferences[8813334547186319361].<Destination>k__BackingField
       value: 
       objectReference: {fileID: 4585045336829955615}
+    - target: {fileID: 7611794463562009531, guid: da7ca6b1fb5701c45b7869cf4f1eaff3, type: 3}
+      propertyPath: managedReferences[8813334553124667395].<Destination>k__BackingField
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7611794463562009531, guid: da7ca6b1fb5701c45b7869cf4f1eaff3, type: 3}
+      propertyPath: managedReferences[8813334553124667396].<Destination>k__BackingField
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7611794463562009531, guid: da7ca6b1fb5701c45b7869cf4f1eaff3, type: 3}
+      propertyPath: managedReferences[8813334553124667397].<Destination>k__BackingField
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7611794463562009531, guid: da7ca6b1fb5701c45b7869cf4f1eaff3, type: 3}
+      propertyPath: managedReferences[8813334553124667398].<Destination>k__BackingField
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7611794463562009531, guid: da7ca6b1fb5701c45b7869cf4f1eaff3, type: 3}
+      propertyPath: managedReferences[8813334553124667399].<Destination>k__BackingField
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7611794463562009531, guid: da7ca6b1fb5701c45b7869cf4f1eaff3, type: 3}
       propertyPath: managedReferences[8813334536799649794].<DialogueData>k__BackingField
       value: 
@@ -3215,9 +3275,33 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 425a0059c1a929b4a8c7dbc224d0b23e, type: 2}
     - target: {fileID: 7611794463562009531, guid: da7ca6b1fb5701c45b7869cf4f1eaff3, type: 3}
+      propertyPath: managedReferences[8813334553124667395].<DialogueData>k__BackingField
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7611794463562009531, guid: da7ca6b1fb5701c45b7869cf4f1eaff3, type: 3}
+      propertyPath: managedReferences[8813334553124667396].<DialogueData>k__BackingField
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7611794463562009531, guid: da7ca6b1fb5701c45b7869cf4f1eaff3, type: 3}
+      propertyPath: managedReferences[8813334553124667397].<DialogueData>k__BackingField
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7611794463562009531, guid: da7ca6b1fb5701c45b7869cf4f1eaff3, type: 3}
+      propertyPath: managedReferences[8813334553124667398].<DialogueData>k__BackingField
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7611794463562009531, guid: da7ca6b1fb5701c45b7869cf4f1eaff3, type: 3}
+      propertyPath: managedReferences[8813334553124667399].<DialogueData>k__BackingField
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7611794463562009531, guid: da7ca6b1fb5701c45b7869cf4f1eaff3, type: 3}
       propertyPath: managedReferences[8813334547186319361].<SpawnPlacement>k__BackingField
       value: 
       objectReference: {fileID: 4585045336829955616}
+    - target: {fileID: 7611794463562009531, guid: da7ca6b1fb5701c45b7869cf4f1eaff3, type: 3}
+      propertyPath: managedReferences[8813334553124667398].<SpawnPlacement>k__BackingField
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7611794463562009531, guid: da7ca6b1fb5701c45b7869cf4f1eaff3, type: 3}
       propertyPath: <NpcSchedule>k__BackingField.<RoutinePlacement>k__BackingField.Array.size
       value: 3
@@ -3236,7 +3320,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7611794463562009531, guid: da7ca6b1fb5701c45b7869cf4f1eaff3, type: 3}
       propertyPath: <NpcSchedule>k__BackingField.<RoutinePlacement>k__BackingField.Array.data[3]
-      value: 8813334536799649798
+      value: 8813334553124667399
       objectReference: {fileID: 0}
     - target: {fileID: 7611794463562009531, guid: da7ca6b1fb5701c45b7869cf4f1eaff3, type: 3}
       propertyPath: <NpcSchedule>k__BackingField.<RoutinePlacement>k__BackingField.Array.data[4]

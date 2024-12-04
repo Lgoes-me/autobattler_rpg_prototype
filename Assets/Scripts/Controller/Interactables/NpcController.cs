@@ -65,6 +65,6 @@ public class NpcController : InteractableController
 
     public void DeSpawn()
     {
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 }

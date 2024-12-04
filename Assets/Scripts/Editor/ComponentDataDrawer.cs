@@ -18,7 +18,8 @@ public class ComponentDataDrawer : PropertyDrawer
         Type t = GetFieldType();
 
         string typeName = property.managedReferenceValue?.GetType().Name ?? "Not set";
-
+        label.text = "";
+        
         Rect dropdownRect = position;
         dropdownRect.x += EditorGUIUtility.labelWidth + 2;
         dropdownRect.width -= EditorGUIUtility.labelWidth + 2;
