@@ -27,9 +27,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Rooms/Tutorial/DungeonCutscene.unity
     guid: d240537e37406f04ca4c80113d064a71
   - enabled: 1
-    path: Assets/Scenes/Rooms/Tutorial/TransitionCutscene.unity
+    path: Assets/Scenes/Rooms/Opening/OpeningCutscene.unity
     guid: 5d4b5c8d458f80945844397ab8c3358d
   - enabled: 1
-    path: Assets/Scenes/Rooms/Tutorial/OpeningScene.unity
+    path: Assets/Scenes/Rooms/Opening/OpeningScene.unity
     guid: ad91795beaca2974b807bd523d05e7fa
   m_configObjects: {}
