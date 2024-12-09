@@ -1,4 +1,3 @@
-using Controller.Doors;
 using UnityEngine;
 
 public class DoorController : SpawnController

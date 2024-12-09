@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Controller.Doors;
 using UnityEngine;
 
 public class RoomScene : BaseScene

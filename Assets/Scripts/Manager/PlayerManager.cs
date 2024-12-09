@@ -1,5 +1,4 @@
-﻿using Controller.Doors;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 public class PlayerManager : MonoBehaviour

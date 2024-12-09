@@ -1,5 +1,4 @@
-﻿using Controller.Doors;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BonfireController : InteractableController
 {
