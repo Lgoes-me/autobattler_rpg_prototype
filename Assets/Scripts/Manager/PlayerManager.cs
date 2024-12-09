@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Controller.Doors;
+using UnityEngine;
 using UnityEngine.AI;
 
 public class PlayerManager : MonoBehaviour
@@ -25,11 +26,10 @@ public class PlayerManager : MonoBehaviour
         PlayerController.Init();
     }
 
-    public void SpawnPlayerAt(Transform location)
+    public void SpawnPlayerAt(SpawnController spawn)
     {
         NavMeshAgent.enabled = false;
-        PlayerController.transform.position = location.position;
-        PawnController.CharacterController.SetDirection(location.forward);
+        spawn.SpawnPlayer(this);
         NavMeshAgent.enabled = true;
     }
 

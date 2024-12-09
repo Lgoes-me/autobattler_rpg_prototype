@@ -44,22 +44,22 @@ public class SceneManager : MonoBehaviour
         };
     }
 
-    public void UseDoorToChangeScene(SpawnDomain spawn)
+    public void UseDoorToChangeScene(string doorName, string sceneName)
     {
         PartyManager.StopPartyFollow();
-        var task = UnitySceneManager.LoadSceneAsync(spawn.SceneName, LoadSceneMode.Single);
+        var task = UnitySceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
 
         task.completed += _ =>
         {
             var roomScene = FindObjectOfType<RoomScene>();
             roomScene.ActivateRoomScene();
-            roomScene.SpawnPlayerAt(spawn.Id);
+            roomScene.SpawnPlayerAt(doorName);
 
             PartyManager.SetPartyToFollow(true);
             AudioManager.PlayMusic(roomScene.Music);
 
             InterfaceManager.ShowBattleCanvas();
-            GameSaveManager.SetSpawn(spawn);
+            GameSaveManager.SetSpawn(doorName, sceneName);
         };
     }
 

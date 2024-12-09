@@ -869,11 +869,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48aea20806894858acb1b042bfbd9fe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <SceneName>k__BackingField: DungeonRoom2
   <Music>k__BackingField: 1
-  <Doors>k__BackingField:
-  - {fileID: 1545112233}
-  <Bonfires>k__BackingField: []
 --- !u!4 &931514409
 Transform:
   m_ObjectHideFlags: 0
@@ -1134,7 +1130,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4441693546795938816, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
       propertyPath: m_Center.z
-      value: -0.86879647
+      value: -1.84
       objectReference: {fileID: 0}
     - target: {fileID: 5555005131942083981, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1147,6 +1143,10 @@ PrefabInstance:
     - target: {fileID: 5555005131942083981, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
       propertyPath: m_LocalPosition.z
       value: 1.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357606874330744520, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
+      propertyPath: <Id>k__BackingField
+      value: 6ed2a81b-6eab-4bd7-a8e1-88e3ce03b1bb
       objectReference: {fileID: 0}
     - target: {fileID: 6357606874330744520, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
       propertyPath: <Camera>k__BackingField
@@ -1164,6 +1164,10 @@ PrefabInstance:
       propertyPath: <CameraArea>k__BackingField
       value: 
       objectReference: {fileID: 782174387}
+    - target: {fileID: 6357606874330744520, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
+      propertyPath: <SceneDestination>k__BackingField
+      value: DungeonRoom1
+      objectReference: {fileID: 0}
     - target: {fileID: 7803689849695119232, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
       propertyPath: m_Name
       value: DoorArea
@@ -1178,15 +1182,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8475532692762963974, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.02
+      value: -3.2
       objectReference: {fileID: 0}
     - target: {fileID: 8475532692762963974, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 0.62
       objectReference: {fileID: 0}
     - target: {fileID: 8475532692762963974, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.96
+      value: -0.05
       objectReference: {fileID: 0}
     - target: {fileID: 8475532692762963974, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1221,17 +1225,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
---- !u!114 &1545112233 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6357606874330744520, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
-  m_PrefabInstance: {fileID: 1545112232}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5e68a00640288c4cbd099f9c1d2a064, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1651405496
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3531181885269600839}
+  - component: {fileID: 3952367809447093339}
   m_Layer: 0
   m_Name: SpawnPoint
   m_TagString: Untagged
@@ -25,12 +26,26 @@ Transform:
   m_GameObject: {fileID: 412956281398173450}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.25, z: 0.66}
+  m_LocalPosition: {x: 0, y: -0.25, z: 1.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5704450273142219825}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3952367809447093339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412956281398173450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16c66e3536be4682b18c2c5bf806d28f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Id>k__BackingField: 7f47c38c-5b9a-4938-bc41-d788dd2f16a3
+  <CameraArea>k__BackingField: {fileID: 0}
 --- !u!1001 &8563525297397553564
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55,21 +70,25 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3403507040145066504, guid: 5d93463254bfcb94e9a10f6dca554c53, type: 3}
+      propertyPath: m_Radius
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4178645211636202925, guid: 5d93463254bfcb94e9a10f6dca554c53, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4178645211636202925, guid: 5d93463254bfcb94e9a10f6dca554c53, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 8.83
       objectReference: {fileID: 0}
     - target: {fileID: 4178645211636202925, guid: 5d93463254bfcb94e9a10f6dca554c53, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.77
       objectReference: {fileID: 0}
     - target: {fileID: 4178645211636202925, guid: 5d93463254bfcb94e9a10f6dca554c53, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -3.9
       objectReference: {fileID: 0}
     - target: {fileID: 4178645211636202925, guid: 5d93463254bfcb94e9a10f6dca554c53, type: 3}
       propertyPath: m_LocalRotation.w
@@ -99,6 +118,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5527041699460428873, guid: 5d93463254bfcb94e9a10f6dca554c53, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 6669709783551750221, guid: 5d93463254bfcb94e9a10f6dca554c53, type: 3}
       propertyPath: <Interactable>k__BackingField
       value: 
@@ -127,6 +150,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8721540178044028249, guid: 5d93463254bfcb94e9a10f6dca554c53, type: 3}
       insertIndex: 1
       addedObject: {fileID: 6321774086416421274}
+    - targetCorrespondingSourceObject: {fileID: 8721540178044028249, guid: 5d93463254bfcb94e9a10f6dca554c53, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7216149771044487377}
   m_SourcePrefab: {fileID: 100100000, guid: 5d93463254bfcb94e9a10f6dca554c53, type: 3}
 --- !u!1 &1143600359331028165 stripped
 GameObject:
@@ -146,9 +172,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <InteractableCanvas>k__BackingField: {fileID: 9197550741505563945}
-  <Id>k__BackingField: f18ac272-7def-4e17-8f49-e7810de9b8db
-  <SpawnPoint>k__BackingField: {fileID: 3531181885269600839}
-  <CameraArea>k__BackingField: {fileID: 0}
+  <Spawn>k__BackingField: {fileID: 3952367809447093339}
+--- !u!208 &7216149771044487377
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143600359331028165}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.25, y: 0.5, z: 0.25}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!4 &5704450273142219825 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4178645211636202925, guid: 5d93463254bfcb94e9a10f6dca554c53, type: 3}

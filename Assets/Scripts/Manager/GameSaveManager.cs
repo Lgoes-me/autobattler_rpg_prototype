@@ -41,9 +41,9 @@ public class GameSaveManager
         return Save.Spawn;
     }
 
-    public void SetSpawn(SpawnDomain spawn)
+    public void SetSpawn(string doorName, string sceneName)
     {
-        Save.Spawn = spawn;
+        Save.Spawn = new SpawnDomain(doorName, sceneName);
         SaveData();
     }
 

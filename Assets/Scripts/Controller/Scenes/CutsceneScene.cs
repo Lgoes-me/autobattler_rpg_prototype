@@ -16,6 +16,6 @@ public class CutsceneScene : BaseScene
     private void GoToNextScene()
     {
         Application.Instance.PauseManager.ResumeGame();
-        Application.Instance.SceneManager.UseDoorToChangeScene(new SpawnDomain(DoorName, SceneName));
+        Application.Instance.SceneManager.UseDoorToChangeScene(DoorName, SceneName);
     }
 }

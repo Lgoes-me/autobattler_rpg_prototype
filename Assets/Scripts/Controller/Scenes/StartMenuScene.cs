@@ -36,7 +36,7 @@ public class StartMenuScene : BaseScene
         Application.Instance.TimeManager.StartClock();
         
         var spawn =  Application.Instance.GameSaveManager.GetSpawn();
-        Application.Instance.SceneManager.UseDoorToChangeScene(spawn);
+        Application.Instance.SceneManager.UseDoorToChangeScene(spawn.Id, spawn.SceneName);
     }
 
     private void OpenSettings()
