@@ -1703,6 +1703,10 @@ PrefabInstance:
       value: 7.59
       objectReference: {fileID: 0}
     - target: {fileID: 7339068277771824285, guid: abe4b2c81dc5ab64891f8b4e51f65b76, type: 3}
+      propertyPath: <Follow>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7339068277771824285, guid: abe4b2c81dc5ab64891f8b4e51f65b76, type: 3}
       propertyPath: <Blend>k__BackingField.m_Time
       value: 1
       objectReference: {fileID: 0}
