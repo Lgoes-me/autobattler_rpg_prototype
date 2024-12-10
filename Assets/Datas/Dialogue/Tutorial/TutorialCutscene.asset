@@ -26,19 +26,13 @@ MonoBehaviour:
         <Lines>k__BackingField:
         - rid: 5882033753707511809
         - rid: 5882033753707511810
-        - rid: 8813334692810719232
     - rid: 5882033753707511809
       type: {class: Line, ns: , asm: Assembly-CSharp}
       data:
         <Text>k__BackingField: Era uma vez...
-        <CharacterInfoIdentifier>k__BackingField: default
+        <Info>k__BackingField: 
     - rid: 5882033753707511810
       type: {class: Line, ns: , asm: Assembly-CSharp}
       data:
         <Text>k__BackingField: Em uma dungeon...
-        <CharacterInfoIdentifier>k__BackingField: teste
-    - rid: 8813334692810719232
-      type: {class: ChangeSceneDialogueEvent, ns: , asm: Assembly-CSharp}
-      data:
-        <SceneName>k__BackingField: DungeonEntrance
-        <SpawnId>k__BackingField: DungeonEntrance
+        <Info>k__BackingField: 

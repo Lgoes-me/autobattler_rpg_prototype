@@ -24,9 +24,9 @@ MonoBehaviour:
       type: {class: Dialogue, ns: , asm: Assembly-CSharp}
       data:
         <Lines>k__BackingField:
-        - rid: 8813334692810719234
-    - rid: 8813334692810719234
-      type: {class: ChangeSceneDialogueEvent, ns: , asm: Assembly-CSharp}
+        - rid: 8813334712271503373
+    - rid: 8813334712271503373
+      type: {class: Line, ns: , asm: Assembly-CSharp}
       data:
-        <SceneName>k__BackingField: OpeningScene
-        <SpawnId>k__BackingField: OpeningScene
+        <Text>k__BackingField: teste
+        <CharacterInfoIdentifier>k__BackingField: 

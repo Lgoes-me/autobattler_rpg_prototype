@@ -19,9 +19,9 @@ public class DialogueBoxItemController : MonoBehaviour
         TextMesh.SetText(line.Text);
         ContinueButton.onClick.AddListener(() => CanContinue = true);
 
-        if (!string.IsNullOrWhiteSpace(line.CharacterInfoIdentifier))
+        if (!string.IsNullOrWhiteSpace(line.Info))
         {
-            var info = pawn.GetCharacterInfo(line.CharacterInfoIdentifier);
+            var info = pawn.GetCharacterInfo(line.Info);
             
             Picture.sprite = info.Portrait;
             Application.Instance.AudioManager.PlaySfx(info.Audio);

@@ -167,6 +167,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Dialogue>k__BackingField: {fileID: 11400000, guid: bd2d1176735994f438ac62a13ebb7228, type: 2}
+  <EndCutsceneAction>k__BackingField:
+    rid: 8813334712271503376
+  references:
+    version: 2
+    RefIds:
+    - rid: 8813334712271503376
+      type: {class: ChangeScene, ns: , asm: Assembly-CSharp}
+      data:
+        <SceneName>k__BackingField: OpeningScene
+        <SpawnId>k__BackingField: OpeningScene
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

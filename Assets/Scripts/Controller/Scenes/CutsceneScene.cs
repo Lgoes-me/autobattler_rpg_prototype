@@ -3,6 +3,7 @@ using UnityEngine;
 public class CutsceneScene : BaseScene
 {
     [field: SerializeField] private DialogueData Dialogue { get; set; }
+    [field: SerializeReference] [field: SerializeField] private GameAction EndCutsceneAction { get; set; }
 
     public void Init()
     {
@@ -10,6 +11,7 @@ public class CutsceneScene : BaseScene
         
         Application.Instance.DialogueManager.OpenDialogue(Dialogue, () =>
         {
+            EndCutsceneAction?.Invoke();
             Application.Instance.PauseManager.ResumeGame();
         });
     }

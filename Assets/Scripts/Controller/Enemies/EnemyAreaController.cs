@@ -8,7 +8,7 @@ public class EnemyAreaController : MonoBehaviour
     [field: SerializeField] private string Id { get; set; }
     [field: SerializeField] private List<EnemyInfo> Enemies { get; set; }
     [field: SerializeField] private BattleController BattleController { get; set; }
-    [field: SerializeField] private DialogueData EndDialogue { get; set; }
+    [field: SerializeReference] [field: SerializeField] private GameAction EndBattleAction { get; set; }
     
     private bool Active { get; set; }
     private Coroutine Coroutine { get; set; }
@@ -79,7 +79,7 @@ public class EnemyAreaController : MonoBehaviour
         }
         
         Application.Instance.PlayerManager.PlayerToBattle();
-        BattleController.ActivateBattleScene(Id, Enemies, EndDialogue);
+        BattleController.ActivateBattleScene(Id, Enemies, EndBattleAction);
     }
 
     private void OnValidate()

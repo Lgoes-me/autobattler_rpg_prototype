@@ -5,11 +5,11 @@ using UnityEngine;
 public class BattleController : MonoBehaviour
 {
     public Battle Battle { get; private set; }
-    private DialogueData EndDialogueData { get; set; }
+    private GameAction EndBattleAction { get; set; }
 
-    public void ActivateBattleScene(string battleId, List<EnemyInfo> enemies, DialogueData endDialogueData)
+    public void ActivateBattleScene(string battleId, List<EnemyInfo> enemies, GameAction endBattleAction)
     {
-        EndDialogueData = endDialogueData;
+        EndBattleAction = endBattleAction;
         
         Application.Instance.AudioManager.PlayMusic(MusicType.Battle);
 
@@ -147,14 +147,6 @@ public class BattleController : MonoBehaviour
         Application.Instance.PartyManager.SetPartyToFollow(false);
         Application.Instance.GameSaveManager.SaveBattle(Battle);
 
-        if (EndDialogueData != null)
-        {
-            yield return new WaitForSeconds(1f);
-            Application.Instance.PauseManager.PauseGame();
-            Application.Instance.DialogueManager.OpenDialogue(EndDialogueData, () =>
-            {
-                Application.Instance.PauseManager.ResumeGame();
-            });
-        }
+        EndBattleAction?.Invoke();
     }
 }

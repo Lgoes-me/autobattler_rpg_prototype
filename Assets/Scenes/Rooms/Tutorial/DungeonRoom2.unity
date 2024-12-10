@@ -743,8 +743,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 5e16a5c5b284ea4408ff5144f14377d1, type: 2}
     - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
+      propertyPath: <EndBattleAction>k__BackingField
+      value: 8813334712271503372
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
       propertyPath: <Enemies>k__BackingField.Array.size
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
+      propertyPath: managedReferences[8813334712271503372]
+      value: Assembly-CSharp OpenCutscene
       objectReference: {fileID: 0}
     - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
       propertyPath: <Enemies>k__BackingField.Array.data[0].<IsBoss>k__BackingField
@@ -766,6 +774,10 @@ PrefabInstance:
       propertyPath: <Enemies>k__BackingField.Array.data[3].<PawnData>k__BackingField
       value: 
       objectReference: {fileID: 11400000, guid: 09561c465d61ad44ca6568e59d324cd3, type: 2}
+    - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
+      propertyPath: managedReferences[8813334712271503372].<SceneName>k__BackingField
+      value: OpeningCutscene
+      objectReference: {fileID: 0}
     - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
       propertyPath: <Enemies>k__BackingField.Array.data[0].<EnemyController>k__BackingField
       value: 

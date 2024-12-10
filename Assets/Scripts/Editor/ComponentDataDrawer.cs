@@ -18,8 +18,8 @@ public class ComponentDataDrawer : PropertyDrawer
         Type t = GetFieldType();
 
         string typeName = property.managedReferenceValue?.GetType().Name ?? "Not set";
-        label.text = "";
-        
+        label.text = IsListOrArray() ? string.Empty : label.text;
+
         Rect dropdownRect = position;
         dropdownRect.x += EditorGUIUtility.labelWidth + 2;
         dropdownRect.width -= EditorGUIUtility.labelWidth + 2;
@@ -58,6 +58,19 @@ public class ComponentDataDrawer : PropertyDrawer
         else if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(List<>))
             type = type.GetGenericArguments()[0];
         return type;
+    }
+
+    private bool IsListOrArray()
+    {
+        Type type = fieldInfo.FieldType;
+
+        if (type.IsArray)
+            return true;
+
+        if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(List<>))
+            return true;
+
+        return false;
     }
 
     private List<Type> FindDerivedTypes(Type baseType)

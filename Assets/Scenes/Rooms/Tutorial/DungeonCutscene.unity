@@ -167,8 +167,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Dialogue>k__BackingField: {fileID: 11400000, guid: 25d63324a8689b24c88e691df1bf509e, type: 2}
-  <SceneName>k__BackingField: DungeonEntrance
-  <DoorName>k__BackingField: DungeonEntrance
+  <EndCutsceneAction>k__BackingField:
+    rid: 8813334712271503375
+  references:
+    version: 2
+    RefIds:
+    - rid: 8813334712271503375
+      type: {class: ChangeScene, ns: , asm: Assembly-CSharp}
+      data:
+        <SceneName>k__BackingField: DungeonEntrance
+        <SpawnId>k__BackingField: DungeonEntrance
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

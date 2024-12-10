@@ -80,13 +80,18 @@ MonoBehaviour:
       data:
         <Lines>k__BackingField:
         - rid: 5882033611665834001
-        - rid: 5882033611665834002
+        - rid: 8813334712271503360
     - rid: 5882033611665834001
       type: {class: Line, ns: , asm: Assembly-CSharp}
       data:
         <Text>k__BackingField: "Certo ent\xE3o"
         <CharacterInfoIdentifier>k__BackingField: 
-    - rid: 5882033611665834002
-      type: {class: AddFriendDialogueEvent, ns: , asm: Assembly-CSharp}
+    - rid: 8813334712271503360
+      type: {class: DoGameAction, ns: , asm: Assembly-CSharp}
+      data:
+        <GameAction>k__BackingField:
+          rid: 8813334712271503361
+    - rid: 8813334712271503361
+      type: {class: AddFriend, ns: , asm: Assembly-CSharp}
       data:
         <PawnData>k__BackingField: {fileID: 11400000, guid: 41bae653165f78748b456c8346ffda6c, type: 2}
