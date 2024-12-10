@@ -62,6 +62,20 @@ public class SceneManager : MonoBehaviour
             GameSaveManager.SetSpawn(doorName, sceneName);
         };
     }
+    
+    public void OpenCutscene(string sceneName)
+    {
+        PartyManager.StopPartyFollow();
+        
+        var task = UnitySceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+
+        task.completed += _ =>
+        {
+            var cutsceneScene = FindObjectOfType<CutsceneScene>();
+            cutsceneScene.Init();
+        };
+    }
+
 
     public void RespawnAtBonfire()
     {

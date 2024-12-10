@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -139,5 +138,10 @@ public class PartyManager : MonoBehaviour
     {
         GameSaveManager.AddToAvailableParty(pawnData);
         AvailableParty = GameSaveManager.GetAvailableParty();
+    }
+
+    public bool Contains(PawnData pawn)
+    {
+        return Party.Any(p => p.Pawn.Id == pawn.Id);
     }
 }

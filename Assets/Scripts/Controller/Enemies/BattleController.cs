@@ -5,9 +5,12 @@ using UnityEngine;
 public class BattleController : MonoBehaviour
 {
     public Battle Battle { get; private set; }
+    private DialogueData EndDialogueData { get; set; }
 
-    public void ActivateBattleScene(string battleId, List<EnemyInfo> enemies)
+    public void ActivateBattleScene(string battleId, List<EnemyInfo> enemies, DialogueData endDialogueData)
     {
+        EndDialogueData = endDialogueData;
+        
         Application.Instance.AudioManager.PlayMusic(MusicType.Battle);
 
         var enemyPawns = new List<PawnController>();
@@ -143,5 +146,15 @@ public class BattleController : MonoBehaviour
         Application.Instance.PlayerManager.PlayerToWorld();
         Application.Instance.PartyManager.SetPartyToFollow(false);
         Application.Instance.GameSaveManager.SaveBattle(Battle);
+
+        if (EndDialogueData != null)
+        {
+            yield return new WaitForSeconds(1f);
+            Application.Instance.PauseManager.PauseGame();
+            Application.Instance.DialogueManager.OpenDialogue(EndDialogueData, () =>
+            {
+                Application.Instance.PauseManager.ResumeGame();
+            });
+        }
     }
 }

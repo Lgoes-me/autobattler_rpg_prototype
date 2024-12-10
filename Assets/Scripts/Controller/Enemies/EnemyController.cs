@@ -10,7 +10,7 @@ public class EnemyController : MonoBehaviour
     [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
     [field: SerializeField] private List<Transform> Nodes { get; set; }
 
-    private Action OnPlayerCollision { get; set; }
+    private EnemyAreaController EnemyAreaController { get; set; }
 
     private int CurrentNode { get; set; }
     private bool Following { get; set; }
@@ -20,9 +20,9 @@ public class EnemyController : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void Activate(Action onPlayerCollision)
+    public void Activate(EnemyAreaController enemyAreaController)
     {
-        OnPlayerCollision = onPlayerCollision;
+        EnemyAreaController = enemyAreaController;
 
         Following = false;
         gameObject.SetActive(true);
@@ -69,7 +69,7 @@ public class EnemyController : MonoBehaviour
             case < 2f:
                 NavMeshAgent.SetDestination(transform.position);
                 NavMeshAgent.isStopped = true;
-                OnPlayerCollision();
+                EnemyAreaController.StartBattle();
                 break;
             case < 15f:
                 Following = true;

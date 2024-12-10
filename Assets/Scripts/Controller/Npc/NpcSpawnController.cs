@@ -39,6 +39,9 @@ public class NpcSpawnController : MonoBehaviour
 
     private void SpawnPlacementState(NpcPlacement placementData)
     {
+        if(Application.Instance.PartyManager.Contains(NpcSchedule.PawnData))
+            return;
+
         if (NpcController == null)
         {
             NpcController = Instantiate(NpcControllerPrefab, transform.position, Quaternion.identity)
@@ -65,6 +68,9 @@ public class NpcSpawnController : MonoBehaviour
 
     private void ActivatePlacementState(NpcPlacement placementData)
     {
+        if(Application.Instance.PartyManager.Contains(NpcSchedule.PawnData))
+            return;
+        
         if (NpcController == null)
         {
             NpcController = Instantiate(NpcControllerPrefab, transform.position, Quaternion.identity)

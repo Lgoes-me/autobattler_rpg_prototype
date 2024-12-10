@@ -8,7 +8,8 @@ public class EnemyAreaController : MonoBehaviour
     [field: SerializeField] private string Id { get; set; }
     [field: SerializeField] private List<EnemyInfo> Enemies { get; set; }
     [field: SerializeField] private BattleController BattleController { get; set; }
-
+    [field: SerializeField] private DialogueData EndDialogue { get; set; }
+    
     private bool Active { get; set; }
     private Coroutine Coroutine { get; set; }
 
@@ -61,7 +62,7 @@ public class EnemyAreaController : MonoBehaviour
 
         foreach (var enemy in Enemies)
         {
-            enemy.EnemyController.Activate(StartBattle);
+            enemy.EnemyController.Activate(this);
         }
     }
 
@@ -70,7 +71,7 @@ public class EnemyAreaController : MonoBehaviour
         Enemies.ForEach(e => e.EnemyController.Deactivate());
     }
 
-    private void StartBattle()
+    public void StartBattle()
     {
         foreach (var enemy in Enemies)
         {
@@ -78,7 +79,7 @@ public class EnemyAreaController : MonoBehaviour
         }
         
         Application.Instance.PlayerManager.PlayerToBattle();
-        BattleController.ActivateBattleScene(Id, Enemies);
+        BattleController.ActivateBattleScene(Id, Enemies, EndDialogue);
     }
 
     private void OnValidate()

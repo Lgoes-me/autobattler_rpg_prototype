@@ -166,9 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56a17252d3ae9f946970153ff06c2a78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Dialogue>k__BackingField: {fileID: 11400000, guid: 25d63324a8689b24c88e691df1bf509e, type: 2}
-  <SceneName>k__BackingField: DungeonEntrance
-  <DoorName>k__BackingField: DungeonEntrance
+  <Dialogue>k__BackingField: {fileID: 11400000, guid: bd2d1176735994f438ac62a13ebb7228, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

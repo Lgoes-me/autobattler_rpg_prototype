@@ -2971,7 +2971,7 @@ PrefabInstance:
     - target: {fileID: 7611794463562009531, guid: da7ca6b1fb5701c45b7869cf4f1eaff3, type: 3}
       propertyPath: managedReferences[8813334536799649796].<DialogueData>k__BackingField
       value: 
-      objectReference: {fileID: 11400000, guid: 25d63324a8689b24c88e691df1bf509e, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 7611794463562009531, guid: da7ca6b1fb5701c45b7869cf4f1eaff3, type: 3}
       propertyPath: managedReferences[8813334536799649797].<DialogueData>k__BackingField
       value: 
@@ -2979,7 +2979,7 @@ PrefabInstance:
     - target: {fileID: 7611794463562009531, guid: da7ca6b1fb5701c45b7869cf4f1eaff3, type: 3}
       propertyPath: managedReferences[8813334536799649798].<DialogueData>k__BackingField
       value: 
-      objectReference: {fileID: 11400000, guid: 425a0059c1a929b4a8c7dbc224d0b23e, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 7611794463562009531, guid: da7ca6b1fb5701c45b7869cf4f1eaff3, type: 3}
       propertyPath: managedReferences[8813334547186319361].<DialogueData>k__BackingField
       value: 
