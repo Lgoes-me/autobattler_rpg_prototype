@@ -166,6 +166,13 @@ public class Pawn : BasePawn
         Health = Mathf.Clamp(Health - reducedDamage, 0, MaxHealth);
         LifeChanged?.Invoke();
     }
+
+    public void ReceiveDamage(int damage)
+    {
+        Health = Mathf.Clamp(Health - damage, 0, MaxHealth);
+        LifeChanged?.Invoke();
+    }
+
     
     public void ReceiveHeal(int healValue, bool canRevive)
     {

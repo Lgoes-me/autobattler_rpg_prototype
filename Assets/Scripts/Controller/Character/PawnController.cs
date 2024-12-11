@@ -167,6 +167,8 @@ public class PawnController : MonoBehaviour
         CharacterController.SetAnimationState(new DeadState());
         NavMeshAgent.isStopped = true;
         Ability = null;
+        
+        Application.Instance.BattleEventsManager.DoPawnDeathEvent(BattleController.Battle, this);
     }
 
     public void ReceiveHeal(bool canRevive)

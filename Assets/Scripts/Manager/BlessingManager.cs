@@ -30,6 +30,7 @@ public class BlessingManager
     {
         Blessings.Add(BlessingFactory.CreateBlessing(identifier));
         GameSaveManager.SetBlessings();
+        InterfaceManager.InitBlessingsCanvas(Blessings);
     }
 
     public void RemoveBlessing(BlessingIdentifier identifier)
@@ -40,11 +41,13 @@ public class BlessingManager
 
         Blessings.Remove(jokerToRemove);
         GameSaveManager.SetBlessings();
+        InterfaceManager.InitBlessingsCanvas(Blessings);
     }
 
     public void ReorderBlessings(List<BlessingIdentifier> identifiers)
     {
         Blessings = identifiers.Select(j => BlessingFactory.CreateBlessing(j)).ToList();
         GameSaveManager.SetBlessings();
+        InterfaceManager.InitBlessingsCanvas(Blessings);
     }
 }

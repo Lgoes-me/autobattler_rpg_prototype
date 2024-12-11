@@ -47,4 +47,17 @@ public class BattleEventsManager
             archetype.DoSpecialAttackEvent(battle, abilityUser, ability);
         }
     }
+    
+    public void DoPawnDeathEvent(Battle battle, PawnController pawnController)
+    {
+        foreach (var blessing in BlessingManager.Blessings)
+        {
+            blessing.DoPawnDeathEvent(battle, pawnController);
+        }
+        
+        foreach (var archetype in PartyManager.Archetypes)
+        {
+            archetype.DoPawnDeathEvent(battle, pawnController);
+        }
+    }
 }

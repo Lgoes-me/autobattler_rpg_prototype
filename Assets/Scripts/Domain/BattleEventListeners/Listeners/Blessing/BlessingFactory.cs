@@ -26,10 +26,30 @@ public class BlessingFactory
                     }
                 }
             },
+            
+            BlessingIdentifier.DamageEnemiesOnEnemyDeath => new Blessing(id)
+            {
+                new OnPawnDeathListener()
+                {
+                    (battle, pawnController) => IsEnemyTeam(pawnController),
+                    (battle, pawnController) =>
+                    {
+                        foreach (var enemyPawn in battle.EnemyPawns)
+                        {
+                            if(!enemyPawn.Pawn.IsAlive)
+                                continue;
+                            
+                            enemyPawn.Pawn.ReceiveDamage(5);
+                            enemyPawn.ReceiveAttack();
+                        }
+                    }
+                }
+            },
 
             _ => throw new ArgumentOutOfRangeException(nameof(id), id, null)
         };
     }
 
     private bool IsPlayerTeam(PawnController pawn) => pawn.Pawn.Team == TeamType.Player;
+    private bool IsEnemyTeam(PawnController pawn) => pawn.Pawn.Team == TeamType.Enemies;
 }

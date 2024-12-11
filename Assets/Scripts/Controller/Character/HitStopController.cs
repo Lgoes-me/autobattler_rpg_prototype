@@ -18,6 +18,8 @@ public class HitStopController : MonoBehaviour, IPauseListener
     {
         if(Stopped) return;
 
+        Stopped = true;
+        
         if (isGlobal)
         {
             Time.timeScale = percentage;
@@ -41,6 +43,7 @@ public class HitStopController : MonoBehaviour, IPauseListener
         
         Animator.speed = 1;
         Sprite.color = Color.white;
+        Stopped = false;
     }
 
     public void Pause()

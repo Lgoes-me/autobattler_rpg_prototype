@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
@@ -38,5 +39,30 @@ public class AddFriend : GameAction
     public override void Invoke()
     {
         Application.Instance.PartyManager.AddToAvailableParty(PawnData);
+    }
+}
+
+[Serializable]
+public class MultipleActions : GameAction
+{
+    [field: SerializeReference] [field: SerializeField] private List<GameAction> GameActions { get; set; }
+    
+    public override void Invoke()
+    {
+        foreach (var gameAction in GameActions)
+        {
+            gameAction.Invoke();
+        }
+    }
+}
+
+[Serializable]
+public class GivePrize : GameAction
+{
+    [field: SerializeField] private BlessingIdentifier Blessing { get; set; }
+    
+    public override void Invoke()
+    {
+        Application.Instance.BlessingManager.AddBlessing(Blessing);
     }
 }
