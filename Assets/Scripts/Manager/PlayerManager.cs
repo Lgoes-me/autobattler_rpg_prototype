@@ -5,7 +5,7 @@ public class PlayerManager : MonoBehaviour
 {
     [field: SerializeField] public PlayerController PlayerController { get; private set; }
     [field: SerializeField] public PawnController PawnController { get; private set; }
-    [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
+    [field: SerializeField] public NavMeshAgent NavMeshAgent { get; private set; }
 
     private GameSaveManager GameSaveManager { get; set; }
 

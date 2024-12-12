@@ -6,11 +6,14 @@ public class SpawnController : MonoBehaviour
     [field: SerializeField] public string Id { get; private set; }
     [field: SerializeField] private CameraAreaController CameraArea { get; set; }
 
-    public void SpawnPlayer(PlayerManager playerManager)
+    public virtual void SpawnPlayer(PlayerManager playerManager)
     {
         ActivateCameraArea();
+        
+        playerManager.NavMeshAgent.enabled = false;
         playerManager.PlayerController.transform.position = transform.position;
         playerManager.PawnController.CharacterController.SetDirection(transform.forward);
+        playerManager.NavMeshAgent.enabled = true;
     }
 
     private void ActivateCameraArea()
