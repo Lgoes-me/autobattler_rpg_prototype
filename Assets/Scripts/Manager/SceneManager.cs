@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
@@ -101,7 +102,7 @@ public class SceneManager : MonoBehaviour
         };
     }
 
-    public void StartBonfireScene(BonfireController bonfireController, SpawnDomain bonfireSpawn)
+    public void StartBonfireScene(SpawnDomain bonfireSpawn, Action callback)
     {
         if (BonfireActive)
             return;
@@ -116,7 +117,7 @@ public class SceneManager : MonoBehaviour
             InterfaceManager.HideBattleCanvas();
             GameSaveManager.SetBonfireSpawn(bonfireSpawn);
 
-            FindObjectOfType<BonfireScene>().Init(bonfireController);
+            FindObjectOfType<BonfireScene>().Init(callback);
         };
     }
 

@@ -44,5 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16c66e3536be4682b18c2c5bf806d28f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Spawn>k__BackingField: {fileID: 343838794364127267}
   <Id>k__BackingField: DungeonEntrance
   <CameraArea>k__BackingField: {fileID: 0}

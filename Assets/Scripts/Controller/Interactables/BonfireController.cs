@@ -1,18 +1,26 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-public class BonfireController : InteractableController
+public class BonfireController : MonoBehaviour, IInteractableListener
 {
     [field: SerializeField] private SpawnController Spawn { get; set; }
     private bool Selected { get; set; }
 
-    protected override void InternalSelect()
+    [field: SerializeField] private InteractableController Controller { get; set; }
+
+    private void Awake()
+    {
+        Controller.Interactable = this;
+    }
+
+    public void Select(Action callback)
     {
         Selected = true;
         var scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-        Application.Instance.SceneManager.StartBonfireScene(this, new SpawnDomain(Spawn.Id, scene));
+        Application.Instance.SceneManager.StartBonfireScene(new SpawnDomain(Spawn.Id, scene), callback);
     }
 
-    protected override void InternalUnSelect()
+    public void UnSelect()
     {
         Application.Instance.SceneManager.EndBonfireScene();
         Selected = false;

@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class NpcController : InteractableController
+public class NpcController : MonoBehaviour, IInteractableListener
 {
     [field: SerializeField] private PawnData PawnData { get; set; }
     [field: SerializeField] private PawnController PawnController { get; set; }
@@ -10,6 +10,13 @@ public class NpcController : InteractableController
     [field: SerializeField] private DialogueData Dialogue { get; set; }
     [field: SerializeField] private Action PathCallback { get; set; }
 
+    [field: SerializeField] private InteractableController Controller { get; set; }
+
+    private void Awake()
+    {
+        Controller.Interactable = this;
+    }
+    
     public NpcController Init(PawnData pawnData)
     {
         PawnData = pawnData;
@@ -47,18 +54,18 @@ public class NpcController : InteractableController
         }
     }
 
-    protected override void InternalSelect()
+    public void Select(Action callback)
     {
         Application.Instance.PauseManager.PauseGame();
         
         Application.Instance.DialogueManager.OpenDialogue(Dialogue, () =>
         {
             Application.Instance.PauseManager.ResumeGame();
-            Preselect();
+            callback();
         });
     }
 
-    protected override void InternalUnSelect()
+    public void UnSelect()
     {
         Application.Instance.DialogueManager.CloseDialogue();
     }

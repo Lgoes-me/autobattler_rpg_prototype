@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7761577622677726545}
+  - component: {fileID: 646898795955493001}
   - component: {fileID: 5639184684231170965}
   - component: {fileID: 8206254844400676555}
   - component: {fileID: 449031379433608940}
@@ -38,6 +39,19 @@ Transform:
   - {fileID: 1139681251940380457}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &646898795955493001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106570956837824938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65e637bf26be6f743b99320b6a15815a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <InteractableCanvas>k__BackingField: {fileID: 3458484401805304797}
 --- !u!114 &5639184684231170965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50,11 +64,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a454ae49569e4438b8563b5a011ff6fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <InteractableCanvas>k__BackingField: {fileID: 3458484401805304797}
   <PawnData>k__BackingField: {fileID: 11400000, guid: 41bae653165f78748b456c8346ffda6c, type: 2}
   <PawnController>k__BackingField: {fileID: 4759648862371886847}
   <NavMeshAgent>k__BackingField: {fileID: 449031379433608940}
   <Dialogue>k__BackingField: {fileID: 0}
+  <Controller>k__BackingField: {fileID: 646898795955493001}
 --- !u!136 &8206254844400676555
 CapsuleCollider:
   m_ObjectHideFlags: 0

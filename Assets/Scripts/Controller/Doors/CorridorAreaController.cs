@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DoorController : SpawnController
+public class CorridorAreaController : SpawnController
 {
     [field: SerializeField] private string SceneDestination { get; set; }
     [field: SerializeField] private bool Active { get; set; } = true;
@@ -12,24 +12,27 @@ public class DoorController : SpawnController
         base.SpawnPlayer(playerManager);
         Active = false;
         
-        playerManager.NavMeshAgent.SetDestination(Destination.position);
+        playerManager.SetDestination(Destination, OnArrive);
     }
-
-    private void OnTriggerExit(Collider other)
+    
+    protected virtual void OnArrive()
     {
-        if (other.CompareTag("Player"))
-        {
-            Active = true;
-            Application.Instance.PlayerManager.NavMeshAgent.isStopped = true;
-            Application.Instance.PlayerManager.NavMeshAgent.ResetPath();
-        }
+        Active = true;
     }
-
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") && Active)
         {
-            Application.Instance.SceneManager.UseDoorToChangeScene(Id, SceneDestination);
+            UseCorridor();
         }
+    }
+
+    protected void UseCorridor()
+    {
+        Application.Instance.PlayerManager.SetDestination(Spawn, () =>
+        {
+            Application.Instance.SceneManager.UseDoorToChangeScene(Id, SceneDestination);
+        });
     }
 }

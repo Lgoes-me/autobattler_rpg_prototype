@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using UnityEngine;
 using UnityEngine.AI;
 
 public class PlayerManager : MonoBehaviour
@@ -8,6 +10,8 @@ public class PlayerManager : MonoBehaviour
     [field: SerializeField] public NavMeshAgent NavMeshAgent { get; private set; }
 
     private GameSaveManager GameSaveManager { get; set; }
+    private bool Moving { get; set; }
+    private Action Callback { get; set; }
 
     public void Prepare()
     {
@@ -49,5 +53,31 @@ public class PlayerManager : MonoBehaviour
         PlayerController.gameObject.SetActive(true);
         PlayerController.enabled = true;
         PlayerController.Prepare();
+    }
+
+    public void SetDestination(Transform destination, Action callback)
+    {
+        NavMeshAgent.enabled = true;
+        Callback = callback;
+        NavMeshAgent.SetDestination(destination.position);
+        StartCoroutine(WaitForAFrame());
+    }
+
+    private IEnumerator WaitForAFrame()
+    {
+        yield return new WaitForEndOfFrame();
+        Moving = true;
+    }
+
+    private void Update()
+    {
+        if (Moving && NavMeshAgent.pathStatus == NavMeshPathStatus.PathComplete && NavMeshAgent.remainingDistance < 0.5f)
+        {
+            Moving = false;
+            NavMeshAgent.isStopped = false;
+            NavMeshAgent.ResetPath();
+            NavMeshAgent.enabled = false;
+            Callback?.Invoke();
+        }
     }
 }

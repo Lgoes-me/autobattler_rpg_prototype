@@ -38,7 +38,7 @@ public class EnemyController : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         PawnController.CharacterController.SetSpeed(NavMeshAgent.velocity.magnitude);
         PawnController.CharacterController.SetDirection(NavMeshAgent.velocity);

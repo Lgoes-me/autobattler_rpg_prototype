@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
         PawnController.CharacterController.SetSpeed(0);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.TryGetComponent<InteractableController>(out var interactable))
         {

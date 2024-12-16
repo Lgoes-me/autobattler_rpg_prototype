@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,13 +12,13 @@ public class BonfireScene : BaseScene
     [field: SerializeField] private ArchetypeCanvasController ArchetypeCanvasPrefab { get; set; }
     [field: SerializeField] private Transform TeamInfoContent { get; set; }
 
-    private BonfireController BonfireController { get; set; }
+    private Action Callback { get; set; }
     public IBonfirePanel BonfirePanel { get; set; }
     public bool IsDragging { get; set; }
 
-    public void Init(BonfireController bonfireController)
+    public void Init(Action callback)
     {
-        BonfireController = bonfireController;
+        Callback = callback;
         FinishButton.onClick.AddListener(EndBonfireScene);
 
         var partyManager = Application.Instance.PartyManager;
@@ -36,7 +37,7 @@ public class BonfireScene : BaseScene
     private void EndBonfireScene()
     {
         Application.Instance.SceneManager.EndBonfireScene();
-        BonfireController.Preselect();
+        Callback();
     }
 
     public void Select(BasePawn basePawn)

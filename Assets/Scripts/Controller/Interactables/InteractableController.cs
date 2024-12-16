@@ -1,10 +1,13 @@
 using UnityEngine;
 
-public abstract class InteractableController : MonoBehaviour , IPauseListener
+public class InteractableController : MonoBehaviour , IPauseListener
 {
     [field: SerializeField] private InteractableCanvasController InteractableCanvas { get; set; }
     
-    private bool Enabled { get; set; }
+    public IInteractableListener Interactable { get; set; }
+    public bool Enabled { get; set; }
+    
+    private bool Preselected { get; set; }
 
     private void Awake()
     {
@@ -15,16 +18,11 @@ public abstract class InteractableController : MonoBehaviour , IPauseListener
 
     public void Preselect()
     {
-        if(!Enabled)
+        if(!Enabled || Preselected)
             return;
-        
-        InteractableCanvas.Show();
-        InternalPreselect();
-    }
 
-    protected virtual void InternalPreselect()
-    {
-        
+        Preselected = true;
+        InteractableCanvas.Show();
     }
 
     public void Select()
@@ -32,13 +30,13 @@ public abstract class InteractableController : MonoBehaviour , IPauseListener
         if(!Enabled)
             return;
         
-        InternalSelect();
         InteractableCanvas.Hide();
-    }
-
-    protected virtual void InternalSelect()
-    {
         
+        Interactable.Select(() =>
+        {
+            Preselected = false;
+            Preselect();
+        });
     }
     
     public void Unselect()
@@ -46,13 +44,9 @@ public abstract class InteractableController : MonoBehaviour , IPauseListener
         if(!Enabled)
             return;
         
+        Preselected = false;
         InteractableCanvas.Hide();
-        InternalUnSelect();
-    }
-
-    protected virtual void InternalUnSelect()
-    {
-        
+        Interactable.UnSelect();
     }
     
     public void Pause()
