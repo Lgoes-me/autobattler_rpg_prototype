@@ -60,12 +60,6 @@ public class PlayerManager : MonoBehaviour
         NavMeshAgent.enabled = true;
         Callback = callback;
         NavMeshAgent.SetDestination(destination.position);
-        StartCoroutine(WaitForAFrame());
-    }
-
-    private IEnumerator WaitForAFrame()
-    {
-        yield return new WaitForEndOfFrame();
         Moving = true;
     }
 
