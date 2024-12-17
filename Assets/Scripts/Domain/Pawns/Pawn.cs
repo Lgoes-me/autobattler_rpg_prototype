@@ -17,7 +17,6 @@ public class Pawn : BasePawn
     public List<ArchetypeIdentifier> Archetypes { get; }
     
     public Dictionary<string, Buff> Buffs { get; private set; }
-    public AbilityData RequestedSpecialAbility { get; private set; }
     public float Initiative { get; private set; }
     public TeamType Team { get; }
 
@@ -28,6 +27,9 @@ public class Pawn : BasePawn
     public event PawnDomainChanged LifeChanged;
     public event PawnDomainChanged ManaChanged;
     public event PawnDomainChanged BuffsChanged;
+    
+    public delegate void PawnDomainAbilitySelected(Ability ability);
+    public event PawnDomainAbilitySelected AbilitySelected;
 
     public Pawn(string id,
         int health,
@@ -52,7 +54,6 @@ public class Pawn : BasePawn
         Archetypes = archetypes;
         
         Buffs = new Dictionary<string, Buff>();
-        RequestedSpecialAbility = null;
         Initiative = 0;
         Team = team;
     }
@@ -66,7 +67,6 @@ public class Pawn : BasePawn
     {
         Mana = 0;
         Buffs = new Dictionary<string, Buff>();
-        RequestedSpecialAbility = null;
         
         ManaChanged?.Invoke();
         BuffsChanged?.Invoke();
@@ -135,31 +135,6 @@ public class Pawn : BasePawn
         return new PawnInfo(Id,  MaxHealth -  Health);
     }
 
-    public Ability GetCurrentAttackIntent(
-        PawnController abilityUser, 
-        Battle battle,
-        bool automaticallyUseSpecials)
-    {
-        if (RequestedSpecialAbility != null)
-        {
-            var requestedAbility = RequestedSpecialAbility.ToDomain(abilityUser, true);
-            RequestedSpecialAbility = null;
-            return requestedAbility;
-        }
-        
-        var abilities = new List<AbilityData>();
-
-        abilities.AddRange(Abilities);
-
-        if (automaticallyUseSpecials)
-        {
-            var specialAttacks = SpecialAbilities.Where(a => a.ResourceData.GetCost() <=  Mana).ToList();
-            abilities.AddRange(specialAttacks);
-        }
-
-        return abilities.OrderByDescending(a => a.GetPriority(abilityUser, battle)).First().ToDomain(abilityUser, false);
-    }
-
     public void ReceiveDamage(DamageDomain damage)
     {
         var reducedDamage = GetPawnStats().GetReducedDamage(damage);
@@ -216,9 +191,29 @@ public class Pawn : BasePawn
         return stats;
     }
 
-    public void DoSpecial(AbilityData ability)
+    public void DoSpecial(AbilityData abilityData, PawnController abilityUser, Battle battle)
     {
-        RequestedSpecialAbility = ability;
+        var ability = abilityData.ToDomain(abilityUser, true);
+        ability.ChooseFocus(battle);
+        
+        AbilitySelected?.Invoke(ability);
+    }
+    
+    public Ability GetCurrentAttackIntent(
+        PawnController abilityUser, 
+        Battle battle)
+    {
+        var abilities = new List<AbilityData>();
+
+        abilities.AddRange(Abilities);
+
+        if (Team is TeamType.Enemies)
+        {
+            var specialAttacks = SpecialAbilities.Where(a => a.ResourceData.GetCost() <=  Mana).ToList();
+            abilities.AddRange(specialAttacks);
+        }
+
+        return abilities.OrderByDescending(a => a.GetPriority(abilityUser, battle)).First().ToDomain(abilityUser, false);
     }
 }
 

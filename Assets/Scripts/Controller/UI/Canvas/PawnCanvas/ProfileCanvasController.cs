@@ -28,12 +28,13 @@ public class ProfileCanvasController : PawnCanvasController
         UpdateProfile("default");
     }
 
-    public void StartBattle()
+    public void StartBattle(PawnController playerPawn, Battle battle)
     {
         CanvasGroup.alpha = 1;
+        
         foreach (var ability in Pawn.SpecialAbilities)
         {
-            SpecialButtons.Add(Instantiate(SpecialButtonPrefab, SpecialButtonsParent).Init(Pawn, ability));
+            SpecialButtons.Add(Instantiate(SpecialButtonPrefab, SpecialButtonsParent).Init(Pawn, ability, playerPawn, battle));
         }
 
         UpdateProfile("battle");

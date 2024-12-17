@@ -10,7 +10,7 @@ public class ButtonItemController : MonoBehaviour
     
     private AbilityData Ability { get; set; }
 
-    public ButtonItemController Init(Pawn pawn, AbilityData ability)
+    public ButtonItemController Init(Pawn pawn, AbilityData ability, PawnController playerPawn, Battle battle)
     {
         Ability = ability;
         
@@ -22,7 +22,7 @@ public class ButtonItemController : MonoBehaviour
         SpecialButton.onClick.AddListener(() =>
         {
             SpecialButton.gameObject.SetActive(false);
-            pawn.DoSpecial(ability);
+            pawn.DoSpecial(ability, playerPawn, battle);
         });
         
         return this;

@@ -13,6 +13,7 @@ public class PawnController : MonoBehaviour
     public AnimationState PawnState => CharacterController.CurrentState;
     private Coroutine BackToIdleCoroutine { get; set; }
     private Ability Ability { get; set; }
+    private Ability NextAbility { get; set; }
     private BattleController BattleController { get; set; }
 
     public void Init(Pawn pawn)
@@ -24,6 +25,8 @@ public class PawnController : MonoBehaviour
         {
             CharacterController.SetWeapon(pawn.Weapon);
         }
+        
+        Pawn.AbilitySelected += RealizaHabilidade;
     }
 
     public void StartBattle(BattleController battleController)
@@ -35,51 +38,53 @@ public class PawnController : MonoBehaviour
         NavMeshAgent.isStopped = true;
 
         Ability = null;
+        NextAbility = null;
+        
         BattleController = battleController;
     }
 
-    public IEnumerator PawnTurn()
+    public IEnumerator RealizaTurno()
     {
-        if (Ability == null)
-        {
-            Ability = Pawn.GetCurrentAttackIntent(this, BattleController.Battle, Pawn.Team is TeamType.Enemies);
-            Ability.ChooseFocus(BattleController.Battle);
-        }
+        if (Ability != null)
+            yield break;
+        
+        Ability = Pawn.GetCurrentAttackIntent(this, BattleController.Battle);
+        Ability.ChooseFocus(BattleController.Battle);
 
-        if (!Ability.ShouldUse())
-        {
-            NavMeshAgent.isStopped = false;
-            NavMeshAgent.SetDestination(Ability.WalkingDestination);
-            CharacterController.SetAnimationState(new IdleState());
-        }
-        else
-        {
-            NavMeshAgent.isStopped = true;
-            NavMeshAgent.SetDestination(transform.position);
-            CharacterController.SetAnimationState(new AbilityState(Ability, DoAbility), GoBackToIdle);
-        }
-
+        RealizaHabilidade(Ability);
+        
         yield break;
     }
-
-    private void DoAbility()
+    
+    private void RealizaHabilidade(Ability ability)
     {
-        if (Ability == null || !PawnState.AbleToFight)
+        if (ability.IsSpecial && Ability != null && Ability.Used)
+        {
+            NextAbility = ability;
+            return;
+        }
+        
+        Ability = ability;
+    }
+
+    private void DoAbility(Ability ability)
+    {
+        if (!PawnState.AbleToFight)
             return;
 
-        if (Ability.IsSpecial)
+        if (ability.IsSpecial)
         {
-            Application.Instance.BattleEventsManager.DoSpecialAttackEvent(BattleController.Battle, this, Ability);
+            Application.Instance.BattleEventsManager.DoSpecialAttackEvent(BattleController.Battle, this, ability);
         }
         else
         {
-            Application.Instance.BattleEventsManager.DoAttackEvent(BattleController.Battle, this, Ability);
+            Application.Instance.BattleEventsManager.DoAttackEvent(BattleController.Battle, this, ability);
         }
 
         Application.Instance.AudioManager.PlaySound(SfxType.Slash);
 
-        Ability.SpendResource();
-        Ability.DoAction();
+        ability.SpendResource();
+        ability.DoAction();
     }
 
     private void GoBackToIdle()
@@ -99,8 +104,13 @@ public class PawnController : MonoBehaviour
 
         Pawn.SetInitiative(Ability.Delay);
 
-        Ability = null;
+        Ability = NextAbility;
+        NextAbility = null;
+        
         CharacterController.SetAnimationState(new IdleState());
+        
+        NavMeshAgent.isStopped = true;
+        NavMeshAgent.SetDestination(transform.position);
     }
 
     private void Update()
@@ -108,18 +118,26 @@ public class PawnController : MonoBehaviour
         if (Ability == null || !PawnState.CanWalk)
             return;
 
-        CharacterController.SetDirection(NavMeshAgent.velocity);
+        var direction = Ability.WalkingDestination - transform.position;
+        
+        CharacterController.SetDirection(direction);
+        CharacterController.SetSpeed(NavMeshAgent.velocity.magnitude);
 
-        if (Ability.ShouldUse())
-        {
-            NavMeshAgent.isStopped = true;
-            CharacterController.SetSpeed(0);
-        }
-        else if (NavMeshAgent.pathStatus == NavMeshPathStatus.PathComplete && NavMeshAgent.remainingDistance < 1f)
+        if (!Ability.ShouldUse())
         {
             NavMeshAgent.isStopped = false;
             NavMeshAgent.SetDestination(Ability.WalkingDestination);
-            CharacterController.SetSpeed(NavMeshAgent.velocity.magnitude);
+            CharacterController.SetAnimationState(new IdleState());
+        }
+        else
+        {
+            Ability.Used = true;
+            NavMeshAgent.isStopped = true;
+            NavMeshAgent.SetDestination(transform.position);
+            
+            CharacterController.SetAnimationState(
+                new AbilityState(Ability, () => DoAbility(Ability)), 
+                GoBackToIdle);
         }
     }
 
@@ -167,6 +185,7 @@ public class PawnController : MonoBehaviour
         CharacterController.SetAnimationState(new DeadState());
         NavMeshAgent.isStopped = true;
         Ability = null;
+        NextAbility = null;
         
         Application.Instance.BattleEventsManager.DoPawnDeathEvent(BattleController.Battle, this);
     }

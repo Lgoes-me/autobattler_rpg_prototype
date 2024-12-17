@@ -38,15 +38,16 @@ public class BattleController : MonoBehaviour
             playerPawns.Add(alliedController);
         }
 
+        Battle = new Battle(battleId, enemyPawns, playerPawns);
+        
         foreach (var playerPawn in playerPawns)
         {
             if (playerPawn.PawnCanvasController is not ProfileCanvasController profileCanvasController) 
                 continue;
             
-            profileCanvasController.StartBattle();
+            profileCanvasController.StartBattle(playerPawn, Battle);
         }
-        
-        Battle = new Battle(battleId, enemyPawns, playerPawns);
+
         Application.Instance.BattleEventsManager.DoBattleStartEvent(Battle);
 
         StartCoroutine(BattleCoroutine());
@@ -83,7 +84,7 @@ public class BattleController : MonoBehaviour
         foreach (var pawn in initiativeList)
         {
             if (!pawn.PawnState.CanTakeTurn) continue;
-            yield return pawn.PawnTurn();
+            yield return pawn.RealizaTurno();
         }
     }
 

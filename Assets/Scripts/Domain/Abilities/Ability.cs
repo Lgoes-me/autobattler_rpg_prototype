@@ -20,6 +20,7 @@ public class Ability
     private PawnController FocusedPawn => FocusedPawns[0];
     private bool IsInRange => Range >= (FocusedPawn.transform.position - AbilityUser.transform.position).magnitude;
     public bool IsSpecial { get; }
+    public bool Used { get; set; }
 
     public Ability(
         PawnController abilityUser,
@@ -52,7 +53,7 @@ public class Ability
 
     public bool ShouldUse()
     {
-        return IsInRange;
+        return IsInRange && !Used;
     }
 
     public bool CanUse()
