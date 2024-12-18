@@ -7,12 +7,13 @@ public class CorridorAreaController : SpawnController
     
     [field: SerializeField] private Transform Destination { get; set; }
 
-    public override void SpawnPlayer(PlayerManager playerManager)
+    public override async void SpawnPlayer(PlayerManager playerManager)
     {
         base.SpawnPlayer(playerManager);
         Active = false;
         
-        playerManager.SetDestination(Destination, OnArrive);
+        await this.WaitToArriveAtDestination(playerManager.NavMeshAgent, Destination.position);
+        OnArrive();
     }
     
     protected virtual void OnArrive()
@@ -28,11 +29,9 @@ public class CorridorAreaController : SpawnController
         }
     }
 
-    protected void UseCorridor()
+    protected async void UseCorridor()
     {
-        Application.Instance.PlayerManager.SetDestination(Spawn, () =>
-        {
-            Application.Instance.SceneManager.UseDoorToChangeScene(Id, SceneDestination);
-        });
+        await this.WaitToArriveAtDestination(Application.Instance.PlayerManager.NavMeshAgent, Spawn.position);
+        Application.Instance.SceneManager.UseDoorToChangeScene(Id, SceneDestination);
     }
 }

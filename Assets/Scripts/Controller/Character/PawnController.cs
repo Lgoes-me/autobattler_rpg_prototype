@@ -52,8 +52,6 @@ public class PawnController : MonoBehaviour
         Ability.ChooseFocus(BattleController.Battle);
 
         RealizaHabilidade(Ability);
-        
-        yield break;
     }
     
     private void RealizaHabilidade(Ability ability)
@@ -92,6 +90,7 @@ public class PawnController : MonoBehaviour
         if (BackToIdleCoroutine != null)
             StopCoroutine(BackToIdleCoroutine);
 
+        NavMeshAgent.ResetPath();
         BackToIdleCoroutine = StartCoroutine(GoBackToIdleCoroutine());
     }
 
@@ -110,7 +109,7 @@ public class PawnController : MonoBehaviour
         CharacterController.SetAnimationState(new IdleState());
         
         NavMeshAgent.isStopped = true;
-        NavMeshAgent.SetDestination(transform.position);
+        NavMeshAgent.ResetPath();
     }
 
     private void Update()
@@ -118,6 +117,9 @@ public class PawnController : MonoBehaviour
         if (Ability == null || !PawnState.CanWalk)
             return;
 
+        if(Ability.FocusedPawn == null || !Ability.FocusedPawn.PawnState.CanBeTargeted)
+            return;
+        
         var direction = Ability.WalkingDestination - transform.position;
         
         CharacterController.SetDirection(direction);
@@ -133,7 +135,7 @@ public class PawnController : MonoBehaviour
         {
             Ability.Used = true;
             NavMeshAgent.isStopped = true;
-            NavMeshAgent.SetDestination(transform.position);
+            NavMeshAgent.ResetPath();
             
             CharacterController.SetAnimationState(
                 new AbilityState(Ability, () => DoAbility(Ability)), 
@@ -154,6 +156,7 @@ public class PawnController : MonoBehaviour
         Pawn?.RemoveAllBuffs();
 
         CharacterController.SetAnimationState(new IdleState());
+        
         enabled = false;
         BattleController = null;
     }
@@ -161,6 +164,8 @@ public class PawnController : MonoBehaviour
     public void Dance()
     {
         CharacterController.SetAnimationState(new DanceState());
+        NavMeshAgent.isStopped = true;
+        NavMeshAgent.ResetPath();
     }
 
     public void SpawnProjectile(
