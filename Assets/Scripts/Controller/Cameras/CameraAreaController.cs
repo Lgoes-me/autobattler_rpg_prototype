@@ -7,11 +7,9 @@ public class CameraAreaController : MonoBehaviour
     [field: SerializeField] private CinemachineBlendDefinition Blend { get; set; }
     [field: SerializeField] private bool Follow { get; set; }
 
-    private CinemachineBrain CinemachineBrain { get; set; }
-
     private void Awake()
     {
-        CinemachineBrain = Application.Instance.MainCamera.transform.GetComponent<CinemachineBrain>();
+        CinemachineVirtualCamera.Priority = 0;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -21,25 +19,14 @@ public class CameraAreaController : MonoBehaviour
             ActivateCamera();
         }
     }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            CinemachineBrain.m_DefaultBlend = Blend;
-            CinemachineVirtualCamera.Priority = 0;
-        }
-    }
-
+    
     public void ActivateCamera()
     {
-        Application.Instance.InputManager.SetNewCameraPosition(CinemachineVirtualCamera.transform);
-        
         if (Follow)
         {
             CinemachineVirtualCamera.Follow = Application.Instance.PlayerManager.PlayerController.transform;
         }
 
-        CinemachineVirtualCamera.Priority = 10;
+        Application.Instance.InputManager.SetNewCameraPosition(CinemachineVirtualCamera, Blend);
     }
 }
