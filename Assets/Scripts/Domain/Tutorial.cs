@@ -1,9 +1,9 @@
 ﻿public class Tutorial : ISavable
 {
-    public string Id { get; set; }
+    public Metadata Metadata { get; set; }
 
     public Tutorial()
     {
-        Id = "Tutorial.json";
+        Metadata = new Metadata().CreateNewStaticFile("Tutorial", ".json");
     }
 }

@@ -46,17 +46,18 @@ public class SaveManager
     public void SaveData<T>(T dataToSave) 
         where T : class, ISavable
     {
-        var fileName = dataToSave.Id;
+        var metadata = dataToSave.Metadata;
+        metadata.LastSaved = DateTime.Now;
 
-        var saveSystem = GetSaveSystem<T>(fileName);
-        saveSystem.SaveFile(FilePath<T>(fileName), dataToSave);
+        var saveSystem = GetSaveSystem<T>(metadata.FileName);
+        saveSystem.SaveFile(FilePath<T>(metadata.FileName), dataToSave);
     }
 
     //Load T data from id
     public T LoadData<T>(T containerToLoadInto)
         where T : class, ISavable
     {
-        return LoadData<T>(containerToLoadInto.Id);
+        return LoadData<T>(containerToLoadInto.Metadata.FileName);
     }
 
     //Load T data from static fileName
@@ -64,7 +65,7 @@ public class SaveManager
         where T : class, ISavable, new()
     {
         var instance = new T();
-        return LoadData<T>(instance.Id);
+        return LoadData<T>(instance.Metadata.FileName);
     }
     
     //Load T data from fileName
@@ -100,7 +101,7 @@ public class SaveManager
     public void DeleteData<T>(ISavable loadable) 
         where T : class
     {
-        File.Delete(FilePath<T>(loadable.Id));
+        File.Delete(FilePath<T>(loadable.Metadata.FileName));
     }
     
     //Delete file of type T based on file name
@@ -114,7 +115,7 @@ public class SaveManager
     public void OpenData<T>(ISavable loadable)
         where T : class
     {
-        Process.Start(FilePath<T>(loadable.Id));
+        Process.Start(FilePath<T>(loadable.Metadata.FileName));
     }
     
     //Open file of type T based on file name

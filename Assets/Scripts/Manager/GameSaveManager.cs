@@ -27,8 +27,7 @@ public class GameSaveManager
 
     public void StartNewSave()
     {
-        Save = new Save();
-        Save.CreateNewSaveForIntro();
+        Save = new Save().CreateNewSaveForIntro();
     }
 
     public void LoadSave()
