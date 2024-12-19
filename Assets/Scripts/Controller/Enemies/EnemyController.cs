@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -15,29 +14,17 @@ public class EnemyController : MonoBehaviour
     private int CurrentNode { get; set; }
     private bool Following { get; set; }
 
-    private void Start()
-    {
-        gameObject.SetActive(false);
-    }
-
     public void Activate(EnemyAreaController enemyAreaController)
     {
         EnemyAreaController = enemyAreaController;
-
         Following = false;
-        gameObject.SetActive(true);
 
         if (Nodes.Count > 0)
         {
             NavMeshAgent.SetDestination(Nodes[CurrentNode].transform.position);
         }
     }
-
-    public void Deactivate()
-    {
-        gameObject.SetActive(false);
-    }
-
+    
     private void Update()
     {
         PawnController.CharacterController.SetSpeed(NavMeshAgent.velocity.magnitude);
