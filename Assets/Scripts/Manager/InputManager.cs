@@ -23,13 +23,13 @@ public class InputManager : MonoBehaviour
     public void SetNewCameraPosition(CinemachineVirtualCamera virtualCamera, CinemachineBlendDefinition blend)
     {
         CinemachineBrain.m_DefaultBlend = blend;
-
-        virtualCamera.Priority = 10;
         
         if (VirtualCamera != null)
         {
             VirtualCamera.Priority = 0;
         }
+        
+        virtualCamera.Priority = 10;
         
         VirtualCamera = virtualCamera;
         

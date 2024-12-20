@@ -31,7 +31,7 @@ public class EnemyController : MonoBehaviour
         PawnController.CharacterController.SetDirection(NavMeshAgent.velocity);
         
         var player = Application.Instance.PlayerManager.PlayerController;
-        var distance = player.transform.position - transform.position;
+        var distance = Vector3.Distance(player.transform.position, transform.position);
         
         if (Following)
         {
@@ -51,17 +51,18 @@ public class EnemyController : MonoBehaviour
             NavMeshAgent.SetDestination(Nodes[CurrentNode].transform.position);
         }
 
-        switch (distance.sqrMagnitude)
+        switch (distance)
         {
-            case < 2f:
+            case < 1f:
                 NavMeshAgent.SetDestination(transform.position);
                 NavMeshAgent.isStopped = true;
+                
                 EnemyAreaController.StartBattle();
                 break;
-            case < 15f:
+            case < 5f:
                 Following = true;
                 break;
-            default:
+            case > 5f:
                 Following = false;
                 break;
         }

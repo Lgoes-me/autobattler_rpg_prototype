@@ -9,7 +9,7 @@ public class EnemyAreaController : MonoBehaviour
     [field: SerializeField] private BattleController BattleController { get; set; }
     [field: SerializeReference] [field: SerializeField] private GameAction EndBattleAction { get; set; }
     
-    private void Start()
+    private void Awake()
     {
         if (Application.Instance.GameSaveManager.ContainsBattle(Id))
             return;
