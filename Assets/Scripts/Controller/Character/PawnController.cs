@@ -138,8 +138,7 @@ public class PawnController : MonoBehaviour
             NavMeshAgent.ResetPath();
             
             CharacterController.SetAnimationState(
-                new AbilityState(Ability, () => DoAbility(Ability)), 
-                GoBackToIdle);
+                new AbilityState(Ability,  DoAbility, GoBackToIdle));
         }
     }
 

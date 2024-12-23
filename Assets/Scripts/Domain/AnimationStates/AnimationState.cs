@@ -14,4 +14,10 @@ public class AnimationState
     {
         
     }
+    
+    
+    public virtual void DoAnimationCallback()
+    {
+        
+    }
 }

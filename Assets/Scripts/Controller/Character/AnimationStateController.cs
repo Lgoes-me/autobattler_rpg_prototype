@@ -1,43 +1,30 @@
 using System;
-using System.Collections;
 using UnityEngine;
 
 public class AnimationStateController : MonoBehaviour
 {
     [field: SerializeField] private Animator Animator { get; set; }
-
-    public AnimationState CurrentState { get; set; }
-    private Coroutine OnAnimationEndCoroutine { get; set; }
+    public AnimationState CurrentState { get; private set; }
 
     private void Awake()
     {
         SetAnimationState(new IdleState());
     }
 
-    public void SetAnimationState(AnimationState state, Action callback = null)
+    public void SetAnimationState(AnimationState state)
     {
         CurrentState = state;
         Animator.applyRootMotion = true;
         Animator.Play(CurrentState.Animation);
-
-        if (!CurrentState.Loopable)
-        {
-            if(OnAnimationEndCoroutine != null)
-                StopCoroutine(OnAnimationEndCoroutine);
-            
-            OnAnimationEndCoroutine = StartCoroutine(OnAnimationComplete(callback));
-        }
     }
 
-    private IEnumerator OnAnimationComplete(Action callback)
-    {
-        var clipInfo = Animator.GetCurrentAnimatorClipInfo(0);
-        yield return new WaitForSeconds(clipInfo[0].clip.length);
-        callback?.Invoke();
-    }
-    
     public void DoAnimationEvent()
     {
         CurrentState.DoAnimationEvent();
+    }
+    
+    public void CompleteAnimation()
+    {
+        CurrentState.DoAnimationCallback();
     }
 }

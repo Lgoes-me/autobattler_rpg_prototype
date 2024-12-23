@@ -11,6 +11,7 @@ public class PawnData : ScriptableObject
     [field: SerializeField] private CharacterController Character { get; set; }
     [field: SerializeField] private WeaponController Weapon { get; set; }
     [field: SerializeField] private StatsData Stats { get; set; }
+    [field: SerializeField] private FocusData Focus { get; set; }
     [field: SerializeField] private List<AbilityData> Abilities { get; set; }
     [field: SerializeField] private List<AbilityData> SpecialAbilities { get; set; }
     [field: SerializeField] private List<ArchetypeIdentifier> Archetypes { get; set; }

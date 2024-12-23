@@ -65,9 +65,9 @@ public class CharacterController : MonoBehaviour
         HitStopController.HitStop(0f, 0.05f, false, Color.green);
     }
     
-    public void SetAnimationState(AnimationState state, Action callback = null)
+    public void SetAnimationState(AnimationState state)
     {
-        AnimationStateController.SetAnimationState(state, callback);
+        AnimationStateController.SetAnimationState(state);
     }
 
     public void SetWeapon(WeaponController weaponController)
