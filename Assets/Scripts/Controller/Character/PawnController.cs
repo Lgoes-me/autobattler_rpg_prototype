@@ -13,7 +13,6 @@ public class PawnController : MonoBehaviour
     public AnimationState PawnState => CharacterController.CurrentState;
     private Coroutine BackToIdleCoroutine { get; set; }
     private Ability Ability { get; set; }
-    private Ability NextAbility { get; set; }
     private BattleController BattleController { get; set; }
 
     public void Init(Pawn pawn)
@@ -38,7 +37,6 @@ public class PawnController : MonoBehaviour
         NavMeshAgent.isStopped = true;
 
         Ability = null;
-        NextAbility = null;
         
         BattleController = battleController;
     }
@@ -56,13 +54,15 @@ public class PawnController : MonoBehaviour
     
     private void RealizaHabilidade(Ability ability)
     {
-        if (ability.IsSpecial && Ability != null && Ability.Used)
+        if (ability.IsSpecial && Ability is {IsSpecial: false})
         {
-            NextAbility = ability;
+            Ability = ability;
+            CharacterController.SetAnimationState(new IdleState());
             return;
         }
         
         Ability = ability;
+        CharacterController.SetAnimationState(new IdleState());
     }
 
     private void DoAbility(Ability ability)
@@ -103,8 +103,7 @@ public class PawnController : MonoBehaviour
 
         Pawn.SetInitiative(Ability.Delay);
 
-        Ability = NextAbility;
-        NextAbility = null;
+        Ability = null;
         
         CharacterController.SetAnimationState(new IdleState());
         
@@ -189,7 +188,6 @@ public class PawnController : MonoBehaviour
         CharacterController.SetAnimationState(new DeadState());
         NavMeshAgent.isStopped = true;
         Ability = null;
-        NextAbility = null;
         
         Application.Instance.BattleEventsManager.DoPawnDeathEvent(BattleController.Battle, this);
     }
