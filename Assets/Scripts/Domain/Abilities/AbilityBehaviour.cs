@@ -16,9 +16,9 @@ public class AbilityBehaviour
         Action = action;
     }
     
-    public PawnController ChooseFocus(Battle battle)
+    public PawnController ChooseFocus(PawnController pawn, Battle battle)
     {
-        return Focus.ChooseFocus(battle);
+        return Focus.ChooseFocus(pawn, battle);
     }
     
     public void DoAction()

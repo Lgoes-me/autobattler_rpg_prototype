@@ -5,8 +5,8 @@ public class FocusComponentData : FocusData
 {
     [field: SerializeField] private int Error { get; set; }
     
-    public override AbilityFocusComponent ToDomain(PawnController abilityUser)
+    public override AbilityFocusComponent ToDomain()
     {
-        return new AbilityFocusComponent(abilityUser, Target, Focus, Error);
+        return new AbilityFocusComponent(Target, Focus, Error);
     }
 }

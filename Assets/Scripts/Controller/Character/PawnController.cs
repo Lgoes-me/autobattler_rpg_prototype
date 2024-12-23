@@ -47,7 +47,7 @@ public class PawnController : MonoBehaviour
             yield break;
         
         Ability = Pawn.GetCurrentAttackIntent(this, BattleController.Battle);
-        Ability.ChooseFocus(BattleController.Battle);
+        Ability.ChooseFocus(this, BattleController.Battle);
 
         RealizaHabilidade(Ability);
     }
@@ -62,7 +62,6 @@ public class PawnController : MonoBehaviour
         }
         
         Ability = ability;
-        CharacterController.SetAnimationState(new IdleState());
     }
 
     private void DoAbility(Ability ability)

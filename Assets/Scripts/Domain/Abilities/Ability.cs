@@ -45,11 +45,11 @@ public class Ability
         FocusedPawns = new List<PawnController>();
     }
 
-    public void ChooseFocus(Battle battle)
+    public void ChooseFocus(PawnController pawn, Battle battle)
     {
         foreach (var abilityBehaviour in AbilityBehaviours)
         {
-            FocusedPawns.Add(abilityBehaviour.ChooseFocus(battle));
+            FocusedPawns.Add(abilityBehaviour.ChooseFocus(pawn, battle));
         }
     }
 

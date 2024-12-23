@@ -11,6 +11,7 @@ public class Pawn : BasePawn
     public int MaxMana { get; internal set; }
     public int Mana { get;  private set; }
     private Stats Stats { get; }
+    private AbilityFocusComponent Focus { get; }
     
     private List<AbilityData> Abilities { get; }
     public List<AbilityData> SpecialAbilities { get; }
@@ -37,6 +38,7 @@ public class Pawn : BasePawn
         CharacterController character,
         WeaponController weapon,
         Stats stats,
+        AbilityFocusComponent focus,
         List<AbilityData> abilities,
         List<AbilityData> specialAbilities, 
         List<ArchetypeIdentifier> archetypes,
@@ -48,6 +50,7 @@ public class Pawn : BasePawn
         MaxMana = mana;
         Mana = 0;
         Stats = stats;
+        Focus = focus;
 
         Abilities = abilities;
         SpecialAbilities = specialAbilities;
@@ -194,7 +197,7 @@ public class Pawn : BasePawn
     public void DoSpecial(AbilityData abilityData, PawnController abilityUser, Battle battle)
     {
         var ability = abilityData.ToDomain(abilityUser, true);
-        ability.ChooseFocus(battle);
+        ability.ChooseFocus(abilityUser, battle);
         
         AbilitySelected?.Invoke(ability);
     }

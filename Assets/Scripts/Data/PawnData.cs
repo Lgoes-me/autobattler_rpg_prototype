@@ -20,6 +20,7 @@ public class PawnData : ScriptableObject
     public Pawn ToDomain(TeamType team)
     {
         var stats = Stats.ToDomain();
+        var focus = Focus.ToDomain();
         
         return new Pawn(
             Id, 
@@ -28,6 +29,7 @@ public class PawnData : ScriptableObject
             Character, 
             Weapon, 
             stats,
+            focus,
             Abilities, 
             SpecialAbilities, 
             Archetypes,

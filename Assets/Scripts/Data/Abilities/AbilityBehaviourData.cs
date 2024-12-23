@@ -10,7 +10,7 @@ public class AbilityBehaviourData
     
     public AbilityBehaviour ToDomain(PawnController abilityUser)
     {
-        var focusComponent = FocusData.ToDomain(abilityUser);
+        var focusComponent = FocusData.ToDomain();
         var effects = Effects.Select(e => e.ToDomain(abilityUser)).ToList();
         var actionComponent = ActionData.ToDomain(abilityUser, effects, focusComponent);
         return new AbilityBehaviour(effects, focusComponent, actionComponent);
