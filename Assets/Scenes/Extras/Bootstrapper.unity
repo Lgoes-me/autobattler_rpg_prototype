@@ -1921,9 +1921,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 933428313}
     m_Modifications:
+    - target: {fileID: 4893819351392535732, guid: 12df6cf9dfe9eec45a2e546e8d737e4f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6216259049044140414, guid: 12df6cf9dfe9eec45a2e546e8d737e4f, type: 3}
       propertyPath: m_Name
       value: BossCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6216259049044140414, guid: 12df6cf9dfe9eec45a2e546e8d737e4f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8755009116897025538, guid: 12df6cf9dfe9eec45a2e546e8d737e4f, type: 3}
       propertyPath: m_Pivot.x

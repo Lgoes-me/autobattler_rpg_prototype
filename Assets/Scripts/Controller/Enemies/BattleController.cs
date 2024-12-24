@@ -49,36 +49,28 @@ public class BattleController : MonoBehaviour
 
     private IEnumerator BattleCoroutine()
     {
-        var hasEnemies = true;
-        var hasPlayers = true;
-
-        while (hasEnemies && hasPlayers)
-        {
-            yield return RealizaTurno();
-
-            hasEnemies = Battle.HasEnemies;
-            hasPlayers = Battle.HasPlayers;
-        }
+        RealizaTurno();
         
-        if (hasEnemies)
+        yield return new WaitUntil(() => !Battle.HasEnemies || !Battle.HasPlayers);
+
+        if (Battle.HasEnemies)
         {
             yield return OnDefeat();
         }
 
-        if (hasPlayers)
+        if (Battle.HasPlayers)
         {
             yield return OnVictory();
         }
     }
 
-    private IEnumerator RealizaTurno()
+    private void RealizaTurno()
     {
         var initiativeList = Battle.GetInitiativeList();
 
         foreach (var pawn in initiativeList)
         {
-            if (!pawn.PawnState.CanTakeTurn) continue;
-            yield return pawn.RealizaTurno();
+            pawn.RealizaTurno();
         }
     }
 
