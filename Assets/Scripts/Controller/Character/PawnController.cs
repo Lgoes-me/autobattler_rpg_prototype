@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class PawnController : MonoBehaviour
 {
-    [field: SerializeField] public PawnCanvasController PawnCanvasController { get; set; }
+    [field: SerializeField] private BasePawnCanvasController CanvasController { get; set; }
     [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
 
     public Pawn Pawn { get; private set; }
@@ -19,7 +19,12 @@ public class PawnController : MonoBehaviour
     {
         Pawn = pawn;
         CharacterController = Instantiate(pawn.Character, transform);
-
+        
+        if (CanvasController != null)
+        {
+            CanvasController.Init(Pawn);
+        }
+        
         if (pawn.Weapon != null)
         {
             CharacterController.SetWeapon(pawn.Weapon);
@@ -28,9 +33,15 @@ public class PawnController : MonoBehaviour
         Pawn.AbilitySelected += RealizaHabilidade;
     }
 
-    public void StartBattle(BattleController battleController)
+    public void RemoveCanvasController()
     {
-        Pawn.StartBattle();
+        Destroy(CanvasController.gameObject);
+        CanvasController = null;
+    }
+
+    public void StartBattle(BattleController battleController, Battle battle)
+    {
+        Pawn.StartBattle(battle);
 
         enabled = true;
         NavMeshAgent.enabled = true;
@@ -150,7 +161,7 @@ public class PawnController : MonoBehaviour
 
     public void FinishBattle()
     {
-        Pawn?.RemoveAllBuffs();
+        Pawn.FinishBattle();
 
         CharacterController.SetAnimationState(new IdleState());
         

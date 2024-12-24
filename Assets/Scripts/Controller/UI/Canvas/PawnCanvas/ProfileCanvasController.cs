@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ProfileCanvasController : PawnCanvasController
+public class ProfileCanvasController : LifeBarCanvasController
 {
     [field: SerializeField] private CanvasGroup CanvasGroup { get; set; }
     [field: SerializeField] private ButtonItemController SpecialButtonPrefab { get; set; }
@@ -26,32 +26,34 @@ public class ProfileCanvasController : PawnCanvasController
         CanvasGroup.alpha = 0.5f;
         
         UpdateProfile("default");
+        
+        Show();
     }
 
-    public void StartBattle(PawnController playerPawn, Battle battle)
+    protected override void StartBattle(Battle battle)
     {
         CanvasGroup.alpha = 1;
         
-        foreach (var ability in Pawn.SpecialAbilities)
+        /*foreach (var ability in Pawn.SpecialAbilities)
         {
             SpecialButtons.Add(Instantiate(SpecialButtonPrefab, SpecialButtonsParent).Init(Pawn, ability, playerPawn, battle));
-        }
+        }*/
 
         UpdateProfile("battle");
     }
 
-    public void EndBattle()
+    protected override void FinishBattle()
     {
         CanvasGroup.alpha = 0.5f;
 
-        foreach (var specialButton in SpecialButtons)
+        /*foreach (var specialButton in SpecialButtons)
         {
             Destroy(specialButton.gameObject);
-        }
+        }*/
 
         UpdateProfile("default");
         
-        SpecialButtons.Clear();
+        //SpecialButtons.Clear();
         HideMana();
     }
 
@@ -96,7 +98,7 @@ public class ProfileCanvasController : PawnCanvasController
     protected override void Death()
     {
         UpdateProfile("death");
-        EndBattle();
+        FinishBattle();
     }
 
     private void UpdateProfile(string identificador)

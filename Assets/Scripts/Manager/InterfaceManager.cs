@@ -7,7 +7,7 @@ public class InterfaceManager : MonoBehaviour
     [field: SerializeField] private GameObject BattleLostCanvas { get; set; }
     
     [field: SerializeField] private List<BlessingCanvasController> BlessingCanvases { get; set; }
-    [field: SerializeField] private List<PawnCanvasController> PawnCanvases { get; set; }
+    [field: SerializeField] private List<LifeBarCanvasController> PawnCanvases { get; set; }
     [field: SerializeField] private RectTransform ArchetypeCanvasParent { get; set; }
     [field: SerializeField] private ArchetypeCanvasController ArchetypeCanvasControllerPrefab { get; set; }
     [field: SerializeField] public BossCanvasController BossCanvas { get; private set; }
@@ -40,8 +40,7 @@ public class InterfaceManager : MonoBehaviour
         {
             var pawnCanvas = PawnCanvases[index];
             var playerPawn = playerPawns[index];
-
-            playerPawn.PawnCanvasController = pawnCanvas;
+            
             pawnCanvas.Init(playerPawn.Pawn);
         }
     }

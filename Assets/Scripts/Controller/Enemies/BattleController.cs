@@ -12,6 +12,7 @@ public class BattleController : MonoBehaviour
         EndBattleAction = endBattleAction;
         
         Application.Instance.AudioManager.PlayMusic(MusicType.Battle);
+        Application.Instance.PartyManager.StopPartyFollow();
 
         var enemyPawns = new List<PawnController>();
         var playerPawns = new List<PawnController>();
@@ -19,35 +20,28 @@ public class BattleController : MonoBehaviour
         foreach (var enemy in enemies)
         {
             var enemyController = enemy.PawnController;
-            enemyController.StartBattle(this);
 
             if (enemy.IsBoss)
             {
-                enemyController.PawnCanvasController = Application.Instance.InterfaceManager.BossCanvas;
+                enemyController.RemoveCanvasController();
+                Application.Instance.InterfaceManager.BossCanvas.Init(enemyController.Pawn);
             }
 
-            enemyController.PawnCanvasController.Init(enemyController.Pawn);
             enemyPawns.Add(enemyController);
         }
-        
-        Application.Instance.PartyManager.StopPartyFollow();
 
         foreach (var alliedController in Application.Instance.PartyManager.Party)
         {
-            alliedController.StartBattle(this);
             playerPawns.Add(alliedController);
         }
 
         Battle = new Battle(battleId, enemyPawns, playerPawns);
-        
-        foreach (var playerPawn in playerPawns)
-        {
-            if (playerPawn.PawnCanvasController is not ProfileCanvasController profileCanvasController) 
-                continue;
-            
-            profileCanvasController.StartBattle(playerPawn, Battle);
-        }
 
+        foreach (var pawnController in Battle.Pawns)
+        {
+            pawnController.StartBattle(this, Battle);
+        }
+        
         Application.Instance.BattleEventsManager.DoBattleStartEvent(Battle);
 
         StartCoroutine(BattleCoroutine());
@@ -65,7 +59,7 @@ public class BattleController : MonoBehaviour
             hasEnemies = Battle.HasEnemies;
             hasPlayers = Battle.HasPlayers;
         }
-
+        
         if (hasEnemies)
         {
             yield return OnDefeat();
@@ -124,14 +118,6 @@ public class BattleController : MonoBehaviour
         }
 
         yield return new WaitForSeconds(1f);
-
-        foreach (var playerPawn in Battle.PlayerPawns)
-        {
-            if (playerPawn.PawnCanvasController is not ProfileCanvasController profileCanvasController) 
-                continue;
-            
-            profileCanvasController.EndBattle();
-        }
 
         foreach (var pawn in Battle.Pawns)
         {

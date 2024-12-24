@@ -10,9 +10,6 @@ public class Ability
 
     private List<AbilityBehaviour> AbilityBehaviours { get; set; }
     private AbilityResourceComponent Resource { get; set; }
-
-
-    public bool HasDestination { get; private set; }
     
     public Vector3 WalkingDestination => 
         FocusedPawn.transform.position + 
@@ -56,11 +53,6 @@ public class Ability
     public bool ShouldUse()
     {
         return IsInRange && !Used;
-    }
-
-    public bool CanUse()
-    {
-        return Resource.HasResource();
     }
 
     public void SpendResource()

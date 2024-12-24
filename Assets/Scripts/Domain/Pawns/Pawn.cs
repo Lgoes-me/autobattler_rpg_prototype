@@ -32,6 +32,12 @@ public class Pawn : BasePawn
     public delegate void PawnDomainAbilitySelected(Ability ability);
     public event PawnDomainAbilitySelected AbilitySelected;
 
+    public delegate void PawnDomainBattleStarted(Battle battle);
+    public event PawnDomainBattleStarted BattleStarted;
+    
+    public delegate void PawnDomainBattleFinished();
+    public event PawnDomainBattleFinished BattleFinished;
+    
     public Pawn(string id,
         int health,
         int mana,
@@ -66,13 +72,21 @@ public class Pawn : BasePawn
         Initiative = initiative;
     }
 
-    public void StartBattle()
+    public void StartBattle(Battle battle)
     {
         Mana = 0;
         Buffs = new Dictionary<string, Buff>();
         
+        BattleStarted?.Invoke(battle);
         ManaChanged?.Invoke();
         BuffsChanged?.Invoke();
+    }
+
+    public void FinishBattle()
+    {
+        RemoveAllBuffs();
+        
+        BattleFinished?.Invoke();
     }
     
     public void SetPawnInfo(PawnInfo pawnInfo)
@@ -117,7 +131,7 @@ public class Pawn : BasePawn
         BuffsChanged?.Invoke();
     }
     
-    public void RemoveAllBuffs()
+    private void RemoveAllBuffs()
     {
         for (var index = Buffs.Count - 1; index >= 0; index--)
         {

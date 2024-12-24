@@ -20,7 +20,7 @@ public class PawnData : ScriptableObject
     public Pawn ToDomain(TeamType team)
     {
         var stats = Stats.ToDomain();
-        var focus = Focus.ToDomain();
+        var focus = Focus?.ToDomain();
         
         return new Pawn(
             Id, 

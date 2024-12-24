@@ -1,7 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 
-public class BossCanvasController : PawnCanvasController
+public class BossCanvasController : LifeBarCanvasController
 {
     [field: SerializeField] private TextMeshProUGUI Name { get; set; }
     
