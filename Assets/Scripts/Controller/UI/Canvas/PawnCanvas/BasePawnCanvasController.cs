@@ -1,11 +1,13 @@
 ﻿
 public abstract class BasePawnCanvasController: BaseCanvasController
 {
+    protected PawnController PawnController { get; private set; }
     protected Pawn Pawn { get; private set; }
     
-    public virtual void Init(Pawn pawn)
+    public virtual void Init(PawnController pawnController)
     {
-        Pawn = pawn;
+        PawnController = pawnController;
+        Pawn = pawnController.Pawn;
         
         Pawn.BattleStarted += StartBattle;
         Pawn.BattleFinished += FinishBattle;

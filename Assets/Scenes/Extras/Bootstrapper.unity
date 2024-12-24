@@ -3172,6 +3172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 065f2c79974348648bf39a7ac68ff9fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <ForwardVector>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!1 &1853319442
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,7 +22,7 @@ public class PawnController : MonoBehaviour
         
         if (CanvasController != null)
         {
-            CanvasController.Init(Pawn);
+            CanvasController.Init(this);
         }
         
         if (pawn.Weapon != null)

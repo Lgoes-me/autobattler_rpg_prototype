@@ -41,7 +41,7 @@ public class InterfaceManager : MonoBehaviour
             var pawnCanvas = PawnCanvases[index];
             var playerPawn = playerPawns[index];
             
-            pawnCanvas.Init(playerPawn.Pawn);
+            pawnCanvas.Init(playerPawn);
         }
     }
 

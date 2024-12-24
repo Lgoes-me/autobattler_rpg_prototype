@@ -5,9 +5,9 @@ public class BossCanvasController : LifeBarCanvasController
 {
     [field: SerializeField] private TextMeshProUGUI Name { get; set; }
     
-    public override void Init(Pawn pawn)
+    public override void Init(PawnController pawnController)
     {
-        base.Init(pawn);
+        base.Init(pawnController);
         Name.SetText(Pawn.Id);
     }
 }

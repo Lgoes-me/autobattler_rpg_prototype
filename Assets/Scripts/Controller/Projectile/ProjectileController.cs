@@ -30,7 +30,8 @@ public class ProjectileController : MonoBehaviour
             {
                 effect.DoAbilityEffect(pawnController);
             }
-            Destroy(this.gameObject);
+            
+            Destroy(gameObject);
         }
     }
     
@@ -41,6 +42,6 @@ public class ProjectileController : MonoBehaviour
         if (!gameObject.activeInHierarchy)
             yield break;
         
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 }

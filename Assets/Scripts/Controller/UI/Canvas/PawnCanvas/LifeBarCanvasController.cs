@@ -8,9 +8,9 @@ public class LifeBarCanvasController : BasePawnCanvasController
     [field: SerializeField] private Image BackgroundLifeBar { get; set; }
     [field: SerializeField] private Image ManaBar { get; set; }
 
-    public override void Init(Pawn pawn)
+    public override void Init(PawnController pawnController)
     {
-        base.Init(pawn);
+        base.Init(pawnController);
         
         var fillAmount = Pawn.Health / (float) Pawn.MaxHealth;
 

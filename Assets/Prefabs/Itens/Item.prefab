@@ -206,13 +206,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <InteractableCanvas>k__BackingField: {fileID: 681032321966671029}
-  <Interactable>k__BackingField:
-    rid: -2
-  references:
-    version: 2
-    RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
 --- !u!1001 &3324191122416032956
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -228,6 +221,10 @@ PrefabInstance:
     - target: {fileID: 3172328785591743336, guid: c75c14612c5d8da47a499067cff82c1a, type: 3}
       propertyPath: m_Name
       value: InteractableCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 3172328785591743336, guid: c75c14612c5d8da47a499067cff82c1a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8054583791169020662, guid: c75c14612c5d8da47a499067cff82c1a, type: 3}
       propertyPath: m_Pivot.x
@@ -440,7 +437,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8091174382688372877, guid: 68bc46eeb1070014481eab9f5aa7f05c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

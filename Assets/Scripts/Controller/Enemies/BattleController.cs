@@ -24,7 +24,7 @@ public class BattleController : MonoBehaviour
             if (enemy.IsBoss)
             {
                 enemyController.RemoveCanvasController();
-                Application.Instance.InterfaceManager.BossCanvas.Init(enemyController.Pawn);
+                Application.Instance.InterfaceManager.BossCanvas.Init(enemyController);
             }
 
             enemyPawns.Add(enemyController);

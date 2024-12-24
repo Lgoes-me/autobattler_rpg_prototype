@@ -16,8 +16,10 @@ public class PlayerManager : MonoBehaviour
 
     public void SetNewPlayerPawn(Pawn pawn)
     {
-        if(PawnController.transform.childCount > 0)
-            Destroy(PawnController.transform.GetChild(0).gameObject);
+        foreach (var characterController in PawnController.GetComponentsInChildren<CharacterController>())
+        {
+            Destroy(characterController.gameObject);
+        }
         
         GameSaveManager.ApplyPawnInfo(pawn);
         
