@@ -19,7 +19,7 @@ MonoBehaviour:
   - <Effects>k__BackingField:
     - rid: 4872000037008179248
     <FocusData>k__BackingField:
-      rid: 4872000037008179257
+      rid: 8813335080079720460
     <ActionData>k__BackingField:
       rid: 4872000037008179233
   <ResourceData>k__BackingField:
@@ -41,9 +41,7 @@ MonoBehaviour:
         <Damage>k__BackingField:
           <Multiplier>k__BackingField: 2
           <Type>k__BackingField: 1
-    - rid: 4872000037008179257
-      type: {class: FocusComponentData, ns: , asm: Assembly-CSharp}
+    - rid: 8813335080079720460
+      type: {class: EnemyFocusComponentData, ns: , asm: Assembly-CSharp}
       data:
-        <Target>k__BackingField: 2
-        <Focus>k__BackingField: 2
         <Error>k__BackingField: 1

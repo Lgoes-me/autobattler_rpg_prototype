@@ -15,6 +15,9 @@ MonoBehaviour:
   <Id>k__BackingField: ZombieSoldierElite
   <Health>k__BackingField: 30
   <Mana>k__BackingField: 50
+  <Initiative>k__BackingField: 0
+  <EnemyFocusPreference>k__BackingField: 4
+  <AllyFocusPreference>k__BackingField: 4
   <Character>k__BackingField: {fileID: 1887707460061555812, guid: a64483913d1bef547b01ef0646203feb, type: 3}
   <Weapon>k__BackingField: {fileID: 3501364879892670405, guid: 0a36b5de24177fa41a2c6ed6f00e7b54, type: 3}
   <Stats>k__BackingField:
@@ -26,3 +29,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 28dbddbc3cb62724e91cb455cb55e134, type: 2}
   <SpecialAbilities>k__BackingField:
   - {fileID: 11400000, guid: 057876035e8602d4e993baacfcc81bbf, type: 2}
+  <Archetypes>k__BackingField: 
+  <CharacterInfos>k__BackingField: []

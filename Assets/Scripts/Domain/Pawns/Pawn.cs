@@ -11,6 +11,8 @@ public class Pawn : BasePawn
     public int MaxMana { get; internal set; }
     public int Mana { get;  private set; }
     private Stats Stats { get; }
+    public FocusType EnemyFocusPreference { get; } 
+    public FocusType AllyFocusPreference { get; }
     public AbilityFocusComponent Focus { get; }
     
     private List<AbilityData> Abilities { get; }
@@ -18,7 +20,7 @@ public class Pawn : BasePawn
     public List<ArchetypeIdentifier> Archetypes { get; }
     
     public Dictionary<string, Buff> Buffs { get; private set; }
-    public float Initiative { get; }
+    public int Initiative { get; }
     public TeamType Team { get; }
 
     public bool HasMana => SpecialAbilities.Count > 0 && MaxMana > 0;
@@ -41,10 +43,12 @@ public class Pawn : BasePawn
     public Pawn(string id,
         int health,
         int mana,
+        int initiative,
         CharacterController character,
         WeaponController weapon,
         Stats stats,
-        AbilityFocusComponent focus,
+        FocusType enemyFocusPreference, 
+        FocusType allyFocusPreference,
         List<AbilityData> abilities,
         List<AbilityData> specialAbilities, 
         List<ArchetypeIdentifier> archetypes,
@@ -55,18 +59,18 @@ public class Pawn : BasePawn
         Health = health;
         MaxMana = mana;
         Mana = 0;
+        Initiative = initiative;
         Stats = stats;
-        Focus = focus;
-
+        EnemyFocusPreference = enemyFocusPreference;
+        AllyFocusPreference = allyFocusPreference;
         Abilities = abilities;
         SpecialAbilities = specialAbilities;
         Archetypes = archetypes;
         
         Buffs = new Dictionary<string, Buff>();
-        Initiative = 0;
         Team = team;
     }
-    
+
     public void StartBattle(Battle battle)
     {
         Mana = 0;

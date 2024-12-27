@@ -16,10 +16,9 @@ MonoBehaviour:
   <Delay>k__BackingField: 1
   <Range>k__BackingField: 5
   <AbilityBehaviours>k__BackingField:
-  - <EffectData>k__BackingField:
-      rid: -2
+  - <Effects>k__BackingField: []
     <FocusData>k__BackingField:
-      rid: -2
+      rid: 8813335080079720458
     <ActionData>k__BackingField:
       rid: -2
   <ResourceData>k__BackingField:
@@ -34,3 +33,7 @@ MonoBehaviour:
       type: {class: ManaResourceData, ns: , asm: Assembly-CSharp}
       data:
         <ManaCost>k__BackingField: 10
+    - rid: 8813335080079720458
+      type: {class: EnemyFocusComponentData, ns: , asm: Assembly-CSharp}
+      data:
+        <Error>k__BackingField: 0

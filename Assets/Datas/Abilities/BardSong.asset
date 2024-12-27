@@ -19,7 +19,7 @@ MonoBehaviour:
   - <Effects>k__BackingField:
     - rid: 4872000037008179237
     <FocusData>k__BackingField:
-      rid: 4872000115359088640
+      rid: 8813335080079720465
     <ActionData>k__BackingField:
       rid: 4872000037008179214
   <ResourceData>k__BackingField:
@@ -40,14 +40,12 @@ MonoBehaviour:
       data:
         <HealMultiplier>k__BackingField: 2
         <CanRevive>k__BackingField: 0
-    - rid: 4872000115359088640
-      type: {class: FocusComponentData, ns: , asm: Assembly-CSharp}
-      data:
-        <Target>k__BackingField: 1
-        <Focus>k__BackingField: 3
-        <Error>k__BackingField: 0
     - rid: 4872000115359088641
       type: {class: LowHealthModifier, ns: , asm: Assembly-CSharp}
       data:
         <Multiplier>k__BackingField: 1
         <Health>k__BackingField: 0
+    - rid: 8813335080079720465
+      type: {class: AllyFocusComponentData, ns: , asm: Assembly-CSharp}
+      data:
+        <CanTargetSelf>k__BackingField: 1

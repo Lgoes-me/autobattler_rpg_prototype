@@ -20,7 +20,7 @@ MonoBehaviour:
     - rid: 4872000060460630016
     - rid: 4872000060460630019
     <FocusData>k__BackingField:
-      rid: 4872000060460630017
+      rid: 8813335080079720462
     <ActionData>k__BackingField:
       rid: 4872000037008179220
   <ResourceData>k__BackingField:
@@ -46,12 +46,6 @@ MonoBehaviour:
           <PhysicalDefence>k__BackingField: 0
           <MagicalDefence>k__BackingField: 0
         <Duration>k__BackingField: -1
-    - rid: 4872000060460630017
-      type: {class: FocusComponentData, ns: , asm: Assembly-CSharp}
-      data:
-        <Target>k__BackingField: 0
-        <Focus>k__BackingField: 0
-        <Error>k__BackingField: 0
     - rid: 4872000060460630019
       type: {class: RegenBuffEffectData, ns: , asm: Assembly-CSharp}
       data:
@@ -59,3 +53,6 @@ MonoBehaviour:
         <Regen>k__BackingField: 3
         <TickRate>k__BackingField: 1
         <Duration>k__BackingField: -1
+    - rid: 8813335080079720462
+      type: {class: SelfFocusComponentData, ns: , asm: Assembly-CSharp}
+      data: 
