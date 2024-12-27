@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 
 [System.Serializable]
-public class FocusComponentData : FocusData
+public class EnemyFocusComponentData : FocusData
 {
     [field: SerializeField] private int Error { get; set; }
     
     public override AbilityFocusComponent ToDomain()
     {
-        return new AbilityFocusComponent(Target, Focus, Error);
+        return new EnemyFocusComponent(Error);
     }
 }

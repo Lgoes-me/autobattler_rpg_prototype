@@ -116,8 +116,6 @@ public class PawnController : MonoBehaviour
         if (!PawnState.AbleToFight)
             yield break;
 
-        Pawn.SetInitiative(Ability.Delay);
-
         Ability = null;
 
         CharacterController.SetAnimationState(new IdleState());

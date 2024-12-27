@@ -11,14 +11,14 @@ public class Pawn : BasePawn
     public int MaxMana { get; internal set; }
     public int Mana { get;  private set; }
     private Stats Stats { get; }
-    private AbilityFocusComponent Focus { get; }
+    public AbilityFocusComponent Focus { get; }
     
     private List<AbilityData> Abilities { get; }
     public List<AbilityData> SpecialAbilities { get; }
     public List<ArchetypeIdentifier> Archetypes { get; }
     
     public Dictionary<string, Buff> Buffs { get; private set; }
-    public float Initiative { get; private set; }
+    public float Initiative { get; }
     public TeamType Team { get; }
 
     public bool HasMana => SpecialAbilities.Count > 0 && MaxMana > 0;
@@ -66,12 +66,7 @@ public class Pawn : BasePawn
         Initiative = 0;
         Team = team;
     }
-
-    public void SetInitiative(float initiative)
-    {
-        Initiative = initiative;
-    }
-
+    
     public void StartBattle(Battle battle)
     {
         Mana = 0;
