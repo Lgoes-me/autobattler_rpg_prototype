@@ -1,10 +1,12 @@
 ﻿
 public class AllyFocusComponent : AbilityFocusComponent
 {
+    private FocusType FocusType { get; set; }
     private bool CanTargetSelf { get; set; }
 
-    public AllyFocusComponent(bool canTargetSelf)
+    public AllyFocusComponent(FocusType focusType, bool canTargetSelf)
     {
+        FocusType = focusType;
         CanTargetSelf = canTargetSelf;
     }
 
@@ -15,6 +17,6 @@ public class AllyFocusComponent : AbilityFocusComponent
             return FocusedPawn;
         }
         
-        return FocusedPawn = battle.QueryAlly(pawn, FocusType.Unknown, 0);
+        return FocusedPawn = battle.QueryAlly(pawn, FocusType, CanTargetSelf);
     }
 }

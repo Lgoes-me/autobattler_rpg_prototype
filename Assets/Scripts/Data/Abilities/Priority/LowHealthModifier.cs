@@ -7,10 +7,10 @@ public class LowHealthModifier : PriorityModifier
     
     public override int AlterPriority(PawnController abilityUser, Battle battle, FocusData focusData, int priority)
     {
-        var selectedPawn = battle.Query(abilityUser, focusData.Target, focusData.Focus, 0);
+        //var selectedPawn = battle.Query(abilityUser, focusData.Target, focusData.Focus, 0);
         
-        if (selectedPawn != null && selectedPawn.Pawn.Health < Health)
-            return priority + 1 * Multiplier;
+        //if (selectedPawn != null && selectedPawn.Pawn.Health < Health)
+            //return priority + 1 * Multiplier;
         
         return priority;
     }

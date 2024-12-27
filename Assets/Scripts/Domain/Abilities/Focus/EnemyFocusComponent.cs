@@ -1,9 +1,11 @@
 ﻿public class EnemyFocusComponent : AbilityFocusComponent
 {
+    private FocusType FocusType { get; set; }
     private int Error { get; set; }
 
-    public EnemyFocusComponent(int error)
+    public EnemyFocusComponent(FocusType focusType, int error)
     {
+        FocusType = focusType;
         Error = error;
     }
 
@@ -14,6 +16,6 @@
             return FocusedPawn;
         }
         
-        return FocusedPawn = battle.QueryEnemies(pawn, FocusType.Unknown, Error);
+        return FocusedPawn = battle.QueryEnemies(pawn, FocusType, Error);
     }
 }
