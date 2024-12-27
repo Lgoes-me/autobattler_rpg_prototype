@@ -10,17 +10,21 @@ public class Pawn : BasePawn
 
     public int MaxMana { get; internal set; }
     public int Mana { get;  private set; }
+    
+    public int Initiative { get; }
+    
+    public int VisionRange { get; }
+    public int AttackRange { get; }
+    
     private Stats Stats { get; }
     public FocusType EnemyFocusPreference { get; } 
     public FocusType AllyFocusPreference { get; }
-    public AbilityFocusComponent Focus { get; }
     
     private List<AbilityData> Abilities { get; }
     public List<AbilityData> SpecialAbilities { get; }
     public List<ArchetypeIdentifier> Archetypes { get; }
     
     public Dictionary<string, Buff> Buffs { get; private set; }
-    public int Initiative { get; }
     public TeamType Team { get; }
 
     public bool HasMana => SpecialAbilities.Count > 0 && MaxMana > 0;
@@ -44,6 +48,8 @@ public class Pawn : BasePawn
         int health,
         int mana,
         int initiative,
+        int visionRange,
+        int attackRange,
         CharacterController character,
         WeaponController weapon,
         Stats stats,
@@ -60,6 +66,8 @@ public class Pawn : BasePawn
         MaxMana = mana;
         Mana = 0;
         Initiative = initiative;
+        VisionRange = visionRange;
+        AttackRange = attackRange;
         Stats = stats;
         EnemyFocusPreference = enemyFocusPreference;
         AllyFocusPreference = allyFocusPreference;
@@ -141,14 +149,14 @@ public class Pawn : BasePawn
 
     public PawnInfo ResetPawnInfo()
     {
-        var pawnInfo = new PawnInfo(Id, 0);
+        var pawnInfo = new PawnInfo(0);
         SetPawnInfo(pawnInfo);
         return pawnInfo;
     }
 
     public PawnInfo GetPawnInfo()
     {
-        return new PawnInfo(Id,  MaxHealth -  Health);
+        return new PawnInfo(MaxHealth -  Health);
     }
 
     public void ReceiveDamage(DamageDomain damage)

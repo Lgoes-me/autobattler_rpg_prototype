@@ -1,12 +1,10 @@
 [System.Serializable]
 public class PawnInfo
 {
-    public string PawnName { get; set; }
     public int MissingHealth { get; set; }
     
-    public PawnInfo(string pawnName, int missingHealth)
+    public PawnInfo(int missingHealth)
     {
-        PawnName = pawnName;
         MissingHealth = missingHealth;
     }
     

@@ -51,20 +51,20 @@ public class EnemyController : MonoBehaviour
             NavMeshAgent.SetDestination(Nodes[CurrentNode].transform.position);
         }
 
-        switch (distance)
+        if (distance < PawnController.Pawn.AttackRange)
         {
-            case < 1f:
-                NavMeshAgent.SetDestination(transform.position);
-                NavMeshAgent.isStopped = true;
-                
-                EnemyAreaController.StartBattle();
-                break;
-            case < 5f:
-                Following = true;
-                break;
-            case > 5f:
-                Following = false;
-                break;
+            NavMeshAgent.SetDestination(transform.position);
+            NavMeshAgent.isStopped = true;
+
+            EnemyAreaController.StartBattle();
+        }
+        else if (distance < PawnController.Pawn.VisionRange)
+        {
+            Following = true;
+        }
+        else if (distance > PawnController.Pawn.VisionRange)
+        {
+            Following = false;
         }
     }
 

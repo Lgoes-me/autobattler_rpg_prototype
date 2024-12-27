@@ -76,7 +76,7 @@ public class GameSaveManager
 
     public void SetParty(List<BasePawn> newSelectedParty)
     {
-        Save.SelectedParty = newSelectedParty.ToDictionary(p => p.Id, p => new PawnInfo(p.Id, 0));
+        Save.SelectedParty = newSelectedParty.ToDictionary(p => p.Id, p => new PawnInfo(0));
         
         SaveData();
     }

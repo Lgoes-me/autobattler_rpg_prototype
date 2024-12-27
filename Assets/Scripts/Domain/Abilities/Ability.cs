@@ -49,10 +49,8 @@ public class Ability
             var focus = abilityBehaviour.ChooseFocus(pawnController, battle);
 
             if (focus == null)
-            {
-                pawnController.Pawn.Focus.ChooseFocus(pawnController, battle);
-            }
-            
+                continue;
+
             FocusedPawns.Add(focus);
         }
     }

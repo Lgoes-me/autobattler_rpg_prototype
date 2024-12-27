@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: ZombieSoldier
   m_EditorClassIdentifier: 
   <Id>k__BackingField: ZombieSoldier
-  <Health>k__BackingField: 15
+  <Health>k__BackingField: 30
   <Mana>k__BackingField: 0
-  <Initiative>k__BackingField: 0
+  <Initiative>k__BackingField: 1
+  <VisionRange>k__BackingField: 5
+  <AttackRange>k__BackingField: 1
   <EnemyFocusPreference>k__BackingField: 1
   <AllyFocusPreference>k__BackingField: 1
   <Character>k__BackingField: {fileID: 8201863896689888091, guid: 5f7b15e6bd7c2c34cb8b766da777d2be, type: 3}
