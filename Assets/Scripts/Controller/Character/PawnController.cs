@@ -182,15 +182,14 @@ public class PawnController : MonoBehaviour
 
     public void SpawnProjectile(
         ProjectileController projectile,
+        AnimationCurve trajectory,
         List<AbilityEffect> effects,
         PawnController focusedPawn)
     {
         var weaponPosition = CharacterController.WeaponController.SpawnPoint.position;
+        var destination = focusedPawn.transform.position;
 
-        var direction = focusedPawn.transform.position - weaponPosition;
-        direction = new Vector3(direction.x, 0, direction.z);
-
-        Instantiate(projectile, weaponPosition, Quaternion.LookRotation(direction)).Init(this, effects, direction);
+        Instantiate(projectile, weaponPosition, Quaternion.identity).Init(this, effects, destination, trajectory);
     }
 
     public void ReceiveAttack()
