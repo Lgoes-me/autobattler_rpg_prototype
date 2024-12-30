@@ -6,7 +6,7 @@ public class BasePawn
     public string Id { get; private set; }
     public CharacterController Character { get; private set; }
     public WeaponController Weapon { get; private set; }
-    public List<CharacterInfo> CharacterInfos { get; private set; }
+    private List<CharacterInfo> CharacterInfos { get; set; }
     
     public BasePawn(
         string id,
