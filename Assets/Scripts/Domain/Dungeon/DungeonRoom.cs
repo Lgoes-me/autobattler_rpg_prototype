@@ -1,45 +1,32 @@
-﻿/*public class DungeonRoom : MonoBehaviour
-{
-    public bool Collapsed;
-    public bool BossRoom;
-    public int Doors;
-    
-    public void SetAsBossRoom()
-    {
-        Collapsed = true;
-        BossRoom = true;
-        Doors = 1;
-    }
-    public void SetAsEntrance()
-    {
-        Collapsed = true;
-        Doors = Random.Range(1, MaxDoors - 1);
-    }
-
-    public void SetAsRoom()
-    {
-        Collapsed = true;
-        Doors = Random.Range(1, MaxDoors);
-    }
-}*/
-
-public class DungeonRoom
+﻿public class DungeonRoom
 {
     public DungeonRoomData SelectedRoom { get; private set; }
     public bool Collapsed => SelectedRoom != null;
+
+    public int Position;
+    public int Level;
     
-    public DungeonRoomData SetAsBossRoom()
+    public DungeonRoom(int position, int level)
     {
+        Position = position;
+        Level = level;
+    }
+
+    public DungeonRoomData SetAsBossRoom(DungeonRoomData dungeonRoomData)
+    {
+        SelectedRoom = dungeonRoomData;
         return null;
     }
 
-    public DungeonRoomData SetAsEntrance()
+    public DungeonRoomData SetAsEntrance(DungeonRoomData dungeonRoomData)
     {
+        SelectedRoom = dungeonRoomData;
         return null;
     }
 
-    public DungeonRoomData SetAsRoom()
+    public DungeonRoomData SetAsRoom(DungeonRoomData dungeonRoomData)
     {
+        SelectedRoom = dungeonRoomData;
         return null;
     }
 }

@@ -14,8 +14,8 @@ public class DungeonData : ScriptableObject
 
     public Tree<DungeonRoom> GenerateDungeon()
     {
-        var dungeonEntrance = InstantiateRoom();
-        dungeonEntrance.SetAsEntrance();
+        var dungeonEntrance = InstantiateRoom(0, 0);
+        dungeonEntrance.SetAsEntrance(AvailableRooms[0]);
 
         var rooms = CreateSubTree(dungeonEntrance, 0);
 
@@ -28,7 +28,7 @@ public class DungeonData : ScriptableObject
                 .OrderBy(_ => Guid.NewGuid())
                 .First();
 
-            nextRoom.Data.SetAsRoom();
+            nextRoom.Data.SetAsRoom(AvailableRooms[0]);
         }
 
         var bossRoom = rooms
@@ -36,7 +36,7 @@ public class DungeonData : ScriptableObject
             .OrderBy(_ => Guid.NewGuid())
             .First();
 
-        bossRoom.Data.SetAsBossRoom();
+        bossRoom.Data.SetAsBossRoom(AvailableRooms[0]);
 
         return rooms;
     }
@@ -52,16 +52,16 @@ public class DungeonData : ScriptableObject
 
         for (var i = -1; i < MaximumDoors - 2; i++)
         {
-            var childRoom = InstantiateRoom();
+            var childRoom = InstantiateRoom(i, level);
             room.Add(CreateSubTree(childRoom, level));
         }
 
         return room;
     }
 
-    private DungeonRoom InstantiateRoom()
+    private DungeonRoom InstantiateRoom(int position, int level)
     {
-        return new DungeonRoom();
+        return new DungeonRoom(position, level);
     }
 
     private void PruneTree(Tree<DungeonRoom> rooms)

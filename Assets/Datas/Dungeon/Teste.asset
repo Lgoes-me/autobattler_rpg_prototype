@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 014c5e0844d64af6b546ef14b28bb01b, type: 3}
+  m_Name: Teste
+  m_EditorClassIdentifier: 
+  <AvailableRooms>k__BackingField:
+  - {fileID: 11400000, guid: be4d478f71b6d9346b04efa5afa2660e, type: 2}
+  - {fileID: 11400000, guid: 573362e38cdaf9f4eb39709d187bdaeb, type: 2}
+  - {fileID: 11400000, guid: ea206132228e6824da85ae5672d2ca06, type: 2}
+  - {fileID: 11400000, guid: ef8d4e97dce3c5443b94e99fdaa0a311, type: 2}
+  - {fileID: 11400000, guid: 18e7109517e201e4a948091d6c279577, type: 2}
+  - {fileID: 11400000, guid: acc39d5a77a55c44abda908bae357236, type: 2}
+  - {fileID: 11400000, guid: dd9ab0175b96df847bfec187ee61a13f, type: 2}
+  - {fileID: 11400000, guid: 3cfef837d9be4d04baacac739f52be6c, type: 2}
+  - {fileID: 11400000, guid: e0bf6a8954815704a812cdb4e318c30f, type: 2}
+  - {fileID: 11400000, guid: c84f9fb8c5fc67e42baee93b40853ae0, type: 2}
+  <MaximumDoors>k__BackingField: 4
+  <MinimumDeepness>k__BackingField: 2
+  <MaximumDeepness>k__BackingField: 4

@@ -2,6 +2,11 @@
 
 public class Dungeon : MonoBehaviour
 {
-    public DungeonRoomData DungeonRoomData;
+    [field: SerializeField] public DungeonData DungeonData { get; set; }
     private Tree<DungeonRoom> Rooms { get; set; }
+
+    private void Start()
+    {
+        Rooms = DungeonData.GenerateDungeon();
+    }
 }
