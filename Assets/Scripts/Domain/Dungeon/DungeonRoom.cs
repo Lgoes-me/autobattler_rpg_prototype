@@ -1,11 +1,8 @@
-﻿using UnityEngine;
-
-public class DungeonRoom : MonoBehaviour
+﻿/*public class DungeonRoom : MonoBehaviour
 {
     public bool Collapsed;
     public bool BossRoom;
     public int Doors;
-    public int MaxDoors;
     
     public void SetAsBossRoom()
     {
@@ -13,12 +10,6 @@ public class DungeonRoom : MonoBehaviour
         BossRoom = true;
         Doors = 1;
     }
-
-    public void Init(int maxDoors)
-    {
-        MaxDoors = maxDoors;
-    }
-
     public void SetAsEntrance()
     {
         Collapsed = true;
@@ -29,5 +20,26 @@ public class DungeonRoom : MonoBehaviour
     {
         Collapsed = true;
         Doors = Random.Range(1, MaxDoors);
+    }
+}*/
+
+public class DungeonRoom
+{
+    public DungeonRoomData SelectedRoom { get; private set; }
+    public bool Collapsed => SelectedRoom != null;
+    
+    public DungeonRoomData SetAsBossRoom()
+    {
+        return null;
+    }
+
+    public DungeonRoomData SetAsEntrance()
+    {
+        return null;
+    }
+
+    public DungeonRoomData SetAsRoom()
+    {
+        return null;
     }
 }

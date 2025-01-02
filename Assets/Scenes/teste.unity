@@ -240,6 +240,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a63820c950c845cba79e0b7560b23db9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Collapsed: 0
+  BossRoom: 0
+  Doors: 0
+  MaxDoors: 0
 --- !u!1 &1607379197
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,7 +288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1b59608a9344311b4054dc77bedc484, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BaseRoom: {fileID: 1204337864}
+  DungeonRoomData: {fileID: 0}
 --- !u!1 &1949838401
 GameObject:
   m_ObjectHideFlags: 0
