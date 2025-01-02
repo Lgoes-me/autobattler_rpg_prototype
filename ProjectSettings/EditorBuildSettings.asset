@@ -9,13 +9,13 @@ EditorBuildSettings:
     path: Assets/Scenes/teste.unity
     guid: 14940f728fcda1841a75c9f300a111d1
   - enabled: 1
-    path: Assets/Scenes/Extras/Bootstrapper.unity
+    path: Assets/Scenes/Main/Bootstrapper.unity
     guid: 71f128a88d890cb4bb25badf9a9e8665
   - enabled: 1
-    path: Assets/Scenes/Extras/StartMenu.unity
+    path: Assets/Scenes/Main/StartMenu.unity
     guid: 3fc0ca34c37451e4cb4fda59c8a64c56
   - enabled: 1
-    path: Assets/Scenes/Extras/BonfireScene.unity
+    path: Assets/Scenes/Main/BonfireScene.unity
     guid: 2114da0908f87f64fa0d9eb454c0dd47
   - enabled: 1
     path: Assets/Scenes/Rooms/Tutorial/DungeonEntrance.unity

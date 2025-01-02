@@ -1,12 +1,9 @@
-﻿using UnityEngine;
-
-public class Dungeon : MonoBehaviour
+﻿public class Dungeon
 {
-    [field: SerializeField] public DungeonData DungeonData { get; set; }
     private Tree<DungeonRoom> Rooms { get; set; }
 
-    private void Start()
+    public Dungeon(Tree<DungeonRoom> rooms)
     {
-        Rooms = DungeonData.GenerateDungeon();
+        Rooms = rooms;
     }
 }

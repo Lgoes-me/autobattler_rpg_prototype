@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ffdccd5b5d4143e6b06d3884da221018, type: 3}
-  m_Name: Room 7
+  m_Name: TutorialRoom
   m_EditorClassIdentifier: 
-  <RoomPrefab>k__BackingField: {fileID: 5242244253733173045, guid: 88ce5f1a7b1526a45b9e3e65d5064074, type: 3}
-  <NumberOfDoors>k__BackingField: 0
+  <RoomPrefab>k__BackingField: {fileID: 7526482092115330285, guid: 32dbf16f7d876e84aa63eeb55d18a98d, type: 3}
+  <NumberOfDoors>k__BackingField: 2
+  <RoomType>k__BackingField: 1

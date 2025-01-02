@@ -15,7 +15,7 @@ public class DungeonData : ScriptableObject
     public Tree<DungeonRoom> GenerateDungeon()
     {
         var dungeonEntrance = InstantiateRoom(0, 0);
-        dungeonEntrance.SetAsEntrance(AvailableRooms[0]);
+        dungeonEntrance.SetAsEntrance(AvailableRooms.First(x => x.RoomType is RoomType.Entrance));
 
         var rooms = CreateSubTree(dungeonEntrance, 0);
 
@@ -28,7 +28,7 @@ public class DungeonData : ScriptableObject
                 .OrderBy(_ => Guid.NewGuid())
                 .First();
 
-            nextRoom.Data.SetAsRoom(AvailableRooms[0]);
+            nextRoom.Data.SetAsRoom(AvailableRooms.First(x => x.RoomType is RoomType.Normal));
         }
 
         var bossRoom = rooms
@@ -36,7 +36,7 @@ public class DungeonData : ScriptableObject
             .OrderBy(_ => Guid.NewGuid())
             .First();
 
-        bossRoom.Data.SetAsBossRoom(AvailableRooms[0]);
+        bossRoom.Data.SetAsBossRoom(AvailableRooms.First(x => x.RoomType is RoomType.Boss));
 
         return rooms;
     }

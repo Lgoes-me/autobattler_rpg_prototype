@@ -5,4 +5,12 @@ public class DungeonRoomData : ScriptableObject
 {
     [field: SerializeField] public DungeonRoomController RoomPrefab { get; set; }
     [field: SerializeField] public int NumberOfDoors { get; set; }
+    [field: SerializeField] public RoomType RoomType { get; set; }
+}
+
+public enum RoomType
+{
+    Entrance,
+    Normal,
+    Boss
 }
