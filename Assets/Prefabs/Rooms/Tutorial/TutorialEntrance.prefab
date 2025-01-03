@@ -1922,7 +1922,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 56d5c1a6beae3ce499b0edfc827ecf32, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: c9db1a89ea37c18429edeae78dbc3a34, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &7503022989698282813
 GameObject:
@@ -2436,6 +2436,10 @@ PrefabInstance:
       propertyPath: <CameraArea>k__BackingField
       value: 
       objectReference: {fileID: 6044365358575571796}
+    - target: {fileID: 4087353326534297479, guid: f0ff4bdad92a9ef4c8603e544c3f61f5, type: 3}
+      propertyPath: <SceneDestination>k__BackingField
+      value: TutorialRoom
+      objectReference: {fileID: 0}
     - target: {fileID: 4233245053164171736, guid: f0ff4bdad92a9ef4c8603e544c3f61f5, type: 3}
       propertyPath: m_IsTrigger
       value: 1

@@ -12,7 +12,10 @@ public class EnemyAreaController : MonoBehaviour
     private void Awake()
     {
         if (Application.Instance.GameSaveManager.ContainsBattle(Id))
+        {
+            gameObject.SetActive(false);
             return;
+        }
         
         foreach (var enemy in Enemies)
         {

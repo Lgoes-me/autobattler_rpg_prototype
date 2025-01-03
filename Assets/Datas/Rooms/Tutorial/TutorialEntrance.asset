@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffdccd5b5d4143e6b06d3884da221018, type: 3}
   m_Name: TutorialEntrance
   m_EditorClassIdentifier: 
+  <Id>k__BackingField: TutorialEntrance
   <RoomPrefab>k__BackingField: {fileID: 1270386980360157701, guid: 091a762831a3c2d46aad695aa3f97d42, type: 3}
   <NumberOfDoors>k__BackingField: 1
+  <RoomType>k__BackingField: 0

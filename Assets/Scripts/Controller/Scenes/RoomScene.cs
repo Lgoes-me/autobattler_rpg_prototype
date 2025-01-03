@@ -6,9 +6,11 @@ public class RoomScene : BaseScene
 {
     [field: SerializeField] public MusicType Music { get; private set; }
     private List<SpawnController> Spawns { get; set; }
+    private DungeonRoomController DungeonRoomController { get; set; }
 
-    public void ActivateRoomScene()
+    public void ActivateRoomScene(DungeonRoomData roomData)
     {
+        DungeonRoomController = Instantiate(roomData.RoomPrefab);
         Spawns = FindObjectsByType<SpawnController>(FindObjectsSortMode.None).ToList();
     }
 

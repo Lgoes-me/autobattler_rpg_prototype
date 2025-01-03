@@ -63,7 +63,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 79cd93a2e900c8e4a8c1f8710d09f3ba, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 34df69fee64d0b54eb654da9b3af0b7c, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &1557407696454111248
 GameObject:
@@ -996,7 +996,7 @@ PrefabInstance:
       objectReference: {fileID: 8526491014121728513}
     - target: {fileID: 6357606874330744520, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
       propertyPath: <SceneDestination>k__BackingField
-      value: DungeonRoom1
+      value: TutorialRoom
       objectReference: {fileID: 0}
     - target: {fileID: 7803689849695119232, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
       propertyPath: m_Name

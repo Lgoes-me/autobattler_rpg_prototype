@@ -175,7 +175,7 @@ MonoBehaviour:
     - rid: 8813334712271503375
       type: {class: ChangeScene, ns: , asm: Assembly-CSharp}
       data:
-        <SceneName>k__BackingField: DungeonEntrance
+        <SceneName>k__BackingField: TutorialEntrance
         <SpawnId>k__BackingField: DungeonEntrance
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

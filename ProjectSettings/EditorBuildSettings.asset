@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/teste.unity
-    guid: 14940f728fcda1841a75c9f300a111d1
-  - enabled: 1
     path: Assets/Scenes/Main/Bootstrapper.unity
     guid: 71f128a88d890cb4bb25badf9a9e8665
   - enabled: 1
@@ -18,21 +15,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Main/BonfireScene.unity
     guid: 2114da0908f87f64fa0d9eb454c0dd47
   - enabled: 1
-    path: Assets/Scenes/Rooms/Tutorial/DungeonEntrance.unity
-    guid: 8a7d5aef53dfbd94abe44ffbb4d0f5ff
-  - enabled: 1
-    path: Assets/Scenes/Rooms/Tutorial/DungeonRoom1.unity
-    guid: da8b81bbfd01997469c25d605f6c8ec3
-  - enabled: 1
-    path: Assets/Scenes/Rooms/Tutorial/DungeonRoom2.unity
-    guid: 232ea548f8c9d8b43b49bb338e7374d8
+    path: Assets/Scenes/Main/RoomScene.unity
+    guid: 0d2f28d8ce500bf49b3ad7e912701063
   - enabled: 1
     path: Assets/Scenes/Rooms/Tutorial/DungeonCutscene.unity
     guid: d240537e37406f04ca4c80113d064a71
   - enabled: 1
     path: Assets/Scenes/Rooms/Opening/OpeningCutscene.unity
     guid: 5d4b5c8d458f80945844397ab8c3358d
-  - enabled: 1
-    path: Assets/Scenes/Rooms/Opening/OpeningScene.unity
-    guid: ad91795beaca2974b807bd523d05e7fa
   m_configObjects: {}

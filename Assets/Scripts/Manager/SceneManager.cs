@@ -1,10 +1,13 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
 public class SceneManager : MonoBehaviour
 {
+    [field: SerializeField] private List<DungeonRoomData> Rooms { get; set; }
     private bool BonfireActive { get; set; }
 
     private InterfaceManager InterfaceManager { get; set; }
@@ -45,15 +48,34 @@ public class SceneManager : MonoBehaviour
         };
     }
 
-    public void UseDoorToChangeScene(string doorName, string sceneName)
+    public void EnterDungeon(Dungeon dungeon)
     {
-        PartyManager.StopPartyFollow();
-        var task = UnitySceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+        /*PartyManager.StopPartyFollow();
+        var task = UnitySceneManager.LoadSceneAsync("RoomScene", LoadSceneMode.Single);
 
         task.completed += _ =>
         {
             var roomScene = FindObjectOfType<RoomScene>();
             roomScene.ActivateRoomScene();
+            roomScene.SpawnPlayerAt(doorName);
+
+            PartyManager.SetPartyToFollow(true);
+            AudioManager.PlayMusic(roomScene.Music);
+
+            InterfaceManager.ShowBattleCanvas();
+            GameSaveManager.SetSpawn(doorName, sceneName);
+        };*/
+    }
+    
+    public void UseDoorToChangeScene(string doorName, string sceneName)
+    {
+        PartyManager.StopPartyFollow();
+        var task = UnitySceneManager.LoadSceneAsync("RoomScene", LoadSceneMode.Single);
+
+        task.completed += _ =>
+        {
+            var roomScene = FindObjectOfType<RoomScene>();
+            roomScene.ActivateRoomScene(Rooms.First(x => x.Id == sceneName));
             roomScene.SpawnPlayerAt(doorName);
 
             PartyManager.SetPartyToFollow(true);
@@ -94,7 +116,7 @@ public class SceneManager : MonoBehaviour
         respawnTask.completed += _ =>
         {
             var roomScene = FindObjectOfType<RoomScene>();
-            roomScene.ActivateRoomScene();
+            roomScene.ActivateRoomScene(Rooms.First(x => x.Id == spawn.SceneName));
             roomScene.SpawnPlayerAt(spawn.Id);
 
             PartyManager.SetPartyToFollow(true);
