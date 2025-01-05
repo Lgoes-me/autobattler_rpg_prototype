@@ -14,5 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Id>k__BackingField: TutorialRoom
   <RoomPrefab>k__BackingField: {fileID: 7526482092115330285, guid: 32dbf16f7d876e84aa63eeb55d18a98d, type: 3}
-  <NumberOfDoors>k__BackingField: 2
   <RoomType>k__BackingField: 1
+  <Doors>k__BackingField:
+  - <Id>k__BackingField: f1324800-930d-43fb-a218-394b4a7eedd4
+    <SceneDestination>k__BackingField: TutorialEntrance
+    <DoorDestination>k__BackingField: 4b0910fd-8f0f-4bf4-9459-de6bb9fadeee
+  - <Id>k__BackingField: bd221b1a-daff-4d37-ae1a-628d240f8a42
+    <SceneDestination>k__BackingField: TutorialBossRoom
+    <DoorDestination>k__BackingField: 560389b1-0df7-490a-bc23-9ea3bdd4a01e

@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class CorridorAreaController : SpawnController
 {
-    [field: SerializeField] private string SceneDestination { get; set; }
     [field: SerializeField] private bool Active { get; set; } = true;
     
     [field: SerializeField] private Transform Destination { get; set; }
 
+    public string SceneDestination { get; set; }
+    public string DoorDestination { get; set; }
+    
     public override async void SpawnPlayer(PlayerManager playerManager)
     {
         base.SpawnPlayer(playerManager);
@@ -32,6 +34,6 @@ public class CorridorAreaController : SpawnController
     protected async void UseCorridor()
     {
         await this.WaitToArriveAtDestination(Application.Instance.PlayerManager.NavMeshAgent, Spawn.position);
-        Application.Instance.SceneManager.UseDoorToChangeScene(Id, SceneDestination);
+        Application.Instance.SceneManager.UseDoorToChangeScene(DoorDestination, SceneDestination);
     }
 }

@@ -10,7 +10,7 @@ public class RoomScene : BaseScene
 
     public void ActivateRoomScene(DungeonRoomData roomData)
     {
-        DungeonRoomController = Instantiate(roomData.RoomPrefab);
+        DungeonRoomController = Instantiate(roomData.RoomPrefab).Init(roomData);
         Spawns = FindObjectsByType<SpawnController>(FindObjectsSortMode.None).ToList();
     }
 
