@@ -38,6 +38,37 @@ public class DungeonData : ScriptableObject
 
         bossRoom.Data.SetAsBossRoom(AvailableRooms.First(x => x.RoomType is RoomType.Boss));
 
+        foreach (var room in rooms)
+        {
+            var connectedRooms = new List<DungeonRoomData>();
+            
+            if(!room.IsRoot)
+                connectedRooms.Add(room.Parent.Data.SelectedRoom);
+
+            connectedRooms.AddRange(room.ChildrenNodes.Select(t => t.Data.SelectedRoom));
+            
+            var selectedRoom = room.Data.SelectedRoom;
+            
+            for (var index = 0; index < selectedRoom.Doors.Count; index++)
+            {
+                var spawnData = room.Data.SelectedRoom.Doors[index];
+                
+                if(spawnData.SetUp)
+                    continue;
+                
+                var connectedRoom = connectedRooms[index];
+                var connectedDoorSpawnData = connectedRoom.Doors.First(s => !s.SetUp);
+
+                spawnData.SceneDestination = connectedRoom.Id;
+                spawnData.DoorDestination = connectedDoorSpawnData.Id;
+                spawnData.SetUp = true;
+
+                connectedDoorSpawnData.SceneDestination = selectedRoom.Id;
+                connectedDoorSpawnData.DoorDestination = spawnData.Id;
+                connectedDoorSpawnData.SetUp = true;
+            }
+        }
+        
         return rooms;
     }
 

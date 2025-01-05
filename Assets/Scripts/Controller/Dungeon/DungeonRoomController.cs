@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DungeonRoomController : MonoBehaviour
 {
+    [field:SerializeField] public SpawnController RoomSpawn { get; private set; }
     [field:SerializeField] public List<CorridorAreaController> Doors { get; private set; }
 
     public DungeonRoomController Init(DungeonRoomData roomData)

@@ -8,6 +8,7 @@ using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 public class SceneManager : MonoBehaviour
 {
     [field: SerializeField] private List<DungeonRoomData> Rooms { get; set; }
+    [field: SerializeField] private DungeonData Dungeon { get; set; }
     private bool BonfireActive { get; set; }
 
     private InterfaceManager InterfaceManager { get; set; }
@@ -39,13 +40,17 @@ public class SceneManager : MonoBehaviour
 
     public void StartGameIntro()
     {
-        var task = UnitySceneManager.LoadSceneAsync("DungeonCutscene", LoadSceneMode.Single);
+        var dungeon = Dungeon.GenerateDungeon();
+        UseDoorToChangeScene(dungeon.Data.SelectedRoom.RoomPrefab.RoomSpawn.Id, dungeon.Data.SelectedRoom.Id);
+
+        /*var task = UnitySceneManager.LoadSceneAsync("DungeonCutscene", LoadSceneMode.Single);
 
         task.completed += _ =>
         {
             var cutsceneScene = FindObjectOfType<CutsceneScene>();
             cutsceneScene.Init();
-        };
+
+        };*/
     }
 
     public void EnterDungeon(Dungeon dungeon)

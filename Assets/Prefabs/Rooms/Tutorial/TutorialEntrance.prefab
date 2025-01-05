@@ -2119,6 +2119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75ade9abab5b3e04399c9d5a2db718a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <RoomSpawn>k__BackingField: {fileID: 4473442584477186469}
   <Doors>k__BackingField:
   - {fileID: 7184771649680567106}
 --- !u!1 &8685052070766615922
@@ -2550,6 +2551,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 343838794364127267, guid: 0e1b79c9bef1824479a3c3a62d534db7, type: 3}
   m_PrefabInstance: {fileID: 2505065960467057622}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4473442584477186469 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2078152171480806003, guid: 0e1b79c9bef1824479a3c3a62d534db7, type: 3}
+  m_PrefabInstance: {fileID: 2505065960467057622}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16c66e3536be4682b18c2c5bf806d28f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3169778953436861987
 PrefabInstance:
   m_ObjectHideFlags: 0
