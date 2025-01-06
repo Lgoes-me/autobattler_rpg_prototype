@@ -28,7 +28,12 @@ public class Battle
     public PawnController QueryEnemies(PawnController user, FocusType focusType, int error)
     {
         var pawns = user.Pawn.Team == TeamType.Player ? EnemyPawns : PlayerPawns;
-        var selectedPawns = pawns.OrderBy(OrderPredicate).Take(1 + error).ToList();
+        var selectedPawns =
+            pawns
+            .Where(p => p.PawnState.CanBeTargeted)
+            .OrderBy(OrderPredicate)
+            .Take(1 + error)
+            .ToList();
 
         float OrderPredicate(PawnController pawn)
         {
@@ -51,7 +56,12 @@ public class Battle
     public PawnController QueryAlly(PawnController user, FocusType focusType, bool canTargetSelf)
     {
         var pawns = user.Pawn.Team == TeamType.Player ? EnemyPawns : PlayerPawns;
-        var selectedPawns = pawns.OrderBy(OrderPredicate).Take(1).ToList();
+        var selectedPawns = 
+            pawns
+                .Where(p => p.PawnState.CanBeTargeted)
+                .OrderBy(OrderPredicate)
+                .Take(1)
+                .ToList();
 
         if (!canTargetSelf)
         {

@@ -218,8 +218,6 @@ public class Pawn : BasePawn
     public void DoSpecial(AbilityData abilityData, PawnController abilityUser, Battle battle)
     {
         var ability = abilityData.ToDomain(abilityUser, true);
-        //ability.ChooseFocus(abilityUser, battle);
-        
         AbilitySelected?.Invoke(ability);
     }
     
