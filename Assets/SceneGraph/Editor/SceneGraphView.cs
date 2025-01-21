@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 
 public class SceneGraphView : GraphView
 {
-    public new class UxmlFactory : UxmlFactory<SceneGraphView, GraphView.UxmlTraits> { }
+    public new class UxmlFactory : UxmlFactory<SceneGraphView, UxmlTraits> { }
     public SceneGraphView()
     {
         Insert(0, new GridBackground());
