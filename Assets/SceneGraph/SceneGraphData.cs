@@ -9,8 +9,21 @@ public class SceneGraphData : ScriptableObject
 
     public void AddSceneNode(DungeonRoomController prefab)
     {
+        Nodes ??= new Dictionary<string, SceneNodeData>();
+        
         var id = Guid.NewGuid().ToString();
         var sceneNode = new SceneNodeData(id, prefab);
         Nodes.Add(id, sceneNode);
+    }
+
+    public SceneNodeData CreateSceneNode()
+    {
+        Nodes ??= new Dictionary<string, SceneNodeData>();
+        
+        var id = Guid.NewGuid().ToString();
+        var sceneNode = new SceneNodeData(id);
+        Nodes.Add(id, sceneNode);
+
+        return sceneNode;
     }
 }

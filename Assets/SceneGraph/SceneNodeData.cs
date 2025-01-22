@@ -12,6 +12,11 @@ public class SceneNodeData
     
     public int NumberOfDoors => RoomPrefab.Doors.Count;
 
+    public SceneNodeData(string id)
+    {
+        Id = id;
+    }
+    
     public SceneNodeData(string id, DungeonRoomController roomPrefab)
     {
         Id = id;
