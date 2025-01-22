@@ -34,9 +34,7 @@ public class SceneGraph : EditorWindow
 
     public void OnSelectionChange()
     {
-        var sceneGraphData = Selection.activeObject as SceneGraphData;
-
-        if (sceneGraphData)
+        if (Selection.activeObject is SceneGraphData sceneGraphData)
         {
             SceneGraphView.PopulateView(sceneGraphData);
         }

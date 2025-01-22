@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8c7dc684a402e34fbe075f0f53f62fc, type: 3}
-  m_Name: NewSceneGraph
+  m_Name: SceneGraph
   m_EditorClassIdentifier: 

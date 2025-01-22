@@ -6,6 +6,7 @@ using UnityEngine;
 public class SceneNodeData
 {
     [field: SerializeField] public string Id { get; set; }
+    [field: SerializeField] public Vector2 Position { get; set; }
     [field: SerializeField] public DungeonRoomController RoomPrefab { get; set; }
     
     [field: SerializeField] public List<SpawnData> Doors { get; set; }

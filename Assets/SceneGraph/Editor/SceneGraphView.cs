@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using System.Collections.Generic;
+using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
 
@@ -21,13 +22,19 @@ public class SceneGraphView : GraphView
         styleSheets.Add(styleSheet);
     }
 
+    public void DeleteNodeView(SceneNodeView sceneNodeView)
+    {
+        SceneGraphData.DeleteNode(sceneNodeView.SceneNodeData);
+        RemoveElement(sceneNodeView);
+    }
+    
     public void PopulateView(SceneGraphData sceneGraphData)
     {
         SceneGraphData = sceneGraphData;
         
         DeleteElements(graphElements);
         
-        foreach (var (id, node) in SceneGraphData.Nodes)
+        foreach (var (id, node) in SceneGraphData?.Nodes ?? new Dictionary<string, SceneNodeData>())
         {
             CreateNodeView(node);
         }
@@ -41,7 +48,7 @@ public class SceneGraphView : GraphView
     
     private void CreateNodeView(SceneNodeData node)
     {
-        var nodeView = new SceneNodeView(node);
+        var nodeView = new SceneNodeView(this, node);
         AddElement(nodeView);
     }
 

@@ -26,4 +26,9 @@ public class SceneGraphData : ScriptableObject
 
         return sceneNode;
     }
+
+    public void DeleteNode(SceneNodeData sceneNodeData)
+    {
+        Nodes?.Remove(sceneNodeData.Id);
+    }
 }
