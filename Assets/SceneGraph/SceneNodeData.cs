@@ -8,27 +8,20 @@ public class SceneNodeData
     [field: SerializeField] public string Id { get; set; }
     [field: SerializeField] public Vector2 Position { get; set; }
     [field: SerializeField] public DungeonRoomController RoomPrefab { get; set; }
-    
     [field: SerializeField] public List<SpawnData> Doors { get; set; }
-    
-    public int NumberOfDoors => RoomPrefab.Doors.Count;
-
-    public SceneNodeData(string id)
-    {
-        Id = id;
-    }
     
     public SceneNodeData(string id, DungeonRoomController roomPrefab)
     {
         Id = id;
         RoomPrefab = roomPrefab;
 
-        var spawns = new SpawnData[NumberOfDoors];
+        var spawns = new SpawnData[RoomPrefab.Doors.Count];
 
-        for (int i = 0; i < NumberOfDoors; i++)
+        for (int i = 0; i < RoomPrefab.Doors.Count; i++)
         {
             spawns[i] = new SpawnData
             {
+                Name = RoomPrefab.Doors[i].gameObject.name,
                 Id = RoomPrefab.Doors[i].Id
             };
         }

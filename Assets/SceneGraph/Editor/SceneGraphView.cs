@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
@@ -42,8 +43,16 @@ public class SceneGraphView : GraphView
 
     private void CreateEmptyNode()
     {
-        var sceneNode = SceneGraphData.CreateSceneNode();
-        CreateNodeView(sceneNode);
+        var path = EditorUtility.OpenFilePanel("Choose prefab", "Assets/Prefabs/Rooms", "prefab");
+
+        if (path != null)
+        {
+            string[] separatedPath = path.Split(new[] { "Assets" }, StringSplitOptions.None);
+            
+            var prefab = AssetDatabase.LoadAssetAtPath<DungeonRoomController>("Assets" + separatedPath[1]);
+            var sceneNode = SceneGraphData.AddSceneNode(prefab);
+            CreateNodeView(sceneNode);
+        }
     }
     
     private void CreateNodeView(SceneNodeData node)
