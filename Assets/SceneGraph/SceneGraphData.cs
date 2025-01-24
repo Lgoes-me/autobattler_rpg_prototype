@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class SceneGraphData : ScriptableObject
 {
-    [field: SerializeField] public Dictionary<string, SceneNodeData> Nodes { get; set; }
+    [field: SerializeReference] [field: SerializeField] public Dictionary<string, SceneNodeData> Nodes { get; set; }
 
     public SceneNodeData AddSceneNode(DungeonRoomController prefab)
     {

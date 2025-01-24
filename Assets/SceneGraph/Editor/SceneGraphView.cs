@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
@@ -64,5 +65,11 @@ public class SceneGraphView : GraphView
     public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
     {
         evt.menu.AppendAction("Create Scene Node", (a) => CreateEmptyNode());
+    }
+
+    public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
+    {
+        return ports.ToList()
+            .Where(endPort => endPort.direction != startPort.direction && endPort.node != startPort.node).ToList();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -24,6 +25,15 @@ public class SceneNodeView : Node
 
         CreateInputPorts();
         CreateOutputPorts();
+        
+        var preview = new Image
+        {
+            image = AssetPreview.GetAssetPreview(SceneNodeData.RoomPrefab) ?? 
+                    AssetPreview.GetMiniThumbnail(SceneNodeData.RoomPrefab)
+        };
+
+        mainContainer.Add(preview);
+        
     }
     
     private void CreateInputPorts()
