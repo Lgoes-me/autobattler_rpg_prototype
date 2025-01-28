@@ -35,9 +35,10 @@ public class SceneGraphView : GraphView
         DeleteElements(graphElements);
         graphViewChanged += OnGraphViewChange;
 
-        foreach (var (id, node) in SceneGraphData.Nodes)
+        foreach (var node in SceneGraphData.Nodes)
         {
-            CreateNodeView(node);
+            var nodeView = new SceneNodeView(node);
+            AddElement(nodeView);
         }
     }
 
@@ -61,10 +62,18 @@ public class SceneGraphView : GraphView
             {
                 var input = edge.input;
                 var output = edge.output;
-
-                if (input.source is SpawnData spawnData)
+                
+                if (input.userData is SpawnData spawnInputData && output.userData is SpawnData spawnOutputData)
                 {
-                    Debug.Log(spawnData.Name);
+                    spawnInputData.SceneDestination = ((SceneNodeView) output.node).SceneNodeData.Id;
+                    spawnInputData.DoorDestination = spawnOutputData.Id;
+                    spawnInputData.SetUp = true;
+                    ((SceneNodeView) input.node).RemoveOutput(spawnInputData.Id);
+
+                    spawnOutputData.SceneDestination = ((SceneNodeView) input.node).SceneNodeData.Id;
+                    spawnOutputData.DoorDestination = spawnInputData.Id;
+                    spawnOutputData.SetUp = true;
+                    ((SceneNodeView) output.node).RemoveInput(spawnOutputData.Id);
                 }
             }
             
@@ -87,15 +96,11 @@ public class SceneGraphView : GraphView
             string[] separatedPath = path.Split(new[] {"Assets"}, StringSplitOptions.None);
 
             var prefab = AssetDatabase.LoadAssetAtPath<DungeonRoomController>("Assets" + separatedPath[1]);
-            var sceneNode = SceneGraphData.AddSceneNode(prefab);
-            CreateNodeView(sceneNode);
-        }
-    }
+            var node = SceneGraphData.AddSceneNode(prefab);
 
-    private void CreateNodeView(SceneNodeData node)
-    {
-        var nodeView = new SceneNodeView(node);
-        AddElement(nodeView);
+            var nodeView = new SceneNodeView(node);
+            AddElement(nodeView);
+        }
     }
 
     public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)

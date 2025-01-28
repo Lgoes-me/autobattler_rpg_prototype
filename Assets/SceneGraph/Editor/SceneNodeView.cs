@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -8,8 +9,8 @@ public class SceneNodeView : Node
 {
     public SceneNodeData SceneNodeData { get; private set; }
     
-    private List<Port> Inputs { get; set; }
-    private List<Port> Outputs { get; set; }
+    private Dictionary<string, Port> Inputs { get; set; }
+    private Dictionary<string, Port> Outputs { get; set; }
     
     public SceneNodeView(SceneNodeData sceneNodeData)
     {
@@ -35,29 +36,31 @@ public class SceneNodeView : Node
     
     private void CreateInputPorts()
     {
-        Inputs = new List<Port>();
+        Inputs = new Dictionary<string, Port>();
 
         foreach (var door in SceneNodeData.Doors)
         {
             var input = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(SpawnData));
+            input.userData = door;
             input.portName = door.Name;
             inputContainer.Add(input);
             
-            Inputs.Add(input);
+            Inputs.Add(door.Id, input);
         }
     }
 
     private void CreateOutputPorts()
     {
-        Outputs = new List<Port>();
+        Outputs = new Dictionary<string, Port>();
         
         foreach (var door in SceneNodeData.Doors)
         {
             var output = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(SpawnData)); 
+            output.userData = door;
             output.portName = door.Name;
             outputContainer.Add(output);
             
-            Outputs.Add(output);
+            Outputs.Add(door.Id, output);
         }
     }
 
@@ -65,5 +68,15 @@ public class SceneNodeView : Node
     {
         base.SetPosition(newPos);
         SceneNodeData.Position = new Vector2(newPos.xMin, newPos.yMin);
+    }
+
+    public void RemoveOutput(string id)
+    {
+        outputContainer.Remove(Outputs[id]);
+    }
+
+    public void RemoveInput(string id)
+    {
+        inputContainer.Remove(Inputs[id]);
     }
 }
