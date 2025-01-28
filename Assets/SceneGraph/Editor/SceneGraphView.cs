@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 public class SceneGraphView : GraphView
@@ -51,6 +50,25 @@ public class SceneGraphView : GraphView
                 if (element is SceneNodeView nodeView)
                 {
                     SceneGraphData.DeleteNode(nodeView.SceneNodeData);
+                }
+                
+                if (element is Edge edge)
+                {
+                    var input = edge.input;
+                    var output = edge.output;
+                
+                    if (input.userData is SpawnData spawnInputData && output.userData is SpawnData spawnOutputData)
+                    {
+                        spawnInputData.SceneDestination = "";
+                        spawnInputData.DoorDestination = "";
+                        spawnInputData.SetUp = false;
+                        ((SceneNodeView) input.node).AddOutput(spawnInputData.Id);
+
+                        spawnOutputData.SceneDestination = "";
+                        spawnOutputData.DoorDestination = "";
+                        spawnOutputData.SetUp = false;
+                        ((SceneNodeView) output.node).AddInput(spawnOutputData.Id);
+                    }
                 }
             }
             

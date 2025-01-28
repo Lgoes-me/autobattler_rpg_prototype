@@ -39,12 +39,4 @@ public class SceneGraphData : ScriptableObject
 
         AssetDatabase.SaveAssets();
     }
-
-    public void ConnectNodes()
-    {
-    }
-
-    public void UnconnectNodes()
-    {
-    }
 }
