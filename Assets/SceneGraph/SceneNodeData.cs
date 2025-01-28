@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class SceneNodeData
+public class SceneNodeData  
 {
     [field: SerializeField] public string Id { get; set; }
     [field: SerializeField] public Vector2 Position { get; set; }

@@ -18,8 +18,7 @@ public class SceneGraph : EditorWindow
     {
         var root = rootVisualElement;
 
-        var visualTreeAsset =
-            AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/SceneGraph/Editor/SceneGraph.uxml");
+        var visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/SceneGraph/Editor/SceneGraph.uxml");
         visualTreeAsset.CloneTree(root);
 
         var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/SceneGraph/Editor/SceneGraph.uss");
@@ -30,11 +29,12 @@ public class SceneGraph : EditorWindow
 
         var asset = AssetDatabase.LoadAssetAtPath<SceneGraphData>("Assets/SceneGraph/SceneGraph.asset");
         SceneGraphView.PopulateView(asset);
+        SceneGraphView.focusable = true;
     }
 
     public void OnSelectionChange()
     {
-        if (Selection.activeObject is SceneGraphData sceneGraphData)
+        if (Selection.activeObject is SceneGraphData sceneGraphData && SceneGraphView.SceneGraphData != sceneGraphData)
         {
             SceneGraphView.PopulateView(sceneGraphData);
         }

@@ -7,14 +7,12 @@ using UnityEngine.UIElements;
 public class SceneNodeView : Node
 {
     public SceneNodeData SceneNodeData { get; private set; }
-    private SceneGraphView SceneGraphView { get; set; }
     
     private List<Port> Inputs { get; set; }
     private List<Port> Outputs { get; set; }
     
-    public SceneNodeView(SceneGraphView sceneGraphView, SceneNodeData sceneNodeData)
+    public SceneNodeView(SceneNodeData sceneNodeData)
     {
-        SceneGraphView = sceneGraphView;
         SceneNodeData = sceneNodeData;
         
         title = sceneNodeData.RoomPrefab?.gameObject.name ?? "Scene";
@@ -33,7 +31,6 @@ public class SceneNodeView : Node
         };
 
         mainContainer.Add(preview);
-        
     }
     
     private void CreateInputPorts()
@@ -68,10 +65,5 @@ public class SceneNodeView : Node
     {
         base.SetPosition(newPos);
         SceneNodeData.Position = new Vector2(newPos.xMin, newPos.yMin);
-    }
-
-    public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
-    {
-        evt.menu.AppendAction("Delete", (a) => SceneGraphView.DeleteNodeView(this));
     }
 }
