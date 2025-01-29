@@ -11,6 +11,7 @@ public class SceneGraphView : GraphView
     {
     }
 
+    public Action<SceneNodeView> OnNodeSelected;
     public SceneGraphData SceneGraphData { get; private set; }
 
     public SceneGraphView()
@@ -37,6 +38,7 @@ public class SceneGraphView : GraphView
         foreach (var node in SceneGraphData.Nodes)
         {
             var nodeView = new SceneNodeView(node);
+            nodeView.OnNodeSelected = OnNodeSelected;
             AddElement(nodeView);
         }
     }
@@ -99,12 +101,6 @@ public class SceneGraphView : GraphView
         return graphViewChange;
     }
 
-    public void DeleteNodeView(SceneNodeView sceneNodeView)
-    {
-        SceneGraphData.DeleteNode(sceneNodeView.SceneNodeData);
-        RemoveElement(sceneNodeView);
-    }
-
     private void CreateEmptyNode()
     {
         var path = EditorUtility.OpenFilePanel("Choose prefab", "Assets/Prefabs/Rooms", "prefab");
@@ -117,6 +113,7 @@ public class SceneGraphView : GraphView
             var node = SceneGraphData.AddSceneNode(prefab);
 
             var nodeView = new SceneNodeView(node);
+            nodeView.OnNodeSelected = OnNodeSelected;
             AddElement(nodeView);
         }
     }
@@ -131,4 +128,5 @@ public class SceneGraphView : GraphView
         return ports.ToList()
             .Where(endPort => endPort.direction != startPort.direction && endPort.node != startPort.node).ToList();
     }
+    
 }

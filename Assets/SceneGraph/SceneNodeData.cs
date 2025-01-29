@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
-public class SceneNodeData  
+public class SceneNodeData : ScriptableObject
 {
     [field: SerializeField] public string Id { get; set; }
-    [field: SerializeField] public Vector2 Position { get; set; }
     [field: SerializeField] public DungeonRoomController RoomPrefab { get; set; }
     [field: SerializeField] public List<SpawnData> Doors { get; set; }
     
-    public SceneNodeData(string id, DungeonRoomController roomPrefab)
+    [field:HideInInspector] [field: SerializeField] public Vector2 Position { get; set; }
+    
+    public void Init(string id, DungeonRoomController roomPrefab)
     {
+        name = RoomPrefab?.gameObject.name ?? "Scene";
         Id = id;
         RoomPrefab = roomPrefab;
 

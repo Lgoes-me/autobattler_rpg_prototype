@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
@@ -7,6 +8,7 @@ using UnityEngine.UIElements;
 
 public class SceneNodeView : Node
 {
+    public Action<SceneNodeView> OnNodeSelected;
     public SceneNodeData SceneNodeData { get; private set; }
 
     private Dictionary<string, Port> Inputs { get; set; }
@@ -16,7 +18,7 @@ public class SceneNodeView : Node
     {
         SceneNodeData = sceneNodeData;
 
-        title = sceneNodeData.RoomPrefab?.gameObject.name ?? "Scene";
+        title = sceneNodeData.name;
         viewDataKey = sceneNodeData.Id;
 
         style.left = SceneNodeData.Position.x;
@@ -110,5 +112,11 @@ public class SceneNodeView : Node
         outputContainer.Add(output);
 
         Outputs.Add(door.Id, output);
+    }
+
+    public override void OnSelected()
+    {
+        base.OnSelected();
+        OnNodeSelected?.Invoke(this);
     }
 }

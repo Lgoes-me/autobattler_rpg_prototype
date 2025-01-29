@@ -29,14 +29,23 @@ public class SceneGraph : EditorWindow
 
         var asset = AssetDatabase.LoadAssetAtPath<SceneGraphData>("Assets/SceneGraph/SceneGraph.asset");
         SceneGraphView.PopulateView(asset);
+
+        SceneGraphView.OnNodeSelected = OnNodeSelectionChanged;
+        
         SceneGraphView.focusable = true;
     }
 
-    public void OnSelectionChange()
+    private void OnSelectionChange()
     {
         if (Selection.activeObject is SceneGraphData sceneGraphData && SceneGraphView.SceneGraphData != sceneGraphData)
         {
             SceneGraphView.PopulateView(sceneGraphData);
         }
     }
+
+    private void OnNodeSelectionChanged(SceneNodeView nodeView)
+    {
+        InspectorView.UpdateSelection(nodeView);
+    }
+    
 }

@@ -20,9 +20,11 @@ public class SceneGraphData : ScriptableObject
 
 
         var id = Guid.NewGuid().ToString();
-        var sceneNode = new SceneNodeData(id, prefab);
+        var sceneNode = ScriptableObject.CreateInstance<SceneNodeData>();
+        sceneNode.Init(id, prefab);
         Nodes.Add(sceneNode);
 
+        AssetDatabase.AddObjectToAsset(sceneNode, this);
         AssetDatabase.SaveAssets();
 
         return sceneNode;
@@ -37,6 +39,7 @@ public class SceneGraphData : ScriptableObject
             Nodes.Remove(toRemove);
         }
 
+        AssetDatabase.RemoveObjectFromAsset(toRemove);
         AssetDatabase.SaveAssets();
     }
 }
