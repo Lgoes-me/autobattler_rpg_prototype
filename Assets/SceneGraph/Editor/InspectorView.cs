@@ -12,8 +12,12 @@ public class InspectorView : VisualElement
         Clear();
         
         UnityEngine.Object.DestroyImmediate(Editor);
-        Editor = Editor.CreateEditor(nodeView.SceneNodeData);
-        IMGUIContainer container = new IMGUIContainer(() => Editor.OnInspectorGUI());
-        Add(container);
+
+        if (nodeView != null)
+        {
+            Editor = Editor.CreateEditor(nodeView.SceneNodeData);
+            IMGUIContainer container = new IMGUIContainer(() => Editor.OnInspectorGUI());
+            Add(container);
+        }
     }
 }

@@ -114,6 +114,12 @@ public class SceneNodeView : Node
         Outputs.Add(door.Id, output);
     }
 
+    public override void OnUnselected()
+    {
+        base.OnUnselected();
+        OnNodeSelected?.Invoke(null);
+    }
+
     public override void OnSelected()
     {
         base.OnSelected();

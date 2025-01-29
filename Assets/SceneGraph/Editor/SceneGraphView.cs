@@ -115,6 +115,7 @@ public class SceneGraphView : GraphView
             var nodeView = new SceneNodeView(node);
             nodeView.OnNodeSelected = OnNodeSelected;
             AddElement(nodeView);
+            AddToSelection(nodeView);
         }
     }
 
