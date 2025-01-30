@@ -3,15 +3,16 @@ using UnityEngine;
 
 public class SceneNodeData : ScriptableObject
 {
-    [field: SerializeField] public string Id { get; set; }
-    [field: SerializeField] public DungeonRoomController RoomPrefab { get; set; }
-    [field: SerializeField] public List<SpawnData> Doors { get; set; }
+    [field: SerializeField] public string Name { get; private set; }
+    [field: SerializeField] public DungeonRoomController RoomPrefab { get; private set; }
+    [field: SerializeField] public List<SpawnData> Doors { get; private set; }
     
-    [field:HideInInspector] [field: SerializeField] public Vector2 Position { get; set; }
-    
+    public string Id { get; private set; }
+    public Vector2 Position { get; set; }
+
     public void Init(string id, DungeonRoomController roomPrefab)
     {
-        name = RoomPrefab?.gameObject.name ?? "Scene";
+        Name = name = RoomPrefab?.gameObject.name ?? "Scene";
         Id = id;
         RoomPrefab = roomPrefab;
 

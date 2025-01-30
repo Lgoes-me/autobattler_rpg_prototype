@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 public class SceneGraphView : GraphView
@@ -101,7 +102,7 @@ public class SceneGraphView : GraphView
         return graphViewChange;
     }
 
-    private void CreateEmptyNode()
+    private void CreateSceneNode(Vector2 eventInfoLocalMousePosition)
     {
         var path = EditorUtility.OpenFilePanel("Choose prefab", "Assets/Prefabs/Rooms", "prefab");
 
@@ -111,17 +112,25 @@ public class SceneGraphView : GraphView
 
             var prefab = AssetDatabase.LoadAssetAtPath<DungeonRoomController>("Assets" + separatedPath[1]);
             var node = SceneGraphData.AddSceneNode(prefab);
-
+            node.Position = viewTransform.matrix.inverse.MultiplyPoint(eventInfoLocalMousePosition);
+            
             var nodeView = new SceneNodeView(node);
             nodeView.OnNodeSelected = OnNodeSelected;
             AddElement(nodeView);
+            
+            ClearSelection();
             AddToSelection(nodeView);
         }
     }
 
+    private void CreateRootNode()
+    {
+        
+    }
+
     public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
     {
-        evt.menu.AppendAction("Create Scene Node", (a) => CreateEmptyNode());
+        evt.menu.AppendAction("Create Scene Node", (a) => CreateSceneNode(a.eventInfo.localMousePosition));
     }
 
     public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)

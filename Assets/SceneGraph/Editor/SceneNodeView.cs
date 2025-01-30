@@ -21,8 +21,7 @@ public class SceneNodeView : Node
         title = sceneNodeData.name;
         viewDataKey = sceneNodeData.Id;
 
-        style.left = SceneNodeData.Position.x;
-        style.top = sceneNodeData.Position.y;
+        SetPosition(new Rect(SceneNodeData.Position, Vector2.one));
 
         CreateInputPorts();
         CreateOutputPorts();
@@ -59,7 +58,7 @@ public class SceneNodeView : Node
     public override void SetPosition(Rect newPos)
     {
         base.SetPosition(newPos);
-        SceneNodeData.Position = new Vector2(newPos.xMin, newPos.yMin);
+        SceneNodeData.Position = new Vector2(newPos.x, newPos.y);
     }
 
     public void RemoveInput(string id)
@@ -94,7 +93,7 @@ public class SceneNodeView : Node
         }
     }
 
-    public void AddInput(SpawnData door)
+    private void AddInput(SpawnData door)
     {
         var input = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(SpawnData));
         input.userData = door;
@@ -104,7 +103,7 @@ public class SceneNodeView : Node
         Inputs.Add(door.Id, input);
     }
 
-    public void AddOutput(SpawnData door)
+    private void AddOutput(SpawnData door)
     {
         var output = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(SpawnData));
         output.userData = door;
