@@ -1,48 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-public class SceneNodeView : Node
+public class BaseNodeView: Node
 {
-    public Action<SceneNodeView> OnNodeSelected;
-    public SceneNodeData SceneNodeData { get; private set; }
+    public Action<BaseNodeView> OnNodeSelected;
+    public BaseNodeData NodeData { get; private set; }
 
     private Dictionary<string, Port> Inputs { get; set; }
     private Dictionary<string, Port> Outputs { get; set; }
 
-    public SceneNodeView(SceneNodeData sceneNodeData)
+    protected BaseNodeView(BaseNodeData nodeData)
     {
-        SceneNodeData = sceneNodeData;
-        SceneNodeData.OnNodeDataUpdated = UpdateView;
+        NodeData = nodeData;
+        NodeData.OnNodeDataUpdated = UpdateView;
         
-        title = SceneNodeData.Name;
-        viewDataKey = SceneNodeData.Id;
+        title = NodeData.Name;
+        viewDataKey = NodeData.Id;
 
-        SetPosition(new Rect(SceneNodeData.Position, Vector2.one));
+        SetPosition(new Rect(NodeData.Position, Vector2.one));
 
         CreateInputPorts();
         CreateOutputPorts();
-
-        var preview = new Image();
-        preview.image = AssetPreview.GetAssetPreview(SceneNodeData.RoomPrefab);
-        
-        mainContainer.Add(preview);
     }
 
     private void UpdateView()
     {
-        title = SceneNodeData.Name;
+        title = NodeData.Name;
     }
     
     private void CreateInputPorts()
     {
         Inputs = new Dictionary<string, Port>();
 
-        foreach (var door in SceneNodeData.Doors)
+        foreach (var door in NodeData.Doors)
         {
             AddInput(door);
         }
@@ -52,7 +45,7 @@ public class SceneNodeView : Node
     {
         Outputs = new Dictionary<string, Port>();
 
-        foreach (var door in SceneNodeData.Doors)
+        foreach (var door in NodeData.Doors)
         {
             AddOutput(door);
         }
@@ -61,7 +54,7 @@ public class SceneNodeView : Node
     public override void SetPosition(Rect newPos)
     {
         base.SetPosition(newPos);
-        SceneNodeData.Position = new Vector2(newPos.x, newPos.y);
+        NodeData.Position = new Vector2(newPos.x, newPos.y);
     }
 
     public void RemoveInput(string id)
@@ -78,7 +71,7 @@ public class SceneNodeView : Node
 
     public void AddInput(string id)
     {
-        var door = SceneNodeData.Doors.FirstOrDefault(d => d.Id == id);
+        var door = NodeData.Doors.FirstOrDefault(d => d.Id == id);
 
         if (door != null)
         {
@@ -88,7 +81,7 @@ public class SceneNodeView : Node
     
     public void AddOutput(string id)
     {
-        var door = SceneNodeData.Doors.FirstOrDefault(d => d.Id == id);
+        var door = NodeData.Doors.FirstOrDefault(d => d.Id == id);
 
         if (door != null)
         {
@@ -96,7 +89,7 @@ public class SceneNodeView : Node
         }
     }
 
-    private void AddInput(SpawnData door)
+    protected void AddInput(SpawnData door)
     {
         var input = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(SpawnData));
         input.userData = door;
@@ -106,7 +99,7 @@ public class SceneNodeView : Node
         Inputs.Add(door.Id, input);
     }
 
-    private void AddOutput(SpawnData door)
+    protected void AddOutput(SpawnData door)
     {
         var output = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(SpawnData));
         output.userData = door;

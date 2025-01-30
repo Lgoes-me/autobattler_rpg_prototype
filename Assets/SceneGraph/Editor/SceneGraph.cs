@@ -43,7 +43,7 @@ public class SceneGraph : EditorWindow
         }
     }
 
-    private void OnNodeSelectionChanged(SceneNodeView nodeView)
+    private void OnNodeSelectionChanged(BaseNodeView nodeView)
     {
         InspectorView.UpdateSelection(nodeView);
     }

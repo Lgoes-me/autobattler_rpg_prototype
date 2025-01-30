@@ -12,7 +12,7 @@ public class SceneGraphView : GraphView
     {
     }
 
-    public Action<SceneNodeView> OnNodeSelected;
+    public Action<BaseNodeView> OnNodeSelected;
     public SceneGraphData SceneGraphData { get; private set; }
 
     public SceneGraphView()
@@ -38,7 +38,13 @@ public class SceneGraphView : GraphView
 
         foreach (var node in SceneGraphData.Nodes)
         {
-            var nodeView = new SceneNodeView(node);
+            BaseNodeView nodeView = node switch
+            {
+                SceneNodeData sceneNode => new SceneNodeView(sceneNode),
+                SpawnNodeData spawnNode => new SpawnNodeView(spawnNode),
+                _ => throw new ArgumentOutOfRangeException()
+            };
+            
             nodeView.OnNodeSelected = OnNodeSelected;
             AddElement(nodeView);
         }
@@ -50,9 +56,9 @@ public class SceneGraphView : GraphView
         {
             foreach (var element in graphViewChange.elementsToRemove)
             {
-                if (element is SceneNodeView nodeView)
+                if (element is BaseNodeView nodeView)
                 {
-                    SceneGraphData.DeleteNode(nodeView.SceneNodeData);
+                    SceneGraphData.DeleteNode(nodeView.NodeData);
                 }
                 
                 if (element is Edge edge)
@@ -65,12 +71,12 @@ public class SceneGraphView : GraphView
                         spawnInputData.SceneDestination = "";
                         spawnInputData.DoorDestination = "";
                         spawnInputData.SetUp = false;
-                        ((SceneNodeView) input.node).AddOutput(spawnInputData.Id);
+                        ((BaseNodeView) input.node).AddOutput(spawnInputData.Id);
 
                         spawnOutputData.SceneDestination = "";
                         spawnOutputData.DoorDestination = "";
                         spawnOutputData.SetUp = false;
-                        ((SceneNodeView) output.node).AddInput(spawnOutputData.Id);
+                        ((BaseNodeView) output.node).AddInput(spawnOutputData.Id);
                     }
                 }
             }
@@ -86,15 +92,15 @@ public class SceneGraphView : GraphView
                 
                 if (input.userData is SpawnData spawnInputData && output.userData is SpawnData spawnOutputData)
                 {
-                    spawnInputData.SceneDestination = ((SceneNodeView) output.node).SceneNodeData.Id;
+                    spawnInputData.SceneDestination = ((BaseNodeView) output.node).NodeData.Id;
                     spawnInputData.DoorDestination = spawnOutputData.Id;
                     spawnInputData.SetUp = true;
-                    ((SceneNodeView) input.node).RemoveOutput(spawnInputData.Id);
+                    ((BaseNodeView) input.node).RemoveOutput(spawnInputData.Id);
 
-                    spawnOutputData.SceneDestination = ((SceneNodeView) input.node).SceneNodeData.Id;
+                    spawnOutputData.SceneDestination = ((BaseNodeView) input.node).NodeData.Id;
                     spawnOutputData.DoorDestination = spawnInputData.Id;
                     spawnOutputData.SetUp = true;
-                    ((SceneNodeView) output.node).RemoveInput(spawnOutputData.Id);
+                    ((BaseNodeView) output.node).RemoveInput(spawnOutputData.Id);
                 }
             }
             
@@ -123,14 +129,23 @@ public class SceneGraphView : GraphView
         }
     }
 
-    private void CreateRootNode()
+    private void CreateSpawnNode(Vector2 eventInfoLocalMousePosition)
     {
-        
+        var node = SceneGraphData.AddSpawnNode();
+        node.Position = viewTransform.matrix.inverse.MultiplyPoint(eventInfoLocalMousePosition);
+            
+        var nodeView = new SpawnNodeView(node);
+        nodeView.OnNodeSelected = OnNodeSelected;
+        AddElement(nodeView);
+            
+        ClearSelection();
+        AddToSelection(nodeView);
     }
 
     public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
     {
-        evt.menu.AppendAction("Create Scene Node", (a) => CreateSceneNode(a.eventInfo.localMousePosition));
+        evt.menu.AppendAction("Spawn", (a) => CreateSpawnNode(a.eventInfo.localMousePosition));
+        evt.menu.AppendAction("Scene", (a) => CreateSceneNode(a.eventInfo.localMousePosition));
     }
 
     public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)

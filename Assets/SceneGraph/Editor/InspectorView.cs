@@ -4,10 +4,9 @@ using UnityEngine.UIElements;
 public class InspectorView : VisualElement
 {
     public new class UxmlFactory : UxmlFactory<InspectorView, UxmlTraits> { }
-    
     private Editor Editor { get; set; }
 
-    public void UpdateSelection(SceneNodeView nodeView)
+    public void UpdateSelection(BaseNodeView nodeView)
     {
         Clear();
         
@@ -15,7 +14,7 @@ public class InspectorView : VisualElement
 
         if (nodeView != null)
         {
-            Editor = Editor.CreateEditor(nodeView.SceneNodeData);
+            Editor = Editor.CreateEditor(nodeView.NodeData);
             IMGUIContainer container = new IMGUIContainer(() => Editor.OnInspectorGUI());
             Add(container);
         }
