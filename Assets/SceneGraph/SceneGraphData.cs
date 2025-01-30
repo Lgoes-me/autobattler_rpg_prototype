@@ -18,7 +18,6 @@ public class SceneGraphData : ScriptableObject
     {
         Nodes ??= new List<SceneNodeData>();
 
-
         var id = Guid.NewGuid().ToString();
         var sceneNode = CreateInstance<SceneNodeData>();
         sceneNode.Init(id, prefab);

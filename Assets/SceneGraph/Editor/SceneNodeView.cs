@@ -17,24 +17,27 @@ public class SceneNodeView : Node
     public SceneNodeView(SceneNodeData sceneNodeData)
     {
         SceneNodeData = sceneNodeData;
-
-        title = sceneNodeData.name;
-        viewDataKey = sceneNodeData.Id;
+        SceneNodeData.OnNodeDataUpdated = UpdateView;
+        
+        title = SceneNodeData.Name;
+        viewDataKey = SceneNodeData.Id;
 
         SetPosition(new Rect(SceneNodeData.Position, Vector2.one));
 
         CreateInputPorts();
         CreateOutputPorts();
 
-        var preview = new Image
-        {
-            image = AssetPreview.GetAssetPreview(SceneNodeData.RoomPrefab) ??
-                    AssetPreview.GetMiniThumbnail(SceneNodeData.RoomPrefab)
-        };
-
+        var preview = new Image();
+        preview.image = AssetPreview.GetAssetPreview(SceneNodeData.RoomPrefab);
+        
         mainContainer.Add(preview);
     }
 
+    private void UpdateView()
+    {
+        title = SceneNodeData.Name;
+    }
+    
     private void CreateInputPorts()
     {
         Inputs = new Dictionary<string, Port>();
