@@ -41,7 +41,7 @@ public class SceneManager : MonoBehaviour
     public void StartGameIntro()
     {
         var dungeon = Dungeon.GenerateDungeon();
-        UseDoorToChangeScene(dungeon.Data.SelectedRoom.RoomPrefab.RoomSpawn.Id, dungeon.Data.SelectedRoom.Id);
+        //UseDoorToChangeScene(dungeon.Data.SelectedRoom.RoomPrefab.RoomSpawn.Id, dungeon.Data.SelectedRoom.Id);
 
         /*var task = UnitySceneManager.LoadSceneAsync("DungeonCutscene", LoadSceneMode.Single);
 
