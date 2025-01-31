@@ -1,17 +1,17 @@
 using System;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class BaseNodeData : ScriptableObject
 {
     [field: SerializeField] public string Name { get; protected set; }
 
-    [field: SerializeField] public string Id { get; protected set; }
-    [field: SerializeField] public List<SpawnData> Doors { get; protected set; }
-    [field: SerializeField] public Vector2 Position { get; protected set; }
+    [field: HideInInspector] [field: SerializeField] public string Id { get; protected set; }
+    [field: HideInInspector] [field: SerializeField] public List<SpawnData> Doors { get; protected set; }
+    [field: HideInInspector] [field: SerializeField] public Vector2 Position { get; protected set; }
+
     public Action OnNodeDataUpdated { get; set; }
-    
+
     public void SetPosition(Vector2 position)
     {
         Position = position;
