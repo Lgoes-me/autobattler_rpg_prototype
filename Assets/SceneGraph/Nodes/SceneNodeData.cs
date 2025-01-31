@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class SceneNodeData : BaseNodeData
 {
-    public DungeonRoomController RoomPrefab { get; private set; }
+    [field: SerializeField] public DungeonRoomController RoomPrefab { get; private set; }
     
     public void Init(string id, DungeonRoomController roomPrefab)
     {

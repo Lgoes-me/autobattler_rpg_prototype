@@ -1,6 +1,28 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8112096936380521579
+--- !u!114 &-5342171128611722993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f42d0481cd21e584b905e353d21bb461, type: 3}
+  m_Name: e3573dce-0952-4cea-868b-a8b76c08f2e9
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Start
+  <Id>k__BackingField: Start
+  <Doors>k__BackingField:
+  - <Name>k__BackingField: 
+    <Port>k__BackingField: output
+    <Id>k__BackingField: e3573dce-0952-4cea-868b-a8b76c08f2e9
+    <SceneDestination>k__BackingField: b6d7ea70-a4fe-4514-a154-d93cebe9f04f
+    <DoorDestination>k__BackingField: b29a07b8-70ec-4857-87fe-011c6ef3a623
+    <SetUp>k__BackingField: 1
+  <Position>k__BackingField: {x: -51.76001, y: 133}
+--- !u!114 &-4955882549513404031
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,25 +32,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 258b9a247b0d4766aef8d7549746b2a0, type: 3}
-  m_Name: TutorialEntrance
+  m_Name: TutorialRoom
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: TutorialEntrance
-  <Id>k__BackingField: 03d106f5-de32-4f07-aab3-3355b0a332bc
+  <Name>k__BackingField: TutorialRoom
+  <Id>k__BackingField: 0f5d1fcd-5523-4a32-9b9c-4efef8eca7ef
   <Doors>k__BackingField:
   - <Name>k__BackingField: Entrada
     <Port>k__BackingField: input
-    <Id>k__BackingField: b29a07b8-70ec-4857-87fe-011c6ef3a623
-    <SceneDestination>k__BackingField: Start
-    <DoorDestination>k__BackingField: ac41aeac-2e28-4793-a2b4-e287aa587b64
+    <Id>k__BackingField: f1324800-930d-43fb-a218-394b4a7eedd4
+    <SceneDestination>k__BackingField: b6d7ea70-a4fe-4514-a154-d93cebe9f04f
+    <DoorDestination>k__BackingField: 4b0910fd-8f0f-4bf4-9459-de6bb9fadeee
     <SetUp>k__BackingField: 1
-  - <Name>k__BackingField: Passagem
+  - <Name>k__BackingField: ParaOBoss
     <Port>k__BackingField: output
-    <Id>k__BackingField: 4b0910fd-8f0f-4bf4-9459-de6bb9fadeee
-    <SceneDestination>k__BackingField: 4ed2ef1b-159a-4932-a479-66463a03c4c8
-    <DoorDestination>k__BackingField: f1324800-930d-43fb-a218-394b4a7eedd4
+    <Id>k__BackingField: bd221b1a-daff-4d37-ae1a-628d240f8a42
+    <SceneDestination>k__BackingField: 3fc5745e-d512-4cca-bfe1-92c75b50563e
+    <DoorDestination>k__BackingField: 560389b1-0df7-490a-bc23-9ea3bdd4a01e
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: -115.78339, y: 131.00006}
---- !u!114 &-5054238481161523543
+  <Position>k__BackingField: {x: 386.26242, y: 132.99997}
+  <RoomPrefab>k__BackingField: {fileID: 7526482092115330285, guid: 32dbf16f7d876e84aa63eeb55d18a98d, type: 3}
+--- !u!114 &-2367775004428860059
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,15 +64,16 @@ MonoBehaviour:
   m_Name: TutorialBossRoom
   m_EditorClassIdentifier: 
   <Name>k__BackingField: TutorialBossRoom
-  <Id>k__BackingField: e1443c11-3ae1-4022-a325-9b16a66524a5
+  <Id>k__BackingField: 3fc5745e-d512-4cca-bfe1-92c75b50563e
   <Doors>k__BackingField:
   - <Name>k__BackingField: DoorArea
     <Port>k__BackingField: input
     <Id>k__BackingField: 560389b1-0df7-490a-bc23-9ea3bdd4a01e
-    <SceneDestination>k__BackingField: 4ed2ef1b-159a-4932-a479-66463a03c4c8
+    <SceneDestination>k__BackingField: 0f5d1fcd-5523-4a32-9b9c-4efef8eca7ef
     <DoorDestination>k__BackingField: bd221b1a-daff-4d37-ae1a-628d240f8a42
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: 421.09744, y: 131}
+  <Position>k__BackingField: {x: 690.63214, y: 133}
+  <RoomPrefab>k__BackingField: {fileID: 6025612955480498148, guid: f14643f04ae99ae44afb429938d26758, type: 3}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,33 +87,11 @@ MonoBehaviour:
   m_Name: SceneGraph
   m_EditorClassIdentifier: 
   <Nodes>k__BackingField:
-  - {fileID: -5054238481161523543}
-  - {fileID: 9166249436006534727}
-  - {fileID: -8112096936380521579}
-  - {fileID: 8147809085222941677}
---- !u!114 &8147809085222941677
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f42d0481cd21e584b905e353d21bb461, type: 3}
-  m_Name: ac41aeac-2e28-4793-a2b4-e287aa587b64
-  m_EditorClassIdentifier: 
-  <Name>k__BackingField: Start
-  <Id>k__BackingField: Start
-  <Doors>k__BackingField:
-  - <Name>k__BackingField: 
-    <Port>k__BackingField: output
-    <Id>k__BackingField: ac41aeac-2e28-4793-a2b4-e287aa587b64
-    <SceneDestination>k__BackingField: 03d106f5-de32-4f07-aab3-3355b0a332bc
-    <DoorDestination>k__BackingField: b29a07b8-70ec-4857-87fe-011c6ef3a623
-    <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: -246.14334, y: 131}
---- !u!114 &9166249436006534727
+  - {fileID: 7687923207569236031}
+  - {fileID: -5342171128611722993}
+  - {fileID: -4955882549513404031}
+  - {fileID: -2367775004428860059}
+--- !u!114 &7687923207569236031
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,21 +101,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 258b9a247b0d4766aef8d7549746b2a0, type: 3}
-  m_Name: TutorialRoom
+  m_Name: TutorialEntrance
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: TutorialRoom
-  <Id>k__BackingField: 4ed2ef1b-159a-4932-a479-66463a03c4c8
+  <Name>k__BackingField: TutorialEntrance
+  <Id>k__BackingField: b6d7ea70-a4fe-4514-a154-d93cebe9f04f
   <Doors>k__BackingField:
   - <Name>k__BackingField: Entrada
     <Port>k__BackingField: input
-    <Id>k__BackingField: f1324800-930d-43fb-a218-394b4a7eedd4
-    <SceneDestination>k__BackingField: 03d106f5-de32-4f07-aab3-3355b0a332bc
-    <DoorDestination>k__BackingField: 4b0910fd-8f0f-4bf4-9459-de6bb9fadeee
+    <Id>k__BackingField: b29a07b8-70ec-4857-87fe-011c6ef3a623
+    <SceneDestination>k__BackingField: Start
+    <DoorDestination>k__BackingField: e3573dce-0952-4cea-868b-a8b76c08f2e9
     <SetUp>k__BackingField: 1
-  - <Name>k__BackingField: ParaOBoss
+  - <Name>k__BackingField: Passagem
     <Port>k__BackingField: output
-    <Id>k__BackingField: bd221b1a-daff-4d37-ae1a-628d240f8a42
-    <SceneDestination>k__BackingField: e1443c11-3ae1-4022-a325-9b16a66524a5
-    <DoorDestination>k__BackingField: 560389b1-0df7-490a-bc23-9ea3bdd4a01e
+    <Id>k__BackingField: 4b0910fd-8f0f-4bf4-9459-de6bb9fadeee
+    <SceneDestination>k__BackingField: 0f5d1fcd-5523-4a32-9b9c-4efef8eca7ef
+    <DoorDestination>k__BackingField: f1324800-930d-43fb-a218-394b4a7eedd4
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: 171.0918, y: 130.74748}
+  <Position>k__BackingField: {x: 111, y: 133}
+  <RoomPrefab>k__BackingField: {fileID: 1270386980360157701, guid: 091a762831a3c2d46aad695aa3f97d42, type: 3}

@@ -1115,11 +1115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00328ecadddd24849b8a48734768524f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Rooms>k__BackingField:
-  - {fileID: 11400000, guid: be4d478f71b6d9346b04efa5afa2660e, type: 2}
-  - {fileID: 11400000, guid: 573362e38cdaf9f4eb39709d187bdaeb, type: 2}
-  - {fileID: 11400000, guid: ea206132228e6824da85ae5672d2ca06, type: 2}
-  <Dungeon>k__BackingField: {fileID: 11400000, guid: b94953924fafc3547af460543a5c1daf, type: 2}
+  <Map>k__BackingField: {fileID: 0}
 --- !u!1001 &642898424
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3519,8 +3515,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1918482238}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.10752112, y: 0.8409875, z: -0.18909106, w: 0.49540278}
+  m_LocalPosition: {x: -3.8243828, y: 7.7438602, z: 3.5582054}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3601,9 +3597,9 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 30
+  field of view: 60.000004
   orthographic: 1
-  orthographic size: 8.53125
+  orthographic size: 5.25
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

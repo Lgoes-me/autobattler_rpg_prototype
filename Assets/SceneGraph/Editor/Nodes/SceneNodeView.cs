@@ -31,7 +31,7 @@ public class SceneNodeView : BaseNodeView
         
         Object.DestroyImmediate(prefab.gameObject);
         Object.DestroyImmediate(renderTexture);
-        
+
         mainContainer.Add(preview);
     }
 }
