@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8629842527946923781
+--- !u!114 &-7305563327194598319
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,36 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f42d0481cd21e584b905e353d21bb461, type: 3}
-  m_Name: 2241ca88-fbd1-46f4-94c7-62c843099ca2
+  m_Name: bd988b6d-0a15-4359-ac6f-bdf9ced63c90
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Start
---- !u!114 &-6961471202985750040
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 258b9a247b0d4766aef8d7549746b2a0, type: 3}
-  m_Name: TutorialEntrance
-  m_EditorClassIdentifier: 
-  <Name>k__BackingField: TutorialEntrance
---- !u!114 &-2323597518366379458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 258b9a247b0d4766aef8d7549746b2a0, type: 3}
-  m_Name: TutorialBossRoom
-  m_EditorClassIdentifier: 
-  <Name>k__BackingField: TutorialBossRoom
---- !u!114 &-1976312155393527979
+  <Id>k__BackingField: Start
+  <Doors>k__BackingField:
+  - <Name>k__BackingField: 
+    <Port>k__BackingField: output
+    <Id>k__BackingField: bd988b6d-0a15-4359-ac6f-bdf9ced63c90
+    <SceneDestination>k__BackingField: 
+    <DoorDestination>k__BackingField: 
+--- !u!114 &-3109446256373064916
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -52,6 +33,18 @@ MonoBehaviour:
   m_Name: TutorialRoom
   m_EditorClassIdentifier: 
   <Name>k__BackingField: TutorialRoom
+  <Id>k__BackingField: 5ff1a9c8-6886-465a-a77d-9d0ea2e44473
+  <Doors>k__BackingField:
+  - <Name>k__BackingField: Entrada
+    <Port>k__BackingField: 
+    <Id>k__BackingField: f1324800-930d-43fb-a218-394b4a7eedd4
+    <SceneDestination>k__BackingField: 
+    <DoorDestination>k__BackingField: 
+  - <Name>k__BackingField: ParaOBoss
+    <Port>k__BackingField: 
+    <Id>k__BackingField: bd221b1a-daff-4d37-ae1a-628d240f8a42
+    <SceneDestination>k__BackingField: 
+    <DoorDestination>k__BackingField: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,7 +58,52 @@ MonoBehaviour:
   m_Name: SceneGraph
   m_EditorClassIdentifier: 
   <Nodes>k__BackingField:
-  - {fileID: -8629842527946923781}
-  - {fileID: -6961471202985750040}
-  - {fileID: -1976312155393527979}
-  - {fileID: -2323597518366379458}
+  - {fileID: -7305563327194598319}
+  - {fileID: -3109446256373064916}
+  - {fileID: 6291146735902620082}
+  - {fileID: 8950032012013575576}
+--- !u!114 &6291146735902620082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 258b9a247b0d4766aef8d7549746b2a0, type: 3}
+  m_Name: TutorialBossRoom
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: TutorialBossRoom
+  <Id>k__BackingField: 8b06be3a-c3e3-469f-88d9-a7d129e65641
+  <Doors>k__BackingField:
+  - <Name>k__BackingField: DoorArea
+    <Port>k__BackingField: 
+    <Id>k__BackingField: 560389b1-0df7-490a-bc23-9ea3bdd4a01e
+    <SceneDestination>k__BackingField: 
+    <DoorDestination>k__BackingField: 
+--- !u!114 &8950032012013575576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 258b9a247b0d4766aef8d7549746b2a0, type: 3}
+  m_Name: TutorialEntrance
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: TutorialEntrance
+  <Id>k__BackingField: ca805a9b-0874-4cf4-ba40-4f43c1e0d489
+  <Doors>k__BackingField:
+  - <Name>k__BackingField: Entrada
+    <Port>k__BackingField: 
+    <Id>k__BackingField: b29a07b8-70ec-4857-87fe-011c6ef3a623
+    <SceneDestination>k__BackingField: 
+    <DoorDestination>k__BackingField: 
+  - <Name>k__BackingField: Passagem
+    <Port>k__BackingField: 
+    <Id>k__BackingField: 4b0910fd-8f0f-4bf4-9459-de6bb9fadeee
+    <SceneDestination>k__BackingField: 
+    <DoorDestination>k__BackingField: 

@@ -9,8 +9,8 @@ public class BaseNodeView: Node
     public Action<BaseNodeView> OnNodeSelected;
     public BaseNodeData NodeData { get; private set; }
 
-    private Dictionary<string, Port> Inputs { get; set; }
-    private Dictionary<string, Port> Outputs { get; set; }
+    public Dictionary<string, Port> Inputs { get; private set; }
+    public Dictionary<string, Port> Outputs { get; private set; }
 
     protected BaseNodeView(BaseNodeData nodeData)
     {

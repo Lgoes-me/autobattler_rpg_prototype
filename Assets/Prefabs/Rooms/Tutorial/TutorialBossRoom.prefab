@@ -930,7 +930,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75ade9abab5b3e04399c9d5a2db718a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <RoomSpawn>k__BackingField: {fileID: 0}
   <Doors>k__BackingField:
   - {fileID: 6657271373621489740}
 --- !u!1001 &313458456776750724
@@ -1003,7 +1002,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7803689849695119232, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
       propertyPath: m_Name
-      value: Entrada
+      value: DoorArea
       objectReference: {fileID: 0}
     - target: {fileID: 7803689849695119232, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
       propertyPath: m_IsActive

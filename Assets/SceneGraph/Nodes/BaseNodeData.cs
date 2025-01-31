@@ -6,8 +6,8 @@ public class BaseNodeData : ScriptableObject
 {
     [field: SerializeField] public string Name { get; protected set; }
 
-    public string Id { get; protected set; }
-    public List<SpawnData> Doors { get; protected set; }
+    [field: SerializeField] public string Id { get; protected set; }
+    [field: SerializeField] public List<SpawnData> Doors { get; protected set; }
     public Vector2 Position { get; set; }
     public Action OnNodeDataUpdated { get; set; }
 

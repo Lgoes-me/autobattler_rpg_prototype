@@ -35,6 +35,8 @@ public class SceneGraphView : GraphView
         graphViewChanged -= OnGraphViewChange;
         DeleteElements(graphElements);
         graphViewChanged += OnGraphViewChange;
+
+        var nodeViews = new List<BaseNodeView>();
         
         foreach (var node in SceneGraphData.Nodes)
         {
@@ -46,7 +48,79 @@ public class SceneGraphView : GraphView
             };
             
             nodeView.OnNodeSelected = OnNodeSelected;
+            
+            nodeViews.Add(nodeView);
             AddElement(nodeView);
+        }
+
+        foreach (var nodeView in nodeViews)
+        {
+            foreach (var (key, port) in nodeView.Inputs)
+            {
+                var data = (SpawnData)port.userData;
+                
+                if(!data.SetUp)
+                    continue;
+                
+                if(data.Port != "input")
+                    continue;
+                
+                if(port.connected)
+                {
+                    nodeView.RemoveOutput(data.Id);
+                    continue;
+                }
+
+                var otherNode = nodeViews.FirstOrDefault(n => n.viewDataKey == data.SceneDestination);
+                
+                if(otherNode == null)
+                    continue;
+
+                var otherPort =
+                    otherNode.Outputs.FirstOrDefault(d => ((SpawnData) d.Value.userData).Id == data.DoorDestination).Value;
+                
+                if(otherPort == null)
+                    continue;
+                
+                var edge = port.ConnectTo(otherPort);
+                
+                nodeView.RemoveOutput(data.Id);
+                AddElement(edge);
+            }
+            
+            foreach (var (key, port) in nodeView.Outputs)
+            {
+                var data = (SpawnData)port.userData;
+                
+                if(!data.SetUp)
+                    continue;
+                
+                if(data.Port != "output")
+                    continue;
+                
+                if(port.connected)
+                {
+                    nodeView.RemoveInput(data.Id);
+                    continue;
+                }
+                
+                var otherNode = nodeViews.FirstOrDefault(n => n.viewDataKey == data.SceneDestination);
+                
+                if(otherNode == null)
+                    continue;
+
+                var otherPort =
+                    otherNode.Inputs.FirstOrDefault(d => ((SpawnData) d.Value.userData).Id == data.DoorDestination).Value;
+                
+                if(otherPort == null)
+                    continue;
+                
+                var edge = port.ConnectTo(otherPort);
+                nodeView.RemoveInput(data.Id);
+                AddElement(edge);
+            }
+
+            FrameAll();
         }
     }
 
@@ -65,19 +139,21 @@ public class SceneGraphView : GraphView
                 {
                     var input = edge.input;
                     var output = edge.output;
-                
-                    if (input.userData is SpawnData spawnInputData && output.userData is SpawnData spawnOutputData)
-                    {
-                        spawnInputData.SceneDestination = "";
-                        spawnInputData.DoorDestination = "";
-                        spawnInputData.SetUp = false;
-                        ((BaseNodeView) input.node).AddOutput(spawnInputData.Id);
 
-                        spawnOutputData.SceneDestination = "";
-                        spawnOutputData.DoorDestination = "";
-                        spawnOutputData.SetUp = false;
-                        ((BaseNodeView) output.node).AddInput(spawnOutputData.Id);
-                    }
+                    var spawnInputData = (SpawnData)input.userData;
+                    var spawnOutputData = (SpawnData)output.userData;
+                    
+                    spawnInputData.SceneDestination = "";
+                    spawnInputData.DoorDestination = "";
+                    spawnInputData.Port = "";
+                    spawnInputData.SetUp = false;
+                    ((BaseNodeView) input.node).AddOutput(spawnInputData.Id);
+
+                    spawnOutputData.SceneDestination = "";
+                    spawnOutputData.DoorDestination = "";
+                    spawnInputData.Port = "";
+                    spawnOutputData.SetUp = false;
+                    ((BaseNodeView) output.node).AddInput(spawnOutputData.Id);
                 }
             }
             
@@ -90,18 +166,20 @@ public class SceneGraphView : GraphView
                 var input = edge.input;
                 var output = edge.output;
                 
-                if (input.userData is SpawnData spawnInputData && output.userData is SpawnData spawnOutputData)
-                {
-                    spawnInputData.SceneDestination = ((BaseNodeView) output.node).NodeData.Id;
-                    spawnInputData.DoorDestination = spawnOutputData.Id;
-                    spawnInputData.SetUp = true;
-                    ((BaseNodeView) input.node).RemoveOutput(spawnInputData.Id);
+                var spawnInputData = (SpawnData)input.userData;
+                var spawnOutputData = (SpawnData)output.userData;
+                
+                spawnInputData.SceneDestination = ((BaseNodeView) output.node).NodeData.Id;
+                spawnInputData.DoorDestination = spawnOutputData.Id;
+                spawnInputData.Port = "input";
+                spawnInputData.SetUp = true;
+                ((BaseNodeView) input.node).RemoveOutput(spawnInputData.Id);
 
-                    spawnOutputData.SceneDestination = ((BaseNodeView) input.node).NodeData.Id;
-                    spawnOutputData.DoorDestination = spawnInputData.Id;
-                    spawnOutputData.SetUp = true;
-                    ((BaseNodeView) output.node).RemoveInput(spawnOutputData.Id);
-                }
+                spawnOutputData.SceneDestination = ((BaseNodeView) input.node).NodeData.Id;
+                spawnOutputData.DoorDestination = spawnInputData.Id;
+                spawnOutputData.Port = "output";
+                spawnOutputData.SetUp = true;
+                ((BaseNodeView) output.node).RemoveInput(spawnOutputData.Id);
             }
             
         }
