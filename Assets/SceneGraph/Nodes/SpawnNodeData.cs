@@ -1,8 +1,14 @@
+using System.Collections.Generic;
+
 public class SpawnNodeData : BaseNodeData
 {
-    public new void Init(string id, string nodeName)
+    public void Init(string id)
     {
-        base.Init(id, nodeName);
+        Id = id;
+        Name = name = id;
+        
+        Doors = new List<SpawnData>();
+        GenerateDoors();
     }
 
     protected override void GenerateDoors()
@@ -14,5 +20,11 @@ public class SpawnNodeData : BaseNodeData
         };
 
         Doors.Add(door);
+    }
+
+    protected override void OnValidate()
+    {
+        base.OnValidate();
+        Id = Name;
     }
 }

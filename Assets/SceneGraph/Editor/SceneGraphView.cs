@@ -153,5 +153,4 @@ public class SceneGraphView : GraphView
         return ports.ToList()
             .Where(endPort => endPort.direction != startPort.direction && endPort.node != startPort.node).ToList();
     }
-    
 }

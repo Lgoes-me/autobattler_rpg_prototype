@@ -8,10 +8,14 @@ using UnityEngine;
 public class SceneGraphData : ScriptableObject
 {
     [field: SerializeField] public List<BaseNodeData> Nodes { get; set; }
+    
+    public Dictionary<string, BaseNodeData> AllNodesById { get; set; }
+    public Dictionary<string, SpawnNodeData> SpawnsByName { get; set; }
 
-    private void OnEnable()
+    public void Init()
     {
-        Nodes ??= new List<BaseNodeData>();
+        AllNodesById = Nodes.ToDictionary(n => n.Id, n => n);
+        SpawnsByName = Nodes.Where(n => n is SpawnNodeData).ToDictionary(n => n.Name, n => n as SpawnNodeData);
     }
 
     public SceneNodeData AddSceneNode(DungeonRoomController prefab)
@@ -35,7 +39,7 @@ public class SceneGraphData : ScriptableObject
 
         var id = Guid.NewGuid().ToString();
         var sceneNode = CreateInstance<SpawnNodeData>();
-        sceneNode.Init(id, id);
+        sceneNode.Init(id);
         Nodes.Add(sceneNode);
 
         AssetDatabase.AddObjectToAsset(sceneNode, this);
@@ -43,7 +47,7 @@ public class SceneGraphData : ScriptableObject
 
         return sceneNode;
     }
-    
+
     public void DeleteNode(BaseNodeData nodeData)
     {
         var toRemove = Nodes?.FirstOrDefault(data => data.Id == nodeData.Id);

@@ -1,11 +1,17 @@
-﻿public class SceneNodeData : BaseNodeData
+﻿using System.Collections.Generic;
+
+public class SceneNodeData : BaseNodeData
 {
     public DungeonRoomController RoomPrefab { get; private set; }
     
     public void Init(string id, DungeonRoomController roomPrefab)
     {
+        Id = id;
+        Name = name = roomPrefab.name;
         RoomPrefab = roomPrefab;
-        base.Init(id, roomPrefab.name);
+        Doors = new List<SpawnData>();
+        
+        GenerateDoors();    
     }
 
     protected override void GenerateDoors()
