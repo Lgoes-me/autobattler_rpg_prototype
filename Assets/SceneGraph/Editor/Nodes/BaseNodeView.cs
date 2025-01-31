@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -54,7 +55,9 @@ public class BaseNodeView: Node
     public override void SetPosition(Rect newPos)
     {
         base.SetPosition(newPos);
-        NodeData.Position = new Vector2(newPos.x, newPos.y);
+        
+        NodeData.SetPosition(new Vector2(newPos.x, newPos.y));
+        EditorUtility.SetDirty(NodeData);
     }
 
     public void RemoveInput(string id)

@@ -83,7 +83,6 @@ public class SceneGraphView : GraphView
                     continue;
                 
                 var edge = port.ConnectTo(otherPort);
-                
                 nodeView.RemoveOutput(data.Id);
                 AddElement(edge);
             }
@@ -148,12 +147,16 @@ public class SceneGraphView : GraphView
                     spawnInputData.Port = "";
                     spawnInputData.SetUp = false;
                     ((BaseNodeView) input.node).AddOutput(spawnInputData.Id);
+                    EditorUtility.SetDirty(((BaseNodeView) input.node).NodeData);
 
                     spawnOutputData.SceneDestination = "";
                     spawnOutputData.DoorDestination = "";
                     spawnInputData.Port = "";
                     spawnOutputData.SetUp = false;
                     ((BaseNodeView) output.node).AddInput(spawnOutputData.Id);
+                    EditorUtility.SetDirty(((BaseNodeView) output.node).NodeData);
+
+                    AssetDatabase.SaveAssets();
                 }
             }
             
@@ -174,12 +177,16 @@ public class SceneGraphView : GraphView
                 spawnInputData.Port = "input";
                 spawnInputData.SetUp = true;
                 ((BaseNodeView) input.node).RemoveOutput(spawnInputData.Id);
+                EditorUtility.SetDirty(((BaseNodeView) input.node).NodeData);
 
                 spawnOutputData.SceneDestination = ((BaseNodeView) input.node).NodeData.Id;
                 spawnOutputData.DoorDestination = spawnInputData.Id;
                 spawnOutputData.Port = "output";
                 spawnOutputData.SetUp = true;
                 ((BaseNodeView) output.node).RemoveInput(spawnOutputData.Id);
+                EditorUtility.SetDirty(((BaseNodeView) output.node).NodeData);
+                
+                AssetDatabase.SaveAssets();
             }
             
         }
@@ -196,7 +203,7 @@ public class SceneGraphView : GraphView
 
             var prefab = AssetDatabase.LoadAssetAtPath<DungeonRoomController>("Assets" + separatedPath[1]);
             var node = SceneGraphData.AddSceneNode(prefab);
-            node.Position = viewTransform.matrix.inverse.MultiplyPoint(eventInfoLocalMousePosition);
+            node.SetPosition(viewTransform.matrix.inverse.MultiplyPoint(eventInfoLocalMousePosition));
             
             var nodeView = new SceneNodeView(node);
             nodeView.OnNodeSelected = OnNodeSelected;
@@ -204,13 +211,16 @@ public class SceneGraphView : GraphView
             
             ClearSelection();
             AddToSelection(nodeView);
+            
+            EditorUtility.SetDirty(node);
+            AssetDatabase.SaveAssets();
         }
     }
 
     private void CreateSpawnNode(Vector2 eventInfoLocalMousePosition)
     {
         var node = SceneGraphData.AddSpawnNode();
-        node.Position = viewTransform.matrix.inverse.MultiplyPoint(eventInfoLocalMousePosition);
+        node.SetPosition(viewTransform.matrix.inverse.MultiplyPoint(eventInfoLocalMousePosition));
             
         var nodeView = new SpawnNodeView(node);
         nodeView.OnNodeSelected = OnNodeSelected;
@@ -218,6 +228,9 @@ public class SceneGraphView : GraphView
             
         ClearSelection();
         AddToSelection(nodeView);
+        
+        EditorUtility.SetDirty(node);
+        AssetDatabase.SaveAssets();
     }
 
     public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)

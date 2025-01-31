@@ -18,8 +18,10 @@ MonoBehaviour:
   - <Name>k__BackingField: 
     <Port>k__BackingField: output
     <Id>k__BackingField: bd988b6d-0a15-4359-ac6f-bdf9ced63c90
-    <SceneDestination>k__BackingField: 
-    <DoorDestination>k__BackingField: 
+    <SceneDestination>k__BackingField: ca805a9b-0874-4cf4-ba40-4f43c1e0d489
+    <DoorDestination>k__BackingField: b29a07b8-70ec-4857-87fe-011c6ef3a623
+    <SetUp>k__BackingField: 1
+  <Position>k__BackingField: {x: -93.64013, y: 38.999977}
 --- !u!114 &-3109446256373064916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36,15 +38,18 @@ MonoBehaviour:
   <Id>k__BackingField: 5ff1a9c8-6886-465a-a77d-9d0ea2e44473
   <Doors>k__BackingField:
   - <Name>k__BackingField: Entrada
-    <Port>k__BackingField: 
+    <Port>k__BackingField: input
     <Id>k__BackingField: f1324800-930d-43fb-a218-394b4a7eedd4
-    <SceneDestination>k__BackingField: 
-    <DoorDestination>k__BackingField: 
+    <SceneDestination>k__BackingField: ca805a9b-0874-4cf4-ba40-4f43c1e0d489
+    <DoorDestination>k__BackingField: 4b0910fd-8f0f-4bf4-9459-de6bb9fadeee
+    <SetUp>k__BackingField: 1
   - <Name>k__BackingField: ParaOBoss
-    <Port>k__BackingField: 
+    <Port>k__BackingField: output
     <Id>k__BackingField: bd221b1a-daff-4d37-ae1a-628d240f8a42
-    <SceneDestination>k__BackingField: 
-    <DoorDestination>k__BackingField: 
+    <SceneDestination>k__BackingField: 8b06be3a-c3e3-469f-88d9-a7d129e65641
+    <DoorDestination>k__BackingField: 560389b1-0df7-490a-bc23-9ea3bdd4a01e
+    <SetUp>k__BackingField: 1
+  <Position>k__BackingField: {x: 405, y: 20}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,10 +83,12 @@ MonoBehaviour:
   <Id>k__BackingField: 8b06be3a-c3e3-469f-88d9-a7d129e65641
   <Doors>k__BackingField:
   - <Name>k__BackingField: DoorArea
-    <Port>k__BackingField: 
+    <Port>k__BackingField: input
     <Id>k__BackingField: 560389b1-0df7-490a-bc23-9ea3bdd4a01e
-    <SceneDestination>k__BackingField: 
-    <DoorDestination>k__BackingField: 
+    <SceneDestination>k__BackingField: 5ff1a9c8-6886-465a-a77d-9d0ea2e44473
+    <DoorDestination>k__BackingField: bd221b1a-daff-4d37-ae1a-628d240f8a42
+    <SetUp>k__BackingField: 1
+  <Position>k__BackingField: {x: 660.4032, y: 39}
 --- !u!114 &8950032012013575576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,12 +105,15 @@ MonoBehaviour:
   <Id>k__BackingField: ca805a9b-0874-4cf4-ba40-4f43c1e0d489
   <Doors>k__BackingField:
   - <Name>k__BackingField: Entrada
-    <Port>k__BackingField: 
+    <Port>k__BackingField: input
     <Id>k__BackingField: b29a07b8-70ec-4857-87fe-011c6ef3a623
-    <SceneDestination>k__BackingField: 
-    <DoorDestination>k__BackingField: 
+    <SceneDestination>k__BackingField: Start
+    <DoorDestination>k__BackingField: bd988b6d-0a15-4359-ac6f-bdf9ced63c90
+    <SetUp>k__BackingField: 1
   - <Name>k__BackingField: Passagem
-    <Port>k__BackingField: 
+    <Port>k__BackingField: output
     <Id>k__BackingField: 4b0910fd-8f0f-4bf4-9459-de6bb9fadeee
-    <SceneDestination>k__BackingField: 
-    <DoorDestination>k__BackingField: 
+    <SceneDestination>k__BackingField: 5ff1a9c8-6886-465a-a77d-9d0ea2e44473
+    <DoorDestination>k__BackingField: f1324800-930d-43fb-a218-394b4a7eedd4
+    <SetUp>k__BackingField: 1
+  <Position>k__BackingField: {x: 141.64612, y: 38.999977}

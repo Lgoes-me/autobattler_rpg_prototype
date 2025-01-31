@@ -38,18 +38,6 @@ public class DungeonRoomData : ScriptableObject
 #endif
 }
 
-[Serializable]
-public class SpawnData
-{
-    [field: SerializeField] public string Name { get; set; }
-    [field: SerializeField] public string Port { get; set; }
-    [field: SerializeField] public string Id { get; set; }
-    [field: SerializeField] public string SceneDestination { get; set; }
-    [field: SerializeField] public string DoorDestination { get; set; }
-    
-    public bool SetUp { get; set; }
-}
-
 public enum RoomType
 {
     Entrance,
