@@ -11,11 +11,6 @@ public class SceneNodeData : BaseNodeData
         RoomPrefab = roomPrefab;
         Doors = new List<SpawnData>();
         
-        GenerateDoors();    
-    }
-
-    protected override void GenerateDoors()
-    {
         foreach (var spawn in RoomPrefab.Doors)
         {
             var door = new SpawnData
@@ -25,6 +20,6 @@ public class SceneNodeData : BaseNodeData
             };
 
             Doors.Add(door);
-        }
+        } 
     }
 }

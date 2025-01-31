@@ -6,13 +6,9 @@ public class SpawnNodeData : BaseNodeData
     {
         Id = id;
         Name = name = id;
-        
-        Doors = new List<SpawnData>();
-        GenerateDoors();
-    }
 
-    protected override void GenerateDoors()
-    {
+        Doors = new List<SpawnData>();
+
         var door = new SpawnData
         {
             Name = string.Empty,

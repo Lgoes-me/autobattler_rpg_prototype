@@ -28,11 +28,10 @@ public class SceneGraph : EditorWindow
         InspectorView = root.Q<InspectorView>();
 
         var asset = AssetDatabase.LoadAssetAtPath<SceneGraphData>("Assets/SceneGraph/SceneGraph.asset");
-        SceneGraphView.PopulateView(asset);
 
         SceneGraphView.OnNodeSelected = OnNodeSelectionChanged;
-        
         SceneGraphView.focusable = true;
+        SceneGraphView.PopulateView(asset);
     }
 
     private void OnSelectionChange()

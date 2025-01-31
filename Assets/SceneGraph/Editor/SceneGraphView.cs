@@ -35,7 +35,7 @@ public class SceneGraphView : GraphView
         graphViewChanged -= OnGraphViewChange;
         DeleteElements(graphElements);
         graphViewChanged += OnGraphViewChange;
-
+        
         foreach (var node in SceneGraphData.Nodes)
         {
             BaseNodeView nodeView = node switch
