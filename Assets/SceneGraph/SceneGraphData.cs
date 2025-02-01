@@ -8,14 +8,22 @@ using UnityEngine;
 public class SceneGraphData : ScriptableObject
 {
     [field: SerializeField] public List<BaseNodeData> Nodes { get; set; }
-    
+
     public Dictionary<string, BaseNodeData> AllNodesById { get; set; }
+    public Dictionary<string, SceneNodeData> SceneNodeById { get; set; }
     public Dictionary<string, SpawnNodeData> SpawnsByName { get; set; }
 
     public void Init()
     {
         AllNodesById = Nodes.ToDictionary(n => n.Id, n => n);
-        SpawnsByName = Nodes.Where(n => n is SpawnNodeData).ToDictionary(n => n.Name, n => n as SpawnNodeData);
+        
+        SceneNodeById = Nodes
+            .Where(n => n is SceneNodeData)
+            .ToDictionary(n => n.Id, n => n as SceneNodeData);
+        
+        SpawnsByName = Nodes
+            .Where(n => n is SpawnNodeData)
+            .ToDictionary(n => n.Name, n => n as SpawnNodeData);
     }
 
     public SceneNodeData AddSceneNode(DungeonRoomController prefab)

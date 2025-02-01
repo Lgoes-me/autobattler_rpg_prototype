@@ -2892,6 +2892,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1610616698715370488}
     - target: {fileID: 6357606874330744520, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
+      propertyPath: <SpawnPoint>k__BackingField
+      value: 
+      objectReference: {fileID: 3815741111048502724}
+    - target: {fileID: 6357606874330744520, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
       propertyPath: <SceneDestination>k__BackingField
       value: TutorialBossRoom
       objectReference: {fileID: 0}
@@ -3089,6 +3093,10 @@ PrefabInstance:
       propertyPath: <CameraArea>k__BackingField
       value: 
       objectReference: {fileID: 7474162091209049958}
+    - target: {fileID: 6357606874330744520, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
+      propertyPath: <SpawnPoint>k__BackingField
+      value: 
+      objectReference: {fileID: 3106199514534520236}
     - target: {fileID: 6357606874330744520, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
       propertyPath: <SceneDestination>k__BackingField
       value: TutorialEntrance

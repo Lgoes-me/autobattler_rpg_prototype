@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SpawnController : MonoBehaviour
 {
-    [field: SerializeField] public Transform Spawn { get; private set; }
+    [field: SerializeField] public Transform SpawnPoint { get; private set; }
     [field: SerializeField] public string Id { get; private set; }
     [field: SerializeField] private CameraAreaController CameraArea { get; set; }
 
@@ -12,8 +12,8 @@ public class SpawnController : MonoBehaviour
         ActivateCameraArea();
         
         playerManager.NavMeshAgent.enabled = false;
-        playerManager.PlayerController.transform.position = Spawn.position;
-        playerManager.PawnController.CharacterController.SetDirection(Spawn.forward);
+        playerManager.PlayerController.transform.position = SpawnPoint.position;
+        playerManager.PawnController.CharacterController.SetDirection(SpawnPoint.forward);
         playerManager.NavMeshAgent.enabled = true;
     }
 

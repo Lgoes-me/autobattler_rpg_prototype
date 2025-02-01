@@ -21,7 +21,7 @@ MonoBehaviour:
     <SceneDestination>k__BackingField: b6d7ea70-a4fe-4514-a154-d93cebe9f04f
     <DoorDestination>k__BackingField: b29a07b8-70ec-4857-87fe-011c6ef3a623
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: -51.76001, y: 133}
+  <Position>k__BackingField: {x: 29.80011, y: 132.99998}
 --- !u!114 &-4955882549513404031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,7 +72,7 @@ MonoBehaviour:
     <SceneDestination>k__BackingField: 0f5d1fcd-5523-4a32-9b9c-4efef8eca7ef
     <DoorDestination>k__BackingField: bd221b1a-daff-4d37-ae1a-628d240f8a42
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: 690.63214, y: 133}
+  <Position>k__BackingField: {x: 612.9724, y: 133}
   <RoomPrefab>k__BackingField: {fileID: 6025612955480498148, guid: f14643f04ae99ae44afb429938d26758, type: 3}
 --- !u!114 &11400000
 MonoBehaviour:
@@ -118,5 +118,5 @@ MonoBehaviour:
     <SceneDestination>k__BackingField: 0f5d1fcd-5523-4a32-9b9c-4efef8eca7ef
     <DoorDestination>k__BackingField: f1324800-930d-43fb-a218-394b4a7eedd4
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: 111, y: 133}
+  <Position>k__BackingField: {x: 169.18999, y: 133}
   <RoomPrefab>k__BackingField: {fileID: 1270386980360157701, guid: 091a762831a3c2d46aad695aa3f97d42, type: 3}

@@ -32,4 +32,9 @@ public class SpawnData
     [field: SerializeField] public string SceneDestination { get; set; }
     [field: SerializeField] public string DoorDestination { get; set; }
     [field: SerializeField] public bool SetUp { get; set; }
+
+    public SpawnDomain ToDomain()
+    {
+        return new SpawnDomain(DoorDestination, SceneDestination);
+    }
 }

@@ -12,10 +12,31 @@ public class DungeonRoomController : MonoBehaviour
         foreach (var door in Doors)
         {
             var doorSpawnData = roomData.Doors.First(d => d.Id == door.Id);
-            door.DoorDestination = doorSpawnData.DoorDestination;
-            door.SceneDestination = doorSpawnData.SceneDestination;
+            door.Spawn = doorSpawnData.ToDomain();
         }
+        
+        Destroy(CameraTeste.gameObject);
 
         return this;
+    }
+    
+    
+    public DungeonRoomController Init(SceneNodeData roomData)
+    {
+        foreach (var door in Doors)
+        {
+            var doorSpawnData = roomData.Doors.First(d => d.Id == door.Id);
+            door.Spawn = doorSpawnData.ToDomain();
+        }
+
+        Destroy(CameraTeste.gameObject);
+    
+        return this;
+    }
+    
+    public void SpawnPlayerAt(string spawnSpawnId)
+    {
+        var door = Doors.First(d => d.Id == spawnSpawnId);
+        Application.Instance.PlayerManager.SpawnPlayerAt(door);
     }
 }

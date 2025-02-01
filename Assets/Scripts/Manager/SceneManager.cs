@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
@@ -44,9 +42,11 @@ public class SceneManager : MonoBehaviour
 
     public void StartGameIntro()
     {
-        //var dungeon = Dungeon.GenerateDungeon();
-        //UseDoorToChangeScene(dungeon.Data.SelectedRoom.RoomPrefab.RoomSpawn.Id, dungeon.Data.SelectedRoom.Id);
+        var start = Map.SpawnsByName["Start"];
+        var startSpawnDomain = start.Doors[0].ToDomain();
+        UseDoorToChangeScene(startSpawnDomain);
 
+        //var dungeon = Dungeon.GenerateDungeon(); 
         /*var task = UnitySceneManager.LoadSceneAsync("DungeonCutscene", LoadSceneMode.Single);
 
         task.completed += _ =>
@@ -76,7 +76,7 @@ public class SceneManager : MonoBehaviour
         };*/
     }
     
-    public void UseDoorToChangeScene(string doorName, string sceneName)
+    public void UseDoorToChangeScene(SpawnDomain spawnDomain)
     {
         PartyManager.StopPartyFollow();
         var task = UnitySceneManager.LoadSceneAsync("RoomScene", LoadSceneMode.Single);
@@ -84,14 +84,14 @@ public class SceneManager : MonoBehaviour
         task.completed += _ =>
         {
             var roomScene = FindObjectOfType<RoomScene>();
-            //roomScene.ActivateRoomScene(Rooms.First(x => x.Id == sceneName));
-            roomScene.SpawnPlayerAt(doorName);
+            roomScene.ActivateRoomScene(Map.SceneNodeById[spawnDomain.SceneId]);
+            roomScene.SpawnPlayerAt(spawnDomain.SpawnId);
 
             PartyManager.SetPartyToFollow(true);
             AudioManager.PlayMusic(roomScene.Music);
 
             InterfaceManager.ShowBattleCanvas();
-            GameSaveManager.SetSpawn(doorName, sceneName);
+            GameSaveManager.SetSpawn(spawnDomain);
         };
     }
     
@@ -120,13 +120,13 @@ public class SceneManager : MonoBehaviour
 
         var spawn = GameSaveManager.GetBonfireSpawn();
 
-        var respawnTask = UnitySceneManager.LoadSceneAsync(spawn.SceneName, LoadSceneMode.Single);
+        var respawnTask = UnitySceneManager.LoadSceneAsync("RoomScene", LoadSceneMode.Single);
 
         respawnTask.completed += _ =>
         {
             var roomScene = FindObjectOfType<RoomScene>();
-            //roomScene.ActivateRoomScene(Rooms.First(x => x.Id == spawn.SceneName));
-            roomScene.SpawnPlayerAt(spawn.Id);
+            roomScene.ActivateRoomScene(Map.SceneNodeById[spawn.SceneId]);
+            roomScene.SpawnPlayerAt(spawn.SpawnId);
 
             PartyManager.SetPartyToFollow(true);
             AudioManager.PlayMusic(roomScene.Music);

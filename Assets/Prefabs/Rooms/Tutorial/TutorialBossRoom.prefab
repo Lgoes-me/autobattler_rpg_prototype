@@ -1136,6 +1136,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8526491014121728513}
     - target: {fileID: 6357606874330744520, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
+      propertyPath: <SpawnPoint>k__BackingField
+      value: 
+      objectReference: {fileID: 8198386245296817794}
+    - target: {fileID: 6357606874330744520, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
       propertyPath: <SceneDestination>k__BackingField
       value: TutorialRoom
       objectReference: {fileID: 0}
