@@ -3,21 +3,23 @@ using UnityEngine;
 
 public class BonfireController : MonoBehaviour, IInteractableListener
 {
-    [field: SerializeField] private SpawnController Spawn { get; set; }
+    [field: SerializeField] public SpawnController Spawn { get; set; }
     private bool Selected { get; set; }
 
     [field: SerializeField] private InteractableController Controller { get; set; }
 
-    private void Awake()
+    private string SceneId { get; set; }
+
+    public void Init(string sceneId)
     {
         Controller.Interactable = this;
+        SceneId = sceneId;
     }
 
     public void Select(Action callback)
     {
         Selected = true;
-        var scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-        Application.Instance.SceneManager.StartBonfireScene(new SpawnDomain(Spawn.Id, scene), callback);
+        Application.Instance.SceneManager.StartBonfireScene(new SpawnDomain(Spawn.Id, SceneId), callback);
     }
 
     public void UnSelect()

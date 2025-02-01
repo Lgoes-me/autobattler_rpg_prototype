@@ -30,8 +30,8 @@ public class Save : ISavable
     public Save CreateNewSaveForIntro()
     {
         Metadata = new Metadata().CreateNewDynamicFile(".json");
-        Spawn = new SpawnDomain("DungeonEntrance", "DungeonEntrance");
-        LastBonfireSpawn = new SpawnDomain("DungeonEntrance", "DungeonEntrance");
+        Spawn = null;
+        LastBonfireSpawn = null;
         SelectedParty = new Dictionary<string, PawnInfo> {{"Hunter", new PawnInfo(0)}};
         DefeatedEnemies = new List<string>();
         Blessings = new List<BlessingIdentifier>() {BlessingIdentifier.OnAttackHeal};

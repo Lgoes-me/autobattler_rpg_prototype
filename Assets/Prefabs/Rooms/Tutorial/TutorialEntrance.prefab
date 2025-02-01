@@ -2260,6 +2260,8 @@ MonoBehaviour:
   <Doors>k__BackingField:
   - {fileID: 7478196464179320854}
   - {fileID: 7184771649680567106}
+  <Bonfires>k__BackingField:
+  - {fileID: 882707544006324646}
   <CameraTeste>k__BackingField: {fileID: 7975053571121329944}
 --- !u!1 &8685052070766615922
 GameObject:
@@ -3108,6 +3110,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e26eaaec9b7855d49af3fddf3e99134f, type: 3}
+--- !u!114 &882707544006324646 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6321774086416421274, guid: e26eaaec9b7855d49af3fddf3e99134f, type: 3}
+  m_PrefabInstance: {fileID: 6628020865199185980}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c54f96e92e7c4c40ab2f7058b6fbe8d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1500035749168710669 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5704450273142219825, guid: e26eaaec9b7855d49af3fddf3e99134f, type: 3}

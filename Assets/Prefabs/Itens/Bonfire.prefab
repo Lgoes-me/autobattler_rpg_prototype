@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16c66e3536be4682b18c2c5bf806d28f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Spawn>k__BackingField: {fileID: 3531181885269600839}
+  <SpawnPoint>k__BackingField: {fileID: 3531181885269600839}
   <Id>k__BackingField: 7f47c38c-5b9a-4938-bc41-d788dd2f16a3
   <CameraArea>k__BackingField: {fileID: 0}
 --- !u!1001 &8563525297397553564
