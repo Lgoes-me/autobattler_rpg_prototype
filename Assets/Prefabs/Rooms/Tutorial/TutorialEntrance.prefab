@@ -2262,7 +2262,7 @@ MonoBehaviour:
   - {fileID: 7184771649680567106}
   <Bonfires>k__BackingField:
   - {fileID: 882707544006324646}
-  <CameraTeste>k__BackingField: {fileID: 7975053571121329944}
+  <PreviewCamera>k__BackingField: {fileID: 7975053571121329944}
 --- !u!1 &8685052070766615922
 GameObject:
   m_ObjectHideFlags: 0

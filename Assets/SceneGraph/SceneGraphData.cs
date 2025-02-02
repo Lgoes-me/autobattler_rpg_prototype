@@ -16,17 +16,17 @@ public class SceneGraphData : ScriptableObject
     public void Init()
     {
         AllNodesById = Nodes.ToDictionary(n => n.Id, n => n);
-        
+
         SceneNodeById = Nodes
             .Where(n => n is SceneNodeData)
             .ToDictionary(n => n.Id, n => n as SceneNodeData);
-        
+
         SpawnsByName = Nodes
             .Where(n => n is SpawnNodeData)
             .ToDictionary(n => n.Name, n => n as SpawnNodeData);
     }
 
-    public SceneNodeData AddSceneNode(DungeonRoomController prefab)
+    public SceneNodeData AddSceneNode(RoomController prefab)
     {
         Nodes ??= new List<BaseNodeData>();
 
@@ -47,6 +47,36 @@ public class SceneGraphData : ScriptableObject
 
         var id = Guid.NewGuid().ToString();
         var sceneNode = CreateInstance<SpawnNodeData>();
+        sceneNode.Init(id);
+        Nodes.Add(sceneNode);
+
+        AssetDatabase.AddObjectToAsset(sceneNode, this);
+        AssetDatabase.SaveAssets();
+
+        return sceneNode;
+    }
+
+    public DungeonNodeData AddDungeonNode()
+    {
+        Nodes ??= new List<BaseNodeData>();
+
+        var id = Guid.NewGuid().ToString();
+        var sceneNode = CreateInstance<DungeonNodeData>();
+        sceneNode.Init(id);
+        Nodes.Add(sceneNode);
+
+        AssetDatabase.AddObjectToAsset(sceneNode, this);
+        AssetDatabase.SaveAssets();
+
+        return sceneNode;
+    }
+
+    public GameEventNodeData AddGameEventNode()
+    {
+        Nodes ??= new List<BaseNodeData>();
+
+        var id = Guid.NewGuid().ToString();
+        var sceneNode = CreateInstance<GameEventNodeData>();
         sceneNode.Init(id);
         Nodes.Add(sceneNode);
 

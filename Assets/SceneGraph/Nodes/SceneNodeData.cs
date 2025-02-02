@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class SceneNodeData : BaseNodeData
 {
-    [field: SerializeField] public DungeonRoomController RoomPrefab { get; private set; }
+    [field: SerializeField] public RoomController RoomPrefab { get; private set; }
     
-    public void Init(string id, DungeonRoomController roomPrefab)
+    public void Init(string id, RoomController roomPrefab)
     {
         Id = id;
         Name = name = roomPrefab.name;

@@ -2,13 +2,13 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class DungeonRoomController : MonoBehaviour
+public class RoomController : MonoBehaviour
 {
     [field:SerializeField] public List<CorridorAreaController> Doors { get; private set; }
     [field:SerializeField] public List<BonfireController> Bonfires { get; private set; }
     [field:SerializeField] public Camera PreviewCamera { get; private set; }
 
-    public DungeonRoomController Init(DungeonRoomData roomData)
+    public RoomController Init(DungeonRoomData roomData)
     {
         foreach (var door in Doors)
         {
@@ -26,8 +26,7 @@ public class DungeonRoomController : MonoBehaviour
         return this;
     }
     
-    
-    public DungeonRoomController Init(SceneNodeData roomData)
+    public RoomController Init(SceneNodeData roomData)
     {
         foreach (var door in Doors)
         {

@@ -120,7 +120,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Doors>k__BackingField: []
-  <CameraTeste>k__BackingField: {fileID: 5181026332914818110}
+  <Bonfires>k__BackingField: []
+  <PreviewCamera>k__BackingField: {fileID: 5181026332914818110}
 --- !u!1 &5962515049011595919
 GameObject:
   m_ObjectHideFlags: 0

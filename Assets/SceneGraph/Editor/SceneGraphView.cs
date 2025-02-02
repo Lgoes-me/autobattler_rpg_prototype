@@ -201,7 +201,7 @@ public class SceneGraphView : GraphView
         {
             string[] separatedPath = path.Split(new[] {"Assets"}, StringSplitOptions.None);
 
-            var prefab = AssetDatabase.LoadAssetAtPath<DungeonRoomController>("Assets" + separatedPath[1]);
+            var prefab = AssetDatabase.LoadAssetAtPath<RoomController>("Assets" + separatedPath[1]);
             var node = SceneGraphData.AddSceneNode(prefab);
             node.SetPosition(viewTransform.matrix.inverse.MultiplyPoint(eventInfoLocalMousePosition));
             
@@ -233,10 +233,44 @@ public class SceneGraphView : GraphView
         AssetDatabase.SaveAssets();
     }
 
+    private void CreateDungeonNode(Vector2 eventInfoLocalMousePosition)
+    {
+        var node = SceneGraphData.AddDungeonNode();
+        node.SetPosition(viewTransform.matrix.inverse.MultiplyPoint(eventInfoLocalMousePosition));
+            
+        var nodeView = new DungeonNodeView(node);
+        nodeView.OnNodeSelected = OnNodeSelected;
+        AddElement(nodeView);
+            
+        ClearSelection();
+        AddToSelection(nodeView);
+        
+        EditorUtility.SetDirty(node);
+        AssetDatabase.SaveAssets();
+    }
+
+    private void CreateGameEventNode(Vector2 eventInfoLocalMousePosition)
+    {
+        var node = SceneGraphData.AddGameEventNode();
+        node.SetPosition(viewTransform.matrix.inverse.MultiplyPoint(eventInfoLocalMousePosition));
+            
+        var nodeView = new GameEventNodeView(node);
+        nodeView.OnNodeSelected = OnNodeSelected;
+        AddElement(nodeView);
+            
+        ClearSelection();
+        AddToSelection(nodeView);
+        
+        EditorUtility.SetDirty(node);
+        AssetDatabase.SaveAssets();
+    }
+
     public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
     {
         evt.menu.AppendAction("Spawn", (a) => CreateSpawnNode(a.eventInfo.localMousePosition));
         evt.menu.AppendAction("Scene", (a) => CreateSceneNode(a.eventInfo.localMousePosition));
+        evt.menu.AppendAction("Dungeon", (a) => CreateDungeonNode(a.eventInfo.localMousePosition));
+        evt.menu.AppendAction("GameEvent", (a) => CreateGameEventNode(a.eventInfo.localMousePosition));
     }
 
     public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)

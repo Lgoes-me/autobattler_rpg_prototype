@@ -1071,7 +1071,7 @@ MonoBehaviour:
   <Doors>k__BackingField:
   - {fileID: 6657271373621489740}
   <Bonfires>k__BackingField: []
-  <CameraTeste>k__BackingField: {fileID: 8759937234940834969}
+  <PreviewCamera>k__BackingField: {fileID: 8759937234940834969}
 --- !u!1001 &313458456776750724
 PrefabInstance:
   m_ObjectHideFlags: 0
