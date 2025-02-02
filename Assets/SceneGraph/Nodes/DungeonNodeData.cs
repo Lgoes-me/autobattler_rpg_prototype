@@ -1,18 +1,26 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class DungeonNodeData : MonoBehaviour
+public class DungeonNodeData : BaseNodeData
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Init(string id)
     {
-        
+        Id = id;
+        Name = name = id;
+
+        Doors = new List<SpawnData>();
+
+        var door = new SpawnData
+        {
+            Name = string.Empty,
+            Id = Id
+        };
+
+        Doors.Add(door);
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void OnValidate()
     {
-        
+        base.OnValidate();
+        Id = Name;
     }
 }

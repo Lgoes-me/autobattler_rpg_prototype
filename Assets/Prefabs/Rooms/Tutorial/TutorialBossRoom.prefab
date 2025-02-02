@@ -915,7 +915,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 7
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -1070,6 +1070,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Doors>k__BackingField:
   - {fileID: 6657271373621489740}
+  <Bonfires>k__BackingField: []
   <CameraTeste>k__BackingField: {fileID: 8759937234940834969}
 --- !u!1001 &313458456776750724
 PrefabInstance:

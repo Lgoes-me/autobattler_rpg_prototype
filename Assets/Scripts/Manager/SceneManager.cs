@@ -6,8 +6,6 @@ using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 public class SceneManager : MonoBehaviour
 {
     [field: SerializeField] private SceneGraphData Map { get; set; }
-    
-    //[field: SerializeField] private List<DungeonRoomData> Rooms { get; set; }
     //[field: SerializeField] private DungeonData Dungeon { get; set; }
     private bool BonfireActive { get; set; }
 
@@ -85,7 +83,7 @@ public class SceneManager : MonoBehaviour
         {
             var roomScene = FindObjectOfType<RoomScene>();
             roomScene.ActivateRoomScene(Map.SceneNodeById[spawnDomain.SceneId]);
-            roomScene.SpawnPlayerAt(spawnDomain.SpawnId);
+            roomScene.SpawnPlayerAtDoor(spawnDomain.SpawnId);
 
             PartyManager.SetPartyToFollow(true);
             AudioManager.PlayMusic(roomScene.Music);
@@ -108,7 +106,6 @@ public class SceneManager : MonoBehaviour
         };
     }
 
-
     public void RespawnAtBonfire()
     {
         PlayerManager.PlayerToWorld();
@@ -126,7 +123,7 @@ public class SceneManager : MonoBehaviour
         {
             var roomScene = FindObjectOfType<RoomScene>();
             roomScene.ActivateRoomScene(Map.SceneNodeById[spawn.SceneId]);
-            roomScene.SpawnPlayerAt(spawn.SpawnId);
+            roomScene.SpawnPlayerAtBonfire(spawn.SpawnId);
 
             PartyManager.SetPartyToFollow(true);
             AudioManager.PlayMusic(roomScene.Music);

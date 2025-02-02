@@ -6,7 +6,7 @@ public class DungeonRoomController : MonoBehaviour
 {
     [field:SerializeField] public List<CorridorAreaController> Doors { get; private set; }
     [field:SerializeField] public List<BonfireController> Bonfires { get; private set; }
-    [field:SerializeField] public Camera CameraTeste { get; private set; }
+    [field:SerializeField] public Camera PreviewCamera { get; private set; }
 
     public DungeonRoomController Init(DungeonRoomData roomData)
     {
@@ -21,7 +21,7 @@ public class DungeonRoomController : MonoBehaviour
             bonfire.Init(roomData.Id);
         }
         
-        Destroy(CameraTeste.gameObject);
+        Destroy(PreviewCamera.gameObject);
 
         return this;
     }
@@ -40,24 +40,20 @@ public class DungeonRoomController : MonoBehaviour
             bonfire.Init(roomData.Id);
         }
         
-        Destroy(CameraTeste.gameObject);
+        Destroy(PreviewCamera.gameObject);
     
         return this;
     }
     
-    public void SpawnPlayerAt(string spawnSpawnId)
+    public void SpawnPlayerAtDoor(string spawnSpawnId)
     {
-        var door = Doors.FirstOrDefault(d => d.Id == spawnSpawnId);
-
-        if (door != null)
-        {
-            Application.Instance.PlayerManager.SpawnPlayerAt(door);
-        }
-        else
-        {
-            var bonfire = Bonfires.First(d => d.Spawn.Id == spawnSpawnId);
-            Application.Instance.PlayerManager.SpawnPlayerAt(bonfire.Spawn);
-        }
-
+        var door = Doors.First(d => d.Id == spawnSpawnId);
+        Application.Instance.PlayerManager.SpawnPlayerAt(door);
+    }
+    
+    public void SpawnPlayerAtBonfire(string bonfireSpawnId)
+    {
+        var bonfire = Bonfires.First(d => d.Spawn.Id == bonfireSpawnId);
+        Application.Instance.PlayerManager.SpawnPlayerAt(bonfire.Spawn);
     }
 }

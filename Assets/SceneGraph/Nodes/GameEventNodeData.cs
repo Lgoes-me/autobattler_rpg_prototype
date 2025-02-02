@@ -1,18 +1,20 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class GameEventNodeData : MonoBehaviour
+public class GameEventNodeData : BaseNodeData
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Init(string id)
     {
-        
-    }
+        Id = id;
+        Name = name = string.Empty;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Doors = new List<SpawnData>();
+
+        var door = new SpawnData
+        {
+            Name = string.Empty,
+            Id = Id
+        };
+
+        Doors.Add(door);
     }
 }

@@ -8,7 +8,7 @@ public class SceneNodeView : BaseNodeView
         var preview = new Image();
 
         var prefab = Object.Instantiate(sceneNodeData.RoomPrefab);
-        var camera = prefab.CameraTeste;
+        var camera = prefab.PreviewCamera;
         
         Rect rect = new Rect(0, 0, camera.pixelWidth, camera.pixelHeight);
         RenderTexture renderTexture = new RenderTexture(150, 100, 24);
