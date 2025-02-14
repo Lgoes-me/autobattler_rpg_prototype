@@ -23,4 +23,9 @@ public class SceneNodeData : BaseNodeData
             Doors.Add(door);
         } 
     }
+
+    public override BaseSceneNode ToDomain()
+    {
+        return new SceneNode(Id, Name, Doors, RoomPrefab);
+    }
 }

@@ -28,7 +28,7 @@ public class ChangeScene : GameAction
     public override void Invoke()
     {
         var spawnDomain = new SpawnDomain(SpawnId, SceneName);
-        Application.Instance.SceneManager.UseDoorToChangeScene(spawnDomain);
+        Application.Instance.SceneManager.ChangeContext(spawnDomain);
     }
 }
 

@@ -7,7 +7,25 @@ public class RoomController : MonoBehaviour
     [field:SerializeField] public List<CorridorAreaController> Doors { get; private set; }
     [field:SerializeField] public List<BonfireController> Bonfires { get; private set; }
     [field:SerializeField] public Camera PreviewCamera { get; private set; }
+    
+    public RoomController Init(SceneNode sceneData)
+    {
+        foreach (var door in Doors)
+        {
+            var doorSpawnData = sceneData.Doors.First(d => d.Id == door.Id);
+            door.Spawn = doorSpawnData.ToDomain();
+        }
 
+        foreach (var bonfire in Bonfires)
+        {
+            bonfire.Init(sceneData.Id);
+        }
+        
+        Destroy(PreviewCamera.gameObject);
+
+        return this;
+    }
+    
     public RoomController Init(DungeonRoomData roomData)
     {
         foreach (var door in Doors)

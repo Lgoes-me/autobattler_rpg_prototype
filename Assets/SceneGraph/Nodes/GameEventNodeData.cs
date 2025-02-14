@@ -1,7 +1,10 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 public class GameEventNodeData : BaseNodeData
 {
+    [field: SerializeField] private GameAction GameAction { get; set; }
+    
     public void Init(string id)
     {
         Id = id;
@@ -16,5 +19,10 @@ public class GameEventNodeData : BaseNodeData
         };
 
         Doors.Add(door);
+    }
+
+    public override BaseSceneNode ToDomain()
+    {
+        return new GameEventNode(Name, Id, Doors, GameAction);
     }
 }

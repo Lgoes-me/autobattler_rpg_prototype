@@ -1,11 +1,12 @@
 using System;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
 public class SceneManager : MonoBehaviour
 {
-    [field: SerializeField] private SceneGraphData Map { get; set; }
+    [field: SerializeField] private SceneGraphData SceneGraphData { get; set; }
     //[field: SerializeField] private DungeonData Dungeon { get; set; }
     private bool BonfireActive { get; set; }
 
@@ -15,6 +16,8 @@ public class SceneManager : MonoBehaviour
     private PartyManager PartyManager { get; set; }
     private BlessingManager BlessingManager { get; set; }
     private AudioManager AudioManager { get; set; }
+    
+    [field: SerializeField] private SceneGraph Map { get; set; }
 
     public void Prepare()
     {
@@ -25,7 +28,7 @@ public class SceneManager : MonoBehaviour
         BlessingManager = Application.Instance.BlessingManager;
         AudioManager = Application.Instance.AudioManager;
 
-        Map.Init();
+        Map = SceneGraphData.ToDomain(this);
     }
 
     public void StartGameMenu()
@@ -40,10 +43,8 @@ public class SceneManager : MonoBehaviour
 
     public void StartGameIntro()
     {
-        var start = Map.SpawnsByName["Start"];
-        var startSpawnDomain = start.Doors[0].ToDomain();
-        UseDoorToChangeScene(startSpawnDomain);
-
+        Map.SpawnAt("Start");
+        
         //var dungeon = Dungeon.GenerateDungeon(); 
         /*var task = UnitySceneManager.LoadSceneAsync("DungeonCutscene", LoadSceneMode.Single);
 
@@ -53,6 +54,11 @@ public class SceneManager : MonoBehaviour
             cutsceneScene.Init();
 
         };*/
+    }
+
+    public void ChangeContext(SpawnDomain spawn)
+    {
+        Map.ChangeContext(spawn);
     }
 
     public void EnterDungeon(Dungeon dungeon)
@@ -73,24 +79,33 @@ public class SceneManager : MonoBehaviour
             GameSaveManager.SetSpawn(doorName, sceneName);
         };*/
     }
-    
-    public void UseDoorToChangeScene(SpawnDomain spawnDomain)
+
+    public Task LoadNewRoom()
     {
+        var tcs = new TaskCompletionSource<bool>();
+        
         PartyManager.StopPartyFollow();
         var task = UnitySceneManager.LoadSceneAsync("RoomScene", LoadSceneMode.Single);
-
+        
         task.completed += _ =>
         {
-            var roomScene = FindObjectOfType<RoomScene>();
-            roomScene.ActivateRoomScene(Map.SceneNodeById[spawnDomain.SceneId]);
-            roomScene.SpawnPlayerAtDoor(spawnDomain.SpawnId);
-
-            PartyManager.SetPartyToFollow(true);
-            AudioManager.PlayMusic(roomScene.Music);
-
-            InterfaceManager.ShowBattleCanvas();
-            GameSaveManager.SetSpawn(spawnDomain);
+            tcs.SetResult(true);
         };
+
+        return tcs.Task;
+    }
+    
+    public void EnterRoom(SceneNode sceneNode, SpawnDomain spawnDomain)
+    {
+        var roomScene = FindObjectOfType<RoomScene>();
+        roomScene.ActivateRoomScene(sceneNode);
+        roomScene.SpawnPlayerAtDoor(spawnDomain.SpawnId);
+
+        PartyManager.SetPartyToFollow(true);
+        AudioManager.PlayMusic(roomScene.Music);
+
+        InterfaceManager.ShowBattleCanvas();
+        GameSaveManager.SetSpawn(spawnDomain);
     }
     
     public void OpenCutscene(string sceneName)

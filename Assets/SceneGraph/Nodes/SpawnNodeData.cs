@@ -23,4 +23,9 @@ public class SpawnNodeData : BaseNodeData
         base.OnValidate();
         Id = Name;
     }
+
+    public override BaseSceneNode ToDomain()
+    {
+        return new SpawnNode(Name, Id, Doors);
+    }
 }

@@ -28,6 +28,11 @@ public class DungeonNodeData : BaseNodeData
         Doors.Add(door);
     }
 
+    public override BaseSceneNode ToDomain()
+    {
+        return new DungeonNode(Name, Id, Doors);
+    }
+
     protected override void OnValidate()
     {
         base.OnValidate();
@@ -141,7 +146,7 @@ public class DungeonNodeData : BaseNodeData
     }
 }
 
-[System.Serializable]
+[Serializable]
 public class DungeonRoomData
 {
     [field: SerializeField] public string Id { get; set; }

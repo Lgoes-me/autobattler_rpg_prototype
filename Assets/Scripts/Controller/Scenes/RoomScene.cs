@@ -5,14 +5,9 @@ public class RoomScene : BaseScene
     [field: SerializeField] public MusicType Music { get; private set; }
     private RoomController RoomController { get; set; }
 
-    public void ActivateRoomScene(DungeonRoomData roomData)
+    public void ActivateRoomScene(SceneNode sceneData)
     {
-        RoomController = Instantiate(roomData.RoomPrefab).Init(roomData);
-    }
-    
-    public void ActivateRoomScene(SceneNodeData roomData)
-    {
-        RoomController = Instantiate(roomData.RoomPrefab).Init(roomData);
+        RoomController = Instantiate(sceneData.RoomPrefab).Init(sceneData);
     }
 
     public void SpawnPlayerAtDoor(string spawnSpawnId)
