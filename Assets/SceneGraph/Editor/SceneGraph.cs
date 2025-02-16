@@ -10,7 +10,7 @@ public class SceneGraph : EditorWindow
     [MenuItem("SceneGraph/Editor")]
     public static void OpenWindow()
     {
-        SceneGraph wnd = GetWindow<SceneGraph>(typeof(SceneGraph), typeof(SceneView));
+        var wnd = GetWindow<SceneGraph>(typeof(SceneGraph), typeof(SceneView));
         wnd.titleContent = new GUIContent("SceneGraph");
     }
 

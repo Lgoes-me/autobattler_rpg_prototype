@@ -4,14 +4,14 @@ using UnityEngine;
 public class SceneNodeData : BaseNodeData
 {
     [field: SerializeField] public RoomController RoomPrefab { get; private set; }
-    
+
     public void Init(string id, RoomController roomPrefab)
     {
         Id = id;
         Name = name = roomPrefab.name;
         RoomPrefab = roomPrefab;
         Doors = new List<SpawnData>();
-        
+
         foreach (var spawn in RoomPrefab.Doors)
         {
             var door = new SpawnData
@@ -21,11 +21,11 @@ public class SceneNodeData : BaseNodeData
             };
 
             Doors.Add(door);
-        } 
+        }
     }
 
     public override BaseSceneNode ToDomain()
     {
-        return new SceneNode(Id, Name, Doors, RoomPrefab);
+        return new SceneNode(Name, Id, Doors, RoomPrefab);
     }
 }

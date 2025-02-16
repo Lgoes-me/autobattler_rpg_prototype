@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 
 public abstract class BaseSceneNode
 {
@@ -25,18 +24,35 @@ public class SceneNode : BaseSceneNode
     }
 }
 
+public class DungeonSceneNode : SceneNode, IDungeonRoom
+{
+    public RoomType RoomType { get; }
+
+    public DungeonSceneNode(string name, string id, List<SpawnData> doors, RoomController roomPrefab, RoomType roomType)
+        : base(name, id, doors, roomPrefab)
+    {
+        RoomType = roomType;
+    }
+}
+
 public class DungeonNode : BaseSceneNode
 {
-    public Dungeon Dungeon { get; }
-    
-    public DungeonNode(string name, string id, List<SpawnData> doors) : base(name, id, doors)
+    public Dungeon<DungeonSceneNode> Dungeon { get; }
+
+    public DungeonNode(string name, string id, List<SpawnData> doors, List<DungeonSceneNode> availableRooms, 
+        int maximumDoors, int minimumDeepness, int maximumDeepness) : base(name, id, doors)
     {
-        
+        Dungeon = new Dungeon<DungeonSceneNode>(availableRooms, maximumDoors, minimumDeepness, maximumDeepness);
     }
 
     public SceneNode GetRoom(SpawnDomain spawn)
     {
         throw new System.NotImplementedException();
+    }
+
+    public void GenerateDungeon()
+    {
+        Dungeon.GenerateDungeon();
     }
 }
 
@@ -44,14 +60,13 @@ public class SpawnNode : BaseSceneNode
 {
     public SpawnNode(string name, string id, List<SpawnData> doors) : base(name, id, doors)
     {
-        
     }
 }
 
 public class GameEventNode : BaseSceneNode
 {
     public GameAction GameAction { get; }
-    
+
     public GameEventNode(string name, string id, List<SpawnData> doors, GameAction gameAction) : base(name, id, doors)
     {
         GameAction = gameAction;
@@ -62,4 +77,3 @@ public class GameEventNode : BaseSceneNode
         GameAction.Invoke();
     }
 }
-

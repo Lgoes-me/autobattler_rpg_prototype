@@ -60,26 +60,7 @@ public class SceneManager : MonoBehaviour
     {
         Map.ChangeContext(spawn);
     }
-
-    public void EnterDungeon(Dungeon dungeon)
-    {
-        /*PartyManager.StopPartyFollow();
-        var task = UnitySceneManager.LoadSceneAsync("RoomScene", LoadSceneMode.Single);
-
-        task.completed += _ =>
-        {
-            var roomScene = FindObjectOfType<RoomScene>();
-            roomScene.ActivateRoomScene();
-            roomScene.SpawnPlayerAt(doorName);
-
-            PartyManager.SetPartyToFollow(true);
-            AudioManager.PlayMusic(roomScene.Music);
-
-            InterfaceManager.ShowBattleCanvas();
-            GameSaveManager.SetSpawn(doorName, sceneName);
-        };*/
-    }
-
+    
     public Task LoadNewRoom()
     {
         var tcs = new TaskCompletionSource<bool>();

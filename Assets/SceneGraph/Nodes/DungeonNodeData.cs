@@ -30,7 +30,8 @@ public class DungeonNodeData : BaseNodeData
 
     public override BaseSceneNode ToDomain()
     {
-        return new DungeonNode(Name, Id, Doors);
+        var availableRooms = AvailableRooms.Select(r => r.ToDomain()).ToList();
+        return new DungeonNode(Name, Id, Doors, availableRooms, MaximumDoors, MinimumDeepness, MaximumDeepness);
     }
 
     protected override void OnValidate()
@@ -38,111 +39,12 @@ public class DungeonNodeData : BaseNodeData
         base.OnValidate();
         Id = Name;
 
+#if UNITY_EDITOR
         foreach (var availableRoom in AvailableRooms)
         {
             availableRoom.OnValidate();
         }
-    }
-
-    public Tree<DungeonRoom> GenerateDungeon()
-    {
-        var dungeonEntrance = new DungeonRoom(0, 0);
-        dungeonEntrance.SetAsEntrance(AvailableRooms.First(x => x.RoomType is RoomType.Entrance));
-
-        var rooms = CreateSubTree(dungeonEntrance, 0);
-
-        while (rooms.Any(r => !r.Data.Collapsed))
-        {
-            PruneTree(rooms);
-
-            var nextRoom = rooms
-                .Where(r => !r.Data.Collapsed)
-                .OrderBy(_ => Guid.NewGuid())
-                .First();
-
-            nextRoom.Data.SetAsRoom(AvailableRooms.First(x => x.RoomType is RoomType.Normal));
-        }
-
-        var bossRoom = rooms
-            .Where(r => r.IsLeaf)
-            .OrderBy(_ => Guid.NewGuid())
-            .First();
-
-        bossRoom.Data.SetAsBossRoom(AvailableRooms.First(x => x.RoomType is RoomType.Boss));
-
-        foreach (var room in rooms)
-        {
-            var connectedRooms = new List<DungeonRoomData>();
-
-            if (!room.IsRoot)
-                connectedRooms.Add(room.Parent.Data.SelectedRoom);
-
-            connectedRooms.AddRange(room.ChildrenNodes.Select(t => t.Data.SelectedRoom));
-
-            var selectedRoom = room.Data.SelectedRoom;
-
-            for (var index = 0; index < selectedRoom.Doors.Count; index++)
-            {
-                var spawnData = room.Data.SelectedRoom.Doors[index];
-
-                if (spawnData.SetUp)
-                    continue;
-
-                var connectedRoom = connectedRooms[index];
-                var connectedDoorSpawnData = connectedRoom.Doors.First(s => !s.SetUp);
-
-                spawnData.SceneDestination = connectedRoom.Id;
-                spawnData.DoorDestination = connectedDoorSpawnData.Id;
-                spawnData.SetUp = true;
-
-                connectedDoorSpawnData.SceneDestination = selectedRoom.Id;
-                connectedDoorSpawnData.DoorDestination = spawnData.Id;
-                connectedDoorSpawnData.SetUp = true;
-            }
-        }
-
-        return rooms;
-    }
-
-    private Tree<DungeonRoom> CreateSubTree(DungeonRoom baseRoom, int level)
-    {
-        var room = new Tree<DungeonRoom>(baseRoom);
-
-        if (level >= UnityEngine.Random.Range(MinimumDeepness, MaximumDeepness))
-            return room;
-
-        level++;
-
-        for (var i = -1; i < MaximumDoors - 2; i++)
-        {
-            var childRoom = new DungeonRoom(i, level);
-            room.Add(CreateSubTree(childRoom, level));
-        }
-
-        return room;
-    }
-
-    private void PruneTree(Tree<DungeonRoom> rooms)
-    {
-        foreach (var room in rooms)
-        {
-            if (!room.Data.Collapsed)
-                continue;
-
-            if (room.Data.Collapsed && room.Data.SelectedRoom.NumberOfDoors >= room.ChildrenNodes.Count)
-                continue;
-
-            var branchesToRemove =
-                room
-                    .ChildrenNodes
-                    .OrderBy(_ => Guid.NewGuid())
-                    .Take(room.ChildrenNodes.Count - room.Data.SelectedRoom.NumberOfDoors).ToList();
-
-            foreach (var branch in branchesToRemove)
-            {
-                room.ChildrenNodes.Remove(branch);
-            }
-        }
+#endif
     }
 }
 
@@ -155,6 +57,11 @@ public class DungeonRoomData
     [field: SerializeField] public List<SpawnData> Doors { get; set; }
 
     public int NumberOfDoors => RoomPrefab.Doors.Count;
+
+    public DungeonSceneNode ToDomain()
+    {
+        return new DungeonSceneNode(Id, Id, Doors, RoomPrefab, RoomType);
+    }
     
 #if UNITY_EDITOR
     public void OnValidate()

@@ -1,6 +1,7 @@
-﻿public class DungeonRoom
+﻿public class DungeonRoom<T>
 {
-    public DungeonRoomData SelectedRoom { get; private set; }
+    public T SelectedRoom { get; private set; }
+    public int NumberOfDoors { get; private set; }
     public bool Collapsed => SelectedRoom != null;
 
     public int Position;
@@ -12,21 +13,10 @@
         Level = level;
     }
 
-    public DungeonRoomData SetAsBossRoom(DungeonRoomData dungeonRoomData)
+    public DungeonRoomData SetRoom(T dungeonRoomData, int doors)
     {
         SelectedRoom = dungeonRoomData;
-        return null;
-    }
-
-    public DungeonRoomData SetAsEntrance(DungeonRoomData dungeonRoomData)
-    {
-        SelectedRoom = dungeonRoomData;
-        return null;
-    }
-
-    public DungeonRoomData SetAsRoom(DungeonRoomData dungeonRoomData)
-    {
-        SelectedRoom = dungeonRoomData;
+        NumberOfDoors = doors;
         return null;
     }
 }
