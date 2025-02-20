@@ -7,7 +7,7 @@ using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 public class SceneManager : MonoBehaviour
 {
     [field: SerializeField] private SceneGraphData SceneGraphData { get; set; }
-    //[field: SerializeField] private DungeonData Dungeon { get; set; }
+
     private bool BonfireActive { get; set; }
 
     private InterfaceManager InterfaceManager { get; set; }
@@ -16,7 +16,7 @@ public class SceneManager : MonoBehaviour
     private PartyManager PartyManager { get; set; }
     private BlessingManager BlessingManager { get; set; }
     private AudioManager AudioManager { get; set; }
-    
+
     [field: SerializeField] private SceneGraph Map { get; set; }
 
     public void Prepare()
@@ -44,38 +44,25 @@ public class SceneManager : MonoBehaviour
     public void StartGameIntro()
     {
         Map.SpawnAt("Start");
-        
-        //var dungeon = Dungeon.GenerateDungeon(); 
-        /*var task = UnitySceneManager.LoadSceneAsync("DungeonCutscene", LoadSceneMode.Single);
-
-        task.completed += _ =>
-        {
-            var cutsceneScene = FindObjectOfType<CutsceneScene>();
-            cutsceneScene.Init();
-
-        };*/
     }
 
     public void ChangeContext(SpawnDomain spawn)
     {
         Map.ChangeContext(spawn);
     }
-    
+
     public Task LoadNewRoom()
     {
         var tcs = new TaskCompletionSource<bool>();
-        
+
         PartyManager.StopPartyFollow();
         var task = UnitySceneManager.LoadSceneAsync("RoomScene", LoadSceneMode.Single);
-        
-        task.completed += _ =>
-        {
-            tcs.SetResult(true);
-        };
+
+        task.completed += _ => { tcs.SetResult(true); };
 
         return tcs.Task;
     }
-    
+
     public void EnterRoom(SceneNode sceneNode, SpawnDomain spawnDomain)
     {
         var roomScene = FindObjectOfType<RoomScene>();
@@ -86,13 +73,13 @@ public class SceneManager : MonoBehaviour
         AudioManager.PlayMusic(roomScene.Music);
 
         InterfaceManager.ShowBattleCanvas();
-        GameSaveManager.SetSpawn(spawnDomain);
+        //GameSaveManager.SetSpawn(spawnDomain);
     }
-    
+
     public void OpenCutscene(string sceneName)
     {
         PartyManager.StopPartyFollow();
-        
+
         var task = UnitySceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
 
         task.completed += _ =>

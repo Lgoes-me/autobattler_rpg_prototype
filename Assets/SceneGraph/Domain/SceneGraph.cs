@@ -37,6 +37,12 @@ public class SceneGraph
     public async void ChangeContext(SpawnDomain spawn)
     {
         var newContext = AllNodesById[spawn.SceneId];
+        
+        if (CurrentContext is DungeonNode dungeonNodeData && CurrentContext != newContext)
+        {
+            dungeonNodeData.Clear();
+        }
+        
         await EnterCurrentContext(newContext, spawn);
     }
 

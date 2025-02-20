@@ -2,29 +2,43 @@
 using System.Collections.Generic;
 using System.Linq;
 
-public class Dungeon<T> where T : IDungeonRoom
+public class Dungeon<T> where T : IDungeonRoom, new()
 {
-    private Tree<DungeonRoom<T>> Rooms { get; set; }
+    public Dictionary<string, T> GetRoom { get; private set; }
+    public bool Generated { get; private set; }
     
+    private Tree<T> Rooms { get; set; }
+
     private List<T> AvailableRooms { get; }
-    private int MaximumDoors { get; set; }
-    private int MinimumDeepness { get; set; }
-    private int MaximumDeepness { get; set; }
+    private int MaximumDoors { get; }
+    private int MinimumDeepness { get; }
+    private int MaximumDeepness { get; }
     
     public Dungeon(List<T> availableRooms, int maximumDoors, int minimumDeepness, int maximumDeepness)
     {
+        GetRoom = new Dictionary<string, T>();
+        Generated = false;
+        Rooms = null;
+        
         AvailableRooms = availableRooms;
         MaximumDoors = maximumDoors;
         MinimumDeepness = minimumDeepness;
         MaximumDeepness = maximumDeepness;
     }
 
+    public void Clear()
+    {
+        GetRoom = new Dictionary<string, T>();
+        Generated = false;
+        Rooms = null;
+    }
+
     public void GenerateDungeon()
     {
-        var dungeonEntrance = new DungeonRoom<T>(0, 0);
+        var dungeonEntrance = new T();
         var entrance = AvailableRooms.First(x => x.RoomType is RoomType.Entrance);
-        dungeonEntrance.SetRoom(entrance, entrance.Doors.Count);
-
+        dungeonEntrance.SetValue(entrance);
+        
         var rooms = CreateSubTree(dungeonEntrance, 0);
 
         while (rooms.Any(r => !r.Data.Collapsed))
@@ -37,7 +51,7 @@ public class Dungeon<T> where T : IDungeonRoom
                 .First();
 
             var room = AvailableRooms.First(x => x.RoomType is RoomType.Normal);
-            nextRoom.Data.SetRoom(room, room.Doors.Count);
+            nextRoom.Data.SetValue(room);
         }
 
         var finalRoom = rooms
@@ -46,22 +60,22 @@ public class Dungeon<T> where T : IDungeonRoom
             .First();
 
         var bossRoom = AvailableRooms.First(x => x.RoomType is RoomType.Boss);
-        finalRoom.Data.SetRoom(bossRoom, bossRoom.Doors.Count);
+        finalRoom.Data.SetValue(bossRoom);
 
         foreach (var room in rooms)
         {
             var connectedRooms = new List<T>();
 
             if (!room.IsRoot)
-                connectedRooms.Add(room.Parent.Data.SelectedRoom);
+                connectedRooms.Add(room.Parent.Data);
 
-            connectedRooms.AddRange(room.ChildrenNodes.Select(t => t.Data.SelectedRoom));
+            connectedRooms.AddRange(room.ChildrenNodes.Select(t => t.Data));
 
-            var selectedRoom = room.Data.SelectedRoom;
+            var selectedRoom = room.Data;
 
             for (var index = 0; index < selectedRoom.Doors.Count; index++)
             {
-                var spawnData = room.Data.SelectedRoom.Doors[index];
+                var spawnData = room.Data.Doors[index];
 
                 if (spawnData.SetUp)
                     continue;
@@ -77,14 +91,17 @@ public class Dungeon<T> where T : IDungeonRoom
                 connectedDoorSpawnData.DoorDestination = spawnData.Id;
                 connectedDoorSpawnData.SetUp = true;
             }
+
+            GetRoom.Add(room.Data.Id, room.Data);
         }
 
+        Generated = true;
         Rooms = rooms;
     }
 
-    private Tree<DungeonRoom<T>> CreateSubTree(DungeonRoom<T> baseRoom, int level)
+    private Tree<T> CreateSubTree(T baseRoom, int level)
     {
-        var room = new Tree<DungeonRoom<T>>(baseRoom);
+        var room = new Tree<T>(baseRoom);
 
         if (level >= UnityEngine.Random.Range(MinimumDeepness, MaximumDeepness))
             return room;
@@ -93,14 +110,14 @@ public class Dungeon<T> where T : IDungeonRoom
 
         for (var i = -1; i < MaximumDoors - 2; i++)
         {
-            var childRoom = new DungeonRoom<T>(i, level);
+            var childRoom = new T();
             room.Add(CreateSubTree(childRoom, level));
         }
 
         return room;
     }
 
-    private void PruneTree(Tree<DungeonRoom<T>> rooms)
+    private void PruneTree(Tree<T> rooms)
     {
         foreach (var room in rooms)
         {
@@ -129,4 +146,9 @@ public interface IDungeonRoom
     string Id { get; }
     RoomType RoomType { get; }
     List<SpawnData> Doors { get; }
+    bool Collapsed { get; }
+    
+    int NumberOfDoors => Doors.Count;
+
+    void SetValue(IDungeonRoom dungeonRoom);
 }

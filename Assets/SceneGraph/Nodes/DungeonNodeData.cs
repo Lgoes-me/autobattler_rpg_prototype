@@ -98,6 +98,7 @@ public class DungeonRoomData
 
 public enum RoomType
 {
+    Unknown,
     Entrance,
     Normal,
     Boss
