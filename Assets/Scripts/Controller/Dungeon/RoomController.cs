@@ -62,15 +62,17 @@ public class RoomController : MonoBehaviour
         return this;
     }
     
-    public void SpawnPlayerAtDoor(string spawnSpawnId)
+    public void SpawnPlayerAt(string spawn)
     {
-        var door = Doors.First(d => d.Id == spawnSpawnId);
-        Application.Instance.PlayerManager.SpawnPlayerAt(door);
-    }
-    
-    public void SpawnPlayerAtBonfire(string bonfireSpawnId)
-    {
-        var bonfire = Bonfires.First(d => d.Spawn.Id == bonfireSpawnId);
+        var door = Doors.FirstOrDefault(d => d.Id == spawn);
+        
+        if (door != null)
+        {
+            Application.Instance.PlayerManager.SpawnPlayerAt(door);
+        }
+        
+        var bonfire = Bonfires.First(d => d.Spawn.Id == spawn);
+        
         Application.Instance.PlayerManager.SpawnPlayerAt(bonfire.Spawn);
     }
 }

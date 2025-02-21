@@ -9,14 +9,9 @@ public class RoomScene : BaseScene
     {
         RoomController = Instantiate(sceneData.RoomPrefab).Init(sceneData);
     }
-
-    public void SpawnPlayerAtDoor(string spawnSpawnId)
+    
+    public void SpawnPlayerAt(string spawn)
     {
-        RoomController.SpawnPlayerAtDoor(spawnSpawnId);
-    }
-
-    public void SpawnPlayerAtBonfire(string bonfireSpawnId)
-    {
-        RoomController.SpawnPlayerAtBonfire(bonfireSpawnId);
+        RoomController.SpawnPlayerAt(spawn);
     }
 }

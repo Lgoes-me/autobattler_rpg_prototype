@@ -67,7 +67,7 @@ public class SceneManager : MonoBehaviour
     {
         var roomScene = FindObjectOfType<RoomScene>();
         roomScene.ActivateRoomScene(sceneNode);
-        roomScene.SpawnPlayerAtDoor(spawnDomain.SpawnId);
+        roomScene.SpawnPlayerAt(spawnDomain.SpawnId);
 
         PartyManager.SetPartyToFollow(true);
         AudioManager.PlayMusic(roomScene.Music);
@@ -106,7 +106,7 @@ public class SceneManager : MonoBehaviour
         {
             var roomScene = FindObjectOfType<RoomScene>();
             roomScene.ActivateRoomScene(Map.SceneNodeById[spawn.SceneId]);
-            roomScene.SpawnPlayerAtBonfire(spawn.SpawnId);
+            roomScene.SpawnPlayerAt(spawn.SpawnId);
 
             PartyManager.SetPartyToFollow(true);
             AudioManager.PlayMusic(roomScene.Music);
