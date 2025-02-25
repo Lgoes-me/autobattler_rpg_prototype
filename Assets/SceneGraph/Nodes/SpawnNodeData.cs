@@ -2,14 +2,16 @@ using System.Collections.Generic;
 
 public class SpawnNodeData : BaseNodeData
 {
-    public void Init(string id)
+    public override void Init(NodeDataParams nodeDataParams)
     {
-        Id = id;
-        Name = name = id;
+        var dataParams = (SpawnNodeDataParams) nodeDataParams;
+        
+        Id = dataParams.Id;
+        Name = name = dataParams.Id;
 
-        Doors = new List<SpawnData>();
+        Doors = new List<DoorData>();
 
-        var door = new SpawnData
+        var door = new DoorData
         {
             Name = string.Empty,
             Id = Id
@@ -27,5 +29,15 @@ public class SpawnNodeData : BaseNodeData
     public override BaseSceneNode ToDomain()
     {
         return new SpawnNode(Name, Id, Doors);
+    }
+}
+
+public class SpawnNodeDataParams : NodeDataParams
+{
+    public string Id { get; }
+
+    public SpawnNodeDataParams(string id)
+    {
+        Id = id;
     }
 }

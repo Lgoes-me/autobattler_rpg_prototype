@@ -3,13 +3,12 @@ using System.Collections.Generic;
 
 public class Tree<T> : IEnumerable<Tree<T>>
 {
-    public T Data { get; private set; }
-    public List<Tree<T>> ChildrenNodes { get; private set; }
+    public T Data { get; }
+    public List<Tree<T>> ChildrenNodes { get; }
     public Tree<T> Parent { get; private set; }
 
     public bool IsRoot => Parent == null;
     public bool IsLeaf => ChildrenNodes.Count == 0;
-    public int Level => IsRoot ? 0 : Parent.Level + 1;
 
     public Tree(T data)
     {

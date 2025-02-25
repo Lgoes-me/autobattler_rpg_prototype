@@ -4,28 +4,28 @@ using System.Linq;
 
 public class Dungeon<T> where T : IDungeonRoom, new()
 {
+    public Tree<T> Rooms { get; set; }
     public Dictionary<string, T> GetRoom { get; private set; }
     public bool Generated { get; private set; }
     
-    private Tree<T> Rooms { get; set; }
-
+    private DoorData EntranceDoor { get; }
     private List<T> AvailableRooms { get; }
     private int MaximumDoors { get; }
     private int MinimumDeepness { get; }
     private int MaximumDeepness { get; }
     
-    public Dungeon(List<T> availableRooms, int maximumDoors, int minimumDeepness, int maximumDeepness)
+    public Dungeon(DoorData entranceDoor, List<T> availableRooms, int maximumDoors, int minimumDeepness, int maximumDeepness)
     {
         GetRoom = new Dictionary<string, T>();
         Generated = false;
         Rooms = null;
-        
+
+        EntranceDoor = entranceDoor;
         AvailableRooms = availableRooms;
         MaximumDoors = maximumDoors;
         MinimumDeepness = minimumDeepness;
         MaximumDeepness = maximumDeepness;
     }
-
     public void Clear()
     {
         GetRoom = new Dictionary<string, T>();
@@ -38,6 +38,10 @@ public class Dungeon<T> where T : IDungeonRoom, new()
         var dungeonEntrance = new T();
         var entrance = AvailableRooms.First(x => x.RoomType is RoomType.Entrance);
         dungeonEntrance.SetValue(entrance);
+
+        dungeonEntrance.Doors[0].SceneDestination = EntranceDoor.SceneDestination;
+        dungeonEntrance.Doors[0].DoorDestination = EntranceDoor.DoorDestination;
+        dungeonEntrance.Doors[0].SetUp = true;
         
         var rooms = CreateSubTree(dungeonEntrance, 0);
 
@@ -50,17 +54,17 @@ public class Dungeon<T> where T : IDungeonRoom, new()
                 .OrderBy(_ => Guid.NewGuid())
                 .First();
 
-            var room = AvailableRooms.First(x => x.RoomType is RoomType.Normal);
-            nextRoom.Data.SetValue(room);
+            if (nextRoom.IsLeaf)
+            {
+                var bossRoom = AvailableRooms.First(x => x.RoomType is RoomType.Boss);
+                nextRoom.Data.SetValue(bossRoom);
+            }
+            else
+            {
+                var room = AvailableRooms.First(x => x.RoomType is RoomType.Normal);
+                nextRoom.Data.SetValue(room);
+            }
         }
-
-        var finalRoom = rooms
-            .Where(r => r.IsLeaf)
-            .OrderBy(_ => Guid.NewGuid())
-            .First();
-
-        var bossRoom = AvailableRooms.First(x => x.RoomType is RoomType.Boss);
-        finalRoom.Data.SetValue(bossRoom);
 
         foreach (var room in rooms)
         {
@@ -68,8 +72,9 @@ public class Dungeon<T> where T : IDungeonRoom, new()
 
             if (!room.IsRoot)
                 connectedRooms.Add(room.Parent.Data);
-
-            connectedRooms.AddRange(room.ChildrenNodes.Select(t => t.Data));
+           
+            var children = room.ChildrenNodes.Select(t => t.Data);
+            connectedRooms.AddRange(children);
 
             var selectedRoom = room.Data;
 
@@ -80,8 +85,10 @@ public class Dungeon<T> where T : IDungeonRoom, new()
                 if (spawnData.SetUp)
                     continue;
 
-                var connectedRoom = connectedRooms[index];
+                var connectedRoom = connectedRooms.First(d => !d.Connected);
                 var connectedDoorSpawnData = connectedRoom.Doors.First(s => !s.SetUp);
+
+                connectedRoom.Connected = true;
 
                 spawnData.SceneDestination = connectedRoom.Id;
                 spawnData.DoorDestination = connectedDoorSpawnData.Id;
@@ -124,6 +131,9 @@ public class Dungeon<T> where T : IDungeonRoom, new()
             if (!room.Data.Collapsed)
                 continue;
 
+            if (room.IsRoot && room.Data.Collapsed && room.Data.NumberOfDoors - 1 >= room.ChildrenNodes.Count)
+                continue;
+            
             if (room.Data.Collapsed && room.Data.NumberOfDoors >= room.ChildrenNodes.Count)
                 continue;
 
@@ -145,8 +155,9 @@ public interface IDungeonRoom
 {
     string Id { get; }
     RoomType RoomType { get; }
-    List<SpawnData> Doors { get; }
+    List<DoorData> Doors { get; }
     bool Collapsed { get; }
+    bool Connected { get; set; }
     
     int NumberOfDoors => Doors.Count;
 

@@ -8,7 +8,7 @@ using UnityEngine;
 public class BaseNodeView: Node
 {
     public Action<BaseNodeView> OnNodeSelected;
-    public BaseNodeData NodeData { get; private set; }
+    public BaseNodeData NodeData { get; }
 
     public Dictionary<string, Port> Inputs { get; private set; }
     public Dictionary<string, Port> Outputs { get; private set; }
@@ -92,9 +92,9 @@ public class BaseNodeView: Node
         }
     }
 
-    protected void AddInput(SpawnData door)
+    private void AddInput(DoorData door)
     {
-        var input = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(SpawnData));
+        var input = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(DoorData));
         input.userData = door;
         input.portName = door.Name;
         inputContainer.Add(input);
@@ -102,9 +102,9 @@ public class BaseNodeView: Node
         Inputs.Add(door.Id, input);
     }
 
-    protected void AddOutput(SpawnData door)
+    private void AddOutput(DoorData door)
     {
-        var output = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(SpawnData));
+        var output = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(DoorData));
         output.userData = door;
         output.portName = door.Name;
         outputContainer.Add(output);

@@ -36,14 +36,24 @@ public class SceneGraph
 
     public async void ChangeContext(SpawnDomain spawn)
     {
-        var newContext = AllNodesById[spawn.SceneId];
-        
-        if (CurrentContext is DungeonNode dungeonNodeData && CurrentContext != newContext)
+        if (CurrentContext is DungeonNode dungeonNodeData)
         {
-            dungeonNodeData.Clear();
+            if (AllNodesById.TryGetValue(spawn.SceneId, out var node))
+            {
+                dungeonNodeData.Clear();
+                await EnterCurrentContext(node, spawn);
+            }
+            else
+            {
+                await EnterCurrentContext(CurrentContext, spawn);
+            }
+        }
+        else
+        {
+            var newContext = AllNodesById[spawn.SceneId];
+            await EnterCurrentContext(newContext, spawn);
         }
         
-        await EnterCurrentContext(newContext, spawn);
     }
 
     private async Task EnterCurrentContext(BaseSceneNode nextContext, SpawnDomain spawn)
@@ -54,11 +64,7 @@ public class SceneGraph
         {
             case DungeonNode dungeonNode:
                 await SceneManager.LoadNewRoom();
-                SceneManager.EnterRoom(dungeonNode.GetRoom(spawn), spawn);
-                break;
-
-            case GameEventNode gameEventNode:
-                gameEventNode.DoAction();
+                dungeonNode.DoTransition(spawn, SceneManager.EnterRoom);
                 break;
 
             case SceneNode sceneNode:

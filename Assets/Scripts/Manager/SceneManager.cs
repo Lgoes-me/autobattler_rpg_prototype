@@ -33,19 +33,14 @@ public class SceneManager : MonoBehaviour
 
     public void StartGameMenu()
     {
-        var task = UnitySceneManager.LoadSceneAsync("StartMenu", LoadSceneMode.Single);
-
-        task.completed += _ =>
-        {
-            var roomScene = FindObjectOfType<StartMenuScene>();
-        };
+        UnitySceneManager.LoadScene("StartMenu", LoadSceneMode.Single);
     }
 
     public void StartGameIntro()
     {
         Map.SpawnAt("Start");
     }
-
+    
     public void ChangeContext(SpawnDomain spawn)
     {
         Map.ChangeContext(spawn);

@@ -38,18 +38,18 @@ MonoBehaviour:
   <Id>k__BackingField: 0f5d1fcd-5523-4a32-9b9c-4efef8eca7ef
   <Doors>k__BackingField:
   - <Name>k__BackingField: Entrada
-    <Port>k__BackingField: input
+    <Port>k__BackingField: 
     <Id>k__BackingField: f1324800-930d-43fb-a218-394b4a7eedd4
-    <SceneDestination>k__BackingField: b6d7ea70-a4fe-4514-a154-d93cebe9f04f
-    <DoorDestination>k__BackingField: 4b0910fd-8f0f-4bf4-9459-de6bb9fadeee
-    <SetUp>k__BackingField: 1
+    <SceneDestination>k__BackingField: 
+    <DoorDestination>k__BackingField: 
+    <SetUp>k__BackingField: 0
   - <Name>k__BackingField: ParaOBoss
     <Port>k__BackingField: output
     <Id>k__BackingField: bd221b1a-daff-4d37-ae1a-628d240f8a42
     <SceneDestination>k__BackingField: 3fc5745e-d512-4cca-bfe1-92c75b50563e
     <DoorDestination>k__BackingField: 560389b1-0df7-490a-bc23-9ea3bdd4a01e
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: 386.26242, y: 132.99997}
+  <Position>k__BackingField: {x: 433.22318, y: 198.49997}
   <RoomPrefab>k__BackingField: {fileID: 7526482092115330285, guid: 32dbf16f7d876e84aa63eeb55d18a98d, type: 3}
 --- !u!114 &-2367775004428860059
 MonoBehaviour:
@@ -72,7 +72,7 @@ MonoBehaviour:
     <SceneDestination>k__BackingField: 0f5d1fcd-5523-4a32-9b9c-4efef8eca7ef
     <DoorDestination>k__BackingField: bd221b1a-daff-4d37-ae1a-628d240f8a42
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: 613, y: 133}
+  <Position>k__BackingField: {x: 686.7251, y: 256.67343}
   <RoomPrefab>k__BackingField: {fileID: 6025612955480498148, guid: f14643f04ae99ae44afb429938d26758, type: 3}
 --- !u!114 &11400000
 MonoBehaviour:
@@ -91,6 +91,39 @@ MonoBehaviour:
   - {fileID: -5342171128611722993}
   - {fileID: -4955882549513404031}
   - {fileID: -2367775004428860059}
+  - {fileID: 881609076507222997}
+--- !u!114 &881609076507222997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7859150b7cd5284f82532e67ffc94cd, type: 3}
+  m_Name: 072a84e6-9de4-41e5-951e-4b83909a02d7
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: TutorialDungeon
+  <Id>k__BackingField: 072a84e6-9de4-41e5-951e-4b83909a02d7
+  <Doors>k__BackingField:
+  - <Name>k__BackingField: 
+    <Port>k__BackingField: input
+    <Id>k__BackingField: 072a84e6-9de4-41e5-951e-4b83909a02d7
+    <SceneDestination>k__BackingField: b6d7ea70-a4fe-4514-a154-d93cebe9f04f
+    <DoorDestination>k__BackingField: 4b0910fd-8f0f-4bf4-9459-de6bb9fadeee
+    <SetUp>k__BackingField: 1
+  <Position>k__BackingField: {x: 378.0418, y: -65.52088}
+  <AvailableRooms>k__BackingField:
+  - <RoomPrefab>k__BackingField: {fileID: 7526482092115330285, guid: 32dbf16f7d876e84aa63eeb55d18a98d, type: 3}
+    <RoomType>k__BackingField: 1
+  - <RoomPrefab>k__BackingField: {fileID: 7526482092115330285, guid: 32dbf16f7d876e84aa63eeb55d18a98d, type: 3}
+    <RoomType>k__BackingField: 2
+  - <RoomPrefab>k__BackingField: {fileID: 6025612955480498148, guid: f14643f04ae99ae44afb429938d26758, type: 3}
+    <RoomType>k__BackingField: 3
+  <MaximumDoors>k__BackingField: 2
+  <MinimumDeepness>k__BackingField: 2
+  <MaximumDeepness>k__BackingField: 3
 --- !u!114 &7687923207569236031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,8 +148,8 @@ MonoBehaviour:
   - <Name>k__BackingField: Passagem
     <Port>k__BackingField: output
     <Id>k__BackingField: 4b0910fd-8f0f-4bf4-9459-de6bb9fadeee
-    <SceneDestination>k__BackingField: 0f5d1fcd-5523-4a32-9b9c-4efef8eca7ef
-    <DoorDestination>k__BackingField: f1324800-930d-43fb-a218-394b4a7eedd4
+    <SceneDestination>k__BackingField: 072a84e6-9de4-41e5-951e-4b83909a02d7
+    <DoorDestination>k__BackingField: 072a84e6-9de4-41e5-951e-4b83909a02d7
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: 169.18999, y: 133}
+  <Position>k__BackingField: {x: 177.52101, y: 133}
   <RoomPrefab>k__BackingField: {fileID: 1270386980360157701, guid: 091a762831a3c2d46aad695aa3f97d42, type: 3}

@@ -26,42 +26,6 @@ public class RoomController : MonoBehaviour
         return this;
     }
     
-    public RoomController Init(DungeonRoomData roomData)
-    {
-        foreach (var door in Doors)
-        {
-            var doorSpawnData = roomData.Doors.First(d => d.Id == door.Id);
-            door.Spawn = doorSpawnData.ToDomain();
-        }
-
-        foreach (var bonfire in Bonfires)
-        {
-            bonfire.Init(roomData.Id);
-        }
-        
-        Destroy(PreviewCamera.gameObject);
-
-        return this;
-    }
-    
-    public RoomController Init(SceneNodeData roomData)
-    {
-        foreach (var door in Doors)
-        {
-            var doorSpawnData = roomData.Doors.First(d => d.Id == door.Id);
-            door.Spawn = doorSpawnData.ToDomain();
-        }
-
-        foreach (var bonfire in Bonfires)
-        {
-            bonfire.Init(roomData.Id);
-        }
-        
-        Destroy(PreviewCamera.gameObject);
-    
-        return this;
-    }
-    
     public void SpawnPlayerAt(string spawn)
     {
         var door = Doors.FirstOrDefault(d => d.Id == spawn);
@@ -69,6 +33,7 @@ public class RoomController : MonoBehaviour
         if (door != null)
         {
             Application.Instance.PlayerManager.SpawnPlayerAt(door);
+            return;
         }
         
         var bonfire = Bonfires.First(d => d.Spawn.Id == spawn);
