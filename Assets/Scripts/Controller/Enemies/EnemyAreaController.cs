@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class EnemyAreaController : MonoBehaviour
 {
-    [field: SerializeField] private string Id { get; set; }
     [field: SerializeField] private List<EnemyInfo> Enemies { get; set; }
     [field: SerializeField] private BattleController BattleController { get; set; }
     [field: SerializeReference] [field: SerializeField] private GameAction EndBattleAction { get; set; }
     
-    private void Awake()
+    private string Id { get; set; }
+
+    public void Init(string id)
     {
+        Id = id;
+        
         if (Application.Instance.GameSaveManager.ContainsBattle(Id))
         {
             gameObject.SetActive(false);
@@ -20,7 +23,7 @@ public class EnemyAreaController : MonoBehaviour
         foreach (var enemy in Enemies)
         {
             enemy.PreparePawn();
-            enemy.EnemyController.Activate(this);
+            enemy.EnemyController.Init(this);
         }
     }
 
@@ -33,14 +36,6 @@ public class EnemyAreaController : MonoBehaviour
         
         Application.Instance.PlayerManager.PlayerToBattle();
         BattleController.ActivateBattleScene(Id, Enemies, EndBattleAction);
-    }
-
-    private void OnValidate()
-    {
-        if(Id != string.Empty)
-            return;
-        
-        Id = Guid.NewGuid().ToString();
     }
 }
 

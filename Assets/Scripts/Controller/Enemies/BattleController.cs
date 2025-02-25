@@ -119,9 +119,9 @@ public class BattleController : MonoBehaviour
                 pawn.gameObject.SetActive(false);
         }
 
-        var roomScene = FindObjectOfType<RoomScene>();
-
-        Application.Instance.AudioManager.PlayMusic(roomScene.Music);
+        //var roomScene = FindObjectOfType<RoomScene>();
+        //Application.Instance.AudioManager.PlayMusic(roomScene.Music);
+        
         Application.Instance.PlayerManager.PlayerToWorld();
         Application.Instance.PartyManager.SetPartyToFollow(false);
         Application.Instance.GameSaveManager.SaveBattle(Battle);

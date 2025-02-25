@@ -2257,11 +2257,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75ade9abab5b3e04399c9d5a2db718a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <EnemyAreaController>k__BackingField: {fileID: 5667268127648857218}
   <Doors>k__BackingField:
   - {fileID: 7478196464179320854}
   - {fileID: 7184771649680567106}
-  <Bonfires>k__BackingField:
-  - {fileID: 882707544006324646}
+  <Bonfire>k__BackingField: {fileID: 882707544006324646}
   <PreviewCamera>k__BackingField: {fileID: 7975053571121329944}
 --- !u!1 &8685052070766615922
 GameObject:
@@ -2514,6 +2514,17 @@ PrefabInstance:
       addedObject: {fileID: 2265466204675835047}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
+--- !u!114 &5667268127648857218 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
+  m_PrefabInstance: {fileID: 1236369317948280784}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cd440a92a9247c4da32359a53c37d15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8587398230644207631 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7351253831715553247, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}

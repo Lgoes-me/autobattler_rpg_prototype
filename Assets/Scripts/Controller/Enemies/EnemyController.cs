@@ -11,12 +11,14 @@ public class EnemyController : MonoBehaviour
 
     private EnemyAreaController EnemyAreaController { get; set; }
 
+    private bool Initialized { get; set; }
     private int CurrentNode { get; set; }
     private bool Following { get; set; }
 
-    public void Activate(EnemyAreaController enemyAreaController)
+    public void Init(EnemyAreaController enemyAreaController)
     {
         EnemyAreaController = enemyAreaController;
+        Initialized = true;
         Following = false;
 
         if (Nodes.Count > 0)
@@ -27,6 +29,9 @@ public class EnemyController : MonoBehaviour
     
     private void Update()
     {
+        if(!Initialized)
+            return;
+        
         PawnController.CharacterController.SetSpeed(NavMeshAgent.velocity.magnitude);
         PawnController.CharacterController.SetDirection(NavMeshAgent.velocity);
         

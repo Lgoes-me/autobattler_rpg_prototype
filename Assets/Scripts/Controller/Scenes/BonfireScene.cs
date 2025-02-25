@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BonfireScene : BaseScene
+public class BonfireScene : MonoBehaviour
 {
     [field: SerializeField] private FriendsPanelController FriendsPanelController { get; set; }
     [field: SerializeField] private PartyPanelController PartyPanelController { get; set; }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CutsceneScene : BaseScene
+public class CutsceneScene : MonoBehaviour
 {
     [field: SerializeField] private DialogueData Dialogue { get; set; }
     [field: SerializeReference] [field: SerializeField] private GameAction EndCutsceneAction { get; set; }

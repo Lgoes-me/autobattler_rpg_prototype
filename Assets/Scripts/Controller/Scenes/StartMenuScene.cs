@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StartMenuScene : BaseScene
+public class StartMenuScene : MonoBehaviour
 {
     [field: SerializeField] private Button StartButton { get; set; }
     [field: SerializeField] private Button ContinueButton { get; set; }

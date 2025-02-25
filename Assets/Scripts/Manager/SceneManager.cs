@@ -60,12 +60,11 @@ public class SceneManager : MonoBehaviour
 
     public void EnterRoom(SceneNode sceneNode, SpawnDomain spawnDomain)
     {
-        var roomScene = FindObjectOfType<RoomScene>();
-        roomScene.ActivateRoomScene(sceneNode);
-        roomScene.SpawnPlayerAt(spawnDomain.SpawnId);
-
+        var room = Instantiate(sceneNode.RoomPrefab).Init(sceneNode);
+        room.SpawnPlayerAt(spawnDomain.SpawnId);
+        
         PartyManager.SetPartyToFollow(true);
-        AudioManager.PlayMusic(roomScene.Music);
+        AudioManager.PlayMusic(sceneNode.Music);
 
         InterfaceManager.ShowBattleCanvas();
         //GameSaveManager.SetSpawn(spawnDomain);
@@ -99,12 +98,13 @@ public class SceneManager : MonoBehaviour
 
         respawnTask.completed += _ =>
         {
-            var roomScene = FindObjectOfType<RoomScene>();
-            roomScene.ActivateRoomScene(Map.SceneNodeById[spawn.SceneId]);
-            roomScene.SpawnPlayerAt(spawn.SpawnId);
+            var sceneNode = Map.SceneNodeById[spawn.SceneId];
+            
+            var room = Instantiate(sceneNode.RoomPrefab).Init(sceneNode);
+            room.SpawnPlayerAt(spawn.SpawnId);
 
             PartyManager.SetPartyToFollow(true);
-            AudioManager.PlayMusic(roomScene.Music);
+            AudioManager.PlayMusic(sceneNode.Music);
         };
     }
 

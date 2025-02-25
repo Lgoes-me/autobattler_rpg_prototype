@@ -1068,6 +1068,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75ade9abab5b3e04399c9d5a2db718a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <EnemyAreaController>k__BackingField: {fileID: 7592548478133222794}
   <Doors>k__BackingField:
   - {fileID: 6657271373621489740}
   <Bonfires>k__BackingField: []
@@ -1673,6 +1674,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7351253831715553247, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
   m_PrefabInstance: {fileID: 3949797133397839576}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7592548478133222794 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
+  m_PrefabInstance: {fileID: 3949797133397839576}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cd440a92a9247c4da32359a53c37d15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7507145142127153512
 PrefabInstance:
   m_ObjectHideFlags: 0

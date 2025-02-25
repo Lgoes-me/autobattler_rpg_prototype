@@ -5,7 +5,8 @@ using UnityEngine;
 public class RoomController : MonoBehaviour
 {
     [field:SerializeField] public List<CorridorAreaController> Doors { get; private set; }
-    [field:SerializeField] public List<BonfireController> Bonfires { get; private set; }
+    [field:SerializeField] private EnemyAreaController EnemyAreaController { get; set; }
+    [field:SerializeField] private BonfireController Bonfire { get; set; }
     [field:SerializeField] public Camera PreviewCamera { get; private set; }
     
     public RoomController Init(SceneNode sceneData)
@@ -16,9 +17,14 @@ public class RoomController : MonoBehaviour
             door.Spawn = doorSpawnData.ToDomain();
         }
 
-        foreach (var bonfire in Bonfires)
+        if (Bonfire != null)
         {
-            bonfire.Init(sceneData.Id);
+            Bonfire.Init(sceneData.Id);
+        }
+        
+        if (EnemyAreaController != null)
+        {
+            EnemyAreaController.Init(sceneData.Id);
         }
         
         Destroy(PreviewCamera.gameObject);
@@ -35,9 +41,11 @@ public class RoomController : MonoBehaviour
             Application.Instance.PlayerManager.SpawnPlayerAt(door);
             return;
         }
-        
-        var bonfire = Bonfires.First(d => d.Spawn.Id == spawn);
-        
-        Application.Instance.PlayerManager.SpawnPlayerAt(bonfire.Spawn);
+
+        if (Bonfire != null && Bonfire.Spawn.Id == spawn)
+        {
+            Application.Instance.PlayerManager.SpawnPlayerAt(Bonfire.Spawn);
+            return;
+        }
     }
 }
