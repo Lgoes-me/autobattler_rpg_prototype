@@ -39,31 +39,32 @@ public class Dungeon<T> where T : IDungeonRoom, new()
         var entrance = AvailableRooms.First(x => x.RoomType is RoomType.Entrance);
         dungeonEntrance.SetValue(entrance);
 
-        dungeonEntrance.Doors[0].SceneDestination = EntranceDoor.SceneDestination;
-        dungeonEntrance.Doors[0].DoorDestination = EntranceDoor.DoorDestination;
-        dungeonEntrance.Doors[0].SetUp = true;
+        dungeonEntrance.Doors[0].Connect(EntranceDoor.SceneDestination, EntranceDoor.DoorDestination);
+        dungeonEntrance.Connected = true;
         
         var rooms = CreateSubTree(dungeonEntrance, 0);
-
+        
+        PruneTree(rooms);
+       
         while (rooms.Any(r => !r.Data.Collapsed))
         {
-            PruneTree(rooms);
-
-            var nextRoom = rooms
+            var room = rooms
                 .Where(r => !r.Data.Collapsed)
                 .OrderBy(_ => Guid.NewGuid())
                 .First();
 
-            if (nextRoom.IsLeaf)
+            if (room.IsLeaf)
             {
                 var bossRoom = AvailableRooms.First(x => x.RoomType is RoomType.Boss);
-                nextRoom.Data.SetValue(bossRoom);
+                room.Data.SetValue(bossRoom);
             }
             else
             {
-                var room = AvailableRooms.First(x => x.RoomType is RoomType.Normal);
-                nextRoom.Data.SetValue(room);
+                var anyRoom = AvailableRooms.First(x => x.RoomType is RoomType.Normal);
+                room.Data.SetValue(anyRoom);
             }
+            
+            PruneTree(room);
         }
 
         foreach (var room in rooms)
@@ -89,14 +90,9 @@ public class Dungeon<T> where T : IDungeonRoom, new()
                 var connectedDoorSpawnData = connectedRoom.Doors.First(s => !s.SetUp);
 
                 connectedRoom.Connected = true;
-
-                spawnData.SceneDestination = connectedRoom.Id;
-                spawnData.DoorDestination = connectedDoorSpawnData.Id;
-                spawnData.SetUp = true;
-
-                connectedDoorSpawnData.SceneDestination = selectedRoom.Id;
-                connectedDoorSpawnData.DoorDestination = spawnData.Id;
-                connectedDoorSpawnData.SetUp = true;
+                
+                spawnData.Connect(connectedRoom.Id, connectedDoorSpawnData.Id);
+                connectedDoorSpawnData.Connect(selectedRoom.Id, spawnData.Id);
             }
 
             GetRoom.Add(room.Data.Id, room.Data);
@@ -124,29 +120,23 @@ public class Dungeon<T> where T : IDungeonRoom, new()
         return room;
     }
 
-    private void PruneTree(Tree<T> rooms)
+    private void PruneTree(Tree<T> room)
     {
-        foreach (var room in rooms)
+        if (!room.Data.Collapsed)
+            return;
+
+        if (room.Data.Collapsed && room.Data.NumberOfDoors - 1 >= room.ChildrenNodes.Count)
+            return;
+
+        var branchesToRemove =
+            room
+                .ChildrenNodes
+                .OrderBy(_ => Guid.NewGuid())
+                .Take(room.ChildrenNodes.Count - room.Data.NumberOfDoors).ToList();
+
+        foreach (var branch in branchesToRemove)
         {
-            if (!room.Data.Collapsed)
-                continue;
-
-            if (room.IsRoot && room.Data.Collapsed && room.Data.NumberOfDoors - 1 >= room.ChildrenNodes.Count)
-                continue;
-            
-            if (room.Data.Collapsed && room.Data.NumberOfDoors >= room.ChildrenNodes.Count)
-                continue;
-
-            var branchesToRemove =
-                room
-                    .ChildrenNodes
-                    .OrderBy(_ => Guid.NewGuid())
-                    .Take(room.ChildrenNodes.Count - room.Data.NumberOfDoors).ToList();
-
-            foreach (var branch in branchesToRemove)
-            {
-                room.ChildrenNodes.Remove(branch);
-            }
+            room.ChildrenNodes.Remove(branch);
         }
     }
 }

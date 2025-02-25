@@ -10,6 +10,7 @@ public class SceneGraphView : GraphView
 {
     public new class UxmlFactory : UxmlFactory<SceneGraphView, UxmlTraits>
     {
+        
     }
 
     public Action<BaseNodeView> OnNodeSelected;
@@ -137,17 +138,11 @@ public class SceneGraphView : GraphView
                     var spawnInputData = (DoorData)input.userData;
                     var spawnOutputData = (DoorData)output.userData;
                     
-                    spawnInputData.SceneDestination = "";
-                    spawnInputData.DoorDestination = "";
-                    spawnInputData.Port = "";
-                    spawnInputData.SetUp = false;
+                    spawnInputData.Clear();
                     ((BaseNodeView) input.node).AddOutput(spawnInputData.Id);
                     EditorUtility.SetDirty(((BaseNodeView) input.node).NodeData);
 
-                    spawnOutputData.SceneDestination = "";
-                    spawnOutputData.DoorDestination = "";
-                    spawnInputData.Port = "";
-                    spawnOutputData.SetUp = false;
+                    spawnOutputData.Clear();
                     ((BaseNodeView) output.node).AddInput(spawnOutputData.Id);
                     EditorUtility.SetDirty(((BaseNodeView) output.node).NodeData);
 
@@ -166,25 +161,19 @@ public class SceneGraphView : GraphView
                 
                 var spawnInputData = (DoorData)input.userData;
                 var spawnOutputData = (DoorData)output.userData;
-                
-                spawnInputData.SceneDestination = ((BaseNodeView) output.node).NodeData.Id;
-                spawnInputData.DoorDestination = spawnOutputData.Id;
-                spawnInputData.Port = "input";
-                spawnInputData.SetUp = true;
+
+                spawnInputData.Connect(((BaseNodeView) output.node).NodeData.Id, spawnOutputData.Id, "input");
                 ((BaseNodeView) input.node).RemoveOutput(spawnInputData.Id);
                 EditorUtility.SetDirty(((BaseNodeView) input.node).NodeData);
 
-                spawnOutputData.SceneDestination = ((BaseNodeView) input.node).NodeData.Id;
-                spawnOutputData.DoorDestination = spawnInputData.Id;
-                spawnOutputData.Port = "output";
-                spawnOutputData.SetUp = true;
+                spawnOutputData.Connect(((BaseNodeView) input.node).NodeData.Id, spawnInputData.Id, "output");
                 ((BaseNodeView) output.node).RemoveInput(spawnOutputData.Id);
                 EditorUtility.SetDirty(((BaseNodeView) output.node).NodeData);
                 
                 AssetDatabase.SaveAssets();
             }
-            
         }
+        
         return graphViewChange;
     }
 

@@ -12,6 +12,4 @@ public static class EditorExtensions
             _ => throw new ArgumentOutOfRangeException()
         };
     }
-    
-        
 }
