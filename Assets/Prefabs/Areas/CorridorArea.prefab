@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 6598432361967653097}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: -2.21}
+  m_LocalPosition: {x: -0.03, y: 0, z: -1.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -77,10 +77,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5e68a00640288c4cbd099f9c1d2a064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Spawn>k__BackingField: {fileID: 8475532692762963974}
-  <Id>k__BackingField: e57aa8e7-c3fb-453f-8b96-3ea80f7e6e80
+  <SpawnPoint>k__BackingField: {fileID: 8475532692762963974}
+  <Id>k__BackingField: bd221b1a-daff-4d37-ae1a-628d240f8a42
   <CameraArea>k__BackingField: {fileID: 0}
-  <SceneDestination>k__BackingField: 
   <Active>k__BackingField: 1
   <Destination>k__BackingField: {fileID: 1414291554413539100}
 --- !u!65 &4441693546795938816
@@ -103,4 +102,4 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 2.4411092, y: 3.1961207, z: 2.5230985}
-  m_Center: {x: 0.07534671, y: 0.48112488, z: -0.76154923}
+  m_Center: {x: 0.07534671, y: 0.48112488, z: 0}

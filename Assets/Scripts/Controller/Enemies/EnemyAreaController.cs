@@ -37,6 +37,14 @@ public class EnemyAreaController : MonoBehaviour
         Application.Instance.PlayerManager.PlayerToBattle();
         BattleController.ActivateBattleScene(Id, Enemies, EndBattleAction);
     }
+    
+    private void OnValidate()
+    {
+        if(Id != string.Empty)
+            return;
+        
+        Id = Guid.NewGuid().ToString();
+    }
 }
 
 [Serializable]

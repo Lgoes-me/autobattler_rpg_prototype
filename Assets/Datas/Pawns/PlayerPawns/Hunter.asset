@@ -18,7 +18,7 @@ MonoBehaviour:
   <Initiative>k__BackingField: 0
   <VisionRange>k__BackingField: 0
   <AttackRange>k__BackingField: 0
-  <EnemyFocusPreference>k__BackingField: 2
+  <EnemyFocusPreference>k__BackingField: 1
   <AllyFocusPreference>k__BackingField: 3
   <Character>k__BackingField: {fileID: 601539699241707366, guid: 261ee29a2e9356544b5f79d5536b93b8, type: 3}
   <Weapon>k__BackingField: {fileID: 3501364879892670405, guid: 463ad0732b1d8e74196bb45029a54da8, type: 3}
