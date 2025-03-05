@@ -5,6 +5,7 @@
     public Blessing(BlessingIdentifier identifier)
     {
         Identifier = identifier;
+        Rarity = Rarity.Unknown;
     }
 }
 

@@ -10,7 +10,7 @@ public class ArchetypeFactory
             {
                 new OnBattleStartedListener()
                 {
-                    battle =>
+                    (battle, rarity) =>
                     {
                         var s = new StatsData(0, 0, 1, 0);
                         var b = new StatModifierBuff(s.ToDomain(), "ProtecaoCavalereica", -1);
@@ -28,7 +28,7 @@ public class ArchetypeFactory
             {
                 new OnSpecialAttackEventListener()
                 {
-                    (battle, user, ability) =>
+                    (battle, user, ability, rarity) =>
                     {
                         var s = new StatsData(0, 1, 0, 0);
                         var b = new StatModifierBuff(s.ToDomain(), "Magos", -1, true);
@@ -42,7 +42,7 @@ public class ArchetypeFactory
             {
                 new OnBattleStartedListener()
                 {
-                    battle =>
+                    (battle, rarity) =>
                     {
                         var s = new StatsData(1, 1, 1, 1);
                         var b = new StatModifierBuff(s.ToDomain(), "Herois", -1);
@@ -57,7 +57,7 @@ public class ArchetypeFactory
             {
                 new OnBattleStartedListener()
                 {
-                    battle =>
+                    (battle, rarity) =>
                     {
                         var s = new StatsData(0, 0, -2, 0);
                         var b = new StatModifierBuff(s.ToDomain(), "Hunters", -1);
@@ -71,7 +71,7 @@ public class ArchetypeFactory
             {
                 new OnBattleStartedListener()
                 {
-                    battle =>
+                    (battle, rarity) =>
                     {
                         var s = new StatsData(-3, 0, 0, 0);
                         var b = new StatModifierBuff(s.ToDomain(), "Weakener", -1);

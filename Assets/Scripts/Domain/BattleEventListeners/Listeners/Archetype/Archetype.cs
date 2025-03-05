@@ -3,15 +3,14 @@
     public ArchetypeIdentifier Identifier { get; set; }
     public int CurrentAmount { get; set; }
     public int[] AmountSteps { get; set; }
-    public Level CurrentLevel { get; set; }
     
-    public Archetype(ArchetypeIdentifier identifier, int currentAmount, int[] amountSteps)
+    public Archetype(ArchetypeIdentifier identifier, int currentAmount, int[] amountSteps) : base()
     {
         Identifier = identifier;
         CurrentAmount = currentAmount;
         AmountSteps = amountSteps;
 
-        CurrentLevel = Level.Deactivated;
+        Rarity = Rarity.Deactivated;
 
         for (var index = 0; index < amountSteps.Length; index++)
         {
@@ -19,15 +18,16 @@
             
             if (CurrentAmount >= step)
             {
-                CurrentLevel = (Level) index;
+                Rarity = (Rarity) index;
                 break;
             }
         }
     }
 }
 
-public enum Level
+public enum Rarity
 {
+    Unknown = -2,
     Deactivated = -1,
     Diamond = 0,
     Gold = 1,
