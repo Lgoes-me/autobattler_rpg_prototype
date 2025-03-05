@@ -6,7 +6,7 @@ public class ArchetypeFactory
     {
         return id switch
         {
-            ArchetypeIdentifier.Cavaleiros => new Archetype(id, currentAmount, new[] {2, 4, 6})
+            ArchetypeIdentifier.Cavaleiros => new Archetype(id, currentAmount, new[] {6, 4, 2})
             {
                 new OnBattleStartedListener()
                 {
@@ -24,7 +24,7 @@ public class ArchetypeFactory
                 }
             },
 
-            ArchetypeIdentifier.Magos => new Archetype(id, currentAmount, new[] {1, 4, 6})
+            ArchetypeIdentifier.Magos => new Archetype(id, currentAmount, new[] {6, 4, 1})
             {
                 new OnSpecialAttackEventListener()
                 {
@@ -38,7 +38,7 @@ public class ArchetypeFactory
                 }
             },
 
-            ArchetypeIdentifier.Herois => new Archetype(id, currentAmount, new[] {1, 8})
+            ArchetypeIdentifier.Herois => new Archetype(id, currentAmount, new[] {8, 1})
             {
                 new OnBattleStartedListener()
                 {
@@ -52,7 +52,22 @@ public class ArchetypeFactory
                 }
             },
             
-            ArchetypeIdentifier.Weakener => new Archetype(id, currentAmount, new[] {1, 8})
+
+            ArchetypeIdentifier.Hunters => new Archetype(id, currentAmount, new[] {8, 2})
+            {
+                new OnBattleStartedListener()
+                {
+                    battle =>
+                    {
+                        var s = new StatsData(0, 0, -2, 0);
+                        var b = new StatModifierBuff(s.ToDomain(), "Hunters", -1);
+
+                        GiveBuffToEnemyTeam(battle, b);
+                    }
+                }
+            },
+            
+            ArchetypeIdentifier.Weakener => new Archetype(id, currentAmount, new[] {8, 1})
             {
                 new OnBattleStartedListener()
                 {

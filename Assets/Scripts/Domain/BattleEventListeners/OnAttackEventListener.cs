@@ -8,7 +8,21 @@ public class OnAttackEventListener : BaseBattleEventListener<Func<Battle, PawnCo
         if (Validators.Any(validator => !validator(battle, abilityUser, ability)))
             return;
 
-        foreach (AttackDelegate modifier in Modifiers)
+        foreach (var modifier in Modifiers)
+        {
+            modifier(battle, abilityUser, ability);
+        }
+    }
+}
+
+public class OnSpecialAttackEventListener : BaseBattleEventListener<Func<Battle, PawnController, Ability, bool>, AttackDelegate>
+{
+    public void OnSpecialAttack(Battle battle, PawnController abilityUser, Ability ability)
+    {
+        if (Validators.Any(validator => !validator(battle, abilityUser, ability)))
+            return;
+
+        foreach (var modifier in Modifiers)
         {
             modifier(battle, abilityUser, ability);
         }

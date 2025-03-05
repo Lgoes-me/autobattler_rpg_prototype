@@ -8,7 +8,7 @@ public class OnPawnDeathListener : BaseBattleEventListener<Func<Battle, PawnCont
         if (Validators.Any(validator => !validator(battle, pawnController)))
             return;
 
-        foreach (PawnDeathDelegate modifier in Modifiers)
+        foreach (var modifier in Modifiers)
         {
             modifier(battle, pawnController);
         }

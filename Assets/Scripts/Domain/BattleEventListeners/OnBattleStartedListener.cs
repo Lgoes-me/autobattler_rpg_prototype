@@ -8,7 +8,7 @@ public class OnBattleStartedListener : BaseBattleEventListener<Func<Battle, bool
         if (Validators.Any(validator => !validator(battle)))
             return;
 
-        foreach (BattleStartedDelegate modifier in Modifiers)
+        foreach (var modifier in Modifiers)
         {
             modifier(battle);
         }

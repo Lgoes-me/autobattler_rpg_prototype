@@ -27,7 +27,7 @@ MonoBehaviour:
     <SceneDestination>k__BackingField: db0426b6-506d-432d-9306-98363e5ab82c
     <DoorDestination>k__BackingField: 5b31d176-60eb-4dfb-9507-86a3082b3f88
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: 120.83484, y: -105.5}
+  <Position>k__BackingField: {x: 111, y: -127.5}
   <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 6f479e231edca6e4fbad47551ab1c0b6, type: 3}
 --- !u!114 &-5342171128611722993
 MonoBehaviour:
@@ -50,7 +50,7 @@ MonoBehaviour:
     <SceneDestination>k__BackingField: ffc40bb6-6a50-4911-963a-a122a260aafa
     <DoorDestination>k__BackingField: d452db77-2b30-456e-99a3-430b78ca38e1
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: 32.400024, y: -105}
+  <Position>k__BackingField: {x: -9, y: -116}
 --- !u!114 &-4955882549513404031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,18 +67,18 @@ MonoBehaviour:
   <Id>k__BackingField: 0f5d1fcd-5523-4a32-9b9c-4efef8eca7ef
   <Doors>k__BackingField:
   - <Name>k__BackingField: Entrada
-    <Port>k__BackingField: 
+    <Port>k__BackingField: input
     <Id>k__BackingField: f1324800-930d-43fb-a218-394b4a7eedd4
-    <SceneDestination>k__BackingField: 
-    <DoorDestination>k__BackingField: 
-    <SetUp>k__BackingField: 0
+    <SceneDestination>k__BackingField: 13651a18-b376-4027-94c6-ec155373d5b5
+    <DoorDestination>k__BackingField: ef1c2bd4-e70f-4a69-b898-e683508076c3
+    <SetUp>k__BackingField: 1
   - <Name>k__BackingField: ParaOBoss
     <Port>k__BackingField: output
     <Id>k__BackingField: bd221b1a-daff-4d37-ae1a-628d240f8a42
     <SceneDestination>k__BackingField: 3fc5745e-d512-4cca-bfe1-92c75b50563e
     <DoorDestination>k__BackingField: 560389b1-0df7-490a-bc23-9ea3bdd4a01e
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: 433.22318, y: 198.49997}
+  <Position>k__BackingField: {x: 488.32254, y: -351}
   <RoomPrefab>k__BackingField: {fileID: 7526482092115330285, guid: 32dbf16f7d876e84aa63eeb55d18a98d, type: 3}
 --- !u!114 &-2367775004428860059
 MonoBehaviour:
@@ -121,6 +121,7 @@ MonoBehaviour:
   - {fileID: -2367775004428860059}
   - {fileID: -5754719615933262362}
   - {fileID: 8166504881398587796}
+  - {fileID: 8810401414542001299}
 --- !u!114 &8166504881398587796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,10 +144,39 @@ MonoBehaviour:
     <DoorDestination>k__BackingField: ba9e4921-22ec-4914-a4ff-cc08f334b4b0
     <SetUp>k__BackingField: 1
   - <Name>k__BackingField: Exit
-    <Port>k__BackingField: 
+    <Port>k__BackingField: output
     <Id>k__BackingField: 8d53df9c-343c-46df-879b-97eb641bfc25
-    <SceneDestination>k__BackingField: 
-    <DoorDestination>k__BackingField: 
-    <SetUp>k__BackingField: 0
+    <SceneDestination>k__BackingField: 13651a18-b376-4027-94c6-ec155373d5b5
+    <DoorDestination>k__BackingField: f36263e0-0c3b-41b9-9969-7d79145e5f33
+    <SetUp>k__BackingField: 1
   <Position>k__BackingField: {x: 290, y: -142}
   <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 58e0e263843433e4d8d766fb709341dc, type: 3}
+--- !u!114 &8810401414542001299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 258b9a247b0d4766aef8d7549746b2a0, type: 3}
+  m_Name: ChurchEntrance
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: ChurchEntrance
+  <Id>k__BackingField: 13651a18-b376-4027-94c6-ec155373d5b5
+  <Doors>k__BackingField:
+  - <Name>k__BackingField: Entrance
+    <Port>k__BackingField: input
+    <Id>k__BackingField: f36263e0-0c3b-41b9-9969-7d79145e5f33
+    <SceneDestination>k__BackingField: db0426b6-506d-432d-9306-98363e5ab82c
+    <DoorDestination>k__BackingField: 8d53df9c-343c-46df-879b-97eb641bfc25
+    <SetUp>k__BackingField: 1
+  - <Name>k__BackingField: Exit
+    <Port>k__BackingField: output
+    <Id>k__BackingField: ef1c2bd4-e70f-4a69-b898-e683508076c3
+    <SceneDestination>k__BackingField: 0f5d1fcd-5523-4a32-9b9c-4efef8eca7ef
+    <DoorDestination>k__BackingField: f1324800-930d-43fb-a218-394b4a7eedd4
+    <SetUp>k__BackingField: 1
+  <Position>k__BackingField: {x: 290.00006, y: -351.1625}
+  <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 667d20764247d8c478b70a952361348a, type: 3}

@@ -133,7 +133,7 @@ Transform:
   m_GameObject: {fileID: 8736358518616412358}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 8.09}
+  m_LocalPosition: {x: 0, y: 0, z: 8.66}
   m_LocalScale: {x: 2, y: 1, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -239,7 +239,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7004053, z: -0, w: 0.7137454}
   m_LocalPosition: {x: 5.32, y: 0, z: -0.12}
-  m_LocalScale: {x: 5.0902, y: 1, z: 3}
+  m_LocalScale: {x: 5, y: 1, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 174027445035221761}
@@ -527,7 +527,11 @@ PrefabInstance:
     - target: {fileID: 5205475090520727093, guid: 88ce5f1a7b1526a45b9e3e65d5064074, type: 3}
       propertyPath: m_NavMeshData
       value: 
-      objectReference: {fileID: 23800000, guid: 2d67770c6fffac049a8408d0719f196b, type: 2}
+      objectReference: {fileID: 23800000, guid: 302c6933e2c0aeb4289b7f12cd5e0b39, type: 2}
+    - target: {fileID: 5242244253733173045, guid: 88ce5f1a7b1526a45b9e3e65d5064074, type: 3}
+      propertyPath: <Bonfire>k__BackingField
+      value: 
+      objectReference: {fileID: 7892160344470721327}
     - target: {fileID: 5242244253733173045, guid: 88ce5f1a7b1526a45b9e3e65d5064074, type: 3}
       propertyPath: <Doors>k__BackingField.Array.size
       value: 2
@@ -681,6 +685,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e26eaaec9b7855d49af3fddf3e99134f, type: 3}
+--- !u!114 &7892160344470721327 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6321774086416421274, guid: e26eaaec9b7855d49af3fddf3e99134f, type: 3}
+  m_PrefabInstance: {fileID: 4196758974340842165}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c54f96e92e7c4c40ab2f7058b6fbe8d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8437394127775164036 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5704450273142219825, guid: e26eaaec9b7855d49af3fddf3e99134f, type: 3}

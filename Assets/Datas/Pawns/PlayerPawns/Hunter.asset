@@ -31,7 +31,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4d5322942f707264790c540024917a6c, type: 2}
   <SpecialAbilities>k__BackingField:
   - {fileID: 11400000, guid: e08670137b4a16145a7141712200c678, type: 2}
-  <Archetypes>k__BackingField: 01000000
+  <Archetypes>k__BackingField: 05000000
   <CharacterInfos>k__BackingField:
   - <Identifier>k__BackingField: default
     <Portrait>k__BackingField: {fileID: 0}

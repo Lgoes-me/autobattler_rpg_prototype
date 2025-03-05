@@ -37,7 +37,7 @@ public class Save : ISavable
             {"Guts", new PawnInfo(0)}, {"Hunter", new PawnInfo(0)}
         };
         DefeatedEnemies = new List<string>();
-        Blessings = new List<BlessingIdentifier>() {BlessingIdentifier.OnAttackHeal};
+        Blessings = new List<BlessingIdentifier>();
         AvailableParty = new List<string> {"Guts", "Hunter"};
         Dialogues = new List<string>();
         CurrentTime = 20f;
