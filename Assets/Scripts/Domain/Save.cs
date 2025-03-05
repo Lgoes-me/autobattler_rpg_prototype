@@ -32,7 +32,10 @@ public class Save : ISavable
         Metadata = new Metadata().CreateNewDynamicFile(".json");
         Spawn = null;
         LastBonfireSpawn = null;
-        SelectedParty = new Dictionary<string, PawnInfo> {{"Hunter", new PawnInfo(0)}};
+        SelectedParty = new Dictionary<string, PawnInfo>
+        {
+            {"Guts", new PawnInfo(0)}, {"Hunter", new PawnInfo(0)}
+        };
         DefeatedEnemies = new List<string>();
         Blessings = new List<BlessingIdentifier>() {BlessingIdentifier.OnAttackHeal};
         AvailableParty = new List<string> {"Guts", "Hunter"};
