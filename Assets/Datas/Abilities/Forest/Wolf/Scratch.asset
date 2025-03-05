@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e3f2961cde84cc2bca5113224648ba8, type: 3}
+  m_Name: Scratch
+  m_EditorClassIdentifier: 
+  <Animation>k__BackingField: Scratch
+  <Delay>k__BackingField: 2
+  <Range>k__BackingField: 2
+  <AbilityBehaviours>k__BackingField:
+  - <Effects>k__BackingField:
+    - rid: 2079880286154260485
+    <FocusData>k__BackingField:
+      rid: 2079880286154260486
+    <ActionData>k__BackingField:
+      rid: 2079880286154260487
+  <ResourceData>k__BackingField:
+    rid: 2079880286154260481
+  <Priorities>k__BackingField: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 2079880286154260481
+      type: {class: NoResourceData, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 2079880286154260485
+      type: {class: DamageEffectData, ns: , asm: Assembly-CSharp}
+      data:
+        <Damage>k__BackingField:
+          <Multiplier>k__BackingField: 1.5
+          <Type>k__BackingField: 1
+    - rid: 2079880286154260486
+      type: {class: EnemyFocusComponentData, ns: , asm: Assembly-CSharp}
+      data:
+        <Error>k__BackingField: 0
+    - rid: 2079880286154260487
+      type: {class: InstantActionData, ns: , asm: Assembly-CSharp}
+      data: 

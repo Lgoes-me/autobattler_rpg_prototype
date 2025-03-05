@@ -10,25 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2506f476fd0f4300b3c3cd3c8b600971, type: 3}
-  m_Name: ZombieSoldier
+  m_Name: Wolf_Small
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: ZombieSoldier
-  <Health>k__BackingField: 30
+  <Id>k__BackingField: Wolf_Small
+  <Health>k__BackingField: 10
   <Mana>k__BackingField: 0
-  <Initiative>k__BackingField: 2
+  <Initiative>k__BackingField: 1
   <VisionRange>k__BackingField: 5
   <AttackRange>k__BackingField: 2
   <EnemyFocusPreference>k__BackingField: 1
   <AllyFocusPreference>k__BackingField: 1
-  <Character>k__BackingField: {fileID: 8201863896689888091, guid: 5f7b15e6bd7c2c34cb8b766da777d2be, type: 3}
-  <Weapon>k__BackingField: {fileID: 3501364879892670405, guid: 3d2abc87e1919ec4f8a85eca7691168a, type: 3}
+  <Character>k__BackingField: {fileID: 1670507725838462388, guid: 9b202b8d77052b04dbbc13b4cdaa78d5, type: 3}
+  <Weapon>k__BackingField: {fileID: 0}
   <Stats>k__BackingField:
-    <Strength>k__BackingField: 2
+    <Strength>k__BackingField: 1
     <Arcane>k__BackingField: 0
-    <PhysicalDefence>k__BackingField: 0
+    <PhysicalDefence>k__BackingField: 1
     <MagicalDefence>k__BackingField: 0
   <Abilities>k__BackingField:
-  - {fileID: 11400000, guid: 0310e31ee1c2d1a43990c835c370c647, type: 2}
+  - {fileID: 11400000, guid: 0e9c749adb5a8cd49aa09c2ff1d6028f, type: 2}
+  - {fileID: 11400000, guid: 2489267ea8703b84ab3b158716c31486, type: 2}
   <SpecialAbilities>k__BackingField: []
   <Archetypes>k__BackingField: 
   <CharacterInfos>k__BackingField: []
