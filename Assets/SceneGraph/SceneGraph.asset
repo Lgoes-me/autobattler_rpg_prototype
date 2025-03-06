@@ -78,7 +78,7 @@ MonoBehaviour:
     <SceneDestination>k__BackingField: 
     <DoorDestination>k__BackingField: 
     <SetUp>k__BackingField: 0
-  <Position>k__BackingField: {x: 491.01227, y: -350.99997}
+  <Position>k__BackingField: {x: 544.20044, y: -350.99997}
   <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 4e44b34c9e749e247ae10a7f53b0a88f, type: 3}
 --- !u!114 &11400000
 MonoBehaviour:

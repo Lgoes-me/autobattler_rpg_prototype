@@ -26,6 +26,8 @@ public class BonfireScene : MonoBehaviour
         FriendsPanelController.Init(partyManager, this);
         PartyPanelController.Init(partyManager, this);
         
+        Application.Instance.BlessingManager.ClearBlessings();
+        
         UpdateArchetypes();
     }
 

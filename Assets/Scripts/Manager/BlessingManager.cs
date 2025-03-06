@@ -12,6 +12,7 @@ public class BlessingManager
     public BlessingManager()
     {
         BlessingFactory = new BlessingFactory();
+        Blessings = new List<Blessing>();
     }
     
     public void Prepare()
@@ -40,6 +41,13 @@ public class BlessingManager
             return;
 
         Blessings.Remove(jokerToRemove);
+        GameSaveManager.SetBlessings();
+        InterfaceManager.InitBlessingsCanvas(Blessings);
+    }
+
+    public void ClearBlessings()
+    {
+        Blessings.Clear();
         GameSaveManager.SetBlessings();
         InterfaceManager.InitBlessingsCanvas(Blessings);
     }
