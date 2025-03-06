@@ -146,6 +146,7 @@ MonoBehaviour:
   <Doors>k__BackingField: []
   <EnemyAreaController>k__BackingField: {fileID: 0}
   <Bonfire>k__BackingField: {fileID: 0}
+  <Surface>k__BackingField: {fileID: 5205475090520727093}
   <PreviewCamera>k__BackingField: {fileID: 5181026332914818110}
 --- !u!1 &5962515049011595919
 GameObject:

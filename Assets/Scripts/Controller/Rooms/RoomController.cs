@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Unity.AI.Navigation;
 using UnityEngine;
 
 public class RoomController : MonoBehaviour
@@ -7,6 +8,7 @@ public class RoomController : MonoBehaviour
     [field:SerializeField] public List<CorridorAreaController> Doors { get; private set; }
     [field:SerializeField] private EnemyAreaController EnemyAreaController { get; set; }
     [field:SerializeField] private BonfireController Bonfire { get; set; }
+    [field:SerializeField] private NavMeshSurface Surface { get; set; }
     [field:SerializeField] public Camera PreviewCamera { get; private set; }
     
     public RoomController Init(SceneNode sceneData)
@@ -26,6 +28,8 @@ public class RoomController : MonoBehaviour
         {
             EnemyAreaController.Init(sceneData.Id);
         }
+        
+        Surface.BuildNavMesh();
         
         Destroy(PreviewCamera.gameObject);
 

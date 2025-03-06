@@ -12,6 +12,9 @@ public class ArchetypeFactory
                 {
                     (battle, rarity) =>
                     {
+                        if(rarity is Rarity.Deactivated)
+                            return;
+                        
                         var s = new StatsData(0, 0, 1, 0);
                         var b = new StatModifierBuff(s.ToDomain(), "ProtecaoCavalereica", -1);
                         GiveBuffToPlayerTeam(battle, b);
@@ -30,6 +33,9 @@ public class ArchetypeFactory
                 {
                     (battle, user, ability, rarity) =>
                     {
+                        if(rarity is Rarity.Deactivated)
+                            return;
+
                         var s = new StatsData(0, 1, 0, 0);
                         var b = new StatModifierBuff(s.ToDomain(), "Magos", -1, true);
 
@@ -44,6 +50,9 @@ public class ArchetypeFactory
                 {
                     (battle, rarity) =>
                     {
+                        if(rarity is Rarity.Deactivated)
+                            return;
+
                         var s = new StatsData(1, 1, 1, 1);
                         var b = new StatModifierBuff(s.ToDomain(), "Herois", -1);
 
@@ -59,6 +68,9 @@ public class ArchetypeFactory
                 {
                     (battle, rarity) =>
                     {
+                        if(rarity is Rarity.Deactivated)
+                            return;
+
                         var s = new StatsData(0, 0, -2, 0);
                         var b = new StatModifierBuff(s.ToDomain(), "Hunters", -1);
 
@@ -73,6 +85,9 @@ public class ArchetypeFactory
                 {
                     (battle, rarity) =>
                     {
+                        if(rarity is Rarity.Deactivated)
+                            return;
+
                         var s = new StatsData(-3, 0, 0, 0);
                         var b = new StatModifierBuff(s.ToDomain(), "Weakener", -1);
 
