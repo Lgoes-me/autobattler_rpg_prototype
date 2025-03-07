@@ -544,6 +544,14 @@ PrefabInstance:
       propertyPath: <EnemyAreaController>k__BackingField
       value: 
       objectReference: {fileID: 56810693409461117}
+    - target: {fileID: 5242244253733173045, guid: 88ce5f1a7b1526a45b9e3e65d5064074, type: 3}
+      propertyPath: <EnemyAreas>k__BackingField.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242244253733173045, guid: 88ce5f1a7b1526a45b9e3e65d5064074, type: 3}
+      propertyPath: <EnemyAreas>k__BackingField.Array.data[0]
+      value: 
+      objectReference: {fileID: 56810693409461117}
     - target: {fileID: 5378461042654118985, guid: 88ce5f1a7b1526a45b9e3e65d5064074, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -707,7 +715,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4317649600572222367, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
       propertyPath: m_Name
-      value: EnemyArea
+      value: Wolfs
       objectReference: {fileID: 0}
     - target: {fileID: 4429232686918209991, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
       propertyPath: m_Size.x

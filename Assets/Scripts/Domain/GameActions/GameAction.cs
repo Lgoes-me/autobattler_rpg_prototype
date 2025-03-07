@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [Serializable]
 public abstract class GameAction : IComponentData
@@ -58,12 +60,36 @@ public class MultipleActions : GameAction
 }
 
 [Serializable]
-public class GivePrize : GameAction
+public class GiveBlessing : GameAction
 {
     [field: SerializeField] private BlessingIdentifier Blessing { get; set; }
     
     public override void Invoke()
     {
         Application.Instance.BlessingManager.AddBlessing(Blessing);
+    }
+}
+
+[Serializable]
+public class GiveRandomBlessing : GameAction
+{
+    public override void Invoke()
+    {
+        var listOfBlessings = Enum.GetValues(typeof(BlessingIdentifier)).Cast<BlessingIdentifier>().ToList();
+        var randomBlessing = listOfBlessings[Random.Range(0, listOfBlessings.Count)];
+        Application.Instance.BlessingManager.AddBlessing(randomBlessing);
+    }
+}
+
+
+[Serializable]
+public class GiveRandomBlessingFromPool : GameAction
+{
+    [field: SerializeField] private List<BlessingIdentifier> Pool { get; set; }
+    
+    public override void Invoke()
+    {
+        var randomBlessing = Pool[Random.Range(0, Pool.Count)];
+        Application.Instance.BlessingManager.AddBlessing(randomBlessing);
     }
 }

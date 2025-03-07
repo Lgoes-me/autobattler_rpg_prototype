@@ -6,7 +6,7 @@ using UnityEngine;
 public class RoomController : MonoBehaviour
 {
     [field:SerializeField] public List<CorridorAreaController> Doors { get; private set; }
-    [field:SerializeField] private EnemyAreaController EnemyAreaController { get; set; }
+    [field:SerializeField] private List<EnemyAreaController> EnemyAreas { get; set; }
     [field:SerializeField] private BonfireController Bonfire { get; set; }
     [field:SerializeField] private NavMeshSurface Surface { get; set; }
     [field:SerializeField] public Camera PreviewCamera { get; private set; }
@@ -23,10 +23,10 @@ public class RoomController : MonoBehaviour
         {
             Bonfire.Init(sceneData.Id);
         }
-        
-        if (EnemyAreaController != null)
+
+        foreach (var enemyArea in EnemyAreas)
         {
-            EnemyAreaController.Init(sceneData.Id);
+            enemyArea.Init(sceneData.Id);
         }
         
         Surface.BuildNavMesh();

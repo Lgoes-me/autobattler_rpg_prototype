@@ -10,9 +10,9 @@ public class EnemyAreaController : MonoBehaviour
     
     private string Id { get; set; }
 
-    public void Init(string id)
+    public void Init(string sceneId)
     {
-        Id = id;
+        Id = $"{gameObject.name}-{sceneId}";
         
         if (Application.Instance.GameSaveManager.ContainsBattle(Id))
         {
