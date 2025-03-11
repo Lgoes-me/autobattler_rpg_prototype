@@ -23,6 +23,8 @@ public class SceneGraphData : ScriptableObject
 
     public void DeleteNode(BaseNodeData nodeData)
     {
+        Nodes ??= new List<BaseNodeData>();
+        
         var toRemove = Nodes?.FirstOrDefault(data => data.Id == nodeData.Id);
 
         if (toRemove != null)

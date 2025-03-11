@@ -1,6 +1,86 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-5754719615933262362
+--- !u!114 &-7686420899551006572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 258b9a247b0d4766aef8d7549746b2a0, type: 3}
+  m_Name: Camp
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Camp
+  <Id>k__BackingField: 99d8518a-5a9d-44b2-be87-24abca5116a9
+  <Doors>k__BackingField:
+  - <Name>k__BackingField: Entrance
+    <Port>k__BackingField: input
+    <Id>k__BackingField: 5b31d176-60eb-4dfb-9507-86a3082b3f88
+    <SceneDestination>k__BackingField: 7caabf3a-f357-41c5-8253-cb01a2307682
+    <DoorDestination>k__BackingField: ba9e4921-22ec-4914-a4ff-cc08f334b4b0
+    <SetUp>k__BackingField: 1
+  - <Name>k__BackingField: Exit
+    <Port>k__BackingField: output
+    <Id>k__BackingField: 8d53df9c-343c-46df-879b-97eb641bfc25
+    <SceneDestination>k__BackingField: b07dd3a2-e598-4d35-89e6-61824a534873
+    <DoorDestination>k__BackingField: f36263e0-0c3b-41b9-9969-7d79145e5f33
+    <SetUp>k__BackingField: 1
+  <Position>k__BackingField: {x: 244.35999, y: 156}
+  <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 58e0e263843433e4d8d766fb709341dc, type: 3}
+--- !u!114 &-1773974611784092315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f42d0481cd21e584b905e353d21bb461, type: 3}
+  m_Name: b911a74c-c0b6-4de9-aea3-10a4d8278b82
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Start
+  <Id>k__BackingField: Start
+  <Doors>k__BackingField:
+  - <Name>k__BackingField: 
+    <Port>k__BackingField: output
+    <Id>k__BackingField: b911a74c-c0b6-4de9-aea3-10a4d8278b82
+    <SceneDestination>k__BackingField: 7caabf3a-f357-41c5-8253-cb01a2307682
+    <DoorDestination>k__BackingField: d452db77-2b30-456e-99a3-430b78ca38e1
+    <SetUp>k__BackingField: 1
+  <Position>k__BackingField: {x: -144.89743, y: 155.99998}
+--- !u!114 &-628428448409808008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 258b9a247b0d4766aef8d7549746b2a0, type: 3}
+  m_Name: ChurchEntrance
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: ChurchEntrance
+  <Id>k__BackingField: b07dd3a2-e598-4d35-89e6-61824a534873
+  <Doors>k__BackingField:
+  - <Name>k__BackingField: Entrance
+    <Port>k__BackingField: input
+    <Id>k__BackingField: f36263e0-0c3b-41b9-9969-7d79145e5f33
+    <SceneDestination>k__BackingField: 99d8518a-5a9d-44b2-be87-24abca5116a9
+    <DoorDestination>k__BackingField: 8d53df9c-343c-46df-879b-97eb641bfc25
+    <SetUp>k__BackingField: 1
+  - <Name>k__BackingField: Exit
+    <Port>k__BackingField: output
+    <Id>k__BackingField: ef1c2bd4-e70f-4a69-b898-e683508076c3
+    <SceneDestination>k__BackingField: 7cca88f9-7893-4574-beb4-a916adc78da0
+    <DoorDestination>k__BackingField: 4ad61d87-6a66-485a-8ab3-51dfacaede3b
+    <SetUp>k__BackingField: 1
+  <Position>k__BackingField: {x: 243.9999, y: -68.99999}
+  <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 667d20764247d8c478b70a952361348a, type: 3}
+--- !u!114 &-589510305525316834
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13,85 +93,22 @@ MonoBehaviour:
   m_Name: WolfsBattle
   m_EditorClassIdentifier: 
   <Name>k__BackingField: WolfsBattle
-  <Id>k__BackingField: ffc40bb6-6a50-4911-963a-a122a260aafa
+  <Id>k__BackingField: 7caabf3a-f357-41c5-8253-cb01a2307682
   <Doors>k__BackingField:
   - <Name>k__BackingField: Entrance
     <Port>k__BackingField: input
     <Id>k__BackingField: d452db77-2b30-456e-99a3-430b78ca38e1
     <SceneDestination>k__BackingField: Start
-    <DoorDestination>k__BackingField: e3573dce-0952-4cea-868b-a8b76c08f2e9
+    <DoorDestination>k__BackingField: b911a74c-c0b6-4de9-aea3-10a4d8278b82
     <SetUp>k__BackingField: 1
   - <Name>k__BackingField: Exit
     <Port>k__BackingField: output
     <Id>k__BackingField: ba9e4921-22ec-4914-a4ff-cc08f334b4b0
-    <SceneDestination>k__BackingField: db0426b6-506d-432d-9306-98363e5ab82c
+    <SceneDestination>k__BackingField: 99d8518a-5a9d-44b2-be87-24abca5116a9
     <DoorDestination>k__BackingField: 5b31d176-60eb-4dfb-9507-86a3082b3f88
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: 111, y: -127.5}
+  <Position>k__BackingField: {x: -2.0909529, y: 155.99998}
   <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 6f479e231edca6e4fbad47551ab1c0b6, type: 3}
---- !u!114 &-5342171128611722993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f42d0481cd21e584b905e353d21bb461, type: 3}
-  m_Name: e3573dce-0952-4cea-868b-a8b76c08f2e9
-  m_EditorClassIdentifier: 
-  <Name>k__BackingField: Start
-  <Id>k__BackingField: Start
-  <Doors>k__BackingField:
-  - <Name>k__BackingField: 
-    <Port>k__BackingField: output
-    <Id>k__BackingField: e3573dce-0952-4cea-868b-a8b76c08f2e9
-    <SceneDestination>k__BackingField: ffc40bb6-6a50-4911-963a-a122a260aafa
-    <DoorDestination>k__BackingField: d452db77-2b30-456e-99a3-430b78ca38e1
-    <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: -9, y: -116}
---- !u!114 &-4670582160552751365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 258b9a247b0d4766aef8d7549746b2a0, type: 3}
-  m_Name: ChurchBasement
-  m_EditorClassIdentifier: 
-  <Name>k__BackingField: ChurchBasement
-  <Id>k__BackingField: 8a280ddc-2920-4c14-9d9d-7468b0df47f3
-  <Doors>k__BackingField:
-  - <Name>k__BackingField: Entrance
-    <Port>k__BackingField: input
-    <Id>k__BackingField: f36263e0-0c3b-41b9-9969-7d79145e5f33
-    <SceneDestination>k__BackingField: 13651a18-b376-4027-94c6-ec155373d5b5
-    <DoorDestination>k__BackingField: ef1c2bd4-e70f-4a69-b898-e683508076c3
-    <SetUp>k__BackingField: 1
-  - <Name>k__BackingField: ForwardExit
-    <Port>k__BackingField: 
-    <Id>k__BackingField: ef1c2bd4-e70f-4a69-b898-e683508076c3
-    <SceneDestination>k__BackingField: 
-    <DoorDestination>k__BackingField: 
-    <SetUp>k__BackingField: 0
-  - <Name>k__BackingField: StairsDown
-    <Port>k__BackingField: 
-    <Id>k__BackingField: f185268d-cf73-4607-b605-4c46dbf614b2
-    <SceneDestination>k__BackingField: 
-    <DoorDestination>k__BackingField: 
-    <SetUp>k__BackingField: 0
-  - <Name>k__BackingField: LateralTunnel
-    <Port>k__BackingField: 
-    <Id>k__BackingField: c98db6ea-c693-4245-a465-5c6d43fda3ad
-    <SceneDestination>k__BackingField: 
-    <DoorDestination>k__BackingField: 
-    <SetUp>k__BackingField: 0
-  <Position>k__BackingField: {x: 269.00003, y: -641.646}
-  <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 4e44b34c9e749e247ae10a7f53b0a88f, type: 3}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,12 +122,14 @@ MonoBehaviour:
   m_Name: SceneGraph
   m_EditorClassIdentifier: 
   <Nodes>k__BackingField:
-  - {fileID: -5342171128611722993}
-  - {fileID: -5754719615933262362}
-  - {fileID: 8166504881398587796}
-  - {fileID: 8810401414542001299}
-  - {fileID: -4670582160552751365}
---- !u!114 &8166504881398587796
+  - {fileID: -1773974611784092315}
+  - {fileID: -589510305525316834}
+  - {fileID: -7686420899551006572}
+  - {fileID: -628428448409808008}
+  - {fileID: 8385673690239620187}
+  - {fileID: 6209600555624185908}
+  - {fileID: 4446128924508020463}
+--- !u!114 &4446128924508020463
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,26 +139,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 258b9a247b0d4766aef8d7549746b2a0, type: 3}
-  m_Name: Camp
+  m_Name: ChurchBasementOtherSide
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Camp
-  <Id>k__BackingField: db0426b6-506d-432d-9306-98363e5ab82c
+  <Name>k__BackingField: ChurchBasementOtherSide
+  <Id>k__BackingField: 052ce432-9bea-46d6-b130-7e86c9745966
   <Doors>k__BackingField:
-  - <Name>k__BackingField: Entrance
+  - <Name>k__BackingField: BossArenaEntrance
     <Port>k__BackingField: input
-    <Id>k__BackingField: 5b31d176-60eb-4dfb-9507-86a3082b3f88
-    <SceneDestination>k__BackingField: ffc40bb6-6a50-4911-963a-a122a260aafa
-    <DoorDestination>k__BackingField: ba9e4921-22ec-4914-a4ff-cc08f334b4b0
+    <Id>k__BackingField: 69690e82-0343-458c-8dcc-f75d91b8ca70
+    <SceneDestination>k__BackingField: ef005ea3-75d5-4326-bf4c-460026c3725f
+    <DoorDestination>k__BackingField: 35cd2e48-8229-4668-90d8-b799307e8fad
     <SetUp>k__BackingField: 1
-  - <Name>k__BackingField: Exit
-    <Port>k__BackingField: output
-    <Id>k__BackingField: 8d53df9c-343c-46df-879b-97eb641bfc25
-    <SceneDestination>k__BackingField: 13651a18-b376-4027-94c6-ec155373d5b5
-    <DoorDestination>k__BackingField: f36263e0-0c3b-41b9-9969-7d79145e5f33
+  - <Name>k__BackingField: SecondaryTunnel
+    <Port>k__BackingField: input
+    <Id>k__BackingField: 531a85c0-0b71-4aac-bb32-99d257c57de2
+    <SceneDestination>k__BackingField: ef005ea3-75d5-4326-bf4c-460026c3725f
+    <DoorDestination>k__BackingField: b59dee39-ad8b-4a0c-94a3-1b113511853f
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: 290, y: -142}
-  <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 58e0e263843433e4d8d766fb709341dc, type: 3}
---- !u!114 &8810401414542001299
+  - <Name>k__BackingField: MainTunnel
+    <Port>k__BackingField: input
+    <Id>k__BackingField: 1590e136-c0a0-4285-97cc-c066b6d353bf
+    <SceneDestination>k__BackingField: ef005ea3-75d5-4326-bf4c-460026c3725f
+    <DoorDestination>k__BackingField: 43c9be69-a3ef-4073-ada3-ebfcbb64e65d
+    <SetUp>k__BackingField: 1
+  <Position>k__BackingField: {x: 553.9403, y: 440.00012}
+  <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 4c3b47dbe3784b8479a098b17016cdca, type: 3}
+--- !u!114 &6209600555624185908
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -149,22 +174,75 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 258b9a247b0d4766aef8d7549746b2a0, type: 3}
-  m_Name: ChurchEntrance
+  m_Name: MainChurchBasement
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: ChurchEntrance
-  <Id>k__BackingField: 13651a18-b376-4027-94c6-ec155373d5b5
+  <Name>k__BackingField: MainChurchBasement
+  <Id>k__BackingField: ef005ea3-75d5-4326-bf4c-460026c3725f
+  <Doors>k__BackingField:
+  - <Name>k__BackingField: MainTunnelEntrance
+    <Port>k__BackingField: input
+    <Id>k__BackingField: 15ec4628-021c-44a1-9564-7c51df426196
+    <SceneDestination>k__BackingField: 7cca88f9-7893-4574-beb4-a916adc78da0
+    <DoorDestination>k__BackingField: a8de1bfc-3ce3-4510-a54f-0f4afb5c9a33
+    <SetUp>k__BackingField: 1
+  - <Name>k__BackingField: MainTunnelExit
+    <Port>k__BackingField: output
+    <Id>k__BackingField: 43c9be69-a3ef-4073-ada3-ebfcbb64e65d
+    <SceneDestination>k__BackingField: 052ce432-9bea-46d6-b130-7e86c9745966
+    <DoorDestination>k__BackingField: 1590e136-c0a0-4285-97cc-c066b6d353bf
+    <SetUp>k__BackingField: 1
+  - <Name>k__BackingField: SecondaryTunnelEntrance
+    <Port>k__BackingField: input
+    <Id>k__BackingField: e3b1933f-9893-40fb-83ac-6c3f081ebaae
+    <SceneDestination>k__BackingField: 7cca88f9-7893-4574-beb4-a916adc78da0
+    <DoorDestination>k__BackingField: 4c30222a-eaf4-49fb-ba02-5a8523c57de9
+    <SetUp>k__BackingField: 1
+  - <Name>k__BackingField: SecondaryTunnel (1)
+    <Port>k__BackingField: output
+    <Id>k__BackingField: b59dee39-ad8b-4a0c-94a3-1b113511853f
+    <SceneDestination>k__BackingField: 052ce432-9bea-46d6-b130-7e86c9745966
+    <DoorDestination>k__BackingField: 531a85c0-0b71-4aac-bb32-99d257c57de2
+    <SetUp>k__BackingField: 1
+  - <Name>k__BackingField: BossEntrance
+    <Port>k__BackingField: output
+    <Id>k__BackingField: 35cd2e48-8229-4668-90d8-b799307e8fad
+    <SceneDestination>k__BackingField: 052ce432-9bea-46d6-b130-7e86c9745966
+    <DoorDestination>k__BackingField: 69690e82-0343-458c-8dcc-f75d91b8ca70
+    <SetUp>k__BackingField: 1
+  <Position>k__BackingField: {x: 500.94022, y: 156.00009}
+  <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 19dd903d99158e5409d93f9499a6abee, type: 3}
+--- !u!114 &8385673690239620187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 258b9a247b0d4766aef8d7549746b2a0, type: 3}
+  m_Name: ChurchBasementEntrance
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: ChurchBasementEntrance
+  <Id>k__BackingField: 7cca88f9-7893-4574-beb4-a916adc78da0
   <Doors>k__BackingField:
   - <Name>k__BackingField: Entrance
     <Port>k__BackingField: input
-    <Id>k__BackingField: f36263e0-0c3b-41b9-9969-7d79145e5f33
-    <SceneDestination>k__BackingField: db0426b6-506d-432d-9306-98363e5ab82c
-    <DoorDestination>k__BackingField: 8d53df9c-343c-46df-879b-97eb641bfc25
+    <Id>k__BackingField: 4ad61d87-6a66-485a-8ab3-51dfacaede3b
+    <SceneDestination>k__BackingField: b07dd3a2-e598-4d35-89e6-61824a534873
+    <DoorDestination>k__BackingField: ef1c2bd4-e70f-4a69-b898-e683508076c3
     <SetUp>k__BackingField: 1
-  - <Name>k__BackingField: Exit
+  - <Name>k__BackingField: SecondaryTunnel
     <Port>k__BackingField: output
-    <Id>k__BackingField: ef1c2bd4-e70f-4a69-b898-e683508076c3
-    <SceneDestination>k__BackingField: 8a280ddc-2920-4c14-9d9d-7468b0df47f3
-    <DoorDestination>k__BackingField: f36263e0-0c3b-41b9-9969-7d79145e5f33
+    <Id>k__BackingField: 4c30222a-eaf4-49fb-ba02-5a8523c57de9
+    <SceneDestination>k__BackingField: ef005ea3-75d5-4326-bf4c-460026c3725f
+    <DoorDestination>k__BackingField: e3b1933f-9893-40fb-83ac-6c3f081ebaae
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: 290.00006, y: -351.1625}
-  <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 667d20764247d8c478b70a952361348a, type: 3}
+  - <Name>k__BackingField: MainTunnel
+    <Port>k__BackingField: output
+    <Id>k__BackingField: a8de1bfc-3ce3-4510-a54f-0f4afb5c9a33
+    <SceneDestination>k__BackingField: ef005ea3-75d5-4326-bf4c-460026c3725f
+    <DoorDestination>k__BackingField: 15ec4628-021c-44a1-9564-7c51df426196
+    <SetUp>k__BackingField: 1
+  <Position>k__BackingField: {x: 542.94025, y: -68.99992}
+  <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 4e44b34c9e749e247ae10a7f53b0a88f, type: 3}

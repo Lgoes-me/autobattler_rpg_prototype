@@ -1681,7 +1681,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5181026332914818110, guid: 88ce5f1a7b1526a45b9e3e65d5064074, type: 3}
       propertyPath: orthographic size
-      value: 14
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5205475090520727093, guid: 88ce5f1a7b1526a45b9e3e65d5064074, type: 3}
       propertyPath: m_NavMeshData
@@ -1713,7 +1713,7 @@ PrefabInstance:
       objectReference: {fileID: 56810693409461117}
     - target: {fileID: 5378461042654118985, guid: 88ce5f1a7b1526a45b9e3e65d5064074, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.1
+      value: 10.26
       objectReference: {fileID: 0}
     - target: {fileID: 5378461042654118985, guid: 88ce5f1a7b1526a45b9e3e65d5064074, type: 3}
       propertyPath: m_LocalPosition.y
