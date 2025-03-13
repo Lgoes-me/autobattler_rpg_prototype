@@ -34,9 +34,6 @@ public class Pawn : BasePawn
     public event PawnDomainChanged LifeChanged;
     public event PawnDomainChanged ManaChanged;
     public event PawnDomainChanged BuffsChanged;
-    
-    public delegate void PawnDomainAbilitySelected(Ability ability);
-    public event PawnDomainAbilitySelected AbilitySelected;
 
     public delegate void PawnDomainBattleStarted(Battle battle);
     public event PawnDomainBattleStarted BattleStarted;
@@ -214,12 +211,6 @@ public class Pawn : BasePawn
         
         return stats;
     }
-
-    public void DoSpecial(AbilityData abilityData, PawnController abilityUser, Battle battle)
-    {
-        var ability = abilityData.ToDomain(abilityUser, true);
-        AbilitySelected?.Invoke(ability);
-    }
     
     public Ability GetCurrentAttackIntent(
         PawnController abilityUser, 
@@ -229,13 +220,10 @@ public class Pawn : BasePawn
 
         abilities.AddRange(Abilities);
 
-        if (Team is TeamType.Enemies)
-        {
-            var specialAttacks = SpecialAbilities.Where(a => a.ResourceData.GetCost() <=  Mana).ToList();
-            abilities.AddRange(specialAttacks);
-        }
+        var specialAttacks = SpecialAbilities.Where(a => a.ResourceData.GetCost() <=  Mana).ToList();
+        abilities.AddRange(specialAttacks);
 
-        return abilities.OrderByDescending(a => a.GetPriority(abilityUser, battle)).First().ToDomain(abilityUser, false);
+        return abilities.OrderByDescending(a => a.GetPriority(abilityUser, battle)).First().ToDomain(abilityUser);
     }
 }
 

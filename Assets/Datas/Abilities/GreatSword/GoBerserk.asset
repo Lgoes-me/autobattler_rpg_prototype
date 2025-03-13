@@ -32,7 +32,7 @@ MonoBehaviour:
     - rid: 4872000037008179202
       type: {class: ManaResourceData, ns: , asm: Assembly-CSharp}
       data:
-        <ManaCost>k__BackingField: 10
+        <ManaCost>k__BackingField: 50
     - rid: 4872000037008179220
       type: {class: InstantActionData, ns: , asm: Assembly-CSharp}
       data: 

@@ -8,6 +8,5 @@ public abstract class PriorityModifier : IComponentData
     public abstract int AlterPriority(
         PawnController abilityUser,
         Battle battle,
-        FocusData focusData,
         int priority);
 }

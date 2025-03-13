@@ -18,7 +18,8 @@ public class Ability
     private List<PawnController> FocusedPawns { get; set; }
     public PawnController FocusedPawn => FocusedPawns[0];
     private bool IsInRange => Range >= (FocusedPawn.transform.position - AbilityUser.transform.position).magnitude;
-    public bool IsSpecial { get; }
+    
+    public bool IsSpecial => Resource is not NoResourceComponent;
     public bool Used { get; set; }
 
     public Ability(
@@ -27,8 +28,7 @@ public class Ability
         float delay,
         float range,
         List<AbilityBehaviour> abilityBehaviours,
-        AbilityResourceComponent resource,
-        bool isSpecial)
+        AbilityResourceComponent resource)
     {
         AbilityUser = abilityUser;
         Animation = animation;
@@ -37,7 +37,6 @@ public class Ability
         
         AbilityBehaviours = abilityBehaviours;
         Resource = resource;
-        IsSpecial = isSpecial;
         
         FocusedPawns = new List<PawnController>();
     }

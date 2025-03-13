@@ -11,7 +11,7 @@ public class AbilityData : ScriptableObject
     [field: SerializeField] [field: SerializeReference] public ResourceData ResourceData { get; private set; }
     [field: SerializeField] [field: SerializeReference] private PriorityModifier[] Priorities { get; set; }
 
-    public Ability ToDomain(PawnController abilityUser, bool isSpecial)
+    public Ability ToDomain(PawnController abilityUser)
     {
         var resourceComponent = ResourceData.ToDomain(abilityUser);
         var abilityBehaviours = AbilityBehaviours.Select(a => a.ToDomain(abilityUser)).ToList();
@@ -22,17 +22,21 @@ public class AbilityData : ScriptableObject
             Delay, 
             Range,
             abilityBehaviours,
-            resourceComponent,
-            isSpecial); 
+            resourceComponent); 
     }
 
     public int GetPriority(PawnController abilityUser, Battle battle)
     {
         var priority = 1;
+
+        if (ResourceData is not NoResourceData)
+        {
+            priority++;
+        }
         
         foreach (var priorityModifier in Priorities)
         {
-            priority = priorityModifier.AlterPriority(abilityUser, battle, AbilityBehaviours[0].FocusData, priority);
+            priority = priorityModifier.AlterPriority(abilityUser, battle, priority);
         }
         
         return priority;

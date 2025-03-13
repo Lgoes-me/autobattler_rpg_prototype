@@ -29,8 +29,6 @@ public class PawnController : MonoBehaviour
         {
             CharacterController.SetWeapon(pawn.Weapon);
         }
-
-        Pawn.AbilitySelected += RealizaHabilidade;
     }
 
     public void RemoveCanvasController()
@@ -59,25 +57,6 @@ public class PawnController : MonoBehaviour
 
         Ability = Pawn.GetCurrentAttackIntent(this, BattleController.Battle);
         Ability.ChooseFocus(this, BattleController.Battle);
-
-        RealizaHabilidade(Ability);
-    }
-
-    private void RealizaHabilidade(Ability ability)
-    {
-        if (Ability is {IsSpecial: true})
-            return;
-
-        if (ability.IsSpecial)
-        {
-            Ability = ability;
-            Ability.ChooseFocus(this, BattleController.Battle);
-            
-            CharacterController.SetAnimationState(new IdleState());
-            return;
-        }
-
-        Ability = ability;
     }
 
     private void DoAbility(Ability ability)
