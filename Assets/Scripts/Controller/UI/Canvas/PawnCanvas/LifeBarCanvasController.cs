@@ -12,12 +12,12 @@ public class LifeBarCanvasController : BasePawnCanvasController
     {
         base.Init(pawnController);
         
-        var fillAmount = Pawn.Health / (float) Pawn.MaxHealth;
+        var fillAmount = Pawn.Health / (float) Pawn.GetPawnStats().Health;
 
         LifeBar.fillAmount = fillAmount;
         BackgroundLifeBar.fillAmount = fillAmount;
 
-        ManaBar.fillAmount = Pawn.HasMana ? Pawn.Mana / (float) Pawn.MaxMana : 0;
+        ManaBar.fillAmount = Pawn.HasMana ? Pawn.Mana / (float) Pawn.GetPawnStats().Mana : 0;
 
         Pawn.LifeChanged += UpdateLife;
         Pawn.ManaChanged += UpdateMana;
@@ -27,7 +27,7 @@ public class LifeBarCanvasController : BasePawnCanvasController
     private void UpdateLife()
     {
         var pawn = Pawn;
-        var fillAmount = pawn.Health / (float) pawn.MaxHealth;
+        var fillAmount = pawn.Health / (float) pawn.GetPawnStats().Health;
         LifeBar.fillAmount = fillAmount;
 
         if (!gameObject.activeInHierarchy)
@@ -50,7 +50,7 @@ public class LifeBarCanvasController : BasePawnCanvasController
         if (!Pawn.HasMana)
             return;
 
-        ManaBar.fillAmount = Pawn.Mana / (float) Pawn.MaxMana;
+        ManaBar.fillAmount = Pawn.Mana / (float) Pawn.GetPawnStats().Mana;
     }
 
     protected virtual void UpdateBuffs()

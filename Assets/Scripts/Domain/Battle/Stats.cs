@@ -3,14 +3,19 @@
 [Serializable]
 public class Stats
 {
+    public int Health { get; internal set; }
+    public int Mana { get; internal set; }
+    
     public int Strength { get; private set; }
     public int Arcane { get; private set; }
     
     public int PhysicalDefence { get; private set; }
     public int MagicalDefence { get; private set; }
     
-    public Stats(int strength, int arcane, int physicalDefence, int magicalDefence)
+    public Stats(int health, int mana,int strength, int arcane, int physicalDefence, int magicalDefence)
     {
+        Health = health;
+        Mana = mana;
         Strength = strength;
         Arcane = arcane;
         PhysicalDefence = physicalDefence;

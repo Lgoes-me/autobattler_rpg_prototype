@@ -16,7 +16,8 @@ MonoBehaviour:
   <Delay>k__BackingField: 1
   <Range>k__BackingField: 5
   <AbilityBehaviours>k__BackingField:
-  - <Effects>k__BackingField: []
+  - <Effects>k__BackingField:
+    - rid: 2079880472041881600
     <FocusData>k__BackingField:
       rid: 8813335080079720458
     <ActionData>k__BackingField:
@@ -29,6 +30,12 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 2079880472041881600
+      type: {class: DamageEffectData, ns: , asm: Assembly-CSharp}
+      data:
+        <Damage>k__BackingField:
+          <Multiplier>k__BackingField: 0
+          <Type>k__BackingField: 1
     - rid: 4872000021176254468
       type: {class: ManaResourceData, ns: , asm: Assembly-CSharp}
       data:

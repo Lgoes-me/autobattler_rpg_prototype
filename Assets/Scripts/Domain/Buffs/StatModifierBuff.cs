@@ -18,6 +18,8 @@ public class StatModifierBuff : Buff
     public Stats ProcessStats(Stats stats)
     {
         return new Stats(
+            stats.Health + Variation.Health,
+            stats.Mana + Variation.Mana,
             stats.Strength + Variation.Strength,
             stats.Arcane + Variation.Arcane,
             stats.PhysicalDefence + Variation.PhysicalDefence,

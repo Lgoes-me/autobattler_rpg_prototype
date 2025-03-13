@@ -28,46 +28,30 @@ public class Battle
     public PawnController QueryEnemies(PawnController user, FocusType focusType, int error)
     {
         var pawns = user.Pawn.Team == TeamType.Player ? EnemyPawns : PlayerPawns;
-        var selectedPawns =
-            pawns
-            .Where(p => p.PawnState.CanBeTargeted)
-            .OrderBy(OrderPredicate)
-            .Take(1 + error)
-            .ToList();
-
-        float OrderPredicate(PawnController pawn)
-        {
-            return focusType switch
-            {
-                FocusType.Closest => (pawn.transform.position - user.transform.position).sqrMagnitude,
-                FocusType.Farthest => 1000 - (pawn.transform.position - user.transform.position).sqrMagnitude,
-                FocusType.LowestLife => pawn.Pawn.Health,
-                FocusType.HighestLife => 1000 - pawn.Pawn.Health,
-                _ => throw new ArgumentOutOfRangeException()
-            };
-        }
-        
-        if (selectedPawns.Count == 0)
-            return null;
-
-        return selectedPawns[UnityEngine.Random.Range(0, selectedPawns.Count)];
+        return Query(pawns, user, focusType, error);
     }
 
     public PawnController QueryAlly(PawnController user, FocusType focusType, bool canTargetSelf)
     {
         var pawns = user.Pawn.Team == TeamType.Player ? EnemyPawns : PlayerPawns;
+        
+        if (!canTargetSelf)
+        {
+            pawns.Remove(user);
+        }
+
+        return Query(pawns, user, focusType, 0);
+    }
+    
+    private PawnController Query(List<PawnController> pawns, PawnController user, FocusType focusType, int error)
+    {
         var selectedPawns = 
             pawns
                 .Where(p => p.PawnState.CanBeTargeted)
                 .OrderBy(OrderPredicate)
-                .Take(1)
+                .Take(1 + error)
                 .ToList();
 
-        if (!canTargetSelf)
-        {
-            selectedPawns.Remove(user);
-        }
-        
         float OrderPredicate(PawnController pawn)
         {
             return focusType switch
@@ -85,7 +69,6 @@ public class Battle
 
         return selectedPawns[UnityEngine.Random.Range(0, selectedPawns.Count)];
     }
-
     public List<PawnController> GetInitiativeList()
     {
         return Pawns.OrderByDescending(p => p.Pawn.Initiative).ToList();

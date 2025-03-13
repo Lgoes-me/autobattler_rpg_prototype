@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: Wolf
   m_EditorClassIdentifier: 
   <Id>k__BackingField: Wolf
-  <Health>k__BackingField: 15
-  <Mana>k__BackingField: 0
   <Initiative>k__BackingField: 1
   <VisionRange>k__BackingField: 5
   <AttackRange>k__BackingField: 2
@@ -23,6 +21,8 @@ MonoBehaviour:
   <Character>k__BackingField: {fileID: 1670507725838462388, guid: 9b202b8d77052b04dbbc13b4cdaa78d5, type: 3}
   <Weapon>k__BackingField: {fileID: 0}
   <Stats>k__BackingField:
+    <Health>k__BackingField: 20
+    <Mana>k__BackingField: 0
     <Strength>k__BackingField: 2
     <Arcane>k__BackingField: 0
     <PhysicalDefence>k__BackingField: 1

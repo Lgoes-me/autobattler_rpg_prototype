@@ -6,8 +6,6 @@ using UnityEngine;
 public class PawnData : ScriptableObject
 {
     [field: SerializeField] public string Id { get; private set; }
-    [field: SerializeField] private int Health { get; set; }
-    [field: SerializeField] private int Mana { get; set; }
     [field: SerializeField] private int Initiative { get; set; }
     [field: SerializeField] private int VisionRange { get; set; }
     [field: SerializeField] private int AttackRange { get; set; }
@@ -27,8 +25,6 @@ public class PawnData : ScriptableObject
         
         return new Pawn(
             Id, 
-            Health, 
-            Mana, 
             Initiative,
             VisionRange,
             AttackRange,

@@ -13,14 +13,16 @@ MonoBehaviour:
   m_Name: Wizard
   m_EditorClassIdentifier: 
   <Id>k__BackingField: Wizard
-  <Health>k__BackingField: 30
-  <Mana>k__BackingField: 100
   <Initiative>k__BackingField: 0
+  <VisionRange>k__BackingField: 0
+  <AttackRange>k__BackingField: 0
   <EnemyFocusPreference>k__BackingField: 2
   <AllyFocusPreference>k__BackingField: 3
   <Character>k__BackingField: {fileID: 8745810780067649586, guid: 3e8c381ea9e9c2849b3b6f09c77c6471, type: 3}
   <Weapon>k__BackingField: {fileID: 3501364879892670405, guid: 3511ce8c2a2afc5448297480dbc98944, type: 3}
   <Stats>k__BackingField:
+    <Health>k__BackingField: 40
+    <Mana>k__BackingField: 100
     <Strength>k__BackingField: 0
     <Arcane>k__BackingField: 2
     <PhysicalDefence>k__BackingField: 0

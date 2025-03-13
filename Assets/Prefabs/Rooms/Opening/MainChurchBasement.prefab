@@ -2014,7 +2014,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 5e16a5c5b284ea4408ff5144f14377d1, type: 2}
     - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
       propertyPath: <EndBattleAction>k__BackingField
-      value: 8813334712271503372
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
       propertyPath: <Enemies>k__BackingField.Array.size

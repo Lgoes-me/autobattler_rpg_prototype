@@ -5,10 +5,9 @@ using UnityEngine;
 [System.Serializable]
 public class Pawn : BasePawn
 {
-    public int MaxHealth { get; internal set; }
+    public int Level { get; internal set; }
+    
     public int Health { get; internal set; }
-
-    public int MaxMana { get; internal set; }
     public int Mana { get;  private set; }
     
     public int Initiative { get; }
@@ -27,7 +26,7 @@ public class Pawn : BasePawn
     public Dictionary<string, Buff> Buffs { get; private set; }
     public TeamType Team { get; }
 
-    public bool HasMana => SpecialAbilities.Count > 0 && MaxMana > 0;
+    public bool HasMana => SpecialAbilities.Count > 0 && Stats.Mana > 0;
     public bool IsAlive => Health > 0;
 
     public delegate void PawnDomainChanged();
@@ -42,8 +41,6 @@ public class Pawn : BasePawn
     public event PawnDomainBattleFinished BattleFinished;
     
     public Pawn(string id,
-        int health,
-        int mana,
         int initiative,
         int visionRange,
         int attackRange,
@@ -58,10 +55,10 @@ public class Pawn : BasePawn
         TeamType team,
         List<CharacterInfo> characterInfos) : base(id, character, weapon, characterInfos)
     {
-        MaxHealth = health;
-        Health = health;
-        MaxMana = mana;
+        Level = 1;
+        Health = stats.Health;
         Mana = 0;
+        
         Initiative = initiative;
         VisionRange = visionRange;
         AttackRange = attackRange;
@@ -95,7 +92,8 @@ public class Pawn : BasePawn
     
     public void SetPawnInfo(PawnInfo pawnInfo)
     {
-        Health = MaxHealth - pawnInfo.MissingHealth;
+        Level = pawnInfo.Level;
+        Health = Stats.Health - pawnInfo.MissingHealth;
         Mana = 0;
         Buffs = new Dictionary<string, Buff>();
         
@@ -146,54 +144,53 @@ public class Pawn : BasePawn
 
     public PawnInfo ResetPawnInfo()
     {
-        var pawnInfo = new PawnInfo(0);
+        var pawnInfo = new PawnInfo(Level,0);
         SetPawnInfo(pawnInfo);
         return pawnInfo;
     }
 
     public PawnInfo GetPawnInfo()
     {
-        return new PawnInfo(MaxHealth -  Health);
+        return new PawnInfo(Level, Stats.Health -  Health);
     }
 
     public void ReceiveDamage(DamageDomain damage)
     {
         var reducedDamage = GetPawnStats().GetReducedDamage(damage);
-        Health = Mathf.Clamp(Health - reducedDamage, 0, MaxHealth);
+        Health = Mathf.Clamp(Health - reducedDamage, 0, Stats.Health);
         LifeChanged?.Invoke();
     }
 
     public void ReceiveDamage(int damage)
     {
-        Health = Mathf.Clamp(Health - damage, 0, MaxHealth);
+        Health = Mathf.Clamp(Health - damage, 0, Stats.Health);
         LifeChanged?.Invoke();
     }
 
-    
     public void ReceiveHeal(int healValue, bool canRevive)
     {
         if (!canRevive && !IsAlive)
             return;
         
-        Health = Mathf.Clamp(Health + healValue, 0, MaxHealth);
+        Health = Mathf.Clamp(Health + healValue, 0, Stats.Health);
         LifeChanged?.Invoke();
     }
     
     public void EndOfBattleHeal()
     {
-        Health = Mathf.Clamp(Health + 15, 0, MaxHealth);
+        Health = Mathf.Clamp(Health + 15, 0, Stats.Health);
         LifeChanged?.Invoke();
     }
 
     public void GainMana()
     {
-        Mana = Mathf.Clamp(Mana + 10, 0,MaxMana);
+        Mana = Mathf.Clamp(Mana + 10, 0, Stats.Mana);
         ManaChanged?.Invoke();
     }
     
     public void SpentMana(int manaCost)
     {
-        Mana = Mathf.Clamp(Mana - manaCost, 0, MaxMana);
+        Mana = Mathf.Clamp(Mana - manaCost, 0, Stats.Mana);
         ManaChanged?.Invoke();
     }
 

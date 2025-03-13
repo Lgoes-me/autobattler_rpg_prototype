@@ -32,7 +32,7 @@ public class CorridorAreaController : SpawnController
 
     protected async void UseCorridor()
     {
-        //await this.WaitToArriveAtDestination(Application.Instance.PlayerManager.NavMeshAgent, SpawnPoint.position);
+        await this.WaitToArriveAtDestination(Application.Instance.PlayerManager.NavMeshAgent, SpawnPoint.position);
         Application.Instance.SceneManager.ChangeContext(Spawn);
     }
 }

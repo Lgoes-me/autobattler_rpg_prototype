@@ -15,11 +15,15 @@ public class ArchetypeFactory
                         if(rarity is Rarity.Deactivated)
                             return;
                         
-                        var s = new StatsData(0, 0, 1, 0);
+                        var s = new StatsData();
+                        s.PhysicalDefence = 1;
+                        
                         var b = new StatModifierBuff(s.ToDomain(), "ProtecaoCavalereica", -1);
                         GiveBuffToPlayerTeam(battle, b);
 
-                        var s2 = new StatsData(0, 0, 1, 0);
+                        var s2 = new StatsData();
+                        s2.PhysicalDefence = 1;
+                        
                         var b2 = new StatModifierBuff(s2.ToDomain(), "Cavaleiros", -1);
 
                         GiveBuffToArchetypeInPlayerTeam(battle, b2, ArchetypeIdentifier.Cavaleiros);
@@ -31,12 +35,14 @@ public class ArchetypeFactory
             {
                 new OnSpecialAttackEventListener()
                 {
-                    (battle, user, ability, rarity) =>
+                    (battle, _, _, rarity) =>
                     {
                         if(rarity is Rarity.Deactivated)
                             return;
 
-                        var s = new StatsData(0, 1, 0, 0);
+                        var s = new StatsData();
+                        s.Arcane = 1;
+                        
                         var b = new StatModifierBuff(s.ToDomain(), "Magos", -1, true);
 
                         GiveBuffToArchetypeInPlayerTeam(battle, b, ArchetypeIdentifier.Magos);
@@ -53,7 +59,12 @@ public class ArchetypeFactory
                         if(rarity is Rarity.Deactivated)
                             return;
 
-                        var s = new StatsData(1, 1, 1, 1);
+                        var s = new StatsData();
+                        s.Strength = 1;
+                        s.Arcane = 1;
+                        s.PhysicalDefence = 1;
+                        s.MagicalDefence = 1;
+                        
                         var b = new StatModifierBuff(s.ToDomain(), "Herois", -1);
 
                         GiveBuffToArchetypeInPlayerTeam(battle, b, ArchetypeIdentifier.Herois);
@@ -71,7 +82,9 @@ public class ArchetypeFactory
                         if(rarity is Rarity.Deactivated)
                             return;
 
-                        var s = new StatsData(0, 0, -2, 0);
+                        var s = new StatsData();
+                        s.PhysicalDefence = -2;
+                        
                         var b = new StatModifierBuff(s.ToDomain(), "Hunters", -1);
 
                         GiveBuffToEnemyTeam(battle, b);
@@ -88,7 +101,9 @@ public class ArchetypeFactory
                         if(rarity is Rarity.Deactivated)
                             return;
 
-                        var s = new StatsData(-3, 0, 0, 0);
+                        var s = new StatsData();
+                        s.Strength = -3;
+                        
                         var b = new StatModifierBuff(s.ToDomain(), "Weakener", -1);
 
                         GiveBuffToEnemyTeam(battle,b);

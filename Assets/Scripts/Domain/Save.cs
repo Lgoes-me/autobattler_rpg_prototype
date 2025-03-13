@@ -34,7 +34,7 @@ public class Save : ISavable
         LastBonfireSpawn = null;
         SelectedParty = new Dictionary<string, PawnInfo>
         {
-            {"Guts", new PawnInfo(0)}, {"Hunter", new PawnInfo(0)}
+            {"Guts", new PawnInfo()}, {"Hunter", new PawnInfo()}
         };
         DefeatedEnemies = new List<string>();
         Blessings = new List<BlessingIdentifier>();
