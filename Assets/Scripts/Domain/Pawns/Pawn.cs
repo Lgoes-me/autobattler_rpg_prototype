@@ -16,6 +16,7 @@ public class Pawn : BasePawn
     public int AttackRange { get; }
     
     private Stats Stats { get; }
+    private LevelUpStats LevelUpStats { get; }
     public FocusType EnemyFocusPreference { get; } 
     public FocusType AllyFocusPreference { get; }
     
@@ -40,29 +41,35 @@ public class Pawn : BasePawn
     public delegate void PawnDomainBattleFinished();
     public event PawnDomainBattleFinished BattleFinished;
     
-    public Pawn(string id,
+    public Pawn(
+        int level,
+        string id,
         int initiative,
         int visionRange,
         int attackRange,
         CharacterController character,
         WeaponController weapon,
         Stats stats,
-        FocusType enemyFocusPreference, 
+        LevelUpStats levelUpStats,
+        FocusType enemyFocusPreference,
         FocusType allyFocusPreference,
         List<AbilityData> abilities,
-        List<AbilityData> specialAbilities, 
+        List<AbilityData> specialAbilities,
         List<ArchetypeIdentifier> archetypes,
         TeamType team,
         List<CharacterInfo> characterInfos) : base(id, character, weapon, characterInfos)
     {
-        Level = 1;
+        Level = level;
         Health = stats.Health;
-        Mana = 0;
         
         Initiative = initiative;
         VisionRange = visionRange;
         AttackRange = attackRange;
         Stats = stats;
+        
+        LevelUpStats = levelUpStats;
+        LevelUpStats.EvaluateLevel(Level);
+        
         EnemyFocusPreference = enemyFocusPreference;
         AllyFocusPreference = allyFocusPreference;
         Abilities = abilities;
@@ -95,6 +102,8 @@ public class Pawn : BasePawn
         Level = pawnInfo.Level;
         Health = Stats.Health - pawnInfo.MissingHealth;
         Mana = 0;
+        LevelUpStats.EvaluateLevel(Level);
+        
         Buffs = new Dictionary<string, Buff>();
         
         LifeChanged?.Invoke();
@@ -197,6 +206,9 @@ public class Pawn : BasePawn
     public Stats GetPawnStats()
     {
         var stats = Stats;
+        var levelStats = LevelUpStats.CurrentStats;
+
+        //stats.Add(levelStats);
         
         foreach (var(_, buff) in Buffs)
         {

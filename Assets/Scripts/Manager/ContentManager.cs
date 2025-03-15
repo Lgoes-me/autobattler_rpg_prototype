@@ -13,6 +13,6 @@ public class ContentManager : MonoBehaviour
     
     public Pawn GetPawnDomainFromBase(BasePawn basePawn)
     {
-        return AvailablePawns.First(p => p.Id == basePawn.Id).ToDomain(TeamType.Player);
+        return AvailablePawns.First(p => p.Id == basePawn.Id).ToDomain(TeamType.Player, 1);
     }
 }

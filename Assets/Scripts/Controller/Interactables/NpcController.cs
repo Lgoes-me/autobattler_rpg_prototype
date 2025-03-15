@@ -5,7 +5,6 @@ using UnityEngine.AI;
 public class NpcController : MonoBehaviour, IInteractableListener
 {
     [field: SerializeField] private PawnData PawnData { get; set; }
-    [field: SerializeField] private PawnController PawnController { get; set; }
     [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
     [field: SerializeField] private DialogueData Dialogue { get; set; }
     [field: SerializeField] private Action PathCallback { get; set; }
@@ -20,9 +19,6 @@ public class NpcController : MonoBehaviour, IInteractableListener
     public NpcController Init(PawnData pawnData)
     {
         PawnData = pawnData;
-
-        var pawn = PawnData.ToDomain(TeamType.Player);
-        PawnController.Init(pawn);
 
         return this;
     }

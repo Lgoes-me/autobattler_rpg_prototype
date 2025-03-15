@@ -13,24 +13,25 @@ public class PawnData : ScriptableObject
     [field: SerializeField] private FocusType AllyFocusPreference { get; set; }
     [field: SerializeField] private CharacterController Character { get; set; }
     [field: SerializeField] private WeaponController Weapon { get; set; }
-    [field: SerializeField] private StatsData Stats { get; set; }
+    [field: SerializeField] private StatsData BaseStats { get; set; }
+    [field: SerializeField] private LevelUpStatsData LevelUpStats { get; set; }
     [field: SerializeField] private List<AbilityData> Abilities { get; set; }
     [field: SerializeField] private List<AbilityData> SpecialAbilities { get; set; }
     [field: SerializeField] private List<ArchetypeIdentifier> Archetypes { get; set; }
     [field: SerializeField] private List<CharacterInfo> CharacterInfos { get; set; }
 
-    public Pawn ToDomain(TeamType team)
+    public Pawn ToDomain(TeamType team, int level)
     {
-        var stats = Stats.ToDomain();
-        
         return new Pawn(
+            level,
             Id, 
             Initiative,
             VisionRange,
             AttackRange,
             Character, 
             Weapon, 
-            stats,
+            BaseStats.ToDomain(),
+            LevelUpStats.ToDomain(),
             EnemyFocusPreference,
             AllyFocusPreference,
             Abilities, 

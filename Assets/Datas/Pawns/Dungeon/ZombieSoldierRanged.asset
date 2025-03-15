@@ -20,13 +20,27 @@ MonoBehaviour:
   <AllyFocusPreference>k__BackingField: 1
   <Character>k__BackingField: {fileID: 8201863896689888091, guid: 5f7b15e6bd7c2c34cb8b766da777d2be, type: 3}
   <Weapon>k__BackingField: {fileID: 3501364879892670405, guid: 01aef3c8edc6d944fb5ed5809364a1ee, type: 3}
-  <Stats>k__BackingField:
-    <Health>k__BackingField: 10
+  <BaseStats>k__BackingField:
+    <Health>k__BackingField: 0
     <Mana>k__BackingField: 0
-    <Strength>k__BackingField: 2
+    <Strength>k__BackingField: 0
     <Arcane>k__BackingField: 0
     <PhysicalDefence>k__BackingField: 0
     <MagicalDefence>k__BackingField: 0
+  <LevelStats>k__BackingField:
+    <MaxLevelStatsStats>k__BackingField:
+      <Health>k__BackingField: 0
+      <Mana>k__BackingField: 0
+      <Strength>k__BackingField: 0
+      <Arcane>k__BackingField: 0
+      <PhysicalDefence>k__BackingField: 0
+      <MagicalDefence>k__BackingField: 0
+    <LevelUpCurve>k__BackingField:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
   <Abilities>k__BackingField:
   - {fileID: 11400000, guid: 4d5322942f707264790c540024917a6c, type: 2}
   <SpecialAbilities>k__BackingField: []

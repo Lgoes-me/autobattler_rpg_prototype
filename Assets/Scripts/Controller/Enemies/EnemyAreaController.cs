@@ -54,12 +54,13 @@ public class EnemyInfo
     
     [field: SerializeField] public EnemyController EnemyController { get; set; }
     [field: SerializeField] private PawnData PawnData { get; set; }
+    [field: SerializeField] private int Level { get; set; } = 1;
     
     public PawnController PawnController => EnemyController.PawnController;
 
     public void PreparePawn()
     {
-        var pawn = PawnData.ToDomain(TeamType.Enemies);
+        var pawn = PawnData.ToDomain(TeamType.Enemies, Level);
         PawnController.Init(pawn);
     }
 }
