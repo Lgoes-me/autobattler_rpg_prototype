@@ -5,6 +5,7 @@ public class InterfaceManager : MonoBehaviour
 {
     [field: SerializeField] private GameObject BattleCanvas { get; set; }
     [field: SerializeField] private GameObject BattleLostCanvas { get; set; }
+    [field: SerializeField] private GameObject PrizeCanvas { get; set; }
     
     [field: SerializeField] private List<BlessingCanvasController> BlessingCanvases { get; set; }
     [field: SerializeField] private List<LifeBarCanvasController> PawnCanvases { get; set; }
