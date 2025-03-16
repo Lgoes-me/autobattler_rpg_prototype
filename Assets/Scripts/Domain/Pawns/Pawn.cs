@@ -204,11 +204,8 @@ public class Pawn : BasePawn
     }
 
     public Stats GetPawnStats()
-    {
-        var stats = Stats;
-        var levelStats = LevelUpStats.CurrentStats;
-
-        //stats.Add(levelStats);
+    {        
+        var stats = Stats + LevelUpStats.CurrentStats;
         
         foreach (var(_, buff) in Buffs)
         {

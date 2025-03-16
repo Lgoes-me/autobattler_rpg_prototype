@@ -17,7 +17,7 @@ public class LevelUpStats
     {
         var value = LevelUpCurve.Evaluate(level / (float) 10);
 
-        CurrentStats =new Stats(
+        CurrentStats = new Stats(
             Mathf.CeilToInt(MaxLevelStats.Health * value),
             Mathf.CeilToInt(MaxLevelStats.Mana * value),
             Mathf.CeilToInt(MaxLevelStats.Strength * value),

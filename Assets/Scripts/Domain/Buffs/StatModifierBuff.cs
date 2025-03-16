@@ -34,7 +34,7 @@ public class StatModifierBuff : Buff
 
         if (Stackable)
         {
-            Variation.Add(StartingVariation);
+            Variation += StartingVariation;
             Stacks++;
         }
     }

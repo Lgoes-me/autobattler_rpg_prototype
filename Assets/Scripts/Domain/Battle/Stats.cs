@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 [Serializable]
 public class Stats
@@ -36,11 +37,24 @@ public class Stats
         return reducedDamage >= 0 ? reducedDamage : 0;
     }
 
-    public void Add(Stats stats)
+    public static Stats operator +(Stats a, Stats b)
     {
-        Strength += stats.Strength;
-        Arcane += stats.Arcane;
-        PhysicalDefence += stats.PhysicalDefence;
-        MagicalDefence += stats.MagicalDefence;
+        return new Stats(
+            a.Health + b.Health,
+            a.Mana + b.Mana,
+            a.Strength + b.Strength,
+            a.Arcane + b.Arcane,
+            a.PhysicalDefence + b.PhysicalDefence,
+            a.MagicalDefence + b.MagicalDefence);
+    }
+
+    public void Print()
+    {
+        Debug.Log($"Health {Health}");
+        Debug.Log($"Mana {Mana}");
+        Debug.Log($"Strength {Strength}");
+        Debug.Log($"Arcane {Arcane}");
+        Debug.Log($"PhysicalDefence {PhysicalDefence}");
+        Debug.Log($"MagicalDefence {MagicalDefence}");
     }
 }

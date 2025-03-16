@@ -27,14 +27,14 @@ MonoBehaviour:
     <Arcane>k__BackingField: 0
     <PhysicalDefence>k__BackingField: 2
     <MagicalDefence>k__BackingField: 0
-  <LevelStats>k__BackingField:
+  <LevelUpStats>k__BackingField:
     <MaxLevelStatsStats>k__BackingField:
       <Health>k__BackingField: 600
-      <Mana>k__BackingField: 120
-      <Strength>k__BackingField: 100
+      <Mana>k__BackingField: 150
+      <Strength>k__BackingField: 120
       <Arcane>k__BackingField: 6
       <PhysicalDefence>k__BackingField: 20
-      <MagicalDefence>k__BackingField: 15
+      <MagicalDefence>k__BackingField: 5
     <LevelUpCurve>k__BackingField:
       serializedVersion: 2
       m_Curve:
