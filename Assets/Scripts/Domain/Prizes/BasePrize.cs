@@ -44,12 +44,12 @@ public class BlessingPrize : BasePrize<BlessingIdentifier>
     }
 }
 
-public class PartyMemberPrize : BasePrize<PawnData>
+/*public class PartyMemberPrize : BasePrize<PawnData>
 {
     
 }
 
-/*public class WeaponPrize : BasePrize
+public class WeaponPrize : BasePrize
 {
     
 }
