@@ -46,9 +46,9 @@ public class PartyManager : MonoBehaviour
     {
         var selectedPawns = new List<BasePawn>();
 
-        foreach (var (pawnId, _) in GameSaveManager.GetSelectedParty())
+        foreach (var pawnInfo in GameSaveManager.GetSelectedParty())
         {
-            var pawn = AvailableParty.FirstOrDefault(p => p.Id == pawnId);
+            var pawn = AvailableParty.FirstOrDefault(p => p.Id == pawnInfo.Name);
 
             if (pawn == null)
                 continue;

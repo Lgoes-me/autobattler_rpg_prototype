@@ -1,26 +1,56 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
-public class BasePrize
+public class BasePrize<T>
 {
-    public int NumberOfOptions { get; set; }
+    //nome, imagem, explicação
+    public Dictionary<string, T> Options { get; set; }
+
+    public T ChooseIndexPrize(string id)
+    {
+        return Options[id];
+    }
 }
 
-public class LevelUpPrize : BasePrize
+public class LevelUpPrize : BasePrize<PawnInfo>
 {
-    public List<PawnData> Pawns { get; set; }
+    public LevelUpPrize(int numberOfOptions, List<PawnInfo> selectedParty)
+    {
+        var partyOrderedByLevel = 
+            selectedParty.
+                OrderByDescending(p => p.Level).
+                ToList();
+        
+        Options = 
+            partyOrderedByLevel.
+                Where(p => p.Level == partyOrderedByLevel[0].Level).
+                OrderBy(p => Guid.NewGuid()).
+                Take(numberOfOptions).
+                ToDictionary(p => p.Name, p => p);
+    }
 }
 
-public class BlessingPrize : BasePrize
+public class BlessingPrize : BasePrize<BlessingIdentifier>
 {
-    public List<BlessingIdentifier> Blessings { get; set; }
+    public BlessingPrize(int numberOfOptions)
+    {
+        var listOfBlessings = Enum.GetValues(typeof(BlessingIdentifier)).Cast<BlessingIdentifier>().ToList();
+        
+        Options = 
+            listOfBlessings
+            .OrderBy(b => Guid.NewGuid())
+            .Take(numberOfOptions)
+            .ToDictionary(b => b.ToString(), b => b);
+    }
 }
 
-public class PartyMemberPrize : BasePrize
+public class PartyMemberPrize : BasePrize<PawnData>
 {
-    public List<PawnData> Pawns { get; set; }
+    
 }
 
-public class WeaponPrize : BasePrize
+/*public class WeaponPrize : BasePrize
 {
     
 }
@@ -38,4 +68,4 @@ public class AbilityPrize : BasePrize
 public class BuffPrize : BasePrize
 {
     
-}
+}*/

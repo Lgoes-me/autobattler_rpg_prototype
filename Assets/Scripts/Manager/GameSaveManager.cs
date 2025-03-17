@@ -55,7 +55,7 @@ public class GameSaveManager
     {
         Save.Spawn = spawn;
         Save.LastBonfireSpawn = spawn;
-        Save.SelectedParty = PartyManager.Party.ToDictionary(p => p.Pawn.Id, p => p.Pawn.ResetPawnInfo());
+        Save.SelectedParty = PartyManager.Party.Select(p => p.Pawn.ResetPawnInfo()).ToList();
         Save.DefeatedEnemies.Clear();
 
         SaveData();
@@ -63,7 +63,7 @@ public class GameSaveManager
 
     public void SaveBattle(Battle battle)
     {
-        Save.SelectedParty = PartyManager.Party.ToDictionary(p => p.Pawn.Id, p => p.Pawn.GetPawnInfo());
+        Save.SelectedParty = PartyManager.Party.Select(p => p.Pawn.GetPawnInfo()).ToList();
         Save.DefeatedEnemies.Add(battle.Id);
 
         SaveData();
@@ -76,12 +76,11 @@ public class GameSaveManager
 
     public void SetParty(List<BasePawn> newSelectedParty)
     {
-        Save.SelectedParty = newSelectedParty.ToDictionary(p => p.Id, p => new PawnInfo(1, 0));
-        
+        Save.SelectedParty = newSelectedParty.Select(p => new PawnInfo(p.Id, 1, 0)).ToList();
         SaveData();
     }
 
-    public Dictionary<string, PawnInfo> GetSelectedParty()
+    public List<PawnInfo> GetSelectedParty()
     {
         return Save.SelectedParty;
     }
@@ -100,10 +99,8 @@ public class GameSaveManager
 
     public void ApplyPawnInfo(Pawn pawn)
     {
-        if (Save.SelectedParty.TryGetValue(pawn.Id, out var pawnInfo))
-        {
-            pawn.SetPawnInfo(pawnInfo);
-        }
+        var pawnInfo = Save.SelectedParty.First(p => p.Name == pawn.Id);
+        pawn.SetPawnInfo(pawnInfo);
     }
 
     public List<BasePawn> GetAvailableParty()

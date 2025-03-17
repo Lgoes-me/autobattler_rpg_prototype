@@ -153,14 +153,14 @@ public class Pawn : BasePawn
 
     public PawnInfo ResetPawnInfo()
     {
-        var pawnInfo = new PawnInfo(Level,0);
+        var pawnInfo = new PawnInfo(Id, Level,0);
         SetPawnInfo(pawnInfo);
         return pawnInfo;
     }
 
     public PawnInfo GetPawnInfo()
     {
-        return new PawnInfo(Level, Stats.Health -  Health);
+        return new PawnInfo(Id, Level, Stats.Health -  Health);
     }
 
     public void ReceiveDamage(DamageDomain damage)
