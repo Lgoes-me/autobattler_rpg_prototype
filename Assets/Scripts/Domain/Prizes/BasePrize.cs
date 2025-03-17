@@ -19,6 +19,7 @@ public class LevelUpPrize : BasePrize<PawnInfo>
     {
         var partyOrderedByLevel = 
             selectedParty.
+                Where(p => p.CanLevelUp()).
                 OrderByDescending(p => p.Level).
                 ToList();
         
@@ -33,12 +34,10 @@ public class LevelUpPrize : BasePrize<PawnInfo>
 
 public class BlessingPrize : BasePrize<BlessingIdentifier>
 {
-    public BlessingPrize(int numberOfOptions)
+    public BlessingPrize(int numberOfOptions, List<BlessingIdentifier> blessings)
     {
-        var listOfBlessings = Enum.GetValues(typeof(BlessingIdentifier)).Cast<BlessingIdentifier>().ToList();
-        
         Options = 
-            listOfBlessings
+            blessings
             .OrderBy(b => Guid.NewGuid())
             .Take(numberOfOptions)
             .ToDictionary(b => b.ToString(), b => b);

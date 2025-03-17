@@ -102,7 +102,15 @@ public class GameSaveManager
         var pawnInfo = Save.SelectedParty.First(p => p.Name == pawn.Id);
         pawn.SetPawnInfo(pawnInfo);
     }
-
+    
+    public void SavePawnInfo(PawnInfo updatedPawnInfo)
+    {
+        var pawnInfo = Save.SelectedParty.First(p => p.Name == updatedPawnInfo.Name);
+        pawnInfo.Update(updatedPawnInfo);
+        
+        SaveData();
+    }
+    
     public List<BasePawn> GetAvailableParty()
     {
         return Save.AvailableParty.Select(id => ContentManager.GetBasePawnFromId(id)).ToList();

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 [Serializable]
 public abstract class GameAction : IComponentData
@@ -60,44 +59,31 @@ public class MultipleActions : GameAction
 }
 
 [Serializable]
-public class GiveBlessing : GameAction
+public class OpenBlessingPrize : GameAction
 {
-    [field: SerializeField] private BlessingIdentifier Blessing { get; set; }
-    
     public override void Invoke()
     {
-        Application.Instance.BlessingManager.AddBlessing(Blessing);
+        var blessings = Enum.GetValues(typeof(BlessingIdentifier)).Cast<BlessingIdentifier>().ToList();
+        Application.Instance.PrizeManager.CreateBlessingPrize(blessings);
     }
 }
 
 [Serializable]
-public class OpenBlessingPrizeScreen : GameAction
-{
-    public override void Invoke()
-    {
-        Application.Instance.PrizeManager.CreateBlessingPrize();
-    }
-}
-
-[Serializable]
-public class GiveRandomBlessing : GameAction
-{
-    public override void Invoke()
-    {
-        var listOfBlessings = Enum.GetValues(typeof(BlessingIdentifier)).Cast<BlessingIdentifier>().ToList();
-        var randomBlessing = listOfBlessings[Random.Range(0, listOfBlessings.Count)];
-        Application.Instance.BlessingManager.AddBlessing(randomBlessing);
-    }
-}
-
-[Serializable]
-public class GiveRandomBlessingFromPool : GameAction
+public class OpenBlessingPrizeFromPool : GameAction
 {
     [field: SerializeField] private List<BlessingIdentifier> Pool { get; set; }
     
     public override void Invoke()
     {
-        var randomBlessing = Pool[Random.Range(0, Pool.Count)];
-        Application.Instance.BlessingManager.AddBlessing(randomBlessing);
+        Application.Instance.PrizeManager.CreateBlessingPrize(Pool);
+    }
+}
+
+[Serializable]
+public class OpenLevelUpPrize : GameAction
+{
+    public override void Invoke()
+    {
+        Application.Instance.PrizeManager.CreateLevelUpPrize();
     }
 }

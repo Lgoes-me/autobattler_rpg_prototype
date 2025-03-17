@@ -40,7 +40,7 @@ public class Pawn : BasePawn
     
     public delegate void PawnDomainBattleFinished();
     public event PawnDomainBattleFinished BattleFinished;
-    
+
     public Pawn(
         int level,
         string id,
@@ -60,23 +60,22 @@ public class Pawn : BasePawn
         List<CharacterInfo> characterInfos) : base(id, character, weapon, characterInfos)
     {
         Level = level;
-        Health = stats.Health;
+        LevelUpStats = levelUpStats;
+        LevelUpStats.EvaluateLevel(Level);
+        Stats = stats;
+        Buffs = new Dictionary<string, Buff>();
+        
+        Health = GetPawnStats().Health;
         
         Initiative = initiative;
         VisionRange = visionRange;
         AttackRange = attackRange;
-        Stats = stats;
-        
-        LevelUpStats = levelUpStats;
-        LevelUpStats.EvaluateLevel(Level);
         
         EnemyFocusPreference = enemyFocusPreference;
         AllyFocusPreference = allyFocusPreference;
         Abilities = abilities;
         SpecialAbilities = specialAbilities;
         Archetypes = archetypes;
-        
-        Buffs = new Dictionary<string, Buff>();
         Team = team;
     }
 
