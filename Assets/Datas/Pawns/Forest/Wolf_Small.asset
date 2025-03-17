@@ -20,13 +20,45 @@ MonoBehaviour:
   <AllyFocusPreference>k__BackingField: 1
   <Character>k__BackingField: {fileID: 1670507725838462388, guid: 9b202b8d77052b04dbbc13b4cdaa78d5, type: 3}
   <Weapon>k__BackingField: {fileID: 0}
-  <Stats>k__BackingField:
-    <Health>k__BackingField: 10
+  <BaseStats>k__BackingField:
+    <Health>k__BackingField: 20
     <Mana>k__BackingField: 0
     <Strength>k__BackingField: 1
     <Arcane>k__BackingField: 0
-    <PhysicalDefence>k__BackingField: 1
+    <PhysicalDefence>k__BackingField: 0
     <MagicalDefence>k__BackingField: 0
+  <LevelUpStats>k__BackingField:
+    <MaxLevelStatsStats>k__BackingField:
+      <Health>k__BackingField: 600
+      <Mana>k__BackingField: 150
+      <Strength>k__BackingField: 120
+      <Arcane>k__BackingField: 6
+      <PhysicalDefence>k__BackingField: 20
+      <MagicalDefence>k__BackingField: 5
+    <LevelUpCurve>k__BackingField:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
   <Abilities>k__BackingField:
   - {fileID: 11400000, guid: 0e9c749adb5a8cd49aa09c2ff1d6028f, type: 2}
   - {fileID: 11400000, guid: 2489267ea8703b84ab3b158716c31486, type: 2}

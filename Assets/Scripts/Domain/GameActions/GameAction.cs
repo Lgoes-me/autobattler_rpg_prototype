@@ -71,6 +71,15 @@ public class GiveBlessing : GameAction
 }
 
 [Serializable]
+public class OpenBlessingPrizeScreen : GameAction
+{
+    public override void Invoke()
+    {
+        Application.Instance.PrizeManager.CreateBlessingPrize();
+    }
+}
+
+[Serializable]
 public class GiveRandomBlessing : GameAction
 {
     public override void Invoke()
@@ -80,7 +89,6 @@ public class GiveRandomBlessing : GameAction
         Application.Instance.BlessingManager.AddBlessing(randomBlessing);
     }
 }
-
 
 [Serializable]
 public class GiveRandomBlessingFromPool : GameAction

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class InterfaceManager : MonoBehaviour
@@ -12,6 +13,8 @@ public class InterfaceManager : MonoBehaviour
     [field: SerializeField] private RectTransform ArchetypeCanvasParent { get; set; }
     [field: SerializeField] private ArchetypeCanvasController ArchetypeCanvasControllerPrefab { get; set; }
     [field: SerializeField] public BossCanvasController BossCanvas { get; private set; }
+    
+    [field: SerializeField] private PrizeOptionController PrizeOptionControllerPrefab { get; set; }
 
     private List<ArchetypeCanvasController> ArchetypeCanvases { get; set; }
 
@@ -99,5 +102,32 @@ public class InterfaceManager : MonoBehaviour
     public void ShowBattleCanvas()
     {
         BattleCanvas.SetActive(true);
+    }
+
+    public async Task<T> ShowPrizeCanvas<T>(BasePrize<T> prize)
+    {
+        PrizeCanvas.SetActive(true);
+
+        var tcs = new TaskCompletionSource<string>();
+
+        var items = new List<PrizeOptionController>();
+        
+        foreach (var option in prize.Options)
+        {
+            items.Add(Instantiate(PrizeOptionControllerPrefab, PrizeCanvas.transform).Init(option.Key, tcs));
+        }
+
+        var selectedPrize = await tcs.Task;
+
+        foreach (var item in items)
+        {
+            Destroy(item.gameObject);
+        }
+        
+        items.Clear();
+        
+        PrizeCanvas.SetActive(false);
+        
+        return prize.ChooseIndexPrize(selectedPrize);
     }
 }
