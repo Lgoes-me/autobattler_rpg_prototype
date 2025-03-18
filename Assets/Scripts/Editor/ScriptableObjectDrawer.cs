@@ -46,18 +46,18 @@ public class ExtendedScriptableObjectDrawer : PropertyDrawer {
 
 	const int buttonWidth = 66;
 	
-	static readonly List<string> ignoreClassFullNames = new List<string>{ "TMPro.TMP_FontAsset" };
+	static readonly List<string> ignoreClassFullNames = new() { "TMPro.TMP_FontAsset" };
 	
 	public override void OnGUI (Rect position, SerializedProperty property, GUIContent label) {
 		EditorGUI.BeginProperty (position, label, property);
 		var type = GetFieldType();
-		
+
 		if(type == null || ignoreClassFullNames.Contains(type.FullName)) {
 			EditorGUI.PropertyField(position, property, label);	
 			EditorGUI.EndProperty ();
 			return;
 		}
-		
+
 		ScriptableObject propertySO = null;
 		if(!property.hasMultipleDifferentValues && property.serializedObject.targetObject != null && property.serializedObject.targetObject is ScriptableObject) {
 			propertySO = (ScriptableObject)property.serializedObject.targetObject;
@@ -128,8 +128,10 @@ public class ExtendedScriptableObjectDrawer : PropertyDrawer {
 				property.objectReferenceValue = CreateAssetWithSavePrompt(type, selectedAssetPath);
 			}
 		}
+
 		property.serializedObject.ApplyModifiedProperties();
-		EditorGUI.EndProperty ();
+		
+		EditorGUI.EndProperty();
 	}
 
 	public static T _GUILayout<T> (string label, T objectReferenceValue, ref bool isExpanded) where T : ScriptableObject {

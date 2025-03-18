@@ -67,7 +67,7 @@ public class SceneManager : MonoBehaviour
         AudioManager.PlayMusic(sceneNode.Music);
 
         InterfaceManager.ShowBattleCanvas();
-        //GameSaveManager.SetSpawn(spawnDomain);
+        GameSaveManager.SetSpawn(spawnDomain);
     }
 
     public void OpenCutscene(string sceneName)

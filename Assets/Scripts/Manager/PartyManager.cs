@@ -44,6 +44,14 @@ public class PartyManager : MonoBehaviour
 
     private void SpawnSelectedPawns()
     {
+        for (var index = 1; index < Party.Count; index++)
+        {
+            var pawnController = Party[index];
+            Destroy(pawnController.gameObject);
+        }
+
+        Party.Clear();
+
         var selectedPawns = new List<BasePawn>();
 
         foreach (var pawnInfo in GameSaveManager.GetSelectedParty())
@@ -55,15 +63,7 @@ public class PartyManager : MonoBehaviour
 
             selectedPawns.Add(pawn);
         }
-
-        for (var index = 1; index < Party.Count; index++)
-        {
-            var pawnController = Party[index];
-            Destroy(pawnController.gameObject);
-        }
-
-        Party.Clear();
-
+        
         var playerPawn = ContentManager.GetPawnDomainFromBase(selectedPawns[0]);
         PlayerManager.SetNewPlayerPawn(playerPawn);
         Party.Add(PlayerManager.PawnController);

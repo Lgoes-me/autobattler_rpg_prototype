@@ -743,7 +743,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
       propertyPath: <EndBattleAction>k__BackingField
-      value: 2079880573573660672
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
       propertyPath: <Enemies>k__BackingField.Array.size
@@ -764,18 +764,6 @@ PrefabInstance:
     - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
       propertyPath: <Enemies>k__BackingField.Array.data[3]
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
-      propertyPath: managedReferences[2079880565189771264]
-      value: Assembly-CSharp OpenBlessingPrizeScreen
-      objectReference: {fileID: 0}
-    - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
-      propertyPath: managedReferences[2079880573573660672]
-      value: Assembly-CSharp OpenLevelUpPrize
-      objectReference: {fileID: 0}
-    - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
-      propertyPath: managedReferences[8813334712271503377]
-      value: Assembly-CSharp GivePrize
       objectReference: {fileID: 0}
     - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
       propertyPath: <Enemies>k__BackingField.Array.data[1].<Level>k__BackingField
@@ -805,10 +793,6 @@ PrefabInstance:
       propertyPath: <Enemies>k__BackingField.Array.data[3].<PawnData>k__BackingField
       value: 
       objectReference: {fileID: 11400000, guid: 09561c465d61ad44ca6568e59d324cd3, type: 2}
-    - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
-      propertyPath: managedReferences[8813334712271503377].<Blessing>k__BackingField
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
       propertyPath: <Enemies>k__BackingField.Array.data[0].<EnemyController>k__BackingField
       value: 
