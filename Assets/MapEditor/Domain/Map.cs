@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 
-public class SceneGraph
+public class Map
 {
     public Dictionary<string, BaseSceneNode> AllNodesById { get; set; }
     public Dictionary<string, SceneNode> SceneNodeById { get; set; }
@@ -11,7 +11,7 @@ public class SceneGraph
     public BaseSceneNode CurrentContext { get; set; }
     private SceneManager SceneManager { get; set; }
 
-    public SceneGraph(List<BaseSceneNode> nodes, SceneManager sceneManager)
+    public Map(List<BaseSceneNode> nodes, SceneManager sceneManager)
     {
         AllNodesById = nodes.ToDictionary(n => n.Id, n => n);
 

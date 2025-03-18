@@ -25,7 +25,7 @@ public class SaveManager
     
     //Open folder
 #if UNITY_EDITOR
-    [MenuItem("Window/Save/Open Folder")]
+    [MenuItem("GameTools/Save/Open Folder")]
 #endif
     public static void OpenFolder()
     {
@@ -34,7 +34,7 @@ public class SaveManager
 
     //Clear Directory
 #if UNITY_EDITOR
-    [MenuItem("Window/Save/Clear Folder")]
+    [MenuItem("GameTools/Save/Clear Folder")]
 #endif
     public static void Clear()
     {

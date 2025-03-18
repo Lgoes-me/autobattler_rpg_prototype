@@ -11,6 +11,8 @@ public class RoomController : MonoBehaviour
     [field:SerializeField] private NavMeshSurface Surface { get; set; }
     [field:SerializeField] public Camera PreviewCamera { get; private set; }
     
+    public MusicType MusicType { get; private set; }
+    
     public RoomController Init(SceneNode sceneData)
     {
         foreach (var door in Doors)
@@ -33,7 +35,14 @@ public class RoomController : MonoBehaviour
         
         Destroy(PreviewCamera.gameObject);
 
+        MusicType = sceneData.Music;
+        
         return this;
+    }
+
+    public void PlayMusic()
+    {
+        Application.Instance.AudioManager.PlayMusic(MusicType);
     }
     
     public void SpawnPlayerAt(string spawn)

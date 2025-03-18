@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class SceneGraphData : ScriptableObject
+public class MapData : ScriptableObject
 {
     [field: SerializeField] public List<BaseNodeData> Nodes { get; private set; }
 
@@ -36,9 +36,9 @@ public class SceneGraphData : ScriptableObject
         AssetDatabase.SaveAssets();
     }
     
-    public SceneGraph ToDomain(SceneManager sceneManager)
+    public Map ToDomain(SceneManager sceneManager)
     {
         var nodes = Nodes.Select(n => n.ToDomain()).ToList();
-        return new SceneGraph(nodes, sceneManager);
+        return new Map(nodes, sceneManager);
     }
 }

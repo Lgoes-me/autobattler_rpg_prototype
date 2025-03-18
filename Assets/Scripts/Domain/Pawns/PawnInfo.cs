@@ -4,6 +4,7 @@ public class PawnInfo
     public string Name { get; set; }
     public int Level { get; set; }
     public int MissingHealth { get; set; }
+    public PawnStatus Status { get; set; }
     
     public PawnInfo()
     {
@@ -17,13 +18,15 @@ public class PawnInfo
         Name = name;
         Level = 1;
         MissingHealth = 0;
+        Status = PawnStatus.Locked;
     }
 
-    public PawnInfo(string name, int level, int missingHealth)
+    public PawnInfo(string name, int level, int missingHealth, PawnStatus status)
     {
         Name = name;
         Level = level;
         MissingHealth = missingHealth;
+        Status = status;
     }
     
     public bool CanLevelUp()
@@ -44,4 +47,11 @@ public class PawnInfo
     
     //Status, Buff
     //Equips
+}
+
+public enum PawnStatus
+{
+    Locked,
+    Unlocked,
+    Transient
 }

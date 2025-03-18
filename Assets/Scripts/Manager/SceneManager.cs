@@ -6,7 +6,7 @@ using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
 public class SceneManager : MonoBehaviour
 {
-    [field: SerializeField] private SceneGraphData SceneGraphData { get; set; }
+    [field: SerializeField] private MapData MapData { get; set; }
 
     private bool BonfireActive { get; set; }
 
@@ -16,8 +16,8 @@ public class SceneManager : MonoBehaviour
     private PartyManager PartyManager { get; set; }
     private BlessingManager BlessingManager { get; set; }
     private AudioManager AudioManager { get; set; }
-
-    [field: SerializeField] private SceneGraph Map { get; set; }
+    
+    private Map Map { get; set; }
 
     public void Prepare()
     {
@@ -28,7 +28,7 @@ public class SceneManager : MonoBehaviour
         BlessingManager = Application.Instance.BlessingManager;
         AudioManager = Application.Instance.AudioManager;
 
-        Map = SceneGraphData.ToDomain(this);
+        Map = MapData.ToDomain(this);
     }
 
     public void StartGameMenu()
@@ -64,7 +64,7 @@ public class SceneManager : MonoBehaviour
         room.SpawnPlayerAt(spawnDomain.SpawnId);
         
         PartyManager.SetPartyToFollow(true);
-        AudioManager.PlayMusic(sceneNode.Music);
+        room.PlayMusic();
 
         InterfaceManager.ShowBattleCanvas();
         GameSaveManager.SetSpawn(spawnDomain);

@@ -4,7 +4,7 @@
             <InspectorView />
         </ui:VisualElement>
         <ui:VisualElement name="right-panel" style="flex-grow: 1;">
-            <SceneGraphView style="flex-grow: 1;" />
+            <MapEditorView style="flex-grow: 1;" />
         </ui:VisualElement>
     </SplitView>
 </ui:UXML>

@@ -6,17 +6,17 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class SceneGraphView : GraphView
+public class MapEditorView : GraphView
 {
-    public new class UxmlFactory : UxmlFactory<SceneGraphView, UxmlTraits>
+    public new class UxmlFactory : UxmlFactory<MapEditorView, UxmlTraits>
     {
         
     }
 
     public Action<BaseNodeView> OnNodeSelected;
-    public SceneGraphData SceneGraphData { get; private set; }
+    public MapData MapData { get; private set; }
 
-    public SceneGraphView()
+    public MapEditorView()
     {
         Insert(0, new GridBackground());
 
@@ -25,13 +25,13 @@ public class SceneGraphView : GraphView
         this.AddManipulator(new SelectionDragger());
         this.AddManipulator(new RectangleSelector());
 
-        var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/SceneGraph/Editor/SceneGraph.uss");
+        var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/MapEditor/Editor/MapEditor.uss");
         styleSheets.Add(styleSheet);
     }
 
-    public void PopulateView(SceneGraphData sceneGraphData)
+    public void PopulateView(MapData mapData)
     {
-        SceneGraphData = sceneGraphData;
+        MapData = mapData;
 
         graphViewChanged -= OnGraphViewChange;
         DeleteElements(graphElements);
@@ -39,7 +39,7 @@ public class SceneGraphView : GraphView
 
         var nodeViews = new List<BaseNodeView>();
         
-        foreach (var node in SceneGraphData.Nodes)
+        foreach (var node in MapData.Nodes)
         {
             var nodeView = node.ToNodeView();
             
@@ -127,7 +127,7 @@ public class SceneGraphView : GraphView
             {
                 if (element is BaseNodeView nodeView)
                 {
-                    SceneGraphData.DeleteNode(nodeView.NodeData);
+                    MapData.DeleteNode(nodeView.NodeData);
                 }
                 
                 if (element is Edge edge)
@@ -212,7 +212,7 @@ public class SceneGraphView : GraphView
 
     private void CreateNode<T>(Vector2 eventInfoLocalMousePosition, NodeDataParams nodeParams) where T : BaseNodeData
     {
-        var node = SceneGraphData.AddNode<T>();
+        var node = MapData.AddNode<T>();
         
         node.Init(nodeParams);
         node.SetPosition(viewTransform.matrix.inverse.MultiplyPoint(eventInfoLocalMousePosition));

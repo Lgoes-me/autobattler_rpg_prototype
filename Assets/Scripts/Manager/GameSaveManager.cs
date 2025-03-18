@@ -76,7 +76,7 @@ public class GameSaveManager
 
     public void SetParty(List<BasePawn> newSelectedParty)
     {
-        Save.SelectedParty = newSelectedParty.Select(p => new PawnInfo(p.Id, 1, 0)).ToList();
+        Save.SelectedParty = newSelectedParty.Select(p => new PawnInfo(p.Id, 1, 0, PawnStatus.Unlocked)).ToList();
         SaveData();
     }
 

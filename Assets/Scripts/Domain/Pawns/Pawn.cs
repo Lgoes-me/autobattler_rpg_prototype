@@ -41,6 +41,8 @@ public class Pawn : BasePawn
     public delegate void PawnDomainBattleFinished();
     public event PawnDomainBattleFinished BattleFinished;
 
+    private PawnStatus Status { get; set; }
+    
     public Pawn(
         int level,
         string id,
@@ -102,12 +104,9 @@ public class Pawn : BasePawn
         Health = Stats.Health - pawnInfo.MissingHealth;
         Mana = 0;
         LevelUpStats.EvaluateLevel(Level);
+        Status = pawnInfo.Status;
         
         Buffs = new Dictionary<string, Buff>();
-        
-        LifeChanged?.Invoke();
-        ManaChanged?.Invoke();
-        BuffsChanged?.Invoke();
     }
 
     public void AddBuff(Buff newBuff)
@@ -152,14 +151,14 @@ public class Pawn : BasePawn
 
     public PawnInfo ResetPawnInfo()
     {
-        var pawnInfo = new PawnInfo(Id, Level,0);
+        var pawnInfo = new PawnInfo(Id, Level, 0, Status);
         SetPawnInfo(pawnInfo);
         return pawnInfo;
     }
 
     public PawnInfo GetPawnInfo()
     {
-        return new PawnInfo(Id, Level, Stats.Health -  Health);
+        return new PawnInfo(Id, Level, Stats.Health -  Health, Status);
     }
 
     public void ReceiveDamage(DamageDomain damage)
