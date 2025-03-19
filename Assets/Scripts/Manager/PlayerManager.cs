@@ -3,9 +3,11 @@ using UnityEngine.AI;
 
 public class PlayerManager : MonoBehaviour
 {
-    [field: SerializeField] public PlayerController PlayerController { get; private set; }
-    [field: SerializeField] public PawnController PawnController { get; private set; }
-    [field: SerializeField] public NavMeshAgent NavMeshAgent { get; private set; }
+    [field: SerializeField] private PlayerController PlayerControllerPrefab { get; set; }
+    
+    public PlayerController PlayerController { get; private set; }
+    public PawnController PawnController { get; private set; }
+    public NavMeshAgent NavMeshAgent { get; private set; }
 
     private GameSaveManager GameSaveManager { get; set; }
 
@@ -14,12 +16,26 @@ public class PlayerManager : MonoBehaviour
         GameSaveManager = Application.Instance.GameSaveManager;
     }
 
+    private void InstantiatePlayer()
+    {
+        if(PawnController != null)
+        {
+            Destroy(PawnController.gameObject);
+        }
+        
+        PlayerController = Instantiate(PlayerControllerPrefab, Vector3.zero, Quaternion.identity, transform);
+        PlayerController.enabled = true;
+        PlayerController.tag = "Player";
+        
+        PawnController = PlayerController.GetComponent<PawnController>();
+        PawnController.enabled = false;
+        
+        NavMeshAgent = PlayerController.GetComponent<NavMeshAgent>();
+    }
+
     public void SetNewPlayerPawn(Pawn pawn)
     {
-        foreach (var characterController in PawnController.GetComponentsInChildren<CharacterController>())
-        {
-            Destroy(characterController.gameObject);
-        }
+        InstantiatePlayer();
         
         GameSaveManager.ApplyPawnInfo(pawn);
         
