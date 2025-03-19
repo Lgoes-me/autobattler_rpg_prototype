@@ -18,7 +18,7 @@ public class InteractableController : MonoBehaviour , IPauseListener
 
     public void Preselect()
     {
-        if(!Enabled || Preselected)
+        if (!Enabled || Preselected)
             return;
 
         Preselected = true;
@@ -27,7 +27,7 @@ public class InteractableController : MonoBehaviour , IPauseListener
 
     public void Select()
     {
-        if(!Enabled)
+        if (!Enabled)
             return;
         
         InteractableCanvas.Hide();
@@ -41,7 +41,7 @@ public class InteractableController : MonoBehaviour , IPauseListener
     
     public void Unselect()
     {
-        if(!Enabled)
+        if (!Enabled)
             return;
         
         Preselected = false;

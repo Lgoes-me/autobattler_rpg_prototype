@@ -12,7 +12,7 @@ public class PointToCameraController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(Right == Camera.transform.right)
+        if (Right == Camera.transform.right)
             return;
         
         Right = transform.right = Camera.transform.right;

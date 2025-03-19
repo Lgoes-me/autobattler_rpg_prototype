@@ -14,7 +14,7 @@ public class CanvasFollowController : MonoBehaviour
 
     private void LateUpdate()
     {
-        if(ToFollow == null || !gameObject.activeInHierarchy || !ToFollow.gameObject.activeInHierarchy)
+        if (ToFollow == null || !gameObject.activeInHierarchy || !ToFollow.gameObject.activeInHierarchy)
             return;
 
         Pivot.position = Camera.WorldToScreenPoint(ToFollow.position);

@@ -36,7 +36,7 @@ public class BlessingFactory
                     {
                         foreach (var enemyPawn in battle.EnemyPawns)
                         {
-                            if(!enemyPawn.Pawn.IsAlive)
+                            if (!enemyPawn.Pawn.IsAlive)
                                 continue;
                             
                             enemyPawn.Pawn.ReceiveDamage(5);

@@ -16,7 +16,7 @@ public class HitStopController : MonoBehaviour, IPauseListener
 
     public void HitStop(float percentage, float time, bool isGlobal, Color color)
     {
-        if(Stopped) return;
+        if (Stopped) return;
 
         Stopped = true;
         

@@ -60,7 +60,7 @@ public class PauseManager : MonoBehaviour
                 CanResume = true;
                 PauseGame();
             }
-            else if(CanResume)
+            else if (CanResume)
             {
                 PauseCanvas.gameObject.SetActive(false);
                 ResumeGame();

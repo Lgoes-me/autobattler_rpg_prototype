@@ -14,7 +14,6 @@ public class Application : MonoBehaviour
     [field: SerializeField] public InterfaceManager InterfaceManager { get; private set; }
     [field: SerializeField] public ContentManager ContentManager { get; private set; }
     [field: SerializeField] public DialogueManager DialogueManager { get; private set; }
-    [field: SerializeField] public PrizeManager PrizeManager { get; private set; }
     [field: SerializeField] public TimeManager TimeManager { get; private set; }
     
     public SaveManager SaveManager { get; private set; }
@@ -23,6 +22,7 @@ public class Application : MonoBehaviour
     public BattleEventsManager BattleEventsManager { get; private set; }
     public BlessingManager BlessingManager { get; private set; }
     public TutorialManager TutorialManager { get; private set; }
+    public PrizeManager PrizeManager { get; private set; }
     public ArchetypeManager ArchetypeManager { get; private set; }
 
     private void Awake()

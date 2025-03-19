@@ -12,7 +12,7 @@ public class ArchetypeFactory
                 {
                     (battle, rarity) =>
                     {
-                        if(rarity is Rarity.Deactivated)
+                        if (rarity is Rarity.Deactivated)
                             return;
                         
                         var s = new StatsData();
@@ -37,7 +37,7 @@ public class ArchetypeFactory
                 {
                     (battle, _, _, rarity) =>
                     {
-                        if(rarity is Rarity.Deactivated)
+                        if (rarity is Rarity.Deactivated)
                             return;
 
                         var s = new StatsData();
@@ -56,7 +56,7 @@ public class ArchetypeFactory
                 {
                     (battle, rarity) =>
                     {
-                        if(rarity is Rarity.Deactivated)
+                        if (rarity is Rarity.Deactivated)
                             return;
 
                         var s = new StatsData();
@@ -79,7 +79,7 @@ public class ArchetypeFactory
                 {
                     (battle, rarity) =>
                     {
-                        if(rarity is Rarity.Deactivated)
+                        if (rarity is Rarity.Deactivated)
                             return;
 
                         var s = new StatsData();
@@ -98,7 +98,7 @@ public class ArchetypeFactory
                 {
                     (battle, rarity) =>
                     {
-                        if(rarity is Rarity.Deactivated)
+                        if (rarity is Rarity.Deactivated)
                             return;
 
                         var s = new StatsData();
