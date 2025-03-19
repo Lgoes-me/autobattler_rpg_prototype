@@ -1,10 +1,15 @@
 using System.Collections.Generic;
-using UnityEngine;
 
-public class PrizeManager : MonoBehaviour
+public class PrizeManager
 {
-    [field: SerializeField] private InterfaceManager InterfaceManager { get; set; }
-    [field: SerializeField] private PauseManager PauseManager { get; set; }
+    private InterfaceManager InterfaceManager { get; set; }
+    private PauseManager PauseManager { get; set; }
+    
+    public void Prepare()
+    {
+        InterfaceManager = Application.Instance.InterfaceManager;
+        PauseManager = Application.Instance.PauseManager;
+    }
 
     public async void CreateLevelUpPrize()
     {
@@ -28,5 +33,15 @@ public class PrizeManager : MonoBehaviour
         
         PauseManager.ResumeGame();
         Application.Instance.BlessingManager.AddBlessing(selectedPrize);
+    }
+    
+    public async void CreatePartyMemberPrize(List<BasePawn> pawns)
+    {
+        PauseManager.PauseGame();
+        var prizes = new PartyMemberPrize(pawns);
+        var selectedPrize = await InterfaceManager.ShowPrizeCanvas(prizes);
+        
+        PauseManager.ResumeGame();
+        //Application.Instance.PartyManager.(selectedPrize);
     }
 }

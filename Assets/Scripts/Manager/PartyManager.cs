@@ -7,33 +7,28 @@ public class PartyManager : MonoBehaviour
 {
     [field: SerializeField] private PawnController PawnControllerPrefab { get; set; }
 
-    public List<BasePawn> AvailableParty { get; private set; }
     public int PartySizeLimit { get; private set; }
+    
+    public List<BasePawn> AvailableParty { get; private set; }
     public List<PawnController> Party { get; private set; }
-    public List<Archetype> Archetypes { get; private set; }
-
-    private ArchetypeFactory ArchetypeFactory { get; set; }
 
     private PlayerManager PlayerManager { get; set; }
     private GameSaveManager GameSaveManager { get; set; }
-    private InterfaceManager InterfaceManager { get; set; }
     private ContentManager ContentManager { get; set; }
+    private ArchetypeManager ArchetypeManager { get; set; }
 
     private void Awake()
     {
         PartySizeLimit = 8;
         Party = new List<PawnController>();
-
-        Archetypes = new List<Archetype>();
-        ArchetypeFactory = new ArchetypeFactory();
     }
 
     public void Prepare()
     {
         PlayerManager = Application.Instance.PlayerManager;
         GameSaveManager = Application.Instance.GameSaveManager;
-        InterfaceManager = Application.Instance.InterfaceManager;
         ContentManager = Application.Instance.ContentManager;
+        ArchetypeManager = Application.Instance.ArchetypeManager;
     }
 
     public void GetAndSpawnAvailableParty()
@@ -82,22 +77,7 @@ public class PartyManager : MonoBehaviour
             Party.Add(pawnInstance);
         }
 
-        Archetypes.Clear();
-
-        var archetypes = Party
-            .Select(p => p.Pawn.Archetypes)
-            .SelectMany(a => a)
-            .GroupBy(a => a)
-            .Select(g => new {g.Key, Count = g.Count()})
-            .ToList();
-
-        foreach (var pair in archetypes)
-        {
-            Archetypes.Add(ArchetypeFactory.CreateArchetype(pair.Key, pair.Count));
-        }
-
-        InterfaceManager.InitProfileCanvas(Party);
-        InterfaceManager.InitArchetypesCanvas(Archetypes);
+        ArchetypeManager.CreateArchetypes(Party);
     }
 
     public void SetSelectedParty(List<BasePawn> newSelectedParty)

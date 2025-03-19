@@ -59,7 +59,7 @@ public class BonfireScene : MonoBehaviour
             Destroy(archetypeCanvas.gameObject);
         }
 
-        var archetypes = Application.Instance.PartyManager.Archetypes;
+        var archetypes = Application.Instance.ArchetypeManager.Archetypes;
         
         foreach (var archetype in archetypes)
         {

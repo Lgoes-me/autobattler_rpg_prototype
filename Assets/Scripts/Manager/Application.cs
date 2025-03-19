@@ -23,7 +23,8 @@ public class Application : MonoBehaviour
     public BattleEventsManager BattleEventsManager { get; private set; }
     public BlessingManager BlessingManager { get; private set; }
     public TutorialManager TutorialManager { get; private set; }
-    
+    public ArchetypeManager ArchetypeManager { get; private set; }
+
     private void Awake()
     {  
         if (Instance != null)
@@ -45,6 +46,8 @@ public class Application : MonoBehaviour
         BattleEventsManager = new BattleEventsManager();
         BlessingManager = new BlessingManager();
         TutorialManager = new TutorialManager();
+        ArchetypeManager = new ArchetypeManager();
+        PrizeManager = new PrizeManager();
         
         GameSaveManager.Prepare();
         ConfigManager.Prepare();
@@ -55,6 +58,8 @@ public class Application : MonoBehaviour
         PlayerManager.Prepare();
         SceneManager.Prepare();
         TutorialManager.Prepare();
+        ArchetypeManager.Prepare();
+        PrizeManager.Prepare();
 
         ConfigManager.Init();
 

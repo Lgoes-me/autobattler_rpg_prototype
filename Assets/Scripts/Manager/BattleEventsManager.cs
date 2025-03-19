@@ -1,12 +1,12 @@
 public class BattleEventsManager
 {
     private BlessingManager BlessingManager { get; set; }
-    private PartyManager PartyManager { get; set; }
+    private ArchetypeManager ArchetypeManager { get; set; }
 
     public void Prepare()
     {
         BlessingManager = Application.Instance.BlessingManager;
-        PartyManager = Application.Instance.PartyManager;
+        ArchetypeManager = Application.Instance.ArchetypeManager;
     }
 
     public void DoBattleStartEvent(Battle battle)
@@ -16,7 +16,7 @@ public class BattleEventsManager
             blessing.DoBattleStartEvent(battle);
         }
         
-        foreach (var archetype in PartyManager.Archetypes)
+        foreach (var archetype in ArchetypeManager.Archetypes)
         {
             archetype.DoBattleStartEvent(battle);
         }
@@ -29,7 +29,7 @@ public class BattleEventsManager
             blessing.DoAttackEvent(battle, abilityUser, ability);
         }
         
-        foreach (var archetype in PartyManager.Archetypes)
+        foreach (var archetype in ArchetypeManager.Archetypes)
         {
             archetype.DoAttackEvent(battle, abilityUser, ability);
         }
@@ -42,7 +42,7 @@ public class BattleEventsManager
             blessing.DoSpecialAttackEvent(battle, abilityUser, ability);
         }
         
-        foreach (var archetype in PartyManager.Archetypes)
+        foreach (var archetype in ArchetypeManager.Archetypes)
         {
             archetype.DoSpecialAttackEvent(battle, abilityUser, ability);
         }
@@ -55,7 +55,7 @@ public class BattleEventsManager
             blessing.DoPawnDeathEvent(battle, pawnController);
         }
         
-        foreach (var archetype in PartyManager.Archetypes)
+        foreach (var archetype in ArchetypeManager.Archetypes)
         {
             archetype.DoPawnDeathEvent(battle, pawnController);
         }

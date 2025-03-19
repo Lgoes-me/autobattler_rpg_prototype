@@ -44,12 +44,15 @@ public class BlessingPrize : BasePrize<BlessingIdentifier>
     }
 }
 
-/*public class PartyMemberPrize : BasePrize<PawnData>
+public class PartyMemberPrize : BasePrize<PawnInfo>
 {
-    
+    public PartyMemberPrize(List<BasePawn> pawns)
+    {
+        throw new NotImplementedException();
+    }
 }
 
-public class WeaponPrize : BasePrize
+/*public class WeaponPrize : BasePrize
 {
     
 }
