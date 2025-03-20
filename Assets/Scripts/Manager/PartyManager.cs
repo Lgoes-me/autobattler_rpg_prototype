@@ -38,44 +38,30 @@ public class PartyManager : MonoBehaviour
 
     private void SpawnSelectedPawns()
     {
-        for (var index = 1; index < Party.Count; index++)
+        foreach (var pawn in Party)
         {
-            var pawnController = Party[index];
-            Destroy(pawnController.gameObject);
+            Destroy(pawn.gameObject);
         }
 
         Party.Clear();
+        
 
-        var selectedPawns = new List<BasePawn>();
-
+        var playerPosition = transform.position;
+        
         foreach (var pawnInfo in GameSaveManager.GetSelectedParty())
         {
-            var pawn = AvailableParty.FirstOrDefault(p => p.Id == pawnInfo.Name);
-
-            if (pawn == null)
-                continue;
-
-            selectedPawns.Add(pawn);
-        }
-        
-        var playerPawn = ContentManager.GetPawnDomainFromBase(selectedPawns[0]);
-        PlayerManager.SetNewPlayerPawn(playerPawn);
-        Party.Add(PlayerManager.PawnController);
-
-        for (var index = 1; index < selectedPawns.Count; index++)
-        {
-            var playerPosition = Party[0].transform.position;
             var randomRotation = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)) * Vector3.forward * 1f;
-            var pawnInstance = Instantiate(PawnControllerPrefab, playerPosition + randomRotation, Quaternion.identity,
-                transform);
-
-            var pawn = ContentManager.GetPawnDomainFromBase(selectedPawns[index]);
+            var pawnInstance = Instantiate(PawnControllerPrefab, playerPosition + randomRotation, Quaternion.identity, transform);
+            playerPosition = pawnInstance.transform.position;
+            
+            var pawn = ContentManager.GetPawnDomainFromInfo(pawnInfo);
             GameSaveManager.ApplyPawnInfo(pawn);
-
             pawnInstance.Init(pawn);
             Party.Add(pawnInstance);
         }
 
+        PlayerManager.SetNewPlayerPawn(Party[0]);
+        
         ArchetypeManager.CreateArchetypes(Party);
     }
 

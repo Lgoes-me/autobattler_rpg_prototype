@@ -41,11 +41,6 @@ public class PlayerController : MonoBehaviour
         transform.position = transform.position.Follow(new Vector3(hit.position.x, transform.position.y, hit.position.z), 25);
     }
 
-    public void Prepare()
-    {
-        PawnController.CharacterController.SetSpeed(0);
-    }
-
     private void OnTriggerStay(Collider other)
     {
         if (other.TryGetComponent<InteractableController>(out var interactable))

@@ -15,57 +15,40 @@ public class PlayerManager : MonoBehaviour
     {
         GameSaveManager = Application.Instance.GameSaveManager;
     }
-
-    private void InstantiatePlayer()
+    
+    public void SetNewPlayerPawn(PawnController pawnController)
     {
-        if(PawnController != null)
-        {
-            Destroy(PawnController.gameObject);
-        }
-        
-        PlayerController = Instantiate(PlayerControllerPrefab, Vector3.zero, Quaternion.identity, transform);
-        PlayerController.enabled = true;
-        PlayerController.tag = "Player";
-        
-        PawnController = PlayerController.GetComponent<PawnController>();
+        PawnController = pawnController;
+        PawnController.tag = "Player";
         PawnController.enabled = false;
+
+        PlayerController = PawnController.GetComponent<PlayerController>();
+        PlayerController.enabled = true;
         
         NavMeshAgent = PlayerController.GetComponent<NavMeshAgent>();
-    }
 
-    public void SetNewPlayerPawn(Pawn pawn)
-    {
-        InstantiatePlayer();
-        
-        GameSaveManager.ApplyPawnInfo(pawn);
-        
-        PawnController.Init(pawn);
         PlayerController.Init();
     }
 
-    public void SpawnPlayerAt(SpawnController spawn)
+    public void SpawnPlayerAt(Transform spawnPoint)
     {
         NavMeshAgent.enabled = false;
-        spawn.SpawnPlayer(this);
+        PlayerController.transform.position = spawnPoint.position;
+        PawnController.CharacterController.SetDirection(spawnPoint.forward);
         NavMeshAgent.enabled = true;
     }
 
     public void PlayerToBattle()
     {
         PlayerController.enabled = false;
-        PlayerController.Prepare();
-
         PawnController.enabled = true;
-        NavMeshAgent.enabled = true;
     }
 
     public void PlayerToWorld()
     {
         NavMeshAgent.isStopped = true;
         
-        PawnController.FinishBattle();
-        PlayerController.gameObject.SetActive(true);
         PlayerController.enabled = true;
-        PlayerController.Prepare();
+        PawnController.enabled = false;
     }
 }

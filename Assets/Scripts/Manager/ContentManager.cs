@@ -11,8 +11,8 @@ public class ContentManager : MonoBehaviour
         return AvailablePawns.First(p => p.Id == id).ToBaseDomain();
     }
     
-    public Pawn GetPawnDomainFromBase(BasePawn basePawn)
+    public Pawn GetPawnDomainFromInfo(PawnInfo pawnInfo)
     {
-        return AvailablePawns.First(p => p.Id == basePawn.Id).ToDomain(TeamType.Player, 1);
+        return AvailablePawns.First(p => p.Id == pawnInfo.Name).ToDomain(TeamType.Player, 1);
     }
 }

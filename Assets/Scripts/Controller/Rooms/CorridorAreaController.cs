@@ -8,12 +8,13 @@ public class CorridorAreaController : SpawnController
 
     public SpawnDomain Spawn { get; set; }
 
-    public override async void SpawnPlayer(PlayerManager playerManager)
+    public override async void SpawnPlayer()
     {
-        base.SpawnPlayer(playerManager);
+        base.SpawnPlayer();
         Active = false;
 
-        await this.WaitToArriveAtDestination(playerManager.NavMeshAgent, Destination.position);
+        await this.WaitToArriveAtDestination(Application.Instance.PlayerManager.NavMeshAgent, Destination.position);
+        
         OnArrive();
     }
 

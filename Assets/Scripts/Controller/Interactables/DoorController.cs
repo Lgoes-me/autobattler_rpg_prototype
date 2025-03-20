@@ -25,11 +25,11 @@ public class DoorController : CorridorAreaController, IInteractableListener
         CloseDoor();
     }
 
-    public override void SpawnPlayer(PlayerManager playerManager)
+    public override void SpawnPlayer()
     {
         Controller.Enabled = false;
         OpenDoor();
-        base.SpawnPlayer(playerManager);
+        base.SpawnPlayer();
     }
 
     protected override void OnArrive()

@@ -51,13 +51,13 @@ public class RoomController : MonoBehaviour
         
         if (door != null)
         {
-            Application.Instance.PlayerManager.SpawnPlayerAt(door);
+            door.SpawnPlayer();
             return;
         }
 
         if (Bonfire != null && Bonfire.Spawn.Id == spawn)
         {
-            Application.Instance.PlayerManager.SpawnPlayerAt(Bonfire.Spawn);
+            Bonfire.Spawn.SpawnPlayer();
             return;
         }
     }
