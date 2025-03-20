@@ -34,7 +34,7 @@ public class EnemyAreaController : MonoBehaviour
             enemy.EnemyController.Prepare();
         }
         
-        Application.Instance.PlayerManager.PlayerToBattle();
+        Application.Instance.PlayerManager.DisablePlayerInput();
         BattleController.ActivateBattleScene(Id, Enemies, EndBattleAction);
     }
     

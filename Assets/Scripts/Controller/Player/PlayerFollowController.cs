@@ -54,8 +54,6 @@ public class PlayerFollowController : MonoBehaviour
         if (!NavMeshAgent.enabled)
             return;
 
-        NavMeshAgent.SetDestination(transform.position);
-        NavMeshAgent.isStopped = true;
         NavMeshAgent.enabled = false;
     }
 

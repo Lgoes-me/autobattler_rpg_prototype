@@ -122,7 +122,7 @@ public class BattleController : MonoBehaviour
         var roomScene = FindObjectOfType<RoomController>();
         roomScene.PlayMusic();
         
-        Application.Instance.PlayerManager.PlayerToWorld();
+        Application.Instance.PlayerManager.EnablePlayerInput();
         Application.Instance.PartyManager.SetPartyToFollow(false);
         Application.Instance.GameSaveManager.SaveBattle(Battle);
 

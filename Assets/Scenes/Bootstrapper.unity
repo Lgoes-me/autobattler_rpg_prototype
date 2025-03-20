@@ -166,10 +166,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f9f19abc5c47e0ac1aacf04b055747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <PlayerControllerPrefab>k__BackingField: {fileID: 3283534119426106222, guid: bf3e5b737f1f18949bbfd853b8d5bfe0, type: 3}
-  <PlayerController>k__BackingField: {fileID: 0}
-  <PawnController>k__BackingField: {fileID: 0}
-  <NavMeshAgent>k__BackingField: {fileID: 0}
 --- !u!1001 &78366372
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3541,7 +3537,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.0452992, g: 0.043137256, b: 0.050980393, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

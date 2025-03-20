@@ -85,7 +85,7 @@ public class SceneManager : MonoBehaviour
 
     public void RespawnAtBonfire()
     {
-        PlayerManager.PlayerToWorld();
+        PlayerManager.EnablePlayerInput();
 
         foreach (var pawn in PartyManager.Party)
         {

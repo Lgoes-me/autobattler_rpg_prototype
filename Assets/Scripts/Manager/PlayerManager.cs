@@ -3,12 +3,9 @@ using UnityEngine.AI;
 
 public class PlayerManager : MonoBehaviour
 {
-    [field: SerializeField] private PlayerController PlayerControllerPrefab { get; set; }
-    
     public PlayerController PlayerController { get; private set; }
-    public PawnController PawnController { get; private set; }
     public NavMeshAgent NavMeshAgent { get; private set; }
-
+    
     private GameSaveManager GameSaveManager { get; set; }
 
     public void Prepare()
@@ -18,14 +15,12 @@ public class PlayerManager : MonoBehaviour
     
     public void SetNewPlayerPawn(PawnController pawnController)
     {
-        PawnController = pawnController;
-        PawnController.tag = "Player";
-        PawnController.enabled = false;
+        pawnController.tag = "Player";
 
-        PlayerController = PawnController.GetComponent<PlayerController>();
+        PlayerController = pawnController.GetComponent<PlayerController>();
         PlayerController.enabled = true;
         
-        NavMeshAgent = PlayerController.GetComponent<NavMeshAgent>();
+        NavMeshAgent = pawnController.GetComponent<NavMeshAgent>();
 
         PlayerController.Init();
     }
@@ -34,21 +29,16 @@ public class PlayerManager : MonoBehaviour
     {
         NavMeshAgent.enabled = false;
         PlayerController.transform.position = spawnPoint.position;
-        PawnController.CharacterController.SetDirection(spawnPoint.forward);
         NavMeshAgent.enabled = true;
     }
 
-    public void PlayerToBattle()
+    public void DisablePlayerInput()
     {
         PlayerController.enabled = false;
-        PawnController.enabled = true;
     }
 
-    public void PlayerToWorld()
+    public void EnablePlayerInput()
     {
-        NavMeshAgent.isStopped = true;
-        
         PlayerController.enabled = true;
-        PawnController.enabled = false;
     }
 }
