@@ -16,11 +16,7 @@ public class CorridorAreaController : SpawnController
         await this.WaitToArriveAtDestination(Application.Instance.PlayerManager.NavMeshAgent, Destination.position);
         
         Application.Instance.PlayerManager.EnablePlayerInput();
-        OnArrive();
-    }
-
-    protected virtual void OnArrive()
-    {
+        
         Active = true;
     }
 

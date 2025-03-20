@@ -21,15 +21,8 @@ public class PlayerManager : MonoBehaviour
         PlayerController.enabled = true;
         
         NavMeshAgent = pawnController.GetComponent<NavMeshAgent>();
-
+        
         PlayerController.Init();
-    }
-
-    public void SpawnPlayerAt(Transform spawnPoint)
-    {
-        NavMeshAgent.enabled = false;
-        PlayerController.transform.position = spawnPoint.position;
-        NavMeshAgent.enabled = true;
     }
 
     public void DisablePlayerInput()

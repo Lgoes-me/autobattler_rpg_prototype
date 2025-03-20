@@ -33,10 +33,9 @@ public class PartyManager : MonoBehaviour
     public void GetAndSpawnAvailableParty()
     {
         AvailableParty = GameSaveManager.GetAvailableParty();
-        SpawnSelectedPawns();
     }
 
-    private void SpawnSelectedPawns()
+    public void UnSpawnParty()
     {
         foreach (var pawn in Party)
         {
@@ -44,9 +43,11 @@ public class PartyManager : MonoBehaviour
         }
 
         Party.Clear();
-        
-
-        var playerPosition = transform.position;
+    }
+    
+    public void SpawnPartyAt(Vector3 position)
+    {
+        var playerPosition = position;
         
         foreach (var pawnInfo in GameSaveManager.GetSelectedParty())
         {
@@ -64,11 +65,10 @@ public class PartyManager : MonoBehaviour
         
         ArchetypeManager.CreateArchetypes(Party);
     }
-
+    
     public void SetSelectedParty(List<BasePawn> newSelectedParty)
     {
         GameSaveManager.SetParty(newSelectedParty);
-        SpawnSelectedPawns();
     }
 
     public void SetPartyToFollow(bool transportToPlayer)

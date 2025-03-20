@@ -18,6 +18,7 @@ public class EnemyController : MonoBehaviour
     public void Init(EnemyAreaController enemyAreaController)
     {
         EnemyAreaController = enemyAreaController;
+        NavMeshAgent.enabled = true;
         Initialized = true;
         Following = false;
 

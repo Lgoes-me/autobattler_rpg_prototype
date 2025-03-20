@@ -11,10 +11,13 @@ public class RoomController : MonoBehaviour
     [field:SerializeField] private NavMeshSurface Surface { get; set; }
     [field:SerializeField] public Camera PreviewCamera { get; private set; }
     
-    public MusicType MusicType { get; private set; }
+    private MusicType MusicType { get; set; }
     
     public RoomController Init(SceneNode sceneData)
     {
+        Destroy(PreviewCamera.gameObject);
+        Surface.BuildNavMesh();
+        
         foreach (var door in Doors)
         {
             var doorSpawnData = sceneData.Doors.First(d => d.Id == door.Id);
@@ -30,10 +33,6 @@ public class RoomController : MonoBehaviour
         {
             enemyArea.Init(sceneData.Id);
         }
-        
-        Surface.BuildNavMesh();
-        
-        Destroy(PreviewCamera.gameObject);
 
         MusicType = sceneData.Music;
         

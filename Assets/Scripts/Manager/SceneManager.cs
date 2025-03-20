@@ -50,7 +50,7 @@ public class SceneManager : MonoBehaviour
     {
         var tcs = new TaskCompletionSource<bool>();
 
-        PartyManager.StopPartyFollow();
+        Application.Instance.PartyManager.UnSpawnParty();
         var task = UnitySceneManager.LoadSceneAsync("RoomScene", LoadSceneMode.Single);
 
         task.completed += _ => { tcs.SetResult(true); };
@@ -62,8 +62,8 @@ public class SceneManager : MonoBehaviour
     {
         var room = Instantiate(sceneNode.RoomPrefab).Init(sceneNode);
         room.SpawnPlayerAt(spawnDomain.SpawnId);
-        
         PartyManager.SetPartyToFollow(true);
+        
         room.PlayMusic();
 
         InterfaceManager.ShowBattleCanvas();
@@ -72,8 +72,8 @@ public class SceneManager : MonoBehaviour
 
     public void OpenCutscene(string sceneName)
     {
-        PartyManager.StopPartyFollow();
-
+        Application.Instance.PartyManager.UnSpawnParty();
+        
         var task = UnitySceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
 
         task.completed += _ =>
@@ -101,8 +101,9 @@ public class SceneManager : MonoBehaviour
             var sceneNode = Map.SceneNodeById[spawn.SceneId];
             
             var room = Instantiate(sceneNode.RoomPrefab).Init(sceneNode);
+           
             room.SpawnPlayerAt(spawn.SpawnId);
-
+            
             PartyManager.SetPartyToFollow(true);
             AudioManager.PlayMusic(sceneNode.Music);
         };

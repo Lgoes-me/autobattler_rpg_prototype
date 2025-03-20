@@ -34,6 +34,9 @@ public class BonfireScene : MonoBehaviour
     public void SaveChanges()
     {
         Application.Instance.PartyManager.SetSelectedParty(PartyPanelController.Party);
+        var playerControllerPosition = Application.Instance.PlayerManager.PlayerController.transform.position;
+        Application.Instance.PartyManager.UnSpawnParty();
+        Application.Instance.PartyManager.SpawnPartyAt(playerControllerPosition);
     }
 
     private void EndBonfireScene()

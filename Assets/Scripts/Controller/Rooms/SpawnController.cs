@@ -9,8 +9,8 @@ public class SpawnController : MonoBehaviour
 
     public virtual void SpawnPlayer()
     {
+        Application.Instance.PartyManager.SpawnPartyAt(SpawnPoint.position);
         ActivateCameraArea();
-        Application.Instance.PlayerManager.SpawnPlayerAt(SpawnPoint);
     }
 
     private void ActivateCameraArea()

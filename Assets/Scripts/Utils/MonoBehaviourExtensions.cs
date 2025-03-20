@@ -33,10 +33,13 @@ public static class MonoBehaviourExtensions
         IEnumerator WaitToArriveAtDestinationCoroutine()
         {
             yield return new WaitForSeconds(0.5f);
+
+            var time = Time.time;
             
             yield return new WaitUntil(() =>
+                Time.time - time > 3f ||
                 agent.pathStatus == NavMeshPathStatus.PathComplete && 
-                agent.remainingDistance < 0.5f);
+                agent.remainingDistance < 1f);
                 
             agent.isStopped = true;
             agent.ResetPath();
