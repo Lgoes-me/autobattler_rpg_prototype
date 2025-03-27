@@ -9,6 +9,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 980420176060528509, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
+      propertyPath: <BodyMask>k__BackingField
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 980420176060528509, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
       propertyPath: <BackSprite>k__BackingField
       value: 
       objectReference: {fileID: 188333951, guid: 636f51673b61ed548b817f56b31a98db, type: 3}
@@ -29,9 +33,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -1596451084, guid: 636f51673b61ed548b817f56b31a98db, type: 3}
     - target: {fileID: 3581964401337747027, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3581964401337747027, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
+      propertyPath: m_Size.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3581964401337747027, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -1596451084, guid: 636f51673b61ed548b817f56b31a98db, type: 3}
+      objectReference: {fileID: 920281256, guid: 5fe0ded4c4de92f48ab6da6cc7b659d5, type: 3}
+    - target: {fileID: 3581964401337747027, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5508223898485904541, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -113,7 +129,8 @@ PrefabInstance:
       value: 63.78
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2034010549627065945, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5456383158642524533, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
       insertIndex: -1

@@ -19,7 +19,7 @@ MonoBehaviour:
   <EnemyFocusPreference>k__BackingField: 1
   <AllyFocusPreference>k__BackingField: 1
   <Character>k__BackingField: {fileID: 3097370054226994396, guid: c8d4669d437e7bf4699e3bd9df3432d8, type: 3}
-  <Weapon>k__BackingField: {fileID: 3501364879892670405, guid: 028e54fe8e0d9114a9bfec831d154130, type: 3}
+  <Weapon>k__BackingField: {fileID: 3501364879892670405, guid: 1471ef159b0b33e48b1adb2a1c074b98, type: 3}
   <BaseStats>k__BackingField:
     <Health>k__BackingField: 50
     <Mana>k__BackingField: 30

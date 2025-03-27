@@ -12,9 +12,6 @@ public class CharacterController : MonoBehaviour
     [field: SerializeField] private Transform Arm { get; set; }
     [field: SerializeField] private Transform Hand { get; set; }
     [field: SerializeField] private SpriteRenderer Body { get; set; }
-    [field: SerializeField] private SpriteMask BodyMask { get; set; }
-    [field: SerializeField] private Sprite FrontSprite { get; set; }
-    [field: SerializeField] private Sprite BackSprite { get; set; }
     
     private Camera Camera { get; set; }
 
@@ -44,10 +41,8 @@ public class CharacterController : MonoBehaviour
         var left = CurrentDirection.HasFlag(Direction.Left);
         var back = CurrentDirection.HasFlag(Direction.Back);
 
-        Body.flipX = left;
-        BodyMask.transform.localRotation = Quaternion.Euler(new Vector3(0, left ? 180 : 0, 0));
-        Body.sprite = BodyMask.sprite = back ? BackSprite : FrontSprite;
-        Arm.localScale = new Vector3(left ? -1 : 1, 1, back ? -1 : 1);
+        Body.flipX = !left;
+        Arm.localScale = new Vector3(left ? -1 : 1, 1, 1);
     }
 
     public void SetSpeed(float speed)
