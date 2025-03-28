@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-public class ArchetypeManager
+public class ArchetypeManager : IManager
 {
-    private GameSaveManager GameSaveManager { get; set; }
     private InterfaceManager InterfaceManager { get; set; }
     
     public List<Archetype> Archetypes { get; private set; }
@@ -11,8 +10,7 @@ public class ArchetypeManager
     
     public void Prepare()
     {
-        GameSaveManager = Application.Instance.GameSaveManager;
-        InterfaceManager = Application.Instance.InterfaceManager;
+        InterfaceManager = Application.Instance.GetManager<InterfaceManager>();
         
         Archetypes = new List<Archetype>();
         ArchetypeFactory = new ArchetypeFactory();

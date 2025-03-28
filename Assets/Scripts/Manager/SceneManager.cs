@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
-public class SceneManager : MonoBehaviour
+public class SceneManager : MonoBehaviour, IManager
 {
     [field: SerializeField] private MapData MapData { get; set; }
 
@@ -12,21 +12,15 @@ public class SceneManager : MonoBehaviour
 
     private InterfaceManager InterfaceManager { get; set; }
     private GameSaveManager GameSaveManager { get; set; }
-    private PlayerManager PlayerManager { get; set; }
     private PartyManager PartyManager { get; set; }
-    private BlessingManager BlessingManager { get; set; }
-    private AudioManager AudioManager { get; set; }
     
     private Map Map { get; set; }
 
     public void Prepare()
     {
-        InterfaceManager = Application.Instance.InterfaceManager;
-        GameSaveManager = Application.Instance.GameSaveManager;
-        PlayerManager = Application.Instance.PlayerManager;
-        PartyManager = Application.Instance.PartyManager;
-        BlessingManager = Application.Instance.BlessingManager;
-        AudioManager = Application.Instance.AudioManager;
+        InterfaceManager = Application.Instance.GetManager<InterfaceManager>();
+        GameSaveManager = Application.Instance.GetManager<GameSaveManager>();
+        PartyManager = Application.Instance.GetManager<PartyManager>();
 
         Map = MapData.ToDomain(this);
     }
@@ -50,7 +44,7 @@ public class SceneManager : MonoBehaviour
     {
         var tcs = new TaskCompletionSource<bool>();
 
-        Application.Instance.PartyManager.UnSpawnParty();
+        PartyManager.UnSpawnParty();
         var task = UnitySceneManager.LoadSceneAsync("RoomScene", LoadSceneMode.Single);
 
         task.completed += _ => { tcs.SetResult(true); };
@@ -72,7 +66,7 @@ public class SceneManager : MonoBehaviour
 
     public void OpenCutscene(string sceneName)
     {
-        Application.Instance.PartyManager.UnSpawnParty();
+        PartyManager.UnSpawnParty();
         
         var task = UnitySceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
 
@@ -85,8 +79,6 @@ public class SceneManager : MonoBehaviour
 
     public void RespawnAtBonfire()
     {
-        PlayerManager.EnablePlayerInput();
-
         foreach (var pawn in PartyManager.Party)
         {
             pawn.FinishBattle();
@@ -105,7 +97,6 @@ public class SceneManager : MonoBehaviour
             room.SpawnPlayerAt(spawn.SpawnId);
             
             PartyManager.SetPartyToFollow(true);
-            AudioManager.PlayMusic(sceneNode.Music);
         };
     }
 

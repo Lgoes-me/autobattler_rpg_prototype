@@ -11,8 +11,8 @@ public class BattleController : MonoBehaviour
     {
         EndBattleAction = endBattleAction;
         
-        Application.Instance.AudioManager.PlayMusic(MusicType.Battle);
-        Application.Instance.PartyManager.StopPartyFollow();
+        Application.Instance.GetManager<AudioManager>().PlayMusic(MusicType.Battle);
+        Application.Instance.GetManager<PartyManager>().StopPartyFollow();
 
         var enemyPawns = new List<PawnController>();
         var playerPawns = new List<PawnController>();
@@ -24,13 +24,13 @@ public class BattleController : MonoBehaviour
             if (enemy.IsBoss)
             {
                 enemyController.RemoveCanvasController();
-                Application.Instance.InterfaceManager.BossCanvas.Init(enemyController);
+                Application.Instance.GetManager<InterfaceManager>().BossCanvas.Init(enemyController);
             }
 
             enemyPawns.Add(enemyController);
         }
 
-        foreach (var alliedController in Application.Instance.PartyManager.Party)
+        foreach (var alliedController in Application.Instance.GetManager<PartyManager>().Party)
         {
             playerPawns.Add(alliedController);
         }
@@ -42,7 +42,7 @@ public class BattleController : MonoBehaviour
             pawnController.StartBattle(this, Battle);
         }
         
-        Application.Instance.BattleEventsManager.DoBattleStartEvent(Battle);
+        Application.Instance.GetManager<BattleEventsManager>().DoBattleStartEvent(Battle);
 
         StartCoroutine(BattleCoroutine());
     }
@@ -84,17 +84,17 @@ public class BattleController : MonoBehaviour
             enemyPawn.Dance();
         }
 
-        Application.Instance.InterfaceManager.ShowDefeatCanvas();
+        Application.Instance.GetManager<InterfaceManager>().ShowDefeatCanvas();
 
         yield return new WaitForSeconds(1f);
 
-        Application.Instance.InterfaceManager.HideDefeatCanvas();
-        Application.Instance.SceneManager.RespawnAtBonfire();
+        Application.Instance.GetManager<InterfaceManager>().HideDefeatCanvas();
+        Application.Instance.GetManager<SceneManager>().RespawnAtBonfire();
     }
 
     private IEnumerator OnVictory()
     {
-        Application.Instance.AudioManager.PlayMusic(MusicType.Victory);
+        Application.Instance.GetManager<AudioManager>().PlayMusic(MusicType.Victory);
 
         foreach (var playerPawn in Battle.PlayerPawns)
         {
@@ -122,9 +122,9 @@ public class BattleController : MonoBehaviour
         var roomScene = FindObjectOfType<RoomController>();
         roomScene.PlayMusic();
         
-        Application.Instance.PlayerManager.EnablePlayerInput();
-        Application.Instance.PartyManager.SetPartyToFollow(false);
-        Application.Instance.GameSaveManager.SaveBattle(Battle);
+        Application.Instance.GetManager<PlayerManager>().EnablePlayerInput();
+        Application.Instance.GetManager<PartyManager>().SetPartyToFollow(false);
+        Application.Instance.GetManager<GameSaveManager>().SaveBattle(Battle);
 
         EndBattleAction?.Invoke();
     }

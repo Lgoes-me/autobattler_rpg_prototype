@@ -1,12 +1,12 @@
-public class BattleEventsManager
+public class BattleEventsManager : IManager
 {
     private BlessingManager BlessingManager { get; set; }
     private ArchetypeManager ArchetypeManager { get; set; }
 
     public void Prepare()
     {
-        BlessingManager = Application.Instance.BlessingManager;
-        ArchetypeManager = Application.Instance.ArchetypeManager;
+        BlessingManager = Application.Instance.GetManager<BlessingManager>();
+        ArchetypeManager = Application.Instance.GetManager<ArchetypeManager>();
     }
 
     public void DoBattleStartEvent(Battle battle)

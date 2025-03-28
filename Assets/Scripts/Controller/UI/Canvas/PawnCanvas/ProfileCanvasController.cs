@@ -81,6 +81,6 @@ public class ProfileCanvasController : LifeBarCanvasController
         var info = Pawn.GetCharacterInfo(identificador);
             
         ProfilePicture.sprite = info.Portrait;
-        Application.Instance.AudioManager.PlaySfx(info.Audio);
+        Application.Instance.GetManager<AudioManager>().PlaySfx(info.Audio);
     }
 }

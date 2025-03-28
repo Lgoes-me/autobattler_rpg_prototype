@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : MonoBehaviour, IManager
 {
     [field: SerializeField] private AudioSource SfxAudioSource { get; set; }
     [field: SerializeField] private AudioSource MusicAudioSource { get; set; }

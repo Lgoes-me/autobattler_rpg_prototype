@@ -1,81 +1,98 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using Cinemachine;
+using UnityEngine;
 
 public class Application : MonoBehaviour
 {
     public static Application Instance { get; private set; }
+    private Dictionary<Type,IManager> Managers { get; set; }
     
-    [field: SerializeField] public Camera MainCamera { get; private set; }
-    [field: SerializeField] public SceneManager SceneManager { get; private set; }
-    [field: SerializeField] public PlayerManager PlayerManager { get; private set; }
-    [field: SerializeField] public PauseManager PauseManager { get; private set; }
-    [field: SerializeField] public PartyManager PartyManager { get; private set; }
-    [field: SerializeField] public AudioManager AudioManager { get; private set; }
-    [field: SerializeField] public InputManager InputManager { get; private set; }
-    [field: SerializeField] public InterfaceManager InterfaceManager { get; private set; }
-    [field: SerializeField] public ContentManager ContentManager { get; private set; }
-    [field: SerializeField] public DialogueManager DialogueManager { get; private set; }
-    [field: SerializeField] public TimeManager TimeManager { get; private set; }
+    [field: SerializeField] public CinemachineBrain MainCamera { get; private set; }
     
-    public SaveManager SaveManager { get; private set; }
-    public GameSaveManager GameSaveManager { get; private set; }
-    public ConfigManager ConfigManager { get; private set; }
-    public BattleEventsManager BattleEventsManager { get; private set; }
-    public BlessingManager BlessingManager { get; private set; }
-    public TutorialManager TutorialManager { get; private set; }
-    public PrizeManager PrizeManager { get; private set; }
-    public ArchetypeManager ArchetypeManager { get; private set; }
-
     private void Awake()
-    {  
+    {
         if (Instance != null)
         {
             Destroy(gameObject);
+            return;
         }
-        else
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+        Init();
     }
 
+    private void Init()
+    {
+        Managers = new Dictionary<Type, IManager>();
+        
+        Register(GetComponentInChildren<SceneManager>());
+        Register(GetComponentInChildren<PlayerManager>());
+        Register(GetComponentInChildren<PauseManager>());
+        Register(GetComponentInChildren<PartyManager>());
+        Register(GetComponentInChildren<AudioManager>());
+        Register(GetComponentInChildren<InputManager>());
+        Register(GetComponentInChildren<InterfaceManager>());
+        Register(GetComponentInChildren<ContentManager>());
+        Register(GetComponentInChildren<DialogueManager>());
+        Register(GetComponentInChildren<TimeManager>());
+        Register(GetComponentInChildren<TextManager>());
+        
+        Register(new GameSaveManager());
+        Register(new ConfigManager());
+        Register(new BattleEventsManager());
+        Register(new BlessingManager());
+        Register(new TutorialManager());
+        Register(new ArchetypeManager());
+        Register(new PrizeManager());
+    }
+    
     private void Start()
     {
-        SaveManager = new SaveManager();
-        GameSaveManager = new GameSaveManager();
-        ConfigManager = new ConfigManager();
-        BattleEventsManager = new BattleEventsManager();
-        BlessingManager = new BlessingManager();
-        TutorialManager = new TutorialManager();
-        ArchetypeManager = new ArchetypeManager();
-        PrizeManager = new PrizeManager();
+        var gameSaveManager = GetManager<GameSaveManager>();
+        var configManager = GetManager<ConfigManager>();
+        var sceneManager = GetManager<SceneManager>();
+        var timeManager = GetManager<TimeManager>();
         
-        GameSaveManager.Prepare();
-        ConfigManager.Prepare();
-        BattleEventsManager.Prepare();
-        BlessingManager.Prepare();
-        InputManager.Prepare();
-        PartyManager.Prepare();
-        PlayerManager.Prepare();
-        SceneManager.Prepare();
-        TutorialManager.Prepare();
-        ArchetypeManager.Prepare();
-        PrizeManager.Prepare();
+        gameSaveManager.Prepare();
+        configManager.Prepare();
+        GetManager<BattleEventsManager>().Prepare();
+        GetManager<BlessingManager>().Prepare();
+        GetManager<InputManager>().Prepare();
+        GetManager<PartyManager>().Prepare();
+        GetManager<SceneManager>().Prepare();
+        GetManager<TutorialManager>().Prepare();
+        GetManager<ArchetypeManager>().Prepare();
+        GetManager<PrizeManager>().Prepare();
 
-        ConfigManager.Init();
+        configManager.Init();
 
-        if (GameSaveManager.FirstTimePlaying())
+        if (gameSaveManager.FirstTimePlaying())
         {
-            GameSaveManager.StartNewSave();
+            gameSaveManager.StartNewSave();
+            timeManager.StartClock();
             
-            PartyManager.GetAndSpawnAvailableParty();
-            BlessingManager.GetBlessingsAndInitCanvas();
-            TimeManager.StartClock();
-            
-            SceneManager.StartGameIntro();
+            sceneManager.StartGameIntro();
         }
         else
         {
-            SceneManager.StartGameMenu();
+            sceneManager.StartGameMenu();
         }
     }
+    
+    private void Register(IManager manager)
+    {
+        Managers.Add(manager.GetType(), manager);
+    }
+    
+    public T GetManager<T>() where T : IManager
+    {
+        return (T)Managers[typeof(T)];
+    }
+}
+
+public interface IManager
+{
+    
 }

@@ -15,33 +15,35 @@ public class BonfireScene : MonoBehaviour
     private Action Callback { get; set; }
     public IBonfirePanel BonfirePanel { get; set; }
     public bool IsDragging { get; set; }
+    
+    private PartyManager PartyManager { get; set; }
 
     public void Init(Action callback)
     {
         Callback = callback;
         FinishButton.onClick.AddListener(EndBonfireScene);
 
-        var partyManager = Application.Instance.PartyManager;
+        PartyManager = Application.Instance.GetManager<PartyManager>();
 
-        FriendsPanelController.Init(partyManager, this);
-        PartyPanelController.Init(partyManager, this);
+        FriendsPanelController.Init(PartyManager, this);
+        PartyPanelController.Init(PartyManager, this);
         
-        Application.Instance.BlessingManager.ClearBlessings();
+        Application.Instance.GetManager<BlessingManager>().ClearBlessings();
         
         UpdateArchetypes();
     }
 
     public void SaveChanges()
     {
-        Application.Instance.PartyManager.SetSelectedParty(PartyPanelController.Party);
-        var playerControllerPosition = Application.Instance.PlayerManager.PlayerController.transform.position;
-        Application.Instance.PartyManager.UnSpawnParty();
-        Application.Instance.PartyManager.SpawnPartyAt(playerControllerPosition);
+        PartyManager.SetSelectedParty(PartyPanelController.Party);
+        var playerControllerPosition = Application.Instance.GetManager<PlayerManager>().PlayerController.transform.position;
+        PartyManager.UnSpawnParty();
+        PartyManager.SpawnPartyAt(playerControllerPosition);
     }
 
     private void EndBonfireScene()
     {
-        Application.Instance.SceneManager.EndBonfireScene();
+        Application.Instance.GetManager<SceneManager>().EndBonfireScene();
         Callback();
     }
 
@@ -62,7 +64,7 @@ public class BonfireScene : MonoBehaviour
             Destroy(archetypeCanvas.gameObject);
         }
 
-        var archetypes = Application.Instance.ArchetypeManager.Archetypes;
+        var archetypes = Application.Instance.GetManager<ArchetypeManager>().Archetypes;
         
         foreach (var archetype in archetypes)
         {

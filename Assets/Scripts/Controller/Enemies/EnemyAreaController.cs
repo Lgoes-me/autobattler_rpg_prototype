@@ -14,7 +14,7 @@ public class EnemyAreaController : MonoBehaviour
     {
         Id = $"{gameObject.name}-{sceneId}";
         
-        if (Application.Instance.GameSaveManager.ContainsBattle(Id))
+        if (Application.Instance.GetManager<GameSaveManager>().ContainsBattle(Id))
         {
             gameObject.SetActive(false);
             return;
@@ -34,7 +34,7 @@ public class EnemyAreaController : MonoBehaviour
             enemy.EnemyController.Prepare();
         }
         
-        Application.Instance.PlayerManager.DisablePlayerInput();
+        Application.Instance.GetManager<PlayerManager>().DisablePlayerInput();
         BattleController.ActivateBattleScene(Id, Enemies, EndBattleAction);
     }
     

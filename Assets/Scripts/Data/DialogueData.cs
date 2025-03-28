@@ -15,7 +15,7 @@ public class DialogueData : ScriptableObject
         var pawn = Pawn.ToBaseDomain();
         
         yield return DialogueVariation
-            .First(d => d.Language == Application.Instance.ConfigManager.GetLanguage())
+            .First(d => d.Language == Application.Instance.GetManager<ConfigManager>().GetLanguage())
             .Dialogue
             .ReadDialogue(dialogueManager, pawn);
     }

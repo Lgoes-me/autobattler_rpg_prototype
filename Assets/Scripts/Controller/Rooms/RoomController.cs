@@ -41,7 +41,7 @@ public class RoomController : MonoBehaviour
 
     public void PlayMusic()
     {
-        Application.Instance.AudioManager.PlayMusic(MusicType);
+        Application.Instance.GetManager<AudioManager>().PlayMusic(MusicType);
     }
     
     public void SpawnPlayerAt(string spawn)

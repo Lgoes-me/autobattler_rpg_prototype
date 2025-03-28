@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-public class ContentManager : MonoBehaviour
+public class ContentManager : MonoBehaviour, IManager
 {
     [field: SerializeField] private List<PawnData> AvailablePawns { get; set; }
 

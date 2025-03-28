@@ -2,7 +2,7 @@ using System.Collections;
 using Cinemachine;
 using UnityEngine;
 
-public class InputManager : MonoBehaviour
+public class InputManager : MonoBehaviour, IManager
 {
     [field:SerializeField] 
     
@@ -16,8 +16,8 @@ public class InputManager : MonoBehaviour
     
     public void Prepare()
     {
-        PlayerManager = Application.Instance.PlayerManager;
-        CinemachineBrain = Application.Instance.MainCamera.transform.GetComponent<CinemachineBrain>();
+        PlayerManager = Application.Instance.GetManager<PlayerManager>();
+        CinemachineBrain = Application.Instance.MainCamera;
     }
 
     public void SetNewCameraPosition(CinemachineVirtualCamera virtualCamera, CinemachineBlendDefinition blend)

@@ -13,36 +13,34 @@ public class CharacterController : MonoBehaviour
     [field: SerializeField] private Transform Hand { get; set; }
     [field: SerializeField] private SpriteRenderer Body { get; set; }
     
-    private Camera Camera { get; set; }
+    private Transform Camera { get; set; }
 
-    private Direction CurrentDirection { get; set; }
+    private bool Left { get; set; }
     public AnimationState CurrentState => AnimationStateController.CurrentState;
 
     private void Start()
     {
-        Camera = Application.Instance.MainCamera;
-        CurrentDirection = Direction.Unknown;
-        SetDirection(-transform.forward);
+        Camera = Application.Instance.MainCamera.transform;
+        SetDirection(transform.forward);
     }
 
     public void SetDirection(Vector3 direction)
     {
-        var zDirection = Vector3.Dot(direction, Camera.transform.forward);
-        var xDirection = Vector3.Dot(direction, Camera.transform.right);
-
-        var newDirection = xDirection >= -0.2f ? Direction.Right : Direction.Left;
-        newDirection |= zDirection <= 0.2f ? Direction.Front : Direction.Back;
-
-        if (newDirection == CurrentDirection)
+        if(direction.sqrMagnitude < 0.1f)
             return;
 
-        CurrentDirection = newDirection;
+        var xDirection = Vector3.Dot(direction, Camera.right);
 
-        var left = CurrentDirection.HasFlag(Direction.Left);
-        var back = CurrentDirection.HasFlag(Direction.Back);
+        var left = xDirection < -0.2f;
 
-        Body.flipX = !left;
-        Arm.localScale = new Vector3(left ? -1 : 1, 1, 1);
+        if (left == Left)
+            return;
+
+        Left = left;
+
+        Body.flipX = !Left;
+        
+        Arm.localScale = new Vector3(Left ? -1 : 1, 1, 1);
     }
 
     public void SetSpeed(float speed)
@@ -74,15 +72,5 @@ public class CharacterController : MonoBehaviour
         }
     
         WeaponController = Instantiate(weaponController, Hand);
-    }
-
-    [Flags]
-    private enum Direction
-    {
-        Unknown = 0,
-        Right = 1,
-        Left = 2,
-        Back = 4,
-        Front = 8
     }
 }

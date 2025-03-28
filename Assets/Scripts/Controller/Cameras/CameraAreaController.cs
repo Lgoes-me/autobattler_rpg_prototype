@@ -24,9 +24,9 @@ public class CameraAreaController : MonoBehaviour
     {
         if (Follow)
         {
-            CinemachineVirtualCamera.Follow = Application.Instance.PlayerManager.PlayerController.transform;
+            CinemachineVirtualCamera.Follow = Application.Instance.GetManager<PlayerManager>().PlayerController.transform;
         }
 
-        Application.Instance.InputManager.SetNewCameraPosition(CinemachineVirtualCamera, Blend);
+        Application.Instance.GetManager<InputManager>().SetNewCameraPosition(CinemachineVirtualCamera, Blend);
     }
 }

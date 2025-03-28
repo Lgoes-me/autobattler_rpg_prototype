@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PauseManager : MonoBehaviour
+public class PauseManager : MonoBehaviour, IManager
 {
     [field: SerializeField] private GameObject PauseCanvas { get; set; }
 

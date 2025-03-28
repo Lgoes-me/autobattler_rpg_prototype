@@ -11,7 +11,7 @@ public class SkippableDialogue : IDialogue
     
     public IEnumerator ReadDialogue(DialogueManager dialogueManager, BasePawn pawn)
     {
-        if (Application.Instance.GameSaveManager.HasReadDialogue(Id))
+        if (Application.Instance.GetManager<GameSaveManager>().HasReadDialogue(Id))
         {
             yield return null;
         }
@@ -22,7 +22,7 @@ public class SkippableDialogue : IDialogue
                 yield return line.ReadDialogue(dialogueManager, pawn);
             }
             
-            Application.Instance.GameSaveManager.SaveDialogue(this);
+            Application.Instance.GetManager<GameSaveManager>().SaveDialogue(this);
         }
     }
 }

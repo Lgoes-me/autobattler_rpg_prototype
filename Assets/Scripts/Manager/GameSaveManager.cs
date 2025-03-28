@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-public class GameSaveManager
+public class GameSaveManager : IManager
 {
     private Save Save { get; set; }
 
@@ -13,11 +13,11 @@ public class GameSaveManager
 
     public void Prepare()
     {
-        ContentManager = Application.Instance.ContentManager;
-        TimeManager = Application.Instance.TimeManager;
-        BlessingManager = Application.Instance.BlessingManager;
-        PartyManager = Application.Instance.PartyManager;
-        SaveManager = Application.Instance.SaveManager;
+        ContentManager = Application.Instance.GetManager<ContentManager>();
+        TimeManager = Application.Instance.GetManager<TimeManager>();
+        BlessingManager = Application.Instance.GetManager<BlessingManager>();
+        PartyManager = Application.Instance.GetManager<PartyManager>();
+        SaveManager = new SaveManager();
     }
 
     public bool FirstTimePlaying()

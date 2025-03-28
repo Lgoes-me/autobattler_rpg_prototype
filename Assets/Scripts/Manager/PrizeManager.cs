@@ -1,28 +1,31 @@
 using System.Collections.Generic;
 
-public class PrizeManager
+public class PrizeManager : IManager
 {
+    private GameSaveManager GameSaveManager { get; set; }
+    private BlessingManager BlessingManager { get; set; }
     private InterfaceManager InterfaceManager { get; set; }
     private PauseManager PauseManager { get; set; }
     
     public void Prepare()
     {
-        InterfaceManager = Application.Instance.InterfaceManager;
-        PauseManager = Application.Instance.PauseManager;
+        GameSaveManager = Application.Instance.GetManager<GameSaveManager>();
+        BlessingManager = Application.Instance.GetManager<BlessingManager>();
+        InterfaceManager = Application.Instance.GetManager<InterfaceManager>();
+        PauseManager = Application.Instance.GetManager<PauseManager>();
     }
 
     public async void CreateLevelUpPrize()
     {
         PauseManager.PauseGame();
         
-        var gameSaveManager = Application.Instance.GameSaveManager;
-        var prizes = new LevelUpPrize(3, gameSaveManager.GetSelectedParty());
+        var prizes = new LevelUpPrize(3, GameSaveManager.GetSelectedParty());
 
         var selectedPrize = await InterfaceManager.ShowPrizeCanvas(prizes);
         
         PauseManager.ResumeGame();
         selectedPrize.LevelUp();
-        gameSaveManager.SavePawnInfo(selectedPrize);
+        GameSaveManager.SavePawnInfo(selectedPrize);
     }
 
     public async void CreateBlessingPrize(List<BlessingIdentifier> blessings)
@@ -32,7 +35,7 @@ public class PrizeManager
         var selectedPrize = await InterfaceManager.ShowPrizeCanvas(prizes);
         
         PauseManager.ResumeGame();
-        Application.Instance.BlessingManager.AddBlessing(selectedPrize);
+        BlessingManager.AddBlessing(selectedPrize);
     }
     
     public async void CreatePartyMemberPrize(List<BasePawn> pawns)

@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class DialogueManager : MonoBehaviour
+public class DialogueManager : MonoBehaviour, IManager
 {
     [field: SerializeField] private GameObject DialogueCanvas { get; set; }
     [field: SerializeField] private DialogueBoxItemController DialogueBoxItemController { get; set; }

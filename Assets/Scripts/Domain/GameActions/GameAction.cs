@@ -16,7 +16,7 @@ public class OpenCutscene : GameAction
     
     public override void Invoke()
     {
-        Application.Instance.SceneManager.OpenCutscene(SceneName);
+        Application.Instance.GetManager<SceneManager>().OpenCutscene(SceneName);
     }
 }
 
@@ -29,7 +29,7 @@ public class ChangeScene : GameAction
     public override void Invoke()
     {
         var spawnDomain = new SpawnDomain(SpawnId, SceneName);
-        Application.Instance.SceneManager.ChangeContext(spawnDomain);
+        Application.Instance.GetManager<SceneManager>().ChangeContext(spawnDomain);
     }
 }
 
@@ -40,7 +40,7 @@ public class AddFriend : GameAction
     
     public override void Invoke()
     {
-        Application.Instance.PartyManager.AddToAvailableParty(PawnData);
+        Application.Instance.GetManager<PartyManager>().AddToAvailableParty(PawnData);
     }
 }
 
@@ -64,7 +64,7 @@ public class OpenBlessingPrize : GameAction
     public override void Invoke()
     {
         var blessings = Enum.GetValues(typeof(BlessingIdentifier)).Cast<BlessingIdentifier>().ToList();
-        Application.Instance.PrizeManager.CreateBlessingPrize(blessings);
+        Application.Instance.GetManager<PrizeManager>().CreateBlessingPrize(blessings);
     }
 }
 
@@ -75,7 +75,7 @@ public class OpenBlessingPrizeFromPool : GameAction
     
     public override void Invoke()
     {
-        Application.Instance.PrizeManager.CreateBlessingPrize(Pool);
+        Application.Instance.GetManager<PrizeManager>().CreateBlessingPrize(Pool);
     }
 }
 
@@ -84,6 +84,6 @@ public class OpenLevelUpPrize : GameAction
 {
     public override void Invoke()
     {
-        Application.Instance.PrizeManager.CreateLevelUpPrize();
+        Application.Instance.GetManager<PrizeManager>().CreateLevelUpPrize();
     }
 }

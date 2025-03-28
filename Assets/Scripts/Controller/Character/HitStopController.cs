@@ -11,7 +11,7 @@ public class HitStopController : MonoBehaviour, IPauseListener
 
     private void Start()
     {
-        Application.Instance.PauseManager.SubscribePauseListener(this);
+        Application.Instance.GetManager<PauseManager>().SubscribePauseListener(this);
     }
 
     public void HitStop(float percentage, float time, bool isGlobal, Color color)
@@ -58,6 +58,6 @@ public class HitStopController : MonoBehaviour, IPauseListener
 
     private void OnDestroy()
     {
-        Application.Instance.PauseManager.UnsubscribePauseListener(this);
+        Application.Instance.GetManager<PauseManager>().UnsubscribePauseListener(this);
     }
 }

@@ -7,12 +7,13 @@ public class CutsceneScene : MonoBehaviour
 
     public void Init()
     {
-        Application.Instance.PauseManager.PauseGame();
         
-        Application.Instance.DialogueManager.OpenDialogue(Dialogue, () =>
+        Application.Instance.GetManager<PauseManager>().PauseGame();
+        
+        Application.Instance.GetManager<DialogueManager>().OpenDialogue(Dialogue, () =>
         {
             EndCutsceneAction?.Invoke();
-            Application.Instance.PauseManager.ResumeGame();
+            Application.Instance.GetManager<PauseManager>().ResumeGame();
         });
     }
 }

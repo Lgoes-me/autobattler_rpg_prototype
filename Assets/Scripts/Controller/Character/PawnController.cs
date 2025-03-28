@@ -66,14 +66,14 @@ public class PawnController : MonoBehaviour
 
         if (ability.IsSpecial)
         {
-            Application.Instance.BattleEventsManager.DoSpecialAttackEvent(BattleController.Battle, this, ability);
+            Application.Instance.GetManager<BattleEventsManager>().DoSpecialAttackEvent(BattleController.Battle, this, ability);
         }
         else
         {
-            Application.Instance.BattleEventsManager.DoAttackEvent(BattleController.Battle, this, ability);
+            Application.Instance.GetManager<BattleEventsManager>().DoAttackEvent(BattleController.Battle, this, ability);
         }
 
-        Application.Instance.AudioManager.PlaySound(SfxType.Slash);
+        Application.Instance.GetManager<AudioManager>().PlaySound(SfxType.Slash);
 
         ability.SpendResource();
         ability.DoAction();
@@ -181,7 +181,7 @@ public class PawnController : MonoBehaviour
         NavMeshAgent.isStopped = true;
         Ability = null;
 
-        Application.Instance.BattleEventsManager.DoPawnDeathEvent(BattleController.Battle, this);
+        Application.Instance.GetManager<BattleEventsManager>().DoPawnDeathEvent(BattleController.Battle, this);
     }
 
     public void ReceiveHeal(bool canRevive)

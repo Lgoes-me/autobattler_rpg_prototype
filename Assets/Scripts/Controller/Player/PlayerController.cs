@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using System.Threading.Tasks;
+using UnityEngine;
 using UnityEngine.AI;
 
 public class PlayerController : MonoBehaviour
 {
     [field: SerializeField] private PawnController PawnController { get; set; }
+    [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
     [field: SerializeField] private float Speed { get; set; }
 
     public Vector2 MoveInput { get; private set; }
@@ -28,10 +30,15 @@ public class PlayerController : MonoBehaviour
         if (MoveInput.sqrMagnitude < Mathf.Epsilon)
             return;
 
-        var inputManager = Application.Instance.InputManager;
-        var input = inputManager.RightVector * MoveInput.x + inputManager.ForwardVector * MoveInput.y;
+        var inputManager = Application.Instance.GetManager<InputManager>();
+        
+        var lateralInput = inputManager.RightVector * MoveInput.x;
+        var verticalInput = inputManager.ForwardVector * MoveInput.y;
+        var input = lateralInput + verticalInput;
+        
         input = Vector3.ClampMagnitude(input, 1f);
-        PawnController.CharacterController.SetDirection(input);
+        
+        PawnController.CharacterController.SetDirection(lateralInput);
         
         var destination = transform.position + input * Speed;
 
@@ -55,5 +62,10 @@ public class PlayerController : MonoBehaviour
         {
             interactable.Unselect();
         }
+    }
+
+    public async Task MovePlayerTo(Transform destination)
+    {
+        await this.WaitToArriveAtDestination(NavMeshAgent, destination.position);
     }
 }

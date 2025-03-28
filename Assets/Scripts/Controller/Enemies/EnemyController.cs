@@ -36,7 +36,7 @@ public class EnemyController : MonoBehaviour
         PawnController.CharacterController.SetSpeed(NavMeshAgent.velocity.magnitude);
         PawnController.CharacterController.SetDirection(NavMeshAgent.velocity);
         
-        var player = Application.Instance.PlayerManager.PlayerController;
+        var player = Application.Instance.GetManager<PlayerManager>().PlayerController;
         var distance = Vector3.Distance(player.transform.position, transform.position);
         
         if (Following)

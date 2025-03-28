@@ -13,7 +13,7 @@ public class InteractableController : MonoBehaviour , IPauseListener
     {
         Enabled = true;
         InteractableCanvas.Init(this);
-        Application.Instance.PauseManager.SubscribePauseListener(this);
+        Application.Instance.GetManager<PauseManager>().SubscribePauseListener(this);
     }
 
     public void Preselect()
@@ -61,6 +61,6 @@ public class InteractableController : MonoBehaviour , IPauseListener
 
     private void OnDestroy()
     {
-        Application.Instance.PauseManager.UnsubscribePauseListener(this);
+        Application.Instance.GetManager<PauseManager>().UnsubscribePauseListener(this);
     }
 }

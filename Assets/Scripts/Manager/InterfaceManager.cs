@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class InterfaceManager : MonoBehaviour
+public class InterfaceManager : MonoBehaviour, IManager
 {
     [field: SerializeField] private GameObject BattleCanvas { get; set; }
     [field: SerializeField] private GameObject BattleLostCanvas { get; set; }

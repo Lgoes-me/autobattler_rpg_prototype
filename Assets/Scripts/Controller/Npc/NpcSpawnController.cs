@@ -11,7 +11,7 @@ public class NpcSpawnController : MonoBehaviour
 
     private void Awake()
     {
-        TimeManager = Application.Instance.TimeManager;
+        TimeManager = Application.Instance.GetManager<TimeManager>();
         CheckInitialSate();
     }
 
@@ -39,7 +39,7 @@ public class NpcSpawnController : MonoBehaviour
 
     private void SpawnPlacementState(NpcPlacement placementData)
     {
-        if (Application.Instance.PartyManager.Contains(NpcSchedule.PawnData))
+        if (Application.Instance.GetManager<PartyManager>().Contains(NpcSchedule.PawnData))
             return;
 
         if (NpcController == null)
@@ -68,7 +68,7 @@ public class NpcSpawnController : MonoBehaviour
 
     private void ActivatePlacementState(NpcPlacement placementData)
     {
-        if (Application.Instance.PartyManager.Contains(NpcSchedule.PawnData))
+        if (Application.Instance.GetManager<PartyManager>().Contains(NpcSchedule.PawnData))
             return;
         
         if (NpcController == null)

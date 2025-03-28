@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-public class BlessingManager
+public class BlessingManager : IManager
 {
     public List<Blessing> Blessings { get; private set; }
     private BlessingFactory BlessingFactory { get; set; }
@@ -17,11 +17,11 @@ public class BlessingManager
     
     public void Prepare()
     {
-        InterfaceManager = Application.Instance.InterfaceManager;
-        GameSaveManager = Application.Instance.GameSaveManager;
+        InterfaceManager = Application.Instance.GetManager<InterfaceManager>();
+        GameSaveManager = Application.Instance.GetManager<GameSaveManager>();
     }
 
-    public void GetBlessingsAndInitCanvas()
+    public void LoadBlessings()
     {
         Blessings = GameSaveManager.GetBlessings().Select(j => BlessingFactory.CreateBlessing(j)).ToList();
         InterfaceManager.InitBlessingsCanvas(Blessings);

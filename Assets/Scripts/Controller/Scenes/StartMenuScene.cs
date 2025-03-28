@@ -18,25 +18,20 @@ public class StartMenuScene : MonoBehaviour
 
     private void StartGame()
     {
-        Application.Instance.GameSaveManager.StartNewSave();
-        
-        Application.Instance.PartyManager.GetAndSpawnAvailableParty();
-        Application.Instance.BlessingManager.GetBlessingsAndInitCanvas();
-        Application.Instance.TimeManager.StartClock();
-        
-        Application.Instance.SceneManager.StartGameIntro();
+        Application.Instance.GetManager<GameSaveManager>().StartNewSave();
+        Application.Instance.GetManager<TimeManager>().StartClock();
+        Application.Instance.GetManager<SceneManager>().StartGameIntro();
     }
 
     private void ContinueGame()
     {
-        Application.Instance.GameSaveManager.LoadSave();
+        Application.Instance.GetManager<GameSaveManager>().LoadSave();
         
-        Application.Instance.PartyManager.GetAndSpawnAvailableParty();
-        Application.Instance.BlessingManager.GetBlessingsAndInitCanvas();
-        Application.Instance.TimeManager.StartClock();
+        Application.Instance.GetManager<BlessingManager>().LoadBlessings();
+        Application.Instance.GetManager<TimeManager>().StartClock();
         
-        var spawn =  Application.Instance.GameSaveManager.GetSpawn();
-        Application.Instance.SceneManager.ChangeContext(spawn);
+        var spawn =  Application.Instance.GetManager<GameSaveManager>().GetSpawn();
+        Application.Instance.GetManager<SceneManager>().ChangeContext(spawn);
     }
 
     private void OpenSettings()

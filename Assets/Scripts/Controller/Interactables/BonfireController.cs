@@ -19,12 +19,12 @@ public class BonfireController : MonoBehaviour, IInteractableListener
     public void Select(Action callback)
     {
         Selected = true;
-        Application.Instance.SceneManager.StartBonfireScene(new SpawnDomain(Spawn.Id, SceneId), callback);
+        Application.Instance.GetManager<SceneManager>().StartBonfireScene(new SpawnDomain(Spawn.Id, SceneId), callback);
     }
 
     public void UnSelect()
     {
-        Application.Instance.SceneManager.EndBonfireScene();
+        Application.Instance.GetManager<SceneManager>().EndBonfireScene();
         Selected = false;
     }
 }

@@ -1,11 +1,11 @@
-﻿public class ConfigManager
+﻿public class ConfigManager : IManager
 {
     private Config Config { get; set; }
     private SaveManager SaveManager { get; set; }
 
     public void Prepare()
     {
-        SaveManager = Application.Instance.SaveManager;
+        SaveManager = new SaveManager();
     }
 
     public void Init()

@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-public class PartyManager : MonoBehaviour
+public class PartyManager : MonoBehaviour, IManager
 {
     [field: SerializeField] private PawnController PawnControllerPrefab { get; set; }
 
@@ -24,15 +24,10 @@ public class PartyManager : MonoBehaviour
 
     public void Prepare()
     {
-        PlayerManager = Application.Instance.PlayerManager;
-        GameSaveManager = Application.Instance.GameSaveManager;
-        ContentManager = Application.Instance.ContentManager;
-        ArchetypeManager = Application.Instance.ArchetypeManager;
-    }
-
-    public void GetAndSpawnAvailableParty()
-    {
-        AvailableParty = GameSaveManager.GetAvailableParty();
+        PlayerManager = Application.Instance.GetManager<PlayerManager>();
+        GameSaveManager = Application.Instance.GetManager<GameSaveManager>();
+        ContentManager = Application.Instance.GetManager<ContentManager>();
+        ArchetypeManager = Application.Instance.GetManager<ArchetypeManager>();
     }
 
     public void UnSpawnParty()

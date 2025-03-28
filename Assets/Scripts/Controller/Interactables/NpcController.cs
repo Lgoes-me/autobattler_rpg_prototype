@@ -52,18 +52,18 @@ public class NpcController : MonoBehaviour, IInteractableListener
 
     public void Select(Action callback)
     {
-        Application.Instance.PauseManager.PauseGame();
+        Application.Instance.GetManager<PauseManager>().PauseGame();
         
-        Application.Instance.DialogueManager.OpenDialogue(Dialogue, () =>
+        Application.Instance.GetManager<DialogueManager>().OpenDialogue(Dialogue, () =>
         {
-            Application.Instance.PauseManager.ResumeGame();
+            Application.Instance.GetManager<PauseManager>().ResumeGame();
             callback();
         });
     }
 
     public void UnSelect()
     {
-        Application.Instance.DialogueManager.CloseDialogue();
+        Application.Instance.GetManager<DialogueManager>().CloseDialogue();
     }
 
     public void DeSpawn()

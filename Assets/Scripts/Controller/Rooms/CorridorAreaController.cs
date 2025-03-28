@@ -13,9 +13,11 @@ public class CorridorAreaController : SpawnController
         base.SpawnPlayer();
         Active = false;
 
-        await this.WaitToArriveAtDestination(Application.Instance.PlayerManager.NavMeshAgent, Destination.position);
+        var playerManager = Application.Instance.GetManager<PlayerManager>();
+
+        await playerManager.PlayerController.MovePlayerTo(Destination);
         
-        Application.Instance.PlayerManager.EnablePlayerInput();
+        playerManager.EnablePlayerInput();
         
         Active = true;
     }
@@ -28,10 +30,14 @@ public class CorridorAreaController : SpawnController
         }
     }
 
-    protected async void UseCorridor()
+    private async void UseCorridor()
     {
-        Application.Instance.PlayerManager.DisablePlayerInput();
-        await this.WaitToArriveAtDestination(Application.Instance.PlayerManager.NavMeshAgent, SpawnPoint.position);
-        Application.Instance.SceneManager.ChangeContext(Spawn);
+        var playerManager = Application.Instance.GetManager<PlayerManager>();
+        
+        playerManager.DisablePlayerInput();
+        
+        await playerManager.PlayerController.MovePlayerTo(SpawnPoint);
+
+        Application.Instance.GetManager<SceneManager>().ChangeContext(Spawn);
     }
 }

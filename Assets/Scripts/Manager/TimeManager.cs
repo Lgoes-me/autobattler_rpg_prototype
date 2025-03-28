@@ -1,8 +1,7 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class TimeManager : MonoBehaviour, IPauseListener
+public class TimeManager : MonoBehaviour, IPauseListener, IManager
 {
     [field: SerializeField] private float DuracaoDaHoraEmSegundos { get; set; }
     public float HorarioEmJogo { get; private set; }
@@ -14,8 +13,9 @@ public class TimeManager : MonoBehaviour, IPauseListener
 
     public void StartClock()
     {
-        PauseManager = Application.Instance.PauseManager;
-        GameSaveManager = Application.Instance.GameSaveManager;
+        PauseManager = Application.Instance.GetManager<PauseManager>();
+        GameSaveManager = Application.Instance.GetManager<GameSaveManager>();
+        
         PauseManager.SubscribePauseListener(this);
 
         var h = Mathf.InverseLerp(0f, 24f, GameSaveManager.GetSavedTime());
@@ -27,7 +27,7 @@ public class TimeManager : MonoBehaviour, IPauseListener
 
     private IEnumerator ClockCoroutine()
     {
-        while (true)
+        while (gameObject.activeInHierarchy)
         {
             yield return new WaitForSeconds(1f);
             

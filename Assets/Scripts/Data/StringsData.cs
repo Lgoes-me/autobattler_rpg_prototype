@@ -15,7 +15,7 @@ public class TextKeyData
 
     public string GetText()
     {
-        var languageType = Application.Instance.ConfigManager.GetLanguage();
+        var languageType = Application.Instance.GetManager<ConfigManager>().GetLanguage();
         
         return languageType switch
         {

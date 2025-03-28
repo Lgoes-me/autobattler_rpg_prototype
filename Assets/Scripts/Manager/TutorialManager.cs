@@ -1,11 +1,11 @@
-﻿public class TutorialManager
+﻿public class TutorialManager : IManager
 {
     private Tutorial Tutorial { get; set; }
     private SaveManager SaveManager { get; set; }
 
     public void Prepare()
     {
-        SaveManager = Application.Instance.SaveManager;
+        SaveManager = new SaveManager();
     }
     
     public void Init()
