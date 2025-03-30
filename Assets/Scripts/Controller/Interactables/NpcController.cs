@@ -31,7 +31,6 @@ public class NpcController : MonoBehaviour, IInteractableListener
 
     public NpcController WithPath(Transform destination, Action callback)
     {
-        NavMeshAgent.enabled = true;
         NavMeshAgent.isStopped = false;
         NavMeshAgent.destination = destination.position;
         PathCallback = callback;

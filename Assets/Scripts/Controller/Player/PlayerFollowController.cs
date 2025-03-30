@@ -24,7 +24,6 @@ public class PlayerFollowController : MonoBehaviour
             transform.position = position + randomRotation;
         }
         
-        NavMeshAgent.enabled = true;
         NavMeshAgent.isStopped = false;
         FollowCoroutine = StartCoroutine(DoFollowCoroutine(toFollow));
     }
@@ -50,11 +49,8 @@ public class PlayerFollowController : MonoBehaviour
         {
             StopCoroutine(FollowCoroutine);
         }
-
-        if (!NavMeshAgent.enabled)
-            return;
-
-        NavMeshAgent.enabled = false;
+        
+        NavMeshAgent.isStopped = true;
     }
 
     private void Update()

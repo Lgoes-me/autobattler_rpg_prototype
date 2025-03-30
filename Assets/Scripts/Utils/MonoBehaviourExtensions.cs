@@ -23,7 +23,6 @@ public static class MonoBehaviourExtensions
     {
         var task = new TaskCompletionSource<bool>();
         
-        agent.enabled = true;
         agent.SetDestination(destination);
 
         obj.StartCoroutine(WaitToArriveAtDestinationCoroutine());
@@ -43,7 +42,6 @@ public static class MonoBehaviourExtensions
                 
             agent.isStopped = true;
             agent.ResetPath();
-            agent.enabled = false;
             
             task.SetResult(true);
         }

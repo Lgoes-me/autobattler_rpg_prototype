@@ -42,7 +42,6 @@ public class PawnController : MonoBehaviour
         Pawn.StartBattle(battle);
 
         enabled = true;
-        NavMeshAgent.enabled = true;
         NavMeshAgent.isStopped = true;
 
         Ability = null;

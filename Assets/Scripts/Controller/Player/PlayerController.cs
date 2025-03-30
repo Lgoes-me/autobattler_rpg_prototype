@@ -21,6 +21,15 @@ public class PlayerController : MonoBehaviour
         if(PawnController.CharacterController == null)
             return;
         
+        /*if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out var hit, 100))
+        {
+            NavMeshAgent.SetDestination(hit.point);
+            Debug.Log ("hit");
+        }
+        
+        PawnController.CharacterController.SetSpeed(NavMeshAgent.velocity.magnitude);
+        */
+        
         MoveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         PawnController.CharacterController.SetSpeed(MoveInput.magnitude);
     }
