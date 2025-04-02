@@ -11,7 +11,6 @@ public class BattleController : MonoBehaviour
     {
         EndBattleAction = endBattleAction;
         
-        Application.Instance.GetManager<AudioManager>().PlayMusic(MusicType.Battle);
         Application.Instance.GetManager<PartyManager>().StopPartyFollow();
 
         var enemyPawns = new List<PawnController>();
@@ -119,9 +118,6 @@ public class BattleController : MonoBehaviour
                 pawn.gameObject.SetActive(false);
         }
 
-        var roomScene = FindObjectOfType<RoomController>();
-        roomScene.PlayMusic();
-        
         Application.Instance.GetManager<PlayerManager>().EnablePlayerInput();
         Application.Instance.GetManager<PartyManager>().SetPartyToFollow(false);
         Application.Instance.GetManager<GameSaveManager>().SaveBattle(Battle);

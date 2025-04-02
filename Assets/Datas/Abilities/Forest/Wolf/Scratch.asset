@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Scratch
   m_EditorClassIdentifier: 
   <Animation>k__BackingField: Scratch
-  <Delay>k__BackingField: 2
+  <Delay>k__BackingField: 1
   <Range>k__BackingField: 2
   <AbilityBehaviours>k__BackingField:
   - <Effects>k__BackingField:
@@ -24,7 +24,8 @@ MonoBehaviour:
       rid: 2079880286154260487
   <ResourceData>k__BackingField:
     rid: 2079880286154260481
-  <Priorities>k__BackingField: []
+  <Priorities>k__BackingField:
+  - rid: 7923229286425952257
   references:
     version: 2
     RefIds:
@@ -44,3 +45,8 @@ MonoBehaviour:
     - rid: 2079880286154260487
       type: {class: InstantActionData, ns: , asm: Assembly-CSharp}
       data: 
+    - rid: 7923229286425952257
+      type: {class: CloseEnemyModifier, ns: , asm: Assembly-CSharp}
+      data:
+        <Multiplier>k__BackingField: 1
+        <Distance>k__BackingField: 2
