@@ -5,6 +5,7 @@ using UnityEngine;
 public class PartyManager : MonoBehaviour, IManager
 {
     [field: SerializeField] private PawnController PawnControllerPrefab { get; set; }
+    [field: SerializeField] public PawnController BasePawnPrefab { get; set; }
 
     public int PartySizeLimit { get; private set; }
     

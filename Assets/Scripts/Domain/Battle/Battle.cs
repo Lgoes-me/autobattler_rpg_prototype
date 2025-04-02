@@ -13,16 +13,25 @@ public class Battle
     public bool HasEnemies => EnemyPawns.Count(e => e.PawnState.AbleToFight) > 0;
     public bool HasPlayers => PlayerPawns.Count(e => e.PawnState.AbleToFight) > 0;
 
-    public Battle(string id, List<PawnController> enemyPawns, List<PawnController> playerPawns)
+    public Battle(string id)
     {
         Id = id;
 
-        EnemyPawns = enemyPawns;
-        PlayerPawns = playerPawns;
-
+        EnemyPawns = new List<PawnController>();
+        PlayerPawns = new List<PawnController>();
         Pawns = new List<PawnController>();
-        Pawns.AddRange(EnemyPawns);
-        Pawns.AddRange(PlayerPawns);
+    }
+
+    public void AddEnemy(PawnController enemyPawn)
+    {
+        EnemyPawns.Add(enemyPawn);
+        Pawns.Add(enemyPawn);
+    }
+    
+    public void AddPlayerPawn(PawnController playerPawn)
+    {
+        PlayerPawns.Add(playerPawn);
+        Pawns.Add(playerPawn);
     }
 
     public PawnController QueryEnemies(PawnController user, FocusType focusType, int error)

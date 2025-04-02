@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e3f2961cde84cc2bca5113224648ba8, type: 3}
+  m_Name: SummonHelp
+  m_EditorClassIdentifier: 
+  <Animation>k__BackingField: Dance
+  <Delay>k__BackingField: 2
+  <Range>k__BackingField: 2
+  <AbilityBehaviours>k__BackingField:
+  - <Effects>k__BackingField:
+    - rid: 7923229286425952274
+    <FocusData>k__BackingField:
+      rid: 7923229286425952275
+    <ActionData>k__BackingField:
+      rid: 2079880286154260487
+  <ResourceData>k__BackingField:
+    rid: 7923229286425952273
+  <Priorities>k__BackingField:
+  - rid: 7923229286425952257
+  references:
+    version: 2
+    RefIds:
+    - rid: 2079880286154260487
+      type: {class: InstantActionData, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 7923229286425952257
+      type: {class: CloseEnemyModifier, ns: , asm: Assembly-CSharp}
+      data:
+        <Multiplier>k__BackingField: 1
+        <Distance>k__BackingField: 2
+    - rid: 7923229286425952273
+      type: {class: ManaResourceData, ns: , asm: Assembly-CSharp}
+      data:
+        <ManaCost>k__BackingField: 20
+    - rid: 7923229286425952274
+      type: {class: SummonEffectData, ns: , asm: Assembly-CSharp}
+      data:
+        <EnemyInfo>k__BackingField:
+          <PawnData>k__BackingField: {fileID: 11400000, guid: 2aa1b9904bfa6e04a8c2cf76eb3b16de, type: 2}
+          <Level>k__BackingField: 1
+    - rid: 7923229286425952275
+      type: {class: SelfFocusComponentData, ns: , asm: Assembly-CSharp}
+      data: 

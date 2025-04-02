@@ -2467,6 +2467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <PawnControllerPrefab>k__BackingField: {fileID: 4759648862371886847, guid: bf3e5b737f1f18949bbfd853b8d5bfe0, type: 3}
+  <BasePawnPrefab>k__BackingField: {fileID: 7272871157834895343, guid: de4da315f180592439ec0e232d947f2f, type: 3}
 --- !u!1 &1398462131
 GameObject:
   m_ObjectHideFlags: 0

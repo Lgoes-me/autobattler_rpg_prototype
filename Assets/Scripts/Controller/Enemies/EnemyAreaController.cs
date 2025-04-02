@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyAreaController : MonoBehaviour
 {
-    [field: SerializeField] private List<EnemyInfo> Enemies { get; set; }
+    [field: SerializeField] private List<EnemyData> Enemies { get; set; }
     [field: SerializeField] private BattleController BattleController { get; set; }
     [field: SerializeReference] [field: SerializeField] private GameAction EndBattleAction { get; set; }
     
@@ -46,21 +46,29 @@ public class EnemyAreaController : MonoBehaviour
         Id = Guid.NewGuid().ToString();
     }
 }
+[Serializable]
+public class EnemyData
+{
+    [field: SerializeField] public bool IsBoss { get; set; }
+    [field: SerializeField] public EnemyController EnemyController { get; set; }
+    [field: SerializeField] public EnemyInfo EnemyInfo { get; set; }
+    
+    public PawnController PawnController => EnemyController.PawnController;
+    
+    public void PreparePawn()
+    {
+        PawnController.Init(EnemyInfo.ToDomain(TeamType.Enemies));
+    }
+}
 
 [Serializable]
 public class EnemyInfo
 {
-    [field: SerializeField] public bool IsBoss { get; set; }
-    
-    [field: SerializeField] public EnemyController EnemyController { get; set; }
     [field: SerializeField] private PawnData PawnData { get; set; }
     [field: SerializeField] private int Level { get; set; } = 1;
-    
-    public PawnController PawnController => EnemyController.PawnController;
 
-    public void PreparePawn()
+    public Pawn ToDomain(TeamType teamType)
     {
-        var pawn = PawnData.ToDomain(TeamType.Enemies, Level);
-        PawnController.Init(pawn);
+        return PawnData.ToDomain(teamType, Level);
     }
 }

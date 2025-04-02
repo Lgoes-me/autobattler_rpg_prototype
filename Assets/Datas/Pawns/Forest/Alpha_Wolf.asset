@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2506f476fd0f4300b3c3cd3c8b600971, type: 3}
-  m_Name: Wolf
+  m_Name: Alpha_Wolf
   m_EditorClassIdentifier: 
   <Id>k__BackingField: Wolf
   <Initiative>k__BackingField: 1
@@ -22,7 +22,7 @@ MonoBehaviour:
   <Weapon>k__BackingField: {fileID: 0}
   <BaseStats>k__BackingField:
     <Health>k__BackingField: 60
-    <Mana>k__BackingField: 0
+    <Mana>k__BackingField: 20
     <Strength>k__BackingField: 1
     <Arcane>k__BackingField: 0
     <PhysicalDefence>k__BackingField: 0
@@ -30,7 +30,7 @@ MonoBehaviour:
   <LevelUpStats>k__BackingField:
     <MaxLevelStatsStats>k__BackingField:
       <Health>k__BackingField: 600
-      <Mana>k__BackingField: 0
+      <Mana>k__BackingField: 150
       <Strength>k__BackingField: 120
       <Arcane>k__BackingField: 6
       <PhysicalDefence>k__BackingField: 20
@@ -62,6 +62,7 @@ MonoBehaviour:
   <Abilities>k__BackingField:
   - {fileID: 11400000, guid: 0e9c749adb5a8cd49aa09c2ff1d6028f, type: 2}
   - {fileID: 11400000, guid: 2489267ea8703b84ab3b158716c31486, type: 2}
-  <SpecialAbilities>k__BackingField: []
+  <SpecialAbilities>k__BackingField:
+  - {fileID: 11400000, guid: de8fa73a0dd0f4d4e80e5f4e0be03952, type: 2}
   <Archetypes>k__BackingField: 
   <CharacterInfos>k__BackingField: []

@@ -17,7 +17,7 @@ public class AbilityState : AnimationState
     public override void DoAnimationEvent()
     {
         base.DoAnimationEvent();
-        AnimationAction.Invoke(Ability);
+        AnimationAction?.Invoke(Ability);
     }
     
     public override void DoAnimationCallback()

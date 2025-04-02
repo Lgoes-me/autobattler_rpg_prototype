@@ -193,6 +193,19 @@ public class PawnController : MonoBehaviour
         CharacterController.SetAnimationState(new IdleState());
     }
 
+    public void SummonPawn(Pawn pawn)
+    {
+        var prefab = Application.Instance.GetManager<PartyManager>().BasePawnPrefab;
+            
+        var randomRotation = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)) * Vector3.forward * 1f;
+        var pawnController = Instantiate(prefab, transform.position + randomRotation, Quaternion.identity);
+        pawnController.Init(pawn);
+        
+        BattleController.AddPawn(pawnController, pawn.Team);
+        pawnController.StartBattle(BattleController, BattleController.Battle);
+        pawnController.RealizaTurno();
+    }
+
     public void ReceiveBuff(Buff buff)
     {
         Debug.Log(buff.Id);

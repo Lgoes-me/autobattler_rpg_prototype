@@ -7,15 +7,15 @@ public class BattleController : MonoBehaviour
     public Battle Battle { get; private set; }
     private GameAction EndBattleAction { get; set; }
 
-    public void ActivateBattleScene(string battleId, List<EnemyInfo> enemies, GameAction endBattleAction)
+    public void ActivateBattleScene(string battleId, List<EnemyData> enemies, GameAction endBattleAction)
     {
         EndBattleAction = endBattleAction;
         
         Application.Instance.GetManager<PartyManager>().StopPartyFollow();
 
-        var enemyPawns = new List<PawnController>();
-        var playerPawns = new List<PawnController>();
 
+        Battle = new Battle(battleId);
+        
         foreach (var enemy in enemies)
         {
             var enemyController = enemy.PawnController;
@@ -26,15 +26,13 @@ public class BattleController : MonoBehaviour
                 Application.Instance.GetManager<InterfaceManager>().BossCanvas.Init(enemyController);
             }
 
-            enemyPawns.Add(enemyController);
+            AddPawn(enemyController, TeamType.Enemies);
         }
 
         foreach (var alliedController in Application.Instance.GetManager<PartyManager>().Party)
         {
-            playerPawns.Add(alliedController);
+            AddPawn(alliedController, TeamType.Player);
         }
-
-        Battle = new Battle(battleId, enemyPawns, playerPawns);
 
         foreach (var pawnController in Battle.Pawns)
         {
@@ -44,6 +42,19 @@ public class BattleController : MonoBehaviour
         Application.Instance.GetManager<BattleEventsManager>().DoBattleStartEvent(Battle);
 
         StartCoroutine(BattleCoroutine());
+    }
+
+    public void AddPawn(PawnController pawnController, TeamType team)
+    {
+        switch (team)
+        {
+            case TeamType.Player:
+                Battle.AddPlayerPawn(pawnController);
+                break;
+            case TeamType.Enemies:
+                Battle.AddEnemy(pawnController);
+                break;
+        }
     }
 
     private IEnumerator BattleCoroutine()
