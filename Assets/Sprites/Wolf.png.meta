@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ec49ffb6876cf0c4386933b879d3a6f9
+guid: a71899249cf632948a99a27df1079d26
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,43 +136,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: teste_0
+      name: head
       rect:
         serializedVersion: 2
-        x: 1
-        y: 18
-        width: 30
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ec5264dd73bc8854ebf869f56c1b4b03
-      internalID: 733048721
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: head neutral
-      rect:
-        serializedVersion: 2
-        x: 41
+        x: 2
         y: 35
         width: 10
         height: 11
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd04ae3921a2af94096c42dfb88133fd
-      internalID: -482949192
+      spriteID: 18369748499d177479087f95adcd4dd7
+      internalID: -892434320
       vertices: []
       indices: 
       edges: []
@@ -181,19 +160,19 @@ TextureImporter:
       name: head bite
       rect:
         serializedVersion: 2
-        x: 42
+        x: 3
         y: 20
         width: 9
         height: 13
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c861aefda1545e44980ad91c9849b70
-      internalID: 1306056235
+      spriteID: 51a492cafc9c79141b068c34a3506ded
+      internalID: 1384603057
       vertices: []
       indices: 
       edges: []
@@ -202,19 +181,19 @@ TextureImporter:
       name: torax
       rect:
         serializedVersion: 2
-        x: 57
+        x: 18
         y: 20
         width: 16
         height: 14
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a9d8b1660f94f38489ae463ae0d334bb
-      internalID: 779860404
+      spriteID: 2c19c6feb5110b24f8ad429184f4fdfe
+      internalID: -162163502
       vertices: []
       indices: 
       edges: []
@@ -223,19 +202,19 @@ TextureImporter:
       name: butt
       rect:
         serializedVersion: 2
-        x: 76
+        x: 37
         y: 21
         width: 13
         height: 11
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d184f3a43aec8c4c8534adc99beb8a0
-      internalID: -1890187877
+      spriteID: 5703052eb3c3dd64e8b26589076d1611
+      internalID: 1720924076
       vertices: []
       indices: 
       edges: []
@@ -244,124 +223,19 @@ TextureImporter:
       name: head howl
       rect:
         serializedVersion: 2
-        x: 42
+        x: 3
         y: 6
         width: 11
         height: 12
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3e86e9054a115364f80758d1f9a4ce96
-      internalID: 1379272247
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: leg left
-      rect:
-        serializedVersion: 2
-        x: 77
-        y: 10
-        width: 6
-        height: 9
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ecfcf543d9ff7c744a87a02cf3c98a89
-      internalID: -1833758736
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arm right
-      rect:
-        serializedVersion: 2
-        x: 57
-        y: 12
-        width: 3
-        height: 5
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 622077fd220e19f498bf6cb0126ddf9b
-      internalID: 2139586416
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: hand right
-      rect:
-        serializedVersion: 2
-        x: 56
-        y: 5
-        width: 4
-        height: 5
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7197df40df649b4428f67935d4515941
-      internalID: -1765733279
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: arm left
-      rect:
-        serializedVersion: 2
-        x: 63
-        y: 11
-        width: 3
-        height: 6
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ed9bbf0070851a34fa6b60e381561ab7
-      internalID: 2079738850
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: hand left
-      rect:
-        serializedVersion: 2
-        x: 63
-        y: 3
-        width: 3
-        height: 5
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bd51b42c2d30a5643b1e4a4eb9244c31
-      internalID: 695880585
+      spriteID: 776dac0d8c9d5e549a359cb9e22f9838
+      internalID: -1061769256
       vertices: []
       indices: 
       edges: []
@@ -370,40 +244,208 @@ TextureImporter:
       name: leg right
       rect:
         serializedVersion: 2
-        x: 71
+        x: 32
         y: 10
         width: 4
         height: 7
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c0bfaeef52c4034f990c56a9295bc08
-      internalID: -1029142823
+      spriteID: 70638ccd58b53c7498ee9015636ffc54
+      internalID: -318742859
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: feet left
+      name: leg left
       rect:
         serializedVersion: 2
-        x: 72
-        y: 4
-        width: 2
-        height: 4
+        x: 38
+        y: 10
+        width: 6
+        height: 9
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b32733c1ae577ce4a8521673026ac87a
-      internalID: -1426047873
+      spriteID: ea5d99b9c7207a64889ade2e8568c5e8
+      internalID: -1389423238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tail base
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 11
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f51cf739bfdcb10409bba6c4afc39199
+      internalID: -338092094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tail tip
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 4
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 506299e91fcff644a9f18f3c3d49b31d
+      internalID: 169516593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arm right
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 12
+        width: 3
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c6493cecf8c91d45a87a7d1d97a2f95
+      internalID: 597267483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forearm right
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 7
+        width: 2
+        height: 3
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8e70a14977a79f469f24810f8c45b2e
+      internalID: 1736968222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arm left
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 11
+        width: 3
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ccb92d79d6550643ab98a714a572d63
+      internalID: 74997026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forearm left
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 6
+        width: 2
+        height: 3
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b51c56c37ecab2742951275a3076765c
+      internalID: -1999267455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hand right
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 3
+        width: 3
+        height: 2
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05b86a5f9b22ab441a133ac296ed7a0d
+      internalID: -1496553651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hand left
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 2
+        width: 3
+        height: 2
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19481d248bf46dd46a283ba7e78817e5
+      internalID: -1255905371
       vertices: []
       indices: 
       edges: []
@@ -412,40 +454,40 @@ TextureImporter:
       name: feet right
       rect:
         serializedVersion: 2
-        x: 81
-        y: 3
+        x: 33
+        y: 4
         width: 2
-        height: 5
+        height: 4
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fecfb8000a71b404a8e5ea3659c88186
-      internalID: 875392092
+      spriteID: 5e9bab3e72351c5429739757fd985702
+      internalID: -1697275405
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tail
+      name: feet left
       rect:
         serializedVersion: 2
-        x: 85
-        y: 8
-        width: 7
-        height: 8
+        x: 42
+        y: 3
+        width: 2
+        height: 5
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c1c5299279ffeee49a6c673fd6a215b5
-      internalID: 2088050163
+      spriteID: 507ac06d4b3eaba4b862b6a3a430a562
+      internalID: -733661960
       vertices: []
       indices: 
       edges: []
@@ -461,21 +503,23 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      arm left: 2079738850
-      arm right: 2139586416
-      butt: -1890187877
-      feet left: -1426047873
-      feet right: 875392092
-      hand left: 695880585
-      hand right: -1765733279
-      head bite: 1306056235
-      head howl: 1379272247
-      head neutral: -482949192
-      leg left: -1833758736
-      leg right: -1029142823
-      tail: 2088050163
-      teste_0: 733048721
-      torax: 779860404
+      arm left: 74997026
+      arm right: 597267483
+      butt: 1720924076
+      feet left: -733661960
+      feet right: -1697275405
+      forearm left: -1999267455
+      forearm right: 1736968222
+      hand left: -1255905371
+      hand right: -1496553651
+      head: -892434320
+      head bite: 1384603057
+      head howl: -1061769256
+      leg left: -1389423238
+      leg right: -318742859
+      tail base: -338092094
+      tail tip: 169516593
+      torax: -162163502
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -9,13 +9,11 @@ public class CharacterController : MonoBehaviour
     [field: SerializeField] public WeaponController WeaponController { get; private set; }
     [field: SerializeField] private HitStopController HitStopController { get; set; }
     [field: SerializeField] private Animator Animator { get; set; }
-    [field: SerializeField] private Transform Arm { get; set; }
     [field: SerializeField] private Transform Hand { get; set; }
-    [field: SerializeField] private SpriteRenderer Body { get; set; }
+    [field: SerializeField] private Transform Pivot { get; set; }
     
     private Transform Camera { get; set; }
 
-    private bool Left { get; set; }
     public AnimationState CurrentState => AnimationStateController.CurrentState;
 
     private void Start()
@@ -30,17 +28,7 @@ public class CharacterController : MonoBehaviour
             return;
 
         var xDirection = Vector3.Dot(direction, Camera.right);
-
-        var left = xDirection < -0.2f;
-
-        if (left == Left)
-            return;
-
-        Left = left;
-
-        Body.flipX = !Left;
-        
-        Arm.localScale = new Vector3(Left ? -1 : 1, 1, 1);
+        Pivot.localScale = new Vector3(xDirection < -0.2f ? 1 : - 1, 1, 1);
     }
 
     public void SetSpeed(float speed)

@@ -1,10 +1,11 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class HitStopController : MonoBehaviour, IPauseListener
 {
     [field: SerializeField] private Animator Animator { get; set; }
-    [field: SerializeField] private SpriteRenderer Sprite { get; set; }
+    [field: SerializeField] private List<SpriteRenderer> Sprites { get; set; }
     
     private bool Stopped { get; set; }
     private bool Paused { get; set; }
@@ -26,7 +27,11 @@ public class HitStopController : MonoBehaviour, IPauseListener
         }
         
         Animator.speed = percentage;
-        Sprite.color = color;
+
+        foreach (var sprite in Sprites)
+        {
+            sprite.color = color;
+        }
         
         StartCoroutine(HitStopCoroutine(time, isGlobal));
     }
@@ -42,7 +47,12 @@ public class HitStopController : MonoBehaviour, IPauseListener
         }
         
         Animator.speed = 1;
-        Sprite.color = Color.white;
+        
+        foreach (var sprite in Sprites)
+        {
+            sprite.color = Color.white;
+        }
+
         Stopped = false;
     }
 
