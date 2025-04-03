@@ -113,10 +113,7 @@ public class PawnController : MonoBehaviour
 
         if (Ability.FocusedPawn == null || !Ability.FocusedPawn.PawnState.CanBeTargeted)
             return;
-
-        var direction = Ability.WalkingDestination - transform.position;
-
-        CharacterController.SetDirection(direction);
+        
         CharacterController.SetSpeed(NavMeshAgent.velocity.magnitude);
 
         if (!Ability.ShouldUse())
@@ -124,6 +121,9 @@ public class PawnController : MonoBehaviour
             NavMeshAgent.isStopped = false;
             NavMeshAgent.SetDestination(Ability.WalkingDestination);
             CharacterController.SetAnimationState(new IdleState());
+            
+            var direction = Ability.WalkingDestination - transform.position;
+            CharacterController.SetDirection(direction);
         }
         else
         {

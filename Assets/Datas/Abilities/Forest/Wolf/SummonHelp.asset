@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Animation>k__BackingField: Dance
   <Delay>k__BackingField: 2
-  <Range>k__BackingField: 2
+  <Range>k__BackingField: 1
   <AbilityBehaviours>k__BackingField:
   - <Effects>k__BackingField:
     - rid: 7923229286425952274
@@ -40,7 +40,7 @@ MonoBehaviour:
     - rid: 7923229286425952273
       type: {class: ManaResourceData, ns: , asm: Assembly-CSharp}
       data:
-        <ManaCost>k__BackingField: 20
+        <ManaCost>k__BackingField: 30
     - rid: 7923229286425952274
       type: {class: SummonEffectData, ns: , asm: Assembly-CSharp}
       data:

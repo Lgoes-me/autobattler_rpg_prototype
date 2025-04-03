@@ -22,7 +22,7 @@ MonoBehaviour:
   <Weapon>k__BackingField: {fileID: 0}
   <BaseStats>k__BackingField:
     <Health>k__BackingField: 60
-    <Mana>k__BackingField: 20
+    <Mana>k__BackingField: 30
     <Strength>k__BackingField: 1
     <Arcane>k__BackingField: 0
     <PhysicalDefence>k__BackingField: 0
