@@ -198,7 +198,7 @@ public class PawnController : MonoBehaviour
         var prefab = Application.Instance.GetManager<PartyManager>().BasePawnPrefab;
             
         var randomRotation = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)) * Vector3.forward * 1f;
-        var pawnController = Instantiate(prefab, transform.position + randomRotation, Quaternion.identity);
+        var pawnController = Instantiate(prefab, transform.position + randomRotation, Quaternion.identity, BattleController.transform);
         pawnController.Init(pawn);
         
         BattleController.AddPawn(pawnController, pawn.Team);

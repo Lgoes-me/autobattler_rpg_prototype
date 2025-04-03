@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2506f476fd0f4300b3c3cd3c8b600971, type: 3}
-  m_Name: Wolf
+  m_Name: Small_Wolf
   m_EditorClassIdentifier: 
   <Id>k__BackingField: Wolf
   <Initiative>k__BackingField: 1
@@ -18,7 +18,7 @@ MonoBehaviour:
   <AttackRange>k__BackingField: 2
   <EnemyFocusPreference>k__BackingField: 1
   <AllyFocusPreference>k__BackingField: 1
-  <Character>k__BackingField: {fileID: 1670507725838462388, guid: c4ff799a57bc9754daf8abc2637e895e, type: 3}
+  <Character>k__BackingField: {fileID: 1670507725838462388, guid: 56e742677266e0c4da17e536966ffa2c, type: 3}
   <Weapon>k__BackingField: {fileID: 0}
   <BaseStats>k__BackingField:
     <Health>k__BackingField: 60

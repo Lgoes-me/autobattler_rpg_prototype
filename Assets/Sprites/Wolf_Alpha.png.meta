@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6f27d1628413edd4ebe2488614d3e2ff
+guid: a71899249cf632948a99a27df1079d26
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,154 +136,175 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Wolf_0
-      rect:
-        serializedVersion: 2
-        x: 3
-        y: 36
-        width: 9
-        height: 9
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a068037eb14f7c745aa13c42a902340f
-      internalID: -1886440454
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Wolf_1
+      name: head
       rect:
         serializedVersion: 2
         x: 2
-        y: 7
+        y: 35
         width: 10
-        height: 10
+        height: 11
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 89ca1b405deb8d8429442259ce139893
-      internalID: 2069504947
+      spriteID: 18369748499d177479087f95adcd4dd7
+      internalID: -892434320
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wolf_2
+      name: head bite
       rect:
         serializedVersion: 2
         x: 3
         y: 20
         width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51a492cafc9c79141b068c34a3506ded
+      internalID: 1384603057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torax
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 20
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c19c6feb5110b24f8ad429184f4fdfe
+      internalID: -162163502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: butt
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 21
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5703052eb3c3dd64e8b26589076d1611
+      internalID: 1720924076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: head howl
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 6
+        width: 11
         height: 12
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 01e3492c0a36b7246983f991b30095e7
-      internalID: 666730709
+      spriteID: 776dac0d8c9d5e549a359cb9e22f9838
+      internalID: -1061769256
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wolf_3
+      name: leg right
       rect:
         serializedVersion: 2
-        x: 21
-        y: 23
-        width: 12
-        height: 10
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 45e00d836b2449a46822dfd2d9625861
-      internalID: 1712123329
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Wolf_4
-      rect:
-        serializedVersion: 2
-        x: 38
-        y: 9
-        width: 7
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 14a0dea66f8c5a44d920a1ed4cf90e8d
-      internalID: -651662658
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Wolf_5
-      rect:
-        serializedVersion: 2
-        x: 38
-        y: 22
-        width: 11
-        height: 9
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b8c137556dd2b2941afe0ef1f38c675e
-      internalID: 621791595
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Wolf_6
-      rect:
-        serializedVersion: 2
-        x: 47
+        x: 32
         y: 10
         width: 4
-        height: 6
+        height: 7
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f1bd047dc7d3d624eb1a75dd75c637e6
-      internalID: 192590382
+      spriteID: 70638ccd58b53c7498ee9015636ffc54
+      internalID: -318742859
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Wolf_7
+      name: leg left
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 10
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea5d99b9c7207a64889ade2e8568c5e8
+      internalID: -1389423238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tail base
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 11
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f51cf739bfdcb10409bba6c4afc39199
+      internalID: -338092094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tail tip
       rect:
         serializedVersion: 2
         x: 51
@@ -291,83 +312,62 @@ TextureImporter:
         width: 4
         height: 5
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6e7ee19b4b66be4438c45e69cb1c2086
-      internalID: 103878817
+      spriteID: 506299e91fcff644a9f18f3c3d49b31d
+      internalID: 169516593
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: lr
+      name: arm right
       rect:
         serializedVersion: 2
-        x: 33
-        y: 13
+        x: 18
+        y: 12
         width: 3
-        height: 4
+        height: 5
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 84aebba90366f124caf7511a157d6420
-      internalID: 1901953877
+      spriteID: 7c6493cecf8c91d45a87a7d1d97a2f95
+      internalID: 597267483
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fl
+      name: forearm right
       rect:
         serializedVersion: 2
-        x: 33
-        y: 4
-        width: 3
-        height: 4
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b46c7c754867abd4baa258047dcc8177
-      internalID: 1311863747
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Wolf_10
-      rect:
-        serializedVersion: 2
-        x: 42
-        y: 3
+        x: 19
+        y: 7
         width: 2
-        height: 4
+        height: 3
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 638dec9f45914de468b8820cf98b4c60
-      internalID: 2011502219
+      spriteID: e8e70a14977a79f469f24810f8c45b2e
+      internalID: 1736968222
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: al
+      name: arm left
       rect:
         serializedVersion: 2
         x: 24
@@ -375,20 +375,20 @@ TextureImporter:
         width: 3
         height: 6
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 040f6a995d5e99543b6242631e94f0ca
-      internalID: -1890178085
+      spriteID: 8ccb92d79d6550643ab98a714a572d63
+      internalID: 74997026
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fal
+      name: forearm left
       rect:
         serializedVersion: 2
         x: 25
@@ -396,98 +396,98 @@ TextureImporter:
         width: 2
         height: 3
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b74d80ae819eae40b887cd2b74f6197
-      internalID: -1867822001
+      spriteID: b51c56c37ecab2742951275a3076765c
+      internalID: -1999267455
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hl
+      name: hand right
       rect:
         serializedVersion: 2
-        x: 24
-        y: 2
-        width: 2
-        height: 1
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7e2e5da68ce2fea4a8cfbfa2e7175d24
-      internalID: -2135880889
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AR
-      rect:
-        serializedVersion: 2
-        x: 18
-        y: 12
+        x: 17
+        y: 3
         width: 3
-        height: 6
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8b0690f4a974cbb4bacafff39f6537f2
-      internalID: 429748164
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: far
-      rect:
-        serializedVersion: 2
-        x: 20
-        y: 7
-        width: 1
         height: 2
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c2dcc4ab05af0814f8e9f7bd578f6f12
-      internalID: 2061200546
+      spriteID: 05b86a5f9b22ab441a133ac296ed7a0d
+      internalID: -1496553651
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hr
+      name: hand left
       rect:
         serializedVersion: 2
-        x: 18
-        y: 3
-        width: 2
-        height: 1
+        x: 23
+        y: 2
+        width: 3
+        height: 2
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d4ba5f09e4c926b40bb22148ab91e012
-      internalID: 1174856309
+      spriteID: 19481d248bf46dd46a283ba7e78817e5
+      internalID: -1255905371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: feet right
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 4
+        width: 2
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e9bab3e72351c5429739757fd985702
+      internalID: -1697275405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: feet left
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 3
+        width: 2
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 507ac06d4b3eaba4b862b6a3a430a562
+      internalID: -733661960
       vertices: []
       indices: 
       edges: []
@@ -503,23 +503,23 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      AR: 429748164
-      Wolf_0: -1886440454
-      Wolf_1: 2069504947
-      Wolf_10: 2011502219
-      Wolf_2: 666730709
-      Wolf_3: 1712123329
-      Wolf_4: -651662658
-      Wolf_5: 621791595
-      Wolf_6: 192590382
-      Wolf_7: 103878817
-      al: -1890178085
-      fal: -1867822001
-      far: 2061200546
-      fl: 1311863747
-      hl: -2135880889
-      hr: 1174856309
-      lr: 1901953877
+      arm left: 74997026
+      arm right: 597267483
+      butt: 1720924076
+      feet left: -733661960
+      feet right: -1697275405
+      forearm left: -1999267455
+      forearm right: 1736968222
+      hand left: -1255905371
+      hand right: -1496553651
+      head: -892434320
+      head bite: 1384603057
+      head howl: -1061769256
+      leg left: -1389423238
+      leg right: -318742859
+      tail base: -338092094
+      tail tip: 169516593
+      torax: -162163502
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
