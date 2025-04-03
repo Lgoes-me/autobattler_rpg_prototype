@@ -47,6 +47,8 @@ public class PawnController : MonoBehaviour
         Ability = null;
 
         BattleController = battleController;
+        
+        CharacterController.SetAnimationState(new IdleState());
     }
 
     public void RealizaTurno()

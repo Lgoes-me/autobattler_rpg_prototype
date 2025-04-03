@@ -52,12 +52,16 @@ public class EnemyData
     [field: SerializeField] public bool IsBoss { get; set; }
     [field: SerializeField] public EnemyController EnemyController { get; set; }
     [field: SerializeField] public EnemyInfo EnemyInfo { get; set; }
+    [field: SerializeField] private string Animation { get; set; }
+    [field: SerializeField] private bool Forward { get; set; }
     
     public PawnController PawnController => EnemyController.PawnController;
     
     public void PreparePawn()
     {
         PawnController.Init(EnemyInfo.ToDomain(TeamType.Enemies));
+        PawnController.CharacterController.SetDirection((Forward ? 1 : -1) * PawnController.transform.forward);
+        PawnController.CharacterController.SetAnimationState(new DefaultState(Animation));
     }
 }
 

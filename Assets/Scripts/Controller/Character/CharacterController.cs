@@ -11,23 +11,15 @@ public class CharacterController : MonoBehaviour
     [field: SerializeField] private Animator Animator { get; set; }
     [field: SerializeField] private Transform Hand { get; set; }
     [field: SerializeField] private Transform Pivot { get; set; }
-    
-    private Transform Camera { get; set; }
 
     public AnimationState CurrentState => AnimationStateController.CurrentState;
-
-    private void Start()
-    {
-        Camera = Application.Instance.MainCamera.transform;
-        SetDirection(transform.forward);
-    }
 
     public void SetDirection(Vector3 direction)
     {
         if(direction.sqrMagnitude < 0.1f)
             return;
 
-        var xDirection = Vector3.Dot(direction, Camera.right);
+        var xDirection = Vector3.Dot(direction, Application.Instance.MainCamera.transform.right);
         Pivot.localScale = new Vector3(xDirection < -0.2f ? 1 : - 1, 1, 1);
     }
 
