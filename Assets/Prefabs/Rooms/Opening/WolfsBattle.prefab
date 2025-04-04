@@ -864,11 +864,11 @@ PrefabInstance:
     - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
       propertyPath: <Enemies>k__BackingField.Array.data[1].<EnemyInfo>k__BackingField.<PawnData>k__BackingField
       value: 
-      objectReference: {fileID: 11400000, guid: 2aa1b9904bfa6e04a8c2cf76eb3b16de, type: 2}
+      objectReference: {fileID: 11400000, guid: f5745cbfcb8fb6a43ad2f798cb4a9400, type: 2}
     - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
       propertyPath: <Enemies>k__BackingField.Array.data[2].<EnemyInfo>k__BackingField.<PawnData>k__BackingField
       value: 
-      objectReference: {fileID: 11400000, guid: 2aa1b9904bfa6e04a8c2cf76eb3b16de, type: 2}
+      objectReference: {fileID: 11400000, guid: f5745cbfcb8fb6a43ad2f798cb4a9400, type: 2}
     - target: {fileID: 7351253831715553247, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
       propertyPath: m_RootOrder
       value: 7

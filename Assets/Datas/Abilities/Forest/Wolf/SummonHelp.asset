@@ -45,7 +45,7 @@ MonoBehaviour:
       type: {class: SummonEffectData, ns: , asm: Assembly-CSharp}
       data:
         <EnemyInfo>k__BackingField:
-          <PawnData>k__BackingField: {fileID: 11400000, guid: 2aa1b9904bfa6e04a8c2cf76eb3b16de, type: 2}
+          <PawnData>k__BackingField: {fileID: 11400000, guid: f5745cbfcb8fb6a43ad2f798cb4a9400, type: 2}
           <Level>k__BackingField: 1
     - rid: 7923229286425952275
       type: {class: SelfFocusComponentData, ns: , asm: Assembly-CSharp}

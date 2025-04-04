@@ -61,7 +61,8 @@ public class EnemyData
     {
         PawnController.Init(EnemyInfo.ToDomain(TeamType.Enemies));
         PawnController.CharacterController.SetDirection((Forward ? 1 : -1) * PawnController.transform.forward);
-        PawnController.CharacterController.SetAnimationState(new DefaultState(Animation));
+        PawnController.CharacterController.SetAnimationState(new DefaultState(Animation,
+            () => { PawnController.CharacterController.SetAnimationState(new IdleState()); }));
     }
 }
 

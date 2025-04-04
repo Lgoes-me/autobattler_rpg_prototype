@@ -56,7 +56,6 @@ public class EnemyController : MonoBehaviour
 
             NavMeshAgent.SetDestination(Nodes[CurrentNode].transform.position);
         }
-
         if (distance < PawnController.Pawn.AttackRange)
         {
             NavMeshAgent.SetDestination(transform.position);
