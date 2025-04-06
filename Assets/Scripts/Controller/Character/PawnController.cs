@@ -113,7 +113,7 @@ public class PawnController : MonoBehaviour
         if (Ability.FocusedPawn == null || !Ability.FocusedPawn.PawnState.CanBeTargeted)
             return;
         
-        CharacterController.SetSpeed(NavMeshAgent.velocity.magnitude);
+        CharacterController.SetSpeed(NavMeshAgent.velocity.magnitude/NavMeshAgent.speed);
 
         if (!Ability.ShouldUse())
         {

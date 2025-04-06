@@ -65,7 +65,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <PawnData>k__BackingField: {fileID: 11400000, guid: 41bae653165f78748b456c8346ffda6c, type: 2}
-  <PawnController>k__BackingField: {fileID: 4759648862371886847}
   <NavMeshAgent>k__BackingField: {fileID: 449031379433608940}
   <Dialogue>k__BackingField: {fileID: 0}
   <Controller>k__BackingField: {fileID: 646898795955493001}
@@ -103,7 +102,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.25
   m_Speed: 4
-  m_Acceleration: 15
+  m_Acceleration: 2
   avoidancePriority: 50
   m_AngularSpeed: 0
   m_StoppingDistance: 1
