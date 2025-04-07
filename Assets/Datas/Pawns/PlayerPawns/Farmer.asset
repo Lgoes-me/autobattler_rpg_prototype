@@ -21,11 +21,11 @@ MonoBehaviour:
   <Character>k__BackingField: {fileID: 1670507725838462388, guid: 3f978208752ebf24ea51e9649882d326, type: 3}
   <Weapon>k__BackingField: {fileID: 0}
   <BaseStats>k__BackingField:
-    <Health>k__BackingField: 50
+    <Health>k__BackingField: 100
     <Mana>k__BackingField: 30
-    <Strength>k__BackingField: 1
+    <Strength>k__BackingField: 2
     <Arcane>k__BackingField: 0
-    <PhysicalDefence>k__BackingField: 2
+    <PhysicalDefence>k__BackingField: 3
     <MagicalDefence>k__BackingField: 0
   <LevelUpStats>k__BackingField:
     <MaxLevelStatsStats>k__BackingField:

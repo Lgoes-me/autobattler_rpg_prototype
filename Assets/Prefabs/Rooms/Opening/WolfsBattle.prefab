@@ -783,7 +783,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
       propertyPath: <Enemies>k__BackingField.Array.data[0].<IsBoss>k__BackingField
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
       propertyPath: <Enemies>k__BackingField.Array.data[0].<Forward>k__BackingField
@@ -860,7 +860,7 @@ PrefabInstance:
     - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
       propertyPath: <Enemies>k__BackingField.Array.data[0].<EnemyInfo>k__BackingField.<PawnData>k__BackingField
       value: 
-      objectReference: {fileID: 11400000, guid: 8967fa28bb16cf14bab90e82c53cf737, type: 2}
+      objectReference: {fileID: 11400000, guid: f5745cbfcb8fb6a43ad2f798cb4a9400, type: 2}
     - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
       propertyPath: <Enemies>k__BackingField.Array.data[1].<EnemyInfo>k__BackingField.<PawnData>k__BackingField
       value: 
