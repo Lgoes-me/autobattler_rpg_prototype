@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e3f2961cde84cc2bca5113224648ba8, type: 3}
-  m_Name: LanceAttack
+  m_Name: LanceDoubleAttack
   m_EditorClassIdentifier: 
-  <Animation>k__BackingField: LanceAttack
-  <Delay>k__BackingField: 0.2
+  <Animation>k__BackingField: LanceDoubleAttack
+  <Delay>k__BackingField: 0.35
   <Range>k__BackingField: 1.75
   <AbilityBehaviours>k__BackingField:
   - <Effects>k__BackingField:
@@ -38,7 +38,7 @@ MonoBehaviour:
       type: {class: DamageEffectData, ns: , asm: Assembly-CSharp}
       data:
         <Damage>k__BackingField:
-          <Multiplier>k__BackingField: 3
+          <Multiplier>k__BackingField: 2
           <Type>k__BackingField: 1
     - rid: 8813335080079720464
       type: {class: EnemyFocusComponentData, ns: , asm: Assembly-CSharp}

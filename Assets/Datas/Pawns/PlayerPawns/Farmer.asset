@@ -61,6 +61,8 @@ MonoBehaviour:
       m_RotationOrder: 4
   <Abilities>k__BackingField:
   - {fileID: 11400000, guid: 0310e31ee1c2d1a43990c835c370c647, type: 2}
+  - {fileID: 11400000, guid: 72d2fc05ae1e78244844f4b1cda61c8b, type: 2}
+  - {fileID: 11400000, guid: cbfa2d6a21a91534188fe1573572da0d, type: 2}
   <SpecialAbilities>k__BackingField: []
   <Archetypes>k__BackingField: 05000000
   <CharacterInfos>k__BackingField:

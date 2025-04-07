@@ -35,13 +35,12 @@ public class Save : ISavable
         
         SelectedParty = new List<PawnInfo>
         {
-            new("Farmer"), 
-            new("Hunter")
+            new("Farmer"),
         };
         
         DefeatedEnemies = new List<string>();
         Blessings = new List<BlessingIdentifier>();
-        AvailableParty = new List<string> {"Guts", "Hunter"};
+        AvailableParty = new List<string>();
         Dialogues = new List<string>();
         CurrentTime = 20f;
 

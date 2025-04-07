@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -227,7 +228,19 @@ public class Pawn : BasePawn
         var specialAttacks = SpecialAbilities.Where(a => a.ResourceData.GetCost() <=  Mana).ToList();
         abilities.AddRange(specialAttacks);
 
-        return abilities.OrderByDescending(a => a.GetPriority(abilityUser, battle)).First().ToDomain(abilityUser);
+        var lowestValue = abilities
+            .ToDictionary(a => a, a => a.GetPriority(abilityUser, battle))
+            .OrderBy(p => p.Value).First().Value;
+            
+        var selected = abilities
+            .ToDictionary(a => a, a => a.GetPriority(abilityUser, battle))
+            .OrderBy(p => p.Value)
+            .Where(k => k.Value == lowestValue)
+            .Select(p => p.Key)
+            .OrderBy(a => Guid.NewGuid())
+            .First();
+
+        return selected.ToDomain(abilityUser);
     }
 }
 

@@ -115,14 +115,14 @@ public class PawnController : MonoBehaviour
         
         CharacterController.SetSpeed(NavMeshAgent.velocity.magnitude/NavMeshAgent.speed);
 
+        var direction = Ability.WalkingDestination - transform.position;
+        CharacterController.SetDirection(direction);
+        
         if (!Ability.ShouldUse())
         {
             NavMeshAgent.isStopped = false;
             NavMeshAgent.SetDestination(Ability.WalkingDestination);
             CharacterController.SetAnimationState(new IdleState());
-            
-            var direction = Ability.WalkingDestination - transform.position;
-            CharacterController.SetDirection(direction);
         }
         else
         {
