@@ -13,7 +13,7 @@ public class PawnController : MonoBehaviour
     public AnimationState PawnState => CharacterController.CurrentState;
     private Coroutine BackToIdleCoroutine { get; set; }
     private Ability Ability { get; set; }
-    private BattleController BattleController { get; set; }
+    public BattleController BattleController { get; private set; }
 
     public void Init(Pawn pawn)
     {
@@ -165,7 +165,7 @@ public class PawnController : MonoBehaviour
         List<AbilityEffect> effects,
         PawnController focusedPawn)
     {
-        var weaponPosition = CharacterController.WeaponController.SpawnPoint.position;
+        var weaponPosition = CharacterController.WeaponController?.SpawnPoint.position ?? CharacterController.Hand.position;
         var destination = focusedPawn.transform.position;
 
         Instantiate(projectile, weaponPosition, Quaternion.identity).Init(this, effects, destination, trajectory);

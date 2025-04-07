@@ -31,7 +31,7 @@ PrefabInstance:
     - target: {fileID: 980420176060528509, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
       propertyPath: <Hand>k__BackingField
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5488607378018331894}
     - target: {fileID: 980420176060528509, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
       propertyPath: <Pivot>k__BackingField
       value: 
@@ -476,3 +476,8 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortAtRoot: 1
+--- !u!4 &5488607378018331894 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6241567202786276927, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
+  m_PrefabInstance: {fileID: 1924711707382586057}
+  m_PrefabAsset: {fileID: 0}

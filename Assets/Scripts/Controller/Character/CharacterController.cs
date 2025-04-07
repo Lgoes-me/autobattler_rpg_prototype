@@ -9,7 +9,7 @@ public class CharacterController : MonoBehaviour
     [field: SerializeField] public WeaponController WeaponController { get; private set; }
     [field: SerializeField] private HitStopController HitStopController { get; set; }
     [field: SerializeField] private Animator Animator { get; set; }
-    [field: SerializeField] private Transform Hand { get; set; }
+    [field: SerializeField] public Transform Hand { get; private set; }
     [field: SerializeField] private Transform Pivot { get; set; }
 
     public AnimationState CurrentState => AnimationStateController.CurrentState;

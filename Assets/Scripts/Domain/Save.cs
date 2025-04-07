@@ -36,6 +36,7 @@ public class Save : ISavable
         SelectedParty = new List<PawnInfo>
         {
             new("Farmer"),
+            new("Farmer"),
         };
         
         DefeatedEnemies = new List<string>();
