@@ -331,7 +331,7 @@ TextureImporter:
         x: 37
         y: 9
         width: 26
-        height: 6
+        height: 4
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -492,6 +492,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Elf_Archer_17
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 13
+        width: 26
+        height: 3
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 115a17835d7c42c4bbff910b34f2f6f1
+      internalID: -249527564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -512,6 +533,7 @@ TextureImporter:
       Elf_Archer_14: -1752549726
       Elf_Archer_15: -1680881888
       Elf_Archer_16: 1176593574
+      Elf_Archer_17: -249527564
       Elf_Archer_2: -1920324502
       Elf_Archer_3: 692750705
       Elf_Archer_4: -365719890

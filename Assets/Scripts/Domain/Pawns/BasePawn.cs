@@ -5,18 +5,15 @@ public class BasePawn
 {
     public string Id { get; private set; }
     public CharacterController Character { get; private set; }
-    public WeaponController Weapon { get; private set; }
     private List<CharacterInfo> CharacterInfos { get; set; }
     
     public BasePawn(
         string id,
         CharacterController character,
-        WeaponController weapon,
         List<CharacterInfo> characterInfos)
     {
         Id = id;
         Character = character;
-        Weapon = weapon;
         CharacterInfos = characterInfos;
     }
 

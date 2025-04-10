@@ -6,10 +6,9 @@ public class CharacterController : MonoBehaviour
     private static readonly int Speed = Animator.StringToHash("Speed");
 
     [field: SerializeField] private AnimationStateController AnimationStateController { get; set; }
-    [field: SerializeField] public WeaponController WeaponController { get; private set; }
     [field: SerializeField] private HitStopController HitStopController { get; set; }
     [field: SerializeField] private Animator Animator { get; set; }
-    [field: SerializeField] public Transform Hand { get; private set; }
+    [field: SerializeField] public Transform SpawnPoint { get; private set; }
     [field: SerializeField] private Transform Pivot { get; set; }
 
     public AnimationState CurrentState => AnimationStateController.CurrentState;
@@ -41,16 +40,5 @@ public class CharacterController : MonoBehaviour
     public void SetAnimationState(AnimationState state)
     {
         AnimationStateController.SetAnimationState(state);
-    }
-
-    public void SetWeapon(WeaponController weaponController)
-    {
-        if (WeaponController != null)
-        {
-            Destroy(WeaponController.gameObject);
-            WeaponController = null;
-        }
-    
-        WeaponController = Instantiate(weaponController, Hand);
     }
 }

@@ -51,7 +51,6 @@ public class Pawn : BasePawn
         int visionRange,
         int attackRange,
         CharacterController character,
-        WeaponController weapon,
         Stats stats,
         LevelUpStats levelUpStats,
         FocusType enemyFocusPreference,
@@ -60,7 +59,7 @@ public class Pawn : BasePawn
         List<AbilityData> specialAbilities,
         List<ArchetypeIdentifier> archetypes,
         TeamType team,
-        List<CharacterInfo> characterInfos) : base(id, character, weapon, characterInfos)
+        List<CharacterInfo> characterInfos) : base(id, character, characterInfos)
     {
         Level = level;
         LevelUpStats = levelUpStats;

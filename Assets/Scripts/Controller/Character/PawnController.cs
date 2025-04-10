@@ -24,11 +24,6 @@ public class PawnController : MonoBehaviour
         {
             CanvasController.Init(this);
         }
-
-        if (pawn.Weapon != null)
-        {
-            CharacterController.SetWeapon(pawn.Weapon);
-        }
     }
 
     public void RemoveCanvasController()
@@ -42,8 +37,6 @@ public class PawnController : MonoBehaviour
         Pawn.StartBattle(battle);
 
         enabled = true;
-        NavMeshAgent.isStopped = true;
-
         Ability = null;
 
         BattleController = battleController;
@@ -99,9 +92,6 @@ public class PawnController : MonoBehaviour
 
         CharacterController.SetAnimationState(new IdleState());
 
-        NavMeshAgent.isStopped = true;
-        NavMeshAgent.ResetPath();
-
         RealizaTurno();
     }
 
@@ -116,19 +106,17 @@ public class PawnController : MonoBehaviour
         CharacterController.SetSpeed(NavMeshAgent.velocity.magnitude/NavMeshAgent.speed);
 
         var direction = Ability.WalkingDestination - transform.position;
-        CharacterController.SetDirection(direction);
         
         if (!Ability.ShouldUse())
         {
-            NavMeshAgent.isStopped = false;
             NavMeshAgent.SetDestination(Ability.WalkingDestination);
+            CharacterController.SetDirection(direction);
             CharacterController.SetAnimationState(new IdleState());
         }
         else
         {
             Ability.Used = true;
-            NavMeshAgent.isStopped = true;
-            NavMeshAgent.ResetPath();
+            NavMeshAgent.SetDestination(transform.position);
 
             CharacterController.SetAnimationState(new AbilityState(Ability, DoAbility, GoBackToIdle));
         }
@@ -155,7 +143,6 @@ public class PawnController : MonoBehaviour
     public void Dance()
     {
         CharacterController.SetAnimationState(new DanceState());
-        NavMeshAgent.isStopped = true;
         NavMeshAgent.ResetPath();
     }
 
@@ -165,10 +152,8 @@ public class PawnController : MonoBehaviour
         List<AbilityEffect> effects,
         PawnController focusedPawn)
     {
-        var weaponPosition = CharacterController.WeaponController?.SpawnPoint.position ?? CharacterController.Hand.position;
-        var destination = focusedPawn.transform.position;
-
-        Instantiate(projectile, weaponPosition, Quaternion.identity).Init(this, effects, destination, trajectory);
+        Instantiate(projectile, CharacterController.SpawnPoint.position, Quaternion.identity)
+            .Init(this, effects, focusedPawn.transform.position, trajectory);
     }
 
     public void ReceiveAttack()
@@ -178,7 +163,6 @@ public class PawnController : MonoBehaviour
         if (Pawn.IsAlive) return;
 
         CharacterController.SetAnimationState(new DeadState());
-        NavMeshAgent.isStopped = true;
         Ability = null;
 
         Application.Instance.GetManager<BattleEventsManager>().DoPawnDeathEvent(BattleController.Battle, this);

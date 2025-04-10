@@ -12,7 +12,6 @@ public class PawnData : ScriptableObject
     [field: SerializeField] private FocusType EnemyFocusPreference { get; set; }
     [field: SerializeField] private FocusType AllyFocusPreference { get; set; }
     [field: SerializeField] private CharacterController Character { get; set; }
-    [field: SerializeField] private WeaponController Weapon { get; set; }
     [field: SerializeField] private StatsData BaseStats { get; set; }
     [field: SerializeField] private LevelUpStatsData LevelUpStats { get; set; }
     [field: SerializeField] private List<AbilityData> Abilities { get; set; }
@@ -28,8 +27,7 @@ public class PawnData : ScriptableObject
             Initiative,
             VisionRange,
             AttackRange,
-            Character, 
-            Weapon, 
+            Character,
             BaseStats.ToDomain(),
             LevelUpStats.ToDomain(),
             EnemyFocusPreference,
@@ -45,8 +43,7 @@ public class PawnData : ScriptableObject
     {
         return new BasePawn(
             Id,
-            Character, 
-            Weapon,
+            Character,
             CharacterInfos);
     }
 

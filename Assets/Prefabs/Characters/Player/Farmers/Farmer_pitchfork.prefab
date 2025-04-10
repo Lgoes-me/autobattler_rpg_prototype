@@ -40,6 +40,10 @@ PrefabInstance:
       propertyPath: <BodyMask>k__BackingField
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 980420176060528509, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
+      propertyPath: <SpawnPoint>k__BackingField
+      value: 
+      objectReference: {fileID: 885726257396298576}
     - target: {fileID: 1083944035480295393, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.084
@@ -454,6 +458,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 766418436910524599}
   m_SourcePrefab: {fileID: 100100000, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
+--- !u!4 &885726257396298576 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1657122692870220185, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
+  m_PrefabInstance: {fileID: 1924711707382586057}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2417073396759839085 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4269087451210439588, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}

@@ -23,14 +23,11 @@ MonoBehaviour:
     <ActionData>k__BackingField:
       rid: 7923229399544496133
   <ResourceData>k__BackingField:
-    rid: 4871999933996597266
+    rid: 7923229465538461696
   <Priorities>k__BackingField: []
   references:
     version: 2
     RefIds:
-    - rid: 4871999933996597266
-      type: {class: NoResourceData, ns: , asm: Assembly-CSharp}
-      data: 
     - rid: 7923229399544496132
       type: {class: EnemyFocusComponentData, ns: , asm: Assembly-CSharp}
       data:
@@ -45,3 +42,7 @@ MonoBehaviour:
           <Multiplier>k__BackingField: 1
           <Type>k__BackingField: 1
         <Range>k__BackingField: 2
+    - rid: 7923229465538461696
+      type: {class: ManaResourceData, ns: , asm: Assembly-CSharp}
+      data:
+        <ManaCost>k__BackingField: 20
