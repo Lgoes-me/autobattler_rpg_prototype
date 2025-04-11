@@ -15,6 +15,8 @@ public class SceneManager : MonoBehaviour, IManager
     private PartyManager PartyManager { get; set; }
     
     private Map Map { get; set; }
+    
+    private RoomController CurrentRoom { get; set; }
 
     public void Prepare()
     {
@@ -45,8 +47,14 @@ public class SceneManager : MonoBehaviour, IManager
         var tcs = new TaskCompletionSource<bool>();
 
         PartyManager.UnSpawnParty();
+        
+        if (UnitySceneManager.GetActiveScene().name == "RoomScene")
+        {
+            tcs.SetResult(true);
+            return tcs.Task;
+        }
+        
         var task = UnitySceneManager.LoadSceneAsync("RoomScene", LoadSceneMode.Single);
-
         task.completed += _ => { tcs.SetResult(true); };
 
         return tcs.Task;
@@ -54,11 +62,16 @@ public class SceneManager : MonoBehaviour, IManager
 
     public void EnterRoom(SceneNode sceneNode, SpawnDomain spawnDomain)
     {
-        var room = Instantiate(sceneNode.RoomPrefab).Init(sceneNode);
-        room.SpawnPlayerAt(spawnDomain.SpawnId);
+        if (CurrentRoom != null)
+        {
+            Destroy(CurrentRoom.gameObject);
+        }
+        
+        CurrentRoom = Instantiate(sceneNode.RoomPrefab).Init(sceneNode);
+        CurrentRoom.SpawnPlayerAt(spawnDomain.SpawnId);
         PartyManager.SetPartyToFollow(true);
         
-        room.PlayMusic();
+        CurrentRoom.PlayMusic();
 
         InterfaceManager.ShowBattleCanvas();
         GameSaveManager.SetSpawn(spawnDomain);
