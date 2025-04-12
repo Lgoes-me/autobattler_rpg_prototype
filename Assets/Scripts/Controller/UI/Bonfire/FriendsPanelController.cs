@@ -18,10 +18,10 @@ public class FriendsPanelController : MonoBehaviour, IBonfirePanel
         BonfireScene = bonfireScene;
         PartyItems = new List<FriendItemController>();
 
-        var friends = PartyManager.AvailableParty;
+        var availableParty = Application.Instance.GetManager<GameSaveManager>().GetAvailableParty();
         var party = PartyManager.Party;
 
-        foreach (var pawnData in friends)
+        foreach (var pawnData in availableParty)
         {
             var state = party.Any(i => i.Pawn.Id == pawnData.Id) ? FriendItemState.Inactive : FriendItemState.Active;
             var item = Instantiate(FriendItemPrefab, Content).Init(pawnData, bonfireScene, this, state);

@@ -9,7 +9,6 @@ public class PartyManager : MonoBehaviour, IManager
 
     public int PartySizeLimit { get; private set; }
     
-    public List<BasePawn> AvailableParty { get; private set; }
     public List<PawnController> Party { get; private set; }
 
     private PlayerManager PlayerManager { get; set; }
@@ -43,6 +42,7 @@ public class PartyManager : MonoBehaviour, IManager
     
     public void SpawnPartyAt(Vector3 position)
     {
+        
         var playerPosition = position;
         
         foreach (var pawnInfo in GameSaveManager.GetSelectedParty())
@@ -98,7 +98,6 @@ public class PartyManager : MonoBehaviour, IManager
     public void AddToAvailableParty(PawnData pawnData)
     {
         GameSaveManager.AddToAvailableParty(pawnData);
-        AvailableParty = GameSaveManager.GetAvailableParty();
     }
 
     public bool Contains(PawnData pawn)

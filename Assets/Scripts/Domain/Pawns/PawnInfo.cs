@@ -13,12 +13,12 @@ public class PawnInfo
         MissingHealth = 0;
     }
     
-    public PawnInfo(string name)
+    public PawnInfo(string name, PawnStatus status)
     {
         Name = name;
         Level = 1;
         MissingHealth = 0;
-        Status = PawnStatus.Locked;
+        Status = status;
     }
 
     public PawnInfo(string name, int level, int missingHealth, PawnStatus status)
@@ -51,6 +51,7 @@ public class PawnInfo
 
 public enum PawnStatus
 {
+    Main,
     Locked,
     Unlocked,
     Transient

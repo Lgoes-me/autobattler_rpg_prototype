@@ -42,7 +42,7 @@ public class Pawn : BasePawn
     public delegate void PawnDomainBattleFinished();
     public event PawnDomainBattleFinished BattleFinished;
 
-    private PawnStatus Status { get; set; }
+    public PawnStatus Status { get; private set; }
     
     public Pawn(
         int level,

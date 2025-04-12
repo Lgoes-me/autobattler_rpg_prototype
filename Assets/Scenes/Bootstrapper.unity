@@ -1869,13 +1869,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <AvailablePawns>k__BackingField:
-  - {fileID: 11400000, guid: 41bae653165f78748b456c8346ffda6c, type: 2}
-  - {fileID: 11400000, guid: 1fc8d338c9a0df94e8501a8d246293db, type: 2}
   - {fileID: 11400000, guid: c6302786fe4d8814484706224f21b480, type: 2}
-  - {fileID: 11400000, guid: 29bc395f21713254584f3233b80206a4, type: 2}
-  - {fileID: 11400000, guid: 19a702c490691384c83cf1eb4c41de9a, type: 2}
-  - {fileID: 11400000, guid: 94baffc8fcc6e8648b3c4a2bacac160f, type: 2}
   - {fileID: 11400000, guid: ec13262d9281d494ea79a340ff6b968d, type: 2}
+  - {fileID: 11400000, guid: e4050726caa765844a928b90fe03e5d0, type: 2}
 --- !u!1001 &1164712636
 PrefabInstance:
   m_ObjectHideFlags: 0
