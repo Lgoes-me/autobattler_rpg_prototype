@@ -29,7 +29,15 @@ public class SceneManager : MonoBehaviour, IManager
 
     public void StartGameMenu()
     {
-        UnitySceneManager.LoadScene("StartMenu", LoadSceneMode.Single);
+        var task = UnitySceneManager.LoadSceneAsync("StartMenu", LoadSceneMode.Single);
+        
+        task.completed += _ =>
+        {
+            GameSaveManager.LoadSave();
+            var spawn = GameSaveManager.GetBonfireSpawn();
+            var sceneNode = Map.SceneNodeById[spawn.SceneId];
+            CurrentRoom = Instantiate(sceneNode.RoomPrefab).Init(sceneNode);
+        };
     }
 
     public void StartGameIntro()
@@ -74,7 +82,6 @@ public class SceneManager : MonoBehaviour, IManager
         CurrentRoom.PlayMusic();
 
         InterfaceManager.ShowBattleCanvas();
-        GameSaveManager.SetSpawn(spawnDomain);
     }
 
     public void OpenCutscene(string sceneName)
@@ -90,27 +97,24 @@ public class SceneManager : MonoBehaviour, IManager
         };
     }
 
-    public void RespawnAtBonfire()
+    public async void RespawnAtBonfire()
     {
         foreach (var pawn in PartyManager.Party)
         {
             pawn.FinishBattle();
         }
+        
+        await LoadNewRoom();
 
         var spawn = GameSaveManager.GetBonfireSpawn();
-
-        var respawnTask = UnitySceneManager.LoadSceneAsync("RoomScene", LoadSceneMode.Single);
-
-        respawnTask.completed += _ =>
-        {
-            var sceneNode = Map.SceneNodeById[spawn.SceneId];
+        
+        var sceneNode = Map.SceneNodeById[spawn.SceneId];
             
-            var room = Instantiate(sceneNode.RoomPrefab).Init(sceneNode);
+        CurrentRoom = Instantiate(sceneNode.RoomPrefab).Init(sceneNode);
            
-            room.SpawnPlayerAt(spawn.SpawnId);
+        CurrentRoom.SpawnPlayerAt(spawn.SpawnId);
             
-            PartyManager.SetPartyToFollow(true);
-        };
+        PartyManager.SetPartyToFollow(true);
     }
 
     public void StartBonfireScene(SpawnDomain bonfireSpawn, Action callback)

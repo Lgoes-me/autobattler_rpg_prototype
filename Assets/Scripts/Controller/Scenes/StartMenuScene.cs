@@ -3,15 +3,17 @@ using UnityEngine.UI;
 
 public class StartMenuScene : MonoBehaviour
 {
-    [field: SerializeField] private Button StartButton { get; set; }
     [field: SerializeField] private Button ContinueButton { get; set; }
+    [field: SerializeField] private Button LoadButton { get; set; }
+    [field: SerializeField] private Button StartButton { get; set; }
     [field: SerializeField] private Button SettingsButton { get; set; }
     [field: SerializeField] private Button ExitButton { get; set; }
 
     private void Start()
     {
-        StartButton.onClick.AddListener(StartGame);
         ContinueButton.onClick.AddListener(ContinueGame);
+        LoadButton.onClick.AddListener(LoadGameList);
+        StartButton.onClick.AddListener(StartGame);
         SettingsButton.onClick.AddListener(OpenSettings);
         ExitButton.onClick.AddListener(ExitGame);
     }
@@ -29,11 +31,14 @@ public class StartMenuScene : MonoBehaviour
         
         Application.Instance.GetManager<BlessingManager>().LoadBlessings();
         Application.Instance.GetManager<TimeManager>().StartClock();
-        
-        var spawn =  Application.Instance.GetManager<GameSaveManager>().GetSpawn();
-        Application.Instance.GetManager<SceneManager>().ChangeContext(spawn);
+        Application.Instance.GetManager<SceneManager>().RespawnAtBonfire();
     }
 
+    private void LoadGameList()
+    {
+    
+    }
+    
     private void OpenSettings()
     {
     

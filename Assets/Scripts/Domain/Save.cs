@@ -27,7 +27,7 @@ public class Save : ISavable
         CurrentTime = 0f;
     }
 
-    public Save CreateNewSaveForIntro()
+    public Save CreateNewSaveForIntro() 
     {
         Metadata = new Metadata().CreateNewDynamicFile(".json");
         Spawn = null;
