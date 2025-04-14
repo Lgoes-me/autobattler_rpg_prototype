@@ -17,7 +17,7 @@ public class ProjectileController : MonoBehaviour
         List<AbilityEffect> effects,
         Vector3 destination,
         AnimationCurve trajectory,
-        int error)
+        float error)
     {
         Creator = creator;
         Effects = effects;
@@ -33,8 +33,7 @@ public class ProjectileController : MonoBehaviour
         var position = transform.position;
         
         //Debuggar o porque 20/3 ?????
-        
-        
+
         position = Vector3.Lerp(position, Destination, LifeTime);
         position = new Vector3(position.x, Trajectory.Evaluate(LifeTime * 20 / 3), position.z);
         transform.rotation = Quaternion.LookRotation(Destination - position);

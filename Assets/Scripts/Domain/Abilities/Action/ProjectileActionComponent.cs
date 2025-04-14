@@ -5,14 +5,14 @@ public class ProjectileActionComponent : AbilityActionComponent
 {
     private ProjectileController Projectile { get; set; }
     private AnimationCurve Trajectory { get; set; }
-    private int Error { get; set; }
+    private float Error { get; set; }
 
     public ProjectileActionComponent(PawnController abilityUser,
         List<AbilityEffect> effects,
         AbilityFocusComponent abilityFocusComponent,
         ProjectileController projectile, 
         AnimationCurve trajectory,
-        int error) : base(abilityUser, effects, abilityFocusComponent)
+        float error) : base(abilityUser, effects, abilityFocusComponent)
     {
         Projectile = projectile;
         Trajectory = trajectory;

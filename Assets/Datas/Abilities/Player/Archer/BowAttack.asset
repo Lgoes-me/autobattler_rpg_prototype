@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BowAttack
   m_EditorClassIdentifier: 
   <Animation>k__BackingField: BowAttack
-  <Delay>k__BackingField: 1
+  <Delay>k__BackingField: 0.2
   <Range>k__BackingField: 6
   <AbilityBehaviours>k__BackingField:
   - <Effects>k__BackingField:
@@ -68,6 +68,7 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+        <Error>k__BackingField: 2
     - rid: 4872000037008179248
       type: {class: DamageEffectData, ns: , asm: Assembly-CSharp}
       data:
@@ -76,5 +77,4 @@ MonoBehaviour:
           <Type>k__BackingField: 1
     - rid: 8813335080079720460
       type: {class: EnemyFocusComponentData, ns: , asm: Assembly-CSharp}
-      data:
-        <Error>k__BackingField: 1
+      data: 

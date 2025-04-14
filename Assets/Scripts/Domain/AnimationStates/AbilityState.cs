@@ -3,6 +3,7 @@
 public class AbilityState : AnimationState
 {
     public override string Animation => Ability.Animation;
+    public override bool CanTransition => false;
     private Ability Ability { get; }
     private Action<Ability> AnimationAction { get; }
     private Action FinishCallback { get; }

@@ -95,18 +95,26 @@ public class PawnController : MonoBehaviour
         RealizaTurno();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
+        if (Pawn != null && Pawn.IsAlive)
+        {
+            Pawn.TickAllBuffs();
+        }
+        
         if (Ability == null || !PawnState.CanWalk)
             return;
 
         if (Ability.FocusedPawn == null || !Ability.FocusedPawn.PawnState.CanBeTargeted)
             return;
-        
-        CharacterController.SetSpeed(NavMeshAgent.velocity.magnitude/NavMeshAgent.speed);
+
+        if (!PawnState.CanTransition)
+            return;
+
+        CharacterController.SetSpeed(NavMeshAgent.velocity.magnitude / NavMeshAgent.speed);
 
         var direction = Ability.WalkingDestination - transform.position;
-        
+
         if (!Ability.ShouldUse())
         {
             NavMeshAgent.SetDestination(Ability.WalkingDestination);
@@ -120,14 +128,6 @@ public class PawnController : MonoBehaviour
 
             CharacterController.SetAnimationState(new AbilityState(Ability, DoAbility, GoBackToIdle));
         }
-    }
-
-    private void FixedUpdate()
-    {
-        if (Pawn == null || !Pawn.IsAlive)
-            return;
-
-        Pawn.TickAllBuffs();
     }
 
     public void FinishBattle()
@@ -150,7 +150,7 @@ public class PawnController : MonoBehaviour
         AnimationCurve trajectory,
         List<AbilityEffect> effects,
         PawnController focusedPawn, 
-        int error)
+        float error)
     {
         var roomScene = FindObjectOfType<RoomController>();
         

@@ -6,7 +6,7 @@ public class ProjectileActionData : ActionData
 {
     [field: SerializeField] private ProjectileController Projectile { get; set; }
     [field: SerializeField] private AnimationCurve Trajectory { get; set; }
-    [field: SerializeField] private int Error { get; set; }
+    [field: SerializeField] private float Error { get; set; }
 
     public override AbilityActionComponent ToDomain(
         PawnController abilityUser, 
