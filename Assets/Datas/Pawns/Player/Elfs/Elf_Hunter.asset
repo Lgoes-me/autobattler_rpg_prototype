@@ -16,10 +16,10 @@ MonoBehaviour:
   <Initiative>k__BackingField: 0
   <VisionRange>k__BackingField: 0
   <AttackRange>k__BackingField: 0
+  <RangedAttackError>k__BackingField: 2
   <EnemyFocusPreference>k__BackingField: 1
   <AllyFocusPreference>k__BackingField: 3
   <Character>k__BackingField: {fileID: 1670507725838462388, guid: d831922de3e34f248b8969c64d7a1b6d, type: 3}
-  <Weapon>k__BackingField: {fileID: 3501364879892670405, guid: 463ad0732b1d8e74196bb45029a54da8, type: 3}
   <BaseStats>k__BackingField:
     <Health>k__BackingField: 50
     <Mana>k__BackingField: 30

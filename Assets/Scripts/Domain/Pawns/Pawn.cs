@@ -15,6 +15,7 @@ public class Pawn : BasePawn
     
     public int VisionRange { get; }
     public int AttackRange { get; }
+    public float RangedAttackError { get; }
     
     private Stats Stats { get; }
     private LevelUpStats LevelUpStats { get; }
@@ -44,12 +45,12 @@ public class Pawn : BasePawn
 
     public PawnStatus Status { get; private set; }
     
-    public Pawn(
-        int level,
+    public Pawn(int level,
         string id,
         int initiative,
         int visionRange,
         int attackRange,
+        float rangedAttackError,
         CharacterController character,
         Stats stats,
         LevelUpStats levelUpStats,
@@ -72,6 +73,7 @@ public class Pawn : BasePawn
         Initiative = initiative;
         VisionRange = visionRange;
         AttackRange = attackRange;
+        RangedAttackError = rangedAttackError;
         
         EnemyFocusPreference = enemyFocusPreference;
         AllyFocusPreference = allyFocusPreference;

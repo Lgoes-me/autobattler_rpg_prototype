@@ -9,6 +9,7 @@ public class PawnData : ScriptableObject
     [field: SerializeField] private int Initiative { get; set; }
     [field: SerializeField] private int VisionRange { get; set; }
     [field: SerializeField] private int AttackRange { get; set; }
+    [field: SerializeField] private float RangedAttackError { get; set; }
     [field: SerializeField] private FocusType EnemyFocusPreference { get; set; }
     [field: SerializeField] private FocusType AllyFocusPreference { get; set; }
     [field: SerializeField] private CharacterController Character { get; set; }
@@ -27,6 +28,7 @@ public class PawnData : ScriptableObject
             Initiative,
             VisionRange,
             AttackRange,
+            RangedAttackError,
             Character,
             BaseStats.ToDomain(),
             LevelUpStats.ToDomain(),

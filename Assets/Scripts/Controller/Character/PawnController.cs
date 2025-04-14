@@ -149,13 +149,12 @@ public class PawnController : MonoBehaviour
     public void SpawnProjectile(ProjectileController projectile,
         AnimationCurve trajectory,
         List<AbilityEffect> effects,
-        PawnController focusedPawn, 
-        float error)
+        PawnController focusedPawn)
     {
         var roomScene = FindObjectOfType<RoomController>();
         
         Instantiate(projectile, CharacterController.SpawnPoint.position, Quaternion.identity, roomScene.transform)
-            .Init(this, effects, focusedPawn.transform.position, trajectory, error);
+            .Init(this, effects, focusedPawn.transform.position, trajectory, Pawn.RangedAttackError);
     }
 
     public void ReceiveAttack()
