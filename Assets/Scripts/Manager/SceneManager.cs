@@ -52,18 +52,21 @@ public class SceneManager : MonoBehaviour, IManager
 
     public Task LoadNewRoom()
     {
-        var tcs = new TaskCompletionSource<bool>();
-
         PartyManager.UnSpawnParty();
         
         if (UnitySceneManager.GetActiveScene().name == "RoomScene")
         {
-            tcs.SetResult(true);
-            return tcs.Task;
+            return Task.CompletedTask;
         }
         
+        var tcs = new TaskCompletionSource<bool>();
+        
         var task = UnitySceneManager.LoadSceneAsync("RoomScene", LoadSceneMode.Single);
-        task.completed += _ => { tcs.SetResult(true); };
+        
+        task.completed += _ =>
+        {
+            tcs.SetResult(true);
+        };
 
         return tcs.Task;
     }

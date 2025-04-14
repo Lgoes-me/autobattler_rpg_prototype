@@ -34,10 +34,10 @@ public class Battle
         Pawns.Add(playerPawn);
     }
 
-    public PawnController QueryEnemies(PawnController user, FocusType focusType, int error)
+    public PawnController QueryEnemies(PawnController user, FocusType focusType)
     {
         var pawns = user.Pawn.Team == TeamType.Player ? EnemyPawns : PlayerPawns;
-        return Query(pawns, user, focusType, error);
+        return Query(pawns, user, focusType);
     }
 
     public PawnController QueryAlly(PawnController user, FocusType focusType, bool canTargetSelf)
@@ -49,16 +49,16 @@ public class Battle
             pawns.Remove(user);
         }
 
-        return Query(pawns, user, focusType, 0);
+        return Query(pawns, user, focusType);
     }
     
-    private PawnController Query(List<PawnController> pawns, PawnController user, FocusType focusType, int error)
+    private PawnController Query(List<PawnController> pawns, PawnController user, FocusType focusType)
     {
         var selectedPawns = 
             pawns
                 .Where(p => p.PawnState.CanBeTargeted)
                 .OrderBy(OrderPredicate)
-                .Take(1 + error)
+                .Take(1)
                 .ToList();
 
         float OrderPredicate(PawnController pawn)

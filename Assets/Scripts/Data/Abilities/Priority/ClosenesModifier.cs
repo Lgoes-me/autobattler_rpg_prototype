@@ -7,7 +7,7 @@ public class CloseEnemyModifier : PriorityModifier
 
     public override int AlterPriority(PawnController abilityUser, Battle battle, int priority)
     {
-        var selectedPawn = battle.QueryEnemies(abilityUser, FocusType.Closest, 0);
+        var selectedPawn = battle.QueryEnemies(abilityUser, FocusType.Closest);
 
         if (selectedPawn != null && (abilityUser.transform.position - selectedPawn.transform.position).magnitude < Distance)
             return priority + 1 * Multiplier;

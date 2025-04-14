@@ -37,6 +37,7 @@ public class PlayerFollowController : MonoBehaviour
 
             var randomRotation = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)) * Vector3.forward * 0.5f;
             PawnController.CharacterController.SetDirection(destination - transform.position);
+            
             NavMeshAgent.SetDestination(destination + randomRotation);
         }
     }

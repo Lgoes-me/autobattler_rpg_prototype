@@ -146,14 +146,16 @@ public class PawnController : MonoBehaviour
         NavMeshAgent.ResetPath();
     }
 
-    public void SpawnProjectile(
-        ProjectileController projectile,
+    public void SpawnProjectile(ProjectileController projectile,
         AnimationCurve trajectory,
         List<AbilityEffect> effects,
-        PawnController focusedPawn)
+        PawnController focusedPawn, 
+        int error)
     {
-        Instantiate(projectile, CharacterController.SpawnPoint.position, Quaternion.identity)
-            .Init(this, effects, focusedPawn.transform.position, trajectory);
+        var roomScene = FindObjectOfType<RoomController>();
+        
+        Instantiate(projectile, CharacterController.SpawnPoint.position, Quaternion.identity, roomScene.transform)
+            .Init(this, effects, focusedPawn.transform.position, trajectory, error);
     }
 
     public void ReceiveAttack()

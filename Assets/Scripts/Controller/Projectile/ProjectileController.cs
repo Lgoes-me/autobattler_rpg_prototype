@@ -16,11 +16,13 @@ public class ProjectileController : MonoBehaviour
         PawnController creator,
         List<AbilityEffect> effects,
         Vector3 destination,
-        AnimationCurve trajectory)
+        AnimationCurve trajectory,
+        int error)
     {
         Creator = creator;
         Effects = effects;
-        Destination = destination;
+        var randomError = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)) * Vector3.forward * Random.Range(0, error);
+        Destination = destination + randomError;
         Trajectory = trajectory;
 
         LifeTime = 0f;
@@ -31,6 +33,8 @@ public class ProjectileController : MonoBehaviour
         var position = transform.position;
         
         //Debuggar o porque 20/3 ?????
+        
+        
         position = Vector3.Lerp(position, Destination, LifeTime);
         position = new Vector3(position.x, Trajectory.Evaluate(LifeTime * 20 / 3), position.z);
         transform.rotation = Quaternion.LookRotation(Destination - position);
