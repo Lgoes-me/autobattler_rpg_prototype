@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9774615525ba4fca9e379bac94aa04a5, type: 3}
+  m_Name: Teste-Bow-2
+  m_EditorClassIdentifier: 
+  <Type>k__BackingField: 0
+  <Sprites>k__BackingField:
+  - {fileID: -1140002366, guid: 5d3820d98d28b65439c16a0737317ad5, type: 3}
+  - {fileID: -1969063482, guid: 5d3820d98d28b65439c16a0737317ad5, type: 3}
+  <StartColor>k__BackingField: {r: 0.6132076, g: 0.31929934, b: 0.014462441, a: 0}
+  <EndColor>k__BackingField: {r: 0.5283019, g: 0.15900311, b: 0.022427902, a: 0}
+  <Projectile>k__BackingField: {fileID: -1969063482, guid: 5d3820d98d28b65439c16a0737317ad5, type: 3}

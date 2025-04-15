@@ -1,14 +1,16 @@
-using System;
 using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
     private static readonly int Speed = Animator.StringToHash("Speed");
 
+    [field: SerializeField] public Transform SpawnPoint { get; private set; }
+    
     [field: SerializeField] private AnimationStateController AnimationStateController { get; set; }
     [field: SerializeField] private HitStopController HitStopController { get; set; }
     [field: SerializeField] private Animator Animator { get; set; }
-    [field: SerializeField] public Transform SpawnPoint { get; private set; }
+    
+    [field: SerializeField] private WeaponController WeaponController { get; set; }
     [field: SerializeField] private Transform Pivot { get; set; }
 
     public AnimationState CurrentState => AnimationStateController.CurrentState;
@@ -27,6 +29,19 @@ public class CharacterController : MonoBehaviour
         Animator.SetFloat(Speed, speed);
     }
 
+    public void SetWeapon(WeaponData weapon)
+    {
+        if (weapon == null)
+            return;
+        
+        WeaponController.SetWeapon(weapon);
+    }
+
+    public Sprite GetProjectileSprite()
+    {
+        return WeaponController.Projectile;
+    }
+    
     public void DoHitStop()
     {
         HitStopController.HitStop(0f, 0.05f, false, Color.red);

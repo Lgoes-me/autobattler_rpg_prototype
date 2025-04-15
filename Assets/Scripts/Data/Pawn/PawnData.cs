@@ -19,12 +19,13 @@ public class PawnData : ScriptableObject
     [field: SerializeField] private List<AbilityData> SpecialAbilities { get; set; }
     [field: SerializeField] private List<ArchetypeIdentifier> Archetypes { get; set; }
     [field: SerializeField] private List<CharacterInfo> CharacterInfos { get; set; }
+    [field: SerializeField] private WeaponData Weapon { get; set; }
 
     public Pawn ToDomain(TeamType team, int level)
     {
         return new Pawn(
             level,
-            Id, 
+            Id,
             Initiative,
             VisionRange,
             AttackRange,
@@ -34,13 +35,14 @@ public class PawnData : ScriptableObject
             LevelUpStats.ToDomain(),
             EnemyFocusPreference,
             AllyFocusPreference,
-            Abilities, 
-            SpecialAbilities, 
+            Abilities,
+            SpecialAbilities,
             Archetypes,
             team,
-            CharacterInfos);
+            CharacterInfos,
+            Weapon);
     }
-    
+
     public BasePawn ToBaseDomain()
     {
         return new BasePawn(
@@ -61,7 +63,7 @@ public class PawnData : ScriptableObject
 [Serializable]
 public class CharacterInfo
 {
-    [field:SerializeField] public string Identifier { get; set; }
-    [field:SerializeField] public Sprite Portrait { get; set; }
-    [field:SerializeField] public Sfx Audio { get; set; }
+    [field: SerializeField] public string Identifier { get; set; }
+    [field: SerializeField] public Sprite Portrait { get; set; }
+    [field: SerializeField] public Sfx Audio { get; set; }
 }

@@ -4,6 +4,7 @@ using Random = UnityEngine.Random;
 
 public class ProjectileController : MonoBehaviour
 {
+    [field: SerializeField] private SpriteRenderer SpriteRenderer { get; set; }
     [field: SerializeField] private float Speed { get; set; }
 
     private PawnController Creator { get; set; }
@@ -13,7 +14,7 @@ public class ProjectileController : MonoBehaviour
 
     private float LifeTime { get; set; }
 
-    public void Init(
+    public ProjectileController Init(
         PawnController creator,
         List<AbilityEffect> effects,
         Vector3 destination,
@@ -23,14 +24,22 @@ public class ProjectileController : MonoBehaviour
         Creator = creator;
         Effects = effects;
         
-        var randomError = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)) * 
-                          Vector3.forward *
-                          Random.Range(0, error);
+        var randomError = 
+            Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)) * 
+            Vector3.forward *
+            Random.Range(0, error);
         
         Destination = destination + randomError;
         Trajectory = trajectory;
 
         LifeTime = 0f;
+
+        return this;
+    }
+
+    public void OverrideSprite(Sprite projectile)
+    {
+        SpriteRenderer.sprite = projectile;
     }
 
     private void FixedUpdate()

@@ -44,7 +44,8 @@ public class Pawn : BasePawn
     public event PawnDomainBattleFinished BattleFinished;
 
     public PawnStatus Status { get; private set; }
-    
+    public WeaponData Weapon { get; private set; }
+
     public Pawn(int level,
         string id,
         int initiative,
@@ -60,7 +61,8 @@ public class Pawn : BasePawn
         List<AbilityData> specialAbilities,
         List<ArchetypeIdentifier> archetypes,
         TeamType team,
-        List<CharacterInfo> characterInfos) : base(id, character, characterInfos)
+        List<CharacterInfo> characterInfos,
+        WeaponData weapon) : base(id, character, characterInfos)
     {
         Level = level;
         LevelUpStats = levelUpStats;
@@ -81,6 +83,7 @@ public class Pawn : BasePawn
         SpecialAbilities = specialAbilities;
         Archetypes = archetypes;
         Team = team;
+        Weapon = weapon;
     }
 
     public void StartBattle(Battle battle)

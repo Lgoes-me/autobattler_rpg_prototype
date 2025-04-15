@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9774615525ba4fca9e379bac94aa04a5, type: 3}
+  m_Name: Bow
+  m_EditorClassIdentifier: 
+  <Type>k__BackingField: 0
+  <Sprites>k__BackingField:
+  - {fileID: -1209576914, guid: eaa732a6ce18ff140835b1304aec842b, type: 3}
+  - {fileID: -1624257728, guid: eaa732a6ce18ff140835b1304aec842b, type: 3}
+  <StartColor>k__BackingField: {r: 0.4339623, g: 0.4339623, b: 0.4339623, a: 0}
+  <EndColor>k__BackingField: {r: 0.1509434, g: 0.1509434, b: 0.1509434, a: 0}
+  <Projectile>k__BackingField: {fileID: -1624257728, guid: eaa732a6ce18ff140835b1304aec842b, type: 3}

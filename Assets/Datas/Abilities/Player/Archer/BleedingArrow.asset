@@ -70,6 +70,7 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+        <OverrideProjectileSprite>k__BackingField: 1
     - rid: 4872000037008179246
       type: {class: DamageEffectData, ns: , asm: Assembly-CSharp}
       data:
@@ -87,5 +88,4 @@ MonoBehaviour:
         <TickRate>k__BackingField: 1
     - rid: 8813335080079720459
       type: {class: EnemyFocusComponentData, ns: , asm: Assembly-CSharp}
-      data:
-        <Error>k__BackingField: 1
+      data: 

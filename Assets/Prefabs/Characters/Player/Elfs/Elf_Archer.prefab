@@ -708,6 +708,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.075
       objectReference: {fileID: 0}
+    - target: {fileID: 7316562812370631238, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
+      propertyPath: <SpriteRenderers>k__BackingField.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7316562812370631238, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
+      propertyPath: <SpriteRenderers>k__BackingField.Array.data[1]
+      value: 
+      objectReference: {fileID: 76274778986980333}
     - target: {fileID: 7644828708288242035, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
       propertyPath: m_IsActive
       value: 0

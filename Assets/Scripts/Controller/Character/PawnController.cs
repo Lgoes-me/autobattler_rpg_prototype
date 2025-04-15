@@ -8,18 +8,20 @@ public class PawnController : MonoBehaviour
     [field: SerializeField] private BasePawnCanvasController CanvasController { get; set; }
     [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
 
-    public Pawn Pawn { get; private set; }
-    public CharacterController CharacterController { get; private set; }
-    public AnimationState PawnState => CharacterController.CurrentState;
     private Coroutine BackToIdleCoroutine { get; set; }
     private Ability Ability { get; set; }
+    
+    public CharacterController CharacterController { get; private set; }
+    public Pawn Pawn { get; private set; }
+    public AnimationState PawnState => CharacterController.CurrentState;
     public BattleController BattleController { get; private set; }
 
     public void Init(Pawn pawn)
     {
         Pawn = pawn;
         CharacterController = Instantiate(pawn.Character, transform);
-
+        CharacterController.SetWeapon(pawn.Weapon);
+        
         if (CanvasController != null)
         {
             CanvasController.Init(this);
@@ -146,15 +148,26 @@ public class PawnController : MonoBehaviour
         NavMeshAgent.ResetPath();
     }
 
-    public void SpawnProjectile(ProjectileController projectile,
+    public void SpawnProjectile(
+        ProjectileController projectilePrefab,
         AnimationCurve trajectory,
         List<AbilityEffect> effects,
-        PawnController focusedPawn)
+        PawnController focusedPawn,
+        bool overrideSprite)
     {
         var roomScene = FindObjectOfType<RoomController>();
         
-        Instantiate(projectile, CharacterController.SpawnPoint.position, Quaternion.identity, roomScene.transform)
+        var projectile = Instantiate(
+                projectilePrefab,
+                CharacterController.SpawnPoint.position, 
+                Quaternion.identity, 
+                roomScene.transform)
             .Init(this, effects, focusedPawn.transform.position, trajectory, Pawn.RangedAttackError);
+
+        if (overrideSprite)
+        {
+            projectile.OverrideSprite(CharacterController.GetProjectileSprite());
+        }
     }
 
     public void ReceiveAttack()
