@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class Save : ISavable
 {
     public Metadata Metadata { get; set; }
-    public SpawnDomain Spawn { get; set; }
     public SpawnDomain LastBonfireSpawn { get; set; }
     public List<PawnInfo> SelectedParty { get; set; }
     public List<string> DefeatedEnemies { get; set; }
@@ -17,7 +16,6 @@ public class Save : ISavable
     public Save()
     {
         Metadata = null;
-        Spawn = null;
         LastBonfireSpawn = null;
         SelectedParty = new List<PawnInfo>();
         DefeatedEnemies = new List<string>();
@@ -30,7 +28,6 @@ public class Save : ISavable
     public Save CreateNewSaveForIntro() 
     {
         Metadata = new Metadata().CreateNewDynamicFile(".json");
-        Spawn = null;
         LastBonfireSpawn = null;
         
         SelectedParty = new List<PawnInfo>

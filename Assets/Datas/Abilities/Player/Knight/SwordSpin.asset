@@ -10,37 +10,39 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e3f2961cde84cc2bca5113224648ba8, type: 3}
-  m_Name: ColossalAttack
+  m_Name: SwordSpin
   m_EditorClassIdentifier: 
   <Animation>k__BackingField: ColossalAttack
   <Delay>k__BackingField: 0.6
   <Range>k__BackingField: 1.5
-  <AbilityBehaviours>k__BackingField:
-  - <Effects>k__BackingField:
-    - rid: 4872000037008179244
-    <FocusData>k__BackingField:
-      rid: 8813335080079720461
-    <ActionData>k__BackingField:
-      rid: 4872000037008179226
+  <EffectData>k__BackingField:
+    rid: 4871999933996597256
+  <FocusData>k__BackingField:
+    rid: 4871999933996597257
   <ResourceData>k__BackingField:
     rid: 4871999933996597258
+  <ActionData>k__BackingField:
+    rid: 4871999933996597259
   <Priorities>k__BackingField: []
   references:
     version: 2
     RefIds:
-    - rid: 4871999933996597258
-      type: {class: NoResourceData, ns: , asm: Assembly-CSharp}
-      data: 
-    - rid: 4872000037008179226
-      type: {class: InstantActionData, ns: , asm: Assembly-CSharp}
-      data: 
-    - rid: 4872000037008179244
+    - rid: 4871999933996597256
       type: {class: DamageEffectData, ns: , asm: Assembly-CSharp}
       data:
         <Damage>k__BackingField:
           <Multiplier>k__BackingField: 1
           <Type>k__BackingField: 1
-    - rid: 8813335080079720461
-      type: {class: EnemyFocusComponentData, ns: , asm: Assembly-CSharp}
+    - rid: 4871999933996597257
+      type: {class: FocusComponent, ns: , asm: Assembly-CSharp}
       data:
-        <Error>k__BackingField: 0
+        <Target>k__BackingField: 2
+        <Focus>k__BackingField: 1
+        <Range>k__BackingField: 1.5
+        <Error>k__BackingField: 2
+    - rid: 4871999933996597258
+      type: {class: NoResourceData, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 4871999933996597259
+      type: {class: InstantActionData, ns: , asm: Assembly-CSharp}
+      data: 

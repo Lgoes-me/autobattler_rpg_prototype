@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2651606056761056153}
   - component: {fileID: 4911976982333483350}
   - component: {fileID: 2247969635804523688}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6345462410595195904}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4060027001265004384}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2651606056761056153
 MonoBehaviour:
@@ -105,7 +105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4060027001265004384}
   - component: {fileID: 7277630909668158481}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Virtual Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,6 +119,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6469337493169657175}
+  serializedVersion: 2
   m_LocalRotation: {x: -0.2297422, y: -0.64488906, z: 0.21251607, w: -0.6972615}
   m_LocalPosition: {x: -7.9089866, y: 8.382793, z: 0.09067578}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -126,7 +127,6 @@ Transform:
   m_Children:
   - {fileID: 8826769245763118651}
   m_Father: {fileID: 7782163859175625385}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7277630909668158481
 MonoBehaviour:
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 7782163859175625385}
   - component: {fileID: 7048684292490135209}
   - component: {fileID: 8654994262989981047}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CameraArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,6 +192,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7584099162554650136}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -199,7 +200,6 @@ Transform:
   m_Children:
   - {fileID: 4060027001265004384}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &7048684292490135209
 BoxCollider:
@@ -244,3 +244,4 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
+  <Follow>k__BackingField: 0

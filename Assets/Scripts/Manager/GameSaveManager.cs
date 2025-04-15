@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 public class GameSaveManager : IManager
@@ -22,7 +23,7 @@ public class GameSaveManager : IManager
 
     public bool FirstTimePlaying()
     {
-        return SaveManager.LoadList<Save>().Count == 0;
+        return SaveManager.LoadList<Save>().Where(l => l.LastBonfireSpawn != null).ToList().Count == 0;
     }
 
     public void StartNewSave()
@@ -32,18 +33,10 @@ public class GameSaveManager : IManager
 
     public void LoadSave()
     {
-        Save = SaveManager.LoadList<Save>().First();
-    }
-
-    public SpawnDomain GetSpawn()
-    {
-        return Save.Spawn;
-    }
-
-    public void SetSpawn(SpawnDomain spawn)
-    {
-        Save.Spawn = spawn;
-        SaveData();
+        Save = SaveManager.LoadList<Save>()
+            .Where(l => l.LastBonfireSpawn != null)
+            .OrderBy(l => DateTime.Now - l.Metadata.LastSaved)
+            .First();
     }
 
     public SpawnDomain GetBonfireSpawn()
@@ -53,7 +46,6 @@ public class GameSaveManager : IManager
 
     public void SetBonfireSpawn(SpawnDomain spawn)
     {
-        Save.Spawn = spawn;
         Save.LastBonfireSpawn = spawn;
         Save.SelectedParty = PartyManager.Party.Select(p => p.Pawn.ResetPawnInfo()).ToList();
         Save.DefeatedEnemies.Clear();
