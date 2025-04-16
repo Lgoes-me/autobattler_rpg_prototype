@@ -1,6 +1,6 @@
 ﻿using System;
 
-public static class EditorExtensions
+public static class MapEditorExtensions
 {
     public static BaseNodeView ToNodeView(this BaseNodeData node)
     {

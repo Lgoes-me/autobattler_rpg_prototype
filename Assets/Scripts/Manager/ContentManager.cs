@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class ContentManager : MonoBehaviour, IManager
@@ -11,7 +12,7 @@ public class ContentManager : MonoBehaviour, IManager
     {
         return AvailablePawns.First(p => p.Id == id).ToBaseDomain();
     }
-    
+
     public Pawn GetPawnDomainFromInfo(PawnInfo pawnInfo)
     {
         return AvailablePawns.First(p => p.Id == pawnInfo.Name).ToDomain(TeamType.Player, 1);
@@ -21,4 +22,13 @@ public class ContentManager : MonoBehaviour, IManager
     {
         return AvailableWeapons.First(p => p.Id == id);
     }
+
+#if UNITY_EDITOR
+    [ContextMenu("ForceLoadContent")]
+    void DoSomething()
+    {
+        AvailablePawns = Extensions.FindAllScriptableObjectsOfType<PawnData>("Assets/Datas/Pawns/Player");
+        AvailableWeapons = Extensions.FindAllScriptableObjectsOfType<WeaponData>();
+    }
+#endif
 }

@@ -1,4 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using System.Linq;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public static class Extensions
 {
@@ -10,4 +16,15 @@ public static class Extensions
     {
         return Quaternion.Slerp(from, to, 1 - Mathf.Exp(-speed * Time.deltaTime));
     }
+    
+    
+#if UNITY_EDITOR
+    public static List<T> FindAllScriptableObjectsOfType<T>(string folder = "Assets")
+        where T : ScriptableObject
+    {
+        return AssetDatabase.FindAssets($"t:{typeof(T)}", new[] { folder })
+            .Select(guid => AssetDatabase.LoadAssetAtPath<T>(AssetDatabase.GUIDToAssetPath(guid)))
+            .ToList();
+    }
+#endif
 }

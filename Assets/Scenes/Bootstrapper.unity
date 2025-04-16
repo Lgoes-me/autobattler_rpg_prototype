@@ -1868,13 +1868,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9b6544d20cd4bc6a5059da06f67f57c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <AvailablePawns>k__BackingField:
-  - {fileID: 11400000, guid: c6302786fe4d8814484706224f21b480, type: 2}
-  - {fileID: 11400000, guid: ec13262d9281d494ea79a340ff6b968d, type: 2}
-  - {fileID: 11400000, guid: e4050726caa765844a928b90fe03e5d0, type: 2}
-  <AvailableWeapons>k__BackingField:
-  - {fileID: 11400000, guid: 8a52abe442785a54da608366eb5bbbc1, type: 2}
-  - {fileID: 11400000, guid: 5809fa7e25bda9b43accefaaf4f375ba, type: 2}
+  <AvailablePawns>k__BackingField: []
+  <AvailableWeapons>k__BackingField: []
 --- !u!1001 &1164712636
 PrefabInstance:
   m_ObjectHideFlags: 0
