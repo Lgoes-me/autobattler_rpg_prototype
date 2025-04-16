@@ -110,6 +110,11 @@ public class Pawn : BasePawn
         Mana = 0;
         LevelUpStats.EvaluateLevel(Level);
         Status = pawnInfo.Status;
+
+        if (!string.IsNullOrWhiteSpace(pawnInfo.Weapon))
+        {
+            Weapon = Application.Instance.GetManager<ContentManager>().GetWeaponFromId(pawnInfo.Weapon);
+        }
         
         Buffs = new Dictionary<string, Buff>();
     }

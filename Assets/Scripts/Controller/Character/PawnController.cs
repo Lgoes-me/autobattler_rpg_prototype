@@ -28,6 +28,12 @@ public class PawnController : MonoBehaviour
         }
     }
 
+    public void UpdatePawn(PawnInfo pawnInfo)
+    {
+        Pawn.SetPawnInfo(pawnInfo);
+        CharacterController.SetWeapon(Pawn.Weapon);
+    }
+
     public void RemoveCanvasController()
     {
         Destroy(CanvasController.gameObject);

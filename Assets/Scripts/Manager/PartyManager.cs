@@ -42,7 +42,6 @@ public class PartyManager : MonoBehaviour, IManager
     
     public void SpawnPartyAt(Vector3 position)
     {
-        
         var playerPosition = position;
         
         foreach (var pawnInfo in GameSaveManager.GetSelectedParty())
@@ -103,5 +102,10 @@ public class PartyManager : MonoBehaviour, IManager
     public bool Contains(PawnData pawn)
     {
         return Party.Any(p => p.Pawn.Id == pawn.Id);
+    }
+
+    public void UpdatePawn(PawnInfo pawnInfo)
+    {
+        Party.FirstOrDefault(p => p.Pawn.Id == pawnInfo.Name)?.UpdatePawn(pawnInfo);
     }
 }

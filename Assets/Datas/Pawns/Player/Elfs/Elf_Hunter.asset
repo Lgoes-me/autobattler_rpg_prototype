@@ -70,4 +70,4 @@ MonoBehaviour:
     <Audio>k__BackingField:
       <Type>k__BackingField: 2
       <Sounds>k__BackingField: []
-  <Weapon>k__BackingField: {fileID: 11400000, guid: c100948fa67640f428b6c11fce040be7, type: 2}
+  <Weapon>k__BackingField: {fileID: 11400000, guid: cd31aca81c366d643bb7c5e6c911a4ec, type: 2}

@@ -52,12 +52,20 @@ public class PartyMemberPrize : BasePrize<PawnInfo>
     }
 }
 
-/*public class WeaponPrize : BasePrize
+public class WeaponPrize : BasePrize<PawnInfo>
 {
-    
+    public WeaponPrize(int numberOfOptions, List<PawnInfo> selectedParty)
+    {
+        var options = selectedParty
+            .OrderBy(b => Guid.NewGuid())
+            .Take(numberOfOptions)
+            .ToDictionary(p => p.Name, p => p);
+
+        Options = options;
+    }
 }
 
-public class ConsumablePrize : BasePrize
+/*public class ConsumablePrize : BasePrize
 {
 
 }

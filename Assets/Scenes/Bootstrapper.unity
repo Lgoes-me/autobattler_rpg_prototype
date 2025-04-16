@@ -1872,6 +1872,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c6302786fe4d8814484706224f21b480, type: 2}
   - {fileID: 11400000, guid: ec13262d9281d494ea79a340ff6b968d, type: 2}
   - {fileID: 11400000, guid: e4050726caa765844a928b90fe03e5d0, type: 2}
+  <AvailableWeapons>k__BackingField:
+  - {fileID: 11400000, guid: 8a52abe442785a54da608366eb5bbbc1, type: 2}
+  - {fileID: 11400000, guid: 5809fa7e25bda9b43accefaaf4f375ba, type: 2}
 --- !u!1001 &1164712636
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9774615525ba4fca9e379bac94aa04a5, type: 3}
   m_Name: Teste-Lance
   m_EditorClassIdentifier: 
+  <Id>k__BackingField: Teste-Lance
   <Type>k__BackingField: 0
   <Sprites>k__BackingField:
   - {fileID: -33863353, guid: 5d3820d98d28b65439c16a0737317ad5, type: 3}

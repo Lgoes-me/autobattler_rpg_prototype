@@ -43,6 +43,7 @@ public class BonfireScene : MonoBehaviour
 
     private void EndBonfireScene()
     {
+        SaveChanges();
         Application.Instance.GetManager<SceneManager>().EndBonfireScene();
         Callback();
     }

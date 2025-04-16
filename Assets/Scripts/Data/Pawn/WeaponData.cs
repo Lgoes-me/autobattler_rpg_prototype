@@ -1,14 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
 public class WeaponData : ScriptableObject
 {
     [field: SerializeField]
+    public string Id { get; private set; }
+    
+    [field: SerializeField]
     public WeaponType Type { get; private set; }
     
     [field: SerializeField]
-    public Sprite[] Sprites { get; private set; }
+    public List<Sprite> Sprites { get; private set; }
     
     [field: SerializeField]
     public Color StartColor { get; private set; }

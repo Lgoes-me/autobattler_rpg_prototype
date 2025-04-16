@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9774615525ba4fca9e379bac94aa04a5, type: 3}
   m_Name: Bow
   m_EditorClassIdentifier: 
+  <Id>k__BackingField: Bow
   <Type>k__BackingField: 0
   <Sprites>k__BackingField:
   - {fileID: -1209576914, guid: eaa732a6ce18ff140835b1304aec842b, type: 3}

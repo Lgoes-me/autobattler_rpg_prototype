@@ -87,3 +87,12 @@ public class OpenLevelUpPrize : GameAction
         Application.Instance.GetManager<PrizeManager>().CreateLevelUpPrize();
     }
 }
+
+[Serializable]
+public class OpenWeaponPrize : GameAction
+{
+    public override void Invoke()
+    {
+        Application.Instance.GetManager<PrizeManager>().CreateWeaponPrize();
+    }
+}

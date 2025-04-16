@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9774615525ba4fca9e379bac94aa04a5, type: 3}
   m_Name: Pitchfork
   m_EditorClassIdentifier: 
+  <Id>k__BackingField: Pitchfork
   <Type>k__BackingField: 0
   <Sprites>k__BackingField:
   - {fileID: -685310717, guid: 08ad4805ad534cd469d950087d57e6d7, type: 3}
