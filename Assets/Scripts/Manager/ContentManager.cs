@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ContentManager : MonoBehaviour, IManager
 {
-    [field: SerializeField] private List<PawnData> AvailablePawns { get; set; }
+    [field: SerializeField] public List<PawnData> AvailablePawns { get; private set; }
     [field: SerializeField] public List<WeaponData> AvailableWeapons { get; private set; }
 
     public BasePawn GetBasePawnFromId(string id)

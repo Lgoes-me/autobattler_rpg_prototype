@@ -46,9 +46,18 @@ public class BlessingPrize : BasePrize<BlessingIdentifier>
 
 public class PartyMemberPrize : BasePrize<PawnInfo>
 {
-    public PartyMemberPrize(List<BasePawn> pawns)
+    public PartyMemberPrize(int numberOfOptions, int level, List<PawnController> pawns, ContentManager contentManager)
     {
-        throw new NotImplementedException();
+        var ids = pawns.Select(p => p.Pawn.Id).ToList();
+        
+        Options = 
+            contentManager.AvailablePawns
+                .Where(p => !ids.Contains(p.Id))
+                .OrderBy(b => Guid.NewGuid())
+                .Take(numberOfOptions)
+                .ToDictionary(
+                    b => b.ToString(), 
+                    p => new PawnInfo(p.Id, level, 0, PawnStatus.Transient, p.Weapon));
     }
 }
 

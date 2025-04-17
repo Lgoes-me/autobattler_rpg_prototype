@@ -20,7 +20,7 @@ public class PawnData : ScriptableObject
     [field: SerializeField] private List<ArchetypeIdentifier> Archetypes { get; set; }
     [field: SerializeField] private List<CharacterInfo> CharacterInfos { get; set; }
     [field: SerializeField] private WeaponType WeaponType { get; set; }
-    [field: SerializeField] private WeaponData Weapon { get; set; }
+    [field: SerializeField] public WeaponData Weapon { get; private set; }
 
     public Pawn ToDomain(TeamType team, int level)
     {

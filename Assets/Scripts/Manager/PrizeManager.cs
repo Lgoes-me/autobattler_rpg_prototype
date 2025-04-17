@@ -42,14 +42,18 @@ public class PrizeManager : IManager
         BlessingManager.AddBlessing(selectedPrize);
     }
     
-    public async void CreatePartyMemberPrize(List<BasePawn> pawns)
+    public async void CreatePartyMemberPrize()
     {
         PauseManager.PauseGame();
-        var prizes = new PartyMemberPrize(pawns);
+        var prizes = new PartyMemberPrize(3, 1, PartyManager.Party, ContentManager);
         var selectedPrize = await InterfaceManager.ShowPrizeCanvas(prizes);
         
         PauseManager.ResumeGame();
-        //Application.Instance.PartyManager.(selectedPrize);
+        var playerControllerPosition = Application.Instance.GetManager<PlayerManager>().PlayerController.transform.position;
+        
+        GameSaveManager.AddToSelectedParty(selectedPrize);
+        PartyManager.AddToCurrentParty(playerControllerPosition, selectedPrize);
+        PartyManager.SetPartyToFollow(false);
     }
 
     public async void CreateWeaponPrize()

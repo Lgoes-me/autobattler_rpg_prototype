@@ -89,6 +89,15 @@ public class OpenLevelUpPrize : GameAction
 }
 
 [Serializable]
+public class OpenPartyMemberPrize : GameAction
+{
+    public override void Invoke()
+    {
+        Application.Instance.GetManager<PrizeManager>().CreatePartyMemberPrize();
+    }
+}
+
+[Serializable]
 public class OpenWeaponPrize : GameAction
 {
     public override void Invoke()
