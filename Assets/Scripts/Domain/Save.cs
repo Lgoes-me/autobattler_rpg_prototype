@@ -29,12 +29,8 @@ public class Save : ISavable
     {
         Metadata = new Metadata().CreateNewDynamicFile(".json");
         LastBonfireSpawn = null;
-        
-        SelectedParty = new List<PawnInfo>
-        {
-            new("Farmer", PawnStatus.Main),
-            new("Hunter", PawnStatus.Unlocked),
-        };
+
+        SelectedParty = new List<PawnInfo>();
         
         DefeatedEnemies = new List<string>();
         Blessings = new List<BlessingIdentifier>();
@@ -44,6 +40,7 @@ public class Save : ISavable
             "Hunter",
             "Dude"
         };
+        
         Dialogues = new List<string>();
         CurrentTime = 20f;
 

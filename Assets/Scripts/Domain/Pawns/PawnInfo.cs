@@ -5,14 +5,14 @@ public class PawnInfo
     public int Level { get; set; }
     public int MissingHealth { get; set; }
     public PawnStatus Status { get; set; }
-    public string Weapon { get; set; }
+    public WeaponInfo Weapon { get; set; }
 
     public PawnInfo()
     {
         Name = string.Empty;
         Level = 1;
         MissingHealth = 0;
-        Weapon = string.Empty;
+        Weapon = null;
     }
 
     public PawnInfo(string name, PawnStatus status)
@@ -21,16 +21,20 @@ public class PawnInfo
         Level = 1;
         MissingHealth = 0;
         Status = status;
-        Weapon = string.Empty;
+        Weapon = null;
     }
 
-    public PawnInfo(string name, int level, int missingHealth, PawnStatus status)
+    public PawnInfo(string name, int level, int missingHealth, PawnStatus status, WeaponData weapon)
     {
         Name = name;
         Level = level;
         MissingHealth = missingHealth;
         Status = status;
-        Weapon = string.Empty;
+        
+        if(weapon != null)
+        {
+            Weapon = new WeaponInfo(weapon);
+        }
     }
 
     public bool CanLevelUp()
@@ -45,7 +49,7 @@ public class PawnInfo
 
     public void SetWeapon(WeaponData weapon)
     {
-        Weapon = weapon.Id;
+        Weapon = new WeaponInfo(weapon);
     }
     
     public void Update(PawnInfo updatedPawnInfo)

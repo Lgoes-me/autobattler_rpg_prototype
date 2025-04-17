@@ -29,6 +29,12 @@ public class GameSaveManager : IManager
     public void StartNewSave()
     {
         Save = new Save().CreateNewSaveForIntro();
+
+        var farmer = ContentManager.GetBasePawnFromId("Farmer");
+        var hunter = ContentManager.GetBasePawnFromId("Hunter");
+
+        Save.SelectedParty.Add(new PawnInfo(farmer.Id, 1, 0, PawnStatus.Main, farmer.Weapon));
+        Save.SelectedParty.Add(new PawnInfo(hunter.Id, 1, 0, PawnStatus.Unlocked, hunter.Weapon));
     }
 
     public void LoadSave()
@@ -68,7 +74,9 @@ public class GameSaveManager : IManager
 
     public void SetParty(List<BasePawn> newSelectedParty)
     {
-        Save.SelectedParty = newSelectedParty.Select(p => new PawnInfo(p.Id, 1, 0, PawnStatus.Unlocked)).ToList();
+        Save.SelectedParty = newSelectedParty
+            .Select(p => new PawnInfo(p.Id, 1, 0, PawnStatus.Unlocked, p.Weapon))
+            .ToList();
         SaveData();
     }
 

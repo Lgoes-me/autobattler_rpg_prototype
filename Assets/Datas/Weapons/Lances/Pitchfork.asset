@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pitchfork
   m_EditorClassIdentifier: 
   <Id>k__BackingField: Pitchfork
-  <Type>k__BackingField: 0
+  <Type>k__BackingField: 2
   <Sprites>k__BackingField:
   - {fileID: -685310717, guid: 08ad4805ad534cd469d950087d57e6d7, type: 3}
   <StartColor>k__BackingField: {r: 0.4339623, g: 0.4339623, b: 0.4339623, a: 0}

@@ -16,6 +16,7 @@ MonoBehaviour:
   <Initiative>k__BackingField: 0
   <VisionRange>k__BackingField: 0
   <AttackRange>k__BackingField: 0
+  <RangedAttackError>k__BackingField: 0
   <EnemyFocusPreference>k__BackingField: 1
   <AllyFocusPreference>k__BackingField: 3
   <Character>k__BackingField: {fileID: 1670507725838462388, guid: 09492b04cb851cb4a9af93df4db137d8, type: 3}
@@ -69,3 +70,5 @@ MonoBehaviour:
     <Audio>k__BackingField:
       <Type>k__BackingField: 2
       <Sounds>k__BackingField: []
+  <WeaponType>k__BackingField: 8
+  <Weapon>k__BackingField: {fileID: 0}

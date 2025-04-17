@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bow
   m_EditorClassIdentifier: 
   <Id>k__BackingField: Bow
-  <Type>k__BackingField: 0
+  <Type>k__BackingField: 1
   <Sprites>k__BackingField:
   - {fileID: -1209576914, guid: eaa732a6ce18ff140835b1304aec842b, type: 3}
   - {fileID: -1624257728, guid: eaa732a6ce18ff140835b1304aec842b, type: 3}

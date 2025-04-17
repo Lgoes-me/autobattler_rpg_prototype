@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-[System.Serializable]
+[Serializable]
 public class Pawn : BasePawn
 {
     public int Level { get; internal set; }
@@ -44,7 +44,6 @@ public class Pawn : BasePawn
     public event PawnDomainBattleFinished BattleFinished;
 
     public PawnStatus Status { get; private set; }
-    public WeaponData Weapon { get; private set; }
 
     public Pawn(int level,
         string id,
@@ -62,7 +61,8 @@ public class Pawn : BasePawn
         List<ArchetypeIdentifier> archetypes,
         TeamType team,
         List<CharacterInfo> characterInfos,
-        WeaponData weapon) : base(id, character, characterInfos)
+        WeaponData weapon, 
+        WeaponType weaponType) : base(id, character, characterInfos, weapon, weaponType)
     {
         Level = level;
         LevelUpStats = levelUpStats;
@@ -83,7 +83,6 @@ public class Pawn : BasePawn
         SpecialAbilities = specialAbilities;
         Archetypes = archetypes;
         Team = team;
-        Weapon = weapon;
     }
 
     public void StartBattle(Battle battle)
@@ -111,9 +110,9 @@ public class Pawn : BasePawn
         LevelUpStats.EvaluateLevel(Level);
         Status = pawnInfo.Status;
 
-        if (!string.IsNullOrWhiteSpace(pawnInfo.Weapon))
+        if (pawnInfo.Weapon != null)
         {
-            Weapon = Application.Instance.GetManager<ContentManager>().GetWeaponFromId(pawnInfo.Weapon);
+            Weapon = Application.Instance.GetManager<ContentManager>().GetWeaponFromId(pawnInfo.Weapon.Id);
         }
         
         Buffs = new Dictionary<string, Buff>();
@@ -161,14 +160,14 @@ public class Pawn : BasePawn
 
     public PawnInfo ResetPawnInfo()
     {
-        var pawnInfo = new PawnInfo(Id, Level, 0, Status);
+        var pawnInfo = new PawnInfo(Id, Level, 0, Status, Weapon);
         SetPawnInfo(pawnInfo);
         return pawnInfo;
     }
 
     public PawnInfo GetPawnInfo()
     {
-        return new PawnInfo(Id, Level, Stats.Health -  Health, Status);
+        return new PawnInfo(Id, Level, Stats.Health -  Health, Status, Weapon);
     }
 
     public void ReceiveDamage(DamageDomain damage)
@@ -246,7 +245,7 @@ public class Pawn : BasePawn
             .OrderBy(p => p.Value)
             .Where(k => k.Value == lowestValue)
             .Select(p => p.Key)
-            .OrderBy(a => Guid.NewGuid())
+            .OrderBy(_ => Guid.NewGuid())
             .First();
 
         return selected.ToDomain(abilityUser);

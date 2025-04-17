@@ -55,15 +55,13 @@ public class PrizeManager : IManager
     public async void CreateWeaponPrize()
     {
         PauseManager.PauseGame();
-        var prizes = new WeaponPrize(3, GameSaveManager.GetSelectedParty());
+        var prizes = new WeaponPrize(3, ContentManager, GameSaveManager.GetSelectedParty());
         var selectedPrize = await InterfaceManager.ShowPrizeCanvas(prizes);
 
-        var weaponData = ContentManager.GetWeaponFromId("Teste-Lance");
-        selectedPrize.SetWeapon(weaponData);
+        selectedPrize.SetWeapon();
         
         PauseManager.ResumeGame();
-        selectedPrize.LevelUp();
-        GameSaveManager.SavePawnInfo(selectedPrize);
-        PartyManager.UpdatePawn(selectedPrize);
+        GameSaveManager.SavePawnInfo(selectedPrize.PawnInfo);
+        PartyManager.UpdatePawn(selectedPrize.PawnInfo);
     }
 }

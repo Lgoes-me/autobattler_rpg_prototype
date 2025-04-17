@@ -9,6 +9,9 @@ public class WeaponData : ScriptableObject
     public string Id { get; private set; }
     
     [field: SerializeField]
+    public int Level { get; private set; }
+    
+    [field: SerializeField]
     public WeaponType Type { get; private set; }
     
     [field: SerializeField]
@@ -28,6 +31,8 @@ public class WeaponData : ScriptableObject
 public enum WeaponType
 {
     None = 0,
-    
-    
+    Bow = 1,
+    Lance = 2,
+    Sword = 4,
+    Hammer = 8,
 }

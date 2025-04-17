@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.Rendering;
 using UnityEngine;
 
 public class ContentManager : MonoBehaviour, IManager
 {
     [field: SerializeField] private List<PawnData> AvailablePawns { get; set; }
-    [field: SerializeField] private List<WeaponData> AvailableWeapons { get; set; }
+    [field: SerializeField] public List<WeaponData> AvailableWeapons { get; private set; }
 
     public BasePawn GetBasePawnFromId(string id)
     {
@@ -20,7 +19,7 @@ public class ContentManager : MonoBehaviour, IManager
 
     public WeaponData GetWeaponFromId(string id)
     {
-        return AvailableWeapons.First(p => p.Id == id);
+        return AvailableWeapons.First(w => w.Id == id);
     }
 
 #if UNITY_EDITOR

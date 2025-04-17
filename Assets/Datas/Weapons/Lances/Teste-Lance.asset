@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Teste-Lance
   m_EditorClassIdentifier: 
   <Id>k__BackingField: Teste-Lance
-  <Type>k__BackingField: 0
+  <Type>k__BackingField: 2
   <Sprites>k__BackingField:
   - {fileID: -33863353, guid: 5d3820d98d28b65439c16a0737317ad5, type: 3}
   <StartColor>k__BackingField: {r: 0.6132076, g: 0.31929934, b: 0.014462441, a: 0}
