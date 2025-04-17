@@ -15,17 +15,17 @@ public class PartyPanelController : MonoBehaviour, IBonfirePanel
 
     public List<BasePawn> Party => PartyItems.Select(f => f.Pawn).ToList();
 
-    public void Init(PartyManager partyManager, BonfireScene bonfireScene)
+    public void Init(GameSaveManager gameSaveManager, BonfireScene bonfireScene)
     {
-        PartyManager = partyManager;
         BonfireScene = bonfireScene;
         PartyItems = new List<FriendItemController>();
 
-        var availableParty = Application.Instance.GetManager<GameSaveManager>().GetAvailableParty();
+        var availableParty = gameSaveManager.GetAvailableParty();
+        var selectedParty = gameSaveManager.GetSelectedParty();
         
-        foreach (var pawnController in PartyManager.Party)
+        foreach (var pawnInfo in selectedParty)
         {
-            var pawnData = availableParty.First(p => pawnController.Pawn.Id == p.Id);
+            var pawnData = availableParty.First(p => pawnInfo.Name == p.Id);
             var item = Instantiate(FriendItemPrefab, Content)
                 .Init(pawnData, bonfireScene, this, FriendItemState.Active);
             PartyItems.Add(item);

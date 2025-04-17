@@ -150,4 +150,13 @@ public class GameSaveManager : IManager
     {
         return Save.CurrentTime;
     }
+
+    public void ClearParty()
+    {
+        Save.SelectedParty = Save.SelectedParty
+        .Where(p => p.Status != PawnStatus.Transient)
+        .ToList();
+
+        SaveData();
+    }
 }

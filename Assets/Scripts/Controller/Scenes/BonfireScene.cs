@@ -16,29 +16,32 @@ public class BonfireScene : MonoBehaviour
     public IBonfirePanel BonfirePanel { get; set; }
     public bool IsDragging { get; set; }
     
-    private PartyManager PartyManager { get; set; }
+    private GameSaveManager GameSaveManager { get; set; }
 
     public void Init(Action callback)
     {
         Callback = callback;
         FinishButton.onClick.AddListener(EndBonfireScene);
 
-        PartyManager = Application.Instance.GetManager<PartyManager>();
-
-        FriendsPanelController.Init(PartyManager, this);
-        PartyPanelController.Init(PartyManager, this);
+        GameSaveManager = Application.Instance.GetManager<GameSaveManager>();
+        GameSaveManager.ClearParty();
         
         Application.Instance.GetManager<BlessingManager>().ClearBlessings();
-        
+
+        FriendsPanelController.Init(GameSaveManager, this);
+        PartyPanelController.Init(GameSaveManager, this);
+
         UpdateArchetypes();
     }
 
     public void SaveChanges()
     {
-        PartyManager.SetSelectedParty(PartyPanelController.Party);
+        var partyManager = Application.Instance.GetManager<PartyManager>();
+        
+        partyManager.SetSelectedParty(PartyPanelController.Party);
         var playerControllerPosition = Application.Instance.GetManager<PlayerManager>().PlayerController.transform.position;
-        PartyManager.UnSpawnParty();
-        PartyManager.SpawnPartyAt(playerControllerPosition);
+        partyManager.UnSpawnParty();
+        partyManager.SpawnPartyAt(playerControllerPosition);
     }
 
     private void EndBonfireScene()
