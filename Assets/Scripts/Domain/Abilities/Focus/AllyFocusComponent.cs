@@ -8,13 +8,13 @@ public class AllyFocusComponent : AbilityFocusComponent
         CanTargetSelf = canTargetSelf;
     }
 
-    public override PawnController ChooseFocus(PawnController pawnController, Battle battle)
+    public override PawnController ChooseFocus(PawnController user, Battle battle)
     {
         if (FocusedPawn != null && FocusedPawn.PawnState.CanBeTargeted)
         {
             return FocusedPawn;
         }
         
-        return FocusedPawn = battle.QueryAlly(pawnController, pawnController.Pawn.AllyFocusPreference, CanTargetSelf);
+        return FocusedPawn = battle.QueryAlly(user, user.Pawn.AllyFocusPreference, CanTargetSelf);
     }
 }

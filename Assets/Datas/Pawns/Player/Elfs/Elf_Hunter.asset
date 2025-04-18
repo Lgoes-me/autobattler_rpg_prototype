@@ -16,7 +16,7 @@ MonoBehaviour:
   <Initiative>k__BackingField: 0
   <VisionRange>k__BackingField: 0
   <AttackRange>k__BackingField: 0
-  <RangedAttackError>k__BackingField: 2
+  <RangedAttackError>k__BackingField: 0.5
   <EnemyFocusPreference>k__BackingField: 1
   <AllyFocusPreference>k__BackingField: 3
   <Character>k__BackingField: {fileID: 1670507725838462388, guid: d831922de3e34f248b8969c64d7a1b6d, type: 3}
@@ -61,8 +61,6 @@ MonoBehaviour:
       m_RotationOrder: 4
   <Abilities>k__BackingField:
   - {fileID: 11400000, guid: 4d5322942f707264790c540024917a6c, type: 2}
-  <SpecialAbilities>k__BackingField:
-  - {fileID: 11400000, guid: e08670137b4a16145a7141712200c678, type: 2}
   <Archetypes>k__BackingField: 05000000
   <CharacterInfos>k__BackingField:
   - <Identifier>k__BackingField: default

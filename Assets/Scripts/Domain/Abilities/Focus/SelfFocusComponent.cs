@@ -1,11 +1,7 @@
 ﻿public class SelfFocusComponent : AbilityFocusComponent
 {
-    public SelfFocusComponent()
+    public override PawnController ChooseFocus(PawnController user, Battle battle)
     {
-    }
-
-    public override PawnController ChooseFocus(PawnController pawn, Battle battle)
-    {
-        return pawn;
+        return user;
     }
 }
