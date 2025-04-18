@@ -52,6 +52,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ConsumableData>k__BackingField: {fileID: 11400000, guid: 37b3c93670b6f774eba82458f45ca543, type: 2}
   <Name>k__BackingField: {fileID: 6602759689882025952}
+  <CanvasGroup>k__BackingField: {fileID: 8481353199037340143}
+  mask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!225 &8481353199037340143
 CanvasGroup:
   m_ObjectHideFlags: 0

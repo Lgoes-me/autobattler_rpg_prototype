@@ -1,5 +1,5 @@
-using System;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -8,7 +8,8 @@ public class ConsumableCanvasController : BaseCanvasController, IBeginDragHandle
     [field: SerializeField]
     private ConsumableData ConsumableData { get; set; }
     [field: SerializeField] private TextMeshProUGUI Name { get; set; }
-    
+    [field: SerializeField] private CanvasGroup CanvasGroup { get; set; }
+    [SerializeField] LayerMask mask;
     private bool IsDragging { get; set; }
     private Vector3 StartingPosition { get; set; }
     
@@ -35,6 +36,23 @@ public class ConsumableCanvasController : BaseCanvasController, IBeginDragHandle
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        CanvasGroup.blocksRaycasts = false;
+        
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast (ray, out var hit, 10000, mask))
+        {
+            var pawn = hit.transform.GetComponent<PawnController>();
+            var effect = ConsumableData.Effect.ToDomain(pawn);
+            
+            effect.DoAbilityEffect(pawn);
+            
+            Destroy(this.gameObject);
+            return;
+        }
+        
+        CanvasGroup.blocksRaycasts = true;
+        
         IsDragging = false;
         transform.position = StartingPosition;
     }

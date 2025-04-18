@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Potion
   m_EditorClassIdentifier: 
   <Id>k__BackingField: Potion
-  <Effects>k__BackingField:
-  - rid: 7923229634562359299
+  <Effect>k__BackingField:
+    rid: 7923229649925308416
   references:
     version: 2
     RefIds:
-    - rid: 7923229634562359299
+    - rid: 7923229649925308416
       type: {class: StaticHealEffectData, ns: , asm: Assembly-CSharp}
       data:
         <HealValue>k__BackingField: 20
