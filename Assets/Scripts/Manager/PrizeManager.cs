@@ -62,7 +62,20 @@ public class PrizeManager : IManager
         var prizes = new WeaponPrize(3, ContentManager, GameSaveManager.GetSelectedParty());
         var selectedPrize = await InterfaceManager.ShowPrizeCanvas(prizes);
 
-        selectedPrize.SetWeapon();
+        selectedPrize.ApplyPrize();
+        
+        PauseManager.ResumeGame();
+        GameSaveManager.SavePawnInfo(selectedPrize.PawnInfo);
+        PartyManager.UpdatePawn(selectedPrize.PawnInfo);
+    }
+    
+    public async void CreateAbilityPrize()
+    {
+        PauseManager.PauseGame();
+        var prizes = new AbilityPrize(3, ContentManager, GameSaveManager.GetSelectedParty());
+        var selectedPrize = await InterfaceManager.ShowPrizeCanvas(prizes);
+
+        selectedPrize.ApplyPrize();
         
         PauseManager.ResumeGame();
         GameSaveManager.SavePawnInfo(selectedPrize.PawnInfo);

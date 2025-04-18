@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
@@ -15,6 +16,10 @@ public static class Extensions
     public static Quaternion Rotate(this Quaternion from, Quaternion to, float speed)
     {
         return Quaternion.Slerp(from, to, 1 - Mathf.Exp(-speed * Time.deltaTime));
+    }
+    public static bool IsEnumFlagPresent<T>(this T value, T lookingForFlag) where T : Enum
+    {
+        return ((int)(object)value & (int)(object)lookingForFlag) != 0;
     }
     
     

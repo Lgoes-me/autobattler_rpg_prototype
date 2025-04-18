@@ -35,4 +35,5 @@ public enum WeaponType
     Lance = 2,
     Sword = 4,
     Hammer = 8,
+    Crossbow = 16,
 }

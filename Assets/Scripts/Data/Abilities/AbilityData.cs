@@ -4,6 +4,9 @@ using UnityEngine;
 [CreateAssetMenu]
 public class AbilityData : ScriptableObject
 {
+    [field: SerializeField] public string Id { get; private set; }
+    [field: SerializeField] public WeaponType WeaponType { get; private set; }
+    
     [field: SerializeField] private string Animation { get; set; }
     [field: SerializeField] private float Delay { get; set; }
     [field: SerializeField] private float Range { get; set; }

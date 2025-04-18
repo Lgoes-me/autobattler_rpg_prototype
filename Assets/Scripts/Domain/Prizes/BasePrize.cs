@@ -57,7 +57,7 @@ public class PartyMemberPrize : BasePrize<PawnInfo>
                 .Take(numberOfOptions)
                 .ToDictionary(
                     b => b.ToString(), 
-                    p => new PawnInfo(p.Id, level, 0, PawnStatus.Transient, p.Weapon));
+                    p => new PawnInfo(p.Id, level, 0, PawnStatus.Transient, p.Weapon, p.Abilities));
     }
 }
 
@@ -75,7 +75,13 @@ public class WeaponPrize : BasePrize<WeaponPrizeResponse>
         
         var partyOrderedByWeaponLevel = 
             selectedParty.
-                OrderByDescending(p => p.Weapon?.Level ?? 0).
+                OrderByDescending(p =>
+                {
+                    if (string.IsNullOrEmpty(p.Weapon))
+                        return 0;
+
+                    return contentManager.GetWeaponFromId(p.Weapon).Level;
+                }).
                 ToList();
         
         var pawns = partyOrderedByWeaponLevel.
@@ -89,7 +95,7 @@ public class WeaponPrize : BasePrize<WeaponPrizeResponse>
         foreach (var pawnInfo in pawns)
         {
             var pawn = contentManager.GetBasePawnFromId(pawnInfo.Name);
-            var weapon = randomWeapons.First(w => w.Type == pawn.WeaponType && pawnInfo.Weapon?.Id != w.Id);
+            var weapon = randomWeapons.First(w => pawn.WeaponType.IsEnumFlagPresent(w.Type) && pawnInfo.Weapon != w.Id);
 
             options.Add($"{weapon.Id} to {pawnInfo.Name}", new WeaponPrizeResponse(pawnInfo, weapon));
         }
@@ -98,14 +104,45 @@ public class WeaponPrize : BasePrize<WeaponPrizeResponse>
     }
 
 }
+
+public class AbilityPrize : BasePrize<AbilityPrizeResponse>
+{
+    public AbilityPrize(
+        int numberOfOptions,
+        ContentManager contentManager,
+        List<PawnInfo> selectedParty)
+    {
+        var randomAbilities =
+            contentManager.AvailableAbilities
+                .OrderBy(b => Guid.NewGuid())
+                .ToList();
+        
+        var pawns = selectedParty.
+            OrderBy(p => Guid.NewGuid()).
+            Take(numberOfOptions).
+            ToList();
+
+        var options = new Dictionary<string, AbilityPrizeResponse>();
+        
+        foreach (var pawnInfo in pawns)
+        {
+            var pawn = contentManager.GetBasePawnFromId(pawnInfo.Name);
+            var ability = randomAbilities.FirstOrDefault(a =>  pawn.WeaponType.IsEnumFlagPresent(a.WeaponType) && !pawnInfo.Abilities.Contains(a.Id));
+
+            if(ability == null)
+                continue;
+
+            options.Add($"{ability.Id} to {pawnInfo.Name}", new AbilityPrizeResponse(pawnInfo, ability));
+        }
+        
+        Options = options;
+    }
+}
+
+
 /*public class ConsumablePrize : BasePrize
 {
 
-}
-
-public class AbilityPrize : BasePrize
-{
-    
 }
 
 public class BuffPrize : BasePrize

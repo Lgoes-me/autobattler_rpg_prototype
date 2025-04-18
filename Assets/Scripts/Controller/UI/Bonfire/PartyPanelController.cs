@@ -25,9 +25,9 @@ public class PartyPanelController : MonoBehaviour, IBonfirePanel
         
         foreach (var pawnInfo in selectedParty)
         {
-            var pawnData = availableParty.First(p => pawnInfo.Name == p.Id);
+            var pawn = availableParty.First(p => pawnInfo.Name == p.Id);
             var item = Instantiate(FriendItemPrefab, Content)
-                .Init(pawnData, bonfireScene, this, FriendItemState.Active);
+                .Init(pawn, bonfireScene, this, FriendItemState.Active);
             PartyItems.Add(item);
         }
 

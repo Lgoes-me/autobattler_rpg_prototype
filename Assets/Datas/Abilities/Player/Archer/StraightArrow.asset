@@ -12,38 +12,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e3f2961cde84cc2bca5113224648ba8, type: 3}
   m_Name: StraightArrow
   m_EditorClassIdentifier: 
+  <Id>k__BackingField: StraightArrow
+  <WeaponType>k__BackingField: 17
   <Animation>k__BackingField: BowAttack
-  <Delay>k__BackingField: 1
-  <Range>k__BackingField: 5
-  <EffectData>k__BackingField:
-    rid: 4871999933041868802
-  <FocusData>k__BackingField:
-    rid: 4871999933996597251
+  <Delay>k__BackingField: 0.35
+  <Range>k__BackingField: 7
+  <AbilityBehaviours>k__BackingField:
+  - <Effects>k__BackingField:
+    - rid: 7923229623912497154
+    <FocusData>k__BackingField:
+      rid: 7923229623912497155
+    <ActionData>k__BackingField:
+      rid: 7923229623912497156
   <ResourceData>k__BackingField:
-    rid: 4871999933996597250
-  <ActionData>k__BackingField:
-    rid: 4871999933041868803
+    rid: 7923229623912497153
   <Priorities>k__BackingField: []
   references:
     version: 2
     RefIds:
-    - rid: 4871999933041868802
+    - rid: 7923229623912497153
+      type: {class: ManaResourceData, ns: , asm: Assembly-CSharp}
+      data:
+        <ManaCost>k__BackingField: 10
+    - rid: 7923229623912497154
       type: {class: DamageEffectData, ns: , asm: Assembly-CSharp}
       data:
         <Damage>k__BackingField:
-          <Multiplier>k__BackingField: 2
+          <Multiplier>k__BackingField: 4
           <Type>k__BackingField: 1
-    - rid: 4871999933041868803
+    - rid: 7923229623912497155
+      type: {class: EnemyFocusComponentData, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 7923229623912497156
       type: {class: ProjectileActionData, ns: , asm: Assembly-CSharp}
       data:
         <Projectile>k__BackingField: {fileID: 3883816015513118945, guid: 1c196ea9bdbc3434ca8969f1aa74aedb, type: 3}
-    - rid: 4871999933996597250
-      type: {class: NoResourceData, ns: , asm: Assembly-CSharp}
-      data: 
-    - rid: 4871999933996597251
-      type: {class: FocusComponent, ns: , asm: Assembly-CSharp}
-      data:
-        <Target>k__BackingField: 2
-        <Focus>k__BackingField: 2
-        <Range>k__BackingField: 5
-        <Error>k__BackingField: 2
+        <Trajectory>k__BackingField:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        <OverrideProjectileSprite>k__BackingField: 1

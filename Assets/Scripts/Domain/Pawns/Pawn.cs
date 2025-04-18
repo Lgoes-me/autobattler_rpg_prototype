@@ -22,14 +22,12 @@ public class Pawn : BasePawn
     public FocusType EnemyFocusPreference { get; } 
     public FocusType AllyFocusPreference { get; }
     
-    private List<AbilityData> Abilities { get; }
-    public List<AbilityData> SpecialAbilities { get; }
     public List<ArchetypeIdentifier> Archetypes { get; }
     
     public Dictionary<string, Buff> Buffs { get; private set; }
     public TeamType Team { get; }
 
-    public bool HasMana => SpecialAbilities.Count > 0 && Stats.Mana > 0;
+    public bool HasMana => Stats.Mana > 0 && Abilities.Any(a => a.ResourceData.GetCost() <=  Mana);
     public bool IsAlive => Health > 0;
 
     public delegate void PawnDomainChanged();
@@ -57,12 +55,18 @@ public class Pawn : BasePawn
         FocusType enemyFocusPreference,
         FocusType allyFocusPreference,
         List<AbilityData> abilities,
-        List<AbilityData> specialAbilities,
         List<ArchetypeIdentifier> archetypes,
         TeamType team,
         List<CharacterInfo> characterInfos,
-        WeaponData weapon, 
-        WeaponType weaponType) : base(id, character, characterInfos, weapon, weaponType)
+        WeaponData weapon,
+        WeaponType weaponType) : 
+        base(
+            id, 
+            character, 
+            characterInfos, 
+            abilities, 
+            weapon, 
+            weaponType)
     {
         Level = level;
         LevelUpStats = levelUpStats;
@@ -79,8 +83,6 @@ public class Pawn : BasePawn
         
         EnemyFocusPreference = enemyFocusPreference;
         AllyFocusPreference = allyFocusPreference;
-        Abilities = abilities;
-        SpecialAbilities = specialAbilities;
         Archetypes = archetypes;
         Team = team;
     }
@@ -112,9 +114,17 @@ public class Pawn : BasePawn
 
         if (pawnInfo.Weapon != null)
         {
-            Weapon = Application.Instance.GetManager<ContentManager>().GetWeaponFromId(pawnInfo.Weapon.Id);
+            Weapon = Application.Instance.GetManager<ContentManager>().GetWeaponFromId(pawnInfo.Weapon);
         }
-        
+
+        foreach (var ability in pawnInfo.Abilities)
+        {
+            if(Abilities.Any(a => a.Id == ability))
+                continue;
+            
+            Abilities.Add(Application.Instance.GetManager<ContentManager>().GetAbilityFromId(ability));
+        }
+
         Buffs = new Dictionary<string, Buff>();
     }
 
@@ -160,14 +170,14 @@ public class Pawn : BasePawn
 
     public PawnInfo ResetPawnInfo()
     {
-        var pawnInfo = new PawnInfo(Id, Level, 0, Status, Weapon);
+        var pawnInfo = new PawnInfo(Id, Level, 0, Status, Weapon, Abilities);
         SetPawnInfo(pawnInfo);
         return pawnInfo;
     }
 
     public PawnInfo GetPawnInfo()
     {
-        return new PawnInfo(Id, Level, Stats.Health -  Health, Status, Weapon);
+        return new PawnInfo(Id, Level, Stats.Health -  Health, Status, Weapon, Abilities);
     }
 
     public void ReceiveDamage(DamageDomain damage)
@@ -230,20 +240,17 @@ public class Pawn : BasePawn
         Battle battle)
     {
         var abilities = new List<AbilityData>();
+        
+        abilities.AddRange(Abilities.Where(a => a.ResourceData.GetCost() <=  Mana).ToList());
 
-        abilities.AddRange(Abilities);
-
-        var specialAttacks = SpecialAbilities.Where(a => a.ResourceData.GetCost() <=  Mana).ToList();
-        abilities.AddRange(specialAttacks);
-
-        var lowestValue = abilities
+        var highestValue = abilities
             .ToDictionary(a => a, a => a.GetPriority(abilityUser, battle))
-            .OrderBy(p => p.Value).First().Value;
+            .OrderBy(p => p.Value).Last().Value;
             
         var selected = abilities
             .ToDictionary(a => a, a => a.GetPriority(abilityUser, battle))
             .OrderBy(p => p.Value)
-            .Where(k => k.Value == lowestValue)
+            .Where(k => k.Value == highestValue)
             .Select(p => p.Key)
             .OrderBy(_ => Guid.NewGuid())
             .First();

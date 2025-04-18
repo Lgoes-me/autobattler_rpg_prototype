@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu]
@@ -15,8 +16,7 @@ public class PawnData : ScriptableObject
     [field: SerializeField] private CharacterController Character { get; set; }
     [field: SerializeField] private StatsData BaseStats { get; set; }
     [field: SerializeField] private LevelUpStatsData LevelUpStats { get; set; }
-    [field: SerializeField] private List<AbilityData> Abilities { get; set; }
-    [field: SerializeField] private List<AbilityData> SpecialAbilities { get; set; }
+    [field: SerializeField] public List<AbilityData> Abilities { get; private set; }
     [field: SerializeField] private List<ArchetypeIdentifier> Archetypes { get; set; }
     [field: SerializeField] private List<CharacterInfo> CharacterInfos { get; set; }
     [field: SerializeField] private WeaponType WeaponType { get; set; }
@@ -36,8 +36,7 @@ public class PawnData : ScriptableObject
             LevelUpStats.ToDomain(),
             EnemyFocusPreference,
             AllyFocusPreference,
-            Abilities,
-            SpecialAbilities,
+            Abilities.ToList(),
             Archetypes,
             team,
             CharacterInfos,
@@ -51,6 +50,7 @@ public class PawnData : ScriptableObject
             Id,
             Character,
             CharacterInfos,
+            Abilities.ToList(),
             Weapon,
             WeaponType);
     }

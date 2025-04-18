@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 [System.Serializable]
 public class PawnInfo
 {
@@ -5,26 +7,25 @@ public class PawnInfo
     public int Level { get; set; }
     public int MissingHealth { get; set; }
     public PawnStatus Status { get; set; }
-    public WeaponInfo Weapon { get; set; }
+    public string Weapon { get; set; }
+    public List<string> Abilities { get; set; }
 
     public PawnInfo()
     {
         Name = string.Empty;
         Level = 1;
         MissingHealth = 0;
-        Weapon = null;
+        Weapon = string.Empty;;
+        Abilities = new List<string>();
     }
-
-    public PawnInfo(string name, PawnStatus status)
-    {
-        Name = name;
-        Level = 1;
-        MissingHealth = 0;
-        Status = status;
-        Weapon = null;
-    }
-
-    public PawnInfo(string name, int level, int missingHealth, PawnStatus status, WeaponData weapon)
+    
+    public PawnInfo(
+        string name, 
+        int level, 
+        int missingHealth,
+        PawnStatus status, 
+        WeaponData weapon, 
+        List<AbilityData> abilities)
     {
         Name = name;
         Level = level;
@@ -33,7 +34,14 @@ public class PawnInfo
         
         if(weapon != null)
         {
-            Weapon = new WeaponInfo(weapon);
+            Weapon = weapon.Id;
+        }
+
+        Abilities = new List<string>();
+        
+        foreach (var ability in abilities)
+        {
+            Abilities.Add(ability.Id);
         }
     }
 
@@ -49,15 +57,22 @@ public class PawnInfo
 
     public void SetWeapon(WeaponData weapon)
     {
-        Weapon = new WeaponInfo(weapon);
+        Weapon = weapon.Id;
+    }
+    
+    public void SetAbility(AbilityData ability)
+    {
+        Abilities.Add(ability.Id);
     }
     
     public void Update(PawnInfo updatedPawnInfo)
     {
         Level = updatedPawnInfo.Level;
         MissingHealth = updatedPawnInfo.MissingHealth;
+        Status = updatedPawnInfo.Status;
+        Weapon = updatedPawnInfo.Weapon;
+        Abilities = updatedPawnInfo.Abilities;
     }
-
 
     //Status, Buff
 }

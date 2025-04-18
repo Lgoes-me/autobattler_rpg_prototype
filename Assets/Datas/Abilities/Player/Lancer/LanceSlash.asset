@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e3f2961cde84cc2bca5113224648ba8, type: 3}
   m_Name: LanceSlash
   m_EditorClassIdentifier: 
+  <Id>k__BackingField: LanceSlash
+  <WeaponType>k__BackingField: 2
   <Animation>k__BackingField: LanceSlash
   <Delay>k__BackingField: 0.2
   <Range>k__BackingField: 1.5
@@ -23,14 +25,11 @@ MonoBehaviour:
     <ActionData>k__BackingField:
       rid: 4872000037008179217
   <ResourceData>k__BackingField:
-    rid: 4871999933996597266
+    rid: 7923229623912497157
   <Priorities>k__BackingField: []
   references:
     version: 2
     RefIds:
-    - rid: 4871999933996597266
-      type: {class: NoResourceData, ns: , asm: Assembly-CSharp}
-      data: 
     - rid: 4872000037008179217
       type: {class: InstantActionData, ns: , asm: Assembly-CSharp}
       data: 
@@ -38,9 +37,12 @@ MonoBehaviour:
       type: {class: DamageEffectData, ns: , asm: Assembly-CSharp}
       data:
         <Damage>k__BackingField:
-          <Multiplier>k__BackingField: 4
+          <Multiplier>k__BackingField: 3
           <Type>k__BackingField: 1
+    - rid: 7923229623912497157
+      type: {class: ManaResourceData, ns: , asm: Assembly-CSharp}
+      data:
+        <ManaCost>k__BackingField: 5
     - rid: 8813335080079720464
       type: {class: EnemyFocusComponentData, ns: , asm: Assembly-CSharp}
-      data:
-        <Error>k__BackingField: 1
+      data: 
