@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11b55d6e47b56384286a772dd008f0bb, type: 3}
   m_Name: Potion
   m_EditorClassIdentifier: 
+  <Id>k__BackingField: Potion
   <Effects>k__BackingField:
   - rid: 7923229634562359299
   references:
