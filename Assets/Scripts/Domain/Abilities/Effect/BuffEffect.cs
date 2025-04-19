@@ -7,16 +7,14 @@
         Buff = buff;
     }
 
-    public override void DoAbilityEffect(PawnController pawnController)
+    public override void DoAbilityEffect(PawnController focus)
     {
-        var pawn = pawnController.Pawn;
-
-        if (!pawn.IsAlive)
+        if (!focus.Pawn.IsAlive)
             return;
 
-        if (pawn.AddBuff(Buff))
+        if (focus.Pawn.AddBuff(Buff))
         {
-            Buff.Init(pawnController);
+            Buff.Init(focus);
         }
     }    
 }

@@ -19,8 +19,8 @@ public class RegenBuff : Buff
         if (Time.time >= LastTick + TickRate)
         {
             LastTick = Time.time;
-            PawnController.Pawn.ReceiveHeal(Regen, false);
-            PawnController.ReceiveHeal(false);
+            Focus.Pawn.ReceiveHeal(Regen, false);
+            Focus.ReceiveHeal(false);
         }
 
         return base.Tick();

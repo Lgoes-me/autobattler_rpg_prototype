@@ -7,14 +7,12 @@
         Damage = damage;
     }
 
-    public override void DoAbilityEffect(PawnController pawnController)
+    public override void DoAbilityEffect(PawnController focus)
     {
-        var pawn = pawnController.Pawn;
-
-        if (!pawn.IsAlive)
+        if (!focus.Pawn.IsAlive)
             return;
 
-        pawn.ReceiveDamage(Damage);
-        pawnController.ReceiveAttack();
+        focus.Pawn.ReceiveDamage(Damage);
+        focus.ReceiveAttack();
     }
 }

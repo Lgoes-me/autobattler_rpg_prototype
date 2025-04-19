@@ -7,5 +7,5 @@
         AbilityUser = abilityUser;
     }
     
-    public abstract void DoAbilityEffect(PawnController pawnController);
+    public abstract void DoAbilityEffect(PawnController focus);
 }

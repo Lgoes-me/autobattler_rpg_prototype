@@ -19,8 +19,8 @@ public class DamageOverTimeBuff : Buff
         if (Time.time >= LastTick + TickRate)
         {
             LastTick = Time.time;
-            PawnController.Pawn.ReceiveDamage(Damage);
-            PawnController.ReceiveAttack();
+            Focus.Pawn.ReceiveDamage(Damage);
+            Focus.ReceiveAttack();
         }
 
         return base.Tick();

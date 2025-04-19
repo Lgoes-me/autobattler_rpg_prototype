@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
 
-[System.Serializable]
 public abstract class Buff
 {
     public string Id { get; private set; }
     protected float Duration { get; set; }
     
-    protected PawnController PawnController { get; private set; }
+    protected PawnController Focus { get; private set; }
     
     private float StartingTime { get; set; }
     
@@ -20,10 +19,10 @@ public abstract class Buff
         StartingTime = Time.time;
     }
 
-    public virtual void Init(PawnController pawnController)
+    public virtual void Init(PawnController focus)
     {
-        PawnController = pawnController;
-        PawnController.ReceiveBuff(this);
+        Focus = focus;
+        Focus.ReceiveBuff(this);
     }
 
     public virtual bool Tick()

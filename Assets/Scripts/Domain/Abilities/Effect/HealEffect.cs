@@ -9,16 +9,14 @@
         CanRevive = canRevive;
     }
 
-    public override void DoAbilityEffect(PawnController pawnController)
+    public override void DoAbilityEffect(PawnController focus)
     {
-        var pawn = pawnController.Pawn;
-
-        if (!CanRevive && !pawn.IsAlive)
+        if (!CanRevive && !focus.Pawn.IsAlive)
             return;
         
         var heal = (int) (HealValue * AbilityUser.Pawn.GetPawnStats().Arcane);
-        pawn.ReceiveHeal(heal, CanRevive);
-        pawnController.ReceiveHeal(CanRevive);
+        focus.Pawn.ReceiveHeal(heal, CanRevive);
+        focus.ReceiveHeal(CanRevive);
     }
     
 }

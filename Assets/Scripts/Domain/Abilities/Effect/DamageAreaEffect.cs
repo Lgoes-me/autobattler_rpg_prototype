@@ -12,7 +12,7 @@ public class DamageAreaEffect : AbilityEffect
         Range = range;
     }
 
-    public override void DoAbilityEffect(PawnController pawnController)
+    public override void DoAbilityEffect(PawnController focus)
     {
         var closePawns = AbilityUser.BattleController.Battle.Pawns
             .Where(p => 
