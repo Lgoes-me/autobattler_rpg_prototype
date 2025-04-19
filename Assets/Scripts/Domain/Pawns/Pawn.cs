@@ -128,18 +128,18 @@ public class Pawn : BasePawn
         Buffs = new Dictionary<string, Buff>();
     }
 
-    public void AddBuff(Buff newBuff)
+    public bool AddBuff(Buff newBuff)
     {
         if (Buffs.TryGetValue(newBuff.Id, out var buff))
         {
             buff.TryReapplyBuff();
-            return;
+            return false;
         }
         
-        newBuff.Init(this);
         Buffs.Add(newBuff.Id, newBuff);
         
         BuffsChanged?.Invoke();
+        return true;
     }
 
     public void TickAllBuffs()
@@ -147,7 +147,11 @@ public class Pawn : BasePawn
         for (var index = Buffs.Count - 1; index >= 0; index--)
         {
             var buff = Buffs.ElementAt(index);
-            buff.Value.Tick();
+
+            if (!buff.Value.Tick())
+            {
+                RemoveBuff(buff.Value);
+            }
         }
     }
     

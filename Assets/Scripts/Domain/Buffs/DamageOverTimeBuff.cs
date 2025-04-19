@@ -2,7 +2,6 @@
 
 public class DamageOverTimeBuff : Buff
 {
-    private PawnController PawnController { get; set; }
     private DamageDomain Damage { get; set; }
     private float TickRate { get; set; }
 
@@ -15,27 +14,21 @@ public class DamageOverTimeBuff : Buff
         LastTick = Time.time;
     }
 
-    public override void Tick()
+    public override bool Tick()
     {
         if (Time.time >= LastTick + TickRate)
         {
             LastTick = Time.time;
-            Pawn.ReceiveDamage(Damage);
+            PawnController.Pawn.ReceiveDamage(Damage);
             PawnController.ReceiveAttack();
         }
 
-        base.Tick();
+        return base.Tick();
     }
 
     public override void TryReapplyBuff()
     {
         base.TryReapplyBuff();
-
         Duration = Time.time;
-    }
-
-    public void SetPawnController(PawnController pawnController)
-    {
-        PawnController = pawnController;
     }
 }

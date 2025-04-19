@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e3f2961cde84cc2bca5113224648ba8, type: 3}
   m_Name: GoBerserk
   m_EditorClassIdentifier: 
+  <Id>k__BackingField: 
+  <WeaponType>k__BackingField: 0
   <Animation>k__BackingField: BowAttack
   <Delay>k__BackingField: 0.1
   <Range>k__BackingField: 1
   <AbilityBehaviours>k__BackingField:
   - <Effects>k__BackingField:
-    - rid: 4872000060460630016
-    - rid: 4872000060460630019
+    - rid: 7923229655380000769
+    - rid: 7923229655380000770
     <FocusData>k__BackingField:
       rid: 8813335080079720462
     <ActionData>k__BackingField:
@@ -36,23 +38,14 @@ MonoBehaviour:
     - rid: 4872000037008179220
       type: {class: InstantActionData, ns: , asm: Assembly-CSharp}
       data: 
-    - rid: 4872000060460630016
-      type: {class: StatsBuffEffectData, ns: , asm: Assembly-CSharp}
+    - rid: 7923229655380000769
+      type: {class: BuffEffectData, ns: , asm: Assembly-CSharp}
       data:
-        <Id>k__BackingField: Strenght
-        <StatsVariation>k__BackingField:
-          <Strength>k__BackingField: 3
-          <Arcane>k__BackingField: 0
-          <PhysicalDefence>k__BackingField: 0
-          <MagicalDefence>k__BackingField: 0
-        <Duration>k__BackingField: -1
-    - rid: 4872000060460630019
-      type: {class: RegenBuffEffectData, ns: , asm: Assembly-CSharp}
+        <BuffData>k__BackingField: {fileID: 11400000, guid: 3b8f7bc3ad5038f4fb3950314f19f98a, type: 2}
+    - rid: 7923229655380000770
+      type: {class: BuffEffectData, ns: , asm: Assembly-CSharp}
       data:
-        <Id>k__BackingField: Regen
-        <Regen>k__BackingField: 3
-        <TickRate>k__BackingField: 1
-        <Duration>k__BackingField: -1
+        <BuffData>k__BackingField: {fileID: 11400000, guid: c5e0ac80332e41d4ba372d23eef9f26e, type: 2}
     - rid: 8813335080079720462
       type: {class: SelfFocusComponentData, ns: , asm: Assembly-CSharp}
       data: 

@@ -4,9 +4,10 @@
 public abstract class Buff
 {
     public string Id { get; private set; }
-    protected Pawn Pawn { get; private set; }
-
     protected float Duration { get; set; }
+    
+    protected PawnController PawnController { get; private set; }
+    
     private float StartingTime { get; set; }
     
     public int Priority { get; set; }
@@ -19,17 +20,18 @@ public abstract class Buff
         StartingTime = Time.time;
     }
 
-    public virtual void Init(Pawn pawn)
+    public virtual void Init(PawnController pawnController)
     {
-        Pawn = pawn;
+        PawnController = pawnController;
+        PawnController.ReceiveBuff(this);
     }
 
-    public virtual void Tick()
+    public virtual bool Tick()
     {
         if (Duration < 0 || Time.time - StartingTime < Duration)
-            return;
+            return false;
 
-        RemoveSelf();
+        return true;
     }
 
     public virtual void Deactivate()
@@ -38,10 +40,6 @@ public abstract class Buff
 
     public virtual void TryReapplyBuff()
     {
-    }
-    
-    private void RemoveSelf()
-    {
-        Pawn.RemoveBuff(this);
+        
     }
 }

@@ -1,8 +1,8 @@
-public class SimpleBuffEffect : AbilityEffect
+﻿public class BuffEffect : AbilityEffect
 {
     private Buff Buff { get; set; }
 
-    public SimpleBuffEffect(PawnController abilityUser, Buff buff) : base(abilityUser)
+    public BuffEffect(PawnController abilityUser, Buff buff) : base(abilityUser)
     {
         Buff = buff;
     }
@@ -14,7 +14,9 @@ public class SimpleBuffEffect : AbilityEffect
         if (!pawn.IsAlive)
             return;
 
-        pawn.AddBuff(Buff);
-        pawnController.ReceiveBuff(Buff);
-    }
+        if (pawn.AddBuff(Buff))
+        {
+            Buff.Init(pawnController);
+        }
+    }    
 }

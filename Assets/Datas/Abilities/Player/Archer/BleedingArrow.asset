@@ -20,7 +20,7 @@ MonoBehaviour:
   <AbilityBehaviours>k__BackingField:
   - <Effects>k__BackingField:
     - rid: 4872000037008179246
-    - rid: 4872000037008179247
+    - rid: 7923229655380000768
     <FocusData>k__BackingField:
       rid: 8813335080079720459
     <ActionData>k__BackingField:
@@ -79,15 +79,10 @@ MonoBehaviour:
         <Damage>k__BackingField:
           <Multiplier>k__BackingField: 1
           <Type>k__BackingField: 1
-    - rid: 4872000037008179247
-      type: {class: DamageOverTimeEffectData, ns: , asm: Assembly-CSharp}
+    - rid: 7923229655380000768
+      type: {class: BuffEffectData, ns: , asm: Assembly-CSharp}
       data:
-        <Id>k__BackingField: Bleed
-        <Damage>k__BackingField:
-          <Multiplier>k__BackingField: 4
-          <Type>k__BackingField: 1
-        <Duration>k__BackingField: 10
-        <TickRate>k__BackingField: 1
+        <BuffData>k__BackingField: {fileID: 11400000, guid: 0bb712a612897eb4aa70704e9168191d, type: 2}
     - rid: 8813335080079720459
       type: {class: EnemyFocusComponentData, ns: , asm: Assembly-CSharp}
       data: 

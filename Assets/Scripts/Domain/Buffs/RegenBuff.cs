@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class RegenBuff : Buff
 {
-    private PawnController PawnController { get; set; }
     private int Regen { get; set; }
     private float TickRate { get; set; }
 
@@ -15,26 +14,21 @@ public class RegenBuff : Buff
         LastTick = Time.time;
     }
 
-    public override void Tick()
+    public override bool Tick()
     {
         if (Time.time >= LastTick + TickRate)
         {
             LastTick = Time.time;
-            Pawn.ReceiveHeal(Regen, false);
+            PawnController.Pawn.ReceiveHeal(Regen, false);
             PawnController.ReceiveHeal(false);
         }
 
-        base.Tick();
+        return base.Tick();
     }
 
     public override void TryReapplyBuff()
     {
         base.TryReapplyBuff();
         Duration = Time.time;
-    }
-    
-    public void SetPawnController(PawnController pawnController)
-    {
-        PawnController = pawnController;
     }
 }

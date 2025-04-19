@@ -1,17 +1,15 @@
 ﻿using UnityEngine;
 
 [System.Serializable]
-public class RegenBuffEffectData: EffectData
+public class RegenBuffData : BuffComponentData
 {
-    [field: SerializeField] private string Id { get; set; }
     [field: SerializeField] private int Regen { get; set; }
     [field: SerializeField] private int TickRate { get; set; }
     [field: SerializeField]  private float Duration { get; set; }
 
-    public override AbilityEffect ToDomain(PawnController abilityUser)
+    public override Buff ToDomain(string id, PawnController abilityUser)
     {
         var regen = Regen;// * abilityUser.Pawn.Stats.Strength;
-        var regenBuff = new RegenBuff(regen, TickRate, Id, Duration);
-        return new RegenBuffEffect(abilityUser, regenBuff);
+        return new RegenBuff(regen, TickRate, id, Duration);
     }
 }
