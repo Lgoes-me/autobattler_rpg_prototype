@@ -20,7 +20,6 @@ MonoBehaviour:
   <AbilityBehaviours>k__BackingField:
   - <Effects>k__BackingField:
     - rid: 7923229655380000769
-    - rid: 7923229655380000770
     <FocusData>k__BackingField:
       rid: 8813335080079720462
     <ActionData>k__BackingField:
@@ -42,10 +41,6 @@ MonoBehaviour:
       type: {class: BuffEffectData, ns: , asm: Assembly-CSharp}
       data:
         <BuffData>k__BackingField: {fileID: 11400000, guid: 3b8f7bc3ad5038f4fb3950314f19f98a, type: 2}
-    - rid: 7923229655380000770
-      type: {class: BuffEffectData, ns: , asm: Assembly-CSharp}
-      data:
-        <BuffData>k__BackingField: {fileID: 11400000, guid: c5e0ac80332e41d4ba372d23eef9f26e, type: 2}
     - rid: 8813335080079720462
       type: {class: SelfFocusComponentData, ns: , asm: Assembly-CSharp}
       data: 

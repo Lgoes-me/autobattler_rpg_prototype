@@ -20,7 +20,6 @@ public class WeaponPrizeResponse : BasePrizeResponse
     }
 }
 
-
 public class AbilityPrizeResponse : BasePrizeResponse
 {
     public PawnInfo PawnInfo { get; private set; }
@@ -35,5 +34,22 @@ public class AbilityPrizeResponse : BasePrizeResponse
     public void ApplyPrize()
     {
         PawnInfo.SetAbility(Ability);
+    }
+}
+
+public class BuffPrizeResponse : BasePrizeResponse
+{
+    public PawnInfo PawnInfo { get; private set; }
+    public BuffData Buff { get; private set; }
+
+    public BuffPrizeResponse(PawnInfo pawnInfo, BuffData buff)
+    {
+        PawnInfo = pawnInfo;
+        Buff = buff;
+    }
+
+    public void ApplyPrize()
+    {
+        PawnInfo.SetBuff(Buff);
     }
 }

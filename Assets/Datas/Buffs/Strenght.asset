@@ -15,6 +15,10 @@ MonoBehaviour:
   <Id>k__BackingField: Strenght
   <BuffComponentData>k__BackingField:
     rid: 7923229655380000771
+  <Buffs>k__BackingField:
+  - rid: 7923229669092491266
+  - rid: 7923229669092491267
+  <Duration>k__BackingField: -1
   references:
     version: 2
     RefIds:
@@ -28,4 +32,18 @@ MonoBehaviour:
           <Arcane>k__BackingField: 0
           <PhysicalDefence>k__BackingField: 2
           <MagicalDefence>k__BackingField: 0
-        <Duration>k__BackingField: -1
+    - rid: 7923229669092491266
+      type: {class: StatsBuffData, ns: , asm: Assembly-CSharp}
+      data:
+        <StatsVariation>k__BackingField:
+          <Health>k__BackingField: 0
+          <Mana>k__BackingField: 0
+          <Strength>k__BackingField: 2
+          <Arcane>k__BackingField: 0
+          <PhysicalDefence>k__BackingField: 2
+          <MagicalDefence>k__BackingField: 0
+    - rid: 7923229669092491267
+      type: {class: RegenBuffData, ns: , asm: Assembly-CSharp}
+      data:
+        <Regen>k__BackingField: 1
+        <TickRate>k__BackingField: 1

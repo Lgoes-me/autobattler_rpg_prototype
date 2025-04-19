@@ -9,14 +9,16 @@ public class PawnInfo
     public PawnStatus Status { get; set; }
     public string Weapon { get; set; }
     public List<string> Abilities { get; set; }
+    public List<string> Buffs { get; set; }
 
     public PawnInfo()
     {
         Name = string.Empty;
         Level = 1;
         MissingHealth = 0;
-        Weapon = string.Empty;;
+        Weapon = string.Empty;
         Abilities = new List<string>();
+        Buffs = new List<string>();
     }
     
     public PawnInfo(
@@ -43,6 +45,8 @@ public class PawnInfo
         {
             Abilities.Add(ability.Id);
         }
+        
+        Buffs = new List<string>();
     }
 
     public bool CanLevelUp()
@@ -65,6 +69,11 @@ public class PawnInfo
         Abilities.Add(ability.Id);
     }
     
+    public void SetBuff(BuffData buff)
+    {
+        Buffs.Add(buff.Id);
+    }
+    
     public void Update(PawnInfo updatedPawnInfo)
     {
         Level = updatedPawnInfo.Level;
@@ -72,9 +81,11 @@ public class PawnInfo
         Status = updatedPawnInfo.Status;
         Weapon = updatedPawnInfo.Weapon;
         Abilities = updatedPawnInfo.Abilities;
+        Buffs = updatedPawnInfo.Buffs;
     }
 
-    //Status, Buff
+    
+    //Status
 }
 
 public enum PawnStatus

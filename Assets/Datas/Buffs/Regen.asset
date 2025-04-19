@@ -15,6 +15,9 @@ MonoBehaviour:
   <Id>k__BackingField: Regen
   <BuffComponentData>k__BackingField:
     rid: 7923229655380000772
+  <Buffs>k__BackingField:
+  - rid: 7923229669092491265
+  <Duration>k__BackingField: 5
   references:
     version: 2
     RefIds:
@@ -23,4 +26,8 @@ MonoBehaviour:
       data:
         <Regen>k__BackingField: 3
         <TickRate>k__BackingField: 1
-        <Duration>k__BackingField: -1
+    - rid: 7923229669092491265
+      type: {class: RegenBuffData, ns: , asm: Assembly-CSharp}
+      data:
+        <Regen>k__BackingField: 3
+        <TickRate>k__BackingField: 1

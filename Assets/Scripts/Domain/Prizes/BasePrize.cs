@@ -139,13 +139,42 @@ public class AbilityPrize : BasePrize<AbilityPrizeResponse>
     }
 }
 
+public class BuffPrize : BasePrize<BuffPrizeResponse>
+{
+    public BuffPrize(
+        int numberOfOptions,
+        ContentManager contentManager,
+        List<PawnInfo> selectedParty)
+    {
+        var randomBuff =
+            contentManager.AvailableBuffs
+                .OrderBy(b => Guid.NewGuid())
+                .ToList();
+        
+        var pawns = selectedParty.
+            OrderBy(p => Guid.NewGuid()).
+            Take(numberOfOptions).
+            ToList();
+
+        var options = new Dictionary<string, BuffPrizeResponse>();
+        
+        foreach (var pawnInfo in pawns)
+        {
+            var buff = randomBuff.FirstOrDefault(a =>  !pawnInfo.Buffs.Contains(a.Id));
+
+            if(buff == null)
+                continue;
+
+            options.Add($"{buff.Id} to {pawnInfo.Name}", new BuffPrizeResponse(pawnInfo, buff));
+        }
+        
+        Options = options;
+    }
+}
 
 /*public class ConsumablePrize : BasePrize
 {
 
 }
 
-public class BuffPrize : BasePrize
-{
-    
-}*/
+*/

@@ -1,34 +1,25 @@
 ﻿using UnityEngine;
 
-public class DamageOverTimeBuff : Buff
+public class DamageOverTimeBuff : BuffComponent
 {
     private DamageDomain Damage { get; set; }
     private float TickRate { get; set; }
-
     private float LastTick { get; set; }
 
-    public DamageOverTimeBuff(DamageDomain damage, float tickRate, string id, float duration) : base(id, duration)
+    public DamageOverTimeBuff(DamageDomain damage, float tickRate)
     {
         Damage = damage;
         TickRate = tickRate;
         LastTick = Time.time;
     }
 
-    public override bool Tick()
+    public override void OnTick(PawnController focus)
     {
         if (Time.time >= LastTick + TickRate)
         {
             LastTick = Time.time;
-            Focus.Pawn.ReceiveDamage(Damage);
-            Focus.ReceiveAttack();
+            focus.Pawn.ReceiveDamage(Damage);
+            focus.ReceiveAttack();
         }
-
-        return base.Tick();
-    }
-
-    public override void TryReapplyBuff()
-    {
-        base.TryReapplyBuff();
-        Duration = Time.time;
     }
 }

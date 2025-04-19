@@ -1,34 +1,26 @@
 using UnityEngine;
 
-public class RegenBuff : Buff
+public class RegenBuff : BuffComponent
 {
     private int Regen { get; set; }
     private float TickRate { get; set; }
 
     private float LastTick { get; set; }
 
-    public RegenBuff(int regen, float tickRate, string id, float duration) : base(id, duration)
+    public RegenBuff(int regen, float tickRate)
     {
         Regen = regen;
         TickRate = tickRate;
         LastTick = Time.time;
     }
-
-    public override bool Tick()
+    
+    public override void OnTick(PawnController focus)
     {
         if (Time.time >= LastTick + TickRate)
         {
             LastTick = Time.time;
-            Focus.Pawn.ReceiveHeal(Regen, false);
-            Focus.ReceiveHeal(false);
+            focus.Pawn.ReceiveHeal(Regen, false);
+            focus.ReceiveHeal(false);
         }
-
-        return base.Tick();
-    }
-
-    public override void TryReapplyBuff()
-    {
-        base.TryReapplyBuff();
-        Duration = Time.time;
     }
 }

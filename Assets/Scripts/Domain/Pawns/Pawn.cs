@@ -126,6 +126,11 @@ public class Pawn : BasePawn
         }
 
         Buffs = new Dictionary<string, Buff>();
+        
+        foreach (var buff in pawnInfo.Buffs)
+        {
+            //Buffs.Add(buff, Application.Instance.GetManager<ContentManager>().GetBuffFromId(buff).ToDomain());
+        }
     }
 
     public bool AddBuff(Buff newBuff)
@@ -157,9 +162,7 @@ public class Pawn : BasePawn
     
     public void RemoveBuff(Buff buff)
     {
-        buff.Deactivate();
         Buffs.Remove(buff.Id);
-        
         BuffsChanged?.Invoke();
     }
     
@@ -230,10 +233,13 @@ public class Pawn : BasePawn
         
         foreach (var(_, buff) in Buffs)
         {
-            if (buff is not StatModifierBuff statModifierBuff)
-                continue;
+            foreach (var buffComponent in buff)
+            {
+                if (buffComponent is not StatModifierBuff statModifierBuff)
+                    continue;
 
-            stats = statModifierBuff.ProcessStats(stats);
+                stats = statModifierBuff.ProcessStats(stats);
+            }
         }
         
         return stats;

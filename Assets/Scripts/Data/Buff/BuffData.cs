@@ -1,19 +1,31 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 [CreateAssetMenu]
 public class BuffData : ScriptableObject
 {
-    [field: SerializeField] private string Id { get; set; }
-    [field: SerializeField] [field: SerializeReference] private BuffComponentData BuffComponentData { get; set; }
-
-    public Buff ToDomain(PawnController focus)
-    {
-        return BuffComponentData.ToDomain(Id, focus);
-    }
+    [field: SerializeField] public string Id { get; private set; }
+    [field: SerializeReference] [field: SerializeField] private List<BuffComponentData> Buffs { get; set; }
     
+    [field: SerializeField] private float Duration { get; set; }
+
+    public Buff ToDomain(PawnController abilityUser)
+    {
+        var buff = new Buff(Id, Duration);
+
+        foreach (var buffComponentData in Buffs)
+        {
+            var buffComponent = buffComponentData.ToDomain(abilityUser);
+            buff.Add(buffComponent);
+        }
+        
+        return new Buff(Id, Duration);
+    }
 }
 
+[Serializable]
 public abstract class BuffComponentData : IComponentData
 {
-    public abstract Buff ToDomain(string id, PawnController abilityUser);
+    public abstract BuffComponent ToDomain(PawnController abilityUser);
 }

@@ -17,14 +17,21 @@ public class ArchetypeFactory
                         
                         var s = new StatsData();
                         s.PhysicalDefence = 1;
+
+                        var b = new Buff("ProtecaoCavalereica", -1)
+                        {
+                            new StatModifierBuff(s.ToDomain())
+                        };
                         
-                        var b = new StatModifierBuff(s.ToDomain(), "ProtecaoCavalereica", -1);
                         GiveBuffToPlayerTeam(battle, b);
 
                         var s2 = new StatsData();
                         s2.PhysicalDefence = 1;
-                        
-                        var b2 = new StatModifierBuff(s2.ToDomain(), "Cavaleiros", -1);
+
+                        var b2 = new Buff("Cavaleiros", -1)
+                        {
+                            new StatModifierBuff(s2.ToDomain())
+                        };
 
                         GiveBuffToArchetypeInPlayerTeam(battle, b2, ArchetypeIdentifier.Cavaleiros);
                     }
@@ -43,7 +50,10 @@ public class ArchetypeFactory
                         var s = new StatsData();
                         s.Arcane = 1;
                         
-                        var b = new StatModifierBuff(s.ToDomain(), "Magos", -1, true);
+                        var b = new Buff("Magos", -1)
+                        {
+                            new StatModifierBuff(s.ToDomain())
+                        };
 
                         GiveBuffToArchetypeInPlayerTeam(battle, b, ArchetypeIdentifier.Magos);
                     }
@@ -65,8 +75,11 @@ public class ArchetypeFactory
                         s.PhysicalDefence = 1;
                         s.MagicalDefence = 1;
                         
-                        var b = new StatModifierBuff(s.ToDomain(), "Herois", -1);
-
+                        var b = new Buff("Herois", -1)
+                        {
+                            new StatModifierBuff(s.ToDomain())
+                        };
+                        
                         GiveBuffToArchetypeInPlayerTeam(battle, b, ArchetypeIdentifier.Herois);
                     }
                 }
@@ -85,8 +98,11 @@ public class ArchetypeFactory
                         var s = new StatsData();
                         s.PhysicalDefence = -2;
                         
-                        var b = new StatModifierBuff(s.ToDomain(), "Hunters", -1);
-
+                        var b = new Buff("Hunters", -1)
+                        {
+                            new StatModifierBuff(s.ToDomain())
+                        };
+                        
                         GiveBuffToEnemyTeam(battle, b);
                     }
                 }
@@ -104,8 +120,11 @@ public class ArchetypeFactory
                         var s = new StatsData();
                         s.Strength = -3;
                         
-                        var b = new StatModifierBuff(s.ToDomain(), "Weakener", -1);
-
+                        var b = new Buff("Weakener", -1)
+                        {
+                            new StatModifierBuff(s.ToDomain())
+                        };
+                        
                         GiveBuffToEnemyTeam(battle,b);
                     }
                 }

@@ -1,18 +1,13 @@
-﻿using UnityEngine;
-
-public class StatModifierBuff : Buff
+﻿
+public class StatModifierBuff : BuffComponent
 {
     private Stats StartingVariation { get; set; }
     private Stats Variation { get; set; }
-    private bool Stackable { get; set; }
-    private int Stacks { get; set; }
 
-    public StatModifierBuff(Stats variation, string id, float duration, bool stackable = false) : base(id, duration)
+    public StatModifierBuff(Stats variation)
     {
         StartingVariation = variation;
         Variation = variation;
-        Stackable = stackable;
-        Stacks = 1;
     }
 
     public Stats ProcessStats(Stats stats)
@@ -26,16 +21,9 @@ public class StatModifierBuff : Buff
             stats.MagicalDefence + Variation.MagicalDefence);
     }
 
-    public override void TryReapplyBuff()
+
+    public override void ApplyStacks()
     {
-        base.TryReapplyBuff();
-
-        Duration = Time.time;
-
-        if (Stackable)
-        {
-            Variation += StartingVariation;
-            Stacks++;
-        }
+        Variation += StartingVariation;
     }
 }

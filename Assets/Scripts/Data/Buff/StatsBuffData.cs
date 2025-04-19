@@ -4,10 +4,9 @@
 public class StatsBuffData : BuffComponentData
 {
     [field: SerializeField] private StatsData StatsVariation { get; set; }
-    [field: SerializeField] private float Duration { get; set; }
 
-    public override Buff ToDomain(string id, PawnController abilityUser)
+    public override BuffComponent ToDomain(PawnController abilityUser)
     {
-        return new StatModifierBuff(StatsVariation.ToDomain(), id, Duration);
+        return new StatModifierBuff(StatsVariation.ToDomain());
     }
 }

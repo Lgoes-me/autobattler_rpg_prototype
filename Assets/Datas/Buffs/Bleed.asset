@@ -15,6 +15,9 @@ MonoBehaviour:
   <Id>k__BackingField: Bleed
   <BuffComponentData>k__BackingField:
     rid: 7923229655380000773
+  <Buffs>k__BackingField:
+  - rid: 7923229669092491264
+  <Duration>k__BackingField: 3
   references:
     version: 2
     RefIds:
@@ -24,5 +27,11 @@ MonoBehaviour:
         <Damage>k__BackingField:
           <Multiplier>k__BackingField: 4
           <Type>k__BackingField: 1
-        <Duration>k__BackingField: 10
+        <TickRate>k__BackingField: 1
+    - rid: 7923229669092491264
+      type: {class: DamageOverTimeBuffData, ns: , asm: Assembly-CSharp}
+      data:
+        <Damage>k__BackingField:
+          <Multiplier>k__BackingField: 4
+          <Type>k__BackingField: 1
         <TickRate>k__BackingField: 1
