@@ -114,3 +114,12 @@ public class OpenAbilityPrize : GameAction
         Application.Instance.GetManager<PrizeManager>().CreateAbilityPrize();
     }
 }
+
+[Serializable]
+public class OpenBuffPrize : GameAction
+{
+    public override void Invoke()
+    {
+        Application.Instance.GetManager<PrizeManager>().CreateBuffPrize();
+    }
+}

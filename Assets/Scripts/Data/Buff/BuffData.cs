@@ -10,13 +10,13 @@ public class BuffData : ScriptableObject
     
     [field: SerializeField] private float Duration { get; set; }
 
-    public Buff ToDomain(PawnController abilityUser)
+    public Buff ToDomain(Pawn pawn)
     {
         var buff = new Buff(Id, Duration);
 
         foreach (var buffComponentData in Buffs)
         {
-            var buffComponent = buffComponentData.ToDomain(abilityUser);
+            var buffComponent = buffComponentData.ToDomain(pawn);
             buff.Add(buffComponent);
         }
         
@@ -27,5 +27,5 @@ public class BuffData : ScriptableObject
 [Serializable]
 public abstract class BuffComponentData : IComponentData
 {
-    public abstract BuffComponent ToDomain(PawnController abilityUser);
+    public abstract BuffComponent ToDomain(Pawn pawn);
 }

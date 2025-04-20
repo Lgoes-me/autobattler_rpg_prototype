@@ -28,7 +28,6 @@ public class DamageAreaEffect : AbilityEffect
                 return;
 
             pawn.ReceiveDamage(Damage);
-            closePawnController.ReceiveAttack();
         }
     }
 }

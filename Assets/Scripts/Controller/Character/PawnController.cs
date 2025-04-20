@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class PawnController : MonoBehaviour
 {
@@ -26,6 +27,9 @@ public class PawnController : MonoBehaviour
         {
             CanvasController.Init(this);
         }
+
+        Pawn.LostLife += ReceiveAttack;
+        Pawn.GainedLife += ReceiveHeal;
     }
 
     public void UpdatePawn(PawnInfo pawnInfo)
@@ -51,7 +55,7 @@ public class PawnController : MonoBehaviour
         CharacterController.SetAnimationState(new IdleState());
     }
 
-    public void RealizaTurno()
+    public void RealizeTurn()
     {
         if (PawnState is not IdleState)
             return;
@@ -100,7 +104,7 @@ public class PawnController : MonoBehaviour
 
         CharacterController.SetAnimationState(new IdleState());
 
-        RealizaTurno();
+        RealizeTurn();
     }
 
     private void FixedUpdate()
@@ -176,11 +180,12 @@ public class PawnController : MonoBehaviour
         }
     }
 
-    public void ReceiveAttack()
+    private void ReceiveAttack()
     {
         CharacterController.DoHitStop();
 
-        if (Pawn.IsAlive) return;
+        if (Pawn.IsAlive)
+            return;
 
         CharacterController.SetAnimationState(new DeadState());
         Ability = null;
@@ -188,13 +193,13 @@ public class PawnController : MonoBehaviour
         Application.Instance.GetManager<BattleEventsManager>().DoPawnDeathEvent(BattleController.Battle, this);
     }
 
-    public void ReceiveHeal(bool canRevive)
+    private void ReceiveHeal()
     {
         CharacterController.DoNiceHitStop();
 
-        if (!Pawn.IsAlive || !canRevive)
+        if (!Pawn.IsAlive || PawnState is not DeadState)
             return;
-
+        
         CharacterController.SetAnimationState(new IdleState());
     }
 
@@ -208,11 +213,12 @@ public class PawnController : MonoBehaviour
         
         BattleController.AddPawn(pawnController, pawn.Team);
         pawnController.StartBattle(BattleController, BattleController.Battle);
-        pawnController.RealizaTurno();
+        pawnController.RealizeTurn();
     }
-
-    public void ReceiveBuff(Buff buff)
+    
+    private void OnDestroy()
     {
-        Debug.Log(buff.Id);
+        Pawn.LostLife -= ReceiveAttack;
+        Pawn.GainedLife -= ReceiveHeal;
     }
 }

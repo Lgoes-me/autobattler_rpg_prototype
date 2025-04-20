@@ -6,7 +6,7 @@ public class BuffEffectData : EffectData
 
     public override AbilityEffect ToDomain(PawnController abilityUser)
     {
-        var buff = BuffData.ToDomain(abilityUser);
+        var buff = BuffData.ToDomain(abilityUser.Pawn);
         return new BuffEffect(abilityUser, buff);
     }
 }

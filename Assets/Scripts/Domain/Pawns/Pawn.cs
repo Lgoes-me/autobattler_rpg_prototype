@@ -24,6 +24,7 @@ public class Pawn : BasePawn
     
     public List<ArchetypeIdentifier> Archetypes { get; }
     
+    public List<string> PermanentBuffs { get; private set; }
     public Dictionary<string, Buff> Buffs { get; private set; }
     public TeamType Team { get; }
 
@@ -31,9 +32,12 @@ public class Pawn : BasePawn
     public bool IsAlive => Health > 0;
 
     public delegate void PawnDomainChanged();
-    public event PawnDomainChanged LifeChanged;
-    public event PawnDomainChanged ManaChanged;
-    public event PawnDomainChanged BuffsChanged;
+    public event PawnDomainChanged LostLife;
+    public event PawnDomainChanged GainedLife;
+    public event PawnDomainChanged LostMana;
+    public event PawnDomainChanged GainedMana;
+    public event PawnDomainChanged LostBuff;
+    public event PawnDomainChanged GainedBuff;
 
     public delegate void PawnDomainBattleStarted(Battle battle);
     public event PawnDomainBattleStarted BattleStarted;
@@ -72,6 +76,7 @@ public class Pawn : BasePawn
         LevelUpStats = levelUpStats;
         LevelUpStats.EvaluateLevel(Level);
         Stats = stats;
+        PermanentBuffs = new List<string>();
         Buffs = new Dictionary<string, Buff>();
         
         Health = GetPawnStats().Health;
@@ -90,11 +95,14 @@ public class Pawn : BasePawn
     public void StartBattle(Battle battle)
     {
         Mana = 0;
-        Buffs = new Dictionary<string, Buff>();
         
+        foreach (var buff in PermanentBuffs)
+        {
+            AddBuff(Application.Instance.GetManager<ContentManager>().GetBuffFromId(buff).ToDomain(this));
+        }
+
         BattleStarted?.Invoke(battle);
-        ManaChanged?.Invoke();
-        BuffsChanged?.Invoke();
+        GainedMana?.Invoke();
     }
 
     public void FinishBattle()
@@ -125,12 +133,8 @@ public class Pawn : BasePawn
             Abilities.Add(Application.Instance.GetManager<ContentManager>().GetAbilityFromId(ability));
         }
 
+        PermanentBuffs = pawnInfo.Buffs;
         Buffs = new Dictionary<string, Buff>();
-        
-        foreach (var buff in pawnInfo.Buffs)
-        {
-            //Buffs.Add(buff, Application.Instance.GetManager<ContentManager>().GetBuffFromId(buff).ToDomain());
-        }
     }
 
     public bool AddBuff(Buff newBuff)
@@ -143,7 +147,7 @@ public class Pawn : BasePawn
         
         Buffs.Add(newBuff.Id, newBuff);
         
-        BuffsChanged?.Invoke();
+        GainedBuff?.Invoke();
         return true;
     }
 
@@ -163,7 +167,7 @@ public class Pawn : BasePawn
     public void RemoveBuff(Buff buff)
     {
         Buffs.Remove(buff.Id);
-        BuffsChanged?.Invoke();
+        LostBuff?.Invoke();
     }
     
     private void RemoveAllBuffs()
@@ -191,13 +195,13 @@ public class Pawn : BasePawn
     {
         var reducedDamage = GetPawnStats().GetReducedDamage(damage);
         Health = Mathf.Clamp(Health - reducedDamage, 0, Stats.Health);
-        LifeChanged?.Invoke();
+        LostLife?.Invoke();
     }
 
     public void ReceiveDamage(int damage)
     {
         Health = Mathf.Clamp(Health - damage, 0, Stats.Health);
-        LifeChanged?.Invoke();
+        LostLife?.Invoke();
     }
 
     public void ReceiveHeal(int healValue, bool canRevive)
@@ -206,25 +210,25 @@ public class Pawn : BasePawn
             return;
         
         Health = Mathf.Clamp(Health + healValue, 0, Stats.Health);
-        LifeChanged?.Invoke();
+        GainedLife?.Invoke();
     }
     
     public void EndOfBattleHeal()
     {
         Health = Mathf.Clamp(Health + 15, 0, Stats.Health);
-        LifeChanged?.Invoke();
+        GainedLife?.Invoke();
     }
 
     public void GainMana()
     {
         Mana = Mathf.Clamp(Mana + 10, 0, Stats.Mana);
-        ManaChanged?.Invoke();
+        GainedMana?.Invoke();
     }
     
     public void SpentMana(int manaCost)
     {
         Mana = Mathf.Clamp(Mana - manaCost, 0, Stats.Mana);
-        ManaChanged?.Invoke();
+        LostMana?.Invoke();
     }
 
     public Stats GetPawnStats()

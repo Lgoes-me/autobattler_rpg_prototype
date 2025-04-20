@@ -13,6 +13,5 @@
             return;
 
         focus.Pawn.ReceiveDamage(Damage);
-        focus.ReceiveAttack();
     }
 }

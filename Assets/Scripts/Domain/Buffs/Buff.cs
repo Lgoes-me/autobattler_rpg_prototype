@@ -6,7 +6,7 @@ public class Buff : IEnumerable
 {
     public string Id { get; private set; }
     public float Duration { get; private set; }
-    public PawnController Focus { get; private set; }
+    public Pawn Focus { get; private set; }
     public List<BuffComponent> Buffs { get; private set; }
 
     public int Priority { get; private set; }
@@ -26,10 +26,9 @@ public class Buff : IEnumerable
         Stacks = 1;
     }
 
-    public void Init(PawnController focus)
+    public void Init(Pawn focus)
     {
         Focus = focus;
-        Focus.ReceiveBuff(this);
     }
 
     public bool Tick()

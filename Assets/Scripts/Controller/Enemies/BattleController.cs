@@ -80,7 +80,7 @@ public class BattleController : MonoBehaviour
 
         foreach (var pawn in initiativeList)
         {
-            pawn.RealizaTurno();
+            pawn.RealizeTurn();
         }
     }
 
@@ -116,7 +116,6 @@ public class BattleController : MonoBehaviour
         foreach (var playerPawn in Battle.PlayerPawns)
         {
             playerPawn.Pawn.EndOfBattleHeal();
-            playerPawn.ReceiveHeal(true);
         }
 
         yield return new WaitForSeconds(1f);

@@ -13,13 +13,12 @@ public class DamageOverTimeBuff : BuffComponent
         LastTick = Time.time;
     }
 
-    public override void OnTick(PawnController focus)
+    public override void OnTick(Pawn focus)
     {
         if (Time.time >= LastTick + TickRate)
         {
             LastTick = Time.time;
-            focus.Pawn.ReceiveDamage(Damage);
-            focus.ReceiveAttack();
+            focus.ReceiveDamage(Damage);
         }
     }
 }

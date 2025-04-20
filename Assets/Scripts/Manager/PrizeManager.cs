@@ -81,4 +81,17 @@ public class PrizeManager : IManager
         GameSaveManager.SavePawnInfo(selectedPrize.PawnInfo);
         PartyManager.UpdatePawn(selectedPrize.PawnInfo);
     }
+    
+    public async void CreateBuffPrize()
+    {
+        PauseManager.PauseGame();
+        var prizes = new BuffPrize(3, ContentManager, GameSaveManager.GetSelectedParty());
+        var selectedPrize = await InterfaceManager.ShowPrizeCanvas(prizes);
+
+        selectedPrize.ApplyPrize();
+        
+        PauseManager.ResumeGame();
+        GameSaveManager.SavePawnInfo(selectedPrize.PawnInfo);
+        PartyManager.UpdatePawn(selectedPrize.PawnInfo);
+    }
 }

@@ -14,13 +14,12 @@ public class RegenBuff : BuffComponent
         LastTick = Time.time;
     }
     
-    public override void OnTick(PawnController focus)
+    public override void OnTick(Pawn focus)
     {
         if (Time.time >= LastTick + TickRate)
         {
             LastTick = Time.time;
-            focus.Pawn.ReceiveHeal(Regen, false);
-            focus.ReceiveHeal(false);
+            focus.ReceiveHeal(Regen, false);
         }
     }
 }

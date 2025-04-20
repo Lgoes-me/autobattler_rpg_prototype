@@ -16,7 +16,6 @@
         
         var heal = (int) (HealValue * AbilityUser.Pawn.GetPawnStats().Arcane);
         focus.Pawn.ReceiveHeal(heal, CanRevive);
-        focus.ReceiveHeal(CanRevive);
     }
     
 }
@@ -39,6 +38,5 @@ public class StaticHealEffect : AbilityEffect
             return;
         
         pawn.ReceiveHeal(HealValue, CanRevive);
-        pawnController.ReceiveHeal(CanRevive);
     }
 }

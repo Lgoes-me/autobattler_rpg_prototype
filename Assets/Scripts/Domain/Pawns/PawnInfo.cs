@@ -84,7 +84,6 @@ public class PawnInfo
         Buffs = updatedPawnInfo.Buffs;
     }
 
-    
     //Status
 }
 

@@ -22,7 +22,6 @@ public class BlessingFactory
                     (battle, abilityUser, ability, rarity) =>
                     {
                         abilityUser.Pawn.ReceiveHeal(5, false);
-                        abilityUser.ReceiveHeal(false);
                     }
                 }
             },
@@ -40,7 +39,6 @@ public class BlessingFactory
                                 continue;
                             
                             enemyPawn.Pawn.ReceiveDamage(5);
-                            enemyPawn.ReceiveAttack();
                         }
                     }
                 }

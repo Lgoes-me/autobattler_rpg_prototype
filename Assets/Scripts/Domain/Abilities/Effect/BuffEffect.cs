@@ -9,12 +9,14 @@
 
     public override void DoAbilityEffect(PawnController focus)
     {
-        if (!focus.Pawn.IsAlive)
+        var pawn = focus.Pawn;
+        
+        if (!pawn.IsAlive)
             return;
 
-        if (focus.Pawn.AddBuff(Buff))
+        if (pawn.AddBuff(Buff))
         {
-            Buff.Init(focus);
+            Buff.Init(pawn);
         }
     }    
 }

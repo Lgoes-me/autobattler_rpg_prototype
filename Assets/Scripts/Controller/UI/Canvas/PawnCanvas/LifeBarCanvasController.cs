@@ -19,9 +19,14 @@ public class LifeBarCanvasController : BasePawnCanvasController
 
         ManaBar.fillAmount = Pawn.HasMana ? Pawn.Mana / (float) Pawn.GetPawnStats().Mana : 0;
 
-        Pawn.LifeChanged += UpdateLife;
-        Pawn.ManaChanged += UpdateMana;
-        Pawn.BuffsChanged += UpdateBuffs;
+        Pawn.LostLife += UpdateLife;
+        Pawn.GainedLife += UpdateLife;
+        
+        Pawn.LostMana += UpdateMana;
+        Pawn.GainedMana += UpdateMana;
+        
+        Pawn.LostBuff += UpdateBuffs;
+        Pawn.GainedBuff += UpdateBuffs;
     }
 
     private void UpdateLife()
@@ -66,8 +71,13 @@ public class LifeBarCanvasController : BasePawnCanvasController
     {
         base.Terminate();
         
-        Pawn.LifeChanged -= UpdateLife;
-        Pawn.ManaChanged -= UpdateMana;
-        Pawn.BuffsChanged -= UpdateBuffs;
+        Pawn.LostLife -= UpdateLife;
+        Pawn.GainedLife -= UpdateLife;
+        
+        Pawn.LostMana -= UpdateMana;
+        Pawn.GainedMana -= UpdateMana;
+        
+        Pawn.LostBuff -= UpdateBuffs;
+        Pawn.GainedBuff -= UpdateBuffs;
     }
 }
