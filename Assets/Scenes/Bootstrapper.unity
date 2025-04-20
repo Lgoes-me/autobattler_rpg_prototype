@@ -1887,6 +1887,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cbfa2d6a21a91534188fe1573572da0d, type: 2}
   - {fileID: 11400000, guid: a5b812c23350d624ca41e1a9720f448b, type: 2}
   - {fileID: 11400000, guid: 1c1cb2f3723e43b419a2771ed0fd8feb, type: 2}
+  <AvailableBuffs>k__BackingField:
+  - {fileID: 11400000, guid: 0bb712a612897eb4aa70704e9168191d, type: 2}
+  - {fileID: 11400000, guid: c5e0ac80332e41d4ba372d23eef9f26e, type: 2}
+  - {fileID: 11400000, guid: 3b8f7bc3ad5038f4fb3950314f19f98a, type: 2}
 --- !u!1001 &1164712636
 PrefabInstance:
   m_ObjectHideFlags: 0

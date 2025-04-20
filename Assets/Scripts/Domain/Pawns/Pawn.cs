@@ -96,9 +96,13 @@ public class Pawn : BasePawn
     {
         Mana = 0;
         
+        Buffs = new Dictionary<string, Buff>();
+        
         foreach (var buff in PermanentBuffs)
         {
-            AddBuff(Application.Instance.GetManager<ContentManager>().GetBuffFromId(buff).ToDomain(this));
+            var buffInstance = Application.Instance.GetManager<ContentManager>().GetBuffFromId(buff).ToDomain(this);
+            buffInstance.Init(this);
+            AddBuff(buffInstance);
         }
 
         BattleStarted?.Invoke(battle);
@@ -134,7 +138,6 @@ public class Pawn : BasePawn
         }
 
         PermanentBuffs = pawnInfo.Buffs;
-        Buffs = new Dictionary<string, Buff>();
     }
 
     public bool AddBuff(Buff newBuff)
@@ -164,12 +167,6 @@ public class Pawn : BasePawn
         }
     }
     
-    public void RemoveBuff(Buff buff)
-    {
-        Buffs.Remove(buff.Id);
-        LostBuff?.Invoke();
-    }
-    
     private void RemoveAllBuffs()
     {
         for (var index = Buffs.Count - 1; index >= 0; index--)
@@ -177,6 +174,12 @@ public class Pawn : BasePawn
             var buff = Buffs.ElementAt(index);
             RemoveBuff(buff.Value);
         }
+    }
+    
+    public void RemoveBuff(Buff buff)
+    {
+        Buffs.Remove(buff.Id);
+        LostBuff?.Invoke();
     }
 
     public PawnInfo ResetPawnInfo()

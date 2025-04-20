@@ -20,7 +20,7 @@ public class BuffData : ScriptableObject
             buff.Add(buffComponent);
         }
         
-        return new Buff(Id, Duration);
+        return buff;
     }
 }
 

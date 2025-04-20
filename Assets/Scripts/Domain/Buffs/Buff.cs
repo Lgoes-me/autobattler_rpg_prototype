@@ -5,13 +5,14 @@ using UnityEngine;
 public class Buff : IEnumerable
 {
     public string Id { get; private set; }
-    public float Duration { get; private set; }
-    public Pawn Focus { get; private set; }
-    public List<BuffComponent> Buffs { get; private set; }
 
     public int Priority { get; private set; }
     public string CharacterInfoIdentifier { get; private set; }
 
+    private float Duration { get; set; }
+    private Pawn Focus { get; set; }
+    private List<BuffComponent> Buffs { get; set; }
+    
     private float StartingTime { get; set; }
     private bool Stackable { get; set; }
     private int Stacks { get; set; }
@@ -20,6 +21,7 @@ public class Buff : IEnumerable
     {
         Id = id;
         Duration = duration;
+        Focus = null;
         Buffs = new List<BuffComponent>();
         StartingTime = Time.time;
         Stackable = stackable;
@@ -33,7 +35,7 @@ public class Buff : IEnumerable
 
     public bool Tick()
     {
-        if (Duration < 0 || Time.time - StartingTime < Duration)
+        if (Duration >= 0 && Time.time - StartingTime >= Duration)
             return false;
 
         foreach (var buff in Buffs)

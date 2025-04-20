@@ -44,8 +44,6 @@ public class ProfileCanvasController : LifeBarCanvasController
     
     protected override void UpdateBuffs()
     {
-        base.UpdateBuffs();
-
         foreach (var item in BuffItems)
         {
             Destroy(item.gameObject);

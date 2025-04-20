@@ -12,8 +12,7 @@ public class BattleController : MonoBehaviour
         EndBattleAction = endBattleAction;
         
         Application.Instance.GetManager<PartyManager>().StopPartyFollow();
-
-
+        
         Battle = new Battle(battleId);
         
         foreach (var enemy in enemies)
