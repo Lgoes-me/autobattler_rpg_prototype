@@ -123,3 +123,12 @@ public class OpenBuffPrize : GameAction
         Application.Instance.GetManager<PrizeManager>().CreateBuffPrize();
     }
 }
+
+[Serializable]
+public class OpenConsumablefPrize : GameAction
+{
+    public override void Invoke()
+    {
+        Application.Instance.GetManager<PrizeManager>().CreateConsumablePrize();
+    }
+}

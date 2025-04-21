@@ -161,4 +161,13 @@ public class GameSaveManager : IManager
 
         SaveData();
     }
+
+    public void SetConsumables(List<ConsumableData> consumableDatas)
+    {
+        Save.Consumables = consumableDatas
+            .Select(p => p.Id)
+            .ToList();
+
+        SaveData();
+    }
 }

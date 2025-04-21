@@ -172,9 +172,16 @@ public class BuffPrize : BasePrize<BuffPrizeResponse>
     }
 }
 
-/*public class ConsumablePrize : BasePrize
+public class ConsumablePrize : BasePrize<ConsumableData>
 {
-
+    public ConsumablePrize(
+        int numberOfOptions,
+        ContentManager contentManager)
+    {
+        Options = 
+            contentManager.AvailableConsumables
+                .OrderBy(b => Guid.NewGuid())
+                .Take(numberOfOptions)
+                .ToDictionary(b => b.ToString(), b => b);
+    }
 }
-
-*/

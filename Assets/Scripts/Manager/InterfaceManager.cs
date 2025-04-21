@@ -17,6 +17,10 @@ public class InterfaceManager : MonoBehaviour, IManager
     [field: SerializeField] private PrizeOptionController PrizeOptionControllerPrefab { get; set; }
 
     private List<ArchetypeCanvasController> ArchetypeCanvases { get; set; }
+    
+    [field: SerializeField] private ConsumableCanvasController ConsumableCanvasPrefab { get; set; }
+    [field: SerializeField] private RectTransform ConsumableCanvasParent { get; set; }
+    private List<ConsumableCanvasController> ConsumableCanvases { get; set; }
 
     private void Awake()
     {
@@ -29,8 +33,10 @@ public class InterfaceManager : MonoBehaviour, IManager
         {
             blessingCanvas.Hide();
         }
-
+        
         ArchetypeCanvases = new List<ArchetypeCanvasController>();
+
+        ConsumableCanvases = new List<ConsumableCanvasController>();
     }
 
     public void InitProfileCanvas(List<PawnController> playerPawns)
@@ -130,4 +136,21 @@ public class InterfaceManager : MonoBehaviour, IManager
         
         return prize.ChooseIndexPrize(selectedPrize);
     }
+
+    public void InitConsumablesCanvas(List<ConsumableData> consumables)
+    {
+        foreach (var consumableCanvas in ConsumableCanvases)
+        {
+            Destroy(consumableCanvas.gameObject);
+        }
+
+        ConsumableCanvases.Clear();
+
+        foreach (var consumable in consumables)
+        {
+            var consumableCanvasController = Instantiate(ConsumableCanvasPrefab, ConsumableCanvasParent).Init(consumable);
+            ConsumableCanvases.Add(consumableCanvasController);
+        }
+    }
+
 }

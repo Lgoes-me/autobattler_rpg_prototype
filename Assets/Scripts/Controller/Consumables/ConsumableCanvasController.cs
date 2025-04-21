@@ -1,27 +1,27 @@
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class ConsumableCanvasController : BaseCanvasController, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    [field: SerializeField]
-    private ConsumableData ConsumableData { get; set; }
     [field: SerializeField] private TextMeshProUGUI Name { get; set; }
     [field: SerializeField] private CanvasGroup CanvasGroup { get; set; }
-    [SerializeField] LayerMask mask;
+    [field: SerializeField] private LayerMask Mask { get; set; }
+    
+    private ConsumableData Consumable { get; set; }
+    
     private bool IsDragging { get; set; }
     private Vector3 StartingPosition { get; set; }
-    
-    public void OnEnable()
-    {
-        Init();
-    }
 
-    public void Init()
+    public ConsumableCanvasController Init(ConsumableData consumable)
     {
-        Name.SetText(ConsumableData.Id);
+        Consumable = consumable;
+        
+        Name.SetText(Consumable.Id);
+
         Show();
+        
+        return this;
     }
     
     public void OnBeginDrag(PointerEventData eventData)
@@ -40,10 +40,10 @@ public class ConsumableCanvasController : BaseCanvasController, IBeginDragHandle
         
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast (ray, out var hit, 10000, mask))
+        if (Physics.Raycast (ray, out var hit, 10000, Mask))
         {
             var pawn = hit.transform.GetComponent<PawnController>();
-            var effect = ConsumableData.Effect.ToDomain(pawn);
+            var effect = Consumable.Effect.ToDomain(pawn);
             
             effect.DoAbilityEffect(pawn);
             

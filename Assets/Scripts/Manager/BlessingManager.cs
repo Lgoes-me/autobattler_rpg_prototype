@@ -33,28 +33,10 @@ public class BlessingManager : IManager
         GameSaveManager.SetBlessings();
         InterfaceManager.InitBlessingsCanvas(Blessings);
     }
-
-    public void RemoveBlessing(BlessingIdentifier identifier)
-    {
-        var jokerToRemove = Blessings.FirstOrDefault(j => j.Identifier == identifier);
-        if (jokerToRemove == null)
-            return;
-
-        Blessings.Remove(jokerToRemove);
-        GameSaveManager.SetBlessings();
-        InterfaceManager.InitBlessingsCanvas(Blessings);
-    }
-
+    
     public void ClearBlessings()
     {
         Blessings.Clear();
-        GameSaveManager.SetBlessings();
-        InterfaceManager.InitBlessingsCanvas(Blessings);
-    }
-
-    public void ReorderBlessings(List<BlessingIdentifier> identifiers)
-    {
-        Blessings = identifiers.Select(j => BlessingFactory.CreateBlessing(j)).ToList();
         GameSaveManager.SetBlessings();
         InterfaceManager.InitBlessingsCanvas(Blessings);
     }

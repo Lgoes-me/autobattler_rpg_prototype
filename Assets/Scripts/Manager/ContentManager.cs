@@ -8,6 +8,7 @@ public class ContentManager : MonoBehaviour, IManager
     [field: SerializeField] public List<WeaponData> AvailableWeapons { get; private set; }
     [field: SerializeField] public List<AbilityData> AvailableAbilities { get; private set; }
     [field: SerializeField] public List<BuffData> AvailableBuffs { get; private set; }
+    [field: SerializeField] public List<ConsumableData> AvailableConsumables { get; private set; }
 
     public BasePawn GetBasePawnFromId(string id)
     {
@@ -33,6 +34,11 @@ public class ContentManager : MonoBehaviour, IManager
     {
         return AvailableBuffs.First(a => a.Id == id);
     }
+    
+    public ConsumableData GetConsumableFromId(string id)
+    {
+        return AvailableConsumables.First(a => a.Id == id);
+    }
 
 #if UNITY_EDITOR
     [ContextMenu("ForceLoadContent")]
@@ -42,6 +48,7 @@ public class ContentManager : MonoBehaviour, IManager
         AvailableWeapons = Extensions.FindAllScriptableObjectsOfType<WeaponData>();
         AvailableAbilities = Extensions.FindAllScriptableObjectsOfType<AbilityData>().Where(a => !string.IsNullOrWhiteSpace(a.Id)).ToList();
         AvailableBuffs = Extensions.FindAllScriptableObjectsOfType<BuffData>(); 
+        AvailableConsumables = Extensions.FindAllScriptableObjectsOfType<ConsumableData>(); 
     }
 #endif
 }

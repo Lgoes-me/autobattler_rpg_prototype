@@ -38,7 +38,7 @@ public class Application : MonoBehaviour
         Register(GetComponentInChildren<DialogueManager>());
         Register(GetComponentInChildren<TimeManager>());
         Register(GetComponentInChildren<TextManager>());
-        
+
         Register(new GameSaveManager());
         Register(new ConfigManager());
         Register(new BattleEventsManager());
@@ -46,6 +46,7 @@ public class Application : MonoBehaviour
         Register(new TutorialManager());
         Register(new ArchetypeManager());
         Register(new PrizeManager());
+        Register(new ConsumableManager());
     }
     
     private void Start()
