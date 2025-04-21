@@ -179,9 +179,9 @@ public class GameSaveManager : IManager
         return Save.Consumables;
     }
 
-    public void SetConsumables(List<ConsumableData> consumableDatas)
+    public void SetConsumables(List<ConsumableData> consumables)
     {
-        Save.Consumables = consumableDatas
+        Save.Consumables = consumables
             .Select(p => p.Id)
             .ToList();
 

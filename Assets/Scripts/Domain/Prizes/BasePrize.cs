@@ -2,18 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 
-public class BasePrize<T>
+public class BasePrize<T> where T : BasePrizeItem
 {
-    //nome, imagem, explicação
-    public Dictionary<string, T> Options { get; set; }
-
-    public T ChooseIndexPrize(string id)
-    {
-        return Options[id];
-    }
+    public List<T> Options { get; internal set; }
 }
 
-public class LevelUpPrize : BasePrize<PawnInfo>
+public class LevelUpPrize : BasePrize<PawnPrizeItem>
 {
     public LevelUpPrize(int numberOfOptions, List<PawnInfo> selectedParty)
     {
@@ -26,25 +20,27 @@ public class LevelUpPrize : BasePrize<PawnInfo>
         Options = 
             partyOrderedByLevel.
                 Where(p => p.Level == partyOrderedByLevel[0].Level).
-                OrderBy(p => Guid.NewGuid()).
+                OrderBy(_ => Guid.NewGuid()).
                 Take(numberOfOptions).
-                ToDictionary(p => p.Name, p => p);
+                Select(p => new PawnPrizeItem(p)).
+                ToList();
     }
 }
 
-public class BlessingPrize : BasePrize<BlessingIdentifier>
+public class BlessingPrize : BasePrize<BlessingPrizeItem>
 {
     public BlessingPrize(int numberOfOptions, List<BlessingIdentifier> blessings)
     {
         Options = 
             blessings
-            .OrderBy(b => Guid.NewGuid())
+            .OrderBy(_ => Guid.NewGuid())
             .Take(numberOfOptions)
-            .ToDictionary(b => b.ToString(), b => b);
+            .Select(b => new BlessingPrizeItem(b)).
+            ToList();
     }
 }
 
-public class PartyMemberPrize : BasePrize<PawnInfo>
+public class PartyMemberPrize : BasePrize<PawnPrizeItem>
 {
     public PartyMemberPrize(int numberOfOptions, int level, List<PawnController> pawns, ContentManager contentManager)
     {
@@ -53,15 +49,18 @@ public class PartyMemberPrize : BasePrize<PawnInfo>
         Options = 
             contentManager.AvailablePawns
                 .Where(p => !ids.Contains(p.Id))
-                .OrderBy(b => Guid.NewGuid())
+                .OrderBy(_ => Guid.NewGuid())
                 .Take(numberOfOptions)
-                .ToDictionary(
-                    b => b.ToString(), 
-                    p => new PawnInfo(p.Id, level, 0, PawnStatus.Transient, p.Weapon, p.Abilities));
+                .Select(p =>
+                {
+                    var pawnInfo = new PawnInfo(p.Id, level, 0, PawnStatus.Transient, p.Weapon, p.Abilities);
+                    return new PawnPrizeItem(pawnInfo);
+                })
+                .ToList();
     }
 }
 
-public class WeaponPrize : BasePrize<WeaponPrizeResponse>
+public class WeaponPrize : BasePrize<WeaponPrizeItem>
 {
     public WeaponPrize(
         int numberOfOptions,
@@ -70,7 +69,7 @@ public class WeaponPrize : BasePrize<WeaponPrizeResponse>
     {
         var randomWeapons =
             contentManager.AvailableWeapons
-                .OrderBy(b => Guid.NewGuid())
+                .OrderBy(_ => Guid.NewGuid())
                 .ToList();
         
         var partyOrderedByWeaponLevel = 
@@ -86,18 +85,18 @@ public class WeaponPrize : BasePrize<WeaponPrizeResponse>
         
         var pawns = partyOrderedByWeaponLevel.
             Where(p => p.Level == partyOrderedByWeaponLevel[0].Level).
-            OrderBy(p => Guid.NewGuid()).
+            OrderBy(_ => Guid.NewGuid()).
             Take(numberOfOptions).
             ToList();
 
-        var options = new Dictionary<string, WeaponPrizeResponse>();
+        var options = new List<WeaponPrizeItem>();
         
         foreach (var pawnInfo in pawns)
         {
             var pawn = contentManager.GetBasePawnFromId(pawnInfo.Name);
             var weapon = randomWeapons.First(w => pawn.WeaponType.IsEnumFlagPresent(w.Type) && pawnInfo.Weapon != w.Id);
 
-            options.Add($"{weapon.Id} to {pawnInfo.Name}", new WeaponPrizeResponse(pawnInfo, weapon));
+            options.Add(new WeaponPrizeItem(pawnInfo, weapon));
         }
         
         Options = options;
@@ -105,7 +104,7 @@ public class WeaponPrize : BasePrize<WeaponPrizeResponse>
 
 }
 
-public class AbilityPrize : BasePrize<AbilityPrizeResponse>
+public class AbilityPrize : BasePrize<AbilityPrizeItem>
 {
     public AbilityPrize(
         int numberOfOptions,
@@ -114,15 +113,15 @@ public class AbilityPrize : BasePrize<AbilityPrizeResponse>
     {
         var randomAbilities =
             contentManager.AvailableAbilities
-                .OrderBy(b => Guid.NewGuid())
+                .OrderBy(_ => Guid.NewGuid())
                 .ToList();
         
         var pawns = selectedParty.
-            OrderBy(p => Guid.NewGuid()).
+            OrderBy(_ => Guid.NewGuid()).
             Take(numberOfOptions).
             ToList();
 
-        var options = new Dictionary<string, AbilityPrizeResponse>();
+        var options = new List<AbilityPrizeItem>();
         
         foreach (var pawnInfo in pawns)
         {
@@ -132,14 +131,14 @@ public class AbilityPrize : BasePrize<AbilityPrizeResponse>
             if(ability == null)
                 continue;
 
-            options.Add($"{ability.Id} to {pawnInfo.Name}", new AbilityPrizeResponse(pawnInfo, ability));
+            options.Add(new AbilityPrizeItem(pawnInfo, ability));
         }
         
         Options = options;
     }
 }
 
-public class BuffPrize : BasePrize<BuffPrizeResponse>
+public class BuffPrize : BasePrize<BuffPrizeItem>
 {
     public BuffPrize(
         int numberOfOptions,
@@ -148,15 +147,15 @@ public class BuffPrize : BasePrize<BuffPrizeResponse>
     {
         var randomBuff =
             contentManager.AvailableBuffs
-                .OrderBy(b => Guid.NewGuid())
+                .OrderBy(_ => Guid.NewGuid())
                 .ToList();
         
         var pawns = selectedParty.
-            OrderBy(p => Guid.NewGuid()).
+            OrderBy(_ => Guid.NewGuid()).
             Take(numberOfOptions).
             ToList();
 
-        var options = new Dictionary<string, BuffPrizeResponse>();
+        var options = new List<BuffPrizeItem>();
         
         foreach (var pawnInfo in pawns)
         {
@@ -165,14 +164,14 @@ public class BuffPrize : BasePrize<BuffPrizeResponse>
             if(buff == null)
                 continue;
 
-            options.Add($"{buff.Id} to {pawnInfo.Name}", new BuffPrizeResponse(pawnInfo, buff));
+            options.Add(new BuffPrizeItem(pawnInfo, buff));
         }
         
         Options = options;
     }
 }
 
-public class ConsumablePrize : BasePrize<ConsumableData>
+public class ConsumablePrize : BasePrize<ConsumablePrizeItem>
 {
     public ConsumablePrize(
         int numberOfOptions,
@@ -180,8 +179,9 @@ public class ConsumablePrize : BasePrize<ConsumableData>
     {
         Options = 
             contentManager.AvailableConsumables
-                .OrderBy(b => Guid.NewGuid())
+                .OrderBy(_ => Guid.NewGuid())
                 .Take(numberOfOptions)
-                .ToDictionary(b => b.ToString(), b => b);
+                .Select(c => new ConsumablePrizeItem(c))
+                .ToList();
     }
 }

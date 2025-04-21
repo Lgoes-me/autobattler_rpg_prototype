@@ -8,10 +8,10 @@ public class PrizeOptionController : MonoBehaviour
     [field: SerializeField] private TextMeshProUGUI Name { get; set; }
     [field: SerializeField] private Button Button { get; set; }
 
-    public PrizeOptionController Init(string optionKey, TaskCompletionSource<string> tcs)
+    public PrizeOptionController Init<T>(T option, TaskCompletionSource<T> tcs) where T : BasePrizeItem
     {
-        Name.SetText(optionKey);
-        Button.onClick.AddListener(() => tcs.SetResult(optionKey));
+        Name.SetText(option.Name);
+        Button.onClick.AddListener(() => tcs.SetResult(option));
 
         return this;
     }

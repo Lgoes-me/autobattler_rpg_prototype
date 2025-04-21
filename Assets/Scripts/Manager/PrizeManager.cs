@@ -27,11 +27,13 @@ public class PrizeManager : IManager
         
         var prizes = new LevelUpPrize(3, GameSaveManager.GetSelectedParty());
         var selectedPrize = await InterfaceManager.ShowPrizeCanvas(prizes);
+
+        var pawnInfo = selectedPrize.PawnInfo;
         
         PauseManager.ResumeGame();
-        selectedPrize.LevelUp();
-        GameSaveManager.SavePawnInfo(selectedPrize);
-        PartyManager.UpdatePawn(selectedPrize);
+        pawnInfo.LevelUp();
+        GameSaveManager.SavePawnInfo(pawnInfo);
+        PartyManager.UpdatePawn(pawnInfo);
     }
 
     public async void CreateBlessingPrize(List<BlessingIdentifier> blessings)
@@ -41,7 +43,7 @@ public class PrizeManager : IManager
         var selectedPrize = await InterfaceManager.ShowPrizeCanvas(prizes);
         
         PauseManager.ResumeGame();
-        BlessingManager.AddBlessing(selectedPrize);
+        BlessingManager.AddBlessing(selectedPrize.Blessing);
     }
     
     public async void CreatePartyMemberPrize()
@@ -52,9 +54,11 @@ public class PrizeManager : IManager
         
         PauseManager.ResumeGame();
         var playerControllerPosition = Application.Instance.GetManager<PlayerManager>().PlayerController.transform.position;
+
+        var pawnInfo = selectedPrize.PawnInfo;
         
-        GameSaveManager.AddToSelectedParty(selectedPrize);
-        PartyManager.AddToCurrentParty(playerControllerPosition, selectedPrize);
+        GameSaveManager.AddToSelectedParty(pawnInfo);
+        PartyManager.AddToCurrentParty(playerControllerPosition, pawnInfo);
         PartyManager.SetPartyToFollow(false);
     }
 
@@ -104,6 +108,6 @@ public class PrizeManager : IManager
         var selectedPrize = await InterfaceManager.ShowPrizeCanvas(prizes);
 
         PauseManager.ResumeGame();
-        ConsumableManager.AddConsumable(selectedPrize);
+        ConsumableManager.AddConsumable(selectedPrize.Consumable);
     }
 }

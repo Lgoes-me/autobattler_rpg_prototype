@@ -110,17 +110,17 @@ public class InterfaceManager : MonoBehaviour, IManager
         BattleCanvas.SetActive(true);
     }
 
-    public async Task<T> ShowPrizeCanvas<T>(BasePrize<T> prize)
+    public async Task<T> ShowPrizeCanvas<T>(BasePrize<T> prize) where T : BasePrizeItem
     {
         PrizeCanvas.SetActive(true);
 
-        var tcs = new TaskCompletionSource<string>();
+        var tcs = new TaskCompletionSource<T>();
 
         var items = new List<PrizeOptionController>();
         
         foreach (var option in prize.Options)
         {
-            items.Add(Instantiate(PrizeOptionControllerPrefab, PrizeCanvas.transform).Init(option.Key, tcs));
+            items.Add(Instantiate(PrizeOptionControllerPrefab, PrizeCanvas.transform).Init(option, tcs));
         }
 
         var selectedPrize = await tcs.Task;
@@ -134,7 +134,7 @@ public class InterfaceManager : MonoBehaviour, IManager
         
         PrizeCanvas.SetActive(false);
         
-        return prize.ChooseIndexPrize(selectedPrize);
+        return selectedPrize;
     }
 
     public void InitConsumablesCanvas(List<ConsumableData> consumables)
