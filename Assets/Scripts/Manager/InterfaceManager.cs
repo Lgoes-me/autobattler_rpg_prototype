@@ -49,7 +49,7 @@ public class InterfaceManager : MonoBehaviour, IManager
         for (var index = 0; index < PawnCanvases.Count && index < playerPawns.Count; index++)
         {
             var pawnCanvas = PawnCanvases[index];
-            var playerPawn = playerPawns[index];
+            var playerPawn = playerPawns[index].Pawn;
             
             pawnCanvas.Init(playerPawn);
         }
@@ -152,5 +152,20 @@ public class InterfaceManager : MonoBehaviour, IManager
             ConsumableCanvases.Add(consumableCanvasController);
         }
     }
+    
+    public void StartBattle()
+    {
+        foreach (var consumableCanvas in ConsumableCanvases)
+        {
+            consumableCanvas.StartBattle();
+        }
+    }
 
+    public void FinishBattle()
+    {
+        foreach (var consumableCanvas in ConsumableCanvases)
+        {
+            consumableCanvas.FinishBattle();
+        }
+    }
 }

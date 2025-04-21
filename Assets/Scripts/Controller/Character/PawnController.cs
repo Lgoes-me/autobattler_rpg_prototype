@@ -15,7 +15,7 @@ public class PawnController : MonoBehaviour
     public CharacterController CharacterController { get; private set; }
     public Pawn Pawn { get; private set; }
     public AnimationState PawnState => CharacterController.CurrentState;
-    public BattleController BattleController { get; private set; }
+    public Battle Battle { get; private set; }
 
     public void Init(Pawn pawn)
     {
@@ -25,7 +25,7 @@ public class PawnController : MonoBehaviour
         
         if (CanvasController != null)
         {
-            CanvasController.Init(this);
+            CanvasController.Init(Pawn);
         }
 
         Pawn.LostLife += ReceiveAttack;
@@ -44,14 +44,14 @@ public class PawnController : MonoBehaviour
         CanvasController = null;
     }
 
-    public void StartBattle(BattleController battleController, Battle battle)
+    public void StartBattle(Battle battle)
     {
-        Pawn.StartBattle(battle);
+        Pawn.StartBattle();
 
         enabled = true;
         Ability = null;
 
-        BattleController = battleController;
+        Battle = battle;
         CharacterController.SetAnimationState(new IdleState());
     }
 
@@ -60,8 +60,8 @@ public class PawnController : MonoBehaviour
         if (PawnState is not IdleState)
             return;
 
-        Ability = Pawn.GetCurrentAttackIntent(this, BattleController.Battle);
-        Ability.ChooseFocus(this, BattleController.Battle);
+        Ability = Pawn.GetCurrentAttackIntent(this, Battle);
+        Ability.ChooseFocus(this, Battle);
     }
 
     private void DoAbility(Ability ability)
@@ -71,11 +71,11 @@ public class PawnController : MonoBehaviour
 
         if (ability.IsSpecial)
         {
-            Application.Instance.GetManager<BattleEventsManager>().DoSpecialAttackEvent(BattleController.Battle, this, ability);
+            Application.Instance.GetManager<BattleEventsManager>().DoSpecialAttackEvent(Battle, this, ability);
         }
         else
         {
-            Application.Instance.GetManager<BattleEventsManager>().DoAttackEvent(BattleController.Battle, this, ability);
+            Application.Instance.GetManager<BattleEventsManager>().DoAttackEvent(Battle, this, ability);
         }
 
         Application.Instance.GetManager<AudioManager>().PlaySound(SfxType.Slash);
@@ -149,7 +149,7 @@ public class PawnController : MonoBehaviour
         CharacterController.SetAnimationState(new IdleState());
 
         enabled = false;
-        BattleController = null;
+        Battle = null;
     }
 
     public void Dance()
@@ -190,7 +190,7 @@ public class PawnController : MonoBehaviour
         CharacterController.SetAnimationState(new DeadState());
         Ability = null;
 
-        Application.Instance.GetManager<BattleEventsManager>().DoPawnDeathEvent(BattleController.Battle, this);
+        Application.Instance.GetManager<BattleEventsManager>().DoPawnDeathEvent(Battle, this);
     }
 
     private void ReceiveHeal()
@@ -205,14 +205,25 @@ public class PawnController : MonoBehaviour
 
     public void SummonPawn(Pawn pawn)
     {
+        var roomScene = FindObjectOfType<RoomController>();
         var prefab = Application.Instance.GetManager<PartyManager>().BasePawnPrefab;
             
         var randomRotation = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)) * Vector3.forward * 1f;
-        var pawnController = Instantiate(prefab, transform.position + randomRotation, Quaternion.identity, BattleController.transform);
+        var pawnController = Instantiate(prefab, transform.position + randomRotation, Quaternion.identity, roomScene.transform);
+        
         pawnController.Init(pawn);
         
-        BattleController.AddPawn(pawnController, pawn.Team);
-        pawnController.StartBattle(BattleController, BattleController.Battle);
+        switch (pawn.Team)
+        {
+            case TeamType.Player:
+                Battle.AddPlayerPawn(pawnController);
+                break;
+            case TeamType.Enemies:
+                Battle.AddEnemy(pawnController);
+                break;
+        }
+        
+        pawnController.StartBattle(Battle);
         pawnController.RealizeTurn();
     }
     

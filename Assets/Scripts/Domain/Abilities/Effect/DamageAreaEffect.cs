@@ -14,7 +14,7 @@ public class DamageAreaEffect : AbilityEffect
 
     public override void DoAbilityEffect(PawnController focus)
     {
-        var closePawns = AbilityUser.BattleController.Battle.Pawns
+        var closePawns = AbilityUser.Battle.Pawns
             .Where(p => 
                 p.Pawn.Team != AbilityUser.Pawn.Team && 
                 Vector3.Distance(AbilityUser.transform.position, p.transform.position) < Range)

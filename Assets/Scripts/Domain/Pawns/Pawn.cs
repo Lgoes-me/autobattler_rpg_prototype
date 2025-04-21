@@ -39,7 +39,7 @@ public class Pawn : BasePawn
     public event PawnDomainChanged LostBuff;
     public event PawnDomainChanged GainedBuff;
 
-    public delegate void PawnDomainBattleStarted(Battle battle);
+    public delegate void PawnDomainBattleStarted();
     public event PawnDomainBattleStarted BattleStarted;
     
     public delegate void PawnDomainBattleFinished();
@@ -92,7 +92,7 @@ public class Pawn : BasePawn
         Team = team;
     }
 
-    public void StartBattle(Battle battle)
+    public void StartBattle()
     {
         Mana = 0;
         
@@ -105,7 +105,7 @@ public class Pawn : BasePawn
             AddBuff(buffInstance);
         }
 
-        BattleStarted?.Invoke(battle);
+        BattleStarted?.Invoke();
         GainedMana?.Invoke();
     }
 

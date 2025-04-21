@@ -22,7 +22,7 @@ public class BattleController : MonoBehaviour
             if (enemy.IsBoss)
             {
                 enemyController.RemoveCanvasController();
-                Application.Instance.GetManager<InterfaceManager>().BossCanvas.Init(enemyController);
+                Application.Instance.GetManager<InterfaceManager>().BossCanvas.Init(enemyController.Pawn);
             }
 
             AddPawn(enemyController, TeamType.Enemies);
@@ -35,15 +35,16 @@ public class BattleController : MonoBehaviour
 
         foreach (var pawnController in Battle.Pawns)
         {
-            pawnController.StartBattle(this, Battle);
+            pawnController.StartBattle(Battle);
         }
         
         Application.Instance.GetManager<BattleEventsManager>().DoBattleStartEvent(Battle);
+        Application.Instance.GetManager<InterfaceManager>().StartBattle();
 
         StartCoroutine(BattleCoroutine());
     }
 
-    public void AddPawn(PawnController pawnController, TeamType team)
+    private void AddPawn(PawnController pawnController, TeamType team)
     {
         switch (team)
         {
@@ -126,7 +127,8 @@ public class BattleController : MonoBehaviour
             if (pawn.Pawn.Team == TeamType.Enemies)
                 pawn.gameObject.SetActive(false);
         }
-
+        
+        Application.Instance.GetManager<InterfaceManager>().FinishBattle();
         Application.Instance.GetManager<PlayerManager>().EnablePlayerInput();
         Application.Instance.GetManager<PartyManager>().SetPartyToFollow(false);
         Application.Instance.GetManager<GameSaveManager>().SaveBattle(Battle);

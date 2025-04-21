@@ -8,9 +8,9 @@ public class LifeBarCanvasController : BasePawnCanvasController
     [field: SerializeField] private Image BackgroundLifeBar { get; set; }
     [field: SerializeField] private Image ManaBar { get; set; }
 
-    public override void Init(PawnController pawnController)
+    public override void Init(Pawn pawn)
     {
-        base.Init(pawnController);
+        base.Init(pawn);
         
         var fillAmount = Pawn.Health / (float) Pawn.GetPawnStats().Health;
 
@@ -18,7 +18,7 @@ public class LifeBarCanvasController : BasePawnCanvasController
         BackgroundLifeBar.fillAmount = fillAmount;
 
         ManaBar.fillAmount = Pawn.HasMana ? Pawn.Mana / (float) Pawn.GetPawnStats().Mana : 0;
-
+        
         Pawn.LostLife += UpdateLife;
         Pawn.GainedLife += UpdateLife;
         
@@ -50,7 +50,7 @@ public class LifeBarCanvasController : BasePawnCanvasController
             Death();
     }
 
-    protected virtual void UpdateMana()
+    private void UpdateMana()
     {
         if (!Pawn.HasMana)
             return;
@@ -67,9 +67,12 @@ public class LifeBarCanvasController : BasePawnCanvasController
         ManaBar.fillAmount = 0;
     }
 
-    protected override void Terminate()
+    protected override void OnDestroy()
     {
-        base.Terminate();
+        base.OnDestroy();
+        
+        if(Pawn == null)
+            return;
         
         Pawn.LostLife -= UpdateLife;
         Pawn.GainedLife -= UpdateLife;

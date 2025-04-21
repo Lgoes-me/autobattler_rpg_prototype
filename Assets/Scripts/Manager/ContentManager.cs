@@ -2,6 +2,10 @@
 using System.Linq;
 using UnityEngine;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 public class ContentManager : MonoBehaviour, IManager
 {
     [field: SerializeField] public List<PawnData> AvailablePawns { get; private set; }
@@ -48,7 +52,10 @@ public class ContentManager : MonoBehaviour, IManager
         AvailableWeapons = Extensions.FindAllScriptableObjectsOfType<WeaponData>();
         AvailableAbilities = Extensions.FindAllScriptableObjectsOfType<AbilityData>().Where(a => !string.IsNullOrWhiteSpace(a.Id)).ToList();
         AvailableBuffs = Extensions.FindAllScriptableObjectsOfType<BuffData>(); 
-        AvailableConsumables = Extensions.FindAllScriptableObjectsOfType<ConsumableData>(); 
+        AvailableConsumables = Extensions.FindAllScriptableObjectsOfType<ConsumableData>();
+
+        EditorUtility.SetDirty(this);
+        AssetDatabase.SaveAssets();
     }
 #endif
 }

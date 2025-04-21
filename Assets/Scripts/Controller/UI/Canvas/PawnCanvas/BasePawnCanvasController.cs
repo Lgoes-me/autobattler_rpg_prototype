@@ -1,19 +1,17 @@
 ﻿
 public abstract class BasePawnCanvasController: BaseCanvasController
 {
-    protected PawnController PawnController { get; private set; }
     protected Pawn Pawn { get; private set; }
     
-    public virtual void Init(PawnController pawnController)
+    public virtual void Init(Pawn pawn)
     {
-        PawnController = pawnController;
-        Pawn = pawnController.Pawn;
+        Pawn = pawn;
         
         Pawn.BattleStarted += StartBattle;
         Pawn.BattleFinished += FinishBattle;
     }
 
-    protected virtual void StartBattle(Battle battle)
+    protected virtual void StartBattle()
     {
         Show();
     }
@@ -28,16 +26,11 @@ public abstract class BasePawnCanvasController: BaseCanvasController
         Hide();
     }
     
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
-        if (Pawn == null)
+        if(Pawn == null)
             return;
         
-        Terminate();
-    }
-
-    protected virtual void Terminate()
-    {
         Pawn.BattleStarted -= StartBattle;
         Pawn.BattleFinished -= FinishBattle;
     }

@@ -14,9 +14,9 @@ public class ProfileCanvasController : LifeBarCanvasController
     
     private List<BuffItemController> BuffItems { get; set; }
 
-    public override void Init(PawnController pawnController)
+    public override void Init(Pawn pawn)
     {
-        base.Init(pawnController);
+        base.Init(pawn);
         BuffItems = new List<BuffItemController>();
         Name.SetText(Pawn.Id);
         CanvasGroup.alpha = 0.5f;
@@ -26,7 +26,7 @@ public class ProfileCanvasController : LifeBarCanvasController
         Show();
     }
 
-    protected override void StartBattle(Battle battle)
+    protected override void StartBattle()
     {
         CanvasGroup.alpha = 1;
 
