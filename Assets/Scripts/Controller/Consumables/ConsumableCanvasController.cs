@@ -60,8 +60,7 @@ public class ConsumableCanvasController : BaseCanvasController, IBeginDragHandle
             var effect = Consumable.Effect.ToDomain(pawn);
 
             effect.DoAbilityEffect(pawn);
-
-            Destroy(gameObject);
+            Application.Instance.GetManager<ConsumableManager>().RemoveConsumable(Consumable);
             return;
         }
 
@@ -83,21 +82,21 @@ public class ConsumableCanvasController : BaseCanvasController, IBeginDragHandle
     {
         IsInBattle = true;
 
-        if (!Consumable.UsableOutsideCombat)
-        {
-            CanvasGroup.alpha = 1f;
-            CanvasGroup.blocksRaycasts = true;
-        }
+        if (Consumable.UsableOutsideCombat)
+            return;
+        
+        CanvasGroup.alpha = 1f;
+        CanvasGroup.blocksRaycasts = true;
     }
 
     public void FinishBattle()
     {
         IsInBattle = false;
 
-        if (!Consumable.UsableOutsideCombat)
-        {
-            CanvasGroup.alpha = 0.5f;
-            CanvasGroup.blocksRaycasts = false;
-        }
+        if (Consumable.UsableOutsideCombat) 
+            return;
+        
+        CanvasGroup.alpha = 0.5f;
+        CanvasGroup.blocksRaycasts = false;
     }
 }

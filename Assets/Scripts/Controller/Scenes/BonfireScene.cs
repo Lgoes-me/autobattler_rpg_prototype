@@ -15,21 +15,20 @@ public class BonfireScene : MonoBehaviour
     private Action Callback { get; set; }
     public IBonfirePanel BonfirePanel { get; set; }
     public bool IsDragging { get; set; }
-    
-    private GameSaveManager GameSaveManager { get; set; }
 
     public void Init(Action callback)
     {
         Callback = callback;
         FinishButton.onClick.AddListener(EndBonfireScene);
 
-        GameSaveManager = Application.Instance.GetManager<GameSaveManager>();
-        GameSaveManager.ClearParty();
+        var gameSaveManager = Application.Instance.GetManager<GameSaveManager>();
+        gameSaveManager.ClearParty();
         
         Application.Instance.GetManager<BlessingManager>().ClearBlessings();
+        Application.Instance.GetManager<ConsumableManager>().ClearConsumables();
 
-        FriendsPanelController.Init(GameSaveManager, this);
-        PartyPanelController.Init(GameSaveManager, this);
+        FriendsPanelController.Init(gameSaveManager, this);
+        PartyPanelController.Init(gameSaveManager, this);
 
         UpdateArchetypes();
     }

@@ -21,6 +21,12 @@ public class ConsumableManager : IManager
         Consumables = new List<ConsumableData>();
     }
 
+    public void LoadConsumables()
+    {
+        Consumables = GameSaveManager.GetConsumables().Select(j => ContentManager.GetConsumableFromId(j)).ToList();
+        InterfaceManager.InitConsumablesCanvas(Consumables);
+    }
+
     public void AddConsumable(ConsumableData consumable)
     {
         Consumables.Add(consumable);
@@ -28,9 +34,17 @@ public class ConsumableManager : IManager
         InterfaceManager.InitConsumablesCanvas(Consumables);
     }
 
-    public void LoadConsumables()
+    public void RemoveConsumable(ConsumableData consumable)
     {
-        Consumables = GameSaveManager.GetConsumables().Select(j => ContentManager.GetConsumableFromId(j)).ToList();
+        Consumables.Remove(consumable);
+        GameSaveManager.SetConsumables(Consumables);
+        InterfaceManager.InitConsumablesCanvas(Consumables);
+    }
+    
+    public void ClearConsumables()
+    {
+        Consumables.Clear();
+        GameSaveManager.SetConsumables(Consumables);
         InterfaceManager.InitConsumablesCanvas(Consumables);
     }
 }
