@@ -106,7 +106,7 @@ public class SceneManager : MonoBehaviour, IManager
             cutsceneScene.Init();
         };
     }
-
+    
     public async void RespawnAtBonfire()
     {
         foreach (var pawn in PartyManager.Party)

@@ -52,6 +52,17 @@ public class GameSaveManager : IManager
             .First();
     }
 
+    public SpawnDomain GetSpawn()
+    {
+        return Save.Spawn;
+    }
+    
+    public void SetSpawn(SpawnDomain spawn)
+    {
+        Save.Spawn = spawn;
+        SaveData();
+    }
+    
     public SpawnDomain GetBonfireSpawn()
     {
         return Save.LastBonfireSpawn;
@@ -59,6 +70,7 @@ public class GameSaveManager : IManager
 
     public void SetBonfireSpawn(SpawnDomain spawn)
     {
+        Save.Spawn = spawn;
         Save.LastBonfireSpawn = spawn;
         Save.SelectedParty = PartyManager.Party.Select(p => p.Pawn.ResetPawnInfo()).ToList();
         Save.DefeatedEnemies.Clear();
