@@ -51,7 +51,6 @@ public class PartyManager : MonoBehaviour, IManager
         }
 
         PlayerManager.SetNewPlayerPawn(Party[0]);
-        
         ArchetypeManager.CreateArchetypes(Party);
     }
     
@@ -112,6 +111,8 @@ public class PartyManager : MonoBehaviour, IManager
         GameSaveManager.ApplyPawnInfo(pawn);
         pawnInstance.Init(pawn);
         Party.Add(pawnInstance);
+        
+        ArchetypeManager.CreateArchetypes(Party);
 
         return pawnInstance;
     }
