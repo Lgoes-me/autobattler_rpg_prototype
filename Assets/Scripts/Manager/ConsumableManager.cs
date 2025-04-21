@@ -1,8 +1,20 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 public class ConsumableManager : IManager
 {
     private List<ConsumableData> Consumables { get; set; }
+
+    private GameSaveManager GameSaveManager { get; set; }
+    private ContentManager ContentManager { get; set; }
+    private InterfaceManager InterfaceManager { get; set; }
+
+    public void Prepare()
+    {
+        GameSaveManager = Application.Instance.GetManager<GameSaveManager>();
+        ContentManager = Application.Instance.GetManager<ContentManager>();
+        InterfaceManager = Application.Instance.GetManager<InterfaceManager>();
+    }
 
     public ConsumableManager()
     {
@@ -12,7 +24,13 @@ public class ConsumableManager : IManager
     public void AddConsumable(ConsumableData consumable)
     {
         Consumables.Add(consumable);
-        Application.Instance.GetManager<GameSaveManager>().SetConsumables(Consumables);
-        Application.Instance.GetManager<InterfaceManager>().InitConsumablesCanvas(Consumables);
+        GameSaveManager.SetConsumables(Consumables);
+        InterfaceManager.InitConsumablesCanvas(Consumables);
+    }
+
+    public void LoadConsumables()
+    {
+        Consumables = GameSaveManager.GetConsumables().Select(j => ContentManager.GetConsumableFromId(j)).ToList();
+        InterfaceManager.InitConsumablesCanvas(Consumables);
     }
 }

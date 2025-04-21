@@ -162,6 +162,11 @@ public class GameSaveManager : IManager
         SaveData();
     }
 
+    public List<string> GetConsumables()
+    {
+        return Save.Consumables;
+    }
+
     public void SetConsumables(List<ConsumableData> consumableDatas)
     {
         Save.Consumables = consumableDatas

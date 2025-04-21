@@ -30,6 +30,7 @@ public class StartMenuScene : MonoBehaviour
         Application.Instance.GetManager<GameSaveManager>().LoadSave();
         
         Application.Instance.GetManager<BlessingManager>().LoadBlessings();
+        Application.Instance.GetManager<ConsumableManager>().LoadConsumables();
         Application.Instance.GetManager<TimeManager>().StartClock();
         Application.Instance.GetManager<SceneManager>().RespawnAtBonfire();
     }
