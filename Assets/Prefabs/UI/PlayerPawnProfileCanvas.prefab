@@ -296,6 +296,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5846143697529328789}
+  - component: {fileID: 4501550559910030532}
   - component: {fileID: 7122821440175886598}
   m_Layer: 5
   m_Name: PlayerPawnProfileCanvas
@@ -324,6 +325,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4501550559910030532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3014980148514600521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e29b3be384d4a869df1f574bd8f766d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Profile>k__BackingField: {fileID: 7122821440175886598}
 --- !u!114 &7122821440175886598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -336,17 +350,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4349f2c9738247d9a0d79ed6866b99e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Root>k__BackingField: {fileID: 3323636532692594683}
   <LifeBar>k__BackingField: {fileID: 5937522572081612832}
   <BackgroundLifeBar>k__BackingField: {fileID: 52984217057201878}
   <ManaBar>k__BackingField: {fileID: 9101047577417634264}
   <CanvasGroup>k__BackingField: {fileID: 2164563045219888889}
-  <SpecialButtonPrefab>k__BackingField: {fileID: 7887012259483403010, guid: 0920af9f0dd56fd4a8281d7b0bce180f, type: 3}
   <BuffItemPrefab>k__BackingField: {fileID: 7122821440175886598, guid: 806719620c770714a8e805152fdd31c8, type: 3}
   <ProfilePicture>k__BackingField: {fileID: 6748113670182405019}
   <Name>k__BackingField: {fileID: 254830307986349657}
   <BuffsParent>k__BackingField: {fileID: 5130302016822632991}
-  <SpecialButtonsParent>k__BackingField: {fileID: 6435343129379206763}
 --- !u!1 &3323636532692594683
 GameObject:
   m_ObjectHideFlags: 0
@@ -363,7 +374,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &48694547395236586
 RectTransform:
   m_ObjectHideFlags: 0
@@ -436,8 +447,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 4.5669}
-  m_SizeDelta: {x: 0, y: -119.6938}
+  m_AnchoredPosition: {x: 0, y: 25.2569}
+  m_SizeDelta: {x: 0, y: -78.3138}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6681481506512268290
 CanvasRenderer:
@@ -476,7 +487,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4278190080
   m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -494,7 +505,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 18.75
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

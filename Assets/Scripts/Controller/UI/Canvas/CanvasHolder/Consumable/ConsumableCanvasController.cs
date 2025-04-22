@@ -2,7 +2,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ConsumableCanvasController : BaseCanvasController, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class ConsumableCanvasController : BaseCanvasHolderItemController<ConsumableData>, 
+    IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [field: SerializeField] private TextMeshProUGUI Name { get; set; }
     [field: SerializeField] private CanvasGroup CanvasGroup { get; set; }
@@ -14,8 +15,8 @@ public class ConsumableCanvasController : BaseCanvasController, IBeginDragHandle
     private bool IsInBattle { get; set; }
     private bool IsDragging { get; set; }
     private Vector3 StartingPosition { get; set; }
-
-    public ConsumableCanvasController Init(ConsumableData consumable)
+    
+    public override BaseCanvasHolderItemController<ConsumableData> Init(ConsumableData consumable)
     {
         Consumable = consumable;
 

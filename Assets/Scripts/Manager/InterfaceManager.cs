@@ -16,22 +16,22 @@ public class InterfaceManager : MonoBehaviour, IManager
 
     public void UpdateProfileCanvas(List<PawnController> playerPawns)
     {
-        ProfileCanvasHolderController.UpdateProfileCanvas(playerPawns);
+        ProfileCanvasHolderController.UpdateItems(playerPawns);
     }
 
     public void UpdateBlessingsCanvas(List<Blessing> blessings)
     {
-        BlessingCanvasHolderController.UpdateBlessingsCanvas(blessings);
+        BlessingCanvasHolderController.UpdateItems(blessings);
     }
 
     public void UpdateArchetypesCanvas(List<Archetype> archetypes)
     {
-        ArchetypeCanvasHolderController.UpdateArchetypesCanvas(archetypes);
+        ArchetypeCanvasHolderController.UpdateItems(archetypes);
     }
 
     public void UpdateConsumablesCanvas(List<ConsumableData> consumables)
     {
-        ConsumableCanvasHolderController.UpdateConsumablesCanvas(consumables);
+        ConsumableCanvasHolderController.UpdateItems(consumables);
     }
 
     public Task<T> ShowPrizeCanvas<T>(BasePrize<T> prize) where T : BasePrizeItem

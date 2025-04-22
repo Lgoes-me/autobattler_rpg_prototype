@@ -1,13 +1,12 @@
-﻿using System.Linq;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
-public class ArchetypeCanvasController : BaseCanvasController
+public class ArchetypeCanvasController : BaseCanvasHolderItemController<Archetype>
 {
     [field: SerializeField] private TextMeshProUGUI Name { get; set; }
     [field: SerializeField] private TextMeshProUGUI Quantidade { get; set; }
     
-    public ArchetypeCanvasController Init(Archetype archetype)
+    public override BaseCanvasHolderItemController<Archetype> Init(Archetype archetype)
     {
         Name.SetText(archetype.Identifier.ToString());
 
