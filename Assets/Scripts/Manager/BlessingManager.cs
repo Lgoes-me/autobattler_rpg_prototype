@@ -24,20 +24,20 @@ public class BlessingManager : IManager
     public void LoadBlessings()
     {
         Blessings = GameSaveManager.GetBlessings().Select(j => BlessingFactory.CreateBlessing(j)).ToList();
-        InterfaceManager.InitBlessingsCanvas(Blessings);
+        InterfaceManager.UpdateBlessingsCanvas(Blessings);
     }
 
     public void AddBlessing(BlessingIdentifier identifier)
     {
         Blessings.Add(BlessingFactory.CreateBlessing(identifier));
         GameSaveManager.SetBlessings();
-        InterfaceManager.InitBlessingsCanvas(Blessings);
+        InterfaceManager.UpdateBlessingsCanvas(Blessings);
     }
     
     public void ClearBlessings()
     {
         Blessings.Clear();
         GameSaveManager.SetBlessings();
-        InterfaceManager.InitBlessingsCanvas(Blessings);
+        InterfaceManager.UpdateBlessingsCanvas(Blessings);
     }
 }

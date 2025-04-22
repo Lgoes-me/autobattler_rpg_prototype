@@ -32,7 +32,7 @@ public class ArchetypeManager : IManager
             Archetypes.Add(ArchetypeFactory.CreateArchetype(pair.Key, pair.Count));
         }
 
-        InterfaceManager.InitProfileCanvas(party);
-        InterfaceManager.InitArchetypesCanvas(Archetypes);
+        InterfaceManager.UpdateProfileCanvas(party);
+        InterfaceManager.UpdateArchetypesCanvas(Archetypes);
     }
 }

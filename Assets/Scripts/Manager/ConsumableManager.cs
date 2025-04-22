@@ -24,27 +24,27 @@ public class ConsumableManager : IManager
     public void LoadConsumables()
     {
         Consumables = GameSaveManager.GetConsumables().Select(j => ContentManager.GetConsumableFromId(j)).ToList();
-        InterfaceManager.InitConsumablesCanvas(Consumables);
+        InterfaceManager.UpdateConsumablesCanvas(Consumables);
     }
 
     public void AddConsumable(ConsumableData consumable)
     {
         Consumables.Add(consumable);
         GameSaveManager.SetConsumables(Consumables);
-        InterfaceManager.InitConsumablesCanvas(Consumables);
+        InterfaceManager.UpdateConsumablesCanvas(Consumables);
     }
 
     public void RemoveConsumable(ConsumableData consumable)
     {
         Consumables.Remove(consumable);
         GameSaveManager.SetConsumables(Consumables);
-        InterfaceManager.InitConsumablesCanvas(Consumables);
+        InterfaceManager.UpdateConsumablesCanvas(Consumables);
     }
     
     public void ClearConsumables()
     {
         Consumables.Clear();
         GameSaveManager.SetConsumables(Consumables);
-        InterfaceManager.InitConsumablesCanvas(Consumables);
+        InterfaceManager.UpdateConsumablesCanvas(Consumables);
     }
 }

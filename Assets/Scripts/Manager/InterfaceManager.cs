@@ -6,88 +6,49 @@ public class InterfaceManager : MonoBehaviour, IManager
 {
     [field: SerializeField] private GameObject BattleCanvas { get; set; }
     [field: SerializeField] private GameObject BattleLostCanvas { get; set; }
-    [field: SerializeField] private GameObject PrizeCanvas { get; set; }
-    
-    [field: SerializeField] private List<BlessingCanvasController> BlessingCanvases { get; set; }
-    [field: SerializeField] private List<LifeBarCanvasController> PawnCanvases { get; set; }
-    [field: SerializeField] private RectTransform ArchetypeCanvasParent { get; set; }
-    [field: SerializeField] private ArchetypeCanvasController ArchetypeCanvasControllerPrefab { get; set; }
     [field: SerializeField] public BossCanvasController BossCanvas { get; private set; }
+
+    [field: SerializeField] private PrizeOptionHolderController PrizeOptionHolderController { get; set; }
+    [field: SerializeField] private BlessingCanvasHolderController BlessingCanvasHolderController { get; set; }
+    [field: SerializeField] private ProfileCanvasHolderController ProfileCanvasHolderController { get; set; }
+    [field: SerializeField] private ArchetypeCanvasHolderController ArchetypeCanvasHolderController { get; set; }
+    [field: SerializeField] private ConsumableCanvasHolderController ConsumableCanvasHolderController { get; set; }
+
+    public void UpdateProfileCanvas(List<PawnController> playerPawns)
+    {
+        ProfileCanvasHolderController.UpdateProfileCanvas(playerPawns);
+    }
+
+    public void UpdateBlessingsCanvas(List<Blessing> blessings)
+    {
+        BlessingCanvasHolderController.UpdateBlessingsCanvas(blessings);
+    }
+
+    public void UpdateArchetypesCanvas(List<Archetype> archetypes)
+    {
+        ArchetypeCanvasHolderController.UpdateArchetypesCanvas(archetypes);
+    }
+
+    public void UpdateConsumablesCanvas(List<ConsumableData> consumables)
+    {
+        ConsumableCanvasHolderController.UpdateConsumablesCanvas(consumables);
+    }
+
+    public Task<T> ShowPrizeCanvas<T>(BasePrize<T> prize) where T : BasePrizeItem
+    {
+        return PrizeOptionHolderController.ShowPrizeCanvas(prize);
+    }
+
+    public void StartBattle()
+    {
+        ConsumableCanvasHolderController.StartBattle();
+    }
+
+    public void FinishBattle()
+    {
+        ConsumableCanvasHolderController.FinishBattle();
+    }
     
-    [field: SerializeField] private PrizeOptionController PrizeOptionControllerPrefab { get; set; }
-
-    private List<ArchetypeCanvasController> ArchetypeCanvases { get; set; }
-    
-    [field: SerializeField] private ConsumableCanvasController ConsumableCanvasPrefab { get; set; }
-    [field: SerializeField] private RectTransform ConsumableCanvasParent { get; set; }
-    private List<ConsumableCanvasController> ConsumableCanvases { get; set; }
-
-    private void Awake()
-    {
-        foreach (var pawnCanvas in PawnCanvases)
-        {
-            pawnCanvas.Hide();
-        }
-
-        foreach (var blessingCanvas in BlessingCanvases)
-        {
-            blessingCanvas.Hide();
-        }
-        
-        ArchetypeCanvases = new List<ArchetypeCanvasController>();
-
-        ConsumableCanvases = new List<ConsumableCanvasController>();
-    }
-
-    public void InitProfileCanvas(List<PawnController> playerPawns)
-    {
-        foreach (var pawnCanvas in PawnCanvases)
-        {
-            pawnCanvas.Hide();
-        }
-
-        for (var index = 0; index < PawnCanvases.Count && index < playerPawns.Count; index++)
-        {
-            var pawnCanvas = PawnCanvases[index];
-            var playerPawn = playerPawns[index].Pawn;
-            
-            pawnCanvas.Init(playerPawn);
-        }
-    }
-
-    public void InitBlessingsCanvas(List<Blessing> blessings)
-    {
-        foreach (var blessingCanvas in BlessingCanvases)
-        {
-            blessingCanvas.Hide();
-        }
-        
-        for (var index = 0; index < BlessingCanvases.Count && index < blessings.Count; index++)
-        {
-            var blessingCanvas = BlessingCanvases[index];
-            var blessing = blessings[index];
-
-            blessingCanvas.Init(blessing);
-        }
-    }
-
-    public void InitArchetypesCanvas(List<Archetype> archetypes)
-    {
-        foreach (var archetypeCanvas in ArchetypeCanvases)
-        {
-            Destroy(archetypeCanvas.gameObject);
-        }
-
-        ArchetypeCanvases.Clear();
-
-        foreach (var archetype in archetypes)
-        {
-            var archetypeCanvasController =
-                Instantiate(ArchetypeCanvasControllerPrefab, ArchetypeCanvasParent).Init(archetype);
-            ArchetypeCanvases.Add(archetypeCanvasController);
-        }
-    }
-
     public void ShowDefeatCanvas()
     {
         HideBattleCanvas();
@@ -108,64 +69,5 @@ public class InterfaceManager : MonoBehaviour, IManager
     public void ShowBattleCanvas()
     {
         BattleCanvas.SetActive(true);
-    }
-
-    public async Task<T> ShowPrizeCanvas<T>(BasePrize<T> prize) where T : BasePrizeItem
-    {
-        PrizeCanvas.SetActive(true);
-
-        var tcs = new TaskCompletionSource<T>();
-
-        var items = new List<PrizeOptionController>();
-        
-        foreach (var option in prize.Options)
-        {
-            items.Add(Instantiate(PrizeOptionControllerPrefab, PrizeCanvas.transform).Init(option, tcs));
-        }
-
-        var selectedPrize = await tcs.Task;
-
-        foreach (var item in items)
-        {
-            Destroy(item.gameObject);
-        }
-        
-        items.Clear();
-        
-        PrizeCanvas.SetActive(false);
-        
-        return selectedPrize;
-    }
-
-    public void InitConsumablesCanvas(List<ConsumableData> consumables)
-    {
-        foreach (var consumableCanvas in ConsumableCanvases)
-        {
-            Destroy(consumableCanvas.gameObject);
-        }
-
-        ConsumableCanvases.Clear();
-
-        foreach (var consumable in consumables)
-        {
-            var consumableCanvasController = Instantiate(ConsumableCanvasPrefab, ConsumableCanvasParent).Init(consumable);
-            ConsumableCanvases.Add(consumableCanvasController);
-        }
-    }
-    
-    public void StartBattle()
-    {
-        foreach (var consumableCanvas in ConsumableCanvases)
-        {
-            consumableCanvas.StartBattle();
-        }
-    }
-
-    public void FinishBattle()
-    {
-        foreach (var consumableCanvas in ConsumableCanvases)
-        {
-            consumableCanvas.FinishBattle();
-        }
     }
 }

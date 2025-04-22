@@ -784,6 +784,7 @@ GameObject:
   m_Component:
   - component: {fileID: 467059025}
   - component: {fileID: 467059026}
+  - component: {fileID: 467059027}
   m_Layer: 5
   m_Name: Profiles
   m_TagString: Untagged
@@ -841,6 +842,24 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 1
+--- !u!114 &467059027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 467059024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c25e39c0085a4e7cb5242c44eefd31e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <PawnCanvases>k__BackingField:
+  - {fileID: 1860720134}
+  - {fileID: 145314522}
+  - {fileID: 766841898}
+  - {fileID: 1415370636}
+  - {fileID: 1173645949}
 --- !u!1 &507262190
 GameObject:
   m_ObjectHideFlags: 0
@@ -979,6 +998,7 @@ GameObject:
   m_Component:
   - component: {fileID: 638108838}
   - component: {fileID: 638108839}
+  - component: {fileID: 638108840}
   m_Layer: 5
   m_Name: PrizeCanvas
   m_TagString: Untagged
@@ -993,12 +1013,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 638108837}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 989014757}
+  m_Father: {fileID: 933428313}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1031,6 +1051,20 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &638108840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638108837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0fa6fa20b1e4ec18887457f5f5e7a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <PrizeCanvas>k__BackingField: {fileID: 638108837}
+  <PrizeOptionControllerPrefab>k__BackingField: {fileID: 5081748951939250676, guid: 5622e4cd927dba84280d162b073c0b6f, type: 3}
 --- !u!1 &641743259
 GameObject:
   m_ObjectHideFlags: 0
@@ -1203,6 +1237,7 @@ GameObject:
   m_Component:
   - component: {fileID: 643530973}
   - component: {fileID: 643530974}
+  - component: {fileID: 643530975}
   m_Layer: 5
   m_Name: Archetypes
   m_TagString: Untagged
@@ -1255,6 +1290,20 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &643530975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 643530972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe9c898f714540e3a1e4e86b44cffcdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <ArchetypeCanvasControllerPrefab>k__BackingField: {fileID: 7122821440175886598, guid: 8818d6ce405e88e40b0b4dfde3bce4bb, type: 3}
+  <ArchetypeCanvasParent>k__BackingField: {fileID: 643530973}
 --- !u!1 &716182808
 GameObject:
   m_ObjectHideFlags: 0
@@ -1667,6 +1716,7 @@ RectTransform:
   - {fileID: 643530973}
   - {fileID: 1122034993}
   - {fileID: 1164712637}
+  - {fileID: 638108838}
   m_Father: {fileID: 989014757}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1707,7 +1757,6 @@ RectTransform:
   m_Children:
   - {fileID: 933428313}
   - {fileID: 1496016704}
-  - {fileID: 638108838}
   m_Father: {fileID: 1853319443}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2372,6 +2421,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1313876089}
   - component: {fileID: 1313876090}
+  - component: {fileID: 1313876091}
   m_Layer: 5
   m_Name: Blessings
   m_TagString: Untagged
@@ -2429,6 +2479,24 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1313876091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1313876088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adbe4165815c481084d0c4d6e835ce66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <BlessingCanvases>k__BackingField:
+  - {fileID: 1484309818}
+  - {fileID: 1357662669}
+  - {fileID: 1046201841}
+  - {fileID: 1917958825}
+  - {fileID: 1626343446}
 --- !u!114 &1357662669 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7122821440175886598, guid: 921d0f6503d5f7245a8a89e0f5214dbb, type: 3}
@@ -2450,6 +2518,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1381070689}
   - component: {fileID: 1381070690}
+  - component: {fileID: 1381070691}
   m_Layer: 5
   m_Name: Consumables
   m_TagString: Untagged
@@ -2502,6 +2571,20 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1381070691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1381070688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57f82a9e39e69ad47a6a981c8dab8ff2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <ConsumableCanvasPrefab>k__BackingField: {fileID: 8669047308234647625, guid: 48c552141cdde7b478e5cdc855b008a4, type: 3}
+  <ConsumableCanvasParent>k__BackingField: {fileID: 1381070689}
 --- !u!1 &1396296678
 GameObject:
   m_ObjectHideFlags: 0
@@ -3261,25 +3344,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <BattleCanvas>k__BackingField: {fileID: 933428312}
   <BattleLostCanvas>k__BackingField: {fileID: 1496016703}
-  <PrizeCanvas>k__BackingField: {fileID: 638108837}
-  <BlessingCanvases>k__BackingField:
-  - {fileID: 1484309818}
-  - {fileID: 1357662669}
-  - {fileID: 1046201841}
-  - {fileID: 1917958825}
-  - {fileID: 1626343446}
-  <PawnCanvases>k__BackingField:
-  - {fileID: 1860720134}
-  - {fileID: 145314522}
-  - {fileID: 766841898}
-  - {fileID: 1415370636}
-  - {fileID: 1173645949}
-  <ArchetypeCanvasParent>k__BackingField: {fileID: 643530973}
-  <ArchetypeCanvasControllerPrefab>k__BackingField: {fileID: 7122821440175886598, guid: 8818d6ce405e88e40b0b4dfde3bce4bb, type: 3}
   <BossCanvas>k__BackingField: {fileID: 1164712638}
-  <PrizeOptionControllerPrefab>k__BackingField: {fileID: 5081748951939250676, guid: 5622e4cd927dba84280d162b073c0b6f, type: 3}
-  <ConsumableCanvasPrefab>k__BackingField: {fileID: 8669047308234647625, guid: 48c552141cdde7b478e5cdc855b008a4, type: 3}
-  <ConsumableCanvasParent>k__BackingField: {fileID: 1381070689}
+  <PrizeOptionHolderController>k__BackingField: {fileID: 638108840}
+  <BlessingCanvasHolderController>k__BackingField: {fileID: 1313876091}
+  <ProfileCanvasHolderController>k__BackingField: {fileID: 467059027}
+  <ArchetypeCanvasHolderController>k__BackingField: {fileID: 643530975}
+  <ConsumableCanvasHolderController>k__BackingField: {fileID: 1381070691}
 --- !u!1001 &1860720132
 PrefabInstance:
   m_ObjectHideFlags: 0
