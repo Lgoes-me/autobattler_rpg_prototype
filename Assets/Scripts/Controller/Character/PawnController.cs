@@ -229,6 +229,9 @@ public class PawnController : MonoBehaviour
     
     private void OnDestroy()
     {
+        if (Pawn == null)
+            return;
+        
         Pawn.LostLife -= ReceiveAttack;
         Pawn.GainedLife -= ReceiveHeal;
     }
