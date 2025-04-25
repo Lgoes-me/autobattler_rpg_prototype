@@ -76,7 +76,7 @@ public class BattleController : MonoBehaviour
 
     private void RealizaTurno()
     {
-        var initiativeList = Battle.GetInitiativeList();
+        var initiativeList = Battle.Pawns;
 
         foreach (var pawn in initiativeList)
         {

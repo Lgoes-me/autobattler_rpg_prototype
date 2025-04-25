@@ -39,11 +39,9 @@ public class Pawn : BasePawn
     public event PawnDomainChanged LostBuff;
     public event PawnDomainChanged GainedBuff;
 
-    public delegate void PawnDomainBattleStarted();
-    public event PawnDomainBattleStarted BattleStarted;
-    
-    public delegate void PawnDomainBattleFinished();
-    public event PawnDomainBattleFinished BattleFinished;
+    public delegate void PawnDomainBattleStateChanged();
+    public event PawnDomainBattleStateChanged BattleStarted;
+    public event PawnDomainBattleStateChanged BattleFinished;
 
     public PawnStatus Status { get; private set; }
 

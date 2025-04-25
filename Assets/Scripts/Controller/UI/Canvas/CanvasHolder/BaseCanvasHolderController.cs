@@ -3,8 +3,8 @@ using UnityEngine;
 
 public abstract class BaseCanvasHolderController<T,T2> : BaseCanvasController where T : BaseCanvasHolderItemController<T2>
 {
-    [field: SerializeField] protected T Prefab { get; private set; }
-    [field: SerializeField] protected RectTransform Parent { get;  private set; }
+    [field: SerializeField] private T Prefab { get; set; }
+    [field: SerializeField] private RectTransform Parent { get; set; }
     
     protected List<T> Items { get; set; }
 

@@ -78,8 +78,4 @@ public class Battle
 
         return selectedPawns[UnityEngine.Random.Range(0, selectedPawns.Count)];
     }
-    public List<PawnController> GetInitiativeList()
-    {
-        return Pawns.OrderByDescending(p => p.Pawn.Initiative).ToList();
-    }
 }
