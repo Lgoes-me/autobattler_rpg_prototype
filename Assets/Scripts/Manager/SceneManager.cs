@@ -84,11 +84,13 @@ public class SceneManager : MonoBehaviour, IManager
             Destroy(CurrentRoom.gameObject);
         }
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForEndOfFrame();
         
         CurrentRoom = Instantiate(sceneNode.RoomPrefab).Init(sceneNode);
         CurrentRoom.SpawnPlayerAt(spawnDomain.SpawnId);
         GameSaveManager.SetSpawn(spawnDomain);
+        
+        yield return new WaitForEndOfFrame();
         PartyManager.SetPartyToFollow(true);
         
         CurrentRoom.PlayMusic();

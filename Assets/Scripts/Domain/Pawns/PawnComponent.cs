@@ -97,13 +97,11 @@ public class AbilitiesComponent : PawnComponent
 
 public class EnemyComponent : PawnComponent
 {
-    public int Initiative { get; }
     public int VisionRange { get; }
     public int AttackRange { get; }
 
-    public EnemyComponent(int initiative, int visionRange, int attackRange)
+    public EnemyComponent(int visionRange, int attackRange)
     {
-        Initiative = initiative;
         VisionRange = visionRange;
         AttackRange = attackRange;
     }
@@ -214,7 +212,7 @@ public class StatsComponent : PawnComponent
         }
     }
 
-    public void RemoveBuff(Buff buff)
+    private void RemoveBuff(Buff buff)
     {
         Buffs.Remove(buff.Id);
         BuffsChanged?.Invoke();

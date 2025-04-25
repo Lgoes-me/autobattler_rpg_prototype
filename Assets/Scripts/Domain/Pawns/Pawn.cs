@@ -20,7 +20,7 @@ public class Pawn
     public Pawn(string id, List<PawnComponent> components, TeamType team, int level) : this(id, components)
     {
         Team = team;
-        //GetComponent<StatsComponent>().ApplyLevel(level);
+        GetComponent<StatsComponent>().ApplyLevel(level);
     }
 
     public T GetComponent<T>() where T : PawnComponent

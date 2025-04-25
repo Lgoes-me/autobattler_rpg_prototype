@@ -11,7 +11,7 @@ public abstract class PawnDataComponent : IComponentData
 public class WeaponComponentData : PawnDataComponent
 {
     [field: SerializeField] private WeaponType WeaponType { get; set; }
-    [field: SerializeField] public WeaponData Weapon { get; private set; }
+    [field: SerializeField] private WeaponData Weapon { get; set; }
 
     public override PawnComponent ToDomain()
     {
@@ -41,7 +41,7 @@ public class ArchetypesComponentData : PawnDataComponent
 
 public class AbilitiesComponentData : PawnDataComponent
 {
-    [field: SerializeField] public List<AbilityData> Abilities { get; private set; }
+    [field: SerializeField] private List<AbilityData> Abilities { get; set; }
 
     public override PawnComponent ToDomain()
     {
@@ -51,13 +51,12 @@ public class AbilitiesComponentData : PawnDataComponent
 
 public class EnemyComponentData : PawnDataComponent
 {
-    [field: SerializeField] private int Initiative { get; set; }
     [field: SerializeField] private int VisionRange { get; set; }
     [field: SerializeField] private int AttackRange { get; set; }
 
     public override PawnComponent ToDomain()
     {
-        return new EnemyComponent(Initiative, VisionRange, AttackRange);
+        return new EnemyComponent(VisionRange, AttackRange);
     }
 }
 
