@@ -12,6 +12,11 @@ public class Pawn
 
     public Pawn(string id, List<PawnComponent> components)
     {
+        foreach (var component in components)
+        {
+            component.Init(this);
+        }
+        
         Id = id;
         Components = components.ToDictionary(c => c.GetType(), c => c);
         Status = PawnStatus.Main;

@@ -5,6 +5,12 @@ using UnityEngine;
 
 public abstract class PawnComponent
 {
+    protected Pawn Pawn { get; private set; }
+
+    public void Init(Pawn pawn)
+    {
+        Pawn = pawn;
+    }
 }
 
 public class WeaponComponent : PawnComponent
@@ -66,7 +72,8 @@ public class AbilitiesComponent : PawnComponent
     {
         var abilities = new List<AbilityData>();
 
-        //abilities.AddRange(Abilities.Where(a => a.ResourceData.GetCost() <= abilityUser.Pawn.Mana).ToList());
+        abilities.AddRange(
+            Abilities.Where(a => a.ResourceData.GetCost() <= abilityUser.Pawn.GetComponent<StatsComponent>().Mana).ToList());
 
         var highestValue = abilities
             .ToDictionary(a => a, a => a.GetPriority(abilityUser, battle))
@@ -161,9 +168,9 @@ public class StatsComponent : PawnComponent
 
         foreach (var buff in PermanentBuffs)
         {
-            //var buffInstance = Application.Instance.GetManager<ContentManager>().GetBuffFromId(buff).ToDomain(this);
-            //buffInstance.Init(this);
-            //AddBuff(buffInstance);
+            var buffInstance = Application.Instance.GetManager<ContentManager>().GetBuffFromId(buff).ToDomain(Pawn);
+            buffInstance.Init(Pawn);
+            AddBuff(buffInstance);
         }
 
         BattleStarted?.Invoke();

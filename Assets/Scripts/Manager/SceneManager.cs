@@ -90,9 +90,7 @@ public class SceneManager : MonoBehaviour, IManager
         CurrentRoom.SpawnPlayerAt(spawnDomain.SpawnId);
         GameSaveManager.SetSpawn(spawnDomain);
         
-        yield return new WaitForEndOfFrame();
         PartyManager.SetPartyToFollow(true);
-        
         CurrentRoom.PlayMusic();
 
         InterfaceManager.ShowBattleCanvas();
