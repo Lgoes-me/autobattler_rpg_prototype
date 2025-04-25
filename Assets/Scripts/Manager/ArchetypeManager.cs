@@ -21,7 +21,7 @@ public class ArchetypeManager : IManager
         Archetypes.Clear();
 
         var archetypes = party
-            .Select(p => p.Pawn.Archetypes)
+            .Select(p => p.Pawn.GetComponent<ArchetypesComponent>().Archetypes)
             .SelectMany(a => a)
             .GroupBy(a => a)
             .Select(g => new {g.Key, Count = g.Count()})

@@ -24,10 +24,10 @@ public class DamageAreaEffect : AbilityEffect
         {
             var pawn = closePawnController.Pawn;
 
-            if (!pawn.IsAlive)
+            if (!pawn.GetComponent<StatsComponent>().IsAlive)
                 return;
 
-            pawn.ReceiveDamage(Damage);
+            pawn.GetComponent<StatsComponent>().ReceiveDamage(Damage);
         }
     }
 }

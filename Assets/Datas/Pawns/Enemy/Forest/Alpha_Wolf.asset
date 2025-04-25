@@ -9,60 +9,80 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2506f476fd0f4300b3c3cd3c8b600971, type: 3}
+  m_Script: {fileID: 11500000, guid: f8963185295062c4593e2ab6ada9cb54, type: 3}
   m_Name: Alpha_Wolf
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: Wolf
-  <Initiative>k__BackingField: 1
-  <VisionRange>k__BackingField: 5
-  <AttackRange>k__BackingField: 2
-  <EnemyFocusPreference>k__BackingField: 1
-  <AllyFocusPreference>k__BackingField: 1
-  <Character>k__BackingField: {fileID: 1670507725838462388, guid: c4ff799a57bc9754daf8abc2637e895e, type: 3}
-  <Weapon>k__BackingField: {fileID: 0}
-  <BaseStats>k__BackingField:
-    <Health>k__BackingField: 60
-    <Mana>k__BackingField: 30
-    <Strength>k__BackingField: 1
-    <Arcane>k__BackingField: 0
-    <PhysicalDefence>k__BackingField: 0
-    <MagicalDefence>k__BackingField: 0
-  <LevelUpStats>k__BackingField:
-    <MaxLevelStatsStats>k__BackingField:
-      <Health>k__BackingField: 600
-      <Mana>k__BackingField: 150
-      <Strength>k__BackingField: 120
-      <Arcane>k__BackingField: 6
-      <PhysicalDefence>k__BackingField: 20
-      <MagicalDefence>k__BackingField: 5
-    <LevelUpCurve>k__BackingField:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 2
-        outSlope: 2
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  <Abilities>k__BackingField:
-  - {fileID: 11400000, guid: 0e9c749adb5a8cd49aa09c2ff1d6028f, type: 2}
-  - {fileID: 11400000, guid: 2489267ea8703b84ab3b158716c31486, type: 2}
-  <SpecialAbilities>k__BackingField:
-  - {fileID: 11400000, guid: de8fa73a0dd0f4d4e80e5f4e0be03952, type: 2}
-  <Archetypes>k__BackingField: 
-  <CharacterInfos>k__BackingField: []
+  <Id>k__BackingField: Alpha_Wolf
+  <Components>k__BackingField:
+  - rid: 7923229791535759374
+  - rid: 7923229791535759375
+  - rid: 7923229791535759376
+  - rid: 7923229791535759377
+  - rid: 7923229791535759378
+  references:
+    version: 2
+    RefIds:
+    - rid: 7923229791535759374
+      type: {class: EnemyComponentData, ns: , asm: Assembly-CSharp}
+      data:
+        <Initiative>k__BackingField: 1
+        <VisionRange>k__BackingField: 5
+        <AttackRange>k__BackingField: 2
+    - rid: 7923229791535759375
+      type: {class: FocusComponentData, ns: , asm: Assembly-CSharp}
+      data:
+        <RangedAttackError>k__BackingField: 0
+        <EnemyFocusPreference>k__BackingField: 1
+        <AllyFocusPreference>k__BackingField: 1
+    - rid: 7923229791535759376
+      type: {class: CharacterComponentData, ns: , asm: Assembly-CSharp}
+      data:
+        <Character>k__BackingField: {fileID: 1670507725838462388, guid: c4ff799a57bc9754daf8abc2637e895e, type: 3}
+    - rid: 7923229791535759377
+      type: {class: StatsComponentData, ns: , asm: Assembly-CSharp}
+      data:
+        <BaseStats>k__BackingField:
+          <Health>k__BackingField: 60
+          <Mana>k__BackingField: 30
+          <Strength>k__BackingField: 1
+          <Arcane>k__BackingField: 0
+          <PhysicalDefence>k__BackingField: 0
+          <MagicalDefence>k__BackingField: 0
+        <LevelUpStats>k__BackingField:
+          <MaxLevelStatsStats>k__BackingField:
+            <Health>k__BackingField: 600
+            <Mana>k__BackingField: 150
+            <Strength>k__BackingField: 120
+            <Arcane>k__BackingField: 6
+            <PhysicalDefence>k__BackingField: 20
+            <MagicalDefence>k__BackingField: 5
+          <LevelUpCurve>k__BackingField:
+            serializedVersion: 2
+            m_Curve:
+            - serializedVersion: 3
+              time: 0
+              value: 0
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            - serializedVersion: 3
+              time: 1
+              value: 1
+              inSlope: 2
+              outSlope: 2
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+    - rid: 7923229791535759378
+      type: {class: AbilitiesComponentData, ns: , asm: Assembly-CSharp}
+      data:
+        <Abilities>k__BackingField:
+        - {fileID: 11400000, guid: 0e9c749adb5a8cd49aa09c2ff1d6028f, type: 2}
+        - {fileID: 11400000, guid: 2489267ea8703b84ab3b158716c31486, type: 2}

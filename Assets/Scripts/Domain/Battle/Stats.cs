@@ -6,14 +6,14 @@ public class Stats
 {
     public int Health { get; internal set; }
     public int Mana { get; internal set; }
-    
+
     public int Strength { get; private set; }
     public int Arcane { get; private set; }
-    
+
     public int PhysicalDefence { get; private set; }
     public int MagicalDefence { get; private set; }
-    
-    public Stats(int health, int mana,int strength, int arcane, int physicalDefence, int magicalDefence)
+
+    public Stats(int health, int mana, int strength, int arcane, int physicalDefence, int magicalDefence)
     {
         Health = health;
         Mana = mana;
@@ -29,15 +29,15 @@ public class Stats
 
         var reducedDamage = damage.Type switch
         {
-            DamageType.Physical => damageValue - (damageValue * PhysicalDefence * 10/100),
-            DamageType.Magical => damageValue - (damageValue * MagicalDefence * 10/100),
+            DamageType.Physical => damageValue - (damageValue * PhysicalDefence * 10 / 100),
+            DamageType.Magical => damageValue - (damageValue * MagicalDefence * 10 / 100),
             _ => throw new ArgumentOutOfRangeException()
         };
 
         return reducedDamage >= 0 ? reducedDamage : 0;
     }
 
-    public static Stats operator +(Stats a, Stats b)
+    public static Stats operator + (Stats a, Stats b)
     {
         return new Stats(
             a.Health + b.Health,

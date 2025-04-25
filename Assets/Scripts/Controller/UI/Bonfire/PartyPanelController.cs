@@ -13,7 +13,7 @@ public class PartyPanelController : MonoBehaviour, IBonfirePanel
     private BonfireScene BonfireScene { get; set; }
     private List<FriendItemController> PartyItems { get; set; }
 
-    public List<BasePawn> Party => PartyItems.Select(f => f.Pawn).ToList();
+    public List<Pawn> Party => PartyItems.Select(f => f.Pawn).ToList();
 
     public void Init(GameSaveManager gameSaveManager, BonfireScene bonfireScene)
     {

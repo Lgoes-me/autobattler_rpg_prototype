@@ -11,28 +11,26 @@ public class LifeBarCanvasController : BasePawnCanvasController
     public override void Init(Pawn pawn)
     {
         base.Init(pawn);
+        var stats = Pawn.GetComponent<StatsComponent>();
         
-        var fillAmount = Pawn.Health / (float) Pawn.GetPawnStats().Health;
+        var fillAmount = stats.Health / (float) stats.GetPawnStats().Health;
 
         LifeBar.fillAmount = fillAmount;
         BackgroundLifeBar.fillAmount = fillAmount;
 
-        ManaBar.fillAmount = Pawn.HasMana ? Pawn.Mana / (float) Pawn.GetPawnStats().Mana : 0;
+        ManaBar.fillAmount = stats.HasMana ? stats.Mana / (float) stats.GetPawnStats().Mana : 0;
         
-        Pawn.LostLife += UpdateLife;
-        Pawn.GainedLife += UpdateLife;
-        
-        Pawn.LostMana += UpdateMana;
-        Pawn.GainedMana += UpdateMana;
-        
-        Pawn.LostBuff += UpdateBuffs;
-        Pawn.GainedBuff += UpdateBuffs;
+        stats.LostLife += UpdateLife;
+        stats.GainedLife += UpdateLife;
+        stats.ManaChanged += UpdateMana;
+        stats.BuffsChanged += UpdateBuffs;
     }
 
     private void UpdateLife()
     {
-        var pawn = Pawn;
-        var fillAmount = pawn.Health / (float) pawn.GetPawnStats().Health;
+        var stats = Pawn.GetComponent<StatsComponent>();
+        var fillAmount = stats.Health / (float) stats.GetPawnStats().Health;
+        
         LifeBar.fillAmount = fillAmount;
 
         if (!gameObject.activeInHierarchy)
@@ -52,10 +50,12 @@ public class LifeBarCanvasController : BasePawnCanvasController
 
     private void UpdateMana()
     {
-        if (!Pawn.HasMana)
+        var stats = Pawn.GetComponent<StatsComponent>();
+        
+        if (!stats.HasMana)
             return;
 
-        ManaBar.fillAmount = Pawn.Mana / (float) Pawn.GetPawnStats().Mana;
+        ManaBar.fillAmount = stats.Mana / (float) stats.GetPawnStats().Mana;
     }
 
     protected virtual void UpdateBuffs()
@@ -74,13 +74,12 @@ public class LifeBarCanvasController : BasePawnCanvasController
         if(Pawn == null)
             return;
         
-        Pawn.LostLife -= UpdateLife;
-        Pawn.GainedLife -= UpdateLife;
+        var stats = Pawn.GetComponent<StatsComponent>();
         
-        Pawn.LostMana -= UpdateMana;
-        Pawn.GainedMana -= UpdateMana;
+        stats.LostLife -= UpdateLife;
+        stats.GainedLife -= UpdateLife;
         
-        Pawn.LostBuff -= UpdateBuffs;
-        Pawn.GainedBuff -= UpdateBuffs;
+        stats.ManaChanged -= UpdateMana;
+        stats.BuffsChanged -= UpdateBuffs;
     }
 }

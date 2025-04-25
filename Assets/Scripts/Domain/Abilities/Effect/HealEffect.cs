@@ -11,11 +11,13 @@
 
     public override void DoAbilityEffect(PawnController focus)
     {
-        if (!CanRevive && !focus.Pawn.IsAlive)
+        var stats = focus.Pawn.GetComponent<StatsComponent>();
+        
+        if (!CanRevive && !stats.IsAlive)
             return;
         
-        var heal = (int) (HealValue * AbilityUser.Pawn.GetPawnStats().Arcane);
-        focus.Pawn.ReceiveHeal(heal, CanRevive);
+        var heal = (int) (HealValue * AbilityUser.Pawn.GetComponent<StatsComponent>().GetPawnStats().Arcane);
+        stats.ReceiveHeal(heal, CanRevive);
     }
     
 }
@@ -30,13 +32,13 @@ public class StaticHealEffect : AbilityEffect
         CanRevive = canRevive;
     }
 
-    public override void DoAbilityEffect(PawnController pawnController)
+    public override void DoAbilityEffect(PawnController focus)
     {
-        var pawn = pawnController.Pawn;
+        var stats = focus.Pawn.GetComponent<StatsComponent>();
 
-        if (!CanRevive && !pawn.IsAlive)
+        if (!CanRevive && !stats.IsAlive)
             return;
         
-        pawn.ReceiveHeal(HealValue, CanRevive);
+        stats.ReceiveHeal(HealValue, CanRevive);
     }
 }

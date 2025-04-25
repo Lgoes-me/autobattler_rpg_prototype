@@ -14,9 +14,9 @@ public class ContentManager : MonoBehaviour, IManager
     [field: SerializeField] public List<BuffData> AvailableBuffs { get; private set; }
     [field: SerializeField] public List<ConsumableData> AvailableConsumables { get; private set; }
 
-    public BasePawn GetBasePawnFromId(string id)
+    public Pawn GetPawnFromId(string id)
     {
-        return AvailablePawns.First(p => p.Id == id).ToBaseDomain();
+        return AvailablePawns.First(p => p.Id == id).ToDomain();
     }
 
     public Pawn GetPawnDomainFromInfo(PawnInfo pawnInfo)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 
 public class BasePrize<T> where T : BasePrizeItem
 {
@@ -53,7 +54,14 @@ public class PartyMemberPrize : BasePrize<PawnPrizeItem>
                 .Take(numberOfOptions)
                 .Select(p =>
                 {
-                    var pawnInfo = new PawnInfo(p.Id, level, 0, PawnStatus.Transient, p.Weapon, p.Abilities);
+                    var pawnInfo = new PawnInfo(
+                        p.Id,
+                        level, 
+                        0, 
+                        PawnStatus.Transient, 
+                        p.GetComponent<WeaponComponent>().Weapon, 
+                        p.GetComponent<AbilitiesComponent>().Abilities);
+                    
                     return new PawnPrizeItem(pawnInfo);
                 })
                 .ToList();
@@ -93,8 +101,9 @@ public class WeaponPrize : BasePrize<WeaponPrizeItem>
         
         foreach (var pawnInfo in pawns)
         {
-            var pawn = contentManager.GetBasePawnFromId(pawnInfo.Name);
-            var weapon = randomWeapons.First(w => pawn.WeaponType.IsEnumFlagPresent(w.Type) && pawnInfo.Weapon != w.Id);
+            var pawn = contentManager.GetPawnFromId(pawnInfo.Name);
+            var weapon = randomWeapons.First(w => 
+                pawn.GetComponent<WeaponComponent>().WeaponType.IsEnumFlagPresent(w.Type) && pawnInfo.Weapon != w.Id);
 
             options.Add(new WeaponPrizeItem(pawnInfo, weapon));
         }
@@ -125,8 +134,9 @@ public class AbilityPrize : BasePrize<AbilityPrizeItem>
         
         foreach (var pawnInfo in pawns)
         {
-            var pawn = contentManager.GetBasePawnFromId(pawnInfo.Name);
-            var ability = randomAbilities.FirstOrDefault(a =>  pawn.WeaponType.IsEnumFlagPresent(a.WeaponType) && !pawnInfo.Abilities.Contains(a.Id));
+            var pawn = contentManager.GetPawnFromId(pawnInfo.Name);
+            var ability = randomAbilities.FirstOrDefault(a =>  
+                pawn.GetComponent<WeaponComponent>().WeaponType.IsEnumFlagPresent(a.WeaponType) && !pawnInfo.Abilities.Contains(a.Id));
 
             if(ability == null)
                 continue;

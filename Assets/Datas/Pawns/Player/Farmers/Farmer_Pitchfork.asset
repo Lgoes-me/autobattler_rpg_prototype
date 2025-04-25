@@ -9,64 +9,93 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2506f476fd0f4300b3c3cd3c8b600971, type: 3}
+  m_Script: {fileID: 11500000, guid: f8963185295062c4593e2ab6ada9cb54, type: 3}
   m_Name: Farmer_Pitchfork
   m_EditorClassIdentifier: 
   <Id>k__BackingField: Farmer
-  <Initiative>k__BackingField: 0
-  <VisionRange>k__BackingField: 0
-  <AttackRange>k__BackingField: 0
-  <RangedAttackError>k__BackingField: 0
-  <EnemyFocusPreference>k__BackingField: 1
-  <AllyFocusPreference>k__BackingField: 3
-  <Character>k__BackingField: {fileID: 1670507725838462388, guid: 3f978208752ebf24ea51e9649882d326, type: 3}
-  <BaseStats>k__BackingField:
-    <Health>k__BackingField: 100
-    <Mana>k__BackingField: 30
-    <Strength>k__BackingField: 2
-    <Arcane>k__BackingField: 0
-    <PhysicalDefence>k__BackingField: 3
-    <MagicalDefence>k__BackingField: 0
-  <LevelUpStats>k__BackingField:
-    <MaxLevelStatsStats>k__BackingField:
-      <Health>k__BackingField: 600
-      <Mana>k__BackingField: 150
-      <Strength>k__BackingField: 120
-      <Arcane>k__BackingField: 6
-      <PhysicalDefence>k__BackingField: 20
-      <MagicalDefence>k__BackingField: 5
-    <LevelUpCurve>k__BackingField:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 2
-        outSlope: 2
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  <Abilities>k__BackingField:
-  - {fileID: 11400000, guid: 0310e31ee1c2d1a43990c835c370c647, type: 2}
-  <Archetypes>k__BackingField: 05000000
-  <CharacterInfos>k__BackingField:
-  - <Identifier>k__BackingField: default
-    <Portrait>k__BackingField: {fileID: 0}
-    <Audio>k__BackingField:
-      <Type>k__BackingField: 2
-      <Sounds>k__BackingField: []
-  <WeaponType>k__BackingField: 2
-  <Weapon>k__BackingField: {fileID: 11400000, guid: 8a52abe442785a54da608366eb5bbbc1, type: 2}
+  <Components>k__BackingField:
+  - rid: 7923229791535759360
+  - rid: 7923229791535759361
+  - rid: 7923229791535759362
+  - rid: 7923229791535759363
+  - rid: 7923229791535759364
+  - rid: 7923229791535759365
+  - rid: 7923229791535759366
+  references:
+    version: 2
+    RefIds:
+    - rid: 7923229791535759360
+      type: {class: FocusComponentData, ns: , asm: Assembly-CSharp}
+      data:
+        <RangedAttackError>k__BackingField: 0
+        <EnemyFocusPreference>k__BackingField: 1
+        <AllyFocusPreference>k__BackingField: 3
+    - rid: 7923229791535759361
+      type: {class: CharacterComponentData, ns: , asm: Assembly-CSharp}
+      data:
+        <Character>k__BackingField: {fileID: 1670507725838462388, guid: d831922de3e34f248b8969c64d7a1b6d, type: 3}
+    - rid: 7923229791535759362
+      type: {class: StatsComponentData, ns: , asm: Assembly-CSharp}
+      data:
+        <BaseStats>k__BackingField:
+          <Health>k__BackingField: 100
+          <Mana>k__BackingField: 30
+          <Strength>k__BackingField: 2
+          <Arcane>k__BackingField: 0
+          <PhysicalDefence>k__BackingField: 3
+          <MagicalDefence>k__BackingField: 0
+        <LevelUpStats>k__BackingField:
+          <MaxLevelStatsStats>k__BackingField:
+            <Health>k__BackingField: 600
+            <Mana>k__BackingField: 150
+            <Strength>k__BackingField: 120
+            <Arcane>k__BackingField: 6
+            <PhysicalDefence>k__BackingField: 20
+            <MagicalDefence>k__BackingField: 5
+          <LevelUpCurve>k__BackingField:
+            serializedVersion: 2
+            m_Curve:
+            - serializedVersion: 3
+              time: 0
+              value: 0
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            - serializedVersion: 3
+              time: 1
+              value: 1
+              inSlope: 2
+              outSlope: 2
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+    - rid: 7923229791535759363
+      type: {class: AbilitiesComponentData, ns: , asm: Assembly-CSharp}
+      data:
+        <Abilities>k__BackingField:
+        - {fileID: 11400000, guid: 0310e31ee1c2d1a43990c835c370c647, type: 2}
+    - rid: 7923229791535759364
+      type: {class: ArchetypesComponentData, ns: , asm: Assembly-CSharp}
+      data:
+        <Archetypes>k__BackingField: 05000000
+    - rid: 7923229791535759365
+      type: {class: CharacterInfoComponentData, ns: , asm: Assembly-CSharp}
+      data:
+        <CharacterInfos>k__BackingField:
+        - <Identifier>k__BackingField: default
+          <Portrait>k__BackingField: {fileID: 0}
+          <Audio>k__BackingField:
+            <Type>k__BackingField: 2
+            <Sounds>k__BackingField: []
+    - rid: 7923229791535759366
+      type: {class: WeaponComponentData, ns: , asm: Assembly-CSharp}
+      data:
+        <WeaponType>k__BackingField: 2
+        <Weapon>k__BackingField: {fileID: 11400000, guid: 8a52abe442785a54da608366eb5bbbc1, type: 2}

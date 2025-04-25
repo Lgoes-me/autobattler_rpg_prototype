@@ -2,5 +2,5 @@
 
 public interface IDialogue : IComponentData
 {
-    public IEnumerator ReadDialogue(DialogueManager dialogueManager, BasePawn pawn);
+    public IEnumerator ReadDialogue(DialogueManager dialogueManager, Pawn pawn);
 }

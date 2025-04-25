@@ -18,7 +18,7 @@ public class DamageOverTimeBuff : BuffComponent
         if (Time.time >= LastTick + TickRate)
         {
             LastTick = Time.time;
-            focus.ReceiveDamage(Damage);
+            focus.GetComponent<StatsComponent>().ReceiveDamage(Damage);
         }
     }
 }

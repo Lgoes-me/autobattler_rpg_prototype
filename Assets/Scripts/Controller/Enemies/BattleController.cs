@@ -115,7 +115,7 @@ public class BattleController : MonoBehaviour
 
         foreach (var playerPawn in Battle.PlayerPawns)
         {
-            playerPawn.Pawn.EndOfBattleHeal();
+            playerPawn.Pawn.GetComponent<StatsComponent>().EndOfBattleHeal();
         }
 
         yield return new WaitForSeconds(1f);

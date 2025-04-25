@@ -9,14 +9,14 @@
 
     public override void DoAbilityEffect(PawnController focus)
     {
-        var pawn = focus.Pawn;
+        var stats = focus.Pawn.GetComponent<StatsComponent>();
         
-        if (!pawn.IsAlive)
+        if (!stats.IsAlive)
             return;
 
-        if (pawn.AddBuff(Buff))
+        if (stats.AddBuff(Buff))
         {
-            Buff.Init(pawn);
+            Buff.Init(focus.Pawn);
         }
     }    
 }

@@ -8,11 +8,11 @@
 
     public override void SpendResource()
     {
-        var pawn = AbilityUser.Pawn;
+        var stats = AbilityUser.Pawn.GetComponent<StatsComponent>();
 
-        if (!pawn.HasMana)
+        if (!stats.HasMana)
             return;
 
-        pawn.GainMana();
+        stats.GainMana();
     }
 }

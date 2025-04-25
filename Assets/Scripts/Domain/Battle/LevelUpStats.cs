@@ -8,9 +8,9 @@ public class LevelUpStats
 
     public LevelUpStats(Stats maxLevelStats, AnimationCurve levelUpCurve)
     {
-        CurrentStats = null;
         MaxLevelStats = maxLevelStats;
         LevelUpCurve = levelUpCurve;
+        EvaluateLevel(0);
     }
 
     public void EvaluateLevel(int level)

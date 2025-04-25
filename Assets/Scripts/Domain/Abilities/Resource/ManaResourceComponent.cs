@@ -9,17 +9,17 @@
 
     public override bool HasResource()
     {
-        var pawn = AbilityUser.Pawn;
-        return pawn.Mana >= ManaCost;
+        var stats = AbilityUser.Pawn.GetComponent<StatsComponent>();
+        return stats.Mana >= ManaCost;
     }
 
     public override void SpendResource()
     {
-        var pawn = AbilityUser.Pawn;
+        var stats = AbilityUser.Pawn.GetComponent<StatsComponent>();
 
-        if (!pawn.HasMana)
+        if (!stats.HasMana)
             return;
 
-        pawn.SpentMana(ManaCost);
+        stats.SpentMana(ManaCost);
     }
 }

@@ -7,6 +7,6 @@
             return FocusedPawn;
         }
         
-        return FocusedPawn = battle.QueryEnemies(user, user.Pawn.EnemyFocusPreference);
+        return FocusedPawn = battle.QueryEnemies(user, user.Pawn.GetComponent<FocusComponent>().EnemyFocusPreference);
     }
 }

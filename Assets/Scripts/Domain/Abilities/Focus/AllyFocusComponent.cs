@@ -15,6 +15,6 @@ public class AllyFocusComponent : AbilityFocusComponent
             return FocusedPawn;
         }
         
-        return FocusedPawn = battle.QueryAlly(user, user.Pawn.AllyFocusPreference, CanTargetSelf);
+        return FocusedPawn = battle.QueryAlly(user, user.Pawn.GetComponent<FocusComponent>().AllyFocusPreference, CanTargetSelf);
     }
 }

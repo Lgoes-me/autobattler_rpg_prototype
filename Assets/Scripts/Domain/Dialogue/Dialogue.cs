@@ -8,7 +8,7 @@ public class Dialogue : IDialogue
 {
     [field: SerializeReference] [field: SerializeField] private List<IDialogue> Lines { get; set; }
     
-    public IEnumerator ReadDialogue(DialogueManager dialogueManager, BasePawn pawn)
+    public IEnumerator ReadDialogue(DialogueManager dialogueManager, Pawn pawn)
     {
         foreach (var line in Lines)
         {

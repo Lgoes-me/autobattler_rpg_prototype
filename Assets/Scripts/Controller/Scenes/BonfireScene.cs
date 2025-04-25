@@ -50,9 +50,9 @@ public class BonfireScene : MonoBehaviour
         Callback();
     }
 
-    public void Select(BasePawn basePawn)
+    public void Select(Pawn pawn)
     {
-        ProfilePanel.Select(basePawn);
+        ProfilePanel.Select(pawn);
     }
 
     public void Unselect()

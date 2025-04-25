@@ -8,7 +8,7 @@ public class DoGameAction: IDialogue
     
     [field: SerializeReference] [field: SerializeField] public GameAction GameAction { get; private set; }
     
-    public IEnumerator ReadDialogue(DialogueManager dialogueManager, BasePawn pawn)
+    public IEnumerator ReadDialogue(DialogueManager dialogueManager, Pawn pawn)
     {
         GameAction.Invoke();
         yield return null;

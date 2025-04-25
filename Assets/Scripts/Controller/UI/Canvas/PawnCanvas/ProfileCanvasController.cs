@@ -54,7 +54,9 @@ public class ProfileCanvasController : LifeBarCanvasController
         var buffIdentifier = "default";
         var buffPriority = 0;
         
-        foreach (var (_, buff) in Pawn.Buffs)
+        var stats = Pawn.GetComponent<StatsComponent>();
+        
+        foreach (var (_, buff) in stats.Buffs)
         {
             if (buff.Priority > buffPriority)
             {
@@ -76,7 +78,7 @@ public class ProfileCanvasController : LifeBarCanvasController
 
     private void UpdateProfile(string identificador)
     {
-        var info = Pawn.GetCharacterInfo(identificador);
+        var info = Pawn.GetComponent<CharacterInfoComponent>().GetCharacterInfo(identificador);
             
         ProfilePicture.sprite = info.Portrait;
         Application.Instance.GetManager<AudioManager>().PlaySfx(info.Audio);

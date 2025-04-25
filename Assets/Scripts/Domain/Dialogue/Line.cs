@@ -8,7 +8,7 @@ public class Line : IDialogue
     [field: SerializeField] public string Text { get; private set; }
     [field: SerializeField] public string Info { get; private set; }
 
-    public IEnumerator ReadDialogue(DialogueManager dialogueManager, BasePawn pawn)
+    public IEnumerator ReadDialogue(DialogueManager dialogueManager, Pawn pawn)
     {
         yield return dialogueManager.ShowText(this, pawn);
     }

@@ -54,7 +54,7 @@ public class PartyManager : MonoBehaviour, IManager
         ArchetypeManager.CreateArchetypes(Party);
     }
     
-    public void SetSelectedParty(List<BasePawn> newSelectedParty)
+    public void SetSelectedParty(List<Pawn> newSelectedParty)
     {
         GameSaveManager.SetParty(newSelectedParty);
     }

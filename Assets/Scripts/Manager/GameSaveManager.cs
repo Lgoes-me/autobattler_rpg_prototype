@@ -30,13 +30,27 @@ public class GameSaveManager : IManager
     {
         Save = new Save().CreateNewSaveForIntro();
 
-        var farmer = ContentManager.GetBasePawnFromId("Farmer");
-        var hunter = ContentManager.GetBasePawnFromId("Hunter");
+        var farmer = ContentManager.GetPawnFromId("Farmer");
+        var hunter = ContentManager.GetPawnFromId("Hunter");
 
         AddToSelectedParty(
-            new PawnInfo(farmer.Id, 1, 0, PawnStatus.Main, farmer.Weapon, farmer.Abilities));
+            new PawnInfo(
+                farmer.Id,
+                1,
+                0,
+                PawnStatus.Main,
+                farmer.GetComponent<WeaponComponent>().Weapon,
+                farmer.GetComponent<AbilitiesComponent>().Abilities));
+
+
         AddToSelectedParty(
-            new PawnInfo(hunter.Id, 1, 0, PawnStatus.Unlocked, hunter.Weapon, hunter.Abilities));
+            new PawnInfo(
+                hunter.Id,
+                1,
+                0,
+                PawnStatus.Unlocked,
+                hunter.GetComponent<WeaponComponent>().Weapon,
+                hunter.GetComponent<AbilitiesComponent>().Abilities));
     }
 
     public void AddToSelectedParty(PawnInfo pawnInfo)
@@ -56,13 +70,13 @@ public class GameSaveManager : IManager
     {
         return Save.Spawn;
     }
-    
+
     public void SetSpawn(SpawnDomain spawn)
     {
         Save.Spawn = spawn;
         SaveData();
     }
-    
+
     public SpawnDomain GetBonfireSpawn()
     {
         return Save.LastBonfireSpawn;
@@ -91,12 +105,18 @@ public class GameSaveManager : IManager
         return Save.DefeatedEnemies.Contains(battleId);
     }
 
-    public void SetParty(List<BasePawn> newSelectedParty)
+    public void SetParty(List<Pawn> newSelectedParty)
     {
         Save.SelectedParty = newSelectedParty
-            .Select(p => new PawnInfo(p.Id, 1, 0, PawnStatus.Unlocked, p.Weapon, p.Abilities))
+            .Select(p => new PawnInfo(
+                p.Id,
+                1,
+                0,
+                PawnStatus.Unlocked,
+                p.GetComponent<WeaponComponent>().Weapon,
+                p.GetComponent<AbilitiesComponent>().Abilities))
             .ToList();
-        
+
         SaveData();
     }
 
@@ -113,7 +133,7 @@ public class GameSaveManager : IManager
     public void SetBlessings()
     {
         Save.Blessings = BlessingManager.Blessings.Select(j => j.Identifier).ToList();
-        
+
         SaveData();
     }
 
@@ -122,24 +142,24 @@ public class GameSaveManager : IManager
         var pawnInfo = Save.SelectedParty.First(p => p.Name == pawn.Id);
         pawn.SetPawnInfo(pawnInfo);
     }
-    
+
     public void SavePawnInfo(PawnInfo updatedPawnInfo)
     {
         var pawnInfo = Save.SelectedParty.First(p => p.Name == updatedPawnInfo.Name);
         pawnInfo.Update(updatedPawnInfo);
-        
+
         SaveData();
     }
-    
-    public List<BasePawn> GetAvailableParty()
+
+    public List<Pawn> GetAvailableParty()
     {
-        return Save.AvailableParty.Select(id => ContentManager.GetBasePawnFromId(id)).ToList();
+        return Save.AvailableParty.Select(id => ContentManager.GetPawnFromId(id)).ToList();
     }
 
     public void AddToAvailableParty(PawnData pawnData)
     {
         Save.AvailableParty.Add(pawnData.Id);
-        
+
         SaveData();
     }
 
@@ -168,8 +188,8 @@ public class GameSaveManager : IManager
     public void ClearParty()
     {
         Save.SelectedParty = Save.SelectedParty
-        .Where(p => p.Status != PawnStatus.Transient)
-        .ToList();
+            .Where(p => p.Status != PawnStatus.Transient)
+            .ToList();
 
         SaveData();
     }

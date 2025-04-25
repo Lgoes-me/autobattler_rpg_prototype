@@ -33,14 +33,14 @@ public class DialogueManager : MonoBehaviour, IManager
         callback();
     }
 
-    public IEnumerator ShowText(Line line, BasePawn pawn)
+    public IEnumerator ShowText(Line line, Pawn pawn)
     {
         DialogueBoxItemController.Init(line, pawn);
         yield return new WaitUntil(() => DialogueBoxItemController.CanContinue);
         DialogueBoxItemController.Hide();
     }
 
-    public IEnumerator ShowOptions(DialogueOptions dialogueOptions, BasePawn pawn)
+    public IEnumerator ShowOptions(DialogueOptions dialogueOptions, Pawn pawn)
     {
         OptionBoxItemController.Init(dialogueOptions);
         yield return new WaitUntil(() => OptionBoxItemController.SelectedOption != null);

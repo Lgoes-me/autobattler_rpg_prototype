@@ -10,44 +10,48 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f8963185295062c4593e2ab6ada9cb54, type: 3}
-  m_Name: Farmer_Pitchfork
+  m_Name: Wolf
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: Farmer
+  <Id>k__BackingField: Wolf
   <Components>k__BackingField:
-  - rid: 7923229791535759360
-  - rid: 7923229791535759361
-  - rid: 7923229791535759362
-  - rid: 7923229791535759363
-  - rid: 7923229791535759364
-  - rid: 7923229791535759365
-  - rid: 7923229791535759366
+  - rid: 7923229791535759385
+  - rid: 7923229791535759386
+  - rid: 7923229791535759387
+  - rid: 7923229791535759388
+  - rid: 7923229791535759389
   references:
     version: 2
     RefIds:
-    - rid: 7923229791535759360
+    - rid: 7923229791535759385
+      type: {class: EnemyComponentData, ns: , asm: Assembly-CSharp}
+      data:
+        <Initiative>k__BackingField: 1
+        <VisionRange>k__BackingField: 5
+        <AttackRange>k__BackingField: 2
+    - rid: 7923229791535759386
       type: {class: FocusComponentData, ns: , asm: Assembly-CSharp}
       data:
         <RangedAttackError>k__BackingField: 0
         <EnemyFocusPreference>k__BackingField: 1
-        <AllyFocusPreference>k__BackingField: 3
-    - rid: 7923229791535759361
+        <AllyFocusPreference>k__BackingField: 1
+    - rid: 7923229791535759387
       type: {class: CharacterComponentData, ns: , asm: Assembly-CSharp}
       data:
-        <Character>k__BackingField: {fileID: 1670507725838462388, guid: d831922de3e34f248b8969c64d7a1b6d, type: 3}
-    - rid: 7923229791535759362
+        <Character>k__BackingField: {fileID: 1670507725838462388, guid: 57eecfab5a352bf459516b3016a7e765, type: 3}
+    - rid: 7923229791535759388
       type: {class: StatsComponentData, ns: , asm: Assembly-CSharp}
       data:
         <BaseStats>k__BackingField:
-          <Health>k__BackingField: 100
-          <Mana>k__BackingField: 30
-          <Strength>k__BackingField: 2
+          <Health>k__BackingField: 60
+          <Mana>k__BackingField: 0
+          <Strength>k__BackingField: 1
           <Arcane>k__BackingField: 0
-          <PhysicalDefence>k__BackingField: 3
+          <PhysicalDefence>k__BackingField: 0
           <MagicalDefence>k__BackingField: 0
         <LevelUpStats>k__BackingField:
           <MaxLevelStatsStats>k__BackingField:
             <Health>k__BackingField: 600
-            <Mana>k__BackingField: 150
+            <Mana>k__BackingField: 0
             <Strength>k__BackingField: 120
             <Arcane>k__BackingField: 6
             <PhysicalDefence>k__BackingField: 20
@@ -76,26 +80,9 @@ MonoBehaviour:
             m_PreInfinity: 2
             m_PostInfinity: 2
             m_RotationOrder: 4
-    - rid: 7923229791535759363
+    - rid: 7923229791535759389
       type: {class: AbilitiesComponentData, ns: , asm: Assembly-CSharp}
       data:
         <Abilities>k__BackingField:
-        - {fileID: 11400000, guid: 0310e31ee1c2d1a43990c835c370c647, type: 2}
-    - rid: 7923229791535759364
-      type: {class: ArchetypesComponentData, ns: , asm: Assembly-CSharp}
-      data:
-        <Archetypes>k__BackingField: 05000000
-    - rid: 7923229791535759365
-      type: {class: CharacterInfoComponentData, ns: , asm: Assembly-CSharp}
-      data:
-        <CharacterInfos>k__BackingField:
-        - <Identifier>k__BackingField: default
-          <Portrait>k__BackingField: {fileID: 0}
-          <Audio>k__BackingField:
-            <Type>k__BackingField: 2
-            <Sounds>k__BackingField: []
-    - rid: 7923229791535759366
-      type: {class: WeaponComponentData, ns: , asm: Assembly-CSharp}
-      data:
-        <WeaponType>k__BackingField: 2
-        <Weapon>k__BackingField: {fileID: 11400000, guid: 8a52abe442785a54da608366eb5bbbc1, type: 2}
+        - {fileID: 11400000, guid: 0e9c749adb5a8cd49aa09c2ff1d6028f, type: 2}
+        - {fileID: 11400000, guid: 2489267ea8703b84ab3b158716c31486, type: 2}

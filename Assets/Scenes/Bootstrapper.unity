@@ -1331,9 +1331,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <AvailablePawns>k__BackingField:
-  - {fileID: 11400000, guid: e4050726caa765844a928b90fe03e5d0, type: 2}
-  - {fileID: 11400000, guid: c6302786fe4d8814484706224f21b480, type: 2}
-  - {fileID: 11400000, guid: ec13262d9281d494ea79a340ff6b968d, type: 2}
+  - {fileID: 11400000, guid: 03c6cd9aa7bdabe4d846ae86d92a1213, type: 2}
+  - {fileID: 11400000, guid: 7ceaba2773ad11243af0685fbfdad469, type: 2}
   <AvailableWeapons>k__BackingField:
   - {fileID: 11400000, guid: cd31aca81c366d643bb7c5e6c911a4ec, type: 2}
   - {fileID: 11400000, guid: c100948fa67640f428b6c11fce040be7, type: 2}

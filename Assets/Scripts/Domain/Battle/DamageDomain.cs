@@ -17,8 +17,8 @@ public class DamageDomain
     {
         var value = Type switch
         {
-            DamageType.Physical => (int) Multiplier * Attacker.GetPawnStats().Strength,
-            DamageType.Magical => (int) Multiplier * Attacker.GetPawnStats().Arcane,
+            DamageType.Physical => (int) Multiplier * Attacker.GetComponent<StatsComponent>().GetPawnStats().Strength,
+            DamageType.Magical => (int) Multiplier * Attacker.GetComponent<StatsComponent>().GetPawnStats().Arcane,
             _ => throw new ArgumentOutOfRangeException()
         };
 

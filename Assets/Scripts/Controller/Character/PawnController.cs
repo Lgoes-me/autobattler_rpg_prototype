@@ -20,22 +20,26 @@ public class PawnController : MonoBehaviour
     public void Init(Pawn pawn)
     {
         Pawn = pawn;
-        CharacterController = Instantiate(pawn.Character, transform);
-        CharacterController.SetWeapon(pawn.Weapon);
+        CharacterController = Instantiate(pawn.GetComponent<CharacterComponent>().Character, transform);
+
+        if (Pawn.HasComponent<WeaponComponent>())
+        {
+            CharacterController.SetWeapon(pawn.GetComponent<WeaponComponent>().Weapon);
+        }
         
         if (CanvasController != null)
         {
             CanvasController.Init(Pawn);
         }
 
-        Pawn.LostLife += ReceiveAttack;
-        Pawn.GainedLife += ReceiveHeal;
+        Pawn.GetComponent<StatsComponent>().LostLife += ReceiveAttack;
+        Pawn.GetComponent<StatsComponent>().GainedLife += ReceiveHeal;
     }
 
     public void UpdatePawn(PawnInfo pawnInfo)
     {
         Pawn.SetPawnInfo(pawnInfo);
-        CharacterController.SetWeapon(Pawn.Weapon);
+        CharacterController.SetWeapon(Pawn.GetComponent<WeaponComponent>().Weapon);
     }
 
     public void RemoveCanvasController()
@@ -46,7 +50,7 @@ public class PawnController : MonoBehaviour
 
     public void StartBattle(Battle battle)
     {
-        Pawn.StartBattle();
+        Pawn.GetComponent<StatsComponent>().StartBattle();
 
         enabled = true;
         Ability = null;
@@ -60,7 +64,7 @@ public class PawnController : MonoBehaviour
         if (PawnState is not IdleState)
             return;
 
-        Ability = Pawn.GetCurrentAttackIntent(this, Battle);
+        Ability = Pawn.GetComponent<AbilitiesComponent>().GetCurrentAttackIntent(this, Battle);
         Ability.ChooseFocus(this, Battle);
     }
 
@@ -109,9 +113,9 @@ public class PawnController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Pawn != null && Pawn.IsAlive)
+        if (Pawn != null && Pawn.GetComponent<StatsComponent>().IsAlive)
         {
-            Pawn.TickAllBuffs();
+            Pawn.GetComponent<StatsComponent>().TickAllBuffs();
         }
         
         if (Ability == null || !PawnState.CanWalk)
@@ -144,7 +148,7 @@ public class PawnController : MonoBehaviour
 
     public void FinishBattle()
     {
-        Pawn.FinishBattle();
+        Pawn.GetComponent<StatsComponent>().FinishBattle();
 
         CharacterController.SetAnimationState(new IdleState());
 
@@ -172,7 +176,12 @@ public class PawnController : MonoBehaviour
                 CharacterController.SpawnPoint.position, 
                 Quaternion.identity, 
                 roomScene.transform)
-            .Init(this, effects, focusedPawn.transform.position, trajectory, Pawn.RangedAttackError);
+            .Init(
+                this, 
+                effects, 
+                focusedPawn.transform.position, 
+                trajectory, 
+                Pawn.GetComponent<FocusComponent>().RangedAttackError);
 
         if (overrideSprite)
         {
@@ -184,7 +193,7 @@ public class PawnController : MonoBehaviour
     {
         CharacterController.DoHitStop();
 
-        if (Pawn.IsAlive)
+        if (Pawn.GetComponent<StatsComponent>().IsAlive)
             return;
 
         CharacterController.SetAnimationState(new DeadState());
@@ -197,7 +206,7 @@ public class PawnController : MonoBehaviour
     {
         CharacterController.DoNiceHitStop();
 
-        if (!Pawn.IsAlive || PawnState is not DeadState)
+        if (!Pawn.GetComponent<StatsComponent>().IsAlive || PawnState is not DeadState)
             return;
         
         CharacterController.SetAnimationState(new IdleState());
@@ -232,7 +241,7 @@ public class PawnController : MonoBehaviour
         if (Pawn == null)
             return;
         
-        Pawn.LostLife -= ReceiveAttack;
-        Pawn.GainedLife -= ReceiveHeal;
+        Pawn.GetComponent<StatsComponent>().LostLife -= ReceiveAttack;
+        Pawn.GetComponent<StatsComponent>().GainedLife -= ReceiveHeal;
     }
 }

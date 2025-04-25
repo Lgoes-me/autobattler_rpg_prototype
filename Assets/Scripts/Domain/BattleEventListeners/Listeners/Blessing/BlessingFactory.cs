@@ -10,7 +10,7 @@ public class BlessingFactory
             {
                 new OnBattleStartedListener()
                 {
-                    (battle, rarity) => battle.PlayerPawns.ForEach(p => p.Pawn.GainMana())
+                    (battle, rarity) => battle.PlayerPawns.ForEach(p => p.Pawn.GetComponent<StatsComponent>().GainMana())
                 }
             },
             
@@ -21,7 +21,7 @@ public class BlessingFactory
                     (battle, abilityUser, ability) => IsPlayerTeam(abilityUser),
                     (battle, abilityUser, ability, rarity) =>
                     {
-                        abilityUser.Pawn.ReceiveHeal(5, false);
+                        abilityUser.Pawn.GetComponent<StatsComponent>().ReceiveHeal(5, false);
                     }
                 }
             },
@@ -35,10 +35,10 @@ public class BlessingFactory
                     {
                         foreach (var enemyPawn in battle.EnemyPawns)
                         {
-                            if (!enemyPawn.Pawn.IsAlive)
+                            if (!enemyPawn.Pawn.GetComponent<StatsComponent>().IsAlive)
                                 continue;
                             
-                            enemyPawn.Pawn.ReceiveDamage(5);
+                            enemyPawn.Pawn.GetComponent<StatsComponent>().ReceiveDamage(5);
                         }
                     }
                 }
