@@ -6,7 +6,7 @@ using UnityEngine;
 public class Application : MonoBehaviour
 {
     public static Application Instance { get; private set; }
-    private Dictionary<Type,IManager> Managers { get; set; }
+    private Dictionary<Type, IManager> Managers { get; set; }
     
     [field: SerializeField] public CinemachineBrain MainCamera { get; private set; }
     

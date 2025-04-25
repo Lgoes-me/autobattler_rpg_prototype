@@ -93,7 +93,6 @@ public class Pawn : BasePawn
     public void StartBattle()
     {
         Mana = 0;
-        
         Buffs = new Dictionary<string, Buff>();
         
         foreach (var buff in PermanentBuffs)
@@ -110,7 +109,6 @@ public class Pawn : BasePawn
     public void FinishBattle()
     {
         RemoveAllBuffs();
-        
         BattleFinished?.Invoke();
     }
     
