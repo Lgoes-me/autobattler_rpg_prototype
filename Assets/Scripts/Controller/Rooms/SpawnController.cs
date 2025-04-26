@@ -3,8 +3,9 @@ using UnityEngine;
 
 public class SpawnController : MonoBehaviour
 {
-    [field: SerializeField] public Transform SpawnPoint { get; private set; }
     [field: SerializeField] public string Id { get; private set; }
+    
+    [field: SerializeField] protected Transform SpawnPoint { get; private set; }
     [field: SerializeField] private CameraAreaController CameraArea { get; set; }
 
     public virtual void SpawnPlayer()

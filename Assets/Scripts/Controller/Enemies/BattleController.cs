@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BattleController : MonoBehaviour
 {
-    public Battle Battle { get; private set; }
+    private Battle Battle { get; set; }
     private GameAction EndBattleAction { get; set; }
 
     public void ActivateBattleScene(string battleId, List<EnemyData> enemies, GameAction endBattleAction)
@@ -59,7 +59,7 @@ public class BattleController : MonoBehaviour
 
     private IEnumerator BattleCoroutine()
     {
-        RealizaTurno();
+        RealizeTurn();
         
         yield return new WaitUntil(() => !Battle.HasEnemies || !Battle.HasPlayers);
 
@@ -74,7 +74,7 @@ public class BattleController : MonoBehaviour
         }
     }
 
-    private void RealizaTurno()
+    private void RealizeTurn()
     {
         var initiativeList = Battle.Pawns;
 

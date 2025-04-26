@@ -46,6 +46,7 @@ public class EnemyAreaController : MonoBehaviour
         Id = Guid.NewGuid().ToString();
     }
 }
+
 [Serializable]
 public class EnemyData
 {

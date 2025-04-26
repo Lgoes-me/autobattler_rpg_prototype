@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BonfireController : MonoBehaviour, IInteractableListener
 {
-    [field: SerializeField] public SpawnController Spawn { get; set; }
+    [field: SerializeField] public SpawnController Spawn { get; private set; }
     private bool Selected { get; set; }
 
     [field: SerializeField] private InteractableController Controller { get; set; }

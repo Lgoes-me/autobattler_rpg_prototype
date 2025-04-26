@@ -5,8 +5,8 @@ public class InteractableController : MonoBehaviour , IPauseListener
     [field: SerializeField] private InteractableCanvasController InteractableCanvas { get; set; }
     
     public IInteractableListener Interactable { get; set; }
-    public bool Enabled { get; set; }
     
+    private bool Enabled { get; set; }
     private bool Preselected { get; set; }
 
     private void Awake()

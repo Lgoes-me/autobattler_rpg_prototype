@@ -19,6 +19,20 @@ public static class MonoBehaviourExtensions
         }
     }
     
+    public static Task WaitForSeconds(this MonoBehaviour obj, float time)
+    {
+        var task = new TaskCompletionSource<bool>();
+        obj.StartCoroutine(WaitEndOfFrameCoroutine());
+
+        return task.Task;
+        
+        IEnumerator WaitEndOfFrameCoroutine()
+        {
+            yield return new WaitForSeconds(time);
+            task.SetResult(true);
+        }
+    }
+
     public static Task WaitToArriveAtDestination(this MonoBehaviour obj, NavMeshAgent agent, Vector3 destination)
     {
         var task = new TaskCompletionSource<bool>();

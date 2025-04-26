@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.AI.Navigation;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class RoomController : MonoBehaviour
 {
@@ -52,13 +51,10 @@ public class RoomController : MonoBehaviour
         if (door != null)
         {
             door.SpawnPlayer();
-            return;
         }
-
-        if (Bonfire != null && Bonfire.Spawn.Id == spawn)
+        else if (Bonfire != null && Bonfire.Spawn.Id == spawn)
         {
             Bonfire.Spawn.SpawnPlayer();
-            return;
         }
     }
 }

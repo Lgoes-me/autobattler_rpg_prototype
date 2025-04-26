@@ -7,8 +7,7 @@ public class FriendsPanelController : MonoBehaviour, IBonfirePanel
 {
     [field: SerializeField] private FriendItemController FriendItemPrefab { get; set; }
     [field: SerializeField] private RectTransform Content { get; set; }
-
-    private PartyManager PartyManager { get; set; }
+    
     private BonfireScene BonfireScene { get; set; }
     private List<FriendItemController> PartyItems { get; set; }
     

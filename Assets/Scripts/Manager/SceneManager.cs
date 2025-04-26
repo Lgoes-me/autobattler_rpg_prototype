@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -72,19 +71,14 @@ public class SceneManager : MonoBehaviour, IManager
         return tcs.Task;
     }
 
-    public void EnterRoom(SceneNode sceneNode, SpawnDomain spawnDomain)
-    {
-        StartCoroutine(EnterRoomCoroutine(sceneNode, spawnDomain));
-    }
-
-    private IEnumerator EnterRoomCoroutine(SceneNode sceneNode, SpawnDomain spawnDomain)
+    public async void EnterRoom(SceneNode sceneNode, SpawnDomain spawnDomain)
     {
         if (CurrentRoom != null)
         {
             Destroy(CurrentRoom.gameObject);
         }
 
-        yield return new WaitForEndOfFrame();
+        await this.WaitEndOfFrame();
         
         CurrentRoom = Instantiate(sceneNode.RoomPrefab).Init(sceneNode);
         CurrentRoom.SpawnPlayerAt(spawnDomain.SpawnId);
@@ -95,6 +89,7 @@ public class SceneManager : MonoBehaviour, IManager
 
         InterfaceManager.ShowBattleCanvas();
     }
+    
     public void OpenCutscene(string sceneName)
     {
         PartyManager.UnSpawnParty();
