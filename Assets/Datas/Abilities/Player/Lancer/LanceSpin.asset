@@ -19,11 +19,11 @@ MonoBehaviour:
   <Range>k__BackingField: 1
   <AbilityBehaviours>k__BackingField:
   - <Effects>k__BackingField:
-    - rid: 7923229399544496134
+    - rid: 7923229833739894784
     <FocusData>k__BackingField:
       rid: 7923229399544496132
     <ActionData>k__BackingField:
-      rid: 7923229399544496133
+      rid: 7923229833739894785
   <ResourceData>k__BackingField:
     rid: 7923229465538461696
   <Priorities>k__BackingField: []
@@ -33,17 +33,17 @@ MonoBehaviour:
     - rid: 7923229399544496132
       type: {class: EnemyFocusComponentData, ns: , asm: Assembly-CSharp}
       data: 
-    - rid: 7923229399544496133
-      type: {class: InstantActionData, ns: , asm: Assembly-CSharp}
-      data: 
-    - rid: 7923229399544496134
-      type: {class: DamageAreaData, ns: , asm: Assembly-CSharp}
-      data:
-        <Damage>k__BackingField:
-          <Multiplier>k__BackingField: 1
-          <Type>k__BackingField: 1
-        <Range>k__BackingField: 2
     - rid: 7923229465538461696
       type: {class: ManaResourceData, ns: , asm: Assembly-CSharp}
       data:
         <ManaCost>k__BackingField: 20
+    - rid: 7923229833739894784
+      type: {class: DamageEffectData, ns: , asm: Assembly-CSharp}
+      data:
+        <Damage>k__BackingField:
+          <Multiplier>k__BackingField: 1
+          <Type>k__BackingField: 1
+    - rid: 7923229833739894785
+      type: {class: AreaOfEffectActionData, ns: , asm: Assembly-CSharp}
+      data:
+        <Range>k__BackingField: 1.5
