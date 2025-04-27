@@ -7,5 +7,10 @@ public class NoResourceData : ResourceData
         return new NoResourceComponent(abilityUser);
     }
 
+    public override bool HasResource(PawnController abilityUser)
+    {
+        return true;
+    }
+
     public override int GetCost() => 0;
 }

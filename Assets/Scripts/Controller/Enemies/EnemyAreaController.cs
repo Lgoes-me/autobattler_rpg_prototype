@@ -75,6 +75,6 @@ public class EnemyInfo
 
     public Pawn ToDomain(TeamType teamType)
     {
-        return PawnData.ToDomain(teamType, Level);
+        return PawnData.ToDomain(PawnStatus.Enemy, teamType, Level);
     }
 }

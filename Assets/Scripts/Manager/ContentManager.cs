@@ -16,12 +16,16 @@ public class ContentManager : MonoBehaviour, IManager
 
     public Pawn GetPawnFromId(string id)
     {
-        return AvailablePawns.First(p => p.Id == id).ToDomain();
+        return AvailablePawns
+            .First(p => p.Id == id)
+            .ToDomain();
     }
 
     public Pawn GetPawnDomainFromInfo(PawnInfo pawnInfo)
     {
-        return AvailablePawns.First(p => p.Id == pawnInfo.Name).ToDomain(TeamType.Player, 1);
+        return AvailablePawns
+            .First(p => p.Id == pawnInfo.Name)
+            .ToDomain(pawnInfo.Status, TeamType.Player, 1);
     }
 
     public WeaponData GetWeaponFromId(string id)

@@ -7,12 +7,6 @@
         ManaCost = manaCost;
     }
 
-    public override bool HasResource()
-    {
-        var stats = AbilityUser.Pawn.GetComponent<StatsComponent>();
-        return stats.Mana >= ManaCost;
-    }
-
     public override void SpendResource()
     {
         var stats = AbilityUser.Pawn.GetComponent<StatsComponent>();

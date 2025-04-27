@@ -92,5 +92,6 @@ public enum PawnStatus
     Main,
     Locked,
     Unlocked,
-    Transient
+    Transient,
+    Enemy
 }

@@ -19,12 +19,14 @@ public class Pawn
         
         Id = id;
         Components = components.ToDictionary(c => c.GetType(), c => c);
-        Status = PawnStatus.Main;
     }
 
-    public Pawn(string id, List<PawnComponent> components, TeamType team, int level) : this(id, components)
+    public Pawn(string id, List<PawnComponent> components, PawnStatus status, TeamType team, int level) 
+        : this(id, components)
     {
+        Status = status;
         Team = team;
+        
         GetComponent<StatsComponent>().ApplyLevel(level);
     }
 

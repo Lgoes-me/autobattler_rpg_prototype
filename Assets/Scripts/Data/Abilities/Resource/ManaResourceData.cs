@@ -10,5 +10,10 @@ public class ManaResourceData : ResourceData
         return new ManaResourceComponent(abilityUser, ManaCost);
     }
 
+    public override bool HasResource(PawnController abilityUser)
+    {
+        var stats = abilityUser.Pawn.GetComponent<StatsComponent>();
+        return stats.Mana >= ManaCost;
+    }
     public override int GetCost() => ManaCost;
 }

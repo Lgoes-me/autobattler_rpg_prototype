@@ -125,7 +125,7 @@ public class OpenBuffPrize : GameAction
 }
 
 [Serializable]
-public class OpenConsumablefPrize : GameAction
+public class OpenConsumablePrize : GameAction
 {
     public override void Invoke()
     {

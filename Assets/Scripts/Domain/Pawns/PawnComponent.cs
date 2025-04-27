@@ -72,8 +72,7 @@ public class AbilitiesComponent : PawnComponent
     {
         var abilities = new List<AbilityData>();
 
-        abilities.AddRange(
-            Abilities.Where(a => a.ResourceData.GetCost() <= abilityUser.Pawn.GetComponent<StatsComponent>().Mana).ToList());
+        abilities.AddRange(Abilities.Where(a => a.ResourceData.HasResource(abilityUser)).ToList());
 
         var highestValue = abilities
             .ToDictionary(a => a, a => a.GetPriority(abilityUser, battle))

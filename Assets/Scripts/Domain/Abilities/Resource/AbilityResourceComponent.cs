@@ -7,7 +7,5 @@
         AbilityUser = abilityUser;
     }
 
-    public abstract bool HasResource();
-
     public abstract void SpendResource();
 }
