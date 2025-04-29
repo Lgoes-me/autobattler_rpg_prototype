@@ -33,9 +33,9 @@ public class BlessingPrizeItem : BasePrizeItem
 public class WeaponPrizeItem : BasePrizeItem
 {
     public PawnInfo PawnInfo { get; }
-    private WeaponData Weapon { get; }
+    private Weapon Weapon { get; }
 
-    public WeaponPrizeItem(PawnInfo pawnInfo, WeaponData weapon)
+    public WeaponPrizeItem(PawnInfo pawnInfo, Weapon weapon)
     {
         Name = $"{weapon.Id} to {pawnInfo.Name}";
         PawnInfo = pawnInfo;

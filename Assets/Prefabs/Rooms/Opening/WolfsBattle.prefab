@@ -782,10 +782,6 @@ PrefabInstance:
       value: Assembly-CSharp OpenBuffPrize
       objectReference: {fileID: 0}
     - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
-      propertyPath: managedReferences[7923229703966556160]
-      value: Assembly-CSharp OpenConsumablefPrize
-      objectReference: {fileID: 0}
-    - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
       propertyPath: managedReferences[7923229833739894786]
       value: Assembly-CSharp OpenWeaponPrize
       objectReference: {fileID: 0}

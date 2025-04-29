@@ -44,6 +44,18 @@ public class Pawn
     {
         return Components.ContainsKey(typeof(T));
     }
+    
+    public bool TryGetComponent<T>(out T result) where T : PawnComponent
+    {
+        if (Components.TryGetValue(typeof(T), out var component))
+        {
+            result = (T) component;
+            return true;
+        }
+
+        result = null;
+        return false;
+    }
 
     public void SetPawnInfo(PawnInfo pawnInfo)
     {

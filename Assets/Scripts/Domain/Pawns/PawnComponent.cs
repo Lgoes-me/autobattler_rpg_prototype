@@ -15,10 +15,10 @@ public abstract class PawnComponent
 
 public class WeaponComponent : PawnComponent
 {
-    public WeaponData Weapon { get; protected set; }
+    public Weapon Weapon { get; protected set; }
     public WeaponType WeaponType { get; private set; }
 
-    public WeaponComponent(WeaponData weapon, WeaponType weaponType)
+    public WeaponComponent(Weapon weapon, WeaponType weaponType)
     {
         Weapon = weapon;
         WeaponType = weaponType;
@@ -26,7 +26,7 @@ public class WeaponComponent : PawnComponent
 
     public void SetPawnInfo(PawnInfo pawnInfo)
     {
-        Weapon = Application.Instance.GetManager<ContentManager>().GetWeaponFromId(pawnInfo.Weapon);
+        Weapon = Application.Instance.GetManager<ContentManager>().GetWeaponFromId(pawnInfo.Weapon).ToDomain();
     }
 }
 
@@ -268,6 +268,11 @@ public class StatsComponent : PawnComponent
     {
         var stats = Stats + LevelUpStats.CurrentStats;
 
+        if(Pawn.TryGetComponent<WeaponComponent>(out var component))
+        {
+            stats += component.Weapon.Stats;
+        }
+        
         foreach (var (_, buff) in Buffs)
         {
             foreach (var buffComponent in buff)

@@ -8,7 +8,7 @@ public class WeaponController : MonoBehaviour
     
     public Sprite Projectile { get; private set; }
     
-    public void SetWeapon(WeaponData weapon)
+    public void SetWeapon(Weapon weapon)
     {
         for (var i = 0; i < SpriteRenderers.Count; i++)
         {

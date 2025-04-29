@@ -5,26 +5,20 @@ using UnityEngine;
 [CreateAssetMenu]
 public class WeaponData : ScriptableObject
 {
-    [field: SerializeField]
-    public string Id { get; private set; }
-    
-    [field: SerializeField]
-    public int Level { get; private set; }
-    
-    [field: SerializeField]
-    public WeaponType Type { get; private set; }
-    
-    [field: SerializeField]
-    public List<Sprite> Sprites { get; private set; }
-    
-    [field: SerializeField]
-    public Color StartColor { get; private set; }
-    
-    [field: SerializeField]
-    public Color EndColor { get; private set; }
-    
-    [field: SerializeField]
-    public Sprite Projectile { get; private set; }
+    [field: SerializeField] public string Id { get; private set; }
+    [field: SerializeField] public int Level { get; private set; }
+    [field: SerializeField] public WeaponType Type { get; private set; }
+    [field: SerializeField] private List<Sprite> Sprites { get; set; }
+    [field: SerializeField] private Color StartColor { get; set; }
+    [field: SerializeField] private Color EndColor { get; set; }
+    [field: SerializeField] private Sprite Projectile { get; set; }
+    [field: SerializeField] private StatsData Stats { get; set; }
+    [field: SerializeField] [field: SerializeReference] private AbilityBehaviourData OnHitEffect { get; set; }
+
+    public Weapon ToDomain()
+    {
+        return new Weapon(Id, Level, Type, Sprites, StartColor, EndColor, Projectile, Stats.ToDomain(), OnHitEffect);
+    }
 }
 
 [Flags]

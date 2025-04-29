@@ -15,7 +15,7 @@ public class WeaponComponentData : PawnDataComponent
 
     public override PawnComponent ToDomain()
     {
-        return new WeaponComponent(Weapon, WeaponType);
+        return new WeaponComponent(Weapon.ToDomain(), WeaponType);
     }
 }
 

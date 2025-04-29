@@ -26,7 +26,7 @@ public class PawnInfo
         int level, 
         int missingHealth,
         PawnStatus status, 
-        WeaponData weapon, 
+        Weapon weapon, 
         List<AbilityData> abilities)
     {
         Name = name;
@@ -59,7 +59,7 @@ public class PawnInfo
         Level++;
     }
 
-    public void SetWeapon(WeaponData weapon)
+    public void SetWeapon(Weapon weapon)
     {
         Weapon = weapon.Id;
     }

@@ -103,7 +103,8 @@ public class WeaponPrize : BasePrize<WeaponPrizeItem>
         {
             var pawn = contentManager.GetPawnFromId(pawnInfo.Name);
             var weapon = randomWeapons.First(w => 
-                pawn.GetComponent<WeaponComponent>().WeaponType.IsEnumFlagPresent(w.Type) && pawnInfo.Weapon != w.Id);
+                pawn.GetComponent<WeaponComponent>().WeaponType.IsEnumFlagPresent(w.Type) && pawnInfo.Weapon != w.Id)
+                .ToDomain();
 
             options.Add(new WeaponPrizeItem(pawnInfo, weapon));
         }

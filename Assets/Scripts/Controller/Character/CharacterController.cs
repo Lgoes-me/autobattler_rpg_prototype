@@ -29,7 +29,7 @@ public class CharacterController : MonoBehaviour
         Animator.SetFloat(Speed, speed);
     }
 
-    public void SetWeapon(WeaponData weapon)
+    public void SetWeapon(Weapon weapon)
     {
         if (weapon == null)
             return;

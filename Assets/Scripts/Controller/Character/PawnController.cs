@@ -24,7 +24,8 @@ public class PawnController : MonoBehaviour
 
         if (Pawn.HasComponent<WeaponComponent>())
         {
-            CharacterController.SetWeapon(pawn.GetComponent<WeaponComponent>().Weapon);
+            var weapon = pawn.GetComponent<WeaponComponent>().Weapon;
+            CharacterController.SetWeapon(weapon);
         }
         
         if (CanvasController != null)
@@ -81,6 +82,13 @@ public class PawnController : MonoBehaviour
         {
             Application.Instance.GetManager<BattleEventsManager>().DoAttackEvent(Battle, this, ability);
         }
+
+        //TODO
+        /*if (Pawn.TryGetComponent<WeaponComponent>(out var component))
+        {
+            var effect = component.Weapon.OnHitEffect.ToDomain(this);
+            effect.DoAbilityEffect(ability.FocusedPawn);
+        }*/
 
         Application.Instance.GetManager<AudioManager>().PlaySound(SfxType.Slash);
 
