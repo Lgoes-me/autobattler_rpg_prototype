@@ -13,9 +13,38 @@ MonoBehaviour:
   m_Name: Pitchfork
   m_EditorClassIdentifier: 
   <Id>k__BackingField: Pitchfork
+  <Level>k__BackingField: 0
   <Type>k__BackingField: 2
   <Sprites>k__BackingField:
   - {fileID: -685310717, guid: 08ad4805ad534cd469d950087d57e6d7, type: 3}
   <StartColor>k__BackingField: {r: 0.4339623, g: 0.4339623, b: 0.4339623, a: 0}
   <EndColor>k__BackingField: {r: 0.1509434, g: 0.1509434, b: 0.1509434, a: 0}
   <Projectile>k__BackingField: {fileID: -685310717, guid: 08ad4805ad534cd469d950087d57e6d7, type: 3}
+  <Stats>k__BackingField:
+    <Health>k__BackingField: 0
+    <Mana>k__BackingField: 0
+    <Strength>k__BackingField: 0
+    <Arcane>k__BackingField: 0
+    <PhysicalDefence>k__BackingField: 0
+    <MagicalDefence>k__BackingField: 0
+  <OnHitEffect>k__BackingField:
+    <Effects>k__BackingField:
+    - rid: 7923229902038368263
+    <FocusData>k__BackingField:
+      rid: 7923229902038368264
+    <ActionData>k__BackingField:
+      rid: 7923229902038368265
+  references:
+    version: 2
+    RefIds:
+    - rid: 7923229902038368263
+      type: {class: StaticHealEffectData, ns: , asm: Assembly-CSharp}
+      data:
+        <HealValue>k__BackingField: 5
+        <CanRevive>k__BackingField: 0
+    - rid: 7923229902038368264
+      type: {class: SelfFocusComponentData, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 7923229902038368265
+      type: {class: InstantActionData, ns: , asm: Assembly-CSharp}
+      data: 

@@ -66,6 +66,12 @@ public class PawnController : MonoBehaviour
             return;
 
         Ability = Pawn.GetComponent<AbilitiesComponent>().GetCurrentAttackIntent(this, Battle);
+        
+        if (Pawn.Focus == null || !Pawn.Focus.PawnState.CanBeTargeted)
+        {
+            Pawn.Focus = Battle.QueryEnemies(this, Pawn.GetComponent<FocusComponent>().EnemyFocusPreference);
+        }
+        
         Ability.ChooseFocus(this, Battle);
     }
 
@@ -83,12 +89,12 @@ public class PawnController : MonoBehaviour
             Application.Instance.GetManager<BattleEventsManager>().DoAttackEvent(Battle, this, ability);
         }
 
-        //TODO
-        /*if (Pawn.TryGetComponent<WeaponComponent>(out var component))
+        if (Pawn.TryGetComponent<WeaponComponent>(out var component) && component.Weapon.OnHitEffect != null)
         {
             var effect = component.Weapon.OnHitEffect.ToDomain(this);
-            effect.DoAbilityEffect(ability.FocusedPawn);
-        }*/
+            effect.ChooseFocus(this, Battle);
+            ability.AddEffect(effect);
+        }
 
         Application.Instance.GetManager<AudioManager>().PlaySound(SfxType.Slash);
 
@@ -121,22 +127,22 @@ public class PawnController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Pawn != null && Pawn.GetComponent<StatsComponent>().IsAlive)
-        {
-            Pawn.GetComponent<StatsComponent>().TickAllBuffs();
-        }
-        
+        if (Pawn == null)
+            return;
+
+        if (Pawn.TryGetComponent<StatsComponent>(out var statsComponent) && statsComponent.IsAlive)
+            statsComponent.TickAllBuffs();
+
         if (Ability == null || !PawnState.CanWalk)
             return;
 
-        if (Ability.FocusedPawn == null || !Ability.FocusedPawn.PawnState.CanBeTargeted)
+        if (Pawn.Focus == null || !Pawn.Focus.PawnState.CanBeTargeted)
             return;
 
         if (!PawnState.CanTransition)
             return;
 
         CharacterController.SetSpeed(NavMeshAgent.velocity.magnitude / NavMeshAgent.speed);
-
         var direction = Ability.WalkingDestination - transform.position;
 
         if (!Ability.ShouldUse())

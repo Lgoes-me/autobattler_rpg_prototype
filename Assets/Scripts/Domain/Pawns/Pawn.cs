@@ -8,6 +8,7 @@ public class Pawn
     private Dictionary<Type, PawnComponent> Components { get; set; }
 
     public TeamType Team { get; }
+    public PawnController Focus { get; set; }
     public PawnStatus Status { get; private set; }
 
     public Pawn(string id, List<PawnComponent> components)

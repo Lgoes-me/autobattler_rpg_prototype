@@ -12,12 +12,10 @@ public class Ability
     private AbilityResourceComponent Resource { get; set; }
     
     public Vector3 WalkingDestination => 
-        FocusedPawn.transform.position + 
+        AbilityUser.Pawn.Focus.transform.position + 
         Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)) * Vector3.forward * (Range - 1);
 
-    private List<PawnController> FocusedPawns { get; set; }
-    public PawnController FocusedPawn => FocusedPawns[0];
-    private bool IsInRange => Range >= (FocusedPawn.transform.position - AbilityUser.transform.position).magnitude;
+    private bool IsInRange => Range >= (AbilityUser.Pawn.Focus.transform.position - AbilityUser.transform.position).magnitude;
     
     public bool IsSpecial => Resource is not NoResourceComponent;
     public bool Used { get; set; }
@@ -37,23 +35,16 @@ public class Ability
         
         AbilityBehaviours = abilityBehaviours;
         Resource = resource;
-        
-        FocusedPawns = new List<PawnController>();
     }
-
+    
     public void ChooseFocus(PawnController pawnController, Battle battle)
     {
         foreach (var abilityBehaviour in AbilityBehaviours)
         {
-            var focus = abilityBehaviour.ChooseFocus(pawnController, battle);
-
-            if (focus == null)
-                continue;
-
-            FocusedPawns.Add(focus);
+            abilityBehaviour.ChooseFocus(pawnController, battle);
         }
     }
-
+    
     public bool ShouldUse()
     {
         return IsInRange && !Used;
@@ -63,7 +54,12 @@ public class Ability
     {
         Resource.SpendResource();
     }
-
+    
+    public void AddEffect(AbilityBehaviour effect)
+    {
+        AbilityBehaviours.Add(effect);
+    }
+    
     public void DoAction()
     {
         foreach (var abilityBehaviour in AbilityBehaviours)

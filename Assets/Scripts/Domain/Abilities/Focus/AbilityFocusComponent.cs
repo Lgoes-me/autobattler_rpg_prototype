@@ -1,7 +1,7 @@
 ﻿public abstract class AbilityFocusComponent
 {
     public PawnController FocusedPawn { get; protected set; }
-    public abstract PawnController ChooseFocus(PawnController user, Battle battle);
+    public abstract void ChooseFocus(PawnController user, Battle battle);
 }
 
 public enum FocusType

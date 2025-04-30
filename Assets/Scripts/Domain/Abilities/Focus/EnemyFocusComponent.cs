@@ -1,12 +1,12 @@
 ﻿public class EnemyFocusComponent : AbilityFocusComponent
 {
-    public override PawnController ChooseFocus(PawnController user, Battle battle)
+    public override void ChooseFocus(PawnController user, Battle battle)
     {
         if (FocusedPawn != null && FocusedPawn.PawnState.CanBeTargeted)
         {
-            return FocusedPawn;
+            return;
         }
-        
-        return FocusedPawn = battle.QueryEnemies(user, user.Pawn.GetComponent<FocusComponent>().EnemyFocusPreference);
+
+        FocusedPawn = user.Pawn.Focus;
     }
 }

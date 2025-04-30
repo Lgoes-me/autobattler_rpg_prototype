@@ -13,7 +13,7 @@ public class WeaponData : ScriptableObject
     [field: SerializeField] private Color EndColor { get; set; }
     [field: SerializeField] private Sprite Projectile { get; set; }
     [field: SerializeField] private StatsData Stats { get; set; }
-    [field: SerializeField] [field: SerializeReference] private AbilityBehaviourData OnHitEffect { get; set; }
+    [field: SerializeField] private AbilityBehaviourData OnHitEffect { get; set; }
 
     public Weapon ToDomain()
     {

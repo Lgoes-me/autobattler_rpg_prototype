@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Bow
   m_EditorClassIdentifier: 
   <Id>k__BackingField: Bow
+  <Level>k__BackingField: 0
   <Type>k__BackingField: 1
   <Sprites>k__BackingField:
   - {fileID: -1209576914, guid: eaa732a6ce18ff140835b1304aec842b, type: 3}
@@ -20,3 +21,32 @@ MonoBehaviour:
   <StartColor>k__BackingField: {r: 0.4339623, g: 0.4339623, b: 0.4339623, a: 0}
   <EndColor>k__BackingField: {r: 0.1509434, g: 0.1509434, b: 0.1509434, a: 0}
   <Projectile>k__BackingField: {fileID: -1624257728, guid: eaa732a6ce18ff140835b1304aec842b, type: 3}
+  <Stats>k__BackingField:
+    <Health>k__BackingField: 0
+    <Mana>k__BackingField: 0
+    <Strength>k__BackingField: 0
+    <Arcane>k__BackingField: 0
+    <PhysicalDefence>k__BackingField: 0
+    <MagicalDefence>k__BackingField: 0
+  <OnHitEffect>k__BackingField:
+    <Effects>k__BackingField:
+    - rid: 7923229902038368261
+    <FocusData>k__BackingField:
+      rid: 7923229902038368259
+    <ActionData>k__BackingField:
+      rid: 7923229902038368260
+  references:
+    version: 2
+    RefIds:
+    - rid: 7923229902038368259
+      type: {class: EnemyFocusComponentData, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 7923229902038368260
+      type: {class: InstantActionData, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 7923229902038368261
+      type: {class: DamageEffectData, ns: , asm: Assembly-CSharp}
+      data:
+        <Damage>k__BackingField:
+          <Multiplier>k__BackingField: 20
+          <Type>k__BackingField: 1
