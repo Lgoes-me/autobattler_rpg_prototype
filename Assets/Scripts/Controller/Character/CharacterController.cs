@@ -56,4 +56,9 @@ public class CharacterController : MonoBehaviour
     {
         AnimationStateController.SetAnimationState(state);
     }
+    
+    public void PlayFootstep()
+    {
+        Application.Instance.GetManager<AudioManager>().PlaySound(SfxType.Step);
+    }
 }

@@ -1985,7 +1985,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1499827727
 Transform:
   m_ObjectHideFlags: 0
@@ -2802,6 +2802,9 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 646f8d359c3dc744883cf6fa429de64a, type: 3}
     - {fileID: 8300000, guid: f22919d44b7bec445877dcedb78b6690, type: 3}
     - {fileID: 8300000, guid: 15c3cb2bd900ad848a33e655077aaca8, type: 3}
+  - <Type>k__BackingField: 3
+    <Sounds>k__BackingField:
+    - {fileID: 8300000, guid: bca4abf8ed4962c4e9185d854144d40f, type: 3}
   <Musics>k__BackingField:
   - <Type>k__BackingField: 1
     <MainMusic>k__BackingField: {fileID: 8300000, guid: a66181c813f4eab418dd736041063463, type: 3}

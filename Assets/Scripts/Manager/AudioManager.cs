@@ -30,6 +30,8 @@ public class AudioManager : MonoBehaviour, IManager
     {
         if (sfx.Sounds.Count == 0)
             return;
+        
+        SfxAudioSource.Stop();
 
         var sound = sfx.Sounds[Random.Range(0, sfx.Sounds.Count)];
         SfxAudioSource.pitch = Random.Range(0.9f, 1.15f);
@@ -102,6 +104,7 @@ public enum SfxType
     Unknown = 0,
     Slash = 1,
     Voice = 2,
+    Step = 3,
 }
 
 [Serializable]
