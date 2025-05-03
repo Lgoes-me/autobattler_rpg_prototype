@@ -11,7 +11,7 @@ public class PawnController : MonoBehaviour
 
     private Coroutine BackToIdleCoroutine { get; set; }
     private Ability Ability { get; set; }
-    
+
     public CharacterController CharacterController { get; private set; }
     public Pawn Pawn { get; private set; }
     public AnimationState PawnState => CharacterController.CurrentState;
@@ -27,7 +27,7 @@ public class PawnController : MonoBehaviour
             var weapon = pawn.GetComponent<WeaponComponent>().Weapon;
             CharacterController.SetWeapon(weapon);
         }
-        
+
         if (CanvasController != null)
         {
             CanvasController.Init(Pawn);
@@ -66,12 +66,12 @@ public class PawnController : MonoBehaviour
             return;
 
         Ability = Pawn.GetComponent<AbilitiesComponent>().GetCurrentAttackIntent(this, Battle);
-        
+
         if (Pawn.Focus == null || !Pawn.Focus.PawnState.CanBeTargeted)
         {
             Pawn.Focus = Battle.QueryEnemies(this, Pawn.GetComponent<FocusComponent>().EnemyFocusPreference);
         }
-        
+
         Ability.ChooseFocus(this, Battle);
     }
 
@@ -89,11 +89,20 @@ public class PawnController : MonoBehaviour
             Application.Instance.GetManager<BattleEventsManager>().DoAttackEvent(Battle, this, ability);
         }
 
-        if (Pawn.TryGetComponent<WeaponComponent>(out var component) && component.Weapon.OnHitEffect != null)
+        if (Pawn.TryGetComponent<WeaponComponent>(out var component) && component.Weapon != null)
         {
-            var effect = component.Weapon.OnHitEffect.ToDomain(this);
-            effect.ChooseFocus(this, Battle);
-            ability.AddEffect(effect);
+            foreach (var weaponEffect in component.Weapon.WeaponEffects)
+            {
+                if (weaponEffect.Type is not EffectType.InstantAction)
+                    continue;
+
+                foreach (var effectData in weaponEffect.Effects)
+                {
+                    var effect = effectData.ToDomain(this);
+                    effect.ChooseFocus(this, Battle);
+                    ability.AddEffect(effect);
+                }
+            }
         }
 
         Application.Instance.GetManager<AudioManager>().PlaySound(SfxType.Slash);
@@ -117,7 +126,7 @@ public class PawnController : MonoBehaviour
 
         if (!PawnState.AbleToFight)
             yield break;
-        
+
         Ability = null;
 
         CharacterController.SetAnimationState(new IdleState());
@@ -184,17 +193,17 @@ public class PawnController : MonoBehaviour
         bool overrideSprite)
     {
         var roomScene = FindObjectOfType<RoomController>();
-        
+
         var projectile = Instantiate(
                 projectilePrefab,
-                CharacterController.SpawnPoint.position, 
-                Quaternion.identity, 
+                CharacterController.SpawnPoint.position,
+                Quaternion.identity,
                 roomScene.transform)
             .Init(
-                this, 
-                effects, 
-                focusedPawn.transform.position, 
-                trajectory, 
+                this,
+                effects,
+                focusedPawn.transform.position,
+                trajectory,
                 Pawn.GetComponent<FocusComponent>().RangedAttackError);
 
         if (overrideSprite)
@@ -222,7 +231,7 @@ public class PawnController : MonoBehaviour
 
         if (!Pawn.GetComponent<StatsComponent>().IsAlive || PawnState is not DeadState)
             return;
-        
+
         CharacterController.SetAnimationState(new IdleState());
     }
 
@@ -230,12 +239,13 @@ public class PawnController : MonoBehaviour
     {
         var roomScene = FindObjectOfType<RoomController>();
         var prefab = Application.Instance.GetManager<PartyManager>().BasePawnPrefab;
-            
+
         var randomRotation = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)) * Vector3.forward * 1f;
-        var pawnController = Instantiate(prefab, transform.position + randomRotation, Quaternion.identity, roomScene.transform);
-        
+        var pawnController = Instantiate(prefab, transform.position + randomRotation, Quaternion.identity,
+            roomScene.transform);
+
         pawnController.Init(pawn);
-        
+
         switch (pawn.Team)
         {
             case TeamType.Player:
@@ -245,16 +255,16 @@ public class PawnController : MonoBehaviour
                 Battle.AddEnemy(pawnController);
                 break;
         }
-        
+
         pawnController.StartBattle(Battle);
         pawnController.RealizeTurn();
     }
-    
+
     private void OnDestroy()
     {
         if (Pawn == null)
             return;
-        
+
         Pawn.GetComponent<StatsComponent>().LostLife -= ReceiveAttack;
         Pawn.GetComponent<StatsComponent>().GainedLife -= ReceiveHeal;
     }

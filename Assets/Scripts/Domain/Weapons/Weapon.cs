@@ -11,7 +11,7 @@ public class Weapon
     public Color EndColor { get; }
     public Sprite Projectile { get; }
     public Stats Stats { get; }
-    public AbilityBehaviourData OnHitEffect { get; }
+    public List<WeaponEffect> WeaponEffects { get; }
 
     public Weapon(
         string id,
@@ -22,7 +22,7 @@ public class Weapon
         Color endColor,
         Sprite projectile,
         Stats stats,
-        AbilityBehaviourData onHitEffect)
+        List<WeaponEffect> weaponEffects)
     {
         Id = id;
         Level = level;
@@ -32,6 +32,6 @@ public class Weapon
         EndColor = endColor;
         Projectile = projectile;
         Stats = stats;
-        OnHitEffect = onHitEffect;
+        WeaponEffects = weaponEffects;
     }
 }

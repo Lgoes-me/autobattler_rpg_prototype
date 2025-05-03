@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu]
@@ -13,11 +14,12 @@ public class WeaponData : ScriptableObject
     [field: SerializeField] private Color EndColor { get; set; }
     [field: SerializeField] private Sprite Projectile { get; set; }
     [field: SerializeField] private StatsData Stats { get; set; }
-    [field: SerializeField] private AbilityBehaviourData OnHitEffect { get; set; }
+    [field: SerializeField] private List<WeaponEffectData> WeaponEffects { get; set; }
 
     public Weapon ToDomain()
     {
-        return new Weapon(Id, Level, Type, Sprites, StartColor, EndColor, Projectile, Stats.ToDomain(), OnHitEffect);
+        var weaponEffects = WeaponEffects.Select(w => w.ToDomain()).ToList();
+        return new Weapon(Id, Level, Type, Sprites, StartColor, EndColor, Projectile, Stats.ToDomain(), weaponEffects);
     }
 }
 
