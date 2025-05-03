@@ -56,7 +56,7 @@ public class FriendItemController : MonoBehaviour, IPointerClickHandler, IBeginD
         if (!IsDragging)
             return;
 
-        transform.position = Input.mousePosition;
+        transform.position = Application.Instance.GetManager<InputManager>().MousePosition;
     }
 
     public void OnPointerClick(PointerEventData eventData)

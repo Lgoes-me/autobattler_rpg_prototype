@@ -7,13 +7,10 @@ public class PlayerController : MonoBehaviour
     [field: SerializeField] private PawnController PawnController { get; set; }
     [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
     [field: SerializeField] private float Speed { get; set; }
-
-    public Vector2 MoveInput { get; private set; }
-
+    
     public void Init()
     {
         PawnController.CharacterController.SetAnimationState(new IdleState());
-        MoveInput = Vector2.zero;
     }
 
     private void Update()
@@ -21,28 +18,31 @@ public class PlayerController : MonoBehaviour
         if(PawnController.CharacterController == null)
             return;
         
-        /*if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out var hit, 100))
+        /*var mousePosition = Application.Instance.GetManager<InputManager>().MousePosition;
+        
+        if (Physics.Raycast (Camera.main.ScreenPointToRay(mousePosition), out var hit, 100))
         {
             NavMeshAgent.SetDestination(hit.point);
             Debug.Log ("hit");
         }
         
-        PawnController.CharacterController.SetSpeed(NavMeshAgent.velocity.magnitude);
-        */
-        
-        MoveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        PawnController.CharacterController.SetSpeed(MoveInput.magnitude);
+        PawnController.CharacterController.SetSpeed(NavMeshAgent.velocity.magnitude);*/
+
+        var moveInput = Application.Instance.GetManager<InputManager>().MoveInput;
+        PawnController.CharacterController.SetSpeed(moveInput.magnitude);
     }
 
     private void FixedUpdate()
     {
-        if (MoveInput.sqrMagnitude < Mathf.Epsilon)
+        var moveInput = Application.Instance.GetManager<InputManager>().MoveInput;
+        
+        if (moveInput.sqrMagnitude < Mathf.Epsilon)
             return;
 
         var inputManager = Application.Instance.GetManager<InputManager>();
         
-        var lateralInput = inputManager.RightVector * MoveInput.x;
-        var verticalInput = inputManager.ForwardVector * MoveInput.y;
+        var lateralInput = inputManager.RightVector * moveInput.x;
+        var verticalInput = inputManager.ForwardVector * moveInput.y;
         var input = lateralInput + verticalInput;
         
         input = Vector3.ClampMagnitude(input, 1f);

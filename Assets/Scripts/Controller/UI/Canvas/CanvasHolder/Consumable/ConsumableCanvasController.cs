@@ -53,7 +53,8 @@ public class ConsumableCanvasController : BaseCanvasHolderItemController<Consuma
 
         CanvasGroup.blocksRaycasts = false;
 
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        var mouseInput = Application.Instance.GetManager<InputManager>().MousePosition;
+        Ray ray = Camera.main.ScreenPointToRay(mouseInput);
 
         if (Physics.Raycast(ray, out var hit, 10000, Mask))
         {
@@ -76,7 +77,7 @@ public class ConsumableCanvasController : BaseCanvasHolderItemController<Consuma
         if (!IsDragging || !CanBeUsed)
             return;
 
-        transform.position = Input.mousePosition;
+        transform.position = Application.Instance.GetManager<InputManager>().MousePosition;
     }
 
     public void StartBattle()

@@ -50,21 +50,18 @@ public class PauseManager : MonoBehaviour, IManager
         }
     }
 
-    private void Update()
+    public void PauseInput()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (!IsPaused)
         {
-            if (!IsPaused)
-            {
-                PauseCanvas.gameObject.SetActive(true);
-                CanResume = true;
-                PauseGame();
-            }
-            else if (CanResume)
-            {
-                PauseCanvas.gameObject.SetActive(false);
-                ResumeGame();
-            }
+            PauseCanvas.gameObject.SetActive(true);
+            CanResume = true;
+            PauseGame();
+        }
+        else if (CanResume)
+        {
+            PauseCanvas.gameObject.SetActive(false);
+            ResumeGame();
         }
     }
 }

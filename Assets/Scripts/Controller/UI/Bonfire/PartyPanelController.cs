@@ -56,7 +56,8 @@ public class PartyPanelController : MonoBehaviour, IBonfirePanel
 
     public void OnHover(FriendItemController friendItemController)
     {
-        var under = PartyItems.FirstOrDefault(i => i.transform.position.y <= Input.mousePosition.y);
+        var mouseInput =Application.Instance.GetManager<InputManager>().MousePosition;
+        var under = PartyItems.FirstOrDefault(i => i.transform.position.y <= mouseInput.y);
         PartyDivider.SetSiblingIndex(under != null
             ? Mathf.Clamp(under.transform.GetSiblingIndex() - 1, 0, PartyItems.Count)
             : PartyItems.Count);
@@ -71,7 +72,8 @@ public class PartyPanelController : MonoBehaviour, IBonfirePanel
     {
         PartyDivider.gameObject.SetActive(false);
 
-        var under = PartyItems.FirstOrDefault(i => i.transform.position.y <= Input.mousePosition.y);
+        var mouseInput =Application.Instance.GetManager<InputManager>().MousePosition;
+        var under = PartyItems.FirstOrDefault(i => i.transform.position.y <= mouseInput.y);
         var index = under != null
             ? Mathf.Clamp(under.transform.GetSiblingIndex() - 1, 0, PartyItems.Count)
             : PartyItems.Count;
