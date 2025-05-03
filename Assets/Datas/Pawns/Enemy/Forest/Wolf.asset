@@ -25,7 +25,6 @@ MonoBehaviour:
     - rid: 7923229791535759385
       type: {class: EnemyComponentData, ns: , asm: Assembly-CSharp}
       data:
-        <Initiative>k__BackingField: 1
         <VisionRange>k__BackingField: 5
         <AttackRange>k__BackingField: 2
     - rid: 7923229791535759386
@@ -46,7 +45,7 @@ MonoBehaviour:
           <Mana>k__BackingField: 0
           <Strength>k__BackingField: 1
           <Arcane>k__BackingField: 0
-          <PhysicalDefence>k__BackingField: 0
+          <PhysicalDefence>k__BackingField: 2
           <MagicalDefence>k__BackingField: 0
         <LevelUpStats>k__BackingField:
           <MaxLevelStatsStats>k__BackingField:

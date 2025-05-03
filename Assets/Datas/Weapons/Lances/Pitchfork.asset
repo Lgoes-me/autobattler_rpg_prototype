@@ -28,8 +28,7 @@ MonoBehaviour:
     <PhysicalDefence>k__BackingField: 0
     <MagicalDefence>k__BackingField: 0
   <OnHitEffect>k__BackingField:
-    <Effects>k__BackingField:
-    - rid: 7923229902038368263
+    <Effects>k__BackingField: []
     <FocusData>k__BackingField:
       rid: 7923229902038368264
     <ActionData>k__BackingField:
@@ -37,11 +36,6 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 7923229902038368263
-      type: {class: StaticHealEffectData, ns: , asm: Assembly-CSharp}
-      data:
-        <HealValue>k__BackingField: 5
-        <CanRevive>k__BackingField: 0
     - rid: 7923229902038368264
       type: {class: SelfFocusComponentData, ns: , asm: Assembly-CSharp}
       data: 

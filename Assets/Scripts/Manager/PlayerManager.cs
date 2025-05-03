@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Threading.Tasks;
+using UnityEngine;
 
 public class PlayerManager : MonoBehaviour, IManager
 {
-    public PlayerController PlayerController { get; private set; }
-
+    public Transform PlayerTransform => PlayerController.transform;
+    
+    private PlayerController PlayerController { get; set; }
+    
     public void SetNewPlayerPawn(PawnController pawnController)
     {
         pawnController.tag = "Player";
@@ -22,5 +25,10 @@ public class PlayerManager : MonoBehaviour, IManager
     public void EnablePlayerInput()
     {
         PlayerController.enabled = true;
+    }
+
+    public async Task MovePlayerTo(Transform destination)
+    {
+        await PlayerController.MovePlayerTo(destination);
     }
 }

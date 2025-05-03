@@ -53,12 +53,10 @@ public class PrizeManager : IManager
         var selectedPrize = await InterfaceManager.ShowPrizeCanvas(prizes);
         
         PauseManager.ResumeGame();
-        var playerControllerPosition = Application.Instance.GetManager<PlayerManager>().PlayerController.transform.position;
-
         var pawnInfo = selectedPrize.PawnInfo;
         
         GameSaveManager.AddToSelectedParty(pawnInfo);
-        PartyManager.AddToCurrentParty(playerControllerPosition, pawnInfo);
+        PartyManager.AddToCurrentParty(Application.Instance.GetManager<PlayerManager>().PlayerTransform.position, pawnInfo);
         PartyManager.SetPartyToFollow(false);
     }
 

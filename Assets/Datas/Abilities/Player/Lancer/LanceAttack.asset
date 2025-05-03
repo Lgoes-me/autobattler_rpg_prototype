@@ -40,7 +40,7 @@ MonoBehaviour:
       type: {class: DamageEffectData, ns: , asm: Assembly-CSharp}
       data:
         <Damage>k__BackingField:
-          <Multiplier>k__BackingField: 3
+          <Multiplier>k__BackingField: 1
           <Type>k__BackingField: 1
     - rid: 8813335080079720464
       type: {class: EnemyFocusComponentData, ns: , asm: Assembly-CSharp}

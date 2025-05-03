@@ -36,12 +36,12 @@ public class EnemyController : MonoBehaviour
         PawnController.CharacterController.SetSpeed(NavMeshAgent.velocity.magnitude);
         PawnController.CharacterController.SetDirection(NavMeshAgent.velocity);
         
-        var player = Application.Instance.GetManager<PlayerManager>().PlayerController;
-        var distance = Vector3.Distance(player.transform.position, transform.position);
+        var player = Application.Instance.GetManager<PlayerManager>().PlayerTransform;
+        var distance = Vector3.Distance(player.position, transform.position);
         
         if (Following)
         {
-            NavMeshAgent.SetDestination(player.transform.position);
+            NavMeshAgent.SetDestination(player.position);
         }
         else if (Nodes.Count > 0 &&
                  NavMeshAgent.pathStatus == NavMeshPathStatus.PathComplete &&

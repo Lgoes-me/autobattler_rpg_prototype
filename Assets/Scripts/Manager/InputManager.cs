@@ -63,9 +63,6 @@ public class InputManager : MonoBehaviour, IManager
         MoveInput = new Vector2(InputMap.Game.Horizontal.ReadValue<float>(), InputMap.Game.Vertical.ReadValue<float>());
         MousePosition = new Vector2(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue());
         
-        Debug.Log(MoveInput);
-        Debug.Log(InputMap.Game.Pause.ReadValue<bool>());
-        
         if (InputMap.Game.Pause.ReadValue<bool>())
         {
             Application.Instance.GetManager<PauseManager>().PauseInput();

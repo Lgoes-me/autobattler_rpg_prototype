@@ -14,8 +14,7 @@ public class CorridorAreaController : SpawnController
         Active = false;
 
         var playerManager = Application.Instance.GetManager<PlayerManager>();
-
-        await playerManager.PlayerController.MovePlayerTo(Destination);
+        await playerManager.MovePlayerTo(Destination);
         
         playerManager.EnablePlayerInput();
         
@@ -35,8 +34,7 @@ public class CorridorAreaController : SpawnController
         var playerManager = Application.Instance.GetManager<PlayerManager>();
         
         playerManager.DisablePlayerInput();
-        
-        await playerManager.PlayerController.MovePlayerTo(SpawnPoint);
+        await playerManager.MovePlayerTo(SpawnPoint);
 
         Application.Instance.GetManager<SceneManager>().ChangeContext(Spawn);
     }

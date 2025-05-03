@@ -227,7 +227,9 @@ public class StatsComponent : PawnComponent
     public void ReceiveDamage(DamageDomain damage)
     {
         var reducedDamage = GetPawnStats().GetReducedDamage(damage);
+        
         MissingHealth = Mathf.Clamp(MissingHealth + reducedDamage, 0, GetPawnStats().Health);
+        
         LostLife?.Invoke();
     }
 
