@@ -55,9 +55,29 @@ public class Ability
         Resource.SpendResource();
     }
     
-    public void AddEffect(AbilityBehaviour effect)
+    public void AddEffect(AbilityBehaviour effect, EffectType weaponEffectType)
     {
-        AbilityBehaviours.Add(effect);
+        switch (weaponEffectType)
+        {
+            case EffectType.InstantAction:
+            {
+                AbilityBehaviours.Add(effect);
+                break;
+            }
+            
+            case EffectType.ProjectileHit:
+            {
+                foreach (var abilityBehaviour in AbilityBehaviours)
+                {
+                    if(abilityBehaviour.Action is not ProjectileActionComponent projectileActionComponent)
+                        continue;
+
+                    projectileActionComponent.AddExtraEffects(effect);
+                }
+
+                break;
+            }
+        }
     }
     
     public void DoAction()

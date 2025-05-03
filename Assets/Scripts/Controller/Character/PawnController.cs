@@ -93,14 +93,11 @@ public class PawnController : MonoBehaviour
         {
             foreach (var weaponEffect in component.Weapon.WeaponEffects)
             {
-                if (weaponEffect.Type is not EffectType.InstantAction)
-                    continue;
-
                 foreach (var effectData in weaponEffect.Effects)
                 {
                     var effect = effectData.ToDomain(this);
                     effect.ChooseFocus(this, Battle);
-                    ability.AddEffect(effect);
+                    ability.AddEffect(effect, weaponEffect.Type);
                 }
             }
         }
@@ -190,7 +187,8 @@ public class PawnController : MonoBehaviour
         AnimationCurve trajectory,
         List<AbilityEffect> effects,
         PawnController focusedPawn,
-        bool overrideSprite)
+        bool overrideSprite,
+        List<AbilityBehaviour> extraEffects)
     {
         var roomScene = FindObjectOfType<RoomController>();
 
@@ -204,7 +202,8 @@ public class PawnController : MonoBehaviour
                 effects,
                 focusedPawn.transform.position,
                 trajectory,
-                Pawn.GetComponent<FocusComponent>().RangedAttackError);
+                Pawn.GetComponent<FocusComponent>().RangedAttackError,
+                extraEffects);
 
         if (overrideSprite)
         {

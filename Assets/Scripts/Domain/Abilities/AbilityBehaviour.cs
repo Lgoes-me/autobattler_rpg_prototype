@@ -4,7 +4,7 @@ public class AbilityBehaviour
 {
     private List<AbilityEffect> Effects { get; set; }
     private AbilityFocusComponent Focus { get; set; }
-    private AbilityActionComponent Action { get; set; }
+    public AbilityActionComponent Action { get; private set; }
     
     public AbilityBehaviour(
         List<AbilityEffect> effects,

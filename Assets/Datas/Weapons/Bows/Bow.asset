@@ -28,25 +28,62 @@ MonoBehaviour:
     <Arcane>k__BackingField: 0
     <PhysicalDefence>k__BackingField: 0
     <MagicalDefence>k__BackingField: 0
-  <OnHitEffect>k__BackingField:
+  <WeaponEffects>k__BackingField:
+  - <Type>k__BackingField: 2
     <Effects>k__BackingField:
-    - rid: 7923229902038368261
-    <FocusData>k__BackingField:
-      rid: 7923229902038368259
-    <ActionData>k__BackingField:
-      rid: 7923229902038368260
+    - <Effects>k__BackingField:
+      - rid: 2203596194859712514
+      <FocusData>k__BackingField:
+        rid: 2203596194859712515
+      <ActionData>k__BackingField:
+        rid: 2203596194859712516
   references:
     version: 2
     RefIds:
-    - rid: 7923229902038368259
-      type: {class: EnemyFocusComponentData, ns: , asm: Assembly-CSharp}
-      data: 
-    - rid: 7923229902038368260
-      type: {class: InstantActionData, ns: , asm: Assembly-CSharp}
-      data: 
-    - rid: 7923229902038368261
+    - rid: 2203596194859712514
       type: {class: DamageEffectData, ns: , asm: Assembly-CSharp}
       data:
         <Damage>k__BackingField:
-          <Multiplier>k__BackingField: 20
+          <Multiplier>k__BackingField: 1
           <Type>k__BackingField: 1
+    - rid: 2203596194859712515
+      type: {class: EnemyFocusComponentData, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 2203596194859712516
+      type: {class: ProjectileActionData, ns: , asm: Assembly-CSharp}
+      data:
+        <Projectile>k__BackingField: {fileID: 3883816015513118945, guid: 1c196ea9bdbc3434ca8969f1aa74aedb, type: 3}
+        <Trajectory>k__BackingField:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 6.346176
+            outSlope: 6.346176
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.04534005
+          - serializedVersion: 3
+            time: 0.35264757
+            value: 2.0094333
+            inSlope: 0.6057962
+            outSlope: 0.6057962
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.07054363
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.9987762
+            value: 0.74107003
+            inSlope: -4.4558992
+            outSlope: -4.4558992
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.04104027
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        <OverrideProjectileSprite>k__BackingField: 1

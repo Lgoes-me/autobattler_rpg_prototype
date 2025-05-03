@@ -18,4 +18,5 @@ public enum EffectType
 {
     Unknown,
     InstantAction,
+    ProjectileHit
 }

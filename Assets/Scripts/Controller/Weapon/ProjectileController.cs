@@ -9,20 +9,22 @@ public class ProjectileController : MonoBehaviour
 
     private PawnController Creator { get; set; }
     private List<AbilityEffect> Effects { get; set; }
+    private List<AbilityBehaviour> ExtraEffects { get; set; }
     private Vector3 Destination { get; set; }
     private AnimationCurve Trajectory { get; set; }
 
     private float LifeTime { get; set; }
 
-    public ProjectileController Init(
-        PawnController creator,
+    public ProjectileController Init(PawnController creator,
         List<AbilityEffect> effects,
         Vector3 destination,
         AnimationCurve trajectory,
-        float error)
+        float error, 
+        List<AbilityBehaviour> extraEffects)
     {
         Creator = creator;
         Effects = effects;
+        ExtraEffects = extraEffects;
         
         var randomError = 
             Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)) * 
@@ -67,6 +69,11 @@ public class ProjectileController : MonoBehaviour
             foreach (var effect in Effects)
             {
                 effect.DoAbilityEffect(pawnController);
+            }
+            
+            foreach (var abilityBehaviour in ExtraEffects)
+            {
+                abilityBehaviour.DoAction();
             }
 
             Destroy(gameObject);
