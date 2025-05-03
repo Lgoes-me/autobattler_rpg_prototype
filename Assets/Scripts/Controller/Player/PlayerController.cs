@@ -7,7 +7,8 @@ public class PlayerController : MonoBehaviour
     [field: SerializeField] private PawnController PawnController { get; set; }
     [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
     [field: SerializeField] private float Speed { get; set; }
-    
+    private bool MouseInput { get; set; }
+
     public void Init()
     {
         PawnController.CharacterController.SetAnimationState(new IdleState());
@@ -15,40 +16,53 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if(PawnController.CharacterController == null)
+        if (PawnController.CharacterController == null)
+            return;
+
+        if (!MouseInput)
+            return;
+
+        PawnController.CharacterController.SetSpeed(NavMeshAgent.velocity.magnitude);
+    }
+
+    public void SetDestination(Vector3 destination)
+    {
+        if(!enabled)
             return;
         
-        /*var mousePosition = Application.Instance.GetManager<InputManager>().MousePosition;
-        
-        if (Physics.Raycast (Camera.main.ScreenPointToRay(mousePosition), out var hit, 100))
-        {
-            NavMeshAgent.SetDestination(hit.point);
-            Debug.Log ("hit");
-        }
-        
-        PawnController.CharacterController.SetSpeed(NavMeshAgent.velocity.magnitude);*/
-
-        var moveInput = Application.Instance.GetManager<InputManager>().MoveInput;
-        PawnController.CharacterController.SetSpeed(moveInput.magnitude);
+        MouseInput = true;
+        NavMeshAgent.isStopped = false;
+        NavMeshAgent.SetDestination(destination);
     }
 
     private void FixedUpdate()
     {
         var moveInput = Application.Instance.GetManager<InputManager>().MoveInput;
-        
+
         if (moveInput.sqrMagnitude < Mathf.Epsilon)
+        {
+            if (!MouseInput)
+            {
+                PawnController.CharacterController.SetSpeed(0);
+            }
+
             return;
+        }
+
+        MouseInput = false;
+        NavMeshAgent.isStopped = true;
+        PawnController.CharacterController.SetSpeed(moveInput.magnitude);
 
         var inputManager = Application.Instance.GetManager<InputManager>();
-        
+
         var lateralInput = inputManager.RightVector * moveInput.x;
         var verticalInput = inputManager.ForwardVector * moveInput.y;
         var input = lateralInput + verticalInput;
-        
+
         input = Vector3.ClampMagnitude(input, 1f);
-        
+
         PawnController.CharacterController.SetDirection(lateralInput);
-        
+
         var destination = transform.position + input * Speed;
 
         if (!NavMesh.SamplePosition(destination, out NavMeshHit hit, 1f, NavMesh.AllAreas))
@@ -64,7 +78,7 @@ public class PlayerController : MonoBehaviour
             interactable.Preselect();
         }
     }
-    
+
     private void OnTriggerExit(Collider other)
     {
         if (other.TryGetComponent<InteractableController>(out var interactable))

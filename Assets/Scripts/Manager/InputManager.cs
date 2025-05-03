@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using Cinemachine;
 using UnityEngine;
@@ -6,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour, IManager
 {
+    [field: SerializeField] private LayerMask LayerMask { get; set; }
+    
     public Vector3 ForwardVector { get; private set; }
     public Vector3 RightVector { get; private set; }
     public Vector2 MoveInput { get; private set; }
@@ -63,6 +64,12 @@ public class InputManager : MonoBehaviour, IManager
         MoveInput = new Vector2(InputMap.Game.Horizontal.ReadValue<float>(), InputMap.Game.Vertical.ReadValue<float>());
         MousePosition = new Vector2(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue());
         
+        if (Mouse.current.leftButton.isPressed && 
+            Physics.Raycast (Camera.main.ScreenPointToRay(MousePosition), out var hit, 100, LayerMask))
+        {
+            Application.Instance.GetManager<PlayerManager>().SetDestination(hit.point);
+        }
+
         if (InputMap.Game.Pause.ReadValue<bool>())
         {
             Application.Instance.GetManager<PauseManager>().PauseInput();

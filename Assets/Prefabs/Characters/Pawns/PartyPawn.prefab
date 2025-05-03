@@ -124,6 +124,9 @@ MonoBehaviour:
   <PawnController>k__BackingField: {fileID: 4759648862371886847}
   <NavMeshAgent>k__BackingField: {fileID: 449031379433608940}
   <Speed>k__BackingField: 0.15
+  <LayerMask>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!114 &4759648862371886847
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2,28 +2,26 @@ using UnityEngine;
 
 public class CorridorAreaController : SpawnController
 {
-    [field: SerializeField] private bool Active { get; set; } = true;
-
     [field: SerializeField] private Transform Destination { get; set; }
 
     public SpawnDomain Spawn { get; set; }
+    private bool CanUse { get; set; } = true;
 
     public override async void SpawnPlayer()
     {
         base.SpawnPlayer();
-        Active = false;
+        CanUse = false;
 
         var playerManager = Application.Instance.GetManager<PlayerManager>();
+        
         await playerManager.MovePlayerTo(Destination);
-        
         playerManager.EnablePlayerInput();
-        
-        Active = true;
+        CanUse = true;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && Active)
+        if (Spawn.Active && CanUse && other.CompareTag("Player"))
         {
             UseCorridor();
         }
@@ -35,7 +33,7 @@ public class CorridorAreaController : SpawnController
         
         playerManager.DisablePlayerInput();
         await playerManager.MovePlayerTo(SpawnPoint);
-
+        
         Application.Instance.GetManager<SceneManager>().ChangeContext(Spawn);
     }
 }

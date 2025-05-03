@@ -53,7 +53,6 @@ public class Map
             var newContext = AllNodesById[spawn.SceneId];
             await EnterCurrentContext(newContext, spawn);
         }
-        
     }
 
     private async Task EnterCurrentContext(BaseSceneNode nextContext, SpawnDomain spawn)

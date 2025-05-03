@@ -31,4 +31,12 @@ public class PlayerManager : MonoBehaviour, IManager
     {
         await PlayerController.MovePlayerTo(destination);
     }
+    
+    public void SetDestination(Vector3 mouseInput)
+    {
+        if(PlayerController == null)
+            return;
+        
+        PlayerController.SetDestination(mouseInput);
+    }
 }
