@@ -76,6 +76,18 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3615974447052643427, guid: 9ee5eb8c622e3e84aac155098fd4bf7b, type: 3}
+      propertyPath: m_Constraints
+      value: 126
+      objectReference: {fileID: 0}
+    - target: {fileID: 3615974447052643427, guid: 9ee5eb8c622e3e84aac155098fd4bf7b, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3615974447052643427, guid: 9ee5eb8c622e3e84aac155098fd4bf7b, type: 3}
+      propertyPath: m_ImplicitTensor
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7324031075706784871, guid: 9ee5eb8c622e3e84aac155098fd4bf7b, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.7071068
