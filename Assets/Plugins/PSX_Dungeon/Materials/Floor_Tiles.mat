@@ -115,6 +115,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _LightSourceRadius: 3
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
@@ -136,6 +137,9 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _LightPosition: {r: 0, g: 0, b: 0, a: 0}
+    - _LightSourceColor: {r: 0.7264151, g: 0.48003843, b: 0.01713243, a: 0}
+    - _LightSourcePosition: {r: 3.33, g: 1.64, b: 4.01, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &8453127044391420595
