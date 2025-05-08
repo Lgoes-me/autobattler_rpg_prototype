@@ -93,7 +93,7 @@ Material:
     - Boolean_8BBF99CD: 0
     - Boolean_D258FF8E: 0
     - Vector1_21C41D02: 256
-    - Vector1_6F288C5B: 0.5
+    - Vector1_6F288C5B: 0
     - Vector1_B2CC132F: 16
     - Vector1_B9994903: 11
     - Vector1_E8746023: 16
@@ -115,6 +115,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _LightSourceRadius: 2
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
@@ -136,6 +137,8 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _LightSourceColor: {r: 0.9150943, g: 0.8285374, b: 0.366901, a: 0}
+    - _LightSourcePosition: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &8453127044391420595

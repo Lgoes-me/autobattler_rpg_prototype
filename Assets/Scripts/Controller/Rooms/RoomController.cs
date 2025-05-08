@@ -12,9 +12,6 @@ public class RoomController : MonoBehaviour
     [field:SerializeField] private NavMeshSurface Surface { get; set; }
     [field:SerializeField] public Camera PreviewCamera { get; private set; }
     
-    [field:SerializeField] private LightSource LightSource { get; set; }
-    [field:SerializeField] private List<Material> Materials { get; set; }
-    
     private MusicType MusicType { get; set; }
     
     public RoomController Init(SceneNode sceneData)
@@ -61,32 +58,4 @@ public class RoomController : MonoBehaviour
             Bonfire.Spawn.SpawnPlayer();
         }
     }
-
-    private void Update()
-    {
-        foreach (var material in Materials)
-        {
-            material.SetVector("_LightSourcePosition", LightSource.Source.position); 
-            material.SetFloat("_LightSourceRadius", LightSource.Radius); 
-            material.SetColor("_LightSourceColor", LightSource.Color); 
-        }
-    }
-
-    private void OnValidate()
-    {
-        foreach (var material in Materials)
-        {
-            material.SetVector("_LightSourcePosition", LightSource.Source?.position ?? Vector3.zero); 
-            material.SetFloat("_LightSourceRadius", LightSource.Radius); 
-            material.SetColor("_LightSourceColor", LightSource.Color); 
-        }
-    }
-}
-
-[Serializable]
-public struct LightSource
-{
-    [field: SerializeField] public Transform Source { get; private set; }
-    [field: SerializeField] public float Radius { get; private set; }
-    [field: SerializeField] [field: ColorUsage(false, true)] public Color Color { get; private set; }
 }
