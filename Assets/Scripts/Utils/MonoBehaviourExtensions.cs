@@ -54,7 +54,6 @@ public static class MonoBehaviourExtensions
                 agent.pathStatus == NavMeshPathStatus.PathComplete && 
                 agent.remainingDistance < 1f);
                 
-            agent.isStopped = true;
             agent.ResetPath();
             
             task.SetResult(true);

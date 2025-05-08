@@ -58,8 +58,7 @@ public class EnemyController : MonoBehaviour
         }
         if (distance < PawnController.Pawn.GetComponent<EnemyComponent>().AttackRange)
         {
-            NavMeshAgent.SetDestination(transform.position);
-            NavMeshAgent.isStopped = true;
+            NavMeshAgent.ResetPath();
 
             EnemyAreaController.StartBattle();
         }

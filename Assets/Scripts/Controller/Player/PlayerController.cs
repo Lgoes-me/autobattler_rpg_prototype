@@ -31,7 +31,6 @@ public class PlayerController : MonoBehaviour
             return;
         
         MouseInput = true;
-        NavMeshAgent.isStopped = false;
         NavMeshAgent.SetDestination(destination);
     }
 
@@ -50,7 +49,6 @@ public class PlayerController : MonoBehaviour
         }
 
         MouseInput = false;
-        NavMeshAgent.isStopped = true;
         PawnController.CharacterController.SetSpeed(moveInput.magnitude);
 
         var inputManager = Application.Instance.GetManager<InputManager>();

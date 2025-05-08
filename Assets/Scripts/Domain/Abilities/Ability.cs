@@ -12,8 +12,10 @@ public class Ability
     private AbilityResourceComponent Resource { get; set; }
     
     public Vector3 WalkingDestination => 
-        AbilityUser.Pawn.Focus.transform.position + 
+        FocusDestination + 
         Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)) * Vector3.forward * (Range - 1);
+   
+    public Vector3 FocusDestination => AbilityUser.Pawn.Focus.transform.position;
 
     private bool IsInRange => Range >= (AbilityUser.Pawn.Focus.transform.position - AbilityUser.transform.position).magnitude;
     
