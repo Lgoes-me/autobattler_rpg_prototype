@@ -81,6 +81,7 @@ MonoBehaviour:
       data:
         <Abilities>k__BackingField:
         - {fileID: 11400000, guid: 4d5322942f707264790c540024917a6c, type: 2}
+        - {fileID: 11400000, guid: e08670137b4a16145a7141712200c678, type: 2}
     - rid: 7923229791535759371
       type: {class: ArchetypesComponentData, ns: , asm: Assembly-CSharp}
       data:

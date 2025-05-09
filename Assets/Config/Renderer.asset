@@ -47,7 +47,8 @@ MonoBehaviour:
   - {fileID: -580146084729650083}
   - {fileID: 6484297088760481039}
   - {fileID: 6509435738945033111}
-  m_RendererFeatureMap: f5c6ec89c9f0775a5d04dbad35e8f2f70f05abd1d8d9fc5997130dec5029565a
+  - {fileID: 1708714982645587785}
+  m_RendererFeatureMap: f5c6ec89c9f0775a5d04dbad35e8f2f70f05abd1d8d9fc5997130dec5029565a495ffa3a3993b617
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: bbd6aba35b53c4c4b9c2a3bf32a33ab0, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
@@ -86,6 +87,30 @@ MonoBehaviour:
   m_CopyDepthMode: 1
   m_AccurateGbufferNormals: 0
   m_IntermediateTextureMode: 1
+--- !u!114 &1708714982645587785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dea88b8bfbd93941b433ee338a4192d, type: 3}
+  m_Name: Blit
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  settings:
+    Event: 550
+    blitMaterial: {fileID: 2100000, guid: de1625b6904d456468a4612fc66666bb, type: 2}
+    blitMaterialPassIndex: 0
+    setInverseViewMatrix: 0
+    srcType: 0
+    srcTextureId: 
+    srcTextureObject: {fileID: 0}
+    dstType: 0
+    dstTextureId: 
+    dstTextureObject: {fileID: 0}
 --- !u!114 &2499744651479405201
 MonoBehaviour:
   m_ObjectHideFlags: 0

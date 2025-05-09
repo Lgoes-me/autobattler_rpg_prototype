@@ -33,7 +33,7 @@ MonoBehaviour:
     - rid: 7923229623912497153
       type: {class: ManaResourceData, ns: , asm: Assembly-CSharp}
       data:
-        <ManaCost>k__BackingField: 10
+        <ManaCost>k__BackingField: 3
     - rid: 7923229623912497154
       type: {class: DamageEffectData, ns: , asm: Assembly-CSharp}
       data:

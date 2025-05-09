@@ -38,7 +38,7 @@ MonoBehaviour:
       type: {class: StatsComponentData, ns: , asm: Assembly-CSharp}
       data:
         <BaseStats>k__BackingField:
-          <Health>k__BackingField: 100
+          <Health>k__BackingField: 200
           <Mana>k__BackingField: 30
           <Strength>k__BackingField: 2
           <Arcane>k__BackingField: 0
@@ -81,6 +81,8 @@ MonoBehaviour:
       data:
         <Abilities>k__BackingField:
         - {fileID: 11400000, guid: 0310e31ee1c2d1a43990c835c370c647, type: 2}
+        - {fileID: 11400000, guid: 72d2fc05ae1e78244844f4b1cda61c8b, type: 2}
+        - {fileID: 11400000, guid: cbfa2d6a21a91534188fe1573572da0d, type: 2}
     - rid: 7923229791535759364
       type: {class: ArchetypesComponentData, ns: , asm: Assembly-CSharp}
       data:

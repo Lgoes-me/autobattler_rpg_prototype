@@ -41,9 +41,9 @@ MonoBehaviour:
       type: {class: StatsComponentData, ns: , asm: Assembly-CSharp}
       data:
         <BaseStats>k__BackingField:
-          <Health>k__BackingField: 60
+          <Health>k__BackingField: 55
           <Mana>k__BackingField: 0
-          <Strength>k__BackingField: 1
+          <Strength>k__BackingField: 2
           <Arcane>k__BackingField: 0
           <PhysicalDefence>k__BackingField: 2
           <MagicalDefence>k__BackingField: 0
