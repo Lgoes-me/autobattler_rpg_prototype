@@ -29,7 +29,7 @@ MonoBehaviour:
     <PhysicalDefence>k__BackingField: 0
     <MagicalDefence>k__BackingField: 0
   <WeaponEffects>k__BackingField:
-  - <Type>k__BackingField: 2
+  - <Type>k__BackingField: 1
     <Effects>k__BackingField:
     - <Effects>k__BackingField:
       - rid: 2203596194859712514

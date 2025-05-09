@@ -48,6 +48,12 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+        if (MouseInput)
+        {
+            NavMeshAgent.ResetPath();
+            NavMeshAgent.velocity = Vector3.zero;
+        }
+        
         MouseInput = false;
         PawnController.CharacterController.SetSpeed(moveInput.magnitude);
 
