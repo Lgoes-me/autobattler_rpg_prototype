@@ -3,10 +3,30 @@ using UnityEngine;
 public class CorridorAreaController : SpawnController
 {
     [field: SerializeField] private Transform Destination { get; set; }
+    [field: SerializeField] private GameObject Spotlight { get; set; }
+    [field: SerializeField] private SpriteRenderer FogDoor { get; set; }
+    [field: SerializeField] private Color ActiveColor { get; set; }
+    [field: SerializeField] private Color InactiveColor { get; set; }
 
-    public SpawnDomain Spawn { get; set; }
+    private SpawnDomain Spawn { get; set; }
     private bool CanUse { get; set; } = true;
 
+    public void Init(SpawnDomain spawn)
+    {
+        Spawn = spawn;
+
+        if (Spawn.Active)
+        {
+            Spotlight.SetActive(true);
+            FogDoor.color = ActiveColor;
+        }
+        else
+        {
+            Spotlight.SetActive(false);
+            FogDoor.color = InactiveColor;
+        }
+    }
+    
     public override async void SpawnPlayer()
     {
         base.SpawnPlayer();

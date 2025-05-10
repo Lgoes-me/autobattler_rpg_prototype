@@ -43,7 +43,6 @@ public class Save : ISavable
         {
             "Farmer",
             "Hunter",
-            "Dude"
         };
         
         Dialogues = new List<string>();
