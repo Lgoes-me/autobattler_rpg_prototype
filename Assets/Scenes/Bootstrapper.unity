@@ -2371,7 +2371,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <LayerMask>k__BackingField:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 40
 --- !u!1 &1853319442
 GameObject:
   m_ObjectHideFlags: 0
@@ -2455,7 +2455,7 @@ Transform:
   m_GameObject: {fileID: 1918482238}
   serializedVersion: 2
   m_LocalRotation: {x: -0.1574654, y: -0.7079112, z: 0.16663972, w: -0.66805506}
-  m_LocalPosition: {x: -11.2300005, y: 6.6, z: 0.8299999}
+  m_LocalPosition: {x: -12.650001, y: 7.31, z: 0.90999985}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
