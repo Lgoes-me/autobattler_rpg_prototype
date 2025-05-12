@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour, IManager
 {
+    [field: SerializeField] private PawnController PawnController { get; set; }
+    
     public Transform PlayerTransform => PlayerController.transform;
     
     private PlayerController PlayerController { get; set; }
@@ -19,12 +21,12 @@ public class PlayerManager : MonoBehaviour, IManager
 
     public void DisablePlayerInput()
     {
-        PlayerController.enabled = false;
+        PlayerController.Disable();
     }
 
     public void EnablePlayerInput()
     {
-        PlayerController.enabled = true;
+        PlayerController.Enable();
     }
 
     public async Task MovePlayerTo(Transform destination)

@@ -9,6 +9,7 @@ public class PrizeManager : IManager
     private ConsumableManager ConsumableManager { get; set; }
     private InterfaceManager InterfaceManager { get; set; }
     private PauseManager PauseManager { get; set; }
+    private PlayerManager PlayerManager { get; set; }
     
     public void Prepare()
     {
@@ -19,93 +20,120 @@ public class PrizeManager : IManager
         ConsumableManager = Application.Instance.GetManager<ConsumableManager>();
         InterfaceManager = Application.Instance.GetManager<InterfaceManager>();
         PauseManager = Application.Instance.GetManager<PauseManager>();
+        PlayerManager = Application.Instance.GetManager<PlayerManager>();
     }
 
-    public async void CreateLevelUpPrize()
+    private void PreparePrize()
     {
         PauseManager.PauseGame();
+        PlayerManager.DisablePlayerInput();
+
+    }
+    
+    private void CompletePrize()
+    {
+        PauseManager.ResumeGame();
+        PlayerManager.EnablePlayerInput();
+    }
+    
+    public async void CreateLevelUpPrize()
+    {
+        PreparePrize();
         
         var prizes = new LevelUpPrize(3, GameSaveManager.GetSelectedParty());
         var selectedPrize = await InterfaceManager.ShowPrizeCanvas(prizes);
 
         var pawnInfo = selectedPrize.PawnInfo;
         
-        PauseManager.ResumeGame();
         pawnInfo.LevelUp();
         GameSaveManager.SavePawnInfo(pawnInfo);
         PartyManager.UpdatePawn(pawnInfo);
+
+        CompletePrize();
     }
 
     public async void CreateBlessingPrize(List<BlessingIdentifier> blessings)
     {
-        PauseManager.PauseGame();
+        PreparePrize();
+
         var prizes = new BlessingPrize(3, blessings);
         var selectedPrize = await InterfaceManager.ShowPrizeCanvas(prizes);
         
-        PauseManager.ResumeGame();
         BlessingManager.AddBlessing(selectedPrize.Blessing);
+        
+        CompletePrize();
     }
     
     public async void CreatePartyMemberPrize()
     {
-        PauseManager.PauseGame();
+        PreparePrize();
+
         var prizes = new PartyMemberPrize(3, 1, PartyManager.Party, ContentManager);
         var selectedPrize = await InterfaceManager.ShowPrizeCanvas(prizes);
         
-        PauseManager.ResumeGame();
         var pawnInfo = selectedPrize.PawnInfo;
         
         GameSaveManager.AddToSelectedParty(pawnInfo);
         PartyManager.AddToCurrentParty(Application.Instance.GetManager<PlayerManager>().PlayerTransform.position, pawnInfo);
         PartyManager.SetPartyToFollow(false);
+        
+        CompletePrize();
     }
 
     public async void CreateWeaponPrize()
     {
-        PauseManager.PauseGame();
+        PreparePrize();
+
         var prizes = new WeaponPrize(3, ContentManager, GameSaveManager.GetSelectedParty());
         var selectedPrize = await InterfaceManager.ShowPrizeCanvas(prizes);
 
         selectedPrize.ApplyPrize();
         
-        PauseManager.ResumeGame();
         GameSaveManager.SavePawnInfo(selectedPrize.PawnInfo);
         PartyManager.UpdatePawn(selectedPrize.PawnInfo);
+        
+        CompletePrize();
     }
     
     public async void CreateAbilityPrize()
     {
-        PauseManager.PauseGame();
+        PreparePrize();
+
         var prizes = new AbilityPrize(3, ContentManager, GameSaveManager.GetSelectedParty());
         var selectedPrize = await InterfaceManager.ShowPrizeCanvas(prizes);
 
         selectedPrize.ApplyPrize();
         
-        PauseManager.ResumeGame();
         GameSaveManager.SavePawnInfo(selectedPrize.PawnInfo);
         PartyManager.UpdatePawn(selectedPrize.PawnInfo);
+        
+        CompletePrize();
     }
     
     public async void CreateBuffPrize()
     {
-        PauseManager.PauseGame();
+        PreparePrize();
+        
         var prizes = new BuffPrize(3, ContentManager, GameSaveManager.GetSelectedParty());
         var selectedPrize = await InterfaceManager.ShowPrizeCanvas(prizes);
 
         selectedPrize.ApplyPrize();
         
-        PauseManager.ResumeGame();
         GameSaveManager.SavePawnInfo(selectedPrize.PawnInfo);
         PartyManager.UpdatePawn(selectedPrize.PawnInfo);
+        
+        CompletePrize();
     }
     
     public async void CreateConsumablePrize()
     {
-        PauseManager.PauseGame();
+        PreparePrize();
+
         var prizes = new ConsumablePrize(3, ContentManager);
         var selectedPrize = await InterfaceManager.ShowPrizeCanvas(prizes);
 
-        PauseManager.ResumeGame();
         ConsumableManager.AddConsumable(selectedPrize.Consumable);
+        
+        CompletePrize();
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [Serializable]
@@ -45,7 +46,7 @@ public class AbilitiesComponentData : PawnDataComponent
 
     public override PawnComponent ToDomain()
     {
-        return new AbilitiesComponent(Abilities);
+        return new AbilitiesComponent(Abilities.ToList());
     }
 }
 

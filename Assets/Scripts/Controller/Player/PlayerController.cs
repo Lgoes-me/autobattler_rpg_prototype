@@ -22,7 +22,8 @@ public class PlayerController : MonoBehaviour
         if (!MouseInput)
             return;
 
-        PawnController.CharacterController.SetSpeed(NavMeshAgent.velocity.magnitude);
+        var moveInput = Application.Instance.GetManager<InputManager>().MoveInput;
+        PawnController.CharacterController.SetSpeed(NavMeshAgent.velocity.magnitude + moveInput.magnitude);
     }
 
     public void SetDestination(Vector3 destination)
@@ -94,5 +95,17 @@ public class PlayerController : MonoBehaviour
     public async Task MovePlayerTo(Transform destination)
     {
         await this.WaitToArriveAtDestination(NavMeshAgent, destination.position);
+    }
+
+    public void Disable()
+    {
+        enabled = false;
+        NavMeshAgent.ResetPath();
+        NavMeshAgent.velocity = Vector3.zero;
+    }
+
+    public void Enable()
+    {
+        enabled = true;
     }
 }
