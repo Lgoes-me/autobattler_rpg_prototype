@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Stairs
+  m_Name: Bonfire
   m_Shader: {fileID: -6465566751694194690, guid: 9811a975b6d99df45b93bb716dacc497, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -24,13 +24,13 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_4450AB74:
-        m_Texture: {fileID: 2800000, guid: e8fd623741e411046906cf385961f15c, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0c8000c297400354397aa6b3459b8288, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: e8fd623741e411046906cf385961f15c, type: 3}
-        m_Scale: {x: 4, y: 8}
-        m_Offset: {x: 1, y: 0}
+        m_Texture: {fileID: 2800000, guid: e70fb0f7daee76b4990047557118da32, type: 3}
+        m_Scale: {x: 4, y: 4}
+        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -52,9 +52,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: e8fd623741e411046906cf385961f15c, type: 3}
-        m_Scale: {x: 4, y: 8}
-        m_Offset: {x: 1, y: 0}
+        m_Texture: {fileID: 2800000, guid: e70fb0f7daee76b4990047557118da32, type: 3}
+        m_Scale: {x: 4, y: 4}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -89,8 +89,8 @@ Material:
     - Boolean_3F1A8DAB: 1
     - Boolean_43476D73: 1
     - Boolean_7165A49C: 0
-    - Boolean_85059BBE: 1
-    - Boolean_8BBF99CD: 0
+    - Boolean_85059BBE: 0
+    - Boolean_8BBF99CD: 1
     - Boolean_D258FF8E: 0
     - Vector1_21C41D02: 256
     - Vector1_6F288C5B: 0
@@ -115,7 +115,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _LightSourceRadius: 2
+    - _LightSourceRadius: 3
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
@@ -133,12 +133,13 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - Color_2E5415DE: {r: 1, g: 1, b: 1, a: 0}
-    - Vector2_8044833E: {r: 4, g: 10, b: 0, a: 0}
+    - Vector2_8044833E: {r: 4, g: 4, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _LightSourceColor: {r: 0.9150943, g: 0.8285374, b: 0.366901, a: 0}
-    - _LightSourcePosition: {r: 0, g: 0, b: 0, a: 0}
+    - _LightPosition: {r: 0, g: 0, b: 0, a: 0}
+    - _LightSourceColor: {r: 0.7264151, g: 0.48003843, b: 0.01713243, a: 0}
+    - _LightSourcePosition: {r: 3.33, g: 1.64, b: 4.03, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &8453127044391420595

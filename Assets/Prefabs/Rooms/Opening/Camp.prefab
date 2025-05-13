@@ -3763,6 +3763,10 @@ PrefabInstance:
       propertyPath: m_NavMeshData
       value: 
       objectReference: {fileID: 23800000, guid: 045ada063cb26ef4c87e7c123fdebdc1, type: 2}
+    - target: {fileID: 5205475090520727093, guid: 88ce5f1a7b1526a45b9e3e65d5064074, type: 3}
+      propertyPath: m_LayerMask.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5242244253733173045, guid: 88ce5f1a7b1526a45b9e3e65d5064074, type: 3}
       propertyPath: <Bonfire>k__BackingField
       value: 
@@ -6570,7 +6574,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5704450273142219825, guid: e26eaaec9b7855d49af3fddf3e99134f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.72
+      value: 0.83
       objectReference: {fileID: 0}
     - target: {fileID: 5704450273142219825, guid: e26eaaec9b7855d49af3fddf3e99134f, type: 3}
       propertyPath: m_LocalPosition.z
