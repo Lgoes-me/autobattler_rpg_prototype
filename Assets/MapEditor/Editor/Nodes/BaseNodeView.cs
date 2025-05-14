@@ -94,6 +94,9 @@ public class BaseNodeView: Node
 
     private void AddInput(DoorData door)
     {
+        if(Inputs.ContainsKey(door.Id))
+            return;
+        
         var input = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(DoorData));
         input.userData = door;
         input.portName = door.Name;
@@ -104,6 +107,9 @@ public class BaseNodeView: Node
 
     private void AddOutput(DoorData door)
     {
+        if(Outputs.ContainsKey(door.Id))
+            return;
+        
         var output = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(DoorData));
         output.userData = door;
         output.portName = door.Name;

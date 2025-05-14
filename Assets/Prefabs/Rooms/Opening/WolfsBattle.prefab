@@ -2637,7 +2637,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6357606874330744520, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
       propertyPath: <Id>k__BackingField
-      value: d452db77-2b30-456e-99a3-430b78ca38e1
+      value: 7286d0a8-a9b7-4fe0-8fd0-a69552c0e1af
       objectReference: {fileID: 0}
     - target: {fileID: 6357606874330744520, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
       propertyPath: <CameraArea>k__BackingField

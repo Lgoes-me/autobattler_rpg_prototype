@@ -18,7 +18,7 @@ MonoBehaviour:
   - <Name>k__BackingField: Entrance
     <Port>k__BackingField: input
     <Id>k__BackingField: 5b31d176-60eb-4dfb-9507-86a3082b3f88
-    <SceneDestination>k__BackingField: 7caabf3a-f357-41c5-8253-cb01a2307682
+    <SceneDestination>k__BackingField: 17f6e528-a14f-46d2-af48-aae614a57f54
     <DoorDestination>k__BackingField: ba9e4921-22ec-4914-a4ff-cc08f334b4b0
     <SetUp>k__BackingField: 1
   - <Name>k__BackingField: Exit
@@ -58,35 +58,6 @@ MonoBehaviour:
     <SetUp>k__BackingField: 1
   <Position>k__BackingField: {x: 243.9999, y: -68.99999}
   <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 667d20764247d8c478b70a952361348a, type: 3}
---- !u!114 &-589510305525316834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 258b9a247b0d4766aef8d7549746b2a0, type: 3}
-  m_Name: WolfsBattle
-  m_EditorClassIdentifier: 
-  <Name>k__BackingField: WolfsBattle
-  <Id>k__BackingField: 7caabf3a-f357-41c5-8253-cb01a2307682
-  <Doors>k__BackingField:
-  - <Name>k__BackingField: Entrance
-    <Port>k__BackingField: 
-    <Id>k__BackingField: d452db77-2b30-456e-99a3-430b78ca38e1
-    <SceneDestination>k__BackingField: 
-    <DoorDestination>k__BackingField: 
-    <SetUp>k__BackingField: 0
-  - <Name>k__BackingField: Exit
-    <Port>k__BackingField: output
-    <Id>k__BackingField: ba9e4921-22ec-4914-a4ff-cc08f334b4b0
-    <SceneDestination>k__BackingField: 99d8518a-5a9d-44b2-be87-24abca5116a9
-    <DoorDestination>k__BackingField: 5b31d176-60eb-4dfb-9507-86a3082b3f88
-    <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: -1.999884, y: 156.00002}
-  <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 6f479e231edca6e4fbad47551ab1c0b6, type: 3}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,13 +71,13 @@ MonoBehaviour:
   m_Name: Map
   m_EditorClassIdentifier: 
   <Nodes>k__BackingField:
-  - {fileID: -589510305525316834}
   - {fileID: -7686420899551006572}
   - {fileID: -628428448409808008}
   - {fileID: 8385673690239620187}
   - {fileID: 4446128924508020463}
   - {fileID: 9124206494652957438}
   - {fileID: 2295631437706731519}
+  - {fileID: 8667465251414180210}
 --- !u!114 &2295631437706731519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,8 +96,8 @@ MonoBehaviour:
   - <Name>k__BackingField: 
     <Port>k__BackingField: output
     <Id>k__BackingField: acbb2a46-9bf8-4614-a3a4-550fb7ab2f4f
-    <SceneDestination>k__BackingField: 7caabf3a-f357-41c5-8253-cb01a2307682
-    <DoorDestination>k__BackingField: d452db77-2b30-456e-99a3-430b78ca38e1
+    <SceneDestination>k__BackingField: 17f6e528-a14f-46d2-af48-aae614a57f54
+    <DoorDestination>k__BackingField: 7286d0a8-a9b7-4fe0-8fd0-a69552c0e1af
     <SetUp>k__BackingField: 1
   <Position>k__BackingField: {x: -188.48207, y: 156.00005}
 --- !u!114 &4446128924508020463
@@ -199,6 +170,35 @@ MonoBehaviour:
     <SetUp>k__BackingField: 1
   <Position>k__BackingField: {x: 542.94025, y: -68.99992}
   <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 4e44b34c9e749e247ae10a7f53b0a88f, type: 3}
+--- !u!114 &8667465251414180210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 258b9a247b0d4766aef8d7549746b2a0, type: 3}
+  m_Name: WolfsBattle
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: WolfsBattle
+  <Id>k__BackingField: 17f6e528-a14f-46d2-af48-aae614a57f54
+  <Doors>k__BackingField:
+  - <Name>k__BackingField: Entrance
+    <Port>k__BackingField: input
+    <Id>k__BackingField: 7286d0a8-a9b7-4fe0-8fd0-a69552c0e1af
+    <SceneDestination>k__BackingField: Start
+    <DoorDestination>k__BackingField: acbb2a46-9bf8-4614-a3a4-550fb7ab2f4f
+    <SetUp>k__BackingField: 1
+  - <Name>k__BackingField: Exit
+    <Port>k__BackingField: output
+    <Id>k__BackingField: ba9e4921-22ec-4914-a4ff-cc08f334b4b0
+    <SceneDestination>k__BackingField: 99d8518a-5a9d-44b2-be87-24abca5116a9
+    <DoorDestination>k__BackingField: 5b31d176-60eb-4dfb-9507-86a3082b3f88
+    <SetUp>k__BackingField: 1
+  <Position>k__BackingField: {x: -16.19992, y: 155.99994}
+  <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 6f479e231edca6e4fbad47551ab1c0b6, type: 3}
 --- !u!114 &9124206494652957438
 MonoBehaviour:
   m_ObjectHideFlags: 0
