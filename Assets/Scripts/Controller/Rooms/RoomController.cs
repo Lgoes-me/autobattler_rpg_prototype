@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.AI.Navigation;
@@ -30,9 +29,10 @@ public class RoomController : MonoBehaviour
             Bonfire.Init(sceneData.Id);
         }
 
-        foreach (var enemyArea in EnemyAreas)
+        for (var index = 0; index < EnemyAreas.Count; index++)
         {
-            enemyArea.Init(sceneData.Id);
+            var enemyArea = EnemyAreas[index];
+            enemyArea.Init(sceneData.Id, sceneData.CombatEncounters[index]);
         }
 
         MusicType = sceneData.Music;
