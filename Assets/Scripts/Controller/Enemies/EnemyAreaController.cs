@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyAreaController : MonoBehaviour
 {
+    [field: SerializeField] public List<EnemyController> EnemyControllers { get; private set; }
     [field: SerializeField] private List<EnemyData> Enemies { get; set; }
     [field: SerializeField] private BattleController BattleController { get; set; }
     [field: SerializeReference] [field: SerializeField] private GameAction EndBattleAction { get; set; }

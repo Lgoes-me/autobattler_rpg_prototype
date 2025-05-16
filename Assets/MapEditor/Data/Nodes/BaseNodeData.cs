@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class BaseNodeData : ScriptableObject
 {
     [field: SerializeField] public string Name { get; protected set; }
-
+    
     [field: HideInInspector] [field: SerializeField] public string Id { get; protected set; }
     [field: HideInInspector] [field: SerializeField] public List<DoorData> Doors { get; protected set; }
     [field: HideInInspector] [field: SerializeField] public Vector2 Position { get; private set; }

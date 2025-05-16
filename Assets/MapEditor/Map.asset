@@ -133,7 +133,7 @@ MonoBehaviour:
     <SceneDestination>k__BackingField: 1bcd5b50-918d-457e-8c44-52b60cfb8ba7
     <DoorDestination>k__BackingField: 43c9be69-a3ef-4073-ada3-ebfcbb64e65d
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: 565.3, y: 414.35007}
+  <Position>k__BackingField: {x: 1354.1796, y: -93.00011}
   <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 4c3b47dbe3784b8479a098b17016cdca, type: 3}
 --- !u!114 &8385673690239620187
 MonoBehaviour:
@@ -168,7 +168,7 @@ MonoBehaviour:
     <SceneDestination>k__BackingField: 1bcd5b50-918d-457e-8c44-52b60cfb8ba7
     <DoorDestination>k__BackingField: 15ec4628-021c-44a1-9564-7c51df426196
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: 542.94025, y: -68.99992}
+  <Position>k__BackingField: {x: 558, y: -93}
   <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 4e44b34c9e749e247ae10a7f53b0a88f, type: 3}
 --- !u!114 &8667465251414180210
 MonoBehaviour:
@@ -244,5 +244,5 @@ MonoBehaviour:
     <SceneDestination>k__BackingField: 052ce432-9bea-46d6-b130-7e86c9745966
     <DoorDestination>k__BackingField: 69690e82-0343-458c-8dcc-f75d91b8ca70
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: 509.00012, y: 156}
+  <Position>k__BackingField: {x: 865.63916, y: -93.00008}
   <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 19dd903d99158e5409d93f9499a6abee, type: 3}

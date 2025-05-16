@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SceneNodeData : BaseNodeData
 {
     [field: SerializeField] public RoomController RoomPrefab { get; private set; }
+    [field: SerializeField] public List<CombatEncounterData> CombatEncounters { get; protected set; }
     
     public override void Init(NodeDataParams nodeDataParams)
     {
@@ -32,7 +34,6 @@ public class SceneNodeData : BaseNodeData
     }
 }
 
-
 public class SceneNodeDataParams : NodeDataParams
 {
     public string Id { get; }
@@ -43,4 +44,15 @@ public class SceneNodeDataParams : NodeDataParams
         Id = id;
         RoomPrefab = roomPrefab;
     }
+}
+
+[Serializable]
+public class CombatEncounterData
+{
+    [field: SerializeField] public List<EnemyData> Enemies { get; protected set; }
+
+    /*public SpawnDomain ToDomain()
+    {
+        return new SpawnDomain(DoorDestination, SceneDestination);
+    }*/
 }
