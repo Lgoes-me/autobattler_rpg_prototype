@@ -1,12 +1,10 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyAreaController : MonoBehaviour
 {
-    [field: SerializeField] public List<EnemyController> EnemyControllers { get; private set; }
+    [field: SerializeField] public EnemyController[] EnemyControllers { get; private set; }
     [field: SerializeField] private BattleController BattleController { get; set; }
-    [field: SerializeReference] [field: SerializeField] private GameAction EndBattleAction { get; set; }
     
     private CombatEncounterData CombatEncounter { get; set; }
     
@@ -40,7 +38,7 @@ public class EnemyAreaController : MonoBehaviour
         }
         
         Application.Instance.GetManager<PlayerManager>().DisablePlayerInput();
-        BattleController.ActivateBattleScene(Id, CombatEncounter.Enemies, EndBattleAction);
+        BattleController.ActivateBattleScene(Id, CombatEncounter);
     }
     
     private void OnValidate()

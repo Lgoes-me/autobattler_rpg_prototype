@@ -19,40 +19,6 @@ MonoBehaviour:
   cropToFit:
     m_OverrideState: 1
     m_Value: 0.8
---- !u!114 &-6564563734573671073
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 558a8e2b6826cf840aae193990ba9f2e, type: 3}
-  m_Name: ShadowsMidtonesHighlights
-  m_EditorClassIdentifier: 
-  active: 1
-  shadows:
-    m_OverrideState: 1
-    m_Value: {x: 0.9042095, y: 0.9156797, z: 1, w: 0}
-  midtones:
-    m_OverrideState: 1
-    m_Value: {x: 1, y: 0.96997106, z: 0.92992926, w: 0}
-  highlights:
-    m_OverrideState: 1
-    m_Value: {x: 1, y: 0.9472629, z: 0.8174892, w: 0}
-  shadowsStart:
-    m_OverrideState: 1
-    m_Value: 0
-  shadowsEnd:
-    m_OverrideState: 1
-    m_Value: 0.3
-  highlightsStart:
-    m_OverrideState: 1
-    m_Value: 0.55
-  highlightsEnd:
-    m_OverrideState: 1
-    m_Value: 1
 --- !u!114 &-6287426206891976260
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -180,34 +146,6 @@ MonoBehaviour:
   bladeRotation:
     m_OverrideState: 0
     m_Value: 0
---- !u!114 &-802704932207172887
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66f335fb1ffd8684294ad653bf1c7564, type: 3}
-  m_Name: ColorAdjustments
-  m_EditorClassIdentifier: 
-  active: 1
-  postExposure:
-    m_OverrideState: 1
-    m_Value: 1.45
-  contrast:
-    m_OverrideState: 1
-    m_Value: 6
-  colorFilter:
-    m_OverrideState: 1
-    m_Value: {r: 0.8396226, g: 0.79401875, b: 0.7881363, a: 1}
-  hueShift:
-    m_OverrideState: 0
-    m_Value: 0
-  saturation:
-    m_OverrideState: 1
-    m_Value: -6
 --- !u!114 &-459329596835509642
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -224,28 +162,6 @@ MonoBehaviour:
   intensity:
     m_OverrideState: 1
     m_Value: 0.25
---- !u!114 &-187991861668952468
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5485954d14dfb9a4c8ead8edb0ded5b1, type: 3}
-  m_Name: LiftGammaGain
-  m_EditorClassIdentifier: 
-  active: 1
-  lift:
-    m_OverrideState: 1
-    m_Value: {x: 0.9773624, y: 0.98659205, z: 1, w: 0}
-  gamma:
-    m_OverrideState: 1
-    m_Value: {x: 1, y: 0.9836049, z: 0.9705785, w: 0}
-  gain:
-    m_OverrideState: 1
-    m_Value: {x: 1, y: 0.98245156, z: 0.9583918, w: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,21 +172,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
-  m_Name: PostProcessProfile
+  m_Name: BasePostProcess
   m_EditorClassIdentifier: 
   components:
   - {fileID: 4629462549644101463}
   - {fileID: -3611886599178593458}
-  - {fileID: 3346814883966166552}
-  - {fileID: -187991861668952468}
   - {fileID: -459329596835509642}
   - {fileID: 6689184736699391157}
   - {fileID: 3190263373393239192}
   - {fileID: -8539328380721681238}
   - {fileID: 3305566581952397688}
   - {fileID: -4899824729179053015}
-  - {fileID: -6564563734573671073}
-  - {fileID: -802704932207172887}
   - {fileID: 6260320583811556826}
 --- !u!114 &773337817206303357
 MonoBehaviour:
@@ -347,25 +259,6 @@ MonoBehaviour:
   colorPrecision:
     m_OverrideState: 1
     m_Value: 8
---- !u!114 &3346814883966166552
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 221518ef91623a7438a71fef23660601, type: 3}
-  m_Name: WhiteBalance
-  m_EditorClassIdentifier: 
-  active: 1
-  temperature:
-    m_OverrideState: 1
-    m_Value: -15.4
-  tint:
-    m_OverrideState: 1
-    m_Value: 19.2
 --- !u!114 &4629462549644101463
 MonoBehaviour:
   m_ObjectHideFlags: 3

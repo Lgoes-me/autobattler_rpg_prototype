@@ -2,14 +2,16 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.AI.Navigation;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class RoomController : MonoBehaviour
 {
+    [field:SerializeField] public Camera PreviewCamera { get; private set; }
     [field:SerializeField] public List<CorridorAreaController> Doors { get; private set; }
     [field:SerializeField] public List<EnemyAreaController> EnemyAreas { get; private set; }
     [field:SerializeField] private BonfireController Bonfire { get; set; }
     [field:SerializeField] private NavMeshSurface Surface { get; set; }
-    [field:SerializeField] public Camera PreviewCamera { get; private set; }
+    [field:SerializeField] private Volume PostProcessVolume { get; set; }
     
     private MusicType MusicType { get; set; }
     
@@ -36,6 +38,7 @@ public class RoomController : MonoBehaviour
         }
 
         MusicType = sceneData.Music;
+        PostProcessVolume.profile = sceneData.PostProcessProfile;
         
         return this;
     }

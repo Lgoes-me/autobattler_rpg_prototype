@@ -30,6 +30,10 @@ MonoBehaviour:
   <Position>k__BackingField: {x: 244.35999, y: 156}
   <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 58e0e263843433e4d8d766fb709341dc, type: 3}
   <CombatEncounters>k__BackingField: []
+  <PostProcessProfile>k__BackingField: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &-7545695000029917061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57,7 +61,7 @@ MonoBehaviour:
     <SceneDestination>k__BackingField: 99d8518a-5a9d-44b2-be87-24abca5116a9
     <DoorDestination>k__BackingField: 5b31d176-60eb-4dfb-9507-86a3082b3f88
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: -27.74898, y: 156}
+  <Position>k__BackingField: {x: -37, y: 156}
   <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 6f479e231edca6e4fbad47551ab1c0b6, type: 3}
   <CombatEncounters>k__BackingField:
   - <Enemies>k__BackingField:
@@ -82,6 +86,15 @@ MonoBehaviour:
         <Level>k__BackingField: 1
       <Animation>k__BackingField: 
       <Forward>k__BackingField: 1
+    <EndBattleAction>k__BackingField:
+      rid: 2203596507835793408
+  <PostProcessProfile>k__BackingField: {fileID: 11400000, guid: 0d2fdc4948ba68144ac41b1fa7ed95a2, type: 2}
+  references:
+    version: 2
+    RefIds:
+    - rid: 2203596507835793408
+      type: {class: OpenBuffPrize, ns: , asm: Assembly-CSharp}
+      data: 
 --- !u!114 &-628428448409808008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,9 +122,13 @@ MonoBehaviour:
     <SceneDestination>k__BackingField: 7cca88f9-7893-4574-beb4-a916adc78da0
     <DoorDestination>k__BackingField: 4ad61d87-6a66-485a-8ab3-51dfacaede3b
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: 243.9999, y: -68.99999}
+  <Position>k__BackingField: {x: 244, y: -70}
   <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 667d20764247d8c478b70a952361348a, type: 3}
   <CombatEncounters>k__BackingField: []
+  <PostProcessProfile>k__BackingField: {fileID: 11400000, guid: 0d2fdc4948ba68144ac41b1fa7ed95a2, type: 2}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,6 +207,10 @@ MonoBehaviour:
   <Position>k__BackingField: {x: 1354.1796, y: -93.00011}
   <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 4c3b47dbe3784b8479a098b17016cdca, type: 3}
   <CombatEncounters>k__BackingField: []
+  <PostProcessProfile>k__BackingField: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &8385673690239620187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,9 +244,13 @@ MonoBehaviour:
     <SceneDestination>k__BackingField: 1bcd5b50-918d-457e-8c44-52b60cfb8ba7
     <DoorDestination>k__BackingField: 15ec4628-021c-44a1-9564-7c51df426196
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: 558, y: -93}
+  <Position>k__BackingField: {x: 563.247, y: -93}
   <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 4e44b34c9e749e247ae10a7f53b0a88f, type: 3}
   <CombatEncounters>k__BackingField: []
+  <PostProcessProfile>k__BackingField: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &9124206494652957438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,3 +299,7 @@ MonoBehaviour:
   <Position>k__BackingField: {x: 865.63916, y: -93.00008}
   <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 19dd903d99158e5409d93f9499a6abee, type: 3}
   <CombatEncounters>k__BackingField: []
+  <PostProcessProfile>k__BackingField: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []

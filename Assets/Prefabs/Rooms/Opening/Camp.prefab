@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8464770316558518641}
   - component: {fileID: 2737053293396779286}
   m_Layer: 0
-  m_Name: Directional Light (1)
+  m_Name: Directional Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1069,13 +1069,13 @@ PrefabInstance:
       addedObject: {fileID: 1119740368299464620}
     - targetCorrespondingSourceObject: {fileID: 2901143714417906390, guid: 88ce5f1a7b1526a45b9e3e65d5064074, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 726102810259102870}
+    - targetCorrespondingSourceObject: {fileID: 2901143714417906390, guid: 88ce5f1a7b1526a45b9e3e65d5064074, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 7406661023299288375}
     - targetCorrespondingSourceObject: {fileID: 2901143714417906390, guid: 88ce5f1a7b1526a45b9e3e65d5064074, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8437394127775164036}
-    - targetCorrespondingSourceObject: {fileID: 2901143714417906390, guid: 88ce5f1a7b1526a45b9e3e65d5064074, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 726102810259102870}
     - targetCorrespondingSourceObject: {fileID: 2901143714417906390, guid: 88ce5f1a7b1526a45b9e3e65d5064074, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7580826037360443802}
@@ -2187,7 +2187,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7803689849695119232, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
       propertyPath: m_Name
-      value: Entrance
+      value: LeftCorridor
       objectReference: {fileID: 0}
     - target: {fileID: 8475532692762963974, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2348,7 +2348,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7803689849695119232, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
       propertyPath: m_Name
-      value: Exit
+      value: NorthCorridor
       objectReference: {fileID: 0}
     - target: {fileID: 7803689849695119232, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
       propertyPath: m_IsActive

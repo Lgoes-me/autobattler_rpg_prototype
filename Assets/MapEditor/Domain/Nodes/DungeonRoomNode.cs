@@ -19,7 +19,7 @@ public class DungeonRoomNode : SceneNode, IDungeonRoom
         string id, 
         List<DoorData> doors, 
         RoomController roomPrefab, 
-        RoomType roomType) : base(name, id, doors, roomPrefab, new List<CombatEncounterData>())
+        RoomType roomType) : base(name, id, doors, roomPrefab, new List<CombatEncounterData>(), null)
     {
         RoomType = roomType;
         Collapsed = false;

@@ -7,15 +7,15 @@ public class BattleController : MonoBehaviour
     private Battle Battle { get; set; }
     private GameAction EndBattleAction { get; set; }
 
-    public void ActivateBattleScene(string battleId, List<EnemyData> enemies, GameAction endBattleAction)
+    public void ActivateBattleScene(string battleId, CombatEncounterData combatEncounter)
     {
-        EndBattleAction = endBattleAction;
+        EndBattleAction = combatEncounter.EndBattleAction;
         
         Application.Instance.GetManager<PartyManager>().StopPartyFollow();
         
         Battle = new Battle(battleId);
         
-        foreach (var enemy in enemies)
+        foreach (var enemy in combatEncounter.Enemies)
         {
             var enemyController = enemy.PawnController;
 

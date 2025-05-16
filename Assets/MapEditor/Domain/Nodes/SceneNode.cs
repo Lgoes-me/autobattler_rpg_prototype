@@ -1,14 +1,17 @@
 ﻿using System.Collections.Generic;
+using UnityEngine.Rendering;
 
 public class SceneNode : BaseSceneNode
 {
     public RoomController RoomPrefab { get; protected set; }
-    public List<CombatEncounterData> CombatEncounters { get; protected set; }
+    public List<CombatEncounterData> CombatEncounters { get; }
+    public VolumeProfile PostProcessProfile { get; }
     
     protected SceneNode() : base()
     {
         RoomPrefab = null;
         CombatEncounters = new List<CombatEncounterData>();
+        PostProcessProfile = null;
     }
     
     public SceneNode(
@@ -16,9 +19,11 @@ public class SceneNode : BaseSceneNode
         string id,
         List<DoorData> doors,
         RoomController roomPrefab,
-        List<CombatEncounterData> combatEncounters) : base(name, id, doors)
+        List<CombatEncounterData> combatEncounters,
+        VolumeProfile postProcessProfile) : base(name, id, doors)
     {
         RoomPrefab = roomPrefab;
         CombatEncounters = combatEncounters;
+        PostProcessProfile = postProcessProfile;
     }
 }
