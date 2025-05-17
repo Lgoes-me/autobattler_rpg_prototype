@@ -10,6 +10,8 @@ public class DungeonNodeData : BaseNodeData
     [field: SerializeField] private int MaximumDoors { get; set; }
     [field: SerializeField] private int MinimumDeepness { get; set; }
     [field: SerializeField] private int MaximumDeepness { get; set; }
+    
+    public override bool Open => true;
 
     public override void Init(NodeDataParams nodeDataParams)
     {

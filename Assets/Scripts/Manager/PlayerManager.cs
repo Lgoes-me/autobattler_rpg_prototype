@@ -3,10 +3,7 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour, IManager
 {
-    [field: SerializeField] private PawnController PawnController { get; set; }
-    
     public Transform PlayerTransform => PlayerController.transform;
-    
     private PlayerController PlayerController { get; set; }
     
     public void SetNewPlayerPawn(PawnController pawnController)

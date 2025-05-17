@@ -74,7 +74,7 @@ public class PrizeManager : IManager
         var pawnInfo = selectedPrize.PawnInfo;
         
         GameSaveManager.AddToSelectedParty(pawnInfo);
-        PartyManager.AddToCurrentParty(Application.Instance.GetManager<PlayerManager>().PlayerTransform.position, pawnInfo);
+        PartyManager.AddToCurrentParty(Application.Instance.GetManager<PlayerManager>().PlayerTransform.position, pawnInfo, true);
         PartyManager.SetPartyToFollow(false);
         
         CompletePrize();

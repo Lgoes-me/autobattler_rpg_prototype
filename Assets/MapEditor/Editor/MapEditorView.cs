@@ -158,18 +158,24 @@ public class MapEditorView : GraphView
             {
                 var input = edge.input;
                 var output = edge.output;
-                
-                var spawnInputData = (DoorData)input.userData;
-                var spawnOutputData = (DoorData)output.userData;
 
-                spawnInputData.Connect(((BaseNodeView) output.node).NodeData.Id, spawnOutputData.Id, "input");
-                ((BaseNodeView) input.node).RemoveOutput(spawnInputData.Id);
-                EditorUtility.SetDirty(((BaseNodeView) input.node).NodeData);
+                var spawnInputData = (DoorData) input.userData;
+                var spawnOutputData = (DoorData) output.userData;
 
-                spawnOutputData.Connect(((BaseNodeView) input.node).NodeData.Id, spawnInputData.Id, "output");
-                ((BaseNodeView) output.node).RemoveInput(spawnOutputData.Id);
-                EditorUtility.SetDirty(((BaseNodeView) output.node).NodeData);
-                
+                var outputNode = (BaseNodeView) output.node;
+                var inputNode = (BaseNodeView) input.node;
+
+                var outputNodeData = outputNode.NodeData;
+                var inputNodeData = inputNode.NodeData;
+
+                spawnInputData.Connect(outputNodeData.Id, spawnOutputData.Id, outputNodeData.Open, "input");
+                inputNode.RemoveOutput(spawnInputData.Id);
+                EditorUtility.SetDirty(inputNodeData);
+
+                spawnOutputData.Connect(inputNodeData.Id, spawnInputData.Id, inputNodeData.Open, "output");
+                outputNode.RemoveInput(spawnOutputData.Id);
+                EditorUtility.SetDirty(outputNodeData);
+
                 AssetDatabase.SaveAssets();
             }
         }

@@ -2,6 +2,8 @@ using System.Collections.Generic;
 
 public class SpawnNodeData : BaseNodeData
 {
+    public override bool Open => false;
+    
     public override void Init(NodeDataParams nodeDataParams)
     {
         var dataParams = (SpawnNodeDataParams) nodeDataParams;

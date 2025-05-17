@@ -43,10 +43,13 @@ public class PartyManager : MonoBehaviour, IManager
     public void SpawnPartyAt(Vector3 position)
     {
         var pawnPosition = position;
+
+        var list = GameSaveManager.GetSelectedParty();
         
-        foreach (var pawnInfo in GameSaveManager.GetSelectedParty())
+        for (var index = 0; index < list.Count; index++)
         {
-            var pawnInstance = AddToCurrentParty(pawnPosition, pawnInfo);
+            var pawnInfo = list[index];
+            var pawnInstance = AddToCurrentParty(pawnPosition, pawnInfo, index != 0);
             pawnPosition = pawnInstance.transform.position;
         }
 
@@ -102,9 +105,9 @@ public class PartyManager : MonoBehaviour, IManager
         Party.FirstOrDefault(p => p.Pawn.Id == pawnInfo.Name)?.UpdatePawn(pawnInfo);
     }
 
-    public PawnController AddToCurrentParty(Vector3 position, PawnInfo pawnInfo)
+    public PawnController AddToCurrentParty(Vector3 position, PawnInfo pawnInfo, bool randomEnabled)
     {
-        var randomRotation = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)) * Vector3.forward * 1f;
+        var randomRotation = randomEnabled ? Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)) * Vector3.forward * 1f : Vector3.zero;
         var pawnInstance = Instantiate(PawnControllerPrefab, position + randomRotation, Quaternion.identity, transform);
 
         var pawn = ContentManager.GetPawnDomainFromInfo(pawnInfo);
