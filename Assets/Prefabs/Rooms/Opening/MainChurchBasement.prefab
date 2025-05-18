@@ -469,6 +469,18 @@ PrefabInstance:
       value: Assembly-CSharp OpenCutscene
       objectReference: {fileID: 0}
     - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
+      propertyPath: <EnemyControllers>k__BackingField.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
+      propertyPath: <EnemyControllers>k__BackingField.Array.data[0]
+      value: 
+      objectReference: {fileID: 2436622184674189808}
+    - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
+      propertyPath: <EnemyControllers>k__BackingField.Array.data[1]
+      value: 
+      objectReference: {fileID: 5067068406589590428}
+    - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
       propertyPath: <Enemies>k__BackingField.Array.data[0].<IsBoss>k__BackingField
       value: 0
       objectReference: {fileID: 0}
@@ -2025,6 +2037,18 @@ PrefabInstance:
       value: Assembly-CSharp OpenCutscene
       objectReference: {fileID: 0}
     - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
+      propertyPath: <EnemyControllers>k__BackingField.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
+      propertyPath: <EnemyControllers>k__BackingField.Array.data[0]
+      value: 
+      objectReference: {fileID: 3586848894202716452}
+    - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
+      propertyPath: <EnemyControllers>k__BackingField.Array.data[1]
+      value: 
+      objectReference: {fileID: 5994997608682174924}
+    - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
       propertyPath: <Enemies>k__BackingField.Array.data[0].<IsBoss>k__BackingField
       value: 0
       objectReference: {fileID: 0}
@@ -2252,6 +2276,26 @@ PrefabInstance:
       propertyPath: managedReferences[8813334712271503372]
       value: Assembly-CSharp OpenCutscene
       objectReference: {fileID: 0}
+    - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
+      propertyPath: <EnemyControllers>k__BackingField.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
+      propertyPath: <EnemyControllers>k__BackingField.Array.data[0]
+      value: 
+      objectReference: {fileID: 6363545432021234904}
+    - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
+      propertyPath: <EnemyControllers>k__BackingField.Array.data[1]
+      value: 
+      objectReference: {fileID: 3378254719809275251}
+    - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
+      propertyPath: <EnemyControllers>k__BackingField.Array.data[2]
+      value: 
+      objectReference: {fileID: 2296811990091986458}
+    - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
+      propertyPath: <EnemyControllers>k__BackingField.Array.data[3]
+      value: 
+      objectReference: {fileID: 3089597425213462768}
     - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
       propertyPath: <Enemies>k__BackingField.Array.data[0].<IsBoss>k__BackingField
       value: 1
