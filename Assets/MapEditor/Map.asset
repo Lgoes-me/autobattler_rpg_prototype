@@ -29,7 +29,7 @@ MonoBehaviour:
     <DoorDestination>k__BackingField: f36263e0-0c3b-41b9-9969-7d79145e5f33
     <SetUp>k__BackingField: 1
     <Open>k__BackingField: 1
-  <Position>k__BackingField: {x: -93.61444, y: -69.999985}
+  <Position>k__BackingField: {x: -94.99083, y: -70.000046}
   <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 6f479e231edca6e4fbad47551ab1c0b6, type: 3}
   <CombatEncounters>k__BackingField:
   - <Enemies>k__BackingField:
@@ -99,7 +99,7 @@ MonoBehaviour:
     <DoorDestination>k__BackingField: e3b1933f-9893-40fb-83ac-6c3f081ebaae
     <SetUp>k__BackingField: 1
     <Open>k__BackingField: 1
-  <Position>k__BackingField: {x: 447.00003, y: -70.00002}
+  <Position>k__BackingField: {x: 411.00006, y: -70.000046}
   <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 4e44b34c9e749e247ae10a7f53b0a88f, type: 3}
   <CombatEncounters>k__BackingField:
   - <Enemies>k__BackingField:
@@ -118,13 +118,14 @@ MonoBehaviour:
       <Animation>k__BackingField: 
       <Forward>k__BackingField: 0
     <EndBattleAction>k__BackingField:
-      rid: -2
-  <PostProcessProfile>k__BackingField: {fileID: 0}
+      rid: 2203596554986061830
+  <PostProcessProfile>k__BackingField: {fileID: 11400000, guid: 0d2fdc4948ba68144ac41b1fa7ed95a2, type: 2}
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+    - rid: 2203596554986061830
+      type: {class: OpenAbilityPrize, ns: , asm: Assembly-CSharp}
+      data: 
 --- !u!114 &-2735476827861547487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,13 +174,14 @@ MonoBehaviour:
       <Animation>k__BackingField: 
       <Forward>k__BackingField: 1
     <EndBattleAction>k__BackingField:
-      rid: -2
+      rid: 2203596554986061831
   <PostProcessProfile>k__BackingField: {fileID: 11400000, guid: 0d2fdc4948ba68144ac41b1fa7ed95a2, type: 2}
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+    - rid: 2203596554986061831
+      type: {class: OpenBlessingPrize, ns: , asm: Assembly-CSharp}
+      data: 
 --- !u!114 &-1375947148364262921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,7 +221,7 @@ MonoBehaviour:
   <Position>k__BackingField: {x: 1131.0896, y: -69.99999}
   <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 4c3b47dbe3784b8479a098b17016cdca, type: 3}
   <CombatEncounters>k__BackingField: []
-  <PostProcessProfile>k__BackingField: {fileID: 0}
+  <PostProcessProfile>k__BackingField: {fileID: 11400000, guid: 0d2fdc4948ba68144ac41b1fa7ed95a2, type: 2}
   references:
     version: 2
     RefIds: []
@@ -352,7 +354,7 @@ MonoBehaviour:
     <DoorDestination>k__BackingField: 69690e82-0343-458c-8dcc-f75d91b8ca70
     <SetUp>k__BackingField: 1
     <Open>k__BackingField: 1
-  <Position>k__BackingField: {x: 724.6201, y: -70.000114}
+  <Position>k__BackingField: {x: 730.31995, y: -70}
   <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 19dd903d99158e5409d93f9499a6abee, type: 3}
   <CombatEncounters>k__BackingField:
   - <Enemies>k__BackingField:
@@ -402,7 +404,7 @@ MonoBehaviour:
       <Animation>k__BackingField: 
       <Forward>k__BackingField: 0
     <EndBattleAction>k__BackingField:
-      rid: -2
+      rid: 2203596554986061826
   - <Enemies>k__BackingField:
     - name: Enemy
       <IsBoss>k__BackingField: 0
@@ -419,10 +421,16 @@ MonoBehaviour:
       <Animation>k__BackingField: 
       <Forward>k__BackingField: 0
     <EndBattleAction>k__BackingField:
-      rid: -2
+      rid: 2203596554986061828
   <PostProcessProfile>k__BackingField: {fileID: 11400000, guid: 0d2fdc4948ba68144ac41b1fa7ed95a2, type: 2}
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 2203596554986061826
+      type: {class: OpenBlessingPrize, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 2203596554986061828
+      type: {class: OpenLevelUpPrize, ns: , asm: Assembly-CSharp}
+      data: 

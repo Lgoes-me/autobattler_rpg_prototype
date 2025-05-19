@@ -747,7 +747,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7803689849695119232, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
       propertyPath: m_Name
-      value: MainTunnel
+      value: SecondaryTunnel
       objectReference: {fileID: 0}
     - target: {fileID: 7803689849695119232, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
       propertyPath: m_IsActive
@@ -981,7 +981,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7584099162554650136, guid: 24b5d65779f0b1449804b49e9a8916f0, type: 3}
       propertyPath: m_Name
-      value: MainTunnelCamera
+      value: SecondaryTunnelCamera
       objectReference: {fileID: 0}
     - target: {fileID: 7782163859175625385, guid: 24b5d65779f0b1449804b49e9a8916f0, type: 3}
       propertyPath: m_RootOrder
@@ -1447,7 +1447,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7584099162554650136, guid: 24b5d65779f0b1449804b49e9a8916f0, type: 3}
       propertyPath: m_Name
-      value: SecondaryTunnelCamera
+      value: MainTunnelCamera
       objectReference: {fileID: 0}
     - target: {fileID: 7782163859175625385, guid: 24b5d65779f0b1449804b49e9a8916f0, type: 3}
       propertyPath: m_RootOrder
@@ -1766,13 +1766,43 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 56f98c7dc54563f48a159eab1bfdd57f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7943868423764816564}
   m_SourcePrefab: {fileID: 100100000, guid: 56f98c7dc54563f48a159eab1bfdd57f, type: 3}
 --- !u!4 &5073429123754436544 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 56f98c7dc54563f48a159eab1bfdd57f, type: 3}
   m_PrefabInstance: {fileID: 4747578599328727083}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5558462583053319546 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 56f98c7dc54563f48a159eab1bfdd57f, type: 3}
+  m_PrefabInstance: {fileID: 4747578599328727083}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &7943868423764816564
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5558462583053319546}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7035690196794747791, guid: 56f98c7dc54563f48a159eab1bfdd57f, type: 3}
 --- !u!1001 &6391921083363474090
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2970,7 +3000,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7803689849695119232, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
       propertyPath: m_Name
-      value: SecondaryTunnel
+      value: MainTunnel
       objectReference: {fileID: 0}
     - target: {fileID: 7803689849695119232, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
       propertyPath: m_IsActive
