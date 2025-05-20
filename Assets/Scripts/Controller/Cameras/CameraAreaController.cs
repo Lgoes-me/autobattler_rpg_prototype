@@ -16,17 +16,17 @@ public class CameraAreaController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            ActivateCamera();
+            ActivateCamera(Blend);
         }
     }
     
-    public void ActivateCamera()
+    public void ActivateCamera(CinemachineBlendDefinition blend)
     {
         if (Follow)
         {
             CinemachineVirtualCamera.Follow = Application.Instance.GetManager<PlayerManager>().PlayerTransform;
         }
 
-        Application.Instance.GetManager<InputManager>().SetNewCameraPosition(CinemachineVirtualCamera, Blend);
+        Application.Instance.GetManager<InputManager>().SetNewCameraPosition(CinemachineVirtualCamera, blend);
     }
 }

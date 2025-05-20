@@ -26,9 +26,9 @@ public class PlayerManager : MonoBehaviour, IManager
         PlayerController.Enable();
     }
 
-    public async Task MovePlayerTo(Transform destination)
+    public Task MovePlayerTo(Transform destination)
     {
-        await PlayerController.MovePlayerTo(destination);
+        return PlayerController.MovePlayerTo(destination);
     }
     
     public void SetDestination(Vector3 mouseInput)

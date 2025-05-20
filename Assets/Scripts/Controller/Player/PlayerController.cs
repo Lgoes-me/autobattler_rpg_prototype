@@ -29,9 +29,9 @@ public class PlayerController : MonoBehaviour
 
     public void SetDestination(Vector3 destination)
     {
-        if(!enabled)
+        if (!enabled)
             return;
-        
+
         MouseInput = true;
         NavMeshAgent.SetDestination(destination);
     }
@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
             NavMeshAgent.ResetPath();
             NavMeshAgent.velocity = Vector3.zero;
         }
-        
+
         MouseInput = false;
         PawnController.CharacterController.SetSpeed(moveInput.magnitude);
 
@@ -74,7 +74,8 @@ public class PlayerController : MonoBehaviour
         if (!NavMesh.SamplePosition(destination, out NavMeshHit hit, 1f, NavMesh.AllAreas))
             return;
 
-        transform.position = transform.position.Follow(new Vector3(hit.position.x, transform.position.y, hit.position.z), 25);
+        transform.position =
+            transform.position.Follow(new Vector3(hit.position.x, transform.position.y, hit.position.z), 25);
     }
 
     private void OnTriggerStay(Collider other)
@@ -100,24 +101,23 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(WaitToArriveAtDestinationCoroutine());
 
         return task.Task;
-        
+
         IEnumerator WaitToArriveAtDestinationCoroutine()
         {
             var time = Time.time;
 
             var acceleration = NavMeshAgent.acceleration;
             NavMeshAgent.acceleration = 1000;
-            
             NavMeshAgent.SetDestination(destination.position);
-            
+
             yield return new WaitForEndOfFrame();
 
             var inputManager = Application.Instance.GetManager<InputManager>();
-            
-            while(Time.time - time <= 3f && 
-                  (NavMeshAgent.pathStatus != NavMeshPathStatus.PathComplete || NavMeshAgent.remainingDistance >= 1f) &&
-                  inputManager.MoveInput.sqrMagnitude <= Mathf.Epsilon &&
-                  !MouseInput)
+
+            while (Time.time - time <= 3 && 
+                  (NavMeshAgent.pathStatus != NavMeshPathStatus.PathComplete || NavMeshAgent.remainingDistance >= 0.1f) &&
+                   inputManager.MoveInput.sqrMagnitude <= Mathf.Epsilon &&
+                   !MouseInput)
             {
                 NavMeshAgent.SetDestination(destination.position);
                 yield return new WaitForSeconds(0.5f);
@@ -126,7 +126,7 @@ public class PlayerController : MonoBehaviour
             NavMeshAgent.acceleration = acceleration;
             NavMeshAgent.velocity = Vector3.zero;
             NavMeshAgent.ResetPath();
-            
+
             task.SetResult(true);
         }
     }

@@ -1,11 +1,13 @@
 using System;
 using System.Threading.Tasks;
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
 public class SceneManager : MonoBehaviour, IManager
 {
+    [field: SerializeField] private CinemachineBlendDefinition Blend { get; set; }
     [field: SerializeField] private MapData MapData { get; set; }
 
     private bool BonfireActive { get; set; }
@@ -81,7 +83,7 @@ public class SceneManager : MonoBehaviour, IManager
         await this.WaitEndOfFrame();
         
         CurrentRoom = Instantiate(sceneNode.RoomPrefab).Init(sceneNode);
-        CurrentRoom.SpawnPlayerAt(spawnDomain.SpawnId);
+        CurrentRoom.SpawnPlayerAt(spawnDomain.SpawnId, Blend);
         GameSaveManager.SetSpawn(spawnDomain);
         
         PartyManager.SetPartyToFollow(true);
@@ -118,7 +120,7 @@ public class SceneManager : MonoBehaviour, IManager
             
         CurrentRoom = Instantiate(sceneNode.RoomPrefab).Init(sceneNode);
            
-        CurrentRoom.SpawnPlayerAt(spawn.SpawnId);
+        CurrentRoom.SpawnPlayerAt(spawn.SpawnId, Blend);
             
         PartyManager.SetPartyToFollow(true);
     }

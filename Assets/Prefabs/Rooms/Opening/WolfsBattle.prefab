@@ -2645,11 +2645,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1414291554413539100, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.56
+      value: -2.8
       objectReference: {fileID: 0}
     - target: {fileID: 4441693546795938816, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
       propertyPath: m_Size.z
-      value: 0.65
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4441693546795938816, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
       propertyPath: m_Center.z
@@ -2774,19 +2774,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1414291554413539100, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.54
+      value: -1.13
       objectReference: {fileID: 0}
     - target: {fileID: 4441693546795938816, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
       propertyPath: m_Size.z
-      value: 0.41634393
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4441693546795938816, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
       propertyPath: m_Center.x
-      value: 0.0000000018454478
+      value: 0.0000000027691018
       objectReference: {fileID: 0}
     - target: {fileID: 4441693546795938816, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
       propertyPath: m_Center.z
-      value: 1.433161
+      value: 1.339855
       objectReference: {fileID: 0}
     - target: {fileID: 6357606874330744520, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
       propertyPath: <CameraArea>k__BackingField

@@ -12,6 +12,7 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
+  - DISTORT_ON
   - STATIC_ON
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -43,24 +44,24 @@ Material:
     m_Ints: []
     m_Floats:
     - CRT_WARP: 0
-    - DISTORT: 0
+    - DISTORT: 1
     - RGB_STRIPES: 0
     - SCROLL_STATIC: 0
     - STATIC: 1
-    - Vector1_1BFF6B46: 256
+    - Vector1_1BFF6B46: 0
     - Vector1_5660967D: 1
     - Vector1_63AA1B2A: 0.2
     - Vector1_96113905: 100
     - Vector1_DF019693: 0.5
     - WOBBLE: 0
-    - _DistortionStrength: 0
+    - _DistortionStrength: 0.025
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ScanlineHeight: 10
     - _ScanlineStrength: 0.25
     - _StaticStrength: 0.1
     m_Colors:
-    - _CRTWarpStrength: {r: 1, g: 1, b: 0, a: 0}
+    - _CRTWarpStrength: {r: 0.1, g: 0.1, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &6039665127857345522
 MonoBehaviour:

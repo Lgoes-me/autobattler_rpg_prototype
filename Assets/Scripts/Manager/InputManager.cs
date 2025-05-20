@@ -45,16 +45,8 @@ public class InputManager : MonoBehaviour, IManager
             StopCoroutine(Coroutine);
         }
 
-        Coroutine = StartCoroutine(UpdateCameraPositionCoroutine(virtualCamera.transform));
-    }
-
-    private IEnumerator UpdateCameraPositionCoroutine(Transform cam)
-    {
-        yield return new WaitWhile(() => MoveInput != Vector2.zero);
-
-        if (cam == null)
-            yield break;
-
+        var cam = virtualCamera.transform;
+        
         ForwardVector = Vector3.Dot(cam.forward, -transform.up) > 0.8f ? cam.up : cam.forward;
         RightVector = Vector3.Cross(Vector3.up, ForwardVector).normalized;
     }

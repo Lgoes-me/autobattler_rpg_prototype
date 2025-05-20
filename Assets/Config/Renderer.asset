@@ -84,7 +84,7 @@ MonoBehaviour:
   m_ShadowTransparentReceive: 0
   m_RenderingMode: 2
   m_DepthPrimingMode: 1
-  m_CopyDepthMode: 1
+  m_CopyDepthMode: 0
   m_AccurateGbufferNormals: 0
   m_IntermediateTextureMode: 1
 --- !u!114 &1708714982645587785
@@ -101,13 +101,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
-    Event: 550
+    Event: 500
     blitMaterial: {fileID: 2100000, guid: de1625b6904d456468a4612fc66666bb, type: 2}
     blitMaterialPassIndex: 0
-    setInverseViewMatrix: 0
+    setInverseViewMatrix: 1
     srcType: 0
     srcTextureId: 
-    srcTextureObject: {fileID: 0}
+    srcTextureObject: {fileID: 8400000, guid: 2e4524c94738e81439b8b35b87ede5c6, type: 2}
     dstType: 0
     dstTextureId: 
     dstTextureObject: {fileID: 0}

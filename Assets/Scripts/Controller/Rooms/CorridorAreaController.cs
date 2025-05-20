@@ -1,4 +1,4 @@
-using System;
+using Cinemachine;
 using UnityEngine;
 
 public class CorridorAreaController : SpawnController
@@ -28,9 +28,9 @@ public class CorridorAreaController : SpawnController
         }
     }
     
-    public override async void SpawnPlayer()
+    public override async void SpawnPlayer(CinemachineBlendDefinition blend)
     {
-        base.SpawnPlayer();
+        base.SpawnPlayer(blend);
         CanUse = false;
 
         var playerManager = Application.Instance.GetManager<PlayerManager>();
@@ -49,13 +49,10 @@ public class CorridorAreaController : SpawnController
         }
     }
 
-    private async void UseCorridor()
+    private void UseCorridor()
     {
         var playerManager = Application.Instance.GetManager<PlayerManager>();
-        
         playerManager.DisablePlayerInput();
-        await playerManager.MovePlayerTo(SpawnPoint);
-        
         Application.Instance.GetManager<SceneManager>().ChangeContext(Spawn);
     }
 }

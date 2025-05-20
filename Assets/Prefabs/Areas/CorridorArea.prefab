@@ -275,7 +275,7 @@ GameObject:
   - component: {fileID: 8475532692762963974}
   - component: {fileID: 6357606874330744520}
   - component: {fileID: 4441693546795938816}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CorridorArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -340,5 +340,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3, y: 3.1961207, z: 0.24266624}
+  m_Size: {x: 3, y: 3.1961207, z: 1}
   m_Center: {x: 0, y: 0.5, z: 0.51608086}

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Cinemachine;
 using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -48,17 +49,17 @@ public class RoomController : MonoBehaviour
         Application.Instance.GetManager<AudioManager>().PlayMusic(MusicType);
     }
     
-    public void SpawnPlayerAt(string spawn)
+    public void SpawnPlayerAt(string spawn, CinemachineBlendDefinition blend)
     {
         var door = Doors.FirstOrDefault(d => d.Id == spawn);
         
         if (door != null)
         {
-            door.SpawnPlayer();
+            door.SpawnPlayer(blend);
         }
         else if (Bonfire != null && Bonfire.Spawn.Id == spawn)
         {
-            Bonfire.Spawn.SpawnPlayer();
+            Bonfire.Spawn.SpawnPlayer(blend);
         }
     }
 }

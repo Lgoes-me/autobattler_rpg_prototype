@@ -1,4 +1,5 @@
 ﻿using System;
+using Cinemachine;
 using UnityEngine;
 
 public class SpawnController : MonoBehaviour
@@ -8,15 +9,10 @@ public class SpawnController : MonoBehaviour
     [field: SerializeField] protected Transform SpawnPoint { get; private set; }
     [field: SerializeField] private CameraAreaController CameraArea { get; set; }
 
-    public virtual void SpawnPlayer()
+    public virtual void SpawnPlayer(CinemachineBlendDefinition blend)
     {
         Application.Instance.GetManager<PartyManager>().SpawnPartyAt(SpawnPoint.position);
-        ActivateCameraArea();
-    }
-
-    private void ActivateCameraArea()
-    {
-        CameraArea.ActivateCamera();
+        CameraArea.ActivateCamera(blend);
     }
 
     private void OnValidate()
