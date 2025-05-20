@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &850299016094268264
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8778516737657091115}
+  m_Layer: 0
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8778516737657091115
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 850299016094268264}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.1, y: 0.1, z: 0.55}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8475532692762963974}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1688577624480814849
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,7 +278,7 @@ GameObject:
   m_Layer: 0
   m_Name: CorridorArea
   m_TagString: Untagged
-  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -264,6 +295,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8778516737657091115}
   - {fileID: 1414291554413539100}
   - {fileID: 6608683774150553517}
   - {fileID: 9093896431458106067}
@@ -282,7 +314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Id>k__BackingField: ba9e4921-22ec-4914-a4ff-cc08f334b4b0
-  <SpawnPoint>k__BackingField: {fileID: 8475532692762963974}
+  <SpawnPoint>k__BackingField: {fileID: 8778516737657091115}
   <CameraArea>k__BackingField: {fileID: 0}
   <Destination>k__BackingField: {fileID: 1414291554413539100}
   <Spotlight>k__BackingField: {fileID: 6243810322874172801}
@@ -308,5 +340,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.4411092, y: 3.1961207, z: 2.5230985}
-  m_Center: {x: 0.07534671, y: 0.48112488, z: 0}
+  m_Size: {x: 3, y: 3.1961207, z: 0.24266624}
+  m_Center: {x: 0, y: 0.5, z: 0.51608086}

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class CorridorAreaController : SpawnController
@@ -36,6 +37,7 @@ public class CorridorAreaController : SpawnController
         
         await playerManager.MovePlayerTo(Destination);
         playerManager.EnablePlayerInput();
+        
         CanUse = true;
     }
 

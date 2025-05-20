@@ -32,31 +32,4 @@ public static class MonoBehaviourExtensions
             task.SetResult(true);
         }
     }
-
-    public static Task WaitToArriveAtDestination(this MonoBehaviour obj, NavMeshAgent agent, Vector3 destination)
-    {
-        var task = new TaskCompletionSource<bool>();
-        
-        agent.SetDestination(destination);
-
-        obj.StartCoroutine(WaitToArriveAtDestinationCoroutine());
-
-        return task.Task;
-        
-        IEnumerator WaitToArriveAtDestinationCoroutine()
-        {
-            yield return new WaitForSeconds(0.5f);
-
-            var time = Time.time;
-            
-            yield return new WaitUntil(() =>
-                Time.time - time > 3f ||
-                agent.pathStatus == NavMeshPathStatus.PathComplete && 
-                agent.remainingDistance < 1f);
-                
-            agent.ResetPath();
-            
-            task.SetResult(true);
-        }
-    }
 }

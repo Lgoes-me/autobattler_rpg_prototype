@@ -47,7 +47,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.25
-  m_Speed: 4
+  m_Speed: 2.5
   m_Acceleration: 4
   avoidancePriority: 50
   m_AngularSpeed: 0
@@ -123,10 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <PawnController>k__BackingField: {fileID: 4759648862371886847}
   <NavMeshAgent>k__BackingField: {fileID: 449031379433608940}
-  <Speed>k__BackingField: 0.15
-  <LayerMask>k__BackingField:
-    serializedVersion: 2
-    m_Bits: 8
+  <Speed>k__BackingField: 0.13
 --- !u!114 &4759648862371886847
 MonoBehaviour:
   m_ObjectHideFlags: 0

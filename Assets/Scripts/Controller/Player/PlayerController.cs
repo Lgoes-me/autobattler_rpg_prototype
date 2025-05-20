@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -92,9 +93,42 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public async Task MovePlayerTo(Transform destination)
+    public Task MovePlayerTo(Transform destination)
     {
-        await this.WaitToArriveAtDestination(NavMeshAgent, destination.position);
+        var task = new TaskCompletionSource<bool>();
+
+        StartCoroutine(WaitToArriveAtDestinationCoroutine());
+
+        return task.Task;
+        
+        IEnumerator WaitToArriveAtDestinationCoroutine()
+        {
+            var time = Time.time;
+
+            var acceleration = NavMeshAgent.acceleration;
+            NavMeshAgent.acceleration = 1000;
+            
+            NavMeshAgent.SetDestination(destination.position);
+            
+            yield return new WaitForEndOfFrame();
+
+            var inputManager = Application.Instance.GetManager<InputManager>();
+            
+            while(Time.time - time <= 3f && 
+                  (NavMeshAgent.pathStatus != NavMeshPathStatus.PathComplete || NavMeshAgent.remainingDistance >= 1f) &&
+                  inputManager.MoveInput.sqrMagnitude <= Mathf.Epsilon &&
+                  !MouseInput)
+            {
+                NavMeshAgent.SetDestination(destination.position);
+                yield return new WaitForSeconds(0.5f);
+            }
+
+            NavMeshAgent.acceleration = acceleration;
+            NavMeshAgent.velocity = Vector3.zero;
+            NavMeshAgent.ResetPath();
+            
+            task.SetResult(true);
+        }
     }
 
     public void Disable()
