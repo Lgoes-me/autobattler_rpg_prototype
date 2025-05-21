@@ -316,11 +316,12 @@ MonoBehaviour:
   <Id>k__BackingField: ba9e4921-22ec-4914-a4ff-cc08f334b4b0
   <SpawnPoint>k__BackingField: {fileID: 8778516737657091115}
   <CameraArea>k__BackingField: {fileID: 0}
+  <Collider>k__BackingField: {fileID: 4441693546795938816}
   <Destination>k__BackingField: {fileID: 1414291554413539100}
   <Spotlight>k__BackingField: {fileID: 6243810322874172801}
   <FogDoor>k__BackingField: {fileID: 1874526780616595058}
-  <ActiveColor>k__BackingField: {r: 0.24313726, g: 0.24313726, b: 0.29411766, a: 1}
-  <InactiveColor>k__BackingField: {r: 0.16078432, g: 0.16078432, b: 0.18039216, a: 1}
+  <ActiveColor>k__BackingField: {r: 0.1260235, g: 0.1260235, b: 0.1509434, a: 1}
+  <InactiveColor>k__BackingField: {r: 0.19607843, g: 0.19607843, b: 0.21960784, a: 1}
 --- !u!65 &4441693546795938816
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -336,7 +337,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

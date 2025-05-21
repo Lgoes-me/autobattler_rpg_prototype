@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class CorridorAreaController : SpawnController
 {
+    [field: SerializeField] private Collider Collider { get; set; }
     [field: SerializeField] private Transform Destination { get; set; }
     [field: SerializeField] private GameObject Spotlight { get; set; }
     [field: SerializeField] private SpriteRenderer FogDoor { get; set; }
@@ -37,7 +38,6 @@ public class CorridorAreaController : SpawnController
         
         await playerManager.MovePlayerTo(Destination);
         playerManager.EnablePlayerInput();
-        
         CanUse = true;
     }
 

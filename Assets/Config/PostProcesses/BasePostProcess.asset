@@ -175,13 +175,13 @@ MonoBehaviour:
   m_Name: BasePostProcess
   m_EditorClassIdentifier: 
   components:
+  - {fileID: 3305566581952397688}
   - {fileID: 4629462549644101463}
   - {fileID: -3611886599178593458}
   - {fileID: -459329596835509642}
   - {fileID: 6689184736699391157}
   - {fileID: 3190263373393239192}
   - {fileID: -8539328380721681238}
-  - {fileID: 3305566581952397688}
   - {fileID: -4899824729179053015}
   - {fileID: 6260320583811556826}
 --- !u!114 &773337817206303357
@@ -258,7 +258,7 @@ MonoBehaviour:
     m_Value: 480
   colorPrecision:
     m_OverrideState: 1
-    m_Value: 8
+    m_Value: 6
 --- !u!114 &4629462549644101463
 MonoBehaviour:
   m_ObjectHideFlags: 3
