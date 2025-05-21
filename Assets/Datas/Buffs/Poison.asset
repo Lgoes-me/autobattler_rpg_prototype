@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 09159a29bb504be984bdb2f18dfdc474, type: 3}
-  m_Name: Bleed
+  m_Name: Poison
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: Bleed
+  <Id>k__BackingField: Poison
   <Buffs>k__BackingField:
   - rid: 7923229669092491264
   references:
@@ -22,6 +22,6 @@ MonoBehaviour:
       type: {class: DamageOverTimeBuffData, ns: , asm: Assembly-CSharp}
       data:
         <Damage>k__BackingField:
-          <Multiplier>k__BackingField: 4
+          <Multiplier>k__BackingField: 1
           <Type>k__BackingField: 1
-        <TickRate>k__BackingField: 0.25
+        <TickRate>k__BackingField: 0.5

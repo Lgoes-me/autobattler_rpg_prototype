@@ -167,7 +167,7 @@ public class StatsComponent : PawnComponent
 
         foreach (var buff in PermanentBuffs)
         {
-            var buffInstance = Application.Instance.GetManager<ContentManager>().GetBuffFromId(buff).ToDomain(Pawn);
+            var buffInstance = Application.Instance.GetManager<ContentManager>().GetBuffFromId(buff).ToDomain(Pawn, -1);
             buffInstance.Init(Pawn);
             AddBuff(buffInstance);
         }

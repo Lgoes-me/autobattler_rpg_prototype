@@ -83,6 +83,7 @@ MonoBehaviour:
       type: {class: BuffEffectData, ns: , asm: Assembly-CSharp}
       data:
         <BuffData>k__BackingField: {fileID: 11400000, guid: 0bb712a612897eb4aa70704e9168191d, type: 2}
+        <Duration>k__BackingField: 3
     - rid: 8813335080079720459
       type: {class: EnemyFocusComponentData, ns: , asm: Assembly-CSharp}
       data: 

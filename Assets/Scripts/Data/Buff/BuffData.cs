@@ -8,11 +8,9 @@ public class BuffData : ScriptableObject
     [field: SerializeField] public string Id { get; private set; }
     [field: SerializeReference] [field: SerializeField] private List<BuffComponentData> Buffs { get; set; }
     
-    [field: SerializeField] private float Duration { get; set; }
-
-    public Buff ToDomain(Pawn pawn)
+    public Buff ToDomain(Pawn pawn, float duration)
     {
-        var buff = new Buff(Id, Duration);
+        var buff = new Buff(Id, duration);
 
         foreach (var buffComponentData in Buffs)
         {

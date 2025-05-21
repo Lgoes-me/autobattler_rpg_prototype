@@ -130,6 +130,8 @@ public class SceneManager : MonoBehaviour, IManager
         CurrentRoom.SpawnPlayerAt(spawn.SpawnId, Blend);
             
         PartyManager.SetPartyToFollow(true);
+
+        StartBonfireScene(spawn, () => { });
     }
 
     public void StartBonfireScene(SpawnDomain bonfireSpawn, Action callback)
