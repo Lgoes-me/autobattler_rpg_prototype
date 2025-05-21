@@ -362,7 +362,7 @@ MonoBehaviour:
       <IsBoss>k__BackingField: 0
       <EnemyInfo>k__BackingField:
         <PawnData>k__BackingField: {fileID: 11400000, guid: dc2b5ccfd2ced1e47877dc6503421d6a, type: 2}
-        <Level>k__BackingField: 1
+        <Level>k__BackingField: 4
       <Animation>k__BackingField: 
       <Forward>k__BackingField: 1
     - name: Enemy

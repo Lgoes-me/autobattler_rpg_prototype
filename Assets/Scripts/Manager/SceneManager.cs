@@ -112,6 +112,13 @@ public class SceneManager : MonoBehaviour, IManager
             pawn.FinishBattle();
         }
         
+        if (CurrentRoom != null)
+        {
+            Destroy(CurrentRoom.gameObject);
+        }
+
+        await this.WaitEndOfFrame();
+        
         await LoadNewRoom();
 
         var spawn = GameSaveManager.GetBonfireSpawn();
