@@ -86,11 +86,18 @@ public class BuffPrizeItem : BasePrizeItem
 
 public class ConsumablePrizeItem : BasePrizeItem
 {
-    public ConsumableData Consumable { get; }
+    public PawnInfo PawnInfo { get; }
+    private ConsumableData Consumable { get; }
 
-    public ConsumablePrizeItem(ConsumableData consumable)
+    public ConsumablePrizeItem(PawnInfo pawnInfo, ConsumableData consumable)
     {
-        Name = consumable.Id;
+        Name = $"{consumable.Id} to {pawnInfo.Name}";
+        PawnInfo = pawnInfo;
         Consumable = consumable;
+    }
+    
+    public void ApplyPrize()
+    {
+        PawnInfo.AddConsumables(Consumable);
     }
 }

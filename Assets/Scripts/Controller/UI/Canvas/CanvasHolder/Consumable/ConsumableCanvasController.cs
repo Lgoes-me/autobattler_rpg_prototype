@@ -2,13 +2,14 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ConsumableCanvasController : BaseCanvasHolderItemController<ConsumableData>, 
+public class ConsumableCanvasController : BaseCanvasHolderItemController<ConsumableCanvasControllerData>, 
     IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [field: SerializeField] private TextMeshProUGUI Name { get; set; }
     [field: SerializeField] private CanvasGroup CanvasGroup { get; set; }
     [field: SerializeField] private LayerMask Mask { get; set; }
 
+    private Pawn Pawn { get; set; }
     private ConsumableData Consumable { get; set; }
 
     private bool CanBeUsed => Consumable.UsableOutsideCombat || IsInBattle;
@@ -16,9 +17,10 @@ public class ConsumableCanvasController : BaseCanvasHolderItemController<Consuma
     private bool IsDragging { get; set; }
     private Vector3 StartingPosition { get; set; }
     
-    public override BaseCanvasHolderItemController<ConsumableData> Init(ConsumableData consumable)
+    public override BaseCanvasHolderItemController<ConsumableCanvasControllerData> Init(ConsumableCanvasControllerData data)
     {
-        Consumable = consumable;
+        Consumable = data.ConsumableData;
+        Pawn = data.Pawn;
 
         Name.SetText(Consumable.Id);
 
@@ -62,7 +64,7 @@ public class ConsumableCanvasController : BaseCanvasHolderItemController<Consuma
             var effect = Consumable.Effect.ToDomain(pawn);
 
             effect.DoAbilityEffect(pawn);
-            Application.Instance.GetManager<ConsumableManager>().RemoveConsumable(Consumable);
+            Pawn.GetComponent<ConsumableComponent>().RemoveConsumable(Consumable);
             return;
         }
 

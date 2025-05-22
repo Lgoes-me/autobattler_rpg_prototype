@@ -31,6 +31,16 @@ public class Pawn
         GetComponent<StatsComponent>().ApplyLevel(level);
     }
 
+    public void AddComponent<T>(T component) where T : PawnComponent
+    {
+        if (Components.TryGetValue(typeof(T), out var _))
+        {
+            throw new Exception($"Já foi cadastrada o componente {typeof(T)} no Pawn");
+        }
+        
+        Components.Add(typeof(T), component);
+    }
+
     public T GetComponent<T>() where T : PawnComponent
     {
         if (Components.TryGetValue(typeof(T), out var component))
@@ -70,6 +80,7 @@ public class Pawn
         }
 
         GetComponent<AbilitiesComponent>().SetPawnInfo(pawnInfo);
+        GetComponent<ConsumableComponent>().SetPawnInfo(pawnInfo);
     }
 
     public PawnInfo ResetPawnInfo()
@@ -80,8 +91,8 @@ public class Pawn
             0,
             Status,
             GetComponent<WeaponComponent>().Weapon,
-            GetComponent<AbilitiesComponent>().Abilities);
-
+            GetComponent<AbilitiesComponent>().Abilities,
+            GetComponent<ConsumableComponent>().Consumables);
 
         SetPawnInfo(pawnInfo);
         return pawnInfo;
@@ -97,7 +108,8 @@ public class Pawn
             stats.GetPawnStats().Health - stats.Health,
             Status,
             GetComponent<WeaponComponent>().Weapon,
-            GetComponent<AbilitiesComponent>().Abilities);
+            GetComponent<AbilitiesComponent>().Abilities,
+            GetComponent<ConsumableComponent>().Consumables);
     }
 }
 

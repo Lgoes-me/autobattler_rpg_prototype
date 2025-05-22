@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BattleController : MonoBehaviour
@@ -39,7 +38,6 @@ public class BattleController : MonoBehaviour
         }
         
         Application.Instance.GetManager<BattleEventsManager>().DoBattleStartEvent(Battle);
-        Application.Instance.GetManager<InterfaceManager>().StartBattle();
 
         StartCoroutine(BattleCoroutine());
     }
@@ -128,7 +126,6 @@ public class BattleController : MonoBehaviour
                 pawn.gameObject.SetActive(false);
         }
         
-        Application.Instance.GetManager<InterfaceManager>().FinishBattle();
         Application.Instance.GetManager<PlayerManager>().EnablePlayerInput();
         Application.Instance.GetManager<PartyManager>().SetPartyToFollow(false);
         Application.Instance.GetManager<GameSaveManager>().SaveBattle(Battle);

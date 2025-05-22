@@ -10,6 +10,7 @@ public class PawnInfo
     public string Weapon { get; set; }
     public List<string> Abilities { get; set; }
     public List<string> Buffs { get; set; }
+    public List<string> Consumables { get; set; }
 
     public PawnInfo()
     {
@@ -19,15 +20,16 @@ public class PawnInfo
         Weapon = string.Empty;
         Abilities = new List<string>();
         Buffs = new List<string>();
+        Consumables = new List<string>();
     }
     
-    public PawnInfo(
-        string name, 
-        int level, 
+    public PawnInfo(string name,
+        int level,
         int missingHealth,
-        PawnStatus status, 
-        Weapon weapon, 
-        List<AbilityData> abilities)
+        PawnStatus status,
+        Weapon weapon,
+        List<AbilityData> abilities, 
+        List<ConsumableData> consumables)
     {
         Name = name;
         Level = level;
@@ -44,6 +46,13 @@ public class PawnInfo
         foreach (var ability in abilities)
         {
             Abilities.Add(ability.Id);
+        }
+        
+        Consumables = new List<string>();
+        
+        foreach (var consumable in consumables)
+        {
+            Consumables.Add(consumable.Id);
         }
         
         Buffs = new List<string>();
@@ -74,6 +83,16 @@ public class PawnInfo
         Buffs.Add(buff.Id);
     }
     
+    public void AddConsumables(ConsumableData consumable)
+    {
+        Consumables.Add(consumable.Id);
+    }
+
+    public void RemoveConsumables(ConsumableData consumable)
+    {
+        Consumables.Add(consumable.Id);
+    }
+
     public void Update(PawnInfo updatedPawnInfo)
     {
         Level = updatedPawnInfo.Level;
@@ -82,6 +101,7 @@ public class PawnInfo
         Weapon = updatedPawnInfo.Weapon;
         Abilities = updatedPawnInfo.Abilities;
         Buffs = updatedPawnInfo.Buffs;
+        Consumables = updatedPawnInfo.Consumables;
     }
 
     //Status

@@ -6,6 +6,7 @@ using UnityEngine;
 public abstract class PawnComponent
 {
     protected Pawn Pawn { get; private set; }
+    public delegate void PawnDomainChanged();
 
     public void Init(Pawn pawn)
     {
@@ -129,17 +130,13 @@ public class StatsComponent : PawnComponent
     public bool HasMana => Stats.Mana > 0;
     public bool IsAlive => Health > 0;
 
-    public delegate void PawnDomainChanged();
-
     public event PawnDomainChanged LostLife;
     public event PawnDomainChanged GainedLife;
     public event PawnDomainChanged ManaChanged;
     public event PawnDomainChanged BuffsChanged;
 
-    public delegate void PawnDomainBattleStateChanged();
-
-    public event PawnDomainBattleStateChanged BattleStarted;
-    public event PawnDomainBattleStateChanged BattleFinished;
+    public event PawnDomainChanged BattleStarted;
+    public event PawnDomainChanged BattleFinished;
 
     public StatsComponent(Stats stats, LevelUpStats levelUpStats)
     {
@@ -320,5 +317,34 @@ public class FocusComponent : PawnComponent
         RangedAttackError = rangedAttackError;
         EnemyFocusPreference = enemyFocusPreference;
         AllyFocusPreference = allyFocusPreference;
+    }
+}
+
+public class ConsumableComponent : PawnComponent
+{
+    public List<ConsumableData> Consumables { get; }
+    public event PawnDomainChanged ConsumablesUpdated;
+
+    public ConsumableComponent()
+    {
+        Consumables = new List<ConsumableData>();
+    }
+
+    public void SetPawnInfo(PawnInfo pawnInfo)
+    {
+        foreach (var id in pawnInfo.Consumables)
+        {
+            var consumable = Application.Instance.GetManager<ContentManager>().GetConsumableFromId(id);
+            Consumables.Add(consumable);
+        }
+        
+        ConsumablesUpdated?.Invoke();
+    }
+
+    public void RemoveConsumable(ConsumableData consumable)
+    {
+        Consumables.Remove(consumable);
+        
+        ConsumablesUpdated?.Invoke();
     }
 }

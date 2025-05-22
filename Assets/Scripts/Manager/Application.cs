@@ -46,7 +46,6 @@ public class Application : MonoBehaviour
         Register(new TutorialManager());
         Register(new ArchetypeManager());
         Register(new PrizeManager());
-        Register(new ConsumableManager());
     }
     
     private void Start()
@@ -58,7 +57,6 @@ public class Application : MonoBehaviour
         
         gameSaveManager.Prepare();
         configManager.Prepare();
-        GetManager<ConsumableManager>().Prepare();
         GetManager<BattleEventsManager>().Prepare();
         GetManager<BlessingManager>().Prepare();
         GetManager<InputManager>().Prepare();

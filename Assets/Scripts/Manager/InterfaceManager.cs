@@ -12,7 +12,6 @@ public class InterfaceManager : MonoBehaviour, IManager
     [field: SerializeField] private BlessingCanvasHolderController BlessingCanvasHolderController { get; set; }
     [field: SerializeField] private ProfileCanvasHolderController ProfileCanvasHolderController { get; set; }
     [field: SerializeField] private ArchetypeCanvasHolderController ArchetypeCanvasHolderController { get; set; }
-    [field: SerializeField] private ConsumableCanvasHolderController ConsumableCanvasHolderController { get; set; }
 
     public void UpdateProfileCanvas(List<PawnController> playerPawns)
     {
@@ -28,27 +27,12 @@ public class InterfaceManager : MonoBehaviour, IManager
     {
         ArchetypeCanvasHolderController.UpdateItems(archetypes);
     }
-
-    public void UpdateConsumablesCanvas(List<ConsumableData> consumables)
-    {
-        ConsumableCanvasHolderController.UpdateItems(consumables);
-    }
-
+    
     public Task<T> ShowPrizeCanvas<T>(BasePrize<T> prize) where T : BasePrizeItem
     {
         return PrizeOptionHolderController.ShowPrizeCanvas(prize);
     }
 
-    public void StartBattle()
-    {
-        ConsumableCanvasHolderController.StartBattle();
-    }
-
-    public void FinishBattle()
-    {
-        ConsumableCanvasHolderController.FinishBattle();
-    }
-    
     public void ShowDefeatCanvas()
     {
         HideBattleCanvas();

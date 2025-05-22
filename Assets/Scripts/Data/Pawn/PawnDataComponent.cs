@@ -93,3 +93,11 @@ public class FocusComponentData : PawnDataComponent
         return new FocusComponent(RangedAttackError, EnemyFocusPreference, AllyFocusPreference);
     }
 }
+
+public class ConsumableComponentData : PawnDataComponent
+{
+    public override PawnComponent ToDomain()
+    {
+        return new ConsumableComponent();
+    }
+}

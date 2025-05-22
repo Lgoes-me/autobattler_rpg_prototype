@@ -40,7 +40,8 @@ public class GameSaveManager : IManager
                 0,
                 PawnStatus.Main,
                 farmer.GetComponent<WeaponComponent>().Weapon,
-                farmer.GetComponent<AbilitiesComponent>().Abilities));
+                farmer.GetComponent<AbilitiesComponent>().Abilities,
+                farmer.GetComponent<ConsumableComponent>().Consumables));
 
 
         AddToSelectedParty(
@@ -50,7 +51,8 @@ public class GameSaveManager : IManager
                 0,
                 PawnStatus.Unlocked,
                 hunter.GetComponent<WeaponComponent>().Weapon,
-                hunter.GetComponent<AbilitiesComponent>().Abilities));
+                hunter.GetComponent<AbilitiesComponent>().Abilities,
+                hunter.GetComponent<ConsumableComponent>().Consumables));
     }
 
     public void AddToSelectedParty(PawnInfo pawnInfo)
@@ -114,7 +116,8 @@ public class GameSaveManager : IManager
                 0,
                 PawnStatus.Unlocked,
                 p.GetComponent<WeaponComponent>().Weapon,
-                p.GetComponent<AbilitiesComponent>().Abilities))
+                p.GetComponent<AbilitiesComponent>().Abilities,
+                p.GetComponent<ConsumableComponent>().Consumables))
             .ToList();
 
         SaveData();
@@ -189,20 +192,6 @@ public class GameSaveManager : IManager
     {
         Save.SelectedParty = Save.SelectedParty
             .Where(p => p.Status != PawnStatus.Transient)
-            .ToList();
-
-        SaveData();
-    }
-
-    public List<string> GetConsumables()
-    {
-        return Save.Consumables;
-    }
-
-    public void SetConsumables(List<ConsumableData> consumables)
-    {
-        Save.Consumables = consumables
-            .Select(p => p.Id)
             .ToList();
 
         SaveData();

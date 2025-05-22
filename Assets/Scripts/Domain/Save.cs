@@ -13,7 +13,6 @@ public class Save : ISavable
     public List<string> AvailableParty { get; set; }
     public List<string> Dialogues { get; set; }
     public float CurrentTime { get; set; }
-    public List<string> Consumables { get; set; }
 
     public Save()
     {
@@ -25,7 +24,6 @@ public class Save : ISavable
         Blessings = new List<BlessingIdentifier>();
         AvailableParty = new List<string>();
         Dialogues = new List<string>();
-        Consumables = new List<string>();
         CurrentTime = 0f;
     }
 
@@ -46,7 +44,6 @@ public class Save : ISavable
         };
         
         Dialogues = new List<string>();
-        Consumables = new List<string>();
         CurrentTime = 20f;
 
         return this;

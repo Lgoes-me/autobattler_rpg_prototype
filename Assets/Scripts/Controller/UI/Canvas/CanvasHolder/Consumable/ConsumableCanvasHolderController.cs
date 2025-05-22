@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-public class ConsumableCanvasHolderController : BaseCanvasHolderController<ConsumableCanvasController, ConsumableData>
+public class ConsumableCanvasHolderController : BaseCanvasHolderController<ConsumableCanvasController, ConsumableCanvasControllerData>
 {
     public void StartBattle()
     {
@@ -20,5 +20,17 @@ public class ConsumableCanvasHolderController : BaseCanvasHolderController<Consu
         {
             consumableCanvas.FinishBattle();
         }
+    }
+}
+
+public class ConsumableCanvasControllerData
+{
+    public Pawn Pawn { get; }
+    public ConsumableData ConsumableData { get; }
+
+    public ConsumableCanvasControllerData(Pawn pawn, ConsumableData consumableData)
+    {
+        Pawn = pawn;
+        ConsumableData = consumableData;
     }
 }

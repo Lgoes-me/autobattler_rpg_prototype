@@ -25,7 +25,6 @@ public class BonfireScene : MonoBehaviour
         gameSaveManager.ClearParty();
         
         Application.Instance.GetManager<BlessingManager>().ClearBlessings();
-        Application.Instance.GetManager<ConsumableManager>().ClearConsumables();
 
         FriendsPanelController.Init(gameSaveManager, this);
         PartyPanelController.Init(gameSaveManager, this);

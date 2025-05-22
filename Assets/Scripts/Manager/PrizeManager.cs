@@ -6,7 +6,6 @@ public class PrizeManager : IManager
     private ContentManager ContentManager { get; set; }
     private BlessingManager BlessingManager { get; set; }
     private PartyManager PartyManager { get; set; }
-    private ConsumableManager ConsumableManager { get; set; }
     private InterfaceManager InterfaceManager { get; set; }
     private PauseManager PauseManager { get; set; }
     private PlayerManager PlayerManager { get; set; }
@@ -17,7 +16,6 @@ public class PrizeManager : IManager
         ContentManager = Application.Instance.GetManager<ContentManager>();
         BlessingManager = Application.Instance.GetManager<BlessingManager>();
         PartyManager = Application.Instance.GetManager<PartyManager>();
-        ConsumableManager = Application.Instance.GetManager<ConsumableManager>();
         InterfaceManager = Application.Instance.GetManager<InterfaceManager>();
         PauseManager = Application.Instance.GetManager<PauseManager>();
         PlayerManager = Application.Instance.GetManager<PlayerManager>();
@@ -129,11 +127,14 @@ public class PrizeManager : IManager
     {
         PreparePrize();
 
-        var prizes = new ConsumablePrize(3, ContentManager);
+        var prizes = new ConsumablePrize(3, ContentManager, GameSaveManager.GetSelectedParty());
         var selectedPrize = await InterfaceManager.ShowPrizeCanvas(prizes);
 
-        ConsumableManager.AddConsumable(selectedPrize.Consumable);
+        selectedPrize.ApplyPrize();
         
+        GameSaveManager.SavePawnInfo(selectedPrize.PawnInfo);
+        PartyManager.UpdatePawn(selectedPrize.PawnInfo);
+
         CompletePrize();
     }
 }

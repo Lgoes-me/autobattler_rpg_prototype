@@ -21,9 +21,13 @@ MonoBehaviour:
   - rid: 7923229791535759371
   - rid: 7923229791535759372
   - rid: 7923229791535759373
+  - rid: 2203596621807091720
   references:
     version: 2
     RefIds:
+    - rid: 2203596621807091720
+      type: {class: ConsumableComponentData, ns: , asm: Assembly-CSharp}
+      data: 
     - rid: 7923229791535759367
       type: {class: FocusComponentData, ns: , asm: Assembly-CSharp}
       data:
