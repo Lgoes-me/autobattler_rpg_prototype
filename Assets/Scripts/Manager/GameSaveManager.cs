@@ -41,6 +41,7 @@ public class GameSaveManager : IManager
                 PawnStatus.Main,
                 farmer.GetComponent<WeaponComponent>().Weapon,
                 farmer.GetComponent<AbilitiesComponent>().Abilities,
+                farmer.GetComponent<StatsComponent>().PermanentBuffs,
                 farmer.GetComponent<ConsumableComponent>().Consumables));
 
 
@@ -52,6 +53,7 @@ public class GameSaveManager : IManager
                 PawnStatus.Unlocked,
                 hunter.GetComponent<WeaponComponent>().Weapon,
                 hunter.GetComponent<AbilitiesComponent>().Abilities,
+                hunter.GetComponent<StatsComponent>().PermanentBuffs,
                 hunter.GetComponent<ConsumableComponent>().Consumables));
     }
 
@@ -117,6 +119,7 @@ public class GameSaveManager : IManager
                 PawnStatus.Unlocked,
                 p.GetComponent<WeaponComponent>().Weapon,
                 p.GetComponent<AbilitiesComponent>().Abilities,
+                p.GetComponent<StatsComponent>().PermanentBuffs,
                 p.GetComponent<ConsumableComponent>().Consumables))
             .ToList();
 

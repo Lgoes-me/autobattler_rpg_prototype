@@ -92,6 +92,7 @@ public class Pawn
             Status,
             GetComponent<WeaponComponent>().Weapon,
             GetComponent<AbilitiesComponent>().Abilities,
+            GetComponent<StatsComponent>().PermanentBuffs,
             GetComponent<ConsumableComponent>().Consumables);
 
         SetPawnInfo(pawnInfo);
@@ -109,6 +110,7 @@ public class Pawn
             Status,
             GetComponent<WeaponComponent>().Weapon,
             GetComponent<AbilitiesComponent>().Abilities,
+            GetComponent<StatsComponent>().PermanentBuffs,
             GetComponent<ConsumableComponent>().Consumables);
     }
 }

@@ -28,7 +28,8 @@ public class PawnInfo
         int missingHealth,
         PawnStatus status,
         Weapon weapon,
-        List<AbilityData> abilities, 
+        List<AbilityData> abilities,
+        List<string> buffs,
         List<ConsumableData> consumables)
     {
         Name = name;
@@ -55,7 +56,7 @@ public class PawnInfo
             Consumables.Add(consumable.Id);
         }
         
-        Buffs = new List<string>();
+        Buffs = buffs;
     }
 
     public bool CanLevelUp()

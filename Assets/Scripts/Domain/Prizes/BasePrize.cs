@@ -53,6 +53,7 @@ public class PartyMemberPrize : BasePrize<PawnPrizeItem>
                         PawnStatus.Transient,
                         p.GetComponent<WeaponComponent>().Weapon,
                         p.GetComponent<AbilitiesComponent>().Abilities,
+                        p.GetComponent<StatsComponent>().PermanentBuffs,
                         p.GetComponent<ConsumableComponent>().Consumables);
 
                     return new PawnPrizeItem(pawnInfo);

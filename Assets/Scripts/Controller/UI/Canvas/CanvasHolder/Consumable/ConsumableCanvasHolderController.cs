@@ -26,11 +26,11 @@ public class ConsumableCanvasHolderController : BaseCanvasHolderController<Consu
 public class ConsumableCanvasControllerData
 {
     public Pawn Pawn { get; }
-    public ConsumableData ConsumableData { get; }
+    public ConsumableData Consumable { get; }
 
-    public ConsumableCanvasControllerData(Pawn pawn, ConsumableData consumableData)
+    public ConsumableCanvasControllerData(Pawn pawn, ConsumableData consumable)
     {
         Pawn = pawn;
-        ConsumableData = consumableData;
+        Consumable = consumable;
     }
 }

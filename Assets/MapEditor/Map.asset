@@ -55,13 +55,13 @@ MonoBehaviour:
       <Animation>k__BackingField: 
       <Forward>k__BackingField: 1
     <EndBattleAction>k__BackingField:
-      rid: 2203596621807091718
+      rid: 2203596635884224512
   <PostProcessProfile>k__BackingField: {fileID: 11400000, guid: 0d2fdc4948ba68144ac41b1fa7ed95a2, type: 2}
   references:
     version: 2
     RefIds:
-    - rid: 2203596621807091718
-      type: {class: OpenConsumablePrize, ns: , asm: Assembly-CSharp}
+    - rid: 2203596635884224512
+      type: {class: OpenBuffPrize, ns: , asm: Assembly-CSharp}
       data: 
 --- !u!114 &-5145991029644802823
 MonoBehaviour:

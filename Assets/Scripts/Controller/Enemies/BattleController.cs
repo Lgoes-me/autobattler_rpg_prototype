@@ -104,18 +104,6 @@ public class BattleController : MonoBehaviour
     {
         Application.Instance.GetManager<AudioManager>().PlayMusic(MusicType.Victory);
 
-        foreach (var playerPawn in Battle.PlayerPawns)
-        {
-            playerPawn.Dance();
-        }
-
-        yield return new WaitForSeconds(1f);
-
-        foreach (var playerPawn in Battle.PlayerPawns)
-        {
-            playerPawn.Pawn.GetComponent<StatsComponent>().EndOfBattleHeal();
-        }
-
         yield return new WaitForSeconds(1f);
 
         foreach (var pawn in Battle.Pawns)
@@ -123,8 +111,17 @@ public class BattleController : MonoBehaviour
             pawn.FinishBattle();
 
             if (pawn.Pawn.Team == TeamType.Enemies)
+            {
                 pawn.gameObject.SetActive(false);
+            }
+            else
+            {
+                pawn.Dance();
+                pawn.Pawn.GetComponent<StatsComponent>().EndOfBattleHeal();
+            }
         }
+        
+        yield return new WaitForSeconds(2f);
         
         Application.Instance.GetManager<PlayerManager>().EnablePlayerInput();
         Application.Instance.GetManager<PartyManager>().SetPartyToFollow(false);

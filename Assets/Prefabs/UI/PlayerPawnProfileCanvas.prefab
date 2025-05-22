@@ -384,11 +384,10 @@ MonoBehaviour:
   <BackgroundLifeBar>k__BackingField: {fileID: 52984217057201878}
   <ManaBar>k__BackingField: {fileID: 9101047577417634264}
   <CanvasGroup>k__BackingField: {fileID: 2164563045219888889}
-  <BuffItemPrefab>k__BackingField: {fileID: 7122821440175886598, guid: 806719620c770714a8e805152fdd31c8, type: 3}
+  <BuffsCanvasHolderController>k__BackingField: {fileID: 3649148646983727998}
   <ConsumableCanvasHolderController>k__BackingField: {fileID: 2646580653843940402}
   <ProfilePicture>k__BackingField: {fileID: 6748113670182405019}
   <Name>k__BackingField: {fileID: 254830307986349657}
-  <BuffsParent>k__BackingField: {fileID: 5130302016822632991}
 --- !u!1 &3323636532692594683
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,6 +663,7 @@ GameObject:
   - component: {fileID: 5130302016822632991}
   - component: {fileID: 6190125007906358672}
   - component: {fileID: 1742494372735712292}
+  - component: {fileID: 3649148646983727998}
   m_Layer: 5
   m_Name: Buffs
   m_TagString: Untagged
@@ -730,3 +730,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 0
+--- !u!114 &3649148646983727998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7035343448349174215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 830f9e126ca1489e9fc821c6d0977bb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Prefab>k__BackingField: {fileID: 7122821440175886598, guid: 806719620c770714a8e805152fdd31c8, type: 3}
+  <Parent>k__BackingField: {fileID: 5130302016822632991}

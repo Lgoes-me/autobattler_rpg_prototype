@@ -9,24 +9,20 @@ public class ConsumableCanvasController : BaseCanvasHolderItemController<Consuma
     [field: SerializeField] private CanvasGroup CanvasGroup { get; set; }
     [field: SerializeField] private LayerMask Mask { get; set; }
 
-    private Pawn Pawn { get; set; }
-    private ConsumableData Consumable { get; set; }
 
-    private bool CanBeUsed => Consumable.UsableOutsideCombat || IsInBattle;
+    private bool CanBeUsed => Data.Consumable.UsableOutsideCombat || IsInBattle;
     private bool IsInBattle { get; set; }
     private bool IsDragging { get; set; }
     private Vector3 StartingPosition { get; set; }
     
     public override BaseCanvasHolderItemController<ConsumableCanvasControllerData> Init(ConsumableCanvasControllerData data)
     {
-        Consumable = data.ConsumableData;
-        Pawn = data.Pawn;
-
-        Name.SetText(Consumable.Id);
+        Data = data;
+        Name.SetText(Data.Consumable.Id);
 
         Show();
 
-        if (!Consumable.UsableOutsideCombat)
+        if (!Data.Consumable.UsableOutsideCombat)
         {
             CanvasGroup.alpha = 0.5f;
             CanvasGroup.blocksRaycasts = false;
@@ -61,10 +57,10 @@ public class ConsumableCanvasController : BaseCanvasHolderItemController<Consuma
         if (Physics.Raycast(ray, out var hit, 10000, Mask))
         {
             var pawn = hit.transform.GetComponent<PawnController>();
-            var effect = Consumable.Effect.ToDomain(pawn);
+            var effect = Data.Consumable.Effect.ToDomain(pawn);
 
             effect.DoAbilityEffect(pawn);
-            Pawn.GetComponent<ConsumableComponent>().RemoveConsumable(Consumable);
+            Data.Pawn.GetComponent<ConsumableComponent>().RemoveConsumable(Data.Consumable);
             return;
         }
 
@@ -86,7 +82,7 @@ public class ConsumableCanvasController : BaseCanvasHolderItemController<Consuma
     {
         IsInBattle = true;
 
-        if (Consumable.UsableOutsideCombat)
+        if (Data.Consumable.UsableOutsideCombat)
             return;
         
         CanvasGroup.alpha = 1f;
@@ -97,7 +93,7 @@ public class ConsumableCanvasController : BaseCanvasHolderItemController<Consuma
     {
         IsInBattle = false;
 
-        if (Consumable.UsableOutsideCombat) 
+        if (Data.Consumable.UsableOutsideCombat) 
             return;
         
         CanvasGroup.alpha = 0.5f;

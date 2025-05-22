@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,20 +6,16 @@ using UnityEngine.UI;
 public class ProfileCanvasController : LifeBarCanvasController
 {
     [field: SerializeField] private CanvasGroup CanvasGroup { get; set; }
-    [field: SerializeField] private BuffItemController BuffItemPrefab { get; set; }
+    [field: SerializeField] private BuffsCanvasHolderController BuffsCanvasHolderController { get; set; }
     [field: SerializeField] private ConsumableCanvasHolderController ConsumableCanvasHolderController { get; set; }
 
     [field: SerializeField] private Image ProfilePicture { get; set; }
     [field: SerializeField] private TextMeshProUGUI Name { get; set; }
-    [field: SerializeField] private Transform BuffsParent { get; set; }
-    
-    private List<BuffItemController> BuffItems { get; set; }
 
     public override void Init(Pawn pawn)
     {
         base.Init(pawn);
 
-        BuffItems = new List<BuffItemController>();
         Name.SetText(Pawn.Id);
         CanvasGroup.alpha = 0.5f;
         
@@ -59,30 +54,8 @@ public class ProfileCanvasController : LifeBarCanvasController
     
     protected override void UpdateBuffs()
     {
-        foreach (var item in BuffItems)
-        {
-            Destroy(item.gameObject);
-        }
-
-        BuffItems.Clear();
-
-        var buffIdentifier = "default";
-        var buffPriority = 0;
-        
-        var stats = Pawn.GetComponent<StatsComponent>();
-        
-        foreach (var (_, buff) in stats.Buffs)
-        {
-            if (buff.Priority > buffPriority)
-            {
-                buffIdentifier = buff.CharacterInfoIdentifier;
-                buffPriority = buff.Priority;
-            }
-            
-            BuffItems.Add(Instantiate(BuffItemPrefab, BuffsParent).Init(buff));
-        }
-        
-        UpdateProfile(buffIdentifier);
+        var buffs = Pawn.GetComponent<StatsComponent>().Buffs.Select(b => b.Value).ToList();
+        BuffsCanvasHolderController.UpdateItems(buffs);
     }
 
     protected override void Death()
