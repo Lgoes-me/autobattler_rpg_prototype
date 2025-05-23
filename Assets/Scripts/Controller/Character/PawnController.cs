@@ -231,8 +231,8 @@ public class PawnController : MonoBehaviour
 
         if (!Pawn.GetComponent<StatsComponent>().IsAlive || PawnState is not DeadState)
             return;
-
-        CharacterController.SetAnimationState(new IdleState());
+        
+        GoBackToIdle();
     }
 
     public void SummonPawn(Pawn pawn)
