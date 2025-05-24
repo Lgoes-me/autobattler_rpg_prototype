@@ -25,6 +25,9 @@ public class Application : MonoBehaviour
 
     private void Init()
     {
+        Camera.main.transparencySortMode = TransparencySortMode.CustomAxis;
+        Camera.main.transparencySortAxis = new Vector3(1,0, 1);
+        
         Managers = new Dictionary<Type, IManager>();
         
         Register(GetComponentInChildren<SceneManager>());
