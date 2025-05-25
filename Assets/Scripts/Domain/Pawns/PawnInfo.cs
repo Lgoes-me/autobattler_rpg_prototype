@@ -21,18 +21,19 @@ public class PawnInfo
         WeaponType = WeaponType.None;
         Weapon = string.Empty;
         Abilities = new List<string>();
-        Buffs = new List<string>();
         Consumables = new List<string>();
+        Buffs = new List<string>();
     }
     
-    public PawnInfo(string name,
+    public PawnInfo(
+        string name,
         int level,
         int missingHealth,
         PawnStatus status,
         Weapon weapon,
         List<AbilityData> abilities,
-        List<string> buffs,
-        List<ConsumableData> consumables)
+        List<ConsumableData> consumables,
+        List<string> buffs)
     {
         Name = name;
         Level = level;

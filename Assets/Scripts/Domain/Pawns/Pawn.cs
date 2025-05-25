@@ -7,7 +7,7 @@ public class Pawn
     public string Id { get; }
     private Dictionary<Type, PawnComponent> Components { get; set; }
 
-    public PawnStatus Status { get; private set; }
+    private PawnStatus Status { get; set; }
     public TeamType Team { get; }
     public int Level { get; }
     public WeaponType WeaponType { get; }
@@ -80,15 +80,10 @@ public class Pawn
     {
         Status = pawnInfo.Status;
 
-        GetComponent<StatsComponent>().SetPawnInfo(pawnInfo);
-
-        if (pawnInfo.Weapon != null)
+        foreach (var (_, component) in Components)
         {
-            GetComponent<WeaponComponent>().SetPawnInfo(pawnInfo);
+            component.SetPawnInfo(pawnInfo);
         }
-
-        GetComponent<AbilitiesComponent>().SetPawnInfo(pawnInfo);
-        GetComponent<ConsumableComponent>().SetPawnInfo(pawnInfo);
     }
 
     public PawnInfo ResetPawnInfo()
@@ -100,8 +95,8 @@ public class Pawn
             Status,
             GetComponent<WeaponComponent>().Weapon,
             GetComponent<AbilitiesComponent>().Abilities,
-            GetComponent<PawnBuffsComponent>().PermanentBuffs,
-            GetComponent<ConsumableComponent>().Consumables);
+            GetComponent<ConsumableComponent>().Consumables,
+            GetComponent<PawnBuffsComponent>().PermanentBuffs);
 
         SetPawnInfo(pawnInfo);
         return pawnInfo;
@@ -118,8 +113,8 @@ public class Pawn
             Status,
             GetComponent<WeaponComponent>().Weapon,
             GetComponent<AbilitiesComponent>().Abilities,
-            GetComponent<PawnBuffsComponent>().PermanentBuffs,
-            GetComponent<ConsumableComponent>().Consumables);
+            GetComponent<ConsumableComponent>().Consumables,
+            GetComponent<PawnBuffsComponent>().PermanentBuffs);
     }
 }
 

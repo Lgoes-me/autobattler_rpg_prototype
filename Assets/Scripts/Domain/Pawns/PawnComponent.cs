@@ -12,6 +12,11 @@ public abstract class PawnComponent
     {
         Pawn = pawn;
     }
+    
+    public virtual void SetPawnInfo(PawnInfo pawnInfo)
+    {
+        
+    }
 }
 
 public class WeaponComponent : PawnComponent
@@ -35,8 +40,11 @@ public class WeaponComponent : PawnComponent
         WeaponPrefab = Weapon.WeaponPrefab;
     }
 
-    public void SetPawnInfo(PawnInfo pawnInfo)
+    public override void SetPawnInfo(PawnInfo pawnInfo)
     {
+        if (string.IsNullOrWhiteSpace(pawnInfo.Weapon))
+            return;
+        
         Weapon = Application.Instance.GetManager<ContentManager>().GetWeaponFromId(pawnInfo.Weapon).ToDomain();
         WeaponType = Weapon.Type;
         WeaponPrefab = Weapon.WeaponPrefab;
@@ -102,7 +110,7 @@ public class AbilitiesComponent : PawnComponent
         return selected.ToDomain(abilityUser);
     }
 
-    public void SetPawnInfo(PawnInfo pawnInfo)
+    public override void SetPawnInfo(PawnInfo pawnInfo)
     {
         foreach (var ability in pawnInfo.Abilities)
         {
@@ -243,7 +251,7 @@ public class StatsComponent : PawnComponent
         return stats;
     }
 
-    public void SetPawnInfo(PawnInfo pawnInfo)
+    public override void SetPawnInfo(PawnInfo pawnInfo)
     {
         ApplyLevel(pawnInfo.Level);
 
@@ -323,7 +331,7 @@ public class PawnBuffsComponent : PawnComponent
         BuffsChanged?.Invoke();
     }
 
-    public void SetPawnInfo(PawnInfo pawnInfo)
+    public override void SetPawnInfo(PawnInfo pawnInfo)
     {
         PermanentBuffs = pawnInfo.Buffs;
     }
@@ -363,7 +371,7 @@ public class ConsumableComponent : PawnComponent
         Consumables = new List<ConsumableData>();
     }
 
-    public void SetPawnInfo(PawnInfo pawnInfo)
+    public override void SetPawnInfo(PawnInfo pawnInfo)
     {
         foreach (var id in pawnInfo.Consumables)
         {

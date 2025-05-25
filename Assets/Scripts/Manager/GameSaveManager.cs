@@ -41,8 +41,8 @@ public class GameSaveManager : IManager
                 PawnStatus.Main,
                 farmer.GetComponent<WeaponComponent>().Weapon,
                 farmer.GetComponent<AbilitiesComponent>().Abilities,
-                farmer.GetComponent<PawnBuffsComponent>().PermanentBuffs,
-                farmer.GetComponent<ConsumableComponent>().Consumables));
+                farmer.GetComponent<ConsumableComponent>().Consumables,
+                farmer.GetComponent<PawnBuffsComponent>().PermanentBuffs));
 
 
         selectedParty.Add(
@@ -53,8 +53,8 @@ public class GameSaveManager : IManager
                 PawnStatus.Unlocked,
                 hunter.GetComponent<WeaponComponent>().Weapon,
                 hunter.GetComponent<AbilitiesComponent>().Abilities,
-                hunter.GetComponent<PawnBuffsComponent>().PermanentBuffs,
-                hunter.GetComponent<ConsumableComponent>().Consumables));
+                hunter.GetComponent<ConsumableComponent>().Consumables,
+                hunter.GetComponent<PawnBuffsComponent>().PermanentBuffs));
         
         Save = new Save().CreateNewSaveForIntro(selectedParty);
     }
@@ -121,8 +121,8 @@ public class GameSaveManager : IManager
                 PawnStatus.Unlocked,
                 p.GetComponent<WeaponComponent>().Weapon,
                 p.GetComponent<AbilitiesComponent>().Abilities,
-                p.GetComponent<PawnBuffsComponent>().PermanentBuffs,
-                p.GetComponent<ConsumableComponent>().Consumables))
+                p.GetComponent<ConsumableComponent>().Consumables,
+                p.GetComponent<PawnBuffsComponent>().PermanentBuffs))
             .ToList();
 
         SaveData();
