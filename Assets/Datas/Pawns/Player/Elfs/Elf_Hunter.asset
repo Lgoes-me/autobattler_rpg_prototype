@@ -17,10 +17,10 @@ MonoBehaviour:
   - rid: 7923229791535759367
   - rid: 7923229791535759368
   - rid: 7923229791535759369
+  - rid: 2203596694783000576
   - rid: 7923229791535759370
   - rid: 7923229791535759371
   - rid: 7923229791535759372
-  - rid: 7923229791535759373
   - rid: 2203596621807091720
   references:
     version: 2
@@ -28,6 +28,13 @@ MonoBehaviour:
     - rid: 2203596621807091720
       type: {class: ConsumableComponentData, ns: , asm: Assembly-CSharp}
       data: 
+    - rid: 2203596694783000576
+      type: {class: WeaponListComponentData, ns: , asm: Assembly-CSharp}
+      data:
+        <Weapons>k__BackingField:
+        - <WeaponType>k__BackingField: 1
+          <Weapon>k__BackingField: {fileID: 11400000, guid: cd31aca81c366d643bb7c5e6c911a4ec, type: 2}
+          <WeaponPrefab>k__BackingField: {fileID: 3470866117347721186, guid: 42434cd4fff53544a82d28a5201abacb, type: 3}
     - rid: 7923229791535759367
       type: {class: FocusComponentData, ns: , asm: Assembly-CSharp}
       data:
@@ -98,9 +105,3 @@ MonoBehaviour:
           <Audio>k__BackingField:
             <Type>k__BackingField: 2
             <Sounds>k__BackingField: []
-    - rid: 7923229791535759373
-      type: {class: WeaponComponentData, ns: , asm: Assembly-CSharp}
-      data:
-        <WeaponType>k__BackingField: 1
-        <Weapon>k__BackingField: {fileID: 11400000, guid: cd31aca81c366d643bb7c5e6c911a4ec, type: 2}
-        <WeaponPrefab>k__BackingField: {fileID: 3470866117347721186, guid: 42434cd4fff53544a82d28a5201abacb, type: 3}

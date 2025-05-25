@@ -6,8 +6,8 @@ using UnityEngine.Rendering;
 public class SceneNodeData : BaseNodeData
 {
     [field: SerializeField] public RoomController RoomPrefab { get; private set; }
-    [field: SerializeField] public List<CombatEncounterData> CombatEncounters { get; protected set; }
-    [field: SerializeField] public VolumeProfile PostProcessProfile { get; protected set; }
+    [field: SerializeField] private List<CombatEncounterData> CombatEncounters { get; set; }
+    [field: SerializeField] private VolumeProfile PostProcessProfile { get; set; }
 
     public override bool Open => true;
 
@@ -92,10 +92,9 @@ public class EnemyData
     public void PreparePawn(PawnController pawnController)
     {
         PawnController = pawnController;
-        PawnController.Init(EnemyInfo.ToDomain(TeamType.Enemies));
+        PawnController.Init(EnemyInfo.ToDomain());
         PawnController.CharacterController.SetDirection((Forward ? 1 : -1) * PawnController.transform.forward);
-        PawnController.CharacterController.SetAnimationState(
-            new DefaultState(Animation, () => PawnController.CharacterController.SetAnimationState(new IdleState())));
+        PawnController.CharacterController.SetAnimationState(new DefaultState(Animation, () => PawnController.CharacterController.SetAnimationState(new IdleState())));
     }
 }
 
@@ -106,8 +105,13 @@ public class EnemyInfo
     [field: SerializeField] private WeaponType WeaponType { get; set; }
     [field: SerializeField] private int Level { get; set; } = 1;
 
+    public Pawn ToDomain()
+    {
+        return PawnData.ToDomain(PawnStatus.Enemy, TeamType.Enemies, Level, WeaponType);
+    }
+    
     public Pawn ToDomain(TeamType teamType)
     {
-        return PawnData.ToDomain(PawnStatus.Enemy, teamType, Level);
+        return PawnData.ToDomain(PawnStatus.Enemy, teamType, Level, WeaponType);
     }
 }

@@ -7,6 +7,7 @@ public class PawnInfo
     public int Level { get; set; }
     public int MissingHealth { get; set; }
     public PawnStatus Status { get; set; }
+    public WeaponType WeaponType { get; set; }
     public string Weapon { get; set; }
     public List<string> Abilities { get; set; }
     public List<string> Buffs { get; set; }
@@ -17,6 +18,7 @@ public class PawnInfo
         Name = string.Empty;
         Level = 1;
         MissingHealth = 0;
+        WeaponType = WeaponType.None;
         Weapon = string.Empty;
         Abilities = new List<string>();
         Buffs = new List<string>();
@@ -39,6 +41,7 @@ public class PawnInfo
         
         if(weapon != null)
         {
+            WeaponType = weapon.Type;
             Weapon = weapon.Id;
         }
 
@@ -99,6 +102,7 @@ public class PawnInfo
         Level = updatedPawnInfo.Level;
         MissingHealth = updatedPawnInfo.MissingHealth;
         Status = updatedPawnInfo.Status;
+        WeaponType = updatedPawnInfo.WeaponType;
         Weapon = updatedPawnInfo.Weapon;
         Abilities = updatedPawnInfo.Abilities;
         Buffs = updatedPawnInfo.Buffs;

@@ -15,7 +15,7 @@ public class PawnData : ScriptableObject
         return new Pawn(Id, components);
     }
     
-    public Pawn ToDomain(PawnStatus status, TeamType team, int level)
+    public Pawn ToDomain(PawnStatus status, TeamType team, int level, WeaponType weaponType)
     {
         var components = Components.Select(c => c.ToDomain()).ToList();
         return new Pawn(Id, components, status, team, level);

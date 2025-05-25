@@ -5,7 +5,7 @@ public class Weapon
 {
     public string Id { get; }
     private int Level { get; }
-    private WeaponType Type { get; }
+    public WeaponType Type { get; }
     public List<Sprite> Sprites { get; }
     public Color StartColor { get; }
     public Color EndColor { get; }

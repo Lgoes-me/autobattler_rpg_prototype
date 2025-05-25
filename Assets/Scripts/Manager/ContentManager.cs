@@ -25,7 +25,7 @@ public class ContentManager : MonoBehaviour, IManager
     {
         return AvailablePawns
             .First(p => p.Id == pawnInfo.Name)
-            .ToDomain(pawnInfo.Status, TeamType.Player, 1);
+            .ToDomain(pawnInfo.Status, TeamType.Player, 1, pawnInfo.WeaponType);
     }
 
     public WeaponData GetWeaponFromId(string id)

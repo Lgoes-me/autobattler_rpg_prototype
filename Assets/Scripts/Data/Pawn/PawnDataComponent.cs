@@ -9,17 +9,29 @@ public abstract class PawnDataComponent : IComponentData
     public abstract PawnComponent ToDomain();
 }
 
-public class WeaponComponentData : PawnDataComponent
+public class WeaponListComponentData : PawnDataComponent
+{
+    [field: SerializeField] private List<WeaponComponentData> Weapons { get; set; }
+    
+    public override PawnComponent ToDomain()
+    {
+        return Weapons.First().ToDomain();
+    }
+}
+
+[Serializable]
+public struct WeaponComponentData
 {
     [field: SerializeField] private WeaponType WeaponType { get; set; }
     [field: SerializeField] private WeaponData Weapon { get; set; }
     [field: SerializeField] private WeaponController WeaponPrefab { get; set; }
 
-    public override PawnComponent ToDomain()
+    public PawnComponent ToDomain()
     {
         return new WeaponComponent(Weapon.ToDomain(), WeaponType, WeaponPrefab);
     }
 }
+
 
 public class CharacterInfoComponentData : PawnDataComponent
 {
