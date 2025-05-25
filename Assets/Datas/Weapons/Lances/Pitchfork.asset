@@ -27,18 +27,8 @@ MonoBehaviour:
     <Arcane>k__BackingField: 0
     <PhysicalDefence>k__BackingField: 0
     <MagicalDefence>k__BackingField: 0
-  <OnHitEffect>k__BackingField:
-    <Effects>k__BackingField: []
-    <FocusData>k__BackingField:
-      rid: 7923229902038368264
-    <ActionData>k__BackingField:
-      rid: 7923229902038368265
+  <WeaponEffects>k__BackingField: []
+  <WeaponPrefab>k__BackingField: {fileID: 594838873150881837, guid: fbb5ee48393c9394da2726630845413e, type: 3}
   references:
     version: 2
-    RefIds:
-    - rid: 7923229902038368264
-      type: {class: SelfFocusComponentData, ns: , asm: Assembly-CSharp}
-      data: 
-    - rid: 7923229902038368265
-      type: {class: InstantActionData, ns: , asm: Assembly-CSharp}
-      data: 
+    RefIds: []

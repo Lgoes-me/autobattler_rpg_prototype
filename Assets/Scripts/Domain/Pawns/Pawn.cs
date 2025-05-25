@@ -7,9 +7,12 @@ public class Pawn
     public string Id { get; }
     private Dictionary<Type, PawnComponent> Components { get; set; }
 
-    public TeamType Team { get; }
-    public PawnController Focus { get; set; }
     public PawnStatus Status { get; private set; }
+    public TeamType Team { get; }
+    public int Level { get; }
+    public WeaponType WeaponType { get; }
+    
+    public PawnController Focus { get; set; }
 
     public Pawn(string id, List<PawnComponent> components)
     {
@@ -17,18 +20,23 @@ public class Pawn
         {
             component.Init(this);
         }
-        
+
         Id = id;
         Components = components.ToDictionary(c => c.GetType(), c => c);
     }
 
-    public Pawn(string id, List<PawnComponent> components, PawnStatus status, TeamType team, int level) 
-        : this(id, components)
+    public Pawn(
+        string id,
+        List<PawnComponent> components,
+        PawnStatus status,
+        TeamType team,
+        int level,
+        WeaponType weaponType) : this(id, components)
     {
         Status = status;
         Team = team;
-        
-        GetComponent<StatsComponent>().ApplyLevel(level);
+        Level = level;
+        WeaponType = weaponType;
     }
 
     public void AddComponent<T>(T component) where T : PawnComponent
@@ -37,7 +45,7 @@ public class Pawn
         {
             throw new Exception($"Já foi cadastrada o componente {typeof(T)} no Pawn");
         }
-        
+
         Components.Add(typeof(T), component);
     }
 
@@ -50,12 +58,12 @@ public class Pawn
 
         throw new Exception($"Não foi cadastrada o componente {typeof(T)} no Pawn");
     }
-    
+
     public bool HasComponent<T>() where T : PawnComponent
     {
         return Components.ContainsKey(typeof(T));
     }
-    
+
     public bool TryGetComponent<T>(out T result) where T : PawnComponent
     {
         if (Components.TryGetValue(typeof(T), out var component))

@@ -12,9 +12,9 @@ public class Weapon
     public Sprite Projectile { get; }
     public Stats Stats { get; }
     public List<WeaponEffect> WeaponEffects { get; }
+    public WeaponController WeaponPrefab { get; }
 
-    public Weapon(
-        string id,
+    public Weapon(string id,
         int level,
         WeaponType type,
         List<Sprite> sprites,
@@ -22,7 +22,8 @@ public class Weapon
         Color endColor,
         Sprite projectile,
         Stats stats,
-        List<WeaponEffect> weaponEffects)
+        List<WeaponEffect> weaponEffects, 
+        WeaponController weaponPrefab)
     {
         Id = id;
         Level = level;
@@ -33,5 +34,6 @@ public class Weapon
         Projectile = projectile;
         Stats = stats;
         WeaponEffects = weaponEffects;
+        WeaponPrefab = weaponPrefab;
     }
 }

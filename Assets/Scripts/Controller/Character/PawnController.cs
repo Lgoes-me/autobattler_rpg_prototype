@@ -22,8 +22,14 @@ public class PawnController : MonoBehaviour
         Pawn = pawn;
         CharacterController = Instantiate(pawn.GetComponent<CharacterComponent>().Character, transform);
 
+        if (Pawn.TryGetComponent<StatsComponent>(out var statsComponent))
+        {
+            statsComponent.ApplyLevel(Pawn.Level);
+        }
+
         if (Pawn.TryGetComponent<WeaponComponent>(out var weaponComponent))
         {
+            weaponComponent.ApplyWeaponType(Pawn.WeaponType);
             CharacterController.SetWeapon(weaponComponent);
         }
 
@@ -55,6 +61,7 @@ public class PawnController : MonoBehaviour
     public void StartBattle(Battle battle)
     {
         Pawn.GetComponent<StatsComponent>().StartBattle();
+        Pawn.GetComponent<PawnBuffsComponent>().StartBattle();
 
         enabled = true;
         Ability = null;
@@ -174,6 +181,7 @@ public class PawnController : MonoBehaviour
     public void FinishBattle()
     {
         Pawn.GetComponent<StatsComponent>().FinishBattle();
+        Pawn.GetComponent<PawnBuffsComponent>().FinishBattle();
 
         CharacterController.SetAnimationState(new IdleState());
 

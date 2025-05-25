@@ -33,9 +33,7 @@ MonoBehaviour:
       type: {class: WeaponListComponentData, ns: , asm: Assembly-CSharp}
       data:
         <Weapons>k__BackingField:
-        - <WeaponType>k__BackingField: 2
-          <Weapon>k__BackingField: {fileID: 11400000, guid: 8a52abe442785a54da608366eb5bbbc1, type: 2}
-          <WeaponPrefab>k__BackingField: {fileID: 594838873150881837, guid: fbb5ee48393c9394da2726630845413e, type: 3}
+        - {fileID: 11400000, guid: 8a52abe442785a54da608366eb5bbbc1, type: 2}
     - rid: 2203596695900782596
       type: {class: PawnBuffsComponentData, ns: , asm: Assembly-CSharp}
       data: 

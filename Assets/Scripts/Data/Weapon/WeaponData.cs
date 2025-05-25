@@ -15,11 +15,12 @@ public class WeaponData : ScriptableObject
     [field: SerializeField] private Sprite Projectile { get; set; }
     [field: SerializeField] private StatsData Stats { get; set; }
     [field: SerializeField] private List<WeaponEffectData> WeaponEffects { get; set; }
+    [field: SerializeField] private WeaponController WeaponPrefab { get; set; }
 
     public Weapon ToDomain()
     {
         var weaponEffects = WeaponEffects.Select(w => w.ToDomain()).ToList();
-        return new Weapon(Id, Level, Type, Sprites, StartColor, EndColor, Projectile, Stats.ToDomain(), weaponEffects);
+        return new Weapon(Id, Level, Type, Sprites, StartColor, EndColor, Projectile, Stats.ToDomain(), weaponEffects, WeaponPrefab);
     }
 }
 

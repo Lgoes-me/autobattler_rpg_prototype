@@ -17,19 +17,29 @@ public abstract class PawnComponent
 public class WeaponComponent : PawnComponent
 {
     public Weapon Weapon { get; private set; }
-    public WeaponType WeaponType { get; }
-    public WeaponController WeaponPrefab { get; }
+    public WeaponType WeaponType { get; private set; }
+    public WeaponController WeaponPrefab { get; private set; }
 
-    public WeaponComponent(Weapon weapon, WeaponType weaponType, WeaponController weaponPrefab)
+    private List<Weapon> Weapons { get; }
+    
+    public WeaponComponent(List<Weapon> weapons)
     {
-        Weapon = weapon;
-        WeaponType = weaponType;
-        WeaponPrefab = weaponPrefab;
+        Weapons = weapons;
+    }
+    
+    public void ApplyWeaponType(WeaponType weaponType)
+    {
+        Weapon = Weapons.FirstOrDefault(w => w.Type == weaponType) ?? Weapons.First();
+
+        WeaponType = Weapon.Type;
+        WeaponPrefab = Weapon.WeaponPrefab;
     }
 
     public void SetPawnInfo(PawnInfo pawnInfo)
     {
         Weapon = Application.Instance.GetManager<ContentManager>().GetWeaponFromId(pawnInfo.Weapon).ToDomain();
+        WeaponType = Weapon.Type;
+        WeaponPrefab = Weapon.WeaponPrefab;
     }
 }
 

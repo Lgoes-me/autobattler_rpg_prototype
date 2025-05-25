@@ -37,6 +37,7 @@ MonoBehaviour:
         rid: 2203596194859712515
       <ActionData>k__BackingField:
         rid: 2203596194859712516
+  <WeaponPrefab>k__BackingField: {fileID: 3470866117347721186, guid: 42434cd4fff53544a82d28a5201abacb, type: 3}
   references:
     version: 2
     RefIds:
