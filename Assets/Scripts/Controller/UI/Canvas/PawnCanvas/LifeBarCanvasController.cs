@@ -12,6 +12,7 @@ public class LifeBarCanvasController : BasePawnCanvasController
     {
         base.Init(pawn);
         var stats = Pawn.GetComponent<StatsComponent>();
+        var buffs = Pawn.GetComponent<PawnBuffsComponent>();
         
         var fillAmount = stats.Health / (float) stats.GetPawnStats().Health;
 
@@ -23,7 +24,7 @@ public class LifeBarCanvasController : BasePawnCanvasController
         stats.LostLife += UpdateLife;
         stats.GainedLife += UpdateLife;
         stats.ManaChanged += UpdateMana;
-        stats.BuffsChanged += UpdateBuffs;
+        buffs.BuffsChanged += UpdateBuffs;
     }
 
     private void UpdateLife()
@@ -75,11 +76,12 @@ public class LifeBarCanvasController : BasePawnCanvasController
             return;
         
         var stats = Pawn.GetComponent<StatsComponent>();
+        var buffs = Pawn.GetComponent<PawnBuffsComponent>();
         
         stats.LostLife -= UpdateLife;
         stats.GainedLife -= UpdateLife;
         
         stats.ManaChanged -= UpdateMana;
-        stats.BuffsChanged -= UpdateBuffs;
+        buffs.BuffsChanged -= UpdateBuffs;
     }
 }

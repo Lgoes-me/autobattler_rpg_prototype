@@ -19,9 +19,13 @@ MonoBehaviour:
   - rid: 7923229791535759387
   - rid: 7923229791535759388
   - rid: 7923229791535759389
+  - rid: 2203596695900782594
   references:
     version: 2
     RefIds:
+    - rid: 2203596695900782594
+      type: {class: PawnBuffsComponentData, ns: , asm: Assembly-CSharp}
+      data: 
     - rid: 7923229791535759385
       type: {class: EnemyComponentData, ns: , asm: Assembly-CSharp}
       data:

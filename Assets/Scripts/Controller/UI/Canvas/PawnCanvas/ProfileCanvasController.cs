@@ -54,7 +54,7 @@ public class ProfileCanvasController : LifeBarCanvasController
     
     protected override void UpdateBuffs()
     {
-        var buffs = Pawn.GetComponent<StatsComponent>().Buffs.Select(b => b.Value).ToList();
+        var buffs = Pawn.GetComponent<PawnBuffsComponent>().Buffs.Select(b => b.Value).ToList();
         BuffsCanvasHolderController.UpdateItems(buffs);
     }
 

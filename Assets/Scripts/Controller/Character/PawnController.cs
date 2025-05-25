@@ -139,8 +139,9 @@ public class PawnController : MonoBehaviour
         if (Pawn == null)
             return;
 
-        if (Pawn.TryGetComponent<StatsComponent>(out var statsComponent) && statsComponent.IsAlive)
-            statsComponent.TickAllBuffs();
+        if (Pawn.TryGetComponent<StatsComponent>(out var statsComponent) && statsComponent.IsAlive &&
+            Pawn.TryGetComponent<PawnBuffsComponent>(out var pawnBuffsComponent))
+            pawnBuffsComponent.TickAllBuffs();
 
         if (Ability == null || !PawnState.CanWalk)
             return;

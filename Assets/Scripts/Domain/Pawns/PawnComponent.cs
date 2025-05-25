@@ -16,9 +16,9 @@ public abstract class PawnComponent
 
 public class WeaponComponent : PawnComponent
 {
-    public Weapon Weapon { get; protected set; }
-    public WeaponType WeaponType { get; private set; }
-    public WeaponController WeaponPrefab { get; private set; }
+    public Weapon Weapon { get; private set; }
+    public WeaponType WeaponType { get; }
+    public WeaponController WeaponPrefab { get; }
 
     public WeaponComponent(Weapon weapon, WeaponType weaponType, WeaponController weaponPrefab)
     {
@@ -119,15 +119,12 @@ public class EnemyComponent : PawnComponent
 public class StatsComponent : PawnComponent
 {
     public int Health => GetPawnStats().Health - MissingHealth;
-    public int MissingHealth { get; private set; }
+    private int MissingHealth { get; set; }
     public int Mana { get; private set; }
     public int Level { get; private set; }
 
     private Stats Stats { get; }
     private LevelUpStats LevelUpStats { get; }
-
-    public List<string> PermanentBuffs { get; private set; }
-    public Dictionary<string, Buff> Buffs { get; private set; }
 
     public bool HasMana => Stats.Mana > 0;
     public bool IsAlive => Health > 0;
@@ -135,7 +132,6 @@ public class StatsComponent : PawnComponent
     public event PawnDomainChanged LostLife;
     public event PawnDomainChanged GainedLife;
     public event PawnDomainChanged ManaChanged;
-    public event PawnDomainChanged BuffsChanged;
 
     public event PawnDomainChanged BattleStarted;
     public event PawnDomainChanged BattleFinished;
@@ -148,9 +144,6 @@ public class StatsComponent : PawnComponent
         MissingHealth = 0;
         Mana = 0;
         Level = 0;
-
-        PermanentBuffs = new List<string>();
-        Buffs = new Dictionary<string, Buff>();
     }
 
     public void ApplyLevel(int level)
@@ -162,14 +155,6 @@ public class StatsComponent : PawnComponent
     public void StartBattle()
     {
         Mana = 0;
-        Buffs = new Dictionary<string, Buff>();
-
-        foreach (var buff in PermanentBuffs)
-        {
-            var buffInstance = Application.Instance.GetManager<ContentManager>().GetBuffFromId(buff).ToDomain(Pawn, -1);
-            buffInstance.Init(Pawn);
-            AddBuff(buffInstance);
-        }
 
         BattleStarted?.Invoke();
         ManaChanged?.Invoke();
@@ -177,50 +162,7 @@ public class StatsComponent : PawnComponent
 
     public void FinishBattle()
     {
-        RemoveAllBuffs();
         BattleFinished?.Invoke();
-    }
-
-    public bool AddBuff(Buff newBuff)
-    {
-        if (Buffs.TryGetValue(newBuff.Id, out var buff))
-        {
-            buff.TryReapplyBuff();
-            return false;
-        }
-
-        Buffs.Add(newBuff.Id, newBuff);
-
-        BuffsChanged?.Invoke();
-        return true;
-    }
-
-    public void TickAllBuffs()
-    {
-        for (var index = Buffs.Count - 1; index >= 0; index--)
-        {
-            var buff = Buffs.ElementAt(index);
-
-            if (!buff.Value.Tick())
-            {
-                RemoveBuff(buff.Value);
-            }
-        }
-    }
-
-    private void RemoveAllBuffs()
-    {
-        for (var index = Buffs.Count - 1; index >= 0; index--)
-        {
-            var buff = Buffs.ElementAt(index);
-            RemoveBuff(buff.Value);
-        }
-    }
-
-    private void RemoveBuff(Buff buff)
-    {
-        Buffs.Remove(buff.Id);
-        BuffsChanged?.Invoke();
     }
 
     public void ReceiveDamage(DamageDomain damage)
@@ -269,19 +211,22 @@ public class StatsComponent : PawnComponent
     {
         var stats = Stats + LevelUpStats.CurrentStats;
 
-        if(Pawn.TryGetComponent<WeaponComponent>(out var component))
+        if(Pawn.TryGetComponent<WeaponComponent>(out var weaponComponent))
         {
-            stats += component.Weapon.Stats;
+            stats += weaponComponent.Weapon.Stats;
         }
-        
-        foreach (var (_, buff) in Buffs)
-        {
-            foreach (var buffComponent in buff)
-            {
-                if (buffComponent is not StatModifierBuff statModifierBuff)
-                    continue;
 
-                stats = statModifierBuff.ProcessStats(stats);
+        if (Pawn.TryGetComponent<PawnBuffsComponent>(out var pawnBuffsComponent))
+        {
+            foreach (var (_, buff) in pawnBuffsComponent.Buffs)
+            {
+                foreach (var buffComponent in buff)
+                {
+                    if (buffComponent is not StatModifierBuff statModifierBuff)
+                        continue;
+
+                    stats = statModifierBuff.ProcessStats(stats);
+                }
             }
         }
 
@@ -291,10 +236,86 @@ public class StatsComponent : PawnComponent
     public void SetPawnInfo(PawnInfo pawnInfo)
     {
         ApplyLevel(pawnInfo.Level);
-        PermanentBuffs = pawnInfo.Buffs;
 
         MissingHealth = pawnInfo.MissingHealth;
         Mana = 0;
+    }
+}
+
+public class PawnBuffsComponent : PawnComponent
+{
+    public List<string> PermanentBuffs { get; private set; }
+    public Dictionary<string, Buff> Buffs { get; private set; }
+    public event PawnDomainChanged BuffsChanged;
+    
+    public PawnBuffsComponent()
+    {
+        PermanentBuffs = new List<string>();
+        Buffs = new Dictionary<string, Buff>();
+    }
+    
+    public void StartBattle()
+    {
+        Buffs = new Dictionary<string, Buff>();
+
+        foreach (var buff in PermanentBuffs)
+        {
+            var buffInstance = Application.Instance.GetManager<ContentManager>().GetBuffFromId(buff).ToDomain(Pawn, -1);
+            buffInstance.Init(Pawn);
+            AddBuff(buffInstance);
+        }
+    }
+    
+    public void FinishBattle()
+    {
+        RemoveAllBuffs();
+    }
+    
+    public bool AddBuff(Buff newBuff)
+    {
+        if (Buffs.TryGetValue(newBuff.Id, out var buff))
+        {
+            buff.TryReapplyBuff();
+            return false;
+        }
+
+        Buffs.Add(newBuff.Id, newBuff);
+
+        BuffsChanged?.Invoke();
+        return true;
+    }
+
+    public void TickAllBuffs()
+    {
+        for (var index = Buffs.Count - 1; index >= 0; index--)
+        {
+            var buff = Buffs.ElementAt(index);
+
+            if (!buff.Value.Tick())
+            {
+                RemoveBuff(buff.Value);
+            }
+        }
+    }
+
+    private void RemoveAllBuffs()
+    {
+        for (var index = Buffs.Count - 1; index >= 0; index--)
+        {
+            var buff = Buffs.ElementAt(index);
+            RemoveBuff(buff.Value);
+        }
+    }
+
+    private void RemoveBuff(Buff buff)
+    {
+        Buffs.Remove(buff.Id);
+        BuffsChanged?.Invoke();
+    }
+
+    public void SetPawnInfo(PawnInfo pawnInfo)
+    {
+        PermanentBuffs = pawnInfo.Buffs;
     }
 }
 

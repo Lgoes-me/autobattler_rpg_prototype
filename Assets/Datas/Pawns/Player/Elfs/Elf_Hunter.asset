@@ -22,6 +22,7 @@ MonoBehaviour:
   - rid: 7923229791535759371
   - rid: 7923229791535759372
   - rid: 2203596621807091720
+  - rid: 2203596695900782595
   references:
     version: 2
     RefIds:
@@ -35,6 +36,9 @@ MonoBehaviour:
         - <WeaponType>k__BackingField: 1
           <Weapon>k__BackingField: {fileID: 11400000, guid: cd31aca81c366d643bb7c5e6c911a4ec, type: 2}
           <WeaponPrefab>k__BackingField: {fileID: 3470866117347721186, guid: 42434cd4fff53544a82d28a5201abacb, type: 3}
+    - rid: 2203596695900782595
+      type: {class: PawnBuffsComponentData, ns: , asm: Assembly-CSharp}
+      data: 
     - rid: 7923229791535759367
       type: {class: FocusComponentData, ns: , asm: Assembly-CSharp}
       data:

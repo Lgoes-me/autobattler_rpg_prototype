@@ -19,13 +19,16 @@ MonoBehaviour:
   - rid: 7923229791535759381
   - rid: 7923229791535759382
   - rid: 7923229791535759383
+  - rid: 2203596695900782593
   references:
     version: 2
     RefIds:
+    - rid: 2203596695900782593
+      type: {class: PawnBuffsComponentData, ns: , asm: Assembly-CSharp}
+      data: 
     - rid: 7923229791535759379
       type: {class: EnemyComponentData, ns: , asm: Assembly-CSharp}
       data:
-        <Initiative>k__BackingField: 1
         <VisionRange>k__BackingField: 5
         <AttackRange>k__BackingField: 2
     - rid: 7923229791535759380

@@ -84,6 +84,14 @@ public class StatsComponentData : PawnDataComponent
         return new StatsComponent(BaseStats.ToDomain(), LevelUpStats.ToDomain());
     }
 }
+public class PawnBuffsComponentData : PawnDataComponent
+{
+    public override PawnComponent ToDomain()
+    {
+        return new PawnBuffsComponent();
+    }
+}
+
 
 public class CharacterComponentData : PawnDataComponent
 {

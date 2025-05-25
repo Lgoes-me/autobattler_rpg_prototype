@@ -138,7 +138,7 @@ public class ArchetypeFactory
     {
         foreach (var p in battle.PlayerPawns)
         {
-            p.Pawn.GetComponent<StatsComponent>().AddBuff(buff);
+            p.Pawn.GetComponent<PawnBuffsComponent>().AddBuff(buff);
         }
     }
     
@@ -146,7 +146,7 @@ public class ArchetypeFactory
     {
         foreach (var p in battle.EnemyPawns)
         {
-            p.Pawn.GetComponent<StatsComponent>().AddBuff(buff);
+            p.Pawn.GetComponent<PawnBuffsComponent>().AddBuff(buff);
         }
     }
 
@@ -157,7 +157,7 @@ public class ArchetypeFactory
             if (!p.Pawn.GetComponent<ArchetypesComponent>().Archetypes.Contains(archetypeIdentifier))
                 continue;
 
-            p.Pawn.GetComponent<StatsComponent>().AddBuff(buff);
+            p.Pawn.GetComponent<PawnBuffsComponent>().AddBuff(buff);
         }
     }
 }
