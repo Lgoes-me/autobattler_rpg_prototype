@@ -123,6 +123,11 @@ public class BattleController : MonoBehaviour
         
         yield return new WaitForSeconds(2f);
         
+        foreach (var pawn in Battle.PlayerPawns)
+        {
+            pawn.Idle();
+        }
+        
         Application.Instance.GetManager<PlayerManager>().EnablePlayerInput();
         Application.Instance.GetManager<PartyManager>().SetPartyToFollow(false);
         Application.Instance.GetManager<GameSaveManager>().SaveBattle(Battle);

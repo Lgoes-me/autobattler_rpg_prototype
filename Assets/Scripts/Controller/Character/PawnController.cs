@@ -194,6 +194,11 @@ public class PawnController : MonoBehaviour
         NavMeshAgent.ResetPath();
         CharacterController.SetAnimationState(new DanceState());
     }
+    
+    public void Idle()
+    {
+        CharacterController.SetAnimationState(new IdleState());
+    }
 
     public void SpawnProjectile(
         ProjectileController projectilePrefab,
