@@ -23,17 +23,17 @@ public class GameSaveManager : IManager
 
     public bool FirstTimePlaying()
     {
-        return SaveManager.LoadList<Save>().Where(l => l.LastBonfireSpawn != null).ToList().Count == 0;
+        return SaveManager.LoadList<Save>().Where(l => l!= null && l.LastBonfireSpawn != null).ToList().Count == 0;
     }
 
     public void StartNewSave()
     {
-        Save = new Save().CreateNewSaveForIntro();
-
+        var selectedParty = new List<PawnInfo>();
+        
         var farmer = ContentManager.GetPawnFromId("Farmer");
         var hunter = ContentManager.GetPawnFromId("Hunter");
 
-        AddToSelectedParty(
+        selectedParty.Add(
             new PawnInfo(
                 farmer.Id,
                 1,
@@ -45,7 +45,7 @@ public class GameSaveManager : IManager
                 farmer.GetComponent<ConsumableComponent>().Consumables));
 
 
-        AddToSelectedParty(
+        selectedParty.Add(
             new PawnInfo(
                 hunter.Id,
                 1,
@@ -55,6 +55,8 @@ public class GameSaveManager : IManager
                 hunter.GetComponent<AbilitiesComponent>().Abilities,
                 hunter.GetComponent<PawnBuffsComponent>().PermanentBuffs,
                 hunter.GetComponent<ConsumableComponent>().Consumables));
+        
+        Save = new Save().CreateNewSaveForIntro(selectedParty);
     }
 
     public void AddToSelectedParty(PawnInfo pawnInfo)

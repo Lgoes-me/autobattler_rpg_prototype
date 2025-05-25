@@ -11,7 +11,7 @@
 
 public enum BlessingIdentifier
 {
-    BattleStartGainMana,
-    OnAttackHeal,
-    DamageEnemiesOnEnemyDeath
+    BattleStartGainMana = 0,
+    OnAttackHeal = 1,
+    DamageEnemiesOnEnemyDeath = 2
 }

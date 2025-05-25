@@ -835,7 +835,7 @@ PrefabInstance:
     - target: {fileID: 6357606874330744520, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
       propertyPath: <SpawnPoint>k__BackingField
       value: 
-      objectReference: {fileID: 268927210915361281}
+      objectReference: {fileID: 8367864812551526435}
     - target: {fileID: 6357606874330744520, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
       propertyPath: <SceneDestination>k__BackingField
       value: TutorialBossRoom
@@ -928,6 +928,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5e68a00640288c4cbd099f9c1d2a064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &8367864812551526435 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8778516737657091115, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
+  m_PrefabInstance: {fileID: 1005198544174377992}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8677322488223915022 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8475532692762963974, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
@@ -3450,7 +3455,7 @@ PrefabInstance:
     - target: {fileID: 6357606874330744520, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
       propertyPath: <SpawnPoint>k__BackingField
       value: 
-      objectReference: {fileID: 726102810259102870}
+      objectReference: {fileID: 459095354373019835}
     - target: {fileID: 6357606874330744520, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
       propertyPath: <SceneDestination>k__BackingField
       value: TutorialBossRoom
@@ -3532,6 +3537,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
+--- !u!4 &459095354373019835 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8778516737657091115, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
+  m_PrefabInstance: {fileID: 9190869083744152720}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &726102810259102870 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8475532692762963974, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}

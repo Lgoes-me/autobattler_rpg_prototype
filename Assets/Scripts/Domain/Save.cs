@@ -27,16 +27,34 @@ public class Save : ISavable
         CurrentTime = 0f;
     }
 
-    public Save CreateNewSaveForIntro() 
+    public Save CreateNewSaveForIntro(List<PawnInfo> selectedParty) 
     {
         Metadata = new Metadata().CreateNewDynamicFile(".json");
-        Spawn = null;
-        LastBonfireSpawn = null;
-
-        SelectedParty = new List<PawnInfo>();
         
-        DefeatedEnemies = new List<string>();
-        Blessings = new List<BlessingIdentifier>();
+        Spawn = new SpawnDomain(
+            "1590e136-c0a0-4285-97cc-c066b6d353bf", 
+            "5156dcbf-99fe-410b-b6c8-6e7496024057");
+        
+        LastBonfireSpawn = new SpawnDomain(
+            "efc187ae-edbb-4187-87a2-7be8298184c6", 
+            "ed12450d-ce72-4d93-a724-c5a83dbead04");
+
+        SelectedParty = selectedParty;
+
+        DefeatedEnemies = new List<string>()
+        {
+            "Wolfs-2fbb78be-a5e0-4ec0-9d43-04bb71be0cc7",
+            "Grunts-5561663c-72db-4b8e-b75e-09e085a009f1",
+            "EnemyArea (2)-e366a721-bd24-4f71-adcd-83a7a465e7e2",
+            "EnemyArea (1)-e366a721-bd24-4f71-adcd-83a7a465e7e2"
+        };
+        
+        Blessings = new List<BlessingIdentifier>()
+        {
+            BlessingIdentifier.BattleStartGainMana,
+            BlessingIdentifier.OnAttackHeal,
+        };
+        
         AvailableParty = new List<string>()
         {
             "Farmer",
@@ -44,7 +62,8 @@ public class Save : ISavable
         };
         
         Dialogues = new List<string>();
-        CurrentTime = 20f;
+        
+        CurrentTime = 3.9f;
 
         return this;
     }
