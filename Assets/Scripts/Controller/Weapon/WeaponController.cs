@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
+    [field: SerializeField] public Transform SpawnPoint { get; private set; }
     [field: SerializeField] private List<SpriteRenderer> SpriteRenderers { get; set; }
     [field: SerializeField] private TrailRenderer TrailRenderer { get; set; }
     

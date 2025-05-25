@@ -18,11 +18,13 @@ public class WeaponComponent : PawnComponent
 {
     public Weapon Weapon { get; protected set; }
     public WeaponType WeaponType { get; private set; }
+    public WeaponController WeaponPrefab { get; private set; }
 
-    public WeaponComponent(Weapon weapon, WeaponType weaponType)
+    public WeaponComponent(Weapon weapon, WeaponType weaponType, WeaponController weaponPrefab)
     {
         Weapon = weapon;
         WeaponType = weaponType;
+        WeaponPrefab = weaponPrefab;
     }
 
     public void SetPawnInfo(PawnInfo pawnInfo)

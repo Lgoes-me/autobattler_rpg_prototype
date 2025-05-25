@@ -22,10 +22,9 @@ public class PawnController : MonoBehaviour
         Pawn = pawn;
         CharacterController = Instantiate(pawn.GetComponent<CharacterComponent>().Character, transform);
 
-        if (Pawn.HasComponent<WeaponComponent>())
+        if (Pawn.TryGetComponent<WeaponComponent>(out var weaponComponent))
         {
-            var weapon = pawn.GetComponent<WeaponComponent>().Weapon;
-            CharacterController.SetWeapon(weapon);
+            CharacterController.SetWeapon(weaponComponent);
         }
 
         if (CanvasController != null)
@@ -40,7 +39,11 @@ public class PawnController : MonoBehaviour
     public void UpdatePawn(PawnInfo pawnInfo)
     {
         Pawn.SetPawnInfo(pawnInfo);
-        CharacterController.SetWeapon(Pawn.GetComponent<WeaponComponent>().Weapon);
+        
+        if (Pawn.TryGetComponent<WeaponComponent>(out var weaponComponent))
+        {
+            CharacterController.SetWeapon(weaponComponent);
+        }
     }
 
     public void RemoveCanvasController()
@@ -195,7 +198,7 @@ public class PawnController : MonoBehaviour
 
         var projectile = Instantiate(
                 projectilePrefab,
-                CharacterController.SpawnPoint.position,
+                CharacterController.GetSpawnPoint(),
                 Quaternion.identity,
                 roomScene.transform)
             .Init(

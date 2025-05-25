@@ -13,10 +13,11 @@ public class WeaponComponentData : PawnDataComponent
 {
     [field: SerializeField] private WeaponType WeaponType { get; set; }
     [field: SerializeField] private WeaponData Weapon { get; set; }
+    [field: SerializeField] private WeaponController WeaponPrefab { get; set; }
 
     public override PawnComponent ToDomain()
     {
-        return new WeaponComponent(Weapon.ToDomain(), WeaponType);
+        return new WeaponComponent(Weapon.ToDomain(), WeaponType, WeaponPrefab);
     }
 }
 

@@ -103,6 +103,7 @@ public class EnemyData
 public class EnemyInfo
 {
     [field: SerializeField] private PawnData PawnData { get; set; }
+    [field: SerializeField] private WeaponType WeaponType { get; set; }
     [field: SerializeField] private int Level { get; set; } = 1;
 
     public Pawn ToDomain(TeamType teamType)

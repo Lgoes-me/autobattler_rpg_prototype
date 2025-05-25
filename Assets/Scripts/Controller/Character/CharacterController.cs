@@ -4,14 +4,13 @@ public class CharacterController : MonoBehaviour
 {
     private static readonly int Speed = Animator.StringToHash("Speed");
 
-    [field: SerializeField] public Transform SpawnPoint { get; private set; }
-    
     [field: SerializeField] private AnimationStateController AnimationStateController { get; set; }
     [field: SerializeField] private HitStopController HitStopController { get; set; }
     [field: SerializeField] private Animator Animator { get; set; }
-    
-    [field: SerializeField] private WeaponController WeaponController { get; set; }
+
+    [field: SerializeField] private Transform WeaponPivot { get; set; }
     [field: SerializeField] private Transform Pivot { get; set; }
+    [field: SerializeField] private WeaponController WeaponController { get; set; }
 
     public AnimationState CurrentState => AnimationStateController.CurrentState;
 
@@ -29,12 +28,15 @@ public class CharacterController : MonoBehaviour
         Animator.SetFloat(Speed, speed);
     }
 
-    public void SetWeapon(Weapon weapon)
+    public void SetWeapon(WeaponComponent weaponComponent)
     {
-        if (weapon == null)
-            return;
+        if (WeaponController != null)
+        {
+            Destroy(WeaponController.gameObject);
+        }
         
-        WeaponController.SetWeapon(weapon);
+        WeaponController = Instantiate(weaponComponent.WeaponPrefab, WeaponPivot.transform);
+        WeaponController.SetWeapon(weaponComponent.Weapon);
     }
 
     public Sprite GetProjectileSprite()
@@ -60,5 +62,10 @@ public class CharacterController : MonoBehaviour
     public void PlayFootstep()
     {
         Application.Instance.GetManager<AudioManager>().PlaySound(SfxType.Step);
+    }
+
+    public Vector3 GetSpawnPoint()
+    {
+        return WeaponController.SpawnPoint.position;
     }
 }
