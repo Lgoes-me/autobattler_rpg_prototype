@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9774615525ba4fca9e379bac94aa04a5, type: 3}
+  m_Name: SmallBow
+  m_EditorClassIdentifier: 
+  <Id>k__BackingField: SmallBow
+  <Level>k__BackingField: 0
+  <Type>k__BackingField: 6
+  <Sprites>k__BackingField:
+  - {fileID: 1527847854, guid: 2f93ca17a0e58084b8792049e6f1845f, type: 3}
+  - {fileID: -1841384892, guid: 2f93ca17a0e58084b8792049e6f1845f, type: 3}
+  <StartColor>k__BackingField: {r: 0.4339623, g: 0.4339623, b: 0.4339623, a: 0}
+  <EndColor>k__BackingField: {r: 0.1509434, g: 0.1509434, b: 0.1509434, a: 0}
+  <Projectile>k__BackingField: {fileID: -1624257728, guid: eaa732a6ce18ff140835b1304aec842b, type: 3}
+  <Stats>k__BackingField:
+    <Health>k__BackingField: 0
+    <Mana>k__BackingField: 0
+    <Strength>k__BackingField: 0
+    <Arcane>k__BackingField: 0
+    <PhysicalDefence>k__BackingField: 0
+    <MagicalDefence>k__BackingField: 0
+  <WeaponEffects>k__BackingField: []
+  <WeaponPrefab>k__BackingField: {fileID: 3470866117347721186, guid: b04ede647e7389e4cb5a704104c8559d, type: 3}
+  references:
+    version: 2
+    RefIds: []

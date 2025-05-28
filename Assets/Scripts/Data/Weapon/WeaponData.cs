@@ -24,13 +24,13 @@ public class WeaponData : ScriptableObject
     }
 }
 
-[Flags]
 public enum WeaponType
 {
     None = 0,
-    Bow = 1,
-    Lance = 2,
-    Sword = 4,
-    Hammer = 8,
-    Crossbow = 16,
+    Bow,
+    Lance,
+    Sword,
+    Hammer,
+    Crossbow,
+    SmallBow
 }

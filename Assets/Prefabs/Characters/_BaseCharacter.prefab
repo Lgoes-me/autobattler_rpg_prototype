@@ -1269,6 +1269,8 @@ MonoBehaviour:
   <AnimationStateController>k__BackingField: {fileID: 399165619813916808}
   <HitStopController>k__BackingField: {fileID: 5029195247004389606}
   <Animator>k__BackingField: {fileID: 4950570799420742401}
+  <SortingGroup>k__BackingField: {fileID: 800187587991526115}
+  <MountPivot>k__BackingField: {fileID: 5102208140375494570}
   <WeaponPivot>k__BackingField: {fileID: 6241567202786276927}
   <Pivot>k__BackingField: {fileID: 4269087451210439588}
   <WeaponController>k__BackingField: {fileID: 0}

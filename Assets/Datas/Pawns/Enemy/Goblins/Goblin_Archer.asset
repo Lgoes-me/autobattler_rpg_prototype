@@ -31,12 +31,12 @@ MonoBehaviour:
       type: {class: WeaponListComponentData, ns: , asm: Assembly-CSharp}
       data:
         <Weapons>k__BackingField:
-        - {fileID: 11400000, guid: cd31aca81c366d643bb7c5e6c911a4ec, type: 2}
+        - {fileID: 11400000, guid: d7ad807c48b30a542854525bf42eb6e2, type: 2}
     - rid: 7923229791535759374
       type: {class: EnemyComponentData, ns: , asm: Assembly-CSharp}
       data:
-        <VisionRange>k__BackingField: 5
-        <AttackRange>k__BackingField: 5
+        <VisionRange>k__BackingField: 3
+        <AttackRange>k__BackingField: 3
     - rid: 7923229791535759375
       type: {class: FocusComponentData, ns: , asm: Assembly-CSharp}
       data:
@@ -47,6 +47,7 @@ MonoBehaviour:
       type: {class: CharacterComponentData, ns: , asm: Assembly-CSharp}
       data:
         <Character>k__BackingField: {fileID: 3106379038329890454, guid: 69f175c2c704e50488677afd4a42858e, type: 3}
+        <Mount>k__BackingField: {fileID: 3138497934422905829, guid: f4267771a1770594fa2468539ad0e5a6, type: 3}
     - rid: 7923229791535759377
       type: {class: StatsComponentData, ns: , asm: Assembly-CSharp}
       data:

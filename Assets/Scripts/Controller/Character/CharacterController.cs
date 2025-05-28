@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class CharacterController : MonoBehaviour
 {
@@ -7,12 +8,16 @@ public class CharacterController : MonoBehaviour
     [field: SerializeField] private AnimationStateController AnimationStateController { get; set; }
     [field: SerializeField] private HitStopController HitStopController { get; set; }
     [field: SerializeField] private Animator Animator { get; set; }
+    [field: SerializeField] private SortingGroup SortingGroup { get; set; }
 
+    [field: SerializeField] private Transform MountPivot { get; set; }
     [field: SerializeField] private Transform WeaponPivot { get; set; }
     [field: SerializeField] private Transform Pivot { get; set; }
     [field: SerializeField] private WeaponController WeaponController { get; set; }
 
     public AnimationState CurrentState => AnimationStateController.CurrentState;
+    
+    private CharacterController MountController { get; set; }
 
     public void SetDirection(Vector3 direction)
     {
@@ -35,8 +40,23 @@ public class CharacterController : MonoBehaviour
             Destroy(WeaponController.gameObject);
         }
         
-        WeaponController = Instantiate(weaponComponent.WeaponPrefab, WeaponPivot.transform);
+        WeaponController = Instantiate(weaponComponent.WeaponPrefab, WeaponPivot);
         WeaponController.SetWeapon(weaponComponent.Weapon);
+    }
+    
+    public void SetMount(CharacterController mountController)
+    {
+        if (MountController != null)
+        {
+            Destroy(MountController.gameObject);
+        }
+        
+        MountController = Instantiate(mountController, transform);
+        
+        Pivot.SetParent(MountController.MountPivot);
+        
+        Pivot.localPosition = Vector3.zero;
+        SortingGroup.enabled = false;
     }
 
     public Sprite GetProjectileSprite()

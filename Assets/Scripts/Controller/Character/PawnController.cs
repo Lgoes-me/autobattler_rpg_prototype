@@ -20,7 +20,15 @@ public class PawnController : MonoBehaviour
     public void Init(Pawn pawn)
     {
         Pawn = pawn;
-        CharacterController = Instantiate(pawn.GetComponent<CharacterComponent>().Character, transform);
+
+        var characterComponent = pawn.GetComponent<CharacterComponent>();
+        
+        CharacterController = Instantiate(characterComponent.Character, transform);
+        
+        if (characterComponent.Mount != null)
+        {
+            CharacterController.SetMount(characterComponent.Mount);
+        }
 
         if (Pawn.TryGetComponent<StatsComponent>(out var statsComponent))
         {
@@ -237,6 +245,8 @@ public class PawnController : MonoBehaviour
             return;
 
         CharacterController.SetAnimationState(new DeadState());
+        
+        NavMeshAgent.ResetPath();
         Ability = null;
 
         Application.Instance.GetManager<BattleEventsManager>().DoPawnDeathEvent(Battle, this);

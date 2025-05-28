@@ -340,10 +340,12 @@ public class PawnBuffsComponent : PawnComponent
 public class CharacterComponent : PawnComponent
 {
     public CharacterController Character { get; }
+    public CharacterController Mount { get; }
 
-    public CharacterComponent(CharacterController character)
+    public CharacterComponent(CharacterController character, CharacterController mount)
     {
         Character = character;
+        Mount = mount;
     }
 }
 

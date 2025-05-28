@@ -92,7 +92,7 @@ public class WeaponPrize : BasePrize<WeaponPrizeItem>
         {
             var pawn = contentManager.GetPawnFromId(pawnInfo.Name);
             var weapon = randomWeapons.First(w =>
-                    pawn.GetComponent<WeaponComponent>().WeaponType.IsEnumFlagPresent(w.Type) &&
+                    pawn.GetComponent<WeaponComponent>().WeaponType == w.Type &&
                     pawnInfo.Weapon != w.Id)
                 .ToDomain();
 
@@ -123,7 +123,7 @@ public class AbilityPrize : BasePrize<AbilityPrizeItem>
         {
             var pawn = contentManager.GetPawnFromId(pawnInfo.Name);
             var ability = randomAbilities.FirstOrDefault(a =>
-                pawn.GetComponent<WeaponComponent>().WeaponType.IsEnumFlagPresent(a.WeaponType) &&
+                pawn.GetComponent<WeaponComponent>().WeaponType == a.WeaponType &&
                 !pawnInfo.Abilities.Contains(a.Id));
 
             if (ability == null)
