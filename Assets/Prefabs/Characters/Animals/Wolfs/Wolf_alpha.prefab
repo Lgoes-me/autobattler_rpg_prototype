@@ -40,6 +40,10 @@ PrefabInstance:
       propertyPath: <BodyMask>k__BackingField
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 980420176060528509, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
+      propertyPath: <SortingGroup>k__BackingField
+      value: 
+      objectReference: {fileID: 766418436910524599}
     - target: {fileID: 1083944035480295393, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.144

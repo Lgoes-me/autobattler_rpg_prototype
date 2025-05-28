@@ -24,6 +24,12 @@ public class CharacterController : MonoBehaviour
         if(direction.sqrMagnitude < 0.1f)
             return;
 
+        if (MountController != null)
+        {
+            MountController.SetDirection(direction);
+            return;
+        }
+        
         var xDirection = Vector3.Dot(direction, Application.Instance.MainCamera.transform.right);
         Pivot.localScale = new Vector3(xDirection < -0.2f ? 1 : - 1, 1, 1);
     }
@@ -31,6 +37,11 @@ public class CharacterController : MonoBehaviour
     public void SetSpeed(float speed)
     {
         Animator.SetFloat(Speed, speed);
+        
+        if (MountController != null)
+        {
+            MountController.SetSpeed(speed);
+        }
     }
 
     public void SetWeapon(WeaponComponent weaponComponent)
@@ -52,6 +63,7 @@ public class CharacterController : MonoBehaviour
         }
         
         MountController = Instantiate(mountController, transform);
+        MountController.SetAnimationState(new IdleState());
         
         Pivot.SetParent(MountController.MountPivot);
         

@@ -181,6 +181,7 @@ public class PawnController : MonoBehaviour
             Ability.Used = true;
             NavMeshAgent.SetDestination(transform.position);
             CharacterController.SetDirection(lookDirection);
+            CharacterController.SetSpeed(0);
 
             CharacterController.SetAnimationState(new AbilityState(Ability, DoAbility, GoBackToIdle));
         }

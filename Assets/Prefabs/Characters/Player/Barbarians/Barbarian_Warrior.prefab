@@ -159,6 +159,10 @@ PrefabInstance:
       propertyPath: <SpawnPoint>k__BackingField
       value: 
       objectReference: {fileID: 6186545536287871234}
+    - target: {fileID: 980420176060528509, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
+      propertyPath: <SortingGroup>k__BackingField
+      value: 
+      objectReference: {fileID: 766418436910524599}
     - target: {fileID: 1083944035480295393, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.134
@@ -549,7 +553,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7076988159235207190, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
       propertyPath: m_Name
-      value: Barbarian_King
+      value: Barbarian_Warrior
       objectReference: {fileID: 0}
     - target: {fileID: 7177621537342251431, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
       propertyPath: m_FlipX

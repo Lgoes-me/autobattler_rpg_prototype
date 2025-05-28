@@ -283,6 +283,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 980420176060528509, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
+      propertyPath: <SortingGroup>k__BackingField
+      value: 
+      objectReference: {fileID: 766418436910524599}
+    - target: {fileID: 980420176060528509, guid: 637b20f9ffd07704f9c9eefcb7dc6cc3, type: 3}
       propertyPath: <WeaponController>k__BackingField
       value: 
       objectReference: {fileID: 2650347227881016794}
