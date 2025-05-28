@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8963185295062c4593e2ab6ada9cb54, type: 3}
   m_Name: Goblin_Archer
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: Alpha_Wolf
+  <Id>k__BackingField: Goblin_Archer
   <Components>k__BackingField:
   - rid: 7923229791535759374
   - rid: 7923229791535759375
@@ -47,16 +47,15 @@ MonoBehaviour:
       type: {class: CharacterComponentData, ns: , asm: Assembly-CSharp}
       data:
         <Character>k__BackingField: {fileID: 3106379038329890454, guid: 69f175c2c704e50488677afd4a42858e, type: 3}
-        <Mount>k__BackingField: {fileID: 1670507725838462388, guid: 57eecfab5a352bf459516b3016a7e765, type: 3}
     - rid: 7923229791535759377
       type: {class: StatsComponentData, ns: , asm: Assembly-CSharp}
       data:
         <BaseStats>k__BackingField:
-          <Health>k__BackingField: 100
-          <Mana>k__BackingField: 30
-          <Strength>k__BackingField: 2
+          <Health>k__BackingField: 45
+          <Mana>k__BackingField: 0
+          <Strength>k__BackingField: 1
           <Arcane>k__BackingField: 0
-          <PhysicalDefence>k__BackingField: 5
+          <PhysicalDefence>k__BackingField: 2
           <MagicalDefence>k__BackingField: 0
         <LevelUpStats>k__BackingField:
           <MaxLevelStatsStats>k__BackingField:

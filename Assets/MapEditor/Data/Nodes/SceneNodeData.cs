@@ -92,7 +92,7 @@ public class EnemyData
     public void PreparePawn(PawnController pawnController)
     {
         PawnController = pawnController;
-        PawnController.Init(EnemyInfo.ToDomain());
+        PawnController.Init(EnemyInfo.ToDomain(TeamType.Enemies));
         PawnController.CharacterController.SetDirection((Forward ? 1 : -1) * PawnController.transform.forward);
         PawnController.CharacterController.SetAnimationState(new DefaultState(Animation, () => PawnController.CharacterController.SetAnimationState(new IdleState())));
     }
@@ -103,15 +103,11 @@ public class EnemyInfo
 {
     [field: SerializeField] private PawnData PawnData { get; set; }
     [field: SerializeField] private WeaponType WeaponType { get; set; }
+    [field: SerializeField] private CharacterController Mount { get; set; }
     [field: SerializeField] private int Level { get; set; } = 1;
 
-    public Pawn ToDomain()
-    {
-        return PawnData.ToDomain(PawnStatus.Enemy, TeamType.Enemies, Level, WeaponType);
-    }
-    
     public Pawn ToDomain(TeamType teamType)
     {
-        return PawnData.ToDomain(PawnStatus.Enemy, teamType, Level, WeaponType);
+        return PawnData.ToDomain(PawnStatus.Enemy, teamType, Level, WeaponType, new MountComponent(Mount));
     }
 }

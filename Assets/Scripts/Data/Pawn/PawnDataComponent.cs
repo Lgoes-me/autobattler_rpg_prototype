@@ -82,13 +82,23 @@ public class PawnBuffsComponentData : PawnDataComponent
 public class CharacterComponentData : PawnDataComponent
 {
     [field: SerializeField] private CharacterController Character { get; set; }
-    [field: SerializeField] private CharacterController Mount { get; set; }
 
     public override PawnComponent ToDomain()
     {
-        return new CharacterComponent(Character, Mount);
+        return new CharacterComponent(Character);
     }
 }
+
+public class MountComponentData : PawnDataComponent
+{
+    [field: SerializeField] public CharacterController Mount { get; set; }
+
+    public override PawnComponent ToDomain()
+    {
+        return new MountComponent(Mount);
+    }
+}
+
 
 public class FocusComponentData : PawnDataComponent
 {

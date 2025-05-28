@@ -21,13 +21,11 @@ public class PawnController : MonoBehaviour
     {
         Pawn = pawn;
 
-        var characterComponent = pawn.GetComponent<CharacterComponent>();
+        CharacterController = Instantiate(pawn.GetComponent<CharacterComponent>().Character, transform);
         
-        CharacterController = Instantiate(characterComponent.Character, transform);
-        
-        if (characterComponent.Mount != null)
+        if (Pawn.TryGetComponent<MountComponent>(out var mountComponent) && mountComponent.Mount != null)
         {
-            CharacterController.SetMount(characterComponent.Mount);
+            CharacterController.SetMount(mountComponent.Mount);
         }
 
         if (Pawn.TryGetComponent<StatsComponent>(out var statsComponent))

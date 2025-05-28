@@ -26,4 +26,9 @@ public class AnimationStateController : MonoBehaviour
     {
         CurrentState.DoAnimationCallback();
     }
+
+    public void PlayFootstep()
+    {
+        Application.Instance.GetManager<AudioManager>().PlaySound(SfxType.Step);
+    }
 }

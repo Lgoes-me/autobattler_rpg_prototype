@@ -23,6 +23,7 @@ MonoBehaviour:
   - rid: 7923229791535759365
   - rid: 2203596621807091721
   - rid: 2203596695900782596
+  - rid: 2203596779983470592
   references:
     version: 2
     RefIds:
@@ -37,6 +38,10 @@ MonoBehaviour:
     - rid: 2203596695900782596
       type: {class: PawnBuffsComponentData, ns: , asm: Assembly-CSharp}
       data: 
+    - rid: 2203596779983470592
+      type: {class: MountComponentData, ns: , asm: Assembly-CSharp}
+      data:
+        <Mount>k__BackingField: {fileID: 3138497934422905829, guid: f4267771a1770594fa2468539ad0e5a6, type: 3}
     - rid: 7923229791535759360
       type: {class: FocusComponentData, ns: , asm: Assembly-CSharp}
       data:
@@ -47,7 +52,6 @@ MonoBehaviour:
       type: {class: CharacterComponentData, ns: , asm: Assembly-CSharp}
       data:
         <Character>k__BackingField: {fileID: 1670507725838462388, guid: 3f978208752ebf24ea51e9649882d326, type: 3}
-        <Mount>k__BackingField: {fileID: 0}
     - rid: 7923229791535759362
       type: {class: StatsComponentData, ns: , asm: Assembly-CSharp}
       data:

@@ -14,11 +14,16 @@ public class PawnData : ScriptableObject
         var components = Components.Select(c => c.ToDomain()).ToList();
         return new Pawn(Id, components);
     }
-    
-    public Pawn ToDomain(PawnStatus status, TeamType team, int level, WeaponType weaponType)
+
+    public Pawn ToDomain(
+        PawnStatus status,
+        TeamType team,
+        int level,
+        WeaponType weaponType,
+        MountComponent mount)
     {
         var components = Components.Select(c => c.ToDomain()).ToList();
-        return new Pawn(Id, components, status, team, level, weaponType);
+        return new Pawn(Id, components, status, team, level, weaponType, mount);
     }
 
     private void OnValidate()

@@ -13,6 +13,7 @@ public class CharacterController : MonoBehaviour
     [field: SerializeField] private Transform MountPivot { get; set; }
     [field: SerializeField] private Transform WeaponPivot { get; set; }
     [field: SerializeField] private Transform Pivot { get; set; }
+    [field: SerializeField] private Transform Shadow { get; set; }
     [field: SerializeField] private WeaponController WeaponController { get; set; }
 
     public AnimationState CurrentState => AnimationStateController.CurrentState;
@@ -69,6 +70,7 @@ public class CharacterController : MonoBehaviour
         
         Pivot.localPosition = Vector3.zero;
         SortingGroup.enabled = false;
+        Shadow.gameObject.SetActive(false);
     }
 
     public Sprite GetProjectileSprite()
@@ -97,11 +99,6 @@ public class CharacterController : MonoBehaviour
                 MountController.SetAnimationState(state);
             }
         }
-    }
-    
-    public void PlayFootstep()
-    {
-        Application.Instance.GetManager<AudioManager>().PlaySound(SfxType.Step);
     }
 
     public Vector3 GetSpawnPoint()

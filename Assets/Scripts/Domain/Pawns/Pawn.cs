@@ -31,12 +31,18 @@ public class Pawn
         PawnStatus status,
         TeamType team,
         int level,
-        WeaponType weaponType) : this(id, components)
+        WeaponType weaponType, 
+        MountComponent mount) : this(id, components)
     {
         Status = status;
         Team = team;
         Level = level;
         WeaponType = weaponType;
+
+        if (mount != null && !HasComponent<MountComponent>())
+        {
+            AddComponent(mount);
+        }
     }
 
     public void AddComponent<T>(T component) where T : PawnComponent
