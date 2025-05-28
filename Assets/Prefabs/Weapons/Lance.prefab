@@ -64,6 +64,22 @@ PrefabInstance:
       propertyPath: <SpawnPoint>k__BackingField
       value: 
       objectReference: {fileID: 8224683052442430148}
+    - target: {fileID: 8114404443037850591, guid: 51873ca64eab87d4f84240880f83b428, type: 3}
+      propertyPath: m_Size.x
+      value: 0.21875
+      objectReference: {fileID: 0}
+    - target: {fileID: 8114404443037850591, guid: 51873ca64eab87d4f84240880f83b428, type: 3}
+      propertyPath: m_Size.y
+      value: 0.9375
+      objectReference: {fileID: 0}
+    - target: {fileID: 8114404443037850591, guid: 51873ca64eab87d4f84240880f83b428, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -685310717, guid: 08ad4805ad534cd469d950087d57e6d7, type: 3}
+    - target: {fileID: 8114404443037850591, guid: 51873ca64eab87d4f84240880f83b428, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
