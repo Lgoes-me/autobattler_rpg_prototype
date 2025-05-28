@@ -20,11 +20,12 @@ public class PlayerController : MonoBehaviour
         if (PawnController.CharacterController == null)
             return;
 
-        if (!MouseInput)
+        if (NavMeshAgent.pathStatus != NavMeshPathStatus.PathComplete)
             return;
 
         var moveInput = Application.Instance.GetManager<InputManager>().MoveInput;
         PawnController.CharacterController.SetSpeed(NavMeshAgent.velocity.magnitude + moveInput.magnitude);
+        PawnController.CharacterController.SetDirection(NavMeshAgent.velocity);
     }
 
     public void SetDestination(Vector3 destination)
@@ -120,7 +121,7 @@ public class PlayerController : MonoBehaviour
                    !MouseInput)
             {
                 NavMeshAgent.SetDestination(destination.position);
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.1f);
             }
 
             NavMeshAgent.acceleration = acceleration;

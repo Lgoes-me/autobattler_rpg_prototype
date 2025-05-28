@@ -16,7 +16,7 @@ MonoBehaviour:
   <WeaponType>k__BackingField: 2
   <Animation>k__BackingField: LanceAttack
   <Delay>k__BackingField: 0.2
-  <Range>k__BackingField: 2
+  <Range>k__BackingField: 1
   <AbilityBehaviours>k__BackingField:
   - <Effects>k__BackingField:
     - rid: 4872000037008179241

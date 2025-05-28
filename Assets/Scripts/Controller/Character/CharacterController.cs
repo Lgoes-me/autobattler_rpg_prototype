@@ -89,6 +89,14 @@ public class CharacterController : MonoBehaviour
     public void SetAnimationState(AnimationState state)
     {
         AnimationStateController.SetAnimationState(state);
+        
+        if (MountController != null)
+        {
+            if (state is DeadState || state is IdleState)
+            {
+                MountController.SetAnimationState(state);
+            }
+        }
     }
     
     public void PlayFootstep()

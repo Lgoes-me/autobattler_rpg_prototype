@@ -16,7 +16,7 @@ MonoBehaviour:
   <WeaponType>k__BackingField: 0
   <Animation>k__BackingField: Scratch
   <Delay>k__BackingField: 1
-  <Range>k__BackingField: 1.5
+  <Range>k__BackingField: 1
   <AbilityBehaviours>k__BackingField:
   - <Effects>k__BackingField:
     - rid: 2079880286154260485

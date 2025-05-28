@@ -47,7 +47,7 @@ MonoBehaviour:
       type: {class: CharacterComponentData, ns: , asm: Assembly-CSharp}
       data:
         <Character>k__BackingField: {fileID: 3106379038329890454, guid: 69f175c2c704e50488677afd4a42858e, type: 3}
-        <Mount>k__BackingField: {fileID: 3138497934422905829, guid: f4267771a1770594fa2468539ad0e5a6, type: 3}
+        <Mount>k__BackingField: {fileID: 1670507725838462388, guid: 57eecfab5a352bf459516b3016a7e765, type: 3}
     - rid: 7923229791535759377
       type: {class: StatsComponentData, ns: , asm: Assembly-CSharp}
       data:
