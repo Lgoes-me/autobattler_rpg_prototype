@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8963185295062c4593e2ab6ada9cb54, type: 3}
+  m_Name: Goblin_Archer
+  m_EditorClassIdentifier: 
+  <Id>k__BackingField: Alpha_Wolf
+  <Components>k__BackingField:
+  - rid: 7923229791535759374
+  - rid: 7923229791535759375
+  - rid: 7923229791535759376
+  - rid: 7923229791535759377
+  - rid: 7923229791535759378
+  - rid: 2203596762883817472
+  - rid: 2203596695900782592
+  references:
+    version: 2
+    RefIds:
+    - rid: 2203596695900782592
+      type: {class: PawnBuffsComponentData, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 2203596762883817472
+      type: {class: WeaponListComponentData, ns: , asm: Assembly-CSharp}
+      data:
+        <Weapons>k__BackingField:
+        - {fileID: 11400000, guid: cd31aca81c366d643bb7c5e6c911a4ec, type: 2}
+    - rid: 7923229791535759374
+      type: {class: EnemyComponentData, ns: , asm: Assembly-CSharp}
+      data:
+        <VisionRange>k__BackingField: 5
+        <AttackRange>k__BackingField: 5
+    - rid: 7923229791535759375
+      type: {class: FocusComponentData, ns: , asm: Assembly-CSharp}
+      data:
+        <RangedAttackError>k__BackingField: 0.5
+        <EnemyFocusPreference>k__BackingField: 1
+        <AllyFocusPreference>k__BackingField: 1
+    - rid: 7923229791535759376
+      type: {class: CharacterComponentData, ns: , asm: Assembly-CSharp}
+      data:
+        <Character>k__BackingField: {fileID: 3106379038329890454, guid: 69f175c2c704e50488677afd4a42858e, type: 3}
+    - rid: 7923229791535759377
+      type: {class: StatsComponentData, ns: , asm: Assembly-CSharp}
+      data:
+        <BaseStats>k__BackingField:
+          <Health>k__BackingField: 100
+          <Mana>k__BackingField: 30
+          <Strength>k__BackingField: 2
+          <Arcane>k__BackingField: 0
+          <PhysicalDefence>k__BackingField: 5
+          <MagicalDefence>k__BackingField: 0
+        <LevelUpStats>k__BackingField:
+          <MaxLevelStatsStats>k__BackingField:
+            <Health>k__BackingField: 600
+            <Mana>k__BackingField: 150
+            <Strength>k__BackingField: 120
+            <Arcane>k__BackingField: 6
+            <PhysicalDefence>k__BackingField: 20
+            <MagicalDefence>k__BackingField: 5
+          <LevelUpCurve>k__BackingField:
+            serializedVersion: 2
+            m_Curve:
+            - serializedVersion: 3
+              time: 0
+              value: 0
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            - serializedVersion: 3
+              time: 1
+              value: 1
+              inSlope: 2
+              outSlope: 2
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+    - rid: 7923229791535759378
+      type: {class: AbilitiesComponentData, ns: , asm: Assembly-CSharp}
+      data:
+        <Abilities>k__BackingField:
+        - {fileID: 11400000, guid: 4d5322942f707264790c540024917a6c, type: 2}
