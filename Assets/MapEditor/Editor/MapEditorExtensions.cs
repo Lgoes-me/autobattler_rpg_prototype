@@ -9,6 +9,7 @@ public static class MapEditorExtensions
             SceneNodeData sceneNode => new SceneNodeView(sceneNode),
             SpawnNodeData spawnNode => new SpawnNodeView(spawnNode),
             DungeonNodeData dungeonNode => new DungeonNodeView(dungeonNode),
+            BlockedEventNodeData blockedEventNode => new BlockedEventNodeView(blockedEventNode),
             _ => throw new ArgumentOutOfRangeException()
         };
     }

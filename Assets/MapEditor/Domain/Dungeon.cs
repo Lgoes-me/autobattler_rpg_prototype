@@ -39,7 +39,7 @@ public class Dungeon<T> where T : IDungeonRoom, new()
         var entrance = AvailableRooms.First(x => x.RoomType is RoomType.Entrance);
         dungeonEntrance.SetValue(entrance);
 
-        dungeonEntrance.Doors[0].Connect(EntranceDoor.SceneDestination, EntranceDoor.DoorDestination, EntranceDoor.Open);
+        dungeonEntrance.Doors[0].Connect(EntranceDoor.SceneDestination, EntranceDoor.DoorDestination);
         dungeonEntrance.Connected = true;
         
         var rooms = CreateSubTree(dungeonEntrance, 0);
@@ -91,8 +91,8 @@ public class Dungeon<T> where T : IDungeonRoom, new()
 
                 connectedRoom.Connected = true;
                 
-                spawnData.Connect(connectedRoom.Id, connectedDoorSpawnData.Id, true);
-                connectedDoorSpawnData.Connect(selectedRoom.Id, spawnData.Id, true);
+                spawnData.Connect(connectedRoom.Id, connectedDoorSpawnData.Id);
+                connectedDoorSpawnData.Connect(selectedRoom.Id, spawnData.Id);
             }
 
             GetRoom.Add(room.Data.Id, room.Data);

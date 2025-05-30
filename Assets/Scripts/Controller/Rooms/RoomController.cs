@@ -24,7 +24,7 @@ public class RoomController : MonoBehaviour
         foreach (var door in Doors)
         {
             var doorSpawnData = sceneData.Doors.First(d => d.Id == door.Id);
-            door.Init(doorSpawnData.ToDomain());
+            door.Init(doorSpawnData.ToDomain(true));
         }
 
         if (Bonfire != null)

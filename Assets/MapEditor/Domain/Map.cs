@@ -28,7 +28,7 @@ public class Map
 
     public async void SpawnAt(string name)
     {
-        var spawnDomain = SpawnsByName[name].Doors[0].ToDomain();
+        var spawnDomain = SpawnsByName[name].Doors[0].ToDomain(true);
         var newContext = AllNodesById[spawnDomain.SceneId];
 
         await EnterCurrentContext(newContext, spawnDomain);
@@ -72,7 +72,7 @@ public class Map
                 break;
 
             case SpawnNode spawnNode:
-                var nextSpawn = spawnNode.Doors[0].ToDomain();
+                var nextSpawn = spawnNode.Doors[0].ToDomain(true);
                 var nextNode = AllNodesById[nextSpawn.SceneId];
                 await EnterCurrentContext(nextNode, nextSpawn);
                 break;

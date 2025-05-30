@@ -41,28 +41,25 @@ public class DoorData
     [field: SerializeField] public string SceneDestination { get; set; }
     [field: SerializeField] public string DoorDestination { get; set; }
     [field: SerializeField] public bool SetUp { get; set; }
-    [field: SerializeField] public bool Open { get; set; }
 
     public void Clear()
     {
         SceneDestination = "";
         DoorDestination = "";
-        Port = "";        
-        Open = false;
+        Port = "";      
         SetUp = false;
     }
 
-    public void Connect(string sceneDestination, string doorDestination, bool open, string port = "")
+    public void Connect(string sceneDestination, string doorDestination, string port = "")
     {
         SceneDestination = sceneDestination;
         DoorDestination = doorDestination;
         Port = port;
-        Open = open;
         SetUp = true;
     }
     
-    public SpawnDomain ToDomain()
+    public SpawnDomain ToDomain(bool open)
     {
-        return new SpawnDomain(DoorDestination, SceneDestination, Open);
+        return new SpawnDomain(DoorDestination, SceneDestination, open);
     }
 }
