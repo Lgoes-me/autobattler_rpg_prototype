@@ -1,15 +1,16 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public class BlockedEventNodeData : BaseNodeData
 {
     public override bool Open => false;
     private string EventId { get; set; }
-    
+
     public override void Init(NodeDataParams nodeDataParams)
     {
         var dataParams = (BlockedEventNodeDataParams) nodeDataParams;
-        
+
         Id = dataParams.Id;
         Name = name;
 
@@ -26,7 +27,7 @@ public class BlockedEventNodeData : BaseNodeData
             Name = string.Empty,
             Id = Guid.NewGuid().ToString()
         };
-        
+
         Doors.Add(door1);
         Doors.Add(door2);
     }
@@ -40,7 +41,8 @@ public class BlockedEventNodeData : BaseNodeData
 
     public override BaseSceneNode ToDomain()
     {
-        return new BlockedEventNode(EventId, Name, Id, Doors);
+        var doors = Doors.Select(d => d.ToDomain()).ToList();
+        return new BlockedEventNode(EventId, Name, Id, doors);
     }
 }
 

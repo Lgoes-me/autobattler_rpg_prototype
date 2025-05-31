@@ -28,8 +28,8 @@ public class Map
 
     public async void SpawnAt(string name)
     {
-        var spawnDomain = SpawnsByName[name].Doors[0].ToDomain(true);
-        var newContext = AllNodesById[spawnDomain.SceneId];
+        var spawnDomain = SpawnsByName[name].Doors[0];
+        var newContext = AllNodesById[spawnDomain.Scene];
 
         await EnterCurrentContext(newContext, spawnDomain);
     }
@@ -38,7 +38,7 @@ public class Map
     {
         if (CurrentContext is DungeonNode dungeonNodeData)
         {
-            if (AllNodesById.TryGetValue(spawn.SceneId, out var node))
+            if (AllNodesById.TryGetValue(spawn.Scene, out var node))
             {
                 dungeonNodeData.Clear();
                 await EnterCurrentContext(node, spawn);
@@ -50,7 +50,7 @@ public class Map
         }
         else
         {
-            var newContext = AllNodesById[spawn.SceneId];
+            var newContext = AllNodesById[spawn.Scene];
             await EnterCurrentContext(newContext, spawn);
         }
     }
@@ -61,10 +61,10 @@ public class Map
 
         switch (CurrentContext)
         {
-            case DungeonNode dungeonNode:
+            /*case DungeonNode dungeonNode:
                 await SceneManager.LoadNewRoom();
                 dungeonNode.DoTransition(spawn, SceneManager.EnterRoom);
-                break;
+                break;*/
 
             case SceneNode sceneNode:
                 await SceneManager.LoadNewRoom();
@@ -72,9 +72,15 @@ public class Map
                 break;
 
             case SpawnNode spawnNode:
-                var nextSpawn = spawnNode.Doors[0].ToDomain(true);
-                var nextNode = AllNodesById[nextSpawn.SceneId];
+                var nextSpawn = spawnNode.Doors[0];
+                var nextNode = AllNodesById[nextSpawn.Scene];
                 await EnterCurrentContext(nextNode, nextSpawn);
+                break;
+                
+            case BlockedEventNode blockedEventNode:
+                /var nextSpawn = blockedEventNode.Doors[0];
+                //var nextNode = AllNodesById[nextSpawn.SceneId];
+                //await EnterCurrentContext(nextNode, nextSpawn);
                 break;
         }
     }

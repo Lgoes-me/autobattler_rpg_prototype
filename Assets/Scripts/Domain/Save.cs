@@ -33,11 +33,13 @@ public class Save : ISavable
         
         Spawn = new SpawnDomain(
             "1590e136-c0a0-4285-97cc-c066b6d353bf", 
-            "5156dcbf-99fe-410b-b6c8-6e7496024057");
+            "5156dcbf-99fe-410b-b6c8-6e7496024057",
+            "1590e136-c0a0-4285-97cc-c066b6d353bf");
         
         LastBonfireSpawn = new SpawnDomain(
             "efc187ae-edbb-4187-87a2-7be8298184c6", 
-            "ed12450d-ce72-4d93-a724-c5a83dbead04");
+            "ed12450d-ce72-4d93-a724-c5a83dbead04",
+            "efc187ae-edbb-4187-87a2-7be8298184c6");
 
         SelectedParty = selectedParty;
 

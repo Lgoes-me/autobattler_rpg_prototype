@@ -34,7 +34,8 @@ public class DungeonNodeData : BaseNodeData
     public override BaseSceneNode ToDomain()
     {
         var availableRooms = AvailableRooms.Select(r => r.ToDomain()).ToList();
-        return new DungeonNode(Name, Id, Doors, availableRooms, MaximumDoors, MinimumDeepness, MaximumDeepness);
+        var doors = Doors.Select(d => d.ToDomain()).ToList();
+        return new DungeonNode(Name, Id, doors, availableRooms, MaximumDoors, MinimumDeepness, MaximumDeepness);
     }
 }
 
@@ -69,7 +70,12 @@ public class DungeonRoomData
             doors.Add(spawn);
         }
 
-        return new DungeonRoomNode(RoomPrefab.gameObject.name, string.Empty, doors, RoomPrefab, RoomType);
+        return new DungeonRoomNode(
+            RoomPrefab.gameObject.name, 
+            string.Empty, 
+            doors.Select(d => d.ToDomain()).ToList(),
+            RoomPrefab,
+            RoomType);
     }
 }
 

@@ -1,15 +1,16 @@
 ﻿[System.Serializable]
 public class SpawnDomain
 {
-    public string SpawnId { get; private set; }
-    public string SceneId { get; private set; }
-    public bool Active => !string.IsNullOrWhiteSpace(SpawnId) && !string.IsNullOrWhiteSpace(SceneId) && Open;
-    private bool Open { get; }
+    public string Id { get; private set; }
+    public string Scene { get; private set; }
+    public string Destiantion { get; private set; }
+    public bool Active { get; set; }
 
-    public SpawnDomain(string spawnId, string sceneId, bool open = true)
+    public SpawnDomain(string id, string scene, string destination)
     {
-        SpawnId = spawnId;
-        SceneId = sceneId;
-        Open = open;
+        Id = id;
+        Scene = scene;
+        Destiantion = destination;
+        Active = true;
     }
 }

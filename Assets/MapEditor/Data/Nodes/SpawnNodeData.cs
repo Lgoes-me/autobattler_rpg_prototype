@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 public class SpawnNodeData : BaseNodeData
 {
@@ -30,7 +31,8 @@ public class SpawnNodeData : BaseNodeData
 
     public override BaseSceneNode ToDomain()
     {
-        return new SpawnNode(Name, Id, Doors);
+        var doors = Doors.Select(d => d.ToDomain()).ToList();
+        return new SpawnNode(Name, Id, doors);
     }
 }
 

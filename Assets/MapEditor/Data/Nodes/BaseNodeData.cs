@@ -58,8 +58,8 @@ public class DoorData
         SetUp = true;
     }
     
-    public SpawnDomain ToDomain(bool open)
+    public SpawnDomain ToDomain()
     {
-        return new SpawnDomain(DoorDestination, SceneDestination, open);
+        return new SpawnDomain(Id, DoorDestination, SceneDestination);
     }
 }

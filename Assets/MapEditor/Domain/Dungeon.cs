@@ -8,13 +8,13 @@ public class Dungeon<T> where T : IDungeonRoom, new()
     public Dictionary<string, T> GetRoom { get; private set; }
     public bool Generated { get; private set; }
     
-    private DoorData EntranceDoor { get; }
+    private SpawnDomain EntranceDoor { get; }
     private List<T> AvailableRooms { get; }
     private int MaximumDoors { get; }
     private int MinimumDeepness { get; }
     private int MaximumDeepness { get; }
     
-    public Dungeon(DoorData entranceDoor, List<T> availableRooms, int maximumDoors, int minimumDeepness, int maximumDeepness)
+    public Dungeon(SpawnDomain entranceDoor, List<T> availableRooms, int maximumDoors, int minimumDeepness, int maximumDeepness)
     {
         GetRoom = new Dictionary<string, T>();
         Generated = false;
@@ -39,7 +39,7 @@ public class Dungeon<T> where T : IDungeonRoom, new()
         var entrance = AvailableRooms.First(x => x.RoomType is RoomType.Entrance);
         dungeonEntrance.SetValue(entrance);
 
-        dungeonEntrance.Doors[0].Connect(EntranceDoor.SceneDestination, EntranceDoor.DoorDestination);
+        //dungeonEntrance.Doors[0].Connect(EntranceDoor.SceneDestination, EntranceDoor.DoorDestination);
         dungeonEntrance.Connected = true;
         
         var rooms = CreateSubTree(dungeonEntrance, 0);
@@ -83,7 +83,7 @@ public class Dungeon<T> where T : IDungeonRoom, new()
             {
                 var spawnData = room.Data.Doors[index];
 
-                if (spawnData.SetUp)
+                /*if (spawnData.SetUp)
                     continue;
 
                 var connectedRoom = connectedRooms.First(d => !d.Connected);
@@ -92,7 +92,7 @@ public class Dungeon<T> where T : IDungeonRoom, new()
                 connectedRoom.Connected = true;
                 
                 spawnData.Connect(connectedRoom.Id, connectedDoorSpawnData.Id);
-                connectedDoorSpawnData.Connect(selectedRoom.Id, spawnData.Id);
+                connectedDoorSpawnData.Connect(selectedRoom.Id, spawnData.Id);*/
             }
 
             GetRoom.Add(room.Data.Id, room.Data);
@@ -145,7 +145,7 @@ public interface IDungeonRoom
 {
     string Id { get; }
     RoomType RoomType { get; }
-    List<DoorData> Doors { get; }
+    List<SpawnDomain> Doors { get; }
     bool Collapsed { get; }
     bool Connected { get; set; }
     

@@ -17,7 +17,7 @@ public class SceneNode : BaseSceneNode
     public SceneNode(
         string name, 
         string id,
-        List<DoorData> doors,
+        List<SpawnDomain> doors,
         RoomController roomPrefab,
         List<CombatEncounterData> combatEncounters,
         VolumeProfile postProcessProfile) : base(name, id, doors)

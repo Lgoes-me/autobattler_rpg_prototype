@@ -37,7 +37,7 @@ public class SceneManager : MonoBehaviour, IManager
         {
             GameSaveManager.LoadSave();
             var spawn = GameSaveManager.GetBonfireSpawn();
-            var sceneNode = Map.SceneNodeById[spawn.SceneId];
+            var sceneNode = Map.SceneNodeById[spawn.Scene];
             CurrentRoom = Instantiate(sceneNode.RoomPrefab).Init(sceneNode);
         };
     }
@@ -83,7 +83,7 @@ public class SceneManager : MonoBehaviour, IManager
         await this.WaitEndOfFrame();
         
         CurrentRoom = Instantiate(sceneNode.RoomPrefab).Init(sceneNode);
-        CurrentRoom.SpawnPlayerAt(spawnDomain.SpawnId, Blend);
+        CurrentRoom.SpawnPlayerAt(spawnDomain.Destiantion, Blend);
         GameSaveManager.SetSpawn(spawnDomain);
         
         PartyManager.SetPartyToFollow(true);
@@ -123,11 +123,11 @@ public class SceneManager : MonoBehaviour, IManager
 
         var spawn = GameSaveManager.GetBonfireSpawn();
         
-        var sceneNode = Map.SceneNodeById[spawn.SceneId];
+        var sceneNode = Map.SceneNodeById[spawn.Scene];
             
         CurrentRoom = Instantiate(sceneNode.RoomPrefab).Init(sceneNode);
            
-        CurrentRoom.SpawnPlayerAt(spawn.SpawnId, Blend);
+        CurrentRoom.SpawnPlayerAt(spawn.Destiantion, Blend);
             
         PartyManager.SetPartyToFollow(true);
 

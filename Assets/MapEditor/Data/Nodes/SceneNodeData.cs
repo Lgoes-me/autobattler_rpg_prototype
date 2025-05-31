@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -56,7 +57,8 @@ public class SceneNodeData : BaseNodeData
 
     public override BaseSceneNode ToDomain()
     {
-        return new SceneNode(Name, Id, Doors, RoomPrefab, CombatEncounters, PostProcessProfile);
+        var doors = Doors.Select(d => d.ToDomain()).ToList();
+        return new SceneNode(Name, Id, doors, RoomPrefab, CombatEncounters, PostProcessProfile);
     }
 }
 

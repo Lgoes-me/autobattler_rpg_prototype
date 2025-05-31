@@ -4,7 +4,7 @@ public class BlockedEventNode : BaseSceneNode
 {
     public string EventId { get; }
     
-    public BlockedEventNode(string eventId, string name, string id, List<DoorData> doors) : base(name, id, doors)
+    public BlockedEventNode(string eventId, string name, string id, List<SpawnDomain> doors) : base(name, id, doors)
     {
         EventId = eventId;
     }
