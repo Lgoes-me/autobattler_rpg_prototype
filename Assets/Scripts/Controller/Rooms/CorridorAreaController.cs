@@ -9,14 +9,14 @@ public class CorridorAreaController : SpawnController
     [field: SerializeField] private Color ActiveColor { get; set; }
     [field: SerializeField] private Color InactiveColor { get; set; }
 
-    private SpawnDomain Spawn { get; set; }
+    private Transition Transition { get; set; }
     private bool CanUse { get; set; } = true;
 
-    public void Init(SpawnDomain spawn)
+    public void Init(Transition transition)
     {
-        Spawn = spawn;
+        Transition = transition;
 
-        if (Spawn.Active)
+        if (Transition.Active)
         {
             Spotlight.SetActive(true);
             FogDoor.color = ActiveColor;
@@ -42,7 +42,7 @@ public class CorridorAreaController : SpawnController
 
     private void OnTriggerEnter(Collider other)
     {
-        if (Spawn.Active && CanUse && other.CompareTag("Player"))
+        if (Transition.Active && CanUse && other.CompareTag("Player"))
         {
             UseCorridor();
         }
@@ -52,6 +52,6 @@ public class CorridorAreaController : SpawnController
     {
         var playerManager = Application.Instance.GetManager<PlayerManager>();
         playerManager.DisablePlayerInput();
-        Application.Instance.GetManager<SceneManager>().ChangeContext(Spawn);
+        Application.Instance.GetManager<SceneManager>().ChangeContext(Transition.Destination);
     }
 }

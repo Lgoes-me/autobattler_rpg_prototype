@@ -72,23 +72,23 @@ public class GameSaveManager : IManager
             .First();
     }
 
-    public SpawnDomain GetSpawn()
+    public Spawn GetSpawn()
     {
         return Save.Spawn;
     }
 
-    public void SetSpawn(SpawnDomain spawn)
+    public void SetSpawn(Spawn spawn)
     {
         Save.Spawn = spawn;
         SaveData();
     }
 
-    public SpawnDomain GetBonfireSpawn()
+    public Spawn GetBonfireSpawn()
     {
         return Save.LastBonfireSpawn;
     }
 
-    public void SetBonfireSpawn(SpawnDomain spawn)
+    public void SetBonfireSpawn(Spawn spawn)
     {
         Save.Spawn = spawn;
         Save.LastBonfireSpawn = spawn;

@@ -57,8 +57,11 @@ public class DoorData
         SetUp = true;
     }
     
-    public SpawnDomain ToDomain(string nodeId)
+    public Transition ToDomain(string nodeId)
     {
-        return new SpawnDomain(Id, nodeId, DoorDestination, SceneDestination);
+        var startingSpawn = new Spawn(Id, nodeId);
+        var destinationSpawn = new Spawn(DoorDestination, SceneDestination);
+        
+        return new Transition(startingSpawn, destinationSpawn);
     }
 }

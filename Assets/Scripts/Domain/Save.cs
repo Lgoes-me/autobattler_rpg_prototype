@@ -5,8 +5,8 @@ using System.Collections.Generic;
 public class Save : ISavable
 {
     public Metadata Metadata { get; set; }
-    public SpawnDomain Spawn { get; set; }
-    public SpawnDomain LastBonfireSpawn { get; set; }
+    public Spawn Spawn { get; set; }
+    public Spawn LastBonfireSpawn { get; set; }
     public List<PawnInfo> SelectedParty { get; set; }
     public List<string> DefeatedEnemies { get; set; }
     public List<BlessingIdentifier> Blessings { get; set; }
@@ -31,16 +31,12 @@ public class Save : ISavable
     {
         Metadata = new Metadata().CreateNewDynamicFile(".json");
         
-        Spawn = new SpawnDomain(
+        Spawn = new Spawn(
             "1590e136-c0a0-4285-97cc-c066b6d353bf", 
-            "5156dcbf-99fe-410b-b6c8-6e7496024057",
-            "1590e136-c0a0-4285-97cc-c066b6d353bf",
             "5156dcbf-99fe-410b-b6c8-6e7496024057");
         
-        LastBonfireSpawn = new SpawnDomain(
+        LastBonfireSpawn = new Spawn(
             "efc187ae-edbb-4187-87a2-7be8298184c6", 
-            "ed12450d-ce72-4d93-a724-c5a83dbead04",
-            "efc187ae-edbb-4187-87a2-7be8298184c6",
             "ed12450d-ce72-4d93-a724-c5a83dbead04");
 
         SelectedParty = selectedParty;

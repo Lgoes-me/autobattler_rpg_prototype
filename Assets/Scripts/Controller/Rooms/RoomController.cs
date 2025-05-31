@@ -23,7 +23,7 @@ public class RoomController : MonoBehaviour
         
         foreach (var door in Doors)
         {
-            var spawn = sceneData.Doors.First(d => d.Id == door.Id);
+            var spawn = sceneData.Doors.First(d => d.Start.Id == door.Id);
             door.Init(spawn);
         }
 

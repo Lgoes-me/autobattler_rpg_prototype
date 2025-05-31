@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 public class DungeonNode : BaseSceneNode
 {
     private Dungeon<DungeonRoomNode> Dungeon { get; }
 
-    public DungeonNode(string name, string id, List<SpawnDomain> doors, List<DungeonRoomNode> availableRooms, 
+    public DungeonNode(string name, string id, List<Transition> doors, List<DungeonRoomNode> availableRooms, 
         int maximumDoors, int minimumDeepness, int maximumDeepness) : base(name, id, doors)
     {
         Dungeon = new Dungeon<DungeonRoomNode>(Doors[0], availableRooms, maximumDoors, minimumDeepness, maximumDeepness);
     }
 
-    public void DoTransition(SpawnDomain spawn, Action<SceneNode, SpawnDomain> transition)
+    public void DoTransition(Spawn spawn, Action<SceneNode, Spawn> transition)
     {
         if (!Dungeon.Generated)
         {
@@ -32,7 +31,7 @@ public class DungeonNode : BaseSceneNode
         Dungeon.Clear();
     }
 
-    public override void DoTransition(SpawnDomain spawn, Map map)
+    public override void DoTransition(Spawn spawn, Map map)
     {
         /*case DungeonNode dungeonNode:
             await SceneManager.LoadNewRoom();

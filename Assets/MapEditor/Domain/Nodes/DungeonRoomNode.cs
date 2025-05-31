@@ -17,7 +17,7 @@ public class DungeonRoomNode : SceneNode, IDungeonRoom
     public DungeonRoomNode(
         string name, 
         string id, 
-        List<SpawnDomain> doors, 
+        List<Transition> doors, 
         RoomController roomPrefab, 
         RoomType roomType) : base(name, id, doors, roomPrefab, new List<CombatEncounterData>(), null)
     {

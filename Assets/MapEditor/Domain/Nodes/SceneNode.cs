@@ -8,7 +8,7 @@ public class SceneNode : BaseSceneNode
     public List<CombatEncounterData> CombatEncounters { get; }
     public VolumeProfile PostProcessProfile { get; }
     
-    protected SceneNode() : base()
+    protected SceneNode()
     {
         RoomPrefab = null;
         CombatEncounters = new List<CombatEncounterData>();
@@ -18,7 +18,7 @@ public class SceneNode : BaseSceneNode
     public SceneNode(
         string name, 
         string id,
-        List<SpawnDomain> doors,
+        List<Transition> doors,
         RoomController roomPrefab,
         List<CombatEncounterData> combatEncounters,
         VolumeProfile postProcessProfile) : base(name, id, doors)
@@ -28,7 +28,7 @@ public class SceneNode : BaseSceneNode
         PostProcessProfile = postProcessProfile;
     }
 
-    public override void DoTransition(SpawnDomain spawn, Map map)
+    public override void DoTransition(Spawn spawn, Map map)
     {
         map.SceneManager.EnterRoom(this, spawn);
     }

@@ -37,7 +37,7 @@ public class SceneManager : MonoBehaviour, IManager
         {
             GameSaveManager.LoadSave();
             var spawn = GameSaveManager.GetBonfireSpawn();
-            Map.ChangeContext(spawn);
+            //Map.ChangeContext(spawn);
         };
     }
 
@@ -46,7 +46,7 @@ public class SceneManager : MonoBehaviour, IManager
         Map.SpawnAt("Start");
     }
     
-    public void ChangeContext(SpawnDomain spawn)
+    public void ChangeContext(Spawn spawn)
     {
         Map.ChangeContext(spawn);
     }
@@ -72,7 +72,7 @@ public class SceneManager : MonoBehaviour, IManager
         return tcs.Task;
     }
 
-    public async void EnterRoom(SceneNode sceneNode, SpawnDomain spawnDomain)
+    public async void EnterRoom(SceneNode sceneNode, Spawn spawn)
     {
         await LoadNewRoom();
         
@@ -84,8 +84,8 @@ public class SceneManager : MonoBehaviour, IManager
         await this.WaitEndOfFrame();
         
         CurrentRoom = Instantiate(sceneNode.RoomPrefab).Init(sceneNode);
-        CurrentRoom.SpawnPlayerAt(spawnDomain.DestinationId, Blend);
-        GameSaveManager.SetSpawn(spawnDomain);
+        CurrentRoom.SpawnPlayerAt(spawn.Id, Blend);
+        GameSaveManager.SetSpawn(spawn);
         
         PartyManager.SetPartyToFollow(true);
         CurrentRoom.PlayMusic();
@@ -128,7 +128,7 @@ public class SceneManager : MonoBehaviour, IManager
         StartBonfireScene(spawn, () => { });
     }
 
-    public void StartBonfireScene(SpawnDomain bonfireSpawn, Action callback)
+    public void StartBonfireScene(Spawn bonfireSpawn, Action callback)
     {
         if (BonfireActive)
             return;

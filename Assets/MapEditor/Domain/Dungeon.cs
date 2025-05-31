@@ -8,13 +8,13 @@ public class Dungeon<T> where T : IDungeonRoom, new()
     public Dictionary<string, T> GetRoom { get; private set; }
     public bool Generated { get; private set; }
     
-    private SpawnDomain EntranceDoor { get; }
+    private Transition EntranceDoor { get; }
     private List<T> AvailableRooms { get; }
     private int MaximumDoors { get; }
     private int MinimumDeepness { get; }
     private int MaximumDeepness { get; }
     
-    public Dungeon(SpawnDomain entranceDoor, List<T> availableRooms, int maximumDoors, int minimumDeepness, int maximumDeepness)
+    public Dungeon(Transition entranceDoor, List<T> availableRooms, int maximumDoors, int minimumDeepness, int maximumDeepness)
     {
         GetRoom = new Dictionary<string, T>();
         Generated = false;
@@ -145,7 +145,7 @@ public interface IDungeonRoom
 {
     string Id { get; }
     RoomType RoomType { get; }
-    List<SpawnDomain> Doors { get; }
+    List<Transition> Doors { get; }
     bool Collapsed { get; }
     bool Connected { get; set; }
     

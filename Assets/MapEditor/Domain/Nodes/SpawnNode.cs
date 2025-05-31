@@ -1,17 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 public class SpawnNode : BaseSceneNode
 {
-    public SpawnNode(string name, string id, List<SpawnDomain> doors) : base(name, id, doors)
+    public SpawnNode(string name, string id, List<Transition> doors) : base(name, id, doors)
     {
     }
 
-    public override void DoTransition(SpawnDomain spawn, Map map)
+    public override void DoTransition(Spawn spawn, Map map)
     {
-        var nextSpawn = Doors.First();
-        var nextContext = map.AllNodesById[nextSpawn.NodeId];
-        nextContext.DoTransition(nextSpawn, map);
+        var destination = Doors.First().Destination;
+        var nextContext = map.AllNodesById[destination.NodeId];
+        nextContext.DoTransition(destination, map);
     }
 }

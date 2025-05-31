@@ -3,9 +3,8 @@ using System.Linq;
 
 public class Map
 {
-    public Dictionary<string, BaseSceneNode> AllNodesById { get; set; }
-
-    public SceneManager SceneManager { get; private set; }
+    internal Dictionary<string, BaseSceneNode> AllNodesById { get; set; }
+    internal SceneManager SceneManager { get; private set; }
 
     public Map(List<BaseSceneNode> nodes, SceneManager sceneManager)
     {
@@ -15,15 +14,23 @@ public class Map
 
     public void SpawnAt(string name)
     {
-        var spawnNode = AllNodesById[name];
-        var spawnDomain = spawnNode.Doors[0];
+        var node = AllNodesById[name];
+        var spawn = node.Doors[0].Destination;
 
-        spawnNode.DoTransition(spawnDomain, this);
+        node.DoTransition(spawn, this);
     }
 
-    public void ChangeContext(SpawnDomain spawn)
+    public void ChangeContext(Spawn spawn)
     {        
-        var context = AllNodesById[spawn.DestinationNodeId];
-        context.DoTransition(spawn, this);
+        var node = AllNodesById[spawn.NodeId];
+        node.DoTransition(spawn, this);
+    }
+    
+    public void ChangeContext(Transition transition)
+    {
+        var spawn = transition.Destination;
+        var node = AllNodesById[spawn.NodeId];
+        
+        node.DoTransition(spawn, this);
     }
 }
