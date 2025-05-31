@@ -37,8 +37,7 @@ public class SceneManager : MonoBehaviour, IManager
         {
             GameSaveManager.LoadSave();
             var spawn = GameSaveManager.GetBonfireSpawn();
-            var sceneNode = Map.SceneNodeById[spawn.Scene];
-            CurrentRoom = Instantiate(sceneNode.RoomPrefab).Init(sceneNode);
+            Map.ChangeContext(spawn);
         };
     }
 
@@ -52,7 +51,7 @@ public class SceneManager : MonoBehaviour, IManager
         Map.ChangeContext(spawn);
     }
 
-    public Task LoadNewRoom()
+    private Task LoadNewRoom()
     {
         PartyManager.UnSpawnParty();
         
@@ -75,6 +74,8 @@ public class SceneManager : MonoBehaviour, IManager
 
     public async void EnterRoom(SceneNode sceneNode, SpawnDomain spawnDomain)
     {
+        await LoadNewRoom();
+        
         if (CurrentRoom != null)
         {
             Destroy(CurrentRoom.gameObject);
@@ -83,7 +84,7 @@ public class SceneManager : MonoBehaviour, IManager
         await this.WaitEndOfFrame();
         
         CurrentRoom = Instantiate(sceneNode.RoomPrefab).Init(sceneNode);
-        CurrentRoom.SpawnPlayerAt(spawnDomain.Destiantion, Blend);
+        CurrentRoom.SpawnPlayerAt(spawnDomain.DestinationId, Blend);
         GameSaveManager.SetSpawn(spawnDomain);
         
         PartyManager.SetPartyToFollow(true);
@@ -123,14 +124,7 @@ public class SceneManager : MonoBehaviour, IManager
 
         var spawn = GameSaveManager.GetBonfireSpawn();
         
-        var sceneNode = Map.SceneNodeById[spawn.Scene];
-            
-        CurrentRoom = Instantiate(sceneNode.RoomPrefab).Init(sceneNode);
-           
-        CurrentRoom.SpawnPlayerAt(spawn.Destiantion, Blend);
-            
-        PartyManager.SetPartyToFollow(true);
-
+        Map.ChangeContext(spawn);
         StartBonfireScene(spawn, () => { });
     }
 

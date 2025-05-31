@@ -20,7 +20,7 @@ public class BonfireController : MonoBehaviour, IInteractableListener
     {
         Selected = true;
         Application.Instance.GetManager<PlayerManager>().DisablePlayerInput();
-        Application.Instance.GetManager<SceneManager>().StartBonfireScene(new SpawnDomain(Spawn.Id, SceneId,Spawn.Id), callback);
+        Application.Instance.GetManager<SceneManager>().StartBonfireScene(new SpawnDomain(Spawn.Id, SceneId, Spawn.Id,SceneId), callback);
     }
 
     public void UnSelect()

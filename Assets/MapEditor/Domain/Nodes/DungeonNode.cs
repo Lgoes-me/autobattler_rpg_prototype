@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 public class DungeonNode : BaseSceneNode
 {
@@ -23,11 +24,19 @@ public class DungeonNode : BaseSceneNode
             return;
         }
 
-        transition(Dungeon.GetRoom[spawn.Scene], spawn);
+        transition(Dungeon.GetRoom[spawn.NodeId], spawn);
     }
 
     public void Clear()
     {
         Dungeon.Clear();
+    }
+
+    public override void DoTransition(SpawnDomain spawn, Map map)
+    {
+        /*case DungeonNode dungeonNode:
+            await SceneManager.LoadNewRoom();
+            dungeonNode.DoTransition(spawn, SceneManager.EnterRoom);
+            break;*/
     }
 }

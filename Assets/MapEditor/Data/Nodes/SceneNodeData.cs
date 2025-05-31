@@ -10,8 +10,6 @@ public class SceneNodeData : BaseNodeData
     [field: SerializeField] private List<CombatEncounterData> CombatEncounters { get; set; }
     [field: SerializeField] private VolumeProfile PostProcessProfile { get; set; }
 
-    public override bool Open => true;
-
     public override void Init(NodeDataParams nodeDataParams)
     {
         var dataParams = (SceneNodeDataParams) nodeDataParams;
@@ -57,7 +55,7 @@ public class SceneNodeData : BaseNodeData
 
     public override BaseSceneNode ToDomain()
     {
-        var doors = Doors.Select(d => d.ToDomain()).ToList();
+        var doors = Doors.Select(d => d.ToDomain(Id)).ToList();
         return new SceneNode(Name, Id, doors, RoomPrefab, CombatEncounters, PostProcessProfile);
     }
 }

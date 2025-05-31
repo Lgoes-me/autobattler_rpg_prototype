@@ -4,7 +4,6 @@ using System.Linq;
 
 public class BlockedEventNodeData : BaseNodeData
 {
-    public override bool Open => false;
     private string EventId { get; set; }
 
     public override void Init(NodeDataParams nodeDataParams)
@@ -41,7 +40,7 @@ public class BlockedEventNodeData : BaseNodeData
 
     public override BaseSceneNode ToDomain()
     {
-        var doors = Doors.Select(d => d.ToDomain()).ToList();
+        var doors = Doors.Select(d => d.ToDomain(Id)).ToList();
         return new BlockedEventNode(EventId, Name, Id, doors);
     }
 }

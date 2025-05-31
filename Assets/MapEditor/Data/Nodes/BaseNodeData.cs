@@ -9,8 +9,7 @@ public abstract class BaseNodeData : ScriptableObject
     [field: HideInInspector] [field: SerializeField] public string Id { get; protected set; }
     [field: HideInInspector] [field: SerializeField] public List<DoorData> Doors { get; protected set; }
     [field: HideInInspector] [field: SerializeField] public Vector2 Position { get; private set; }
-
-    public abstract bool Open { get; }
+    
     public Action OnNodeDataUpdated { get; set; }
 
     public void SetPosition(Vector2 position)
@@ -58,8 +57,8 @@ public class DoorData
         SetUp = true;
     }
     
-    public SpawnDomain ToDomain()
+    public SpawnDomain ToDomain(string nodeId)
     {
-        return new SpawnDomain(Id, DoorDestination, SceneDestination);
+        return new SpawnDomain(Id, nodeId, DoorDestination, SceneDestination);
     }
 }

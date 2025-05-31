@@ -10,8 +10,6 @@ public class DungeonNodeData : BaseNodeData
     [field: SerializeField] private int MaximumDoors { get; set; }
     [field: SerializeField] private int MinimumDeepness { get; set; }
     [field: SerializeField] private int MaximumDeepness { get; set; }
-    
-    public override bool Open => true;
 
     public override void Init(NodeDataParams nodeDataParams)
     {
@@ -34,7 +32,7 @@ public class DungeonNodeData : BaseNodeData
     public override BaseSceneNode ToDomain()
     {
         var availableRooms = AvailableRooms.Select(r => r.ToDomain()).ToList();
-        var doors = Doors.Select(d => d.ToDomain()).ToList();
+        var doors = Doors.Select(d => d.ToDomain(Id)).ToList();
         return new DungeonNode(Name, Id, doors, availableRooms, MaximumDoors, MinimumDeepness, MaximumDeepness);
     }
 }
@@ -73,7 +71,7 @@ public class DungeonRoomData
         return new DungeonRoomNode(
             RoomPrefab.gameObject.name, 
             string.Empty, 
-            doors.Select(d => d.ToDomain()).ToList(),
+            doors.Select(d => d.ToDomain("")).ToList(),
             RoomPrefab,
             RoomType);
     }

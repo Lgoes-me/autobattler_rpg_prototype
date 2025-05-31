@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 public abstract class BaseSceneNode
 {
@@ -21,4 +22,6 @@ public abstract class BaseSceneNode
         Id = id;
         Doors = doors;
     }
+
+    public abstract void DoTransition(SpawnDomain spawn, Map map);
 }

@@ -3,8 +3,6 @@ using System.Linq;
 
 public class SpawnNodeData : BaseNodeData
 {
-    public override bool Open => false;
-    
     public override void Init(NodeDataParams nodeDataParams)
     {
         var dataParams = (SpawnNodeDataParams) nodeDataParams;
@@ -31,7 +29,7 @@ public class SpawnNodeData : BaseNodeData
 
     public override BaseSceneNode ToDomain()
     {
-        var doors = Doors.Select(d => d.ToDomain()).ToList();
+        var doors = Doors.Select(d => d.ToDomain(Id)).ToList();
         return new SpawnNode(Name, Id, doors);
     }
 }

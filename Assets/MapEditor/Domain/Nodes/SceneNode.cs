@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine.Rendering;
 
 public class SceneNode : BaseSceneNode
@@ -25,5 +26,10 @@ public class SceneNode : BaseSceneNode
         RoomPrefab = roomPrefab;
         CombatEncounters = combatEncounters;
         PostProcessProfile = postProcessProfile;
+    }
+
+    public override void DoTransition(SpawnDomain spawn, Map map)
+    {
+        map.SceneManager.EnterRoom(this, spawn);
     }
 }
