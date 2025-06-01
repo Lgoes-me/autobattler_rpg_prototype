@@ -41,7 +41,7 @@ public class BlockedEventNodeData : BaseNodeData
     public override BaseSceneNode ToDomain()
     {
         var doors = Doors.Select(d => d.ToDomain(Id)).ToList();
-        return new BlockedEventNode(EventId, Name, Id, doors);
+        return new BlockedEventNode(EventId, Id, doors);
     }
 }
 

@@ -15,11 +15,10 @@ public class DungeonRoomNode : SceneNode, IDungeonRoom
     }
 
     public DungeonRoomNode(
-        string name, 
         string id, 
         List<Transition> doors, 
         RoomController roomPrefab, 
-        RoomType roomType) : base(name, id, doors, roomPrefab, new List<CombatEncounterData>(), null)
+        RoomType roomType) : base(id, doors, roomPrefab, new List<CombatEncounterData>(), null)
     {
         RoomType = roomType;
         Collapsed = false;
@@ -31,7 +30,6 @@ public class DungeonRoomNode : SceneNode, IDungeonRoom
         if (dungeonRoom is not DungeonRoomNode room)
             return;
         
-        Name = room.Name;
         Id = Guid.NewGuid().ToString();
         Doors = room.Doors;
         RoomPrefab = room.RoomPrefab;

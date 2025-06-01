@@ -36,9 +36,9 @@ public class MapData : ScriptableObject
         AssetDatabase.SaveAssets();
     }
     
-    public Map ToDomain(SceneManager sceneManager)
+    public Map ToDomain()
     {
         var nodes = Nodes.Select(n => n.ToDomain()).ToList();
-        return new Map(nodes, sceneManager);
+        return new Map(nodes);
     }
 }

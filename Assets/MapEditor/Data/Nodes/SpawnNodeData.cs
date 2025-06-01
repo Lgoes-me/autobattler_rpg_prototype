@@ -30,7 +30,7 @@ public class SpawnNodeData : BaseNodeData
     public override BaseSceneNode ToDomain()
     {
         var doors = Doors.Select(d => d.ToDomain(Id)).ToList();
-        return new SpawnNode(Name, Id, doors);
+        return new SpawnNode(Id, doors);
     }
 }
 

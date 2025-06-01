@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine.Rendering;
 
 public class SceneNode : BaseSceneNode
@@ -16,20 +16,24 @@ public class SceneNode : BaseSceneNode
     }
     
     public SceneNode(
-        string name, 
         string id,
         List<Transition> doors,
         RoomController roomPrefab,
         List<CombatEncounterData> combatEncounters,
-        VolumeProfile postProcessProfile) : base(name, id, doors)
+        VolumeProfile postProcessProfile) : base(id, doors)
     {
         RoomPrefab = roomPrefab;
         CombatEncounters = combatEncounters;
         PostProcessProfile = postProcessProfile;
     }
 
-    public override void DoTransition(Spawn spawn, Map map)
+    public override void DoTransition(Map map, Spawn spawn, Action<SceneNode, Spawn> callback)
     {
-        map.SceneManager.EnterRoom(this, spawn);
+        callback(this, spawn);
+    }
+
+    public override bool IsOpen()
+    {
+        return true;
     }
 }

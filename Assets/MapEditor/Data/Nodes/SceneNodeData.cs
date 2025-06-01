@@ -56,7 +56,7 @@ public class SceneNodeData : BaseNodeData
     public override BaseSceneNode ToDomain()
     {
         var doors = Doors.Select(d => d.ToDomain(Id)).ToList();
-        return new SceneNode(Name, Id, doors, RoomPrefab, CombatEncounters, PostProcessProfile);
+        return new SceneNode(Id, doors, RoomPrefab, CombatEncounters, PostProcessProfile);
     }
 }
 

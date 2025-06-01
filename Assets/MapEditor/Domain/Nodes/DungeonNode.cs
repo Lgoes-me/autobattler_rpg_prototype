@@ -5,8 +5,8 @@ public class DungeonNode : BaseSceneNode
 {
     private Dungeon<DungeonRoomNode> Dungeon { get; }
 
-    public DungeonNode(string name, string id, List<Transition> doors, List<DungeonRoomNode> availableRooms, 
-        int maximumDoors, int minimumDeepness, int maximumDeepness) : base(name, id, doors)
+    public DungeonNode(string id, List<Transition> doors, List<DungeonRoomNode> availableRooms, 
+        int maximumDoors, int minimumDeepness, int maximumDeepness) : base(id, doors)
     {
         Dungeon = new Dungeon<DungeonRoomNode>(Doors[0], availableRooms, maximumDoors, minimumDeepness, maximumDeepness);
     }
@@ -31,11 +31,16 @@ public class DungeonNode : BaseSceneNode
         Dungeon.Clear();
     }
 
-    public override void DoTransition(Spawn spawn, Map map)
+    public override void DoTransition(Map map, Spawn spawn, Action<SceneNode, Spawn> callback)
     {
         /*case DungeonNode dungeonNode:
             await SceneManager.LoadNewRoom();
             dungeonNode.DoTransition(spawn, SceneManager.EnterRoom);
             break;*/
+    }
+    
+    public override bool IsOpen()
+    {
+        return true;
     }
 }

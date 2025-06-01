@@ -33,7 +33,7 @@ public class DungeonNodeData : BaseNodeData
     {
         var availableRooms = AvailableRooms.Select(r => r.ToDomain()).ToList();
         var doors = Doors.Select(d => d.ToDomain(Id)).ToList();
-        return new DungeonNode(Name, Id, doors, availableRooms, MaximumDoors, MinimumDeepness, MaximumDeepness);
+        return new DungeonNode(Id, doors, availableRooms, MaximumDoors, MinimumDeepness, MaximumDeepness);
     }
 }
 
@@ -69,7 +69,6 @@ public class DungeonRoomData
         }
 
         return new DungeonRoomNode(
-            RoomPrefab.gameObject.name, 
             string.Empty, 
             doors.Select(d => d.ToDomain("")).ToList(),
             RoomPrefab,

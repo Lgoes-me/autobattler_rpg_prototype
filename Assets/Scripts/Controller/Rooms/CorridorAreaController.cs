@@ -16,7 +16,7 @@ public class CorridorAreaController : SpawnController
     {
         Transition = transition;
 
-        if (Transition.Active)
+        if (Application.Instance.GetManager<SceneManager>().IsOpen(Transition))
         {
             Spotlight.SetActive(true);
             FogDoor.color = ActiveColor;
@@ -42,7 +42,7 @@ public class CorridorAreaController : SpawnController
 
     private void OnTriggerEnter(Collider other)
     {
-        if (Transition.Active && CanUse && other.CompareTag("Player"))
+        if (CanUse && other.CompareTag("Player") && Application.Instance.GetManager<SceneManager>().IsOpen(Transition))
         {
             UseCorridor();
         }

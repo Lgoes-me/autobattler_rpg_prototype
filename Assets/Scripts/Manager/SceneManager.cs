@@ -26,7 +26,7 @@ public class SceneManager : MonoBehaviour, IManager
         GameSaveManager = Application.Instance.GetManager<GameSaveManager>();
         PartyManager = Application.Instance.GetManager<PartyManager>();
 
-        Map = MapData.ToDomain(this);
+        Map = MapData.ToDomain();
     }
 
     public void StartGameMenu()
@@ -43,12 +43,12 @@ public class SceneManager : MonoBehaviour, IManager
 
     public void StartGameIntro()
     {
-        Map.SpawnAt("Start");
+        Map.SpawnAt("Start", EnterRoom);
     }
     
     public void ChangeContext(Spawn spawn)
     {
-        Map.ChangeContext(spawn);
+        Map.ChangeContext(spawn, EnterRoom);
     }
 
     private Task LoadNewRoom()
@@ -124,7 +124,7 @@ public class SceneManager : MonoBehaviour, IManager
 
         var spawn = GameSaveManager.GetBonfireSpawn();
         
-        Map.ChangeContext(spawn);
+        Map.ChangeContext(spawn, EnterRoom);
         StartBonfireScene(spawn, () => { });
     }
 
@@ -161,5 +161,10 @@ public class SceneManager : MonoBehaviour, IManager
             PartyManager.SetPartyToFollow(false);
             InterfaceManager.ShowBattleCanvas();
         };
+    }
+
+    public bool IsOpen(Transition transition)
+    {
+        return Map.IsOpen(transition);
     }
 }
