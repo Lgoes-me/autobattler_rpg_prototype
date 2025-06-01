@@ -13,9 +13,41 @@ MonoBehaviour:
   m_Name: Teste-Lance
   m_EditorClassIdentifier: 
   <Id>k__BackingField: Teste-Lance
+  <Level>k__BackingField: 0
   <Type>k__BackingField: 2
   <Sprites>k__BackingField:
   - {fileID: -33863353, guid: 5d3820d98d28b65439c16a0737317ad5, type: 3}
   <StartColor>k__BackingField: {r: 0.6132076, g: 0.31929934, b: 0.014462441, a: 0}
   <EndColor>k__BackingField: {r: 0.5283019, g: 0.15900311, b: 0.022427902, a: 0}
   <Projectile>k__BackingField: {fileID: -33863353, guid: 5d3820d98d28b65439c16a0737317ad5, type: 3}
+  <Stats>k__BackingField:
+    <Health>k__BackingField: 0
+    <Mana>k__BackingField: 0
+    <Strength>k__BackingField: 0
+    <Arcane>k__BackingField: 0
+    <PhysicalDefence>k__BackingField: 0
+    <MagicalDefence>k__BackingField: 0
+  <WeaponEffects>k__BackingField:
+  - <Type>k__BackingField: 1
+    <Effects>k__BackingField:
+    - <Effects>k__BackingField:
+      - rid: 7514022924109742087
+      <FocusData>k__BackingField:
+        rid: 7514022924109742089
+      <ActionData>k__BackingField:
+        rid: 7514022924109742090
+  <WeaponPrefab>k__BackingField: {fileID: 594838873150881837, guid: fbb5ee48393c9394da2726630845413e, type: 3}
+  references:
+    version: 2
+    RefIds:
+    - rid: 7514022924109742087
+      type: {class: BuffEffectData, ns: , asm: Assembly-CSharp}
+      data:
+        <BuffData>k__BackingField: {fileID: 11400000, guid: 0bb712a612897eb4aa70704e9168191d, type: 2}
+        <Duration>k__BackingField: 2
+    - rid: 7514022924109742089
+      type: {class: EnemyFocusComponentData, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 7514022924109742090
+      type: {class: InstantActionData, ns: , asm: Assembly-CSharp}
+      data: 

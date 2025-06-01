@@ -30,10 +30,17 @@ public class WeaponComponent : PawnComponent
     public WeaponComponent(List<Weapon> weapons)
     {
         Weapons = weapons;
+        
+        Weapon = Weapons.First();
+        WeaponType = Weapon.Type;
+        WeaponPrefab = Weapon.WeaponPrefab;
     }
     
     public void ApplyWeaponType(WeaponType weaponType)
     {
+        if (Weapon != null)
+            return;
+        
         Weapon = Weapons.FirstOrDefault(w => w.Type == weaponType) ?? Weapons.First();
 
         WeaponType = Weapon.Type;

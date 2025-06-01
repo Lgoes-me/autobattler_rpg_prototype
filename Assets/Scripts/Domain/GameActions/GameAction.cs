@@ -132,3 +132,13 @@ public class OpenConsumablePrize : GameAction
         Application.Instance.GetManager<PrizeManager>().CreateConsumablePrize();
     }
 }
+
+[Serializable]
+public class MarkGameEvent : GameAction
+{
+    [field: SerializeField] private string EventId { get; set; }
+    public override void Invoke()
+    {
+        Application.Instance.GetManager<GameSaveManager>().AddEvent(EventId);
+    }
+}

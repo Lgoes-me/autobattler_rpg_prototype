@@ -22,6 +22,6 @@ MonoBehaviour:
       type: {class: DamageOverTimeBuffData, ns: , asm: Assembly-CSharp}
       data:
         <Damage>k__BackingField:
-          <Multiplier>k__BackingField: 4
+          <Multiplier>k__BackingField: 2
           <Type>k__BackingField: 1
         <TickRate>k__BackingField: 0.25

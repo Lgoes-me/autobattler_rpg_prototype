@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GoBerserk
   m_EditorClassIdentifier: 
   <Id>k__BackingField: 
-  <WeaponType>k__BackingField: 0
+  <WeaponType>k__BackingField: 3
   <Animation>k__BackingField: BowAttack
   <Delay>k__BackingField: 0.1
   <Range>k__BackingField: 1
@@ -41,6 +41,7 @@ MonoBehaviour:
       type: {class: BuffEffectData, ns: , asm: Assembly-CSharp}
       data:
         <BuffData>k__BackingField: {fileID: 11400000, guid: 3b8f7bc3ad5038f4fb3950314f19f98a, type: 2}
+        <Duration>k__BackingField: 0
     - rid: 8813335080079720462
       type: {class: SelfFocusComponentData, ns: , asm: Assembly-CSharp}
       data: 

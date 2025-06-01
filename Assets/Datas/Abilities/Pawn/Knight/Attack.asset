@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e3f2961cde84cc2bca5113224648ba8, type: 3}
   m_Name: Attack
   m_EditorClassIdentifier: 
+  <Id>k__BackingField: 
+  <WeaponType>k__BackingField: 3
   <Animation>k__BackingField: ColossalAttack
   <Delay>k__BackingField: 0.6
   <Range>k__BackingField: 1.5
@@ -42,5 +44,4 @@ MonoBehaviour:
           <Type>k__BackingField: 1
     - rid: 8813335080079720461
       type: {class: EnemyFocusComponentData, ns: , asm: Assembly-CSharp}
-      data:
-        <Error>k__BackingField: 0
+      data: 

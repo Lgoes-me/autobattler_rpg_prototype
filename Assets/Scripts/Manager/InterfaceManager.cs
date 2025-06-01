@@ -41,8 +41,8 @@ public class InterfaceManager : MonoBehaviour, IManager
 
     public void HideDefeatCanvas()
     {
-        ShowBattleCanvas();
         BattleLostCanvas.SetActive(false);
+        ShowBattleCanvas();
     }
 
     public void HideBattleCanvas()

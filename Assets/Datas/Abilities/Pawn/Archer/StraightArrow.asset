@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StraightArrow
   m_EditorClassIdentifier: 
   <Id>k__BackingField: StraightArrow
-  <WeaponType>k__BackingField: 17
+  <WeaponType>k__BackingField: 1
   <Animation>k__BackingField: BowAttack
   <Delay>k__BackingField: 0.35
   <Range>k__BackingField: 7

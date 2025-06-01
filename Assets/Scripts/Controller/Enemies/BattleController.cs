@@ -4,17 +4,17 @@ using UnityEngine;
 public class BattleController : MonoBehaviour
 {
     private Battle Battle { get; set; }
-    private GameAction EndBattleAction { get; set; }
+    private CombatEncounterData CombatEncounter { get; set; }
 
     public void ActivateBattleScene(string battleId, CombatEncounterData combatEncounter)
     {
-        EndBattleAction = combatEncounter.EndBattleAction;
+        CombatEncounter = combatEncounter;
         
         Application.Instance.GetManager<PartyManager>().StopPartyFollow();
         
         Battle = new Battle(battleId);
         
-        foreach (var enemy in combatEncounter.Enemies)
+        foreach (var enemy in CombatEncounter.Enemies)
         {
             var enemyController = enemy.PawnController;
 
@@ -92,6 +92,8 @@ public class BattleController : MonoBehaviour
             enemyPawn.Dance();
         }
 
+        CombatEncounter.OnDefeat?.Invoke();
+        
         Application.Instance.GetManager<InterfaceManager>().ShowDefeatCanvas();
 
         yield return new WaitForSeconds(1f);
@@ -128,10 +130,10 @@ public class BattleController : MonoBehaviour
             pawn.Idle();
         }
         
+        CombatEncounter.OnVictory?.Invoke();
+        
         Application.Instance.GetManager<PlayerManager>().EnablePlayerInput();
         Application.Instance.GetManager<PartyManager>().SetPartyToFollow(false);
         Application.Instance.GetManager<GameSaveManager>().SaveBattle(Battle);
-
-        EndBattleAction?.Invoke();
     }
 }

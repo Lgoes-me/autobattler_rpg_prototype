@@ -76,7 +76,8 @@ public class SceneNodeDataParams : NodeDataParams
 public class CombatEncounterData
 {
     [field: SerializeField] public List<EnemyData> Enemies { get; internal set; }
-    [field: SerializeReference] [field: SerializeField] public GameAction EndBattleAction { get; private set; }
+    [field: SerializeReference] [field: SerializeField] public GameAction OnVictory { get; private set; }
+    [field: SerializeReference] [field: SerializeField] public GameAction OnDefeat { get; private set; }
 }
 
 [Serializable]
