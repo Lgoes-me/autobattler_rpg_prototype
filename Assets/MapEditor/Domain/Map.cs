@@ -13,7 +13,7 @@ public class Map
 
     public void SpawnAt(string name, Action<SceneNode, Spawn> callback)
     {
-        var node = AllNodesById[name];
+        var node = (SpawnNode) AllNodesById[name];
         var spawn = node.Doors[0].Destination;
 
         node.DoTransition(this, spawn, callback);
@@ -38,6 +38,6 @@ public class Map
         var spawn = transition.Destination;
         var node = AllNodesById[spawn.NodeId];
         
-        return node.IsOpen();
+        return node.IsOpen(this, spawn);
     }
 }

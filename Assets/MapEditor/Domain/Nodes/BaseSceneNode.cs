@@ -21,5 +21,5 @@ public abstract class BaseSceneNode
     }
 
     public abstract void DoTransition(Map map, Spawn spawn, Action<SceneNode, Spawn> callback);
-    public abstract bool IsOpen();
+    public abstract bool IsOpen(Map map, Spawn spawn);
 }

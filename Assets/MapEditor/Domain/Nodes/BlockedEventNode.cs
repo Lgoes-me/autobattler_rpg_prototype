@@ -18,8 +18,8 @@ public class BlockedEventNode : BaseSceneNode
         nextContext.DoTransition(map, destination, callback);
     }
     
-    public override bool IsOpen()
+    public override bool IsOpen(Map map, Spawn spawn)
     {
-        return true;
+        return Application.Instance.GetManager<GameSaveManager>().ContainsEvent(EventId);
     }
 }

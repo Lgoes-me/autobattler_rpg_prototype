@@ -39,7 +39,7 @@ public class DungeonNode : BaseSceneNode
             break;*/
     }
     
-    public override bool IsOpen()
+    public override bool IsOpen(Map map, Spawn spawn)
     {
         return true;
     }

@@ -72,7 +72,7 @@ public class SceneManager : MonoBehaviour, IManager
         return tcs.Task;
     }
 
-    public async void EnterRoom(SceneNode sceneNode, Spawn spawn)
+    private async void EnterRoom(SceneNode sceneNode, Spawn spawn)
     {
         await LoadNewRoom();
         

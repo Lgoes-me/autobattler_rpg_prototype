@@ -31,7 +31,6 @@ public class DungeonRoomNode : SceneNode, IDungeonRoom
             return;
         
         Id = Guid.NewGuid().ToString();
-        Doors = room.Doors;
         RoomPrefab = room.RoomPrefab;
         RoomType = room.RoomType;
         Collapsed = true;

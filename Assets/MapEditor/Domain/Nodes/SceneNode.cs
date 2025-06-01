@@ -32,7 +32,7 @@ public class SceneNode : BaseSceneNode
         callback(this, spawn);
     }
 
-    public override bool IsOpen()
+    public override bool IsOpen(Map map, Spawn spawn)
     {
         return true;
     }

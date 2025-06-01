@@ -12,6 +12,7 @@ public class Save : ISavable
     public List<BlessingIdentifier> Blessings { get; set; }
     public List<string> AvailableParty { get; set; }
     public List<string> Dialogues { get; set; }
+    public List<string> Events { get; set; }
     public float CurrentTime { get; set; }
 
     public Save()
@@ -24,6 +25,7 @@ public class Save : ISavable
         Blessings = new List<BlessingIdentifier>();
         AvailableParty = new List<string>();
         Dialogues = new List<string>();
+        Events = new List<string>();
         CurrentTime = 0f;
     }
 
@@ -31,9 +33,8 @@ public class Save : ISavable
     {
         Metadata = new Metadata().CreateNewDynamicFile(".json");
         
-        Spawn = new Spawn(
-            "1590e136-c0a0-4285-97cc-c066b6d353bf", 
-            "5156dcbf-99fe-410b-b6c8-6e7496024057");
+        Spawn = new Spawn("ad607460-dd61-47e2-a853-39246edb7edb", 
+            "Onboarding");
         
         LastBonfireSpawn = new Spawn(
             "efc187ae-edbb-4187-87a2-7be8298184c6", 

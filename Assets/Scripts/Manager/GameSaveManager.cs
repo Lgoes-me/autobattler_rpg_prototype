@@ -179,7 +179,20 @@ public class GameSaveManager : IManager
     public void SaveDialogue(SkippableDialogue dialogue)
     {
         Save.Dialogues.Add(dialogue.Id);
-        SaveManager.SaveData(Save);
+        
+        SaveData();
+    }
+    
+    public bool ContainsEvent(string eventName)
+    {
+        return Save.Events.Contains(eventName);
+    }
+    
+    public void AddEvent(string eventName)
+    {
+        Save.Events.Add(eventName);
+        
+        SaveData();
     }
 
     private void SaveData()

@@ -15,7 +15,7 @@ public class SpawnNode : BaseSceneNode
         nextContext.DoTransition(map, destination, callback);
     }
 
-    public override bool IsOpen()
+    public override bool IsOpen(Map map, Spawn spawn)
     {
         return false;
     }

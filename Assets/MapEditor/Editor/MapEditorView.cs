@@ -223,6 +223,14 @@ public class MapEditorView : GraphView
         
         CreateNode<BlockedEventNodeData>(eventInfoLocalMousePosition, nodeParams);
     }
+    
+    private void CreateForkedNode(Vector2 eventInfoLocalMousePosition)
+    {
+        var id = Guid.NewGuid().ToString();
+        var nodeParams = new ForkedNodeDataParams(id);
+        
+        CreateNode<ForkedNodeData>(eventInfoLocalMousePosition, nodeParams);
+    }
 
     private void CreateNode<T>(Vector2 eventInfoLocalMousePosition, NodeDataParams nodeParams) where T : BaseNodeData
     {
@@ -247,6 +255,7 @@ public class MapEditorView : GraphView
         evt.menu.AppendAction("Scene", (a) => CreateSceneNode(a.eventInfo.localMousePosition));
         evt.menu.AppendAction("Dungeon", (a) => CreateDungeonNode(a.eventInfo.localMousePosition));
         evt.menu.AppendAction("BlockedByEvent", (a) => CreateBlockedEventNode(a.eventInfo.localMousePosition));
+        evt.menu.AppendAction("Fork", (a) => CreateForkedNode(a.eventInfo.localMousePosition));
     }
 
     public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
