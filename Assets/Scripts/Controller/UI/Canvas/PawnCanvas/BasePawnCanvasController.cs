@@ -30,7 +30,7 @@ public abstract class BasePawnCanvasController: BaseCanvasController
     {
         if(Pawn == null)
             return;
-        
+
         Pawn.GetComponent<StatsComponent>().BattleStarted -= StartBattle;
         Pawn.GetComponent<StatsComponent>().BattleFinished -= FinishBattle;
     }

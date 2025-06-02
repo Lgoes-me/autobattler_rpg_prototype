@@ -187,6 +187,14 @@ PrefabInstance:
       propertyPath: <SpawnPoint>k__BackingField
       value: 
       objectReference: {fileID: 608553063390008508}
+    - target: {fileID: 7750841691864513150, guid: 51873ca64eab87d4f84240880f83b428, type: 3}
+      propertyPath: <SpriteRenderers>k__BackingField.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7750841691864513150, guid: 51873ca64eab87d4f84240880f83b428, type: 3}
+      propertyPath: <SpriteRenderers>k__BackingField.Array.data[1]
+      value: 
+      objectReference: {fileID: 376150583730111898}
     - target: {fileID: 8114404443037850591, guid: 51873ca64eab87d4f84240880f83b428, type: 3}
       propertyPath: m_Size.y
       value: 0.125

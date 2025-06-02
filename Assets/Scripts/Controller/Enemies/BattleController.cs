@@ -84,12 +84,17 @@ public class BattleController : MonoBehaviour
 
     private IEnumerator OnDefeat()
     {
-        foreach (var enemyPawn in Battle.EnemyPawns)
+        foreach (var pawn in Battle.Pawns)
         {
-            if (!enemyPawn.PawnState.AbleToFight)
-                continue;
+            pawn.FinishBattle();
 
-            enemyPawn.Dance();
+            if (pawn.Pawn.Team == TeamType.Enemies)
+            {
+                if (!pawn.PawnState.AbleToFight)
+                    continue;
+
+                pawn.Dance();
+            }
         }
 
         CombatEncounter.OnDefeat?.Invoke();
