@@ -144,7 +144,7 @@ MonoBehaviour:
         <Mount>k__BackingField: {fileID: 0}
         <Level>k__BackingField: 1
       <Animation>k__BackingField: Dance
-      <Forward>k__BackingField: 1
+      <Forward>k__BackingField: 0
     - name: LeftEnemy
       <IsBoss>k__BackingField: 0
       <EnemyInfo>k__BackingField:
