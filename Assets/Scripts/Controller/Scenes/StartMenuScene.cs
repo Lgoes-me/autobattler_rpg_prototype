@@ -22,6 +22,7 @@ public class StartMenuScene : MonoBehaviour
     {
         Application.Instance.GetManager<GameSaveManager>().StartNewSave();
         Application.Instance.GetManager<TimeManager>().StartClock();
+        Application.Instance.GetManager<BlessingManager>().LoadBlessings();
         Application.Instance.GetManager<SceneManager>().StartGameIntro();
     }
 

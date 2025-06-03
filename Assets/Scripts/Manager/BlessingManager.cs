@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 public class BlessingManager : IManager
 {
@@ -23,8 +22,12 @@ public class BlessingManager : IManager
 
     public void LoadBlessings()
     {
-        Blessings = GameSaveManager.GetBlessings().Select(j => BlessingFactory.CreateBlessing(j)).ToList();
-        InterfaceManager.UpdateBlessingsCanvas(Blessings);
+        var blessings = GameSaveManager.GetBlessings();
+        
+        foreach (var blessing in blessings)
+        {
+            AddBlessing(blessing);
+        }
     }
 
     public void AddBlessing(BlessingIdentifier identifier)

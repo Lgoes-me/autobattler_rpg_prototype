@@ -15,9 +15,9 @@ public class SceneManager : MonoBehaviour, IManager
     private InterfaceManager InterfaceManager { get; set; }
     private GameSaveManager GameSaveManager { get; set; }
     private PartyManager PartyManager { get; set; }
-    
+
     private Map Map { get; set; }
-    
+
     private RoomController CurrentRoom { get; set; }
 
     public void Prepare()
@@ -32,20 +32,20 @@ public class SceneManager : MonoBehaviour, IManager
     public void StartGameMenu()
     {
         var task = UnitySceneManager.LoadSceneAsync("StartMenu", LoadSceneMode.Single);
-        
+
         task.completed += _ =>
         {
             GameSaveManager.LoadSave();
             var spawn = GameSaveManager.GetBonfireSpawn();
-            //Map.ChangeContext(spawn);
+            Map.ChangeContext(spawn, VisualizeRoom);
         };
     }
 
     public void StartGameIntro()
     {
-        Map.SpawnAt("Start", EnterRoom);
+        Map.SpawnAt("Onboarding", EnterRoom);
     }
-    
+
     public void ChangeContext(Spawn spawn)
     {
         Map.ChangeContext(spawn, EnterRoom);
@@ -54,49 +54,51 @@ public class SceneManager : MonoBehaviour, IManager
     private Task LoadNewRoom()
     {
         PartyManager.UnSpawnParty();
-        
+
         if (UnitySceneManager.GetActiveScene().name == "RoomScene")
         {
             return Task.CompletedTask;
         }
-        
+
         var tcs = new TaskCompletionSource<bool>();
-        
+
         var task = UnitySceneManager.LoadSceneAsync("RoomScene", LoadSceneMode.Single);
-        
-        task.completed += _ =>
-        {
-            tcs.SetResult(true);
-        };
+
+        task.completed += _ => { tcs.SetResult(true); };
 
         return tcs.Task;
+    }
+
+    private void VisualizeRoom(SceneNode sceneNode, Spawn spawn)
+    {
+        Instantiate(sceneNode.RoomPrefab).Init(sceneNode);
     }
 
     private async void EnterRoom(SceneNode sceneNode, Spawn spawn)
     {
         await LoadNewRoom();
-        
+
         if (CurrentRoom != null)
         {
             Destroy(CurrentRoom.gameObject);
         }
 
         await this.WaitEndOfFrame();
-        
+
         CurrentRoom = Instantiate(sceneNode.RoomPrefab).Init(sceneNode);
         CurrentRoom.SpawnPlayerAt(spawn.Id, Blend);
         GameSaveManager.SetSpawn(spawn);
-        
+
         PartyManager.SetPartyToFollow(true);
         CurrentRoom.PlayMusic();
 
         InterfaceManager.ShowBattleCanvas();
     }
-    
+
     public void OpenCutscene(string sceneName)
     {
         PartyManager.UnSpawnParty();
-        
+
         var task = UnitySceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
 
         task.completed += _ =>
@@ -105,25 +107,25 @@ public class SceneManager : MonoBehaviour, IManager
             cutsceneScene.Init();
         };
     }
-    
+
     public async void RespawnAtBonfire()
     {
         foreach (var pawn in PartyManager.Party)
         {
             pawn.FinishBattle();
         }
-        
+
         if (CurrentRoom != null)
         {
             Destroy(CurrentRoom.gameObject);
         }
 
         await this.WaitEndOfFrame();
-        
+
         await LoadNewRoom();
 
         var spawn = GameSaveManager.GetBonfireSpawn();
-        
+
         Map.ChangeContext(spawn, EnterRoom);
         StartBonfireScene(spawn, () => { });
     }

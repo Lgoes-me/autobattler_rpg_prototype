@@ -2689,7 +2689,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8654994262989981047, guid: 24b5d65779f0b1449804b49e9a8916f0, type: 3}
       propertyPath: <Blend>k__BackingField.m_Style
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5847,6 +5847,10 @@ PrefabInstance:
     - target: {fileID: 7464193846052840420, guid: 88ce5f1a7b1526a45b9e3e65d5064074, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535834632119186064, guid: 88ce5f1a7b1526a45b9e3e65d5064074, type: 3}
+      propertyPath: weight
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7535834632119186064, guid: 88ce5f1a7b1526a45b9e3e65d5064074, type: 3}
       propertyPath: sharedProfile
@@ -15376,6 +15380,18 @@ PrefabInstance:
       propertyPath: <SpawnPoint>k__BackingField
       value: 
       objectReference: {fileID: 459095354373019835}
+    - target: {fileID: 6357606874330744520, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
+      propertyPath: <ActiveColor>k__BackingField.b
+      value: 0.13207549
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357606874330744520, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
+      propertyPath: <ActiveColor>k__BackingField.g
+      value: 0.07662871
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357606874330744520, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
+      propertyPath: <ActiveColor>k__BackingField.r
+      value: 0.07662871
+      objectReference: {fileID: 0}
     - target: {fileID: 6357606874330744520, guid: a92f4611706a42e4e97bfe62bdd6d29d, type: 3}
       propertyPath: <SceneDestination>k__BackingField
       value: TutorialBossRoom

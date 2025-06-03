@@ -33,22 +33,13 @@ public class Save : ISavable
     {
         Metadata = new Metadata().CreateNewDynamicFile(".json");
         
-        Spawn = new Spawn("ad607460-dd61-47e2-a853-39246edb7edb", 
-            "Onboarding");
-        
         LastBonfireSpawn = new Spawn(
             "efc187ae-edbb-4187-87a2-7be8298184c6", 
             "e06d4e38-2c0e-4fb9-b250-934e7f7e22fc");
 
         SelectedParty = selectedParty;
 
-        DefeatedEnemies = new List<string>()
-        {
-            "Wolfs-2fbb78be-a5e0-4ec0-9d43-04bb71be0cc7",
-            "Grunts-5561663c-72db-4b8e-b75e-09e085a009f1",
-            "EnemyArea (2)-e366a721-bd24-4f71-adcd-83a7a465e7e2",
-            "EnemyArea (1)-e366a721-bd24-4f71-adcd-83a7a465e7e2"
-        };
+        DefeatedEnemies = new List<string>();
         
         Blessings = new List<BlessingIdentifier>()
         {

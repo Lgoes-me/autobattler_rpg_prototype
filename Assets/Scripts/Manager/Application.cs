@@ -58,6 +58,7 @@ public class Application : MonoBehaviour
         var sceneManager = GetManager<SceneManager>();
         var timeManager = GetManager<TimeManager>();
         var blessingManager = GetManager<BlessingManager>();
+        var tutorialManager = GetManager<TutorialManager>();
         
         gameSaveManager.Prepare();
         configManager.Prepare();
@@ -66,22 +67,20 @@ public class Application : MonoBehaviour
         GetManager<InputManager>().Prepare();
         GetManager<PartyManager>().Prepare();
         GetManager<SceneManager>().Prepare();
-        GetManager<TutorialManager>().Prepare();
+        tutorialManager.Prepare();
         GetManager<ArchetypeManager>().Prepare();
         GetManager<PrizeManager>().Prepare();
 
         configManager.Init();
+        tutorialManager.Init();
 
         if (gameSaveManager.FirstTimePlaying())
         {
             gameSaveManager.StartNewSave();
             timeManager.StartClock();
-            
             blessingManager.LoadBlessings();
-            timeManager.StartClock();
-        
-            var spawn =  gameSaveManager.GetSpawn();
-            sceneManager.ChangeContext(spawn);
+            
+            sceneManager.StartGameIntro();
         }
         else
         {
