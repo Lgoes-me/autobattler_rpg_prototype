@@ -38,7 +38,7 @@ public class Save : ISavable
         
         LastBonfireSpawn = new Spawn(
             "efc187ae-edbb-4187-87a2-7be8298184c6", 
-            "ed12450d-ce72-4d93-a724-c5a83dbead04");
+            "e06d4e38-2c0e-4fb9-b250-934e7f7e22fc");
 
         SelectedParty = selectedParty;
 
