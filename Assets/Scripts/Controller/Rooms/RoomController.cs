@@ -16,7 +16,7 @@ public class RoomController : MonoBehaviour
     
     private MusicType MusicType { get; set; }
     
-    public RoomController Init(SceneNode sceneData)
+    public RoomController Init(SceneData sceneData)
     {
         Destroy(PreviewCamera.gameObject);
         Surface.BuildNavMesh();

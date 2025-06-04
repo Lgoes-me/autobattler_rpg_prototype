@@ -8,7 +8,7 @@ public class SpawnNode : BaseSceneNode
     {
     }
 
-    public override void DoTransition(Map map, Spawn spawn, Action<SceneNode, Spawn> callback)
+    public override void DoTransition(Map map, Spawn spawn, Action<SceneData, Spawn> callback)
     {
         var destination = Doors.First().Destination;
         var nextContext = map.AllNodesById[destination.NodeId];

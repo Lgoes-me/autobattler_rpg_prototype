@@ -31,7 +31,7 @@ public class DungeonNode : BaseSceneNode
         Dungeon.Clear();
     }
 
-    public override void DoTransition(Map map, Spawn spawn, Action<SceneNode, Spawn> callback)
+    public override void DoTransition(Map map, Spawn spawn, Action<SceneData, Spawn> callback)
     {
         /*case DungeonNode dungeonNode:
             await SceneManager.LoadNewRoom();

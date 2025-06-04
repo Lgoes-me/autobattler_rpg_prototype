@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 public class DungeonRoomNode : SceneNode, IDungeonRoom
 {
@@ -7,7 +6,7 @@ public class DungeonRoomNode : SceneNode, IDungeonRoom
     public bool Collapsed { get; private set; }
     public bool Connected { get; set; }
 
-    public DungeonRoomNode() : base()
+    public DungeonRoomNode()
     {
         RoomType = RoomType.Unknown;
         Collapsed = false;
@@ -30,8 +29,8 @@ public class DungeonRoomNode : SceneNode, IDungeonRoom
         if (dungeonRoom is not DungeonRoomNode room)
             return;
         
-        Id = Guid.NewGuid().ToString();
-        RoomPrefab = room.RoomPrefab;
+        //Id = Guid.NewGuid().ToString();
+        //RoomPrefab = room.RoomPrefab;
         RoomType = room.RoomType;
         Collapsed = true;
     }

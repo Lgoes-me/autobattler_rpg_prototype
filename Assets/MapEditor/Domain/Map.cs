@@ -11,7 +11,7 @@ public class Map
         AllNodesById = nodes.ToDictionary(n => n.Id, n => n);
     }
 
-    public void SpawnAt(string name, Action<SceneNode, Spawn> callback)
+    public void SpawnAt(string name, Action<SceneData, Spawn> callback)
     {
         var node = (SpawnNode) AllNodesById[name];
         var spawn = node.Doors[0].Destination;
@@ -19,13 +19,13 @@ public class Map
         node.DoTransition(this, spawn, callback);
     }
 
-    public void ChangeContext(Spawn spawn, Action<SceneNode, Spawn> callback)
+    public void ChangeContext(Spawn spawn, Action<SceneData, Spawn> callback)
     {        
         var node = AllNodesById[spawn.NodeId];
         node.DoTransition(this, spawn, callback);
     }
     
-    public void ChangeContext(Transition transition, Action<SceneNode, Spawn> callback)
+    public void ChangeContext(Transition transition, Action<SceneData, Spawn> callback)
     {
         var spawn = transition.Destination;
         var node = AllNodesById[spawn.NodeId];

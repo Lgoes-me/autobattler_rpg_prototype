@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 public abstract class BaseSceneNode
 {
-    public string Id { get; protected set; }
-    public List<Transition> Doors { get; protected set; }
+    public string Id { get; }
+    public List<Transition> Doors { get; }
     public MusicType Music { get; }
 
     protected BaseSceneNode()
@@ -20,6 +20,6 @@ public abstract class BaseSceneNode
         Doors = doors;
     }
 
-    public abstract void DoTransition(Map map, Spawn spawn, Action<SceneNode, Spawn> callback);
+    public abstract void DoTransition(Map map, Spawn spawn, Action<SceneData, Spawn> callback);
     public abstract bool IsOpen(Map map, Spawn spawn);
 }

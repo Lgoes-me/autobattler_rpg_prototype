@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
@@ -43,7 +45,7 @@ public class SceneManager : MonoBehaviour, IManager
 
     public void StartGameIntro()
     {
-        Map.SpawnAt("Onboarding", EnterRoom);
+        Map.SpawnAt("Start", EnterRoom);
     }
 
     public void ChangeContext(Spawn spawn)
@@ -69,12 +71,12 @@ public class SceneManager : MonoBehaviour, IManager
         return tcs.Task;
     }
 
-    private void VisualizeRoom(SceneNode sceneNode, Spawn spawn)
+    private void VisualizeRoom(SceneData sceneData, Spawn spawn)
     {
-        Instantiate(sceneNode.RoomPrefab).Init(sceneNode);
+        Instantiate(sceneData.RoomPrefab).Init(sceneData);
     }
 
-    private async void EnterRoom(SceneNode sceneNode, Spawn spawn)
+    private async void EnterRoom(SceneData sceneData, Spawn spawn)
     {
         await LoadNewRoom();
 
@@ -85,7 +87,7 @@ public class SceneManager : MonoBehaviour, IManager
 
         await this.WaitEndOfFrame();
 
-        CurrentRoom = Instantiate(sceneNode.RoomPrefab).Init(sceneNode);
+        CurrentRoom = Instantiate(sceneData.RoomPrefab).Init(sceneData);
         CurrentRoom.SpawnPlayerAt(spawn.Id, Blend);
         GameSaveManager.SetSpawn(spawn);
 
@@ -168,5 +170,31 @@ public class SceneManager : MonoBehaviour, IManager
     public bool IsOpen(Transition transition)
     {
         return Map.IsOpen(transition);
+    }
+}
+
+public class SceneData
+{
+    public string Id { get; }
+    public RoomController RoomPrefab { get; }
+    public List<Transition> Doors { get; }
+    public MusicType Music { get; }
+    public List<CombatEncounterData> CombatEncounters { get; }
+    public VolumeProfile PostProcessProfile { get; }
+
+    public SceneData(
+        string id,
+        RoomController roomPrefab,
+        List<Transition> doors,
+        MusicType music,
+        List<CombatEncounterData> combatEncounters,
+        VolumeProfile postProcessProfile)
+    {
+        Id = id;
+        RoomPrefab = roomPrefab;
+        Doors = doors;
+        Music = music;
+        CombatEncounters = combatEncounters;
+        PostProcessProfile = postProcessProfile;
     }
 }

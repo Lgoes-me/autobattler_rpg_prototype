@@ -14,7 +14,7 @@ public class ForkedNode : BaseSceneNode
         Exit = exit;
     }
 
-    public override void DoTransition(Map map, Spawn spawn, Action<SceneNode, Spawn> callback)
+    public override void DoTransition(Map map, Spawn spawn, Action<SceneData, Spawn> callback)
     {
         var destination = spawn;
         
