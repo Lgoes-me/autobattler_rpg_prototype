@@ -14,7 +14,7 @@ public class Map
     public void SpawnAt(string name, Action<SceneData, Spawn> callback)
     {
         var node = (SpawnNode) AllNodesById[name];
-        var spawn = node.Doors[0].Destination;
+        var spawn = node.Spawn.Destination;
 
         node.DoTransition(this, spawn, callback);
     }

@@ -7,7 +7,7 @@ public class ForkedNode : BaseSceneNode
     private Transition In2 { get; }
     private Transition Exit { get; }
 
-    public ForkedNode(Transition in1, Transition in2, Transition exit, string id) : base(id, new List<Transition>())
+    public ForkedNode(Transition in1, Transition in2, Transition exit, string id) : base(id)
     {
         In1 = in1;
         In2 = in2;

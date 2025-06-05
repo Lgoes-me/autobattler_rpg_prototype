@@ -3,6 +3,8 @@ using System.Linq;
 
 public class SpawnNodeData : BaseNodeData
 {
+    private DoorData Spawn { get; set; }
+    
     public override void Init(NodeDataParams nodeDataParams)
     {
         var dataParams = (SpawnNodeDataParams) nodeDataParams;
@@ -12,13 +14,13 @@ public class SpawnNodeData : BaseNodeData
 
         Doors = new List<DoorData>();
 
-        var door = new DoorData
+        Spawn = new DoorData
         {
             Name = string.Empty,
             Id = Id
         };
 
-        Doors.Add(door);
+        Doors.Add(Spawn);
     }
 
     protected override void OnValidate()
@@ -29,8 +31,7 @@ public class SpawnNodeData : BaseNodeData
 
     public override BaseSceneNode ToDomain()
     {
-        var doors = Doors.Select(d => d.ToDomain(Id)).ToList();
-        return new SpawnNode(Id, doors);
+        return new SpawnNode(Id, Spawn.ToDomain(Id));
     }
 }
 

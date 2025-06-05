@@ -5,10 +5,12 @@ using System.Linq;
 public class BlockedEventNode : BaseSceneNode
 {
     public string EventId { get; }
-    
-    public BlockedEventNode(string eventId, string id, List<Transition> doors) : base(id, doors)
+    public List<Transition> Doors { get; set; }
+
+    public BlockedEventNode(string eventId, string id, List<Transition> doors) : base(id)
     {
         EventId = eventId;
+        Doors = doors;
     }
 
     public override void DoTransition(Map map, Spawn spawn, Action<SceneData, Spawn> callback)

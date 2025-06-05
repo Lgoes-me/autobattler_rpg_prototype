@@ -5,11 +5,9 @@ using UnityEngine;
 
 public class DungeonNodeData : BaseNodeData
 {
+    private DoorData Entrance { get; set; }
+    private DoorData Exit { get; set; }
     [field: SerializeField] private List<DungeonRoomData> AvailableRooms { get; set; }
-
-    [field: SerializeField] private int MaximumDoors { get; set; }
-    [field: SerializeField] private int MinimumDeepness { get; set; }
-    [field: SerializeField] private int MaximumDeepness { get; set; }
 
     public override void Init(NodeDataParams nodeDataParams)
     {
@@ -20,20 +18,25 @@ public class DungeonNodeData : BaseNodeData
 
         Doors = new List<DoorData>();
 
-        var door = new DoorData
+        Entrance = new DoorData
         {
-            Name = string.Empty,
-            Id = Id
+            Name = "entrance",
+            Id = Guid.NewGuid().ToString()
+        };
+        
+        Exit = new DoorData
+        {
+            Name = "exit",
+            Id = Guid.NewGuid().ToString()
         };
 
-        Doors.Add(door);
+        Doors.Add(Entrance);
+        Doors.Add(Exit);
     }
     
     public override BaseSceneNode ToDomain()
     {
-        var availableRooms = AvailableRooms.Select(r => r.ToDomain()).ToList();
-        var doors = Doors.Select(d => d.ToDomain(Id)).ToList();
-        return new DungeonNode(Id, doors, availableRooms, MaximumDoors, MinimumDeepness, MaximumDeepness);
+        return new DungeonNode(Id, Entrance.ToDomain(Id), Exit.ToDomain(Id), AvailableRooms);
     }
 }
 
@@ -53,7 +56,7 @@ public class DungeonRoomData
     [field: SerializeField] public RoomController RoomPrefab { get; set; }
     [field: SerializeField] public RoomType RoomType { get; set; }
 
-    public DungeonRoomNode ToDomain()
+    public DungeonRoom ToDomain(string dungeonId)
     {
         var doors = new List<DoorData>();
 
@@ -68,9 +71,9 @@ public class DungeonRoomData
             doors.Add(spawn);
         }
 
-        return new DungeonRoomNode(
+        return new DungeonRoom(
             string.Empty, 
-            doors.Select(d => d.ToDomain("")).ToList(),
+            doors.Select(d => d.ToDomain(dungeonId)).ToList(),
             RoomPrefab,
             RoomType);
     }

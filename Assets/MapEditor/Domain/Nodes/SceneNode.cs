@@ -7,12 +7,16 @@ public class SceneNode : BaseSceneNode
     private RoomController RoomPrefab { get; }
     public List<CombatEncounterData> CombatEncounters { get; }
     public VolumeProfile PostProcessProfile { get; }
+    public List<Transition> Doors { get; }
+    public MusicType Music { get; }
     
-    protected SceneNode()
+    protected SceneNode(string id) : base(id)
     {
         RoomPrefab = null;
         CombatEncounters = new List<CombatEncounterData>();
         PostProcessProfile = null;
+        Doors = new List<Transition>();
+        Music = MusicType.Dungeon;
     }
     
     public SceneNode(
@@ -20,8 +24,9 @@ public class SceneNode : BaseSceneNode
         List<Transition> doors,
         RoomController roomPrefab,
         List<CombatEncounterData> combatEncounters,
-        VolumeProfile postProcessProfile) : base(id, doors)
+        VolumeProfile postProcessProfile) : this(id)
     {
+        Doors = doors;
         RoomPrefab = roomPrefab;
         CombatEncounters = combatEncounters;
         PostProcessProfile = postProcessProfile;
