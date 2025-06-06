@@ -1,102 +1,92 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 
-public class Dungeon 
+public class Dungeon
 {
     public DungeonRoom[,] Rooms { get; set; }
     public Dictionary<string, DungeonRoom> GetRoom { get; private set; }
     public bool Generated { get; private set; }
-    
+
     private string Id { get; }
-    private Transition Entrance { get; }
-    private Transition Exit { get; }
+    private DoorData Entrance { get; }
+    private DoorData Exit { get; }
     private List<DungeonRoomData> AvailableRooms { get; }
-    
-    public Dungeon(string id, Transition entrance, Transition exit, List<DungeonRoomData> availableRooms)
+
+    public Dungeon(string id, DoorData entrance, DoorData exit, List<DungeonRoomData> availableRooms)
     {
+        Rooms = new DungeonRoom[3, 3];
         GetRoom = new Dictionary<string, DungeonRoom>();
         Generated = false;
-        Rooms = null;
 
         Id = id;
         Entrance = entrance;
         Exit = exit;
         AvailableRooms = availableRooms;
     }
+
     public void Clear()
     {
+        Rooms = new DungeonRoom[3, 3];
         GetRoom = new Dictionary<string, DungeonRoom>();
         Generated = false;
-        Rooms = null;
     }
 
     public void GenerateDungeon()
     {
-        /*var dungeonEntrance = new DungeonRoom();
-        var entrance = AvailableRooms.First(x => x.RoomType is RoomType.Entrance);
-        dungeonEntrance.SetValue(entrance.ToDomain(Id));
+        var possibilities = new List<DungeonRoomData>[3, 3];
 
-        //dungeonEntrance.Doors[0].Connect(EntranceDoor.SceneDestination, EntranceDoor.DoorDestination);
-        dungeonEntrance.Connected = true;
-        
-        var rooms = CreateSubTree(dungeonEntrance, 0);
-        
-        PruneTree(rooms);
-       
-        while (rooms.Any(r => !r.Data.Collapsed))
+        for (var i = 0; i < possibilities.GetLength(0); i++)
+        for (var j = 0; j < possibilities.GetLength(1); j++)
         {
-            var room = rooms
-                .Where(r => !r.Data.Collapsed)
-                .OrderBy(_ => Guid.NewGuid())
-                .First();
-
-            if (room.IsLeaf)
-            {
-                var bossRoom = AvailableRooms.First(x => x.RoomType is RoomType.Boss);
-                room.Data.SetValue(bossRoom.ToDomain(Id));
-            }
-            else
-            {
-                var anyRoom = AvailableRooms.First(x => x.RoomType is RoomType.Normal);
-                room.Data.SetValue(anyRoom.ToDomain(Id));
-            }
-            
-            PruneTree(room);
+            possibilities[i, j] = AvailableRooms;
         }
+        
+        possibilities = ApplyEntrance(possibilities);
+        possibilities = ApplyExit(possibilities);
 
-        foreach (var room in rooms)
+        possibilities = RemoveImpossibleRooms(possibilities);
+
+        while (CanBeSimplified(possibilities))
         {
-            var connectedRooms = new List<DungeonRoom>();
-
-            if (!room.IsRoot)
-                connectedRooms.Add(room.Parent.Data);
-           
-            var children = room.ChildrenNodes.Select(t => t.Data);
-            connectedRooms.AddRange(children);
-
-            var selectedRoom = room.Data;
-
-            for (var index = 0; index < selectedRoom.Doors.Count; index++)
-            {
-                var spawnData = room.Data.Doors[index];
-
-                if (spawnData.SetUp)
-                    continue;
-
-                var connectedRoom = connectedRooms.First(d => !d.Connected);
-                var connectedDoorSpawnData = connectedRoom.Doors.First(s => !s.SetUp);
-
-                connectedRoom.Connected = true;
-                
-                spawnData.Connect(connectedRoom.Id, connectedDoorSpawnData.Id);
-                connectedDoorSpawnData.Connect(selectedRoom.Id, spawnData.Id);
-            }
-
-            GetRoom.Add(room.Data.Id, room.Data);
+            possibilities = ApplyLowestEntropy(possibilities);
+            possibilities = RemoveImpossibleRooms(possibilities);
         }
+        
+        //Apply possibilities and connect rooms
 
         Generated = true;
-        Rooms = rooms;*/
+    }
+
+    private bool CanBeSimplified(List<DungeonRoomData>[,] possibilities)
+    {
+        for (var i = 0; i < possibilities.GetLength(0); i++)
+        for (var j = 0; j < possibilities.GetLength(1); j++)
+        {
+            if (possibilities[i, j].Count == 0) 
+                continue;
+            
+            return true;
+        }
+
+        return false;
+    }
+
+    private List<DungeonRoomData>[,] ApplyEntrance(List<DungeonRoomData>[,] possibilities)
+    {
+        throw new System.NotImplementedException();
+    }
+    
+    private List<DungeonRoomData>[,] ApplyExit(List<DungeonRoomData>[,] possibilities)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    private List<DungeonRoomData>[,] RemoveImpossibleRooms(List<DungeonRoomData>[,] possibilities)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    private List<DungeonRoomData>[,] ApplyLowestEntropy(List<DungeonRoomData>[,] possibilities)
+    {
+        throw new System.NotImplementedException();
     }
 }

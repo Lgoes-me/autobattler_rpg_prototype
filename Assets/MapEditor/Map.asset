@@ -16,20 +16,23 @@ MonoBehaviour:
   <Id>k__BackingField: d72b6109-1c04-4d76-9101-18c85237dedc
   <Doors>k__BackingField:
   - <Name>k__BackingField: in1
-    <Port>k__BackingField: input
     <Id>k__BackingField: a215e2ee-92b3-42ae-bffd-c28836c2e3dd
+    <Direction>k__BackingField: 0
+    <Port>k__BackingField: input
     <SceneDestination>k__BackingField: e366a721-bd24-4f71-adcd-83a7a465e7e2
     <DoorDestination>k__BackingField: 43c9be69-a3ef-4073-ada3-ebfcbb64e65d
     <SetUp>k__BackingField: 1
   - <Name>k__BackingField: in2
-    <Port>k__BackingField: input
     <Id>k__BackingField: 55773383-710f-40a9-970e-f61094dcab80
+    <Direction>k__BackingField: 0
+    <Port>k__BackingField: input
     <SceneDestination>k__BackingField: Onboarding
     <DoorDestination>k__BackingField: ad607460-dd61-47e2-a853-39246edb7edb
     <SetUp>k__BackingField: 1
   - <Name>k__BackingField: exit
-    <Port>k__BackingField: output
     <Id>k__BackingField: 28f0ab54-4b00-4a1c-afe5-ef1cb9fe469c
+    <Direction>k__BackingField: 0
+    <Port>k__BackingField: output
     <SceneDestination>k__BackingField: 5c8c2e46-539f-4ee5-ab39-c7ec46be45aa
     <DoorDestination>k__BackingField: 988c01e7-a0ec-4e6e-9ec5-cdfea84ec1c9
     <SetUp>k__BackingField: 1
@@ -50,14 +53,16 @@ MonoBehaviour:
   <Id>k__BackingField: baad970a-c2af-4565-8356-1085b8e4c996
   <Doors>k__BackingField:
   - <Name>k__BackingField: LeftCorridor
-    <Port>k__BackingField: input
     <Id>k__BackingField: 7286d0a8-a9b7-4fe0-8fd0-a69552c0e1af
+    <Direction>k__BackingField: 0
+    <Port>k__BackingField: input
     <SceneDestination>k__BackingField: e06d4e38-2c0e-4fb9-b250-934e7f7e22fc
     <DoorDestination>k__BackingField: 8d53df9c-343c-46df-879b-97eb641bfc25
     <SetUp>k__BackingField: 1
   - <Name>k__BackingField: RightCorridor
-    <Port>k__BackingField: output
     <Id>k__BackingField: ba9e4921-22ec-4914-a4ff-cc08f334b4b0
+    <Direction>k__BackingField: 0
+    <Port>k__BackingField: output
     <SceneDestination>k__BackingField: 5561663c-72db-4b8e-b75e-09e085a009f1
     <DoorDestination>k__BackingField: f36263e0-0c3b-41b9-9969-7d79145e5f33
     <SetUp>k__BackingField: 1
@@ -121,8 +126,9 @@ MonoBehaviour:
   <Id>k__BackingField: e06d4e38-2c0e-4fb9-b250-934e7f7e22fc
   <Doors>k__BackingField:
   - <Name>k__BackingField: NorthCorridor
-    <Port>k__BackingField: output
     <Id>k__BackingField: 8d53df9c-343c-46df-879b-97eb641bfc25
+    <Direction>k__BackingField: 0
+    <Port>k__BackingField: output
     <SceneDestination>k__BackingField: baad970a-c2af-4565-8356-1085b8e4c996
     <DoorDestination>k__BackingField: 7286d0a8-a9b7-4fe0-8fd0-a69552c0e1af
     <SetUp>k__BackingField: 1
@@ -149,20 +155,23 @@ MonoBehaviour:
   <Id>k__BackingField: 6285dd07-935a-47d7-9bad-17d94dc781d6
   <Doors>k__BackingField:
   - <Name>k__BackingField: Upstairs
-    <Port>k__BackingField: input
     <Id>k__BackingField: 4ad61d87-6a66-485a-8ab3-51dfacaede3b
+    <Direction>k__BackingField: 0
+    <Port>k__BackingField: input
     <SceneDestination>k__BackingField: 5561663c-72db-4b8e-b75e-09e085a009f1
     <DoorDestination>k__BackingField: ef1c2bd4-e70f-4a69-b898-e683508076c3
     <SetUp>k__BackingField: 1
   - <Name>k__BackingField: MainTunnel
-    <Port>k__BackingField: output
     <Id>k__BackingField: 4c30222a-eaf4-49fb-ba02-5a8523c57de9
+    <Direction>k__BackingField: 0
+    <Port>k__BackingField: output
     <SceneDestination>k__BackingField: e366a721-bd24-4f71-adcd-83a7a465e7e2
     <DoorDestination>k__BackingField: 15ec4628-021c-44a1-9564-7c51df426196
     <SetUp>k__BackingField: 1
   - <Name>k__BackingField: SecondaryTunnel
-    <Port>k__BackingField: output
     <Id>k__BackingField: 9adfd7b8-77c8-4a9f-8def-e32e679efb6a
+    <Direction>k__BackingField: 0
+    <Port>k__BackingField: output
     <SceneDestination>k__BackingField: e366a721-bd24-4f71-adcd-83a7a465e7e2
     <DoorDestination>k__BackingField: e3b1933f-9893-40fb-83ac-6c3f081ebaae
     <SetUp>k__BackingField: 1
@@ -217,14 +226,16 @@ MonoBehaviour:
   <Id>k__BackingField: 5c8c2e46-539f-4ee5-ab39-c7ec46be45aa
   <Doors>k__BackingField:
   - <Name>k__BackingField: 
-    <Port>k__BackingField: input
     <Id>k__BackingField: 988c01e7-a0ec-4e6e-9ec5-cdfea84ec1c9
+    <Direction>k__BackingField: 0
+    <Port>k__BackingField: input
     <SceneDestination>k__BackingField: d72b6109-1c04-4d76-9101-18c85237dedc
     <DoorDestination>k__BackingField: 28f0ab54-4b00-4a1c-afe5-ef1cb9fe469c
     <SetUp>k__BackingField: 1
   - <Name>k__BackingField: 
-    <Port>k__BackingField: output
     <Id>k__BackingField: c9bff11e-b46e-4cbd-89ee-e8208df58c19
+    <Direction>k__BackingField: 0
+    <Port>k__BackingField: output
     <SceneDestination>k__BackingField: 5156dcbf-99fe-410b-b6c8-6e7496024057
     <DoorDestination>k__BackingField: 1590e136-c0a0-4285-97cc-c066b6d353bf
     <SetUp>k__BackingField: 1
@@ -245,14 +256,16 @@ MonoBehaviour:
   <Id>k__BackingField: 5561663c-72db-4b8e-b75e-09e085a009f1
   <Doors>k__BackingField:
   - <Name>k__BackingField: ChurchEntrance
-    <Port>k__BackingField: input
     <Id>k__BackingField: f36263e0-0c3b-41b9-9969-7d79145e5f33
+    <Direction>k__BackingField: 0
+    <Port>k__BackingField: input
     <SceneDestination>k__BackingField: baad970a-c2af-4565-8356-1085b8e4c996
     <DoorDestination>k__BackingField: ba9e4921-22ec-4914-a4ff-cc08f334b4b0
     <SetUp>k__BackingField: 1
   - <Name>k__BackingField: DownStairs
-    <Port>k__BackingField: output
     <Id>k__BackingField: ef1c2bd4-e70f-4a69-b898-e683508076c3
+    <Direction>k__BackingField: 0
+    <Port>k__BackingField: output
     <SceneDestination>k__BackingField: 6285dd07-935a-47d7-9bad-17d94dc781d6
     <DoorDestination>k__BackingField: 4ad61d87-6a66-485a-8ab3-51dfacaede3b
     <SetUp>k__BackingField: 1
@@ -307,20 +320,23 @@ MonoBehaviour:
   <Id>k__BackingField: 5156dcbf-99fe-410b-b6c8-6e7496024057
   <Doors>k__BackingField:
   - <Name>k__BackingField: MainTunnel
-    <Port>k__BackingField: input
     <Id>k__BackingField: 1590e136-c0a0-4285-97cc-c066b6d353bf
+    <Direction>k__BackingField: 0
+    <Port>k__BackingField: input
     <SceneDestination>k__BackingField: 5c8c2e46-539f-4ee5-ab39-c7ec46be45aa
     <DoorDestination>k__BackingField: c9bff11e-b46e-4cbd-89ee-e8208df58c19
     <SetUp>k__BackingField: 1
   - <Name>k__BackingField: SecondaryTunnel
-    <Port>k__BackingField: input
     <Id>k__BackingField: 531a85c0-0b71-4aac-bb32-99d257c57de2
+    <Direction>k__BackingField: 0
+    <Port>k__BackingField: input
     <SceneDestination>k__BackingField: e366a721-bd24-4f71-adcd-83a7a465e7e2
     <DoorDestination>k__BackingField: b59dee39-ad8b-4a0c-94a3-1b113511853f
     <SetUp>k__BackingField: 1
   - <Name>k__BackingField: BossArenaEntrance
-    <Port>k__BackingField: input
     <Id>k__BackingField: 69690e82-0343-458c-8dcc-f75d91b8ca70
+    <Direction>k__BackingField: 0
+    <Port>k__BackingField: input
     <SceneDestination>k__BackingField: e366a721-bd24-4f71-adcd-83a7a465e7e2
     <DoorDestination>k__BackingField: 35cd2e48-8229-4668-90d8-b799307e8fad
     <SetUp>k__BackingField: 1
@@ -399,8 +415,9 @@ MonoBehaviour:
   <Id>k__BackingField: Start
   <Doors>k__BackingField:
   - <Name>k__BackingField: 
-    <Port>k__BackingField: output
     <Id>k__BackingField: ad607460-dd61-47e2-a853-39246edb7edb
+    <Direction>k__BackingField: 0
+    <Port>k__BackingField: output
     <SceneDestination>k__BackingField: d72b6109-1c04-4d76-9101-18c85237dedc
     <DoorDestination>k__BackingField: 55773383-710f-40a9-970e-f61094dcab80
     <SetUp>k__BackingField: 1
@@ -421,32 +438,37 @@ MonoBehaviour:
   <Id>k__BackingField: e366a721-bd24-4f71-adcd-83a7a465e7e2
   <Doors>k__BackingField:
   - <Name>k__BackingField: MainTunnelEntrance
-    <Port>k__BackingField: input
     <Id>k__BackingField: 15ec4628-021c-44a1-9564-7c51df426196
+    <Direction>k__BackingField: 0
+    <Port>k__BackingField: input
     <SceneDestination>k__BackingField: 6285dd07-935a-47d7-9bad-17d94dc781d6
     <DoorDestination>k__BackingField: 4c30222a-eaf4-49fb-ba02-5a8523c57de9
     <SetUp>k__BackingField: 1
   - <Name>k__BackingField: MainTunnelExit
-    <Port>k__BackingField: output
     <Id>k__BackingField: 43c9be69-a3ef-4073-ada3-ebfcbb64e65d
+    <Direction>k__BackingField: 0
+    <Port>k__BackingField: output
     <SceneDestination>k__BackingField: d72b6109-1c04-4d76-9101-18c85237dedc
     <DoorDestination>k__BackingField: a215e2ee-92b3-42ae-bffd-c28836c2e3dd
     <SetUp>k__BackingField: 1
   - <Name>k__BackingField: SecondaryTunnelEntrance
-    <Port>k__BackingField: input
     <Id>k__BackingField: e3b1933f-9893-40fb-83ac-6c3f081ebaae
+    <Direction>k__BackingField: 0
+    <Port>k__BackingField: input
     <SceneDestination>k__BackingField: 6285dd07-935a-47d7-9bad-17d94dc781d6
     <DoorDestination>k__BackingField: 9adfd7b8-77c8-4a9f-8def-e32e679efb6a
     <SetUp>k__BackingField: 1
   - <Name>k__BackingField: SecondaryTunnelExit
-    <Port>k__BackingField: output
     <Id>k__BackingField: b59dee39-ad8b-4a0c-94a3-1b113511853f
+    <Direction>k__BackingField: 0
+    <Port>k__BackingField: output
     <SceneDestination>k__BackingField: 5156dcbf-99fe-410b-b6c8-6e7496024057
     <DoorDestination>k__BackingField: 531a85c0-0b71-4aac-bb32-99d257c57de2
     <SetUp>k__BackingField: 1
   - <Name>k__BackingField: BossEntrance
-    <Port>k__BackingField: output
     <Id>k__BackingField: 35cd2e48-8229-4668-90d8-b799307e8fad
+    <Direction>k__BackingField: 0
+    <Port>k__BackingField: output
     <SceneDestination>k__BackingField: 5156dcbf-99fe-410b-b6c8-6e7496024057
     <DoorDestination>k__BackingField: 69690e82-0343-458c-8dcc-f75d91b8ca70
     <SetUp>k__BackingField: 1

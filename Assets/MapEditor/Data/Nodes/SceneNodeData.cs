@@ -20,12 +20,14 @@ public class SceneNodeData : BaseNodeData
         Doors = new List<DoorData>();
         CombatEncounters = new List<CombatEncounterData>();
 
-        foreach (var spawn in RoomPrefab.Doors)
+        foreach (var corridorController in RoomPrefab.Doors)
         {
             var door = new DoorData
             {
-                Name = spawn.gameObject.name,
-                Id = spawn.Id
+                Name = corridorController.gameObject.name,
+                Id = corridorController.Id,
+                Direction = corridorController.Direction,
+                Theme = corridorController.Theme
             };
 
             Doors.Add(door);

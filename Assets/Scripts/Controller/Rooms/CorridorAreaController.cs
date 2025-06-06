@@ -8,6 +8,8 @@ public class CorridorAreaController : SpawnController
     [field: SerializeField] private SpriteRenderer FogDoor { get; set; }
     [field: SerializeField] private Color ActiveColor { get; set; }
     [field: SerializeField] private Color InactiveColor { get; set; }
+    [field: SerializeField] public DoorDirection Direction { get; private set; }
+    [field: SerializeField] public SceneTheme Theme { get; private set; }
 
     private Transition Transition { get; set; }
     private bool CanUse { get; set; } = true;

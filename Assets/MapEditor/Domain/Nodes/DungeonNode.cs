@@ -4,10 +4,11 @@ using System.Collections.Generic;
 public class DungeonNode : BaseSceneNode
 {
     private Dungeon Dungeon { get; }
+    
     public DungeonNode(
         string id,
-        Transition entrance,
-        Transition exit,
+        DoorData entrance,
+        DoorData exit,
         List<DungeonRoomData> availableRooms) : base(id)
     {
         Dungeon = new Dungeon(id, entrance, exit, availableRooms);
@@ -47,6 +48,12 @@ public class DungeonNode : BaseSceneNode
 
     public override bool IsOpen(Map map, Spawn spawn)
     {
-        return true;
+        if (Dungeon.GetRoom.TryGetValue(spawn.NodeId, out var room))
+        {
+            return true;
+        }
+
+        var nextContext = map.AllNodesById[spawn.NodeId];
+        return nextContext.IsOpen(map, spawn);
     }
 }

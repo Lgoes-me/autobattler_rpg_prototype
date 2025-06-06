@@ -35,11 +35,15 @@ public class NodeDataParams
 public class DoorData
 {
     [field: SerializeField] public string Name { get; set; }
-    [field: SerializeField] public string Port { get; set; }
     [field: SerializeField] public string Id { get; set; }
-    [field: SerializeField] public string SceneDestination { get; set; }
-    [field: SerializeField] public string DoorDestination { get; set; }
-    [field: SerializeField] public bool SetUp { get; set; }
+    
+    [field: SerializeField] public DoorDirection Direction { get; set; }
+    [field: SerializeField] public SceneTheme Theme { get; set; }
+    
+    [field: SerializeField] public string Port { get; private set; }
+    [field: SerializeField] public string SceneDestination { get; private set; }
+    [field: SerializeField] public string DoorDestination { get; private set; }
+    [field: SerializeField] public bool SetUp { get; private set; }
 
     public void Clear()
     {
@@ -64,4 +68,20 @@ public class DoorData
         
         return new Transition(startingSpawn, destinationSpawn);
     }
+}
+
+public enum DoorDirection
+{
+    North,
+    South,
+    West,
+    East,
+    Upwards,
+    Downwards
+}
+
+public enum SceneTheme
+{
+    Dungeon,
+    Forest
 }

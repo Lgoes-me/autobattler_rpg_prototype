@@ -3,17 +3,16 @@ using UnityEngine.Rendering;
 
 public class DungeonRoom : SceneData
 {
-    public RoomType RoomType { get; private set; }
     public bool Collapsed { get; private set; }
     public bool Connected { get; set; }
-    
-    public DungeonRoom() : this("", null, new List<Transition>(), MusicType.Dungeon, new List<CombatEncounterData>(), null)
+
+    public DungeonRoom() : this("", null, new List<Transition>(), MusicType.Dungeon, new List<CombatEncounterData>(),
+        null)
     {
-        RoomType = RoomType.Unknown;
         Collapsed = false;
         Connected = false;
     }
-    
+
     private DungeonRoom(
         string id,
         RoomController roomPrefab,
@@ -21,9 +20,8 @@ public class DungeonRoom : SceneData
         MusicType music,
         List<CombatEncounterData> combatEncounters,
         VolumeProfile postProcessProfile)
-        : base(id, roomPrefab, doors, MusicType.Dungeon, combatEncounters, postProcessProfile)
+        : base(id, roomPrefab, doors, music, combatEncounters, postProcessProfile)
     {
-        RoomType = RoomType.Unknown;
         Collapsed = false;
         Connected = false;
     }
@@ -31,10 +29,8 @@ public class DungeonRoom : SceneData
     public DungeonRoom(
         string id,
         List<Transition> doors,
-        RoomController roomPrefab,
-        RoomType roomType) : this(id, roomPrefab, doors, MusicType.Dungeon, new List<CombatEncounterData>(), null)
+        RoomController roomPrefab) : this(id, roomPrefab, doors, MusicType.Dungeon, new List<CombatEncounterData>(), null)
     {
-        RoomType = roomType;
         Collapsed = false;
         Connected = false;
     }
@@ -43,7 +39,6 @@ public class DungeonRoom : SceneData
     {
         //Id = Guid.NewGuid().ToString();
         //RoomPrefab = dungeonRoom.RoomPrefab;
-        RoomType = dungeonRoom.RoomType;
         Collapsed = true;
     }
 }

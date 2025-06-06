@@ -36,7 +36,7 @@ public class DungeonNodeData : BaseNodeData
     
     public override BaseSceneNode ToDomain()
     {
-        return new DungeonNode(Id, Entrance.ToDomain(Id), Exit.ToDomain(Id), AvailableRooms);
+        return new DungeonNode(Id, Entrance, Exit, AvailableRooms);
     }
 }
 
@@ -54,7 +54,6 @@ public class DungeonNodeDataParams : NodeDataParams
 public class DungeonRoomData
 {
     [field: SerializeField] public RoomController RoomPrefab { get; set; }
-    [field: SerializeField] public RoomType RoomType { get; set; }
 
     public DungeonRoom ToDomain(string dungeonId)
     {
@@ -74,15 +73,6 @@ public class DungeonRoomData
         return new DungeonRoom(
             string.Empty, 
             doors.Select(d => d.ToDomain(dungeonId)).ToList(),
-            RoomPrefab,
-            RoomType);
+            RoomPrefab);
     }
-}
-
-public enum RoomType
-{
-    Unknown,
-    Entrance,
-    Normal,
-    Boss
 }
