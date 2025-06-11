@@ -75,9 +75,7 @@ public enum DoorDirection
     North,
     South,
     West,
-    East,
-    Upwards,
-    Downwards
+    East
 }
 
 public enum SceneTheme

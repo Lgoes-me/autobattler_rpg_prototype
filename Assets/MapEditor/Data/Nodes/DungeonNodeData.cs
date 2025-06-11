@@ -59,12 +59,14 @@ public class DungeonRoomData
     {
         var doors = new List<DoorData>();
 
-        foreach (var t in RoomPrefab.Doors)
+        foreach (var corridorController in RoomPrefab.Doors)
         {
             var spawn = new DoorData
             {
-                Name = t.gameObject.name,
-                Id = t.Id
+                Name = corridorController.gameObject.name,
+                Id = corridorController.Id,
+                Direction = corridorController.Direction,
+                Theme = corridorController.Theme
             };
 
             doors.Add(spawn);
