@@ -3,10 +3,6 @@ using System.Collections.Generic;
 
 public class ForkedNodeData : BaseNodeData
 {
-    private DoorData In1 { get; set; }
-    private DoorData In2 { get; set; }
-    private DoorData Exit { get; set; }
-    
     public override void Init(NodeDataParams nodeDataParams)
     {
         var dataParams = (ForkedNodeDataParams) nodeDataParams;
@@ -16,32 +12,32 @@ public class ForkedNodeData : BaseNodeData
 
         Doors = new List<DoorData>();
 
-        In1 = new DoorData
+        var in1 = new DoorData
         {
             Name = "in1",
             Id = Guid.NewGuid().ToString()
         };
 
-        In2 = new DoorData
+        var in2 = new DoorData
         {
             Name = "in2",
             Id = Guid.NewGuid().ToString()
         };
 
-        Exit = new DoorData
+        var exit = new DoorData
         {
             Name = "exit",
             Id = Guid.NewGuid().ToString()
         };
 
-        Doors.Add(In1);
-        Doors.Add(In2);
-        Doors.Add(Exit);
+        Doors.Add(in1);
+        Doors.Add(in2);
+        Doors.Add(exit);
     }
 
     public override BaseSceneNode ToDomain()
     {
-        return new ForkedNode(In1.ToDomain(Id), In2.ToDomain(Id), Exit.ToDomain(Id), Id);
+        return new ForkedNode(Doors[0].ToDomain(Id), Doors[1].ToDomain(Id), Doors[2].ToDomain(Id), Id);
     }
 }
 

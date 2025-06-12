@@ -24,6 +24,7 @@ public class DialogueBoxItemController : MonoBehaviour
             var info = pawn.GetComponent<CharacterInfoComponent>().GetCharacterInfo(line.Info);
             
             Picture.sprite = info.Portrait;
+            Picture.gameObject.SetActive(true);
             Application.Instance.GetManager<AudioManager>().PlaySfx(info.Audio);
         }
 

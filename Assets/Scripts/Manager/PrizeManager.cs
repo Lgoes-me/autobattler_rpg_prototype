@@ -25,7 +25,6 @@ public class PrizeManager : IManager
     {
         PauseManager.PauseGame();
         PlayerManager.DisablePlayerInput();
-
     }
     
     private void CompletePrize()

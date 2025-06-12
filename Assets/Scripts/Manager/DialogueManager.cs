@@ -17,7 +17,15 @@ public class DialogueManager : MonoBehaviour, IManager
             StopCoroutine(DialogueCoroutine);
         }
         
-        DialogueCoroutine = StartCoroutine(Read(dialogueData, callback));
+        Application.Instance.GetManager<PauseManager>().PauseGame();
+        Application.Instance.GetManager<PlayerManager>().DisablePlayerInput();
+        
+        DialogueCoroutine = StartCoroutine(Read(dialogueData, () =>
+        {
+            callback?.Invoke();
+            Application.Instance.GetManager<PauseManager>().ResumeGame();
+            Application.Instance.GetManager<PlayerManager>().EnablePlayerInput();
+        }));
     }
     
     private IEnumerator Read(DialogueData dialogueData, Action callback)
