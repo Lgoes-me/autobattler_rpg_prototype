@@ -8,7 +8,6 @@ public static class MapEditorExtensions
         {
             SceneNodeData sceneNode => new SceneNodeView(sceneNode),
             SpawnNodeData spawnNode => new SpawnNodeView(spawnNode),
-            DungeonNodeData dungeonNode => new DungeonNodeView(dungeonNode),
             BlockedEventNodeData blockedEventNode => new BlockedEventNodeView(blockedEventNode),
             ForkedNodeData forkedNodeData => new ForkedNodeView(forkedNodeData),
             _ => throw new ArgumentOutOfRangeException()

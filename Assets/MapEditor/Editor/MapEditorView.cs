@@ -207,14 +207,6 @@ public class MapEditorView : GraphView
         
         CreateNode<SpawnNodeData>(eventInfoLocalMousePosition, nodeParams);
     }
-
-    private void CreateDungeonNode(Vector2 eventInfoLocalMousePosition)
-    {
-        var id = Guid.NewGuid().ToString();
-        var nodeParams = new DungeonNodeDataParams(id);
-        
-        CreateNode<DungeonNodeData>(eventInfoLocalMousePosition, nodeParams);
-    }
     
     private void CreateBlockedEventNode(Vector2 eventInfoLocalMousePosition)
     {
@@ -253,7 +245,6 @@ public class MapEditorView : GraphView
     {
         evt.menu.AppendAction("Spawn", (a) => CreateSpawnNode(a.eventInfo.localMousePosition));
         evt.menu.AppendAction("Scene", (a) => CreateSceneNode(a.eventInfo.localMousePosition));
-        evt.menu.AppendAction("Dungeon", (a) => CreateDungeonNode(a.eventInfo.localMousePosition));
         evt.menu.AppendAction("BlockedByEvent", (a) => CreateBlockedEventNode(a.eventInfo.localMousePosition));
         evt.menu.AppendAction("Fork", (a) => CreateForkedNode(a.eventInfo.localMousePosition));
     }

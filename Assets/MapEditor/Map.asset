@@ -39,7 +39,7 @@ MonoBehaviour:
     <SceneDestination>k__BackingField: 5c8c2e46-539f-4ee5-ab39-c7ec46be45aa
     <DoorDestination>k__BackingField: 988c01e7-a0ec-4e6e-9ec5-cdfea84ec1c9
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: 1111, y: -147.00002}
+  <Position>k__BackingField: {x: 1191.2524, y: -209.00006}
 --- !u!114 &-7062591825236621593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,7 +250,7 @@ MonoBehaviour:
     <SceneDestination>k__BackingField: 5156dcbf-99fe-410b-b6c8-6e7496024057
     <DoorDestination>k__BackingField: 1590e136-c0a0-4285-97cc-c066b6d353bf
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: 1265.7101, y: -147.00009}
+  <Position>k__BackingField: {x: 1425.4868, y: -208.50005}
 --- !u!114 &-2735476827861547487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,7 +356,7 @@ MonoBehaviour:
     <SceneDestination>k__BackingField: e366a721-bd24-4f71-adcd-83a7a465e7e2
     <DoorDestination>k__BackingField: 35cd2e48-8229-4668-90d8-b799307e8fad
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: 1450, y: -69.99996}
+  <Position>k__BackingField: {x: 1582.0431, y: -70.000046}
   <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 4c3b47dbe3784b8479a098b17016cdca, type: 3}
   <CombatEncounters>k__BackingField:
   - <Enemies>k__BackingField:
@@ -438,7 +438,7 @@ MonoBehaviour:
     <SceneDestination>k__BackingField: d72b6109-1c04-4d76-9101-18c85237dedc
     <DoorDestination>k__BackingField: 55773383-710f-40a9-970e-f61094dcab80
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: 970.0417, y: -250.99994}
+  <Position>k__BackingField: {x: 1044, y: -247.50006}
 --- !u!114 &6909170025742541972
 MonoBehaviour:
   m_ObjectHideFlags: 0
