@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class DungeonNode : BaseSceneNode
 {
-    private Dungeon Dungeon { get; }
+    private DungeonCreator Dungeon { get; }
     
     public DungeonNode(
         string id,
@@ -11,7 +11,7 @@ public class DungeonNode : BaseSceneNode
         DoorData exit,
         List<DungeonRoomData> availableRooms) : base(id)
     {
-        Dungeon = new Dungeon(id, entrance, exit, availableRooms);
+        Dungeon = new DungeonCreator(id, entrance, exit, availableRooms);
     }
 
     public void Clear()
