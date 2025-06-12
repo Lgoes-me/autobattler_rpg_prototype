@@ -37,9 +37,6 @@ public class DoorData
     [field: SerializeField] public string Name { get; set; }
     [field: SerializeField] public string Id { get; set; }
     
-    [field: SerializeField] public DoorDirection Direction { get; set; }
-    [field: SerializeField] public SceneTheme Theme { get; set; }
-    
     [field: SerializeField] public string Port { get; private set; }
     [field: SerializeField] public string SceneDestination { get; private set; }
     [field: SerializeField] public string DoorDestination { get; private set; }
@@ -68,18 +65,4 @@ public class DoorData
         
         return new Transition(startingSpawn, destinationSpawn);
     }
-}
-
-public enum DoorDirection
-{
-    North,
-    South,
-    West,
-    East
-}
-
-public enum SceneTheme
-{
-    Dungeon,
-    Forest
 }

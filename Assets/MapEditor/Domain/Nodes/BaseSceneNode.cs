@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 
 public abstract class BaseSceneNode
 {
     public string Id { get; }
 
-    protected BaseSceneNode()
+    private BaseSceneNode()
     {
         Id = string.Empty;
     }
@@ -17,4 +16,9 @@ public abstract class BaseSceneNode
 
     public abstract void DoTransition(Map map, Spawn spawn, Action<SceneData, Spawn> callback);
     public abstract bool IsOpen(Map map, Spawn spawn);
+
+    public virtual DialogueData GetDialogue(Map map, Spawn spawn)
+    {
+        return null;
+    }
 }

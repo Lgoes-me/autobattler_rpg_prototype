@@ -24,14 +24,6 @@ public class Map
         var node = AllNodesById[spawn.NodeId];
         node.DoTransition(this, spawn, callback);
     }
-    
-    public void ChangeContext(Transition transition, Action<SceneData, Spawn> callback)
-    {
-        var spawn = transition.Destination;
-        var node = AllNodesById[spawn.NodeId];
-        
-        node.DoTransition(this, spawn, callback);
-    }
 
     public bool IsOpen(Transition transition)
     {
@@ -39,5 +31,13 @@ public class Map
         var node = AllNodesById[spawn.NodeId];
         
         return node.IsOpen(this, spawn);
+    }
+
+    public DialogueData GetDialogue(Transition transition)
+    {
+        var spawn = transition.Destination;
+        var node = AllNodesById[spawn.NodeId];
+        
+        return node.GetDialogue(this, spawn);
     }
 }

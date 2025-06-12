@@ -19,7 +19,7 @@ public class DialogueBoxItemController : MonoBehaviour
         TextMesh.SetText(line.Text);
         ContinueButton.onClick.AddListener(() => CanContinue = true);
 
-        if (!string.IsNullOrWhiteSpace(line.Info))
+        if (!string.IsNullOrWhiteSpace(line.Info) && pawn != null)
         {
             var info = pawn.GetComponent<CharacterInfoComponent>().GetCharacterInfo(line.Info);
             

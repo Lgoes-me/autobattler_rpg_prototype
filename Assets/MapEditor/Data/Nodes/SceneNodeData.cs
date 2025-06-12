@@ -25,9 +25,7 @@ public class SceneNodeData : BaseNodeData
             var door = new DoorData
             {
                 Name = corridorController.gameObject.name,
-                Id = corridorController.Id,
-                Direction = corridorController.Direction,
-                Theme = corridorController.Theme
+                Id = corridorController.Id
             };
 
             Doors.Add(door);

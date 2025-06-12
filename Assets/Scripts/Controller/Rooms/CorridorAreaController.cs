@@ -8,8 +8,6 @@ public class CorridorAreaController : SpawnController
     [field: SerializeField] private SpriteRenderer FogDoor { get; set; }
     [field: SerializeField] private Color ActiveColor { get; set; }
     [field: SerializeField] private Color InactiveColor { get; set; }
-    [field: SerializeField] public DoorDirection Direction { get; private set; }
-    [field: SerializeField] public SceneTheme Theme { get; private set; }
 
     private Transition Transition { get; set; }
     private bool CanUse { get; set; } = true;
@@ -44,9 +42,23 @@ public class CorridorAreaController : SpawnController
 
     private void OnTriggerEnter(Collider other)
     {
-        if (CanUse && other.CompareTag("Player") && Application.Instance.GetManager<SceneManager>().IsOpen(Transition))
+        if (CanUse && other.CompareTag("Player"))
         {
-            UseCorridor();
+            if (Application.Instance.GetManager<SceneManager>().IsOpen(Transition))
+            {
+                UseCorridor();
+            }
+            else
+            {
+                CanUse = false;
+                
+                var dialogue = Application.Instance.GetManager<SceneManager>().GetDialogue(Transition);
+
+                if (dialogue != null)
+                {
+                    Application.Instance.GetManager<DialogueManager>().OpenDialogue(dialogue, () => CanUse = true);
+                }
+            }
         }
     }
 

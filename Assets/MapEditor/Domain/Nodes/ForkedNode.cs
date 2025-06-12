@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 public class ForkedNode : BaseSceneNode
 {
@@ -44,5 +43,21 @@ public class ForkedNode : BaseSceneNode
         var nextContext = map.AllNodesById[destination.NodeId];
         
         return nextContext.IsOpen(map, destination);
+    }
+
+    public override DialogueData GetDialogue(Map map, Spawn spawn)
+    {
+        var destination = spawn;
+        
+        if (spawn.Id == In1.Start.Id)
+            destination = Exit.Destination;
+        else if (spawn.Id == In2.Start.Id)
+            destination = Exit.Destination;
+        else if (spawn.Id == Exit.Start.Id)
+            destination = In1.Destination;
+        
+        var nextContext = map.AllNodesById[destination.NodeId];
+        
+        return nextContext.GetDialogue(map, destination);
     }
 }

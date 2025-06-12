@@ -5,11 +5,13 @@ using System.Linq;
 public class BlockedEventNode : BaseSceneNode
 {
     public string EventId { get; }
+    public DialogueData Dialogue { get; }
     public List<Transition> Doors { get; set; }
 
-    public BlockedEventNode(string eventId, string id, List<Transition> doors) : base(id)
+    public BlockedEventNode(string eventId, DialogueData dialogue, string id, List<Transition> doors) : base(id)
     {
         EventId = eventId;
+        Dialogue = dialogue;
         Doors = doors;
     }
 
@@ -23,5 +25,10 @@ public class BlockedEventNode : BaseSceneNode
     public override bool IsOpen(Map map, Spawn spawn)
     {
         return Application.Instance.GetManager<GameSaveManager>().ContainsEvent(EventId);
+    }
+
+    public override DialogueData GetDialogue(Map map, Spawn spawn)
+    {
+        return Dialogue;
     }
 }

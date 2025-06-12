@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 public class BlockedEventNodeData : BaseNodeData
 {
     private string EventId { get; set; }
+    [field: SerializeField] private DialogueData Dialogue { get; set; }
 
     public override void Init(NodeDataParams nodeDataParams)
     {
@@ -41,7 +43,7 @@ public class BlockedEventNodeData : BaseNodeData
     public override BaseSceneNode ToDomain()
     {
         var doors = Doors.Select(d => d.ToDomain(Id)).ToList();
-        return new BlockedEventNode(EventId, Id, doors);
+        return new BlockedEventNode(EventId, Dialogue, Id, doors);
     }
 }
 

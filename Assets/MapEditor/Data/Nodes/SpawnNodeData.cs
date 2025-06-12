@@ -1,10 +1,7 @@
 using System.Collections.Generic;
-using System.Linq;
 
 public class SpawnNodeData : BaseNodeData
 {
-    private DoorData Spawn { get; set; }
-    
     public override void Init(NodeDataParams nodeDataParams)
     {
         var dataParams = (SpawnNodeDataParams) nodeDataParams;
@@ -14,13 +11,13 @@ public class SpawnNodeData : BaseNodeData
 
         Doors = new List<DoorData>();
 
-        Spawn = new DoorData
+        var spawn = new DoorData
         {
             Name = string.Empty,
             Id = Id
         };
 
-        Doors.Add(Spawn);
+        Doors.Add(spawn);
     }
 
     protected override void OnValidate()
@@ -31,7 +28,7 @@ public class SpawnNodeData : BaseNodeData
 
     public override BaseSceneNode ToDomain()
     {
-        return new SpawnNode(Id, Spawn.ToDomain(Id));
+        return new SpawnNode(Id, Doors[0].ToDomain(Id));
     }
 }
 

@@ -171,6 +171,11 @@ public class SceneManager : MonoBehaviour, IManager
     {
         return Map.IsOpen(transition);
     }
+
+    public DialogueData GetDialogue(Transition transition)
+    {
+        return Map.GetDialogue(transition);
+    }
 }
 
 public class SceneData

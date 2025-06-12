@@ -22,7 +22,7 @@ public class ForkedNodeData : BaseNodeData
             Id = Guid.NewGuid().ToString()
         };
 
-        In1 = new DoorData
+        In2 = new DoorData
         {
             Name = "in2",
             Id = Guid.NewGuid().ToString()
