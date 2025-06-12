@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -6,6 +8,7 @@ public class InterfaceManager : MonoBehaviour, IManager
 {
     [field: SerializeField] private GameObject BattleCanvas { get; set; }
     [field: SerializeField] private GameObject BattleLostCanvas { get; set; }
+    [field: SerializeField] private GameObject DungeonVictoryCanvas { get; set; }
     [field: SerializeField] public BossCanvasController BossCanvas { get; private set; }
 
     [field: SerializeField] private PrizeOptionHolderController PrizeOptionHolderController { get; set; }
@@ -53,5 +56,24 @@ public class InterfaceManager : MonoBehaviour, IManager
     public void ShowBattleCanvas()
     {
         BattleCanvas.SetActive(true);
+    }
+    
+    public void ShowDungeonVictoryCanvas(Action callback)
+    {
+        HideBattleCanvas();
+        DungeonVictoryCanvas.SetActive(true);
+        StartCoroutine(WaitVictoryCanvas(callback));
+    }
+
+    private IEnumerator WaitVictoryCanvas(Action callback)
+    {
+        yield return new WaitForSeconds(3f);
+        HideDungeonVictoryCanvas();
+        callback?.Invoke();
+    }
+    
+    public void HideDungeonVictoryCanvas()
+    {
+        DungeonVictoryCanvas.SetActive(false);
     }
 }

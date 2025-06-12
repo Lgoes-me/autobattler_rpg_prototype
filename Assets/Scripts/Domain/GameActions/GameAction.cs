@@ -142,3 +142,32 @@ public class MarkGameEvent : GameAction
         Application.Instance.GetManager<GameSaveManager>().AddEvent(EventId);
     }
 }
+
+[Serializable]
+public class ShowVictoryScreen : GameAction
+{
+    [field: SerializeField] private string SpawnName { get; set; }
+    
+    public override void Invoke()
+    {
+        Application.Instance.GetManager<PlayerManager>().DisablePlayerInput();
+        
+        Application.Instance.GetManager<InterfaceManager>().ShowDungeonVictoryCanvas(() =>
+        {
+            Application.Instance.GetManager<PlayerManager>().ClearPlayer();
+            Application.Instance.GetManager<PlayerManager>().EnablePlayerInput();
+            
+            Application.Instance.GetManager<SceneManager>().GoToSpawn(SpawnName);
+        });
+    }
+}
+
+[Serializable]
+public class GoToSpawn : GameAction
+{
+    [field: SerializeField] private string SpawnName { get; set; }
+    public override void Invoke()
+    {
+        Application.Instance.GetManager<SceneManager>().GoToSpawn(SpawnName);
+    }
+}

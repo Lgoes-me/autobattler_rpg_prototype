@@ -48,6 +48,11 @@ public class SceneManager : MonoBehaviour, IManager
         Map.SpawnAt("Start", EnterRoom);
     }
 
+    public void GoToSpawn(string spawn)
+    {
+        Map.SpawnAt(spawn, EnterRoom);
+    }
+
     public void ChangeContext(Spawn spawn)
     {
         Map.ChangeContext(spawn, EnterRoom);

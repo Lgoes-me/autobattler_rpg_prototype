@@ -20,11 +20,9 @@ public class BonfireScene : MonoBehaviour
     {
         Callback = callback;
         FinishButton.onClick.AddListener(EndBonfireScene);
-
-        var gameSaveManager = Application.Instance.GetManager<GameSaveManager>();
-        gameSaveManager.ClearParty();
         
-        Application.Instance.GetManager<BlessingManager>().ClearBlessings();
+        Application.Instance.GetManager<PlayerManager>().ClearPlayer();
+        var gameSaveManager = Application.Instance.GetManager<GameSaveManager>();
 
         FriendsPanelController.Init(gameSaveManager, this);
         PartyPanelController.Init(gameSaveManager, this);

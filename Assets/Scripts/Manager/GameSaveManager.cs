@@ -88,12 +88,24 @@ public class GameSaveManager : IManager
         return Save.LastBonfireSpawn;
     }
 
+    public void ResetPawnInfos()
+    {
+        Save.SelectedParty = PartyManager.Party.Select(p => p.Pawn.ResetPawnInfo()).ToList();
+
+        SaveData();
+    }
+    
+    public void ClearDefeatedEnemies()
+    {
+        Save.DefeatedEnemies.Clear();
+        
+        SaveData();
+    }
+
     public void SetBonfireSpawn(Spawn spawn)
     {
         Save.Spawn = spawn;
         Save.LastBonfireSpawn = spawn;
-        Save.SelectedParty = PartyManager.Party.Select(p => p.Pawn.ResetPawnInfo()).ToList();
-        Save.DefeatedEnemies.Clear();
 
         SaveData();
     }
