@@ -15,7 +15,7 @@ public class BlockedEventNode : BaseSceneNode
         Doors = doors;
     }
 
-    public override void DoTransition(Map map, Spawn spawn, Action<SceneData, Spawn> callback)
+    public override void DoTransition(Map map, Spawn spawn, Action<BaseSceneNode, Spawn> callback)
     {
         var destination = Doors.First(d => d.Start.Id != spawn.Id).Destination;
         var nextContext = map.AllNodesById[destination.NodeId];

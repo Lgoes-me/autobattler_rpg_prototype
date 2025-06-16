@@ -1,9 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Cinemachine;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
@@ -76,13 +74,19 @@ public class SceneManager : MonoBehaviour, IManager
         return tcs.Task;
     }
 
-    private void VisualizeRoom(SceneData sceneData, Spawn spawn)
+    private void VisualizeRoom(BaseSceneNode sceneNode, Spawn spawn)
     {
+        if (sceneNode is not SceneNode sceneData)
+            return;
+
         Instantiate(sceneData.RoomPrefab).Init(sceneData);
     }
 
-    private async void EnterRoom(SceneData sceneData, Spawn spawn)
+    private async void EnterRoom(BaseSceneNode sceneNode, Spawn spawn)
     {
+        if (sceneNode is not SceneNode sceneData)
+            return;
+
         await LoadNewRoom();
 
         if (CurrentRoom != null)
@@ -180,31 +184,5 @@ public class SceneManager : MonoBehaviour, IManager
     public DialogueData GetDialogue(Transition transition)
     {
         return Map.GetDialogue(transition);
-    }
-}
-
-public class SceneData
-{
-    public string Id { get; }
-    public RoomController RoomPrefab { get; }
-    public List<Transition> Doors { get; }
-    public MusicType Music { get; }
-    public List<CombatEncounterData> CombatEncounters { get; }
-    public VolumeProfile PostProcessProfile { get; }
-
-    public SceneData(
-        string id,
-        RoomController roomPrefab,
-        List<Transition> doors,
-        MusicType music,
-        List<CombatEncounterData> combatEncounters,
-        VolumeProfile postProcessProfile)
-    {
-        Id = id;
-        RoomPrefab = roomPrefab;
-        Doors = doors;
-        Music = music;
-        CombatEncounters = combatEncounters;
-        PostProcessProfile = postProcessProfile;
     }
 }

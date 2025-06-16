@@ -14,7 +14,7 @@ public abstract class BaseSceneNode
         Id = id;
     }
 
-    public abstract void DoTransition(Map map, Spawn spawn, Action<SceneData, Spawn> callback);
+    public abstract void DoTransition(Map map, Spawn spawn, Action<BaseSceneNode, Spawn> callback);
     public abstract bool IsOpen(Map map, Spawn spawn);
 
     public virtual DialogueData GetDialogue(Map map, Spawn spawn)

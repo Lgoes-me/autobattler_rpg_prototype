@@ -13,7 +13,7 @@ public class ForkedNode : BaseSceneNode
         Exit = exit;
     }
 
-    public override void DoTransition(Map map, Spawn spawn, Action<SceneData, Spawn> callback)
+    public override void DoTransition(Map map, Spawn spawn, Action<BaseSceneNode, Spawn> callback)
     {
         var destination = spawn;
         

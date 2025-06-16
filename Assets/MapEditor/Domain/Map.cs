@@ -11,7 +11,7 @@ public class Map
         AllNodesById = nodes.ToDictionary(n => n.Id, n => n);
     }
 
-    public void SpawnAt(string name, Action<SceneData, Spawn> callback)
+    public void SpawnAt(string name, Action<BaseSceneNode, Spawn> callback)
     {
         var node = (SpawnNode) AllNodesById[name];
         var spawn = node.Spawn.Destination;
@@ -19,7 +19,7 @@ public class Map
         node.DoTransition(this, spawn, callback);
     }
 
-    public void ChangeContext(Spawn spawn, Action<SceneData, Spawn> callback)
+    public void ChangeContext(Spawn spawn, Action<BaseSceneNode, Spawn> callback)
     {        
         var node = AllNodesById[spawn.NodeId];
         node.DoTransition(this, spawn, callback);

@@ -9,7 +9,7 @@ public class SpawnNode : BaseSceneNode
         Spawn = spawn;
     }
 
-    public override void DoTransition(Map map, Spawn spawn, Action<SceneData, Spawn> callback)
+    public override void DoTransition(Map map, Spawn spawn, Action<BaseSceneNode, Spawn> callback)
     {
         var destination = Spawn.Destination;
         var nextContext = map.AllNodesById[destination.NodeId];

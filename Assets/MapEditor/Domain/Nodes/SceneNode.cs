@@ -4,7 +4,7 @@ using UnityEngine.Rendering;
 
 public class SceneNode : BaseSceneNode
 {
-    private RoomController RoomPrefab { get; }
+    public RoomController RoomPrefab { get; }
     public List<CombatEncounterData> CombatEncounters { get; }
     public VolumeProfile PostProcessProfile { get; }
     public List<Transition> Doors { get; }
@@ -32,24 +32,13 @@ public class SceneNode : BaseSceneNode
         PostProcessProfile = postProcessProfile;
     }
 
-    public override void DoTransition(Map map, Spawn spawn, Action<SceneData, Spawn> callback)
+    public override void DoTransition(Map map, Spawn spawn, Action<BaseSceneNode, Spawn> callback)
     {
-        callback(ToSceneData(), spawn);
+        callback(this, spawn);
     }
 
     public override bool IsOpen(Map map, Spawn spawn)
     {
         return true;
-    }
-
-    private SceneData ToSceneData()
-    {
-        return new SceneData(
-            Id,
-            RoomPrefab,
-            Doors,
-            Music,
-            CombatEncounters,
-            PostProcessProfile);
     }
 }
