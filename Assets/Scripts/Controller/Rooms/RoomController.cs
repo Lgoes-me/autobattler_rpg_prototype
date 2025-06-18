@@ -7,7 +7,6 @@ using UnityEngine.Rendering;
 
 public class RoomController : MonoBehaviour
 {
-    [field:SerializeField] public Camera PreviewCamera { get; private set; }
     [field:SerializeField] public List<CorridorAreaController> Doors { get; private set; }
     [field:SerializeField] public List<EnemyAreaController> EnemyAreas { get; private set; }
     [field:SerializeField] private BonfireController Bonfire { get; set; }
@@ -18,7 +17,6 @@ public class RoomController : MonoBehaviour
     
     public RoomController Init(SceneNode sceneData)
     {
-        Destroy(PreviewCamera.gameObject);
         Surface.BuildNavMesh();
         
         foreach (var door in Doors)
