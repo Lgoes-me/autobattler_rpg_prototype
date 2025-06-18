@@ -43,17 +43,17 @@ public class SceneManager : MonoBehaviour, IManager
 
     public void StartGameIntro()
     {
-        Map.SpawnAt("Start", EnterRoom);
+        Map.SpawnAt("Start", DoTransition);
     }
 
     public void GoToSpawn(string spawn)
     {
-        Map.SpawnAt(spawn, EnterRoom);
+        Map.SpawnAt(spawn, DoTransition);
     }
 
     public void ChangeContext(Spawn spawn)
     {
-        Map.ChangeContext(spawn, EnterRoom);
+        Map.ChangeContext(spawn, DoTransition);
     }
 
     private Task LoadNewRoom()
@@ -82,11 +82,25 @@ public class SceneManager : MonoBehaviour, IManager
         Instantiate(sceneData.RoomPrefab).Init(sceneData);
     }
 
-    private async void EnterRoom(BaseSceneNode sceneNode, Spawn spawn)
+    private void DoTransition(BaseSceneNode baseSceneNode, Spawn spawn)
     {
-        if (sceneNode is not SceneNode sceneData)
-            return;
+        switch (baseSceneNode)
+        {
+            case SceneNode sceneNode:
+            {
+                EnterRoom(sceneNode, spawn);
+                break;
+            }
+            case CutsceneNode cutsceneNode:
+            {
+                WatchCutscene(cutsceneNode, spawn);
+                break;
+            }
+        }
+    }
 
+    private async void EnterRoom(SceneNode sceneNode, Spawn spawn)
+    {
         await LoadNewRoom();
 
         if (CurrentRoom != null)
@@ -96,7 +110,7 @@ public class SceneManager : MonoBehaviour, IManager
 
         await this.WaitEndOfFrame();
 
-        CurrentRoom = Instantiate(sceneData.RoomPrefab).Init(sceneData);
+        CurrentRoom = Instantiate(sceneNode.RoomPrefab).Init(sceneNode);
         CurrentRoom.SpawnPlayerAt(spawn.Id, Blend);
         GameSaveManager.SetSpawn(spawn);
 
@@ -106,19 +120,11 @@ public class SceneManager : MonoBehaviour, IManager
         InterfaceManager.ShowBattleCanvas();
     }
 
-    public void OpenCutscene(string sceneName)
+    private void WatchCutscene(CutsceneNode cutsceneNode, Spawn spawn)
     {
-        PartyManager.UnSpawnParty();
-
-        var task = UnitySceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
-
-        task.completed += _ =>
-        {
-            var cutsceneScene = FindObjectOfType<CutsceneScene>();
-            cutsceneScene.Init();
-        };
+        
     }
-
+    
     public async void RespawnAtBonfire()
     {
         foreach (var pawn in PartyManager.Party)
@@ -137,7 +143,7 @@ public class SceneManager : MonoBehaviour, IManager
 
         var spawn = GameSaveManager.GetBonfireSpawn();
 
-        Map.ChangeContext(spawn, EnterRoom);
+        Map.ChangeContext(spawn, DoTransition);
         StartBonfireScene(spawn, () => { });
     }
 

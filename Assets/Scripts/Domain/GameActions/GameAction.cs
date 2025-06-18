@@ -10,17 +10,6 @@ public abstract class GameAction : IComponentData
 }
 
 [Serializable]
-public class OpenCutscene : GameAction
-{
-    [field: SerializeField] private string SceneName { get; set; }
-    
-    public override void Invoke()
-    {
-        Application.Instance.GetManager<SceneManager>().OpenCutscene(SceneName);
-    }
-}
-
-[Serializable]
 public class ChangeScene : GameAction
 {
     [field: SerializeField] private string SceneName { get; set; }
