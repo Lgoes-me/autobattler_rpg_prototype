@@ -1,12 +1,17 @@
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor;
 using UnityEngine;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 [CreateAssetMenu]
 public class MapData : ScriptableObject
 {
     [field: SerializeField] public List<BaseNodeData> Nodes { get; private set; }
+
+#if UNITY_EDITOR
 
     public T AddNode<T>() where T : BaseNodeData
     {
@@ -24,7 +29,7 @@ public class MapData : ScriptableObject
     public void DeleteNode(BaseNodeData nodeData)
     {
         Nodes ??= new List<BaseNodeData>();
-        
+
         var toRemove = Nodes?.FirstOrDefault(data => data.Id == nodeData.Id);
 
         if (toRemove != null)
@@ -35,7 +40,9 @@ public class MapData : ScriptableObject
         AssetDatabase.RemoveObjectFromAsset(toRemove);
         AssetDatabase.SaveAssets();
     }
-    
+
+#endif
+
     public Map ToDomain()
     {
         var nodes = Nodes.Select(n => n.ToDomain()).ToList();

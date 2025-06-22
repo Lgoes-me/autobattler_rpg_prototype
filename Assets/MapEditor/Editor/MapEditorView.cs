@@ -243,10 +243,12 @@ public class MapEditorView : GraphView
     }
     public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
     {
-        evt.menu.AppendAction("Spawn", (a) => CreateSpawnNode(a.eventInfo.localMousePosition));
-        evt.menu.AppendAction("Scene", (a) => CreateSceneNode(a.eventInfo.localMousePosition));
-        evt.menu.AppendAction("BlockedByEvent", (a) => CreateBlockedEventNode(a.eventInfo.localMousePosition));
-        evt.menu.AppendAction("Fork", (a) => CreateForkedNode(a.eventInfo.localMousePosition));
+        var mousePosition = evt.mousePosition;
+        
+        evt.menu.AppendAction("Spawn", _ => CreateSpawnNode(mousePosition));
+        evt.menu.AppendAction("Scene", _ => CreateSceneNode(mousePosition));
+        evt.menu.AppendAction("BlockedByEvent", _ => CreateBlockedEventNode(mousePosition));
+        evt.menu.AppendAction("Fork", _ => CreateForkedNode(mousePosition));
     }
 
     public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)

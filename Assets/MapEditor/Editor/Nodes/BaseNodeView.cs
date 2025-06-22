@@ -21,7 +21,7 @@ public class BaseNodeView: Node
         title = NodeData.Name;
         viewDataKey = NodeData.Id;
 
-        SetPosition(new Rect(NodeData.Position, Vector2.one));
+        SetPosition(new Rect(NodeData.Position, Vector2.zero));
 
         CreateInputPorts();
         CreateOutputPorts();
