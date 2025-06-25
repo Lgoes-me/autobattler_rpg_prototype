@@ -45,20 +45,22 @@ MonoBehaviour:
       type: {class: StatsComponentData, ns: , asm: Assembly-CSharp}
       data:
         <BaseStats>k__BackingField:
-          <Health>k__BackingField: 55
-          <Mana>k__BackingField: 0
-          <Strength>k__BackingField: 2
-          <Arcane>k__BackingField: 0
-          <PhysicalDefence>k__BackingField: 2
-          <MagicalDefence>k__BackingField: 0
+          <Stats>k__BackingField:
+          - <Stat>k__BackingField: 0
+            <Value>k__BackingField: 55
+          - <Stat>k__BackingField: 2
+            <Value>k__BackingField: 2
+          - <Stat>k__BackingField: 4
+            <Value>k__BackingField: 2
         <LevelUpStats>k__BackingField:
           <MaxLevelStatsStats>k__BackingField:
-            <Health>k__BackingField: 600
-            <Mana>k__BackingField: 0
-            <Strength>k__BackingField: 120
-            <Arcane>k__BackingField: 6
-            <PhysicalDefence>k__BackingField: 20
-            <MagicalDefence>k__BackingField: 5
+            <Stats>k__BackingField:
+            - <Stat>k__BackingField: 0
+              <Value>k__BackingField: 600
+            - <Stat>k__BackingField: 2
+              <Value>k__BackingField: 35
+            - <Stat>k__BackingField: 4
+              <Value>k__BackingField: 20
           <LevelUpCurve>k__BackingField:
             serializedVersion: 2
             m_Curve:

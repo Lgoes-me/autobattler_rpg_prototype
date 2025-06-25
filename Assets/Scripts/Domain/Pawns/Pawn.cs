@@ -115,7 +115,7 @@ public class Pawn
         return new PawnInfo(
             Id,
             stats.Level,
-            stats.GetPawnStats().Health - stats.Health,
+            stats.GetPawnStats().GetStat(Stat.Health) - stats.Health,
             Status,
             GetComponent<WeaponComponent>().Weapon,
             GetComponent<AbilitiesComponent>().Abilities,

@@ -15,8 +15,10 @@ public class ArchetypeFactory
                         if (rarity is Rarity.Deactivated)
                             return;
                         
-                        var s = new StatsData();
-                        s.PhysicalDefence = 1;
+                        var s = new StatsData()
+                        {
+                            new StatData(Stat.PhysicalDefence, 1)
+                        };
 
                         var b = new Buff("ProtecaoCavalereica", -1)
                         {
@@ -25,8 +27,10 @@ public class ArchetypeFactory
                         
                         GiveBuffToPlayerTeam(battle, b);
 
-                        var s2 = new StatsData();
-                        s2.PhysicalDefence = 1;
+                        var s2 = new StatsData()
+                        {
+                            new StatData(Stat.PhysicalDefence, 1)
+                        };
 
                         var b2 = new Buff("Cavaleiros", -1)
                         {
@@ -47,8 +51,10 @@ public class ArchetypeFactory
                         if (rarity is Rarity.Deactivated)
                             return;
 
-                        var s = new StatsData();
-                        s.Arcane = 1;
+                        var s = new StatsData()
+                        {
+                            new StatData(Stat.Arcane, 1)
+                        };
                         
                         var b = new Buff("Magos", -1)
                         {
@@ -69,11 +75,13 @@ public class ArchetypeFactory
                         if (rarity is Rarity.Deactivated)
                             return;
 
-                        var s = new StatsData();
-                        s.Strength = 1;
-                        s.Arcane = 1;
-                        s.PhysicalDefence = 1;
-                        s.MagicalDefence = 1;
+                        var s = new StatsData()
+                        {
+                            new StatData(Stat.Strength, 1),
+                            new StatData(Stat.Arcane, 1),
+                            new StatData(Stat.PhysicalDefence, 1),
+                            new StatData(Stat.MagicalDefence, 1),
+                        };
                         
                         var b = new Buff("Herois", -1)
                         {
@@ -95,8 +103,10 @@ public class ArchetypeFactory
                         if (rarity is Rarity.Deactivated)
                             return;
 
-                        var s = new StatsData();
-                        s.PhysicalDefence = -2;
+                        var s = new StatsData()
+                        {
+                            new StatData(Stat.PhysicalDefence, -2),
+                        };
                         
                         var b = new Buff("Hunters", -1)
                         {
@@ -117,8 +127,10 @@ public class ArchetypeFactory
                         if (rarity is Rarity.Deactivated)
                             return;
 
-                        var s = new StatsData();
-                        s.Strength = -3;
+                        var s = new StatsData()
+                        {
+                            new StatData(Stat.Strength, -3),
+                        };
                         
                         var b = new Buff("Weakener", -1)
                         {
@@ -132,7 +144,6 @@ public class ArchetypeFactory
             _ => throw new ArgumentOutOfRangeException(nameof(id), id, null)
         };
     }
-
 
     private void GiveBuffToPlayerTeam(Battle battle, Buff buff)
     {

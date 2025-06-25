@@ -1,26 +1,19 @@
 ﻿using System;
-using UnityEngine;
+using System.Collections.Generic;
 
 [Serializable]
 public class Stats
 {
-    public int Health { get; internal set; }
-    public int Mana { get; internal set; }
+    public Dictionary<Stat, int> StatsDictionary { get; private set; }
 
-    public int Strength { get; private set; }
-    public int Arcane { get; private set; }
-
-    public int PhysicalDefence { get; private set; }
-    public int MagicalDefence { get; private set; }
-
-    public Stats(int health, int mana, int strength, int arcane, int physicalDefence, int magicalDefence)
+    public Stats(Dictionary<Stat, int> stats)
     {
-        Health = health;
-        Mana = mana;
-        Strength = strength;
-        Arcane = arcane;
-        PhysicalDefence = physicalDefence;
-        MagicalDefence = magicalDefence;
+        StatsDictionary = stats;
+    }
+
+    public int GetStat(Stat stat)
+    {
+        return StatsDictionary.TryGetValue(stat, out var value) ? value : 0;
     }
 
     public int GetReducedDamage(DamageDomain damage)
@@ -29,8 +22,8 @@ public class Stats
 
         var reducedDamage = damage.Type switch
         {
-            DamageType.Physical => damageValue - (damageValue * PhysicalDefence * 10 / 100),
-            DamageType.Magical => damageValue - (damageValue * MagicalDefence * 10 / 100),
+            DamageType.Physical => damageValue - (damageValue * GetStat(Stat.PhysicalDefence) * 10 / 100),
+            DamageType.Magical => damageValue - (damageValue * GetStat(Stat.MagicalDefence) * 10 / 100),
             _ => throw new ArgumentOutOfRangeException()
         };
 
@@ -39,22 +32,35 @@ public class Stats
 
     public static Stats operator + (Stats a, Stats b)
     {
-        return new Stats(
-            a.Health + b.Health,
-            a.Mana + b.Mana,
-            a.Strength + b.Strength,
-            a.Arcane + b.Arcane,
-            a.PhysicalDefence + b.PhysicalDefence,
-            a.MagicalDefence + b.MagicalDefence);
+        var newStats = new Dictionary<Stat, int>();
+        
+        foreach (var (stat, aValue) in a.StatsDictionary)
+        {
+            newStats.Add(stat, aValue);
+        }
+        
+        foreach (var (stat, bValue) in b.StatsDictionary)
+        {
+            if (newStats.TryGetValue(stat, out var value))
+            {
+                newStats[stat] = value + bValue;
+                continue;
+            }
+            
+            newStats.Add(stat, bValue);
+        }
+        
+        return new Stats(newStats);
     }
+}
 
-    public void Print()
-    {
-        Debug.Log($"Health {Health}");
-        Debug.Log($"Mana {Mana}");
-        Debug.Log($"Strength {Strength}");
-        Debug.Log($"Arcane {Arcane}");
-        Debug.Log($"PhysicalDefence {PhysicalDefence}");
-        Debug.Log($"MagicalDefence {MagicalDefence}");
-    }
+public enum Stat
+{
+    Health,
+    Mana,
+    Strength,
+    Arcane,
+    PhysicalDefence,
+    MagicalDefence,
+    HealPower
 }

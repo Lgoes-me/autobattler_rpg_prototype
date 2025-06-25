@@ -166,10 +166,38 @@ public class BlessingFactory
                             new RegenBuff(healValue, 2)
                         };
                         
-                        foreach (var playerPawn in battle.PlayerPawns)
+                        GiveBuffToPlayerTeam(battle, buff);
+                    }
+                }
+            },
+            
+            BlessingIdentifier.CuraAumentadaPercentualmente => new Blessing(id)
+            {
+                new OnBattleStartedListener()
+                {
+                    (battle, rarity) =>
+                    {
+                        var healPowerValue = rarity switch
                         {
-                            playerPawn.Pawn.GetComponent<PawnBuffsComponent>().AddBuff(buff);
-                        }
+                            Rarity.Deactivated => 0,
+                            Rarity.Diamond => 20,
+                            Rarity.Gold => 10,
+                            Rarity.Silver => 4,
+                            Rarity.Bronze => 1,
+                            _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
+                        };
+                        
+                        var stats = new StatsData()
+                        {
+                            new StatData(Stat.HealPower, healPowerValue),
+                        };
+                        
+                        var buff = new Buff("CuraAumentadaPercentualmente", -1)
+                        {
+                            new StatModifierBuff(stats.ToDomain())
+                        };
+                        
+                        GiveBuffToPlayerTeam(battle, buff);
                     }
                 }
             },
@@ -206,4 +234,12 @@ public class BlessingFactory
 
     private bool IsPlayerTeam(PawnController pawn) => pawn.Pawn.Team == TeamType.Player;
     private bool IsEnemyTeam(PawnController pawn) => pawn.Pawn.Team == TeamType.Enemies;
+    
+    private void GiveBuffToPlayerTeam(Battle battle, Buff buff)
+    {
+        foreach (var p in battle.PlayerPawns)
+        {
+            p.Pawn.GetComponent<PawnBuffsComponent>().AddBuff(buff);
+        }
+    }
 }

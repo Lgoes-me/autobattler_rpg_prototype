@@ -16,7 +16,7 @@
         if (!CanRevive && !stats.IsAlive)
             return;
         
-        var heal = (int) (HealValue * AbilityUser.Pawn.GetComponent<StatsComponent>().GetPawnStats().Arcane);
+        var heal = (int) (HealValue * AbilityUser.Pawn.GetComponent<StatsComponent>().GetPawnStats().GetStat(Stat.Arcane));
         stats.ReceiveHeal(heal, CanRevive);
     }
     

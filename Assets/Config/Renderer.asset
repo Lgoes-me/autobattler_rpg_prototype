@@ -56,8 +56,7 @@ MonoBehaviour:
   - {fileID: -580146084729650083}
   - {fileID: 6484297088760481039}
   - {fileID: 6509435738945033111}
-  - {fileID: 6245346743039348590}
-  m_RendererFeatureMap: f5c6ec89c9f0775a5d04dbad35e8f2f70f05abd1d8d9fc5997130dec5029565a6ecf0006c6edab56
+  m_RendererFeatureMap: f5c6ec89c9f0775a5d04dbad35e8f2f70f05abd1d8d9fc5997130dec5029565a
   m_UseNativeRenderPass: 0
   xrSystemData: {fileID: 0}
   postProcessData: {fileID: 11400000, guid: bbd6aba35b53c4c4b9c2a3bf32a33ab0, type: 2}
@@ -120,26 +119,6 @@ MonoBehaviour:
   m_Name: DitheringRenderFeature
   m_EditorClassIdentifier: 
   m_Active: 1
---- !u!114 &6245346743039348590
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b00045f12942b46c698459096c89274e, type: 3}
-  m_Name: FullScreenPassRendererFeature
-  m_EditorClassIdentifier: 
-  m_Active: 1
-  injectionPoint: 600
-  fetchColorBuffer: 1
-  requirements: 0
-  passMaterial: {fileID: 2100000, guid: e400f0de9e91b3849920050350c627c9, type: 2}
-  passIndex: 0
-  bindDepthStencilAttachment: 0
-  m_Version: 1
 --- !u!114 &6484297088760481039
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,15 +12,8 @@ public class StatModifierBuff : BuffComponent
 
     public Stats ProcessStats(Stats stats)
     {
-        return new Stats(
-            stats.Health,
-            stats.Mana,
-            stats.Strength + Variation.Strength,
-            stats.Arcane + Variation.Arcane,
-            stats.PhysicalDefence + Variation.PhysicalDefence,
-            stats.MagicalDefence + Variation.MagicalDefence);
+        return stats + Variation;
     }
-
 
     public override void ApplyStacks()
     {

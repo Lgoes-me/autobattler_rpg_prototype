@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class LevelUpStats
 {
@@ -15,14 +16,14 @@ public class LevelUpStats
 
     public void EvaluateLevel(int level)
     {
-        var value = LevelUpCurve.Evaluate(level / (float) 10);
+        var percent = LevelUpCurve.Evaluate(level / (float) 10);
+        var newStats = new Dictionary<Stat, int>();
 
-        CurrentStats = new Stats(
-            Mathf.CeilToInt(MaxLevelStats.Health * value),
-            Mathf.CeilToInt(MaxLevelStats.Mana * value),
-            Mathf.CeilToInt(MaxLevelStats.Strength * value),
-            Mathf.CeilToInt(MaxLevelStats.Arcane * value),
-            Mathf.CeilToInt(MaxLevelStats.PhysicalDefence * value),
-            Mathf.CeilToInt(MaxLevelStats.MagicalDefence * value));
+        foreach (var (stat, value) in MaxLevelStats.StatsDictionary)
+        {
+            newStats.Add(stat, Mathf.CeilToInt(value * percent));
+        }
+        
+        CurrentStats = new Stats(newStats);
     }
 }
