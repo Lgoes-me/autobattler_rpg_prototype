@@ -27,7 +27,6 @@
 
 public enum Rarity
 {
-    Unknown = -2,
     Deactivated = -1,
     Diamond = 0,
     Gold = 1,

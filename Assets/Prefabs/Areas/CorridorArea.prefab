@@ -80,6 +80,9 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -156,9 +159,8 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6243810322874172801}
   m_Enabled: 1
-  serializedVersion: 10
+  serializedVersion: 11
   m_Type: 0
-  m_Shape: 0
   m_Color: {r: 1, g: 0.7411765, b: 0.39215687, a: 1}
   m_Intensity: 5
   m_Range: 5.4
@@ -208,8 +210,12 @@ Light:
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
 --- !u!114 &6810466193844596528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,11 +322,10 @@ MonoBehaviour:
   <Id>k__BackingField: ba9e4921-22ec-4914-a4ff-cc08f334b4b0
   <SpawnPoint>k__BackingField: {fileID: 8778516737657091115}
   <CameraArea>k__BackingField: {fileID: 0}
-  <Collider>k__BackingField: {fileID: 4441693546795938816}
   <Destination>k__BackingField: {fileID: 1414291554413539100}
   <Spotlight>k__BackingField: {fileID: 6243810322874172801}
   <FogDoor>k__BackingField: {fileID: 1874526780616595058}
-  <ActiveColor>k__BackingField: {r: 0.14117648, g: 0.14117648, b: 0.19215687, a: 1}
+  <ActiveColor>k__BackingField: {r: 0.56683874, g: 0.56683874, b: 0.6226415, a: 1}
   <InactiveColor>k__BackingField: {r: 0.19607843, g: 0.19607843, b: 0.21960784, a: 1}
 --- !u!65 &4441693546795938816
 BoxCollider:

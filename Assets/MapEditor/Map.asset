@@ -503,7 +503,7 @@ MonoBehaviour:
     <SceneDestination>k__BackingField: 5156dcbf-99fe-410b-b6c8-6e7496024057
     <DoorDestination>k__BackingField: 69690e82-0343-458c-8dcc-f75d91b8ca70
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: 796, y: -79.999954}
+  <Position>k__BackingField: {x: 866, y: -70.00005}
   <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 19dd903d99158e5409d93f9499a6abee, type: 3}
   <CombatEncounters>k__BackingField:
   - <Enemies>k__BackingField:
@@ -513,7 +513,7 @@ MonoBehaviour:
         <PawnData>k__BackingField: {fileID: 11400000, guid: dc2b5ccfd2ced1e47877dc6503421d6a, type: 2}
         <WeaponType>k__BackingField: 0
         <Mount>k__BackingField: {fileID: 0}
-        <Level>k__BackingField: 1
+        <Level>k__BackingField: 3
       <Animation>k__BackingField: 
       <Forward>k__BackingField: 1
     - name: Enemy

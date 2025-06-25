@@ -2,11 +2,38 @@
 
 public class BlessingFactory
 {
-    public Blessing CreateBlessing(BlessingIdentifier id)
+    public Blessing CreateBlessing(BlessingIdentifier id, Rarity value)
     {
         return id switch
         {
-            BlessingIdentifier.BattleStartGainMana => new Blessing(id)
+            BlessingIdentifier.CuraInicioDaLuta => new Blessing(id, value)
+            {
+                new OnBattleStartedListener()
+                {
+                    (battle, rarity) =>
+                    {
+                        var healValue = rarity switch
+                        {
+                            Rarity.Deactivated => 0,
+                            Rarity.Diamond => 50,
+                            Rarity.Gold => 20,
+                            Rarity.Silver => 10,
+                            Rarity.Bronze => 5,
+                            _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
+                        };
+                        
+                        battle.PlayerPawns.ForEach(p => p.Pawn.GetComponent<StatsComponent>().ReceiveHeal(healValue, false));
+                    }
+                }
+            },
+            
+            
+            
+            
+            
+            
+            
+            BlessingIdentifier.BattleStartGainMana => new Blessing(id, value)
             {
                 new OnBattleStartedListener()
                 {
@@ -14,7 +41,7 @@ public class BlessingFactory
                 }
             },
             
-            BlessingIdentifier.OnAttackHeal => new Blessing(id)
+            BlessingIdentifier.OnAttackHeal => new Blessing(id, value)
             {
                 new OnAttackEventListener()
                 {
@@ -26,7 +53,7 @@ public class BlessingFactory
                 }
             },
             
-            BlessingIdentifier.DamageEnemiesOnEnemyDeath => new Blessing(id)
+            BlessingIdentifier.DamageEnemiesOnEnemyDeath => new Blessing(id, value)
             {
                 new OnPawnDeathListener()
                 {
