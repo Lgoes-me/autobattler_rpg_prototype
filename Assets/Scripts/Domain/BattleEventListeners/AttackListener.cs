@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 
+public delegate void AttackDelegate(Battle battle, PawnController abilityUser, Ability ability, Rarity rarity);
+
 public class OnAttackEventListener : BaseBattleEventListener<Func<Battle, PawnController, Ability, bool>, AttackDelegate>
 {
     public void OnAttack(Battle battle, PawnController abilityUser, Ability ability, Rarity rarity)
@@ -28,5 +30,3 @@ public class OnSpecialAttackEventListener : BaseBattleEventListener<Func<Battle,
         }
     }
 }
-
-public delegate void AttackDelegate(Battle battle, PawnController abilityUser, Ability ability, Rarity rarity);

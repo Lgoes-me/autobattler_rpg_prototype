@@ -13,7 +13,7 @@ public abstract class BaseIEnumerableGameEventListener : IEnumerable
 
     public void DoBattleStartEvent(Battle battle)
     {
-        foreach (BaseBattleEventListener listener in GameEventListeners)
+        foreach (var listener in GameEventListeners)
         {
             if (listener is not OnBattleStartedListener onBattleStartedListener)
                 continue;
@@ -24,7 +24,7 @@ public abstract class BaseIEnumerableGameEventListener : IEnumerable
 
     public void DoAttackEvent(Battle battle, PawnController abilityUser, Ability ability)
     {
-        foreach (BaseBattleEventListener listener in GameEventListeners)
+        foreach (var listener in GameEventListeners)
         {
             if (listener is not OnAttackEventListener onAttackEventListener)
                 continue;
@@ -35,7 +35,7 @@ public abstract class BaseIEnumerableGameEventListener : IEnumerable
 
     public void DoSpecialAttackEvent(Battle battle, PawnController abilityUser, Ability ability)
     {
-        foreach (BaseBattleEventListener listener in GameEventListeners)
+        foreach (var listener in GameEventListeners)
         {
             if (listener is not OnSpecialAttackEventListener onSpecialAttackEventListener)
                 continue;
@@ -46,7 +46,7 @@ public abstract class BaseIEnumerableGameEventListener : IEnumerable
 
     public void DoPawnDeathEvent(Battle battle, PawnController pawnController)
     {
-        foreach (BaseBattleEventListener listener in GameEventListeners)
+        foreach (var listener in GameEventListeners)
         {
             if (listener is not OnPawnDeathListener onPawnDeathListener)
                 continue;

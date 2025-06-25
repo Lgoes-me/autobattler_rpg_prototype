@@ -96,13 +96,11 @@ public class PawnController : MonoBehaviour
         if (!PawnState.AbleToFight)
             return;
 
+        Application.Instance.GetManager<BattleEventsManager>().DoAttackEvent(Battle, this, ability);
+        
         if (ability.IsSpecial)
         {
             Application.Instance.GetManager<BattleEventsManager>().DoSpecialAttackEvent(Battle, this, ability);
-        }
-        else
-        {
-            Application.Instance.GetManager<BattleEventsManager>().DoAttackEvent(Battle, this, ability);
         }
 
         if (Pawn.TryGetComponent<WeaponComponent>(out var component) && component.Weapon != null)
