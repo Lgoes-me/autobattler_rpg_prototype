@@ -2,9 +2,9 @@
 
 public class DamageDomain
 {
-    private Pawn Attacker { get; set; }
-    private float Multiplier { get; set; }
-    public DamageType Type { get; private set; }
+    public Pawn Attacker { get; }
+    private float Multiplier { get; }
+    public DamageType Type { get; }
 
     public DamageDomain(Pawn attacker, float multiplier, DamageType type)
     {
@@ -17,8 +17,8 @@ public class DamageDomain
     {
         var value = Type switch
         {
-            DamageType.Physical => (int) Multiplier * Attacker.GetComponent<StatsComponent>().GetPawnStats().GetStat(Stat.Strength),
-            DamageType.Magical => (int) Multiplier * Attacker.GetComponent<StatsComponent>().GetPawnStats().GetStat(Stat.Arcane),
+            DamageType.Physical => (int) Multiplier * Attacker.GetComponent<StatsComponent>().GetStats().GetStat(Stat.Strength),
+            DamageType.Magical => (int) Multiplier * Attacker.GetComponent<StatsComponent>().GetStats().GetStat(Stat.Arcane),
             _ => throw new ArgumentOutOfRangeException()
         };
 

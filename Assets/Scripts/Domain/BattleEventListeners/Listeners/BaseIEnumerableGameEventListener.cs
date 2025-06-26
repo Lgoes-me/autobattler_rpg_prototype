@@ -44,14 +44,14 @@ public abstract class BaseIEnumerableGameEventListener : IEnumerable
         }
     }
 
-    public void DoPawnDeathEvent(Battle battle, PawnController pawnController)
+    public void DoPawnDeathEvent(Battle battle, PawnController dead, Pawn attacker)
     {
         foreach (var listener in GameEventListeners)
         {
             if (listener is not OnPawnDeathListener onPawnDeathListener)
                 continue;
 
-            onPawnDeathListener.OnPawnDeath(battle, pawnController, Rarity);
+            onPawnDeathListener.OnPawnDeath(battle, dead, attacker, Rarity);
         }
     }
     

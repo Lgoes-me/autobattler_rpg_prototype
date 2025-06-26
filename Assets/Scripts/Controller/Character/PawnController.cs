@@ -211,7 +211,7 @@ public class PawnController : MonoBehaviour
         bool overrideSprite,
         List<AbilityBehaviour> extraEffects)
     {
-        var roomScene = FindObjectOfType<RoomController>();
+        var roomScene = FindFirstObjectByType<RoomController>();
 
         var projectile = Instantiate(
                 projectilePrefab,
@@ -232,7 +232,7 @@ public class PawnController : MonoBehaviour
         }
     }
 
-    private void ReceiveAttack()
+    private void ReceiveAttack(Pawn attacker)
     {
         CharacterController.DoHitStop();
 
@@ -244,7 +244,7 @@ public class PawnController : MonoBehaviour
         NavMeshAgent.ResetPath();
         Ability = null;
 
-        Application.Instance.GetManager<BattleEventsManager>().DoPawnDeathEvent(Battle, this);
+        Application.Instance.GetManager<BattleEventsManager>().DoPawnDeathEvent(Battle, this, attacker);
     }
 
     private void ReceiveHeal()
@@ -261,7 +261,7 @@ public class PawnController : MonoBehaviour
 
     public void SummonPawn(Pawn pawn)
     {
-        var roomScene = FindObjectOfType<RoomController>();
+        var roomScene = FindFirstObjectByType<RoomController>();
         var prefab = Application.Instance.GetManager<PartyManager>().BasePawnPrefab;
 
         var randomRotation = Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)) * Vector3.forward * 1f;

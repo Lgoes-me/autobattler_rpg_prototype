@@ -162,7 +162,7 @@ public class SceneManager : MonoBehaviour, IManager
             InterfaceManager.HideBattleCanvas();
             GameSaveManager.SetBonfireSpawn(bonfireSpawn);
 
-            FindObjectOfType<BonfireScene>().Init(callback);
+            FindFirstObjectByType<BonfireScene>().Init(callback);
         };
     }
 

@@ -22,9 +22,12 @@ public enum BlessingIdentifier
     BonusDeStatQuandoCuraAcontece = 01_09,
     
     RevivePrimeiroAliadoAMorrerEmCombate = 02_01,
+    ReviveTodosAliadosAMorreremEmCombate = 02_02,
+    DanoEmAreaQuandoAliadoMorre = 02_03,
+    DanoEmAreaQuandoInimigoMorre = 02_04,
+    DanoDeVingançaNoInimigoQuandoAliadoMorre = 02_05,
     
     
     
     BattleStartGainMana = 0,
-    DamageEnemiesOnEnemyDeath = 2
 }

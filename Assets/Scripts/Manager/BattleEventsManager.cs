@@ -48,16 +48,16 @@ public class BattleEventsManager : IManager
         }
     }
     
-    public void DoPawnDeathEvent(Battle battle, PawnController pawnController)
+    public void DoPawnDeathEvent(Battle battle, PawnController dead, Pawn attacker)
     {
         foreach (var blessing in BlessingManager.Blessings)
         {
-            blessing.DoPawnDeathEvent(battle, pawnController);
+            blessing.DoPawnDeathEvent(battle, dead, attacker);
         }
         
         foreach (var archetype in ArchetypeManager.Archetypes)
         {
-            archetype.DoPawnDeathEvent(battle, pawnController);
+            archetype.DoPawnDeathEvent(battle, dead, attacker);
         }
     }
 }

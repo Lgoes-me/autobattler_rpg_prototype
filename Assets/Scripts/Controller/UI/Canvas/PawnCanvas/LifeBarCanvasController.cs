@@ -14,23 +14,28 @@ public class LifeBarCanvasController : BasePawnCanvasController
         var stats = Pawn.GetComponent<StatsComponent>();
         var buffs = Pawn.GetComponent<PawnBuffsComponent>();
         
-        var fillAmount = stats.Health / (float) stats.GetPawnStats().GetStat(Stat.Health);
+        var fillAmount = stats.Health / (float) stats.GetStats().GetStat(Stat.Health);
 
         LifeBar.fillAmount = fillAmount;
         BackgroundLifeBar.fillAmount = fillAmount;
 
-        ManaBar.fillAmount = stats.HasMana ? stats.Mana / (float) stats.GetPawnStats().GetStat(Stat.Mana) : 0;
+        ManaBar.fillAmount = stats.HasMana ? stats.Mana / (float) stats.GetStats().GetStat(Stat.Mana) : 0;
         
-        stats.LostLife += UpdateLife;
+        stats.LostLife += ReceiveAttack;
         stats.GainedLife += UpdateLife;
         stats.ManaChanged += UpdateMana;
         buffs.BuffsChanged += UpdateBuffs;
     }
 
+    private void ReceiveAttack(Pawn attacker)
+    {
+        UpdateLife();
+    }
+
     private void UpdateLife()
     {
         var stats = Pawn.GetComponent<StatsComponent>();
-        var fillAmount = stats.Health / (float) stats.GetPawnStats().GetStat(Stat.Health);
+        var fillAmount = stats.Health / (float) stats.GetStats().GetStat(Stat.Health);
         
         LifeBar.fillAmount = fillAmount;
 
@@ -56,7 +61,7 @@ public class LifeBarCanvasController : BasePawnCanvasController
         if (!stats.HasMana)
             return;
 
-        ManaBar.fillAmount = stats.Mana / (float) stats.GetPawnStats().GetStat(Stat.Mana);
+        ManaBar.fillAmount = stats.Mana / (float) stats.GetStats().GetStat(Stat.Mana);
     }
 
     protected virtual void UpdateBuffs()
@@ -78,7 +83,7 @@ public class LifeBarCanvasController : BasePawnCanvasController
         var stats = Pawn.GetComponent<StatsComponent>();
         var buffs = Pawn.GetComponent<PawnBuffsComponent>();
         
-        stats.LostLife -= UpdateLife;
+        stats.LostLife -= ReceiveAttack;
         stats.GainedLife -= UpdateLife;
         
         stats.ManaChanged -= UpdateMana;
