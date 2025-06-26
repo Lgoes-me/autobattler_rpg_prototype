@@ -66,8 +66,7 @@ public class PawnController : MonoBehaviour
 
     public void StartBattle(Battle battle)
     {
-        Pawn.GetComponent<StatsComponent>().StartBattle();
-        Pawn.GetComponent<PawnBuffsComponent>().StartBattle();
+        Pawn.StartBattle();
 
         enabled = true;
         Ability = null;
@@ -183,10 +182,9 @@ public class PawnController : MonoBehaviour
         }
     }
 
-    public void FinishBattle()
+    public void EndBattle()
     {
-        Pawn.GetComponent<StatsComponent>().FinishBattle();
-        Pawn.GetComponent<PawnBuffsComponent>().FinishBattle();
+        Pawn.EndBattle();
 
         CharacterController.SetAnimationState(new IdleState());
 
@@ -256,7 +254,9 @@ public class PawnController : MonoBehaviour
         if (!Pawn.GetComponent<StatsComponent>().IsAlive || PawnState is not DeadState)
             return;
         
-        GoBackToIdle();
+        Ability = null;
+        CharacterController.SetAnimationState(new IdleState());
+        RealizeTurn();
     }
 
     public void SummonPawn(Pawn pawn)

@@ -129,7 +129,7 @@ public class SceneManager : MonoBehaviour, IManager
     {
         foreach (var pawn in PartyManager.Party)
         {
-            pawn.FinishBattle();
+            pawn.EndBattle();
         }
 
         if (CurrentRoom != null)

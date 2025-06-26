@@ -110,7 +110,7 @@ public class PartyManager : MonoBehaviour, IManager
         var randomRotation = randomEnabled ? Quaternion.Euler(new Vector3(0, Random.Range(0, 360), 0)) * Vector3.forward * 1f : Vector3.zero;
         var pawnInstance = Instantiate(PawnControllerPrefab, position + randomRotation, Quaternion.identity, transform);
 
-        var pawn = ContentManager.GetPawnDomainFromInfo(pawnInfo);
+        var pawn = ContentManager.GetPawnFromInfo(pawnInfo);
         GameSaveManager.ApplyPawnInfo(pawn);
         pawnInstance.Init(pawn);
         Party.Add(pawnInstance);

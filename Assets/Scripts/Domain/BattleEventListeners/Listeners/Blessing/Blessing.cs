@@ -18,10 +18,11 @@ public enum BlessingIdentifier
     CuraQuandoAliadoMorre = 01_05,
     CuraQuandoInimigoMorre = 01_06,
     CuraAoLongoDoTempo = 01_07,
-    CuraAumentadaPercentualmente = 01_08,
+    AumentaCuraPercentualmente = 01_08,
+    BonusDeStatQuandoCuraAcontece = 01_09,
     
+    RevivePrimeiroAliadoAMorrerEmCombate = 02_01,
     
-    BonusDeStatQuandoCuraAcontece,
     
     
     BattleStartGainMana = 0,

@@ -86,7 +86,7 @@ public class BattleController : MonoBehaviour
     {
         foreach (var pawn in Battle.Pawns)
         {
-            pawn.FinishBattle();
+            pawn.EndBattle();
 
             if (pawn.Pawn.Team == TeamType.Enemies)
             {
@@ -115,7 +115,7 @@ public class BattleController : MonoBehaviour
 
         foreach (var pawn in Battle.Pawns)
         {
-            pawn.FinishBattle();
+            pawn.EndBattle();
 
             if (pawn.Pawn.Team == TeamType.Enemies)
             {

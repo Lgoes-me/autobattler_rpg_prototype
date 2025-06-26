@@ -185,7 +185,7 @@ public class StatsComponent : PawnComponent
         ManaChanged?.Invoke();
     }
 
-    public void FinishBattle()
+    public void EndBattle()
     {
         BattleFinished?.Invoke();
     }
@@ -293,7 +293,7 @@ public class PawnBuffsComponent : PawnComponent
         }
     }
 
-    public void FinishBattle()
+    public void EndBattle()
     {
         RemoveAllBuffs();
     }
@@ -406,5 +406,38 @@ public class ConsumableComponent : PawnComponent
         Consumables.Remove(consumable);
 
         ConsumablesUpdated?.Invoke();
+    }
+}
+
+public class ResourceComponent : PawnComponent
+{
+    public ResourceComponent()
+    {
+        
+    }
+}
+
+public class MetaDataComponent : PawnComponent
+{
+    private List<string> Data { get; }
+
+    public MetaDataComponent()
+    {
+        Data = new List<string>();
+    }
+
+    public void EndBattle()
+    {
+        Data.Clear();
+    }
+
+    public void AddMetaData(string data)
+    {
+        Data.Add(data);
+    }
+
+    public bool CheckMetaData(string data)
+    {
+        return Data.Contains(data);
     }
 }

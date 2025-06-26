@@ -23,6 +23,8 @@ public class Pawn
 
         Id = id;
         Components = components.ToDictionary(c => c.GetType(), c => c);
+        
+        AddComponent(new MetaDataComponent());
     }
 
     public Pawn(
@@ -121,6 +123,19 @@ public class Pawn
             GetComponent<AbilitiesComponent>().Abilities,
             GetComponent<ConsumableComponent>().Consumables,
             GetComponent<PawnBuffsComponent>().PermanentBuffs);
+    }
+
+    public void StartBattle()
+    {
+        GetComponent<StatsComponent>().StartBattle();
+        GetComponent<PawnBuffsComponent>().StartBattle();
+    }
+    
+    public void EndBattle()
+    {
+        GetComponent<StatsComponent>().EndBattle();
+        GetComponent<MetaDataComponent>().EndBattle();
+        GetComponent<PawnBuffsComponent>().EndBattle();
     }
 }
 

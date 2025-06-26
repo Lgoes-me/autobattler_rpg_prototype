@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 public class BlessingFactory
 {
@@ -161,7 +162,7 @@ public class BlessingFactory
                             _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
                         };
                         
-                        var buff = new Buff("CuraAoLongoDoTempo", -1)
+                        var buff = new Buff(BlessingIdentifier.CuraAoLongoDoTempo.ToString(), -1)
                         {
                             new RegenBuff(healValue, 2)
                         };
@@ -171,7 +172,7 @@ public class BlessingFactory
                 }
             },
             
-            BlessingIdentifier.CuraAumentadaPercentualmente => new Blessing(id)
+            BlessingIdentifier.AumentaCuraPercentualmente => new Blessing(id)
             {
                 new OnBattleStartedListener()
                 {
@@ -192,12 +193,47 @@ public class BlessingFactory
                             new StatData(Stat.HealPower, healPowerValue),
                         };
                         
-                        var buff = new Buff("CuraAumentadaPercentualmente", -1)
+                        var buff = new Buff(BlessingIdentifier.AumentaCuraPercentualmente.ToString(), -1)
                         {
                             new StatModifierBuff(stats.ToDomain())
                         };
                         
                         GiveBuffToPlayerTeam(battle, buff);
+                    }
+                }
+            },
+            
+            BlessingIdentifier.BonusDeStatQuandoCuraAcontece => new Blessing(id)
+            {
+                //TODO LISTENER DE GANHAR VIDA
+            },
+            
+            BlessingIdentifier.RevivePrimeiroAliadoAMorrerEmCombate => new Blessing(id)
+            {
+                new OnPawnDeathListener()
+                {
+                    (battle, pawnController) => 
+                        IsPlayerTeam(pawnController) &&
+                        !pawnController.Pawn.GetComponent<MetaDataComponent>()
+                            .CheckMetaData(BlessingIdentifier.RevivePrimeiroAliadoAMorrerEmCombate.ToString()),
+                    
+                    (battle, pawnController, rarity) =>
+                    {
+                        var percentualHealValue = rarity switch
+                        {
+                            Rarity.Deactivated => 0,
+                            Rarity.Diamond => 100,
+                            Rarity.Gold => 75,
+                            Rarity.Silver => 50,
+                            Rarity.Bronze => 15,
+                            _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
+                        };
+                        
+                        var health = pawnController.Pawn.GetComponent<StatsComponent>().GetPawnStats().GetStat(Stat.Health);
+                        var healValue = Mathf.CeilToInt(health * percentualHealValue / (float) 100);
+                        pawnController.Pawn.GetComponent<StatsComponent>().ReceiveHeal(healValue, true);
+
+                        GiveMetaDataToPlayerTeam(battle, BlessingIdentifier.RevivePrimeiroAliadoAMorrerEmCombate.ToString());
                     }
                 }
             },
@@ -240,6 +276,14 @@ public class BlessingFactory
         foreach (var p in battle.PlayerPawns)
         {
             p.Pawn.GetComponent<PawnBuffsComponent>().AddBuff(buff);
+        }
+    }
+    
+    private void GiveMetaDataToPlayerTeam(Battle battle, string data)
+    {
+        foreach (var p in battle.PlayerPawns)
+        {
+            p.Pawn.GetComponent<MetaDataComponent>().AddMetaData(data);
         }
     }
 }

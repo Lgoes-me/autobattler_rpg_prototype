@@ -21,7 +21,7 @@ public class ContentManager : MonoBehaviour, IManager
             .ToDomain();
     }
 
-    public Pawn GetPawnDomainFromInfo(PawnInfo pawnInfo)
+    public Pawn GetPawnFromInfo(PawnInfo pawnInfo)
     {
         return AvailablePawns
             .First(p => p.Id == pawnInfo.Name)
