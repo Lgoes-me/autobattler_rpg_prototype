@@ -18,7 +18,7 @@ public class Stats
 
     public int GetReducedDamage(DamageDomain damage)
     {
-        var damageValue = damage.CalculateDamageValue();
+        var damageValue = damage.Value;
 
         var reducedDamage = damage.Type switch
         {

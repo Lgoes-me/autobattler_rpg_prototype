@@ -9,7 +9,7 @@
 
     public override void DoAbilityEffect(PawnController focus)
     {
-        var resources = AbilityUser.Pawn.GetComponent<ResourceComponent>();
+        var resources = focus.Pawn.GetComponent<ResourceComponent>();
 
         if (!resources.IsAlive)
             return;

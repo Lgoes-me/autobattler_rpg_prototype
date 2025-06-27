@@ -55,6 +55,50 @@ public abstract class BaseIEnumerableGameEventListener : IEnumerable
         }
     }
     
+    public void DoHealthGainedEvent(Battle battle, PawnController pawnController, int value)
+    {
+        foreach (var listener in GameEventListeners)
+        {
+            if (listener is not OnHealthGainedListener onHealthGainedListener)
+                continue;
+
+            onHealthGainedListener.OnHealthGained(battle, pawnController, value, Rarity);
+        }
+    }
+    
+    public void DoHealthLostEvent(Battle battle, PawnController pawnController, int value)
+    {
+        foreach (var listener in GameEventListeners)
+        {
+            if (listener is not OnHealthLostListener onHealthLostListener)
+                continue;
+
+            onHealthLostListener.OnHealthLost(battle, pawnController, value, Rarity);
+        }
+    }
+    
+    public void DoManaGainedEvent(Battle battle, PawnController pawnController, int value)
+    {
+        foreach (var listener in GameEventListeners)
+        {
+            if (listener is not OnManaGainedListener onManaGainedListener)
+                continue;
+
+            onManaGainedListener.OnManaGained(battle, pawnController, value, Rarity);
+        }
+    }
+    
+    public void DoManaLostEvent(Battle battle, PawnController pawnController, int value)
+    {
+        foreach (var listener in GameEventListeners)
+        {
+            if (listener is not OnManaLostListener onManaLostListener)
+                continue;
+
+            onManaLostListener.OnManaLost(battle, pawnController, value, Rarity);
+        }
+    }
+    
     public void Add(BaseBattleEventListener item)
     {
         GameEventListeners.Add(item);

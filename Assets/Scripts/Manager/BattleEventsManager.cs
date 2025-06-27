@@ -60,4 +60,56 @@ public class BattleEventsManager : IManager
             archetype.DoPawnDeathEvent(battle, dead, attacker);
         }
     }
+    
+    public void DoHealthGainedEvent(Battle battle, PawnController pawnController, int value)
+    {
+        foreach (var blessing in BlessingManager.Blessings)
+        {
+            blessing.DoHealthGainedEvent(battle, pawnController, value);
+        }
+        
+        foreach (var archetype in ArchetypeManager.Archetypes)
+        {
+            archetype.DoHealthGainedEvent(battle, pawnController, value);
+        }
+    }
+    
+    public void DoHealthLostEvent(Battle battle, PawnController pawnController, int value)
+    {
+        foreach (var blessing in BlessingManager.Blessings)
+        {
+            blessing.DoHealthLostEvent(battle, pawnController, value);
+        }
+        
+        foreach (var archetype in ArchetypeManager.Archetypes)
+        {
+            archetype.DoHealthLostEvent(battle, pawnController, value);
+        }
+    }
+    
+    public void DoManaGainedEvent(Battle battle, PawnController pawnController, int value)
+    {
+        foreach (var blessing in BlessingManager.Blessings)
+        {
+            blessing.DoManaGainedEvent(battle, pawnController, value);
+        }
+        
+        foreach (var archetype in ArchetypeManager.Archetypes)
+        {
+            archetype.DoManaGainedEvent(battle, pawnController, value);
+        }
+    }
+    
+    public void DoManaLostEvent(Battle battle, PawnController pawnController, int value)
+    {
+        foreach (var blessing in BlessingManager.Blessings)
+        {
+            blessing.DoManaLostEvent(battle, pawnController, value);
+        }
+        
+        foreach (var archetype in ArchetypeManager.Archetypes)
+        {
+            archetype.DoManaLostEvent(battle, pawnController, value);
+        }
+    }
 }

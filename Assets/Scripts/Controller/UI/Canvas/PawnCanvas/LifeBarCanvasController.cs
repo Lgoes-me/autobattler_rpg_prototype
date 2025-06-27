@@ -32,12 +32,12 @@ public class LifeBarCanvasController : BasePawnCanvasController
         buffs.BuffsChanged += UpdateBuffs;
     }
 
-    private void ReceiveAttack(Pawn attacker)
+    private void ReceiveAttack(DamageDomain damageDomain)
     {
-        UpdateLife();
+        UpdateLife(damageDomain.Value);
     }
 
-    private void UpdateLife()
+    private void UpdateLife(int value)
     {
         var stats = Pawn.GetComponent<StatsComponent>();
         var resource = Pawn.GetComponent<ResourceComponent>();
@@ -61,7 +61,7 @@ public class LifeBarCanvasController : BasePawnCanvasController
             Death();
     }
 
-    private void UpdateMana()
+    private void UpdateMana(int value)
     {
         var stats = Pawn.GetComponent<StatsComponent>();
         var resource = Pawn.GetComponent<ResourceComponent>();

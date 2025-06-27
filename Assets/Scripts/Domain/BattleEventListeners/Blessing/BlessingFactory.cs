@@ -76,11 +76,10 @@ public class BlessingFactory
 
             BlessingIdentifier.CuraAoGastarMana => new Blessing(id)
             {
-                //TODO LISTENER DE GASTAR MANA
-                new OnSpecialAttackEventListener()
+                new OnManaLostListener()
                 {
-                    (battle, abilityUser, ability) => IsPlayerTeam(abilityUser),
-                    (battle, abilityUser, ability, rarity) =>
+                    (battle, pawnController) => IsPlayerTeam(pawnController),
+                    (battle, pawnController, value, rarity) =>
                     {
                         var healValue = rarity switch
                         {
@@ -92,7 +91,7 @@ public class BlessingFactory
                             _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
                         };
 
-                        abilityUser.Pawn.GetComponent<ResourceComponent>().ReceiveHeal(healValue, false);
+                        pawnController.Pawn.GetComponent<ResourceComponent>().ReceiveHeal(healValue, false);
                     }
                 }
             },
@@ -206,7 +205,34 @@ public class BlessingFactory
 
             BlessingIdentifier.BonusDeStatQuandoCuraAcontece => new Blessing(id)
             {
-                //TODO LISTENER DE GANHAR VIDA
+                new OnHealthGainedListener()
+                {
+                    (battle, pawnController) => IsPlayerTeam(pawnController),
+                    (battle, pawnController, value, rarity) =>
+                    {
+                        var strengthValue = rarity switch
+                        {
+                            Rarity.Deactivated => 0,
+                            Rarity.Diamond => 20,
+                            Rarity.Gold => 10,
+                            Rarity.Silver => 5,
+                            Rarity.Bronze => 2,
+                            _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
+                        };
+
+                        var stat = new StatsData()
+                        {
+                            new StatData(Stat.Strength, strengthValue),
+                        };
+                        
+                        var buff = new Buff(BlessingIdentifier.BonusDeStatQuandoCuraAcontece.ToString(), -1)
+                        {
+                            new StatModifierBuff(stat.ToDomain())
+                        };
+                        
+                        pawnController.Pawn.GetComponent<PawnBuffsComponent>().AddBuff(buff);
+                    }
+                }
             },
 
             BlessingIdentifier.RevivePrimeiroAliadoAMorrerEmCombate => new Blessing(id)

@@ -232,7 +232,7 @@ public class PawnController : MonoBehaviour
         }
     }
 
-    private void ReceiveAttack(Pawn attacker)
+    private void ReceiveAttack(DamageDomain damageDomain)
     {
         CharacterController.DoHitStop();
 
@@ -244,11 +244,15 @@ public class PawnController : MonoBehaviour
         NavMeshAgent.ResetPath();
         Ability = null;
 
-        Application.Instance.GetManager<BattleEventsManager>().DoPawnDeathEvent(Battle, this, attacker);
+        Application.Instance.GetManager<BattleEventsManager>().DoPawnDeathEvent(Battle, this, damageDomain.Attacker);
+        Application.Instance.GetManager<BattleEventsManager>().DoHealthLostEvent(Battle, this, damageDomain.Value);
+        
     }
 
-    private void ReceiveHeal()
+    private void ReceiveHeal(int value)
     {
+        Application.Instance.GetManager<BattleEventsManager>().DoHealthGainedEvent(Battle, this, value);
+        
         CharacterController.DoNiceHitStop();
 
         if (!Pawn.GetComponent<ResourceComponent>().IsAlive || PawnState is not DeadState)
