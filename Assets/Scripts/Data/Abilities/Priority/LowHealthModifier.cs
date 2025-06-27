@@ -7,7 +7,7 @@ public class LowHealthModifier : PriorityModifier
     
     public override int AlterPriority(PawnController abilityUser, Battle battle, int priority)
     {
-        if (abilityUser.Pawn.GetComponent<StatsComponent>().Health < Health)
+        if (abilityUser.Pawn.GetComponent<ResourceComponent>().Health < Health)
             return priority + 1 * Multiplier;
         
         return priority;

@@ -7,8 +7,8 @@ public abstract class BasePawnCanvasController: BaseCanvasController
     {
         Pawn = pawn;
         
-        Pawn.GetComponent<StatsComponent>().BattleStarted += StartBattle;
-        Pawn.GetComponent<StatsComponent>().BattleFinished += FinishBattle;
+        Pawn.BattleStarted += StartBattle;
+        Pawn.BattleFinished += FinishBattle;
     }
 
     protected virtual void StartBattle()
@@ -31,7 +31,7 @@ public abstract class BasePawnCanvasController: BaseCanvasController
         if(Pawn == null)
             return;
 
-        Pawn.GetComponent<StatsComponent>().BattleStarted -= StartBattle;
-        Pawn.GetComponent<StatsComponent>().BattleFinished -= FinishBattle;
+        Pawn.BattleStarted -= StartBattle;
+        Pawn.BattleFinished -= FinishBattle;
     }
 }

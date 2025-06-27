@@ -19,7 +19,7 @@ public class RegenBuff : BuffComponent
         if (Time.time >= LastTick + TickRate)
         {
             LastTick = Time.time;
-            focus.GetComponent<StatsComponent>().ReceiveHeal(Regen, false);
+            focus.GetComponent<ResourceComponent>().ReceiveHeal(Regen, false);
         }
     }
 }

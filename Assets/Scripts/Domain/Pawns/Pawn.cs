@@ -7,6 +7,12 @@ public class Pawn
     public string Id { get; }
     private Dictionary<Type, PawnComponent> Components { get; set; }
 
+    public delegate void PawnDomainChanged();
+    public delegate void PawnDomainChanged<in T>(T param);
+    
+    public event PawnDomainChanged BattleStarted;
+    public event PawnDomainChanged BattleFinished;
+    
     private PawnStatus Status { get; set; }
     public TeamType Team { get; }
     public int Level { get; }
@@ -24,7 +30,16 @@ public class Pawn
         Id = id;
         Components = components.ToDictionary(c => c.GetType(), c => c);
         
-        AddComponent(new MetaDataComponent());
+        var metaDataComponent = new MetaDataComponent();
+        metaDataComponent.Init(this);
+        AddComponent(metaDataComponent);
+        
+        if (HasComponent<StatsComponent>())
+        {
+            var resourceComponent = new ResourceComponent();
+            resourceComponent.Init(this);
+            AddComponent(resourceComponent);
+        }
     }
 
     public Pawn(
@@ -43,6 +58,7 @@ public class Pawn
 
         if (mount != null && !HasComponent<MountComponent>())
         {
+            mount.Init(this);
             AddComponent(mount);
         }
     }
@@ -112,12 +128,10 @@ public class Pawn
 
     public PawnInfo GetPawnInfo()
     {
-        var stats = GetComponent<StatsComponent>();
-
         return new PawnInfo(
             Id,
-            stats.Level,
-            stats.GetStats().GetStat(Stat.Health) - stats.Health,
+            GetComponent<StatsComponent>().Level,
+            GetComponent<ResourceComponent>().MissingHealth,
             Status,
             GetComponent<WeaponComponent>().Weapon,
             GetComponent<AbilitiesComponent>().Abilities,
@@ -127,13 +141,14 @@ public class Pawn
 
     public void StartBattle()
     {
-        GetComponent<StatsComponent>().StartBattle();
+        BattleStarted?.Invoke();
+        GetComponent<ResourceComponent>().StartBattle();
         GetComponent<PawnBuffsComponent>().StartBattle();
     }
     
     public void EndBattle()
     {
-        GetComponent<StatsComponent>().EndBattle();
+        BattleFinished?.Invoke();
         GetComponent<MetaDataComponent>().EndBattle();
         GetComponent<PawnBuffsComponent>().EndBattle();
     }

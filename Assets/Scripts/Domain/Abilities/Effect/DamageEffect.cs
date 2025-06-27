@@ -9,11 +9,11 @@
 
     public override void DoAbilityEffect(PawnController focus)
     {
-        var stats = focus.Pawn.GetComponent<StatsComponent>();
+        var resources = AbilityUser.Pawn.GetComponent<ResourceComponent>();
 
-        if (!stats.IsAlive)
+        if (!resources.IsAlive)
             return;
 
-        stats.ReceiveDamage(Damage);
+        resources.ReceiveDamage(Damage);
     }
 }

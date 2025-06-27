@@ -27,6 +27,7 @@ public enum BlessingIdentifier
     DanoEmAreaQuandoInimigoMorre = 02_04,
     DanoDeVingançaNoInimigoQuandoAliadoMorre = 02_05,
     
+    CuraBaseadaNoDanoCausado = 03_01,
     
     
     BattleStartGainMana = 0,

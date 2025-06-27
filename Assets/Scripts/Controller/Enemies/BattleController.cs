@@ -124,7 +124,7 @@ public class BattleController : MonoBehaviour
             else
             {
                 pawn.Dance();
-                pawn.Pawn.GetComponent<StatsComponent>().EndOfBattleHeal();
+                pawn.Pawn.GetComponent<ResourceComponent>().EndOfBattleHeal();
             }
         }
         

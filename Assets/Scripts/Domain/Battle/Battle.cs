@@ -67,8 +67,8 @@ public class Battle
             {
                 FocusType.Closest => (pawn.transform.position - user.transform.position).sqrMagnitude,
                 FocusType.Farthest => 1000 - (pawn.transform.position - user.transform.position).sqrMagnitude,
-                FocusType.LowestLife => pawn.Pawn.GetComponent<StatsComponent>().Health,
-                FocusType.HighestLife => 1000 - pawn.Pawn.GetComponent<StatsComponent>().Health,
+                FocusType.LowestLife => pawn.Pawn.GetComponent<ResourceComponent>().Health,
+                FocusType.HighestLife => 1000 - pawn.Pawn.GetComponent<ResourceComponent>().Health,
                 _ => throw new ArgumentOutOfRangeException()
             };
         }

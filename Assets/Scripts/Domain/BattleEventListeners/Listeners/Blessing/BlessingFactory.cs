@@ -25,7 +25,7 @@ public class BlessingFactory
                         };
 
                         battle.PlayerPawns.ForEach(p =>
-                            p.Pawn.GetComponent<StatsComponent>().ReceiveHeal(healValue, false));
+                            p.Pawn.GetComponent<ResourceComponent>().ReceiveHeal(healValue, false));
                     }
                 }
             },
@@ -47,7 +47,7 @@ public class BlessingFactory
                         };
 
                         battle.PlayerPawns.ForEach(p =>
-                            p.Pawn.GetComponent<StatsComponent>().ReceiveHeal(healValue, false));
+                            p.Pawn.GetComponent<ResourceComponent>().ReceiveHeal(healValue, false));
                     }
                 }
             },
@@ -69,7 +69,7 @@ public class BlessingFactory
                             _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
                         };
 
-                        abilityUser.Pawn.GetComponent<StatsComponent>().ReceiveHeal(healValue, false);
+                        abilityUser.Pawn.GetComponent<ResourceComponent>().ReceiveHeal(healValue, false);
                     }
                 }
             },
@@ -92,7 +92,7 @@ public class BlessingFactory
                             _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
                         };
 
-                        abilityUser.Pawn.GetComponent<StatsComponent>().ReceiveHeal(healValue, false);
+                        abilityUser.Pawn.GetComponent<ResourceComponent>().ReceiveHeal(healValue, false);
                     }
                 }
             },
@@ -116,7 +116,7 @@ public class BlessingFactory
 
                         foreach (var playerPawn in battle.PlayerPawns)
                         {
-                            playerPawn.Pawn.GetComponent<StatsComponent>().ReceiveHeal(healValue, false);
+                            playerPawn.Pawn.GetComponent<ResourceComponent>().ReceiveHeal(healValue, false);
                         }
                     }
                 }
@@ -141,7 +141,7 @@ public class BlessingFactory
 
                         foreach (var playerPawn in battle.PlayerPawns)
                         {
-                            playerPawn.Pawn.GetComponent<StatsComponent>().ReceiveHeal(healValue, false);
+                            playerPawn.Pawn.GetComponent<ResourceComponent>().ReceiveHeal(healValue, false);
                         }
                     }
                 }
@@ -232,7 +232,7 @@ public class BlessingFactory
 
                         var health = dead.Pawn.GetComponent<StatsComponent>().GetStats().GetStat(Stat.Health);
                         var healValue = Mathf.CeilToInt(health * percentualHealValue / (float) 100);
-                        dead.Pawn.GetComponent<StatsComponent>().ReceiveHeal(healValue, true);
+                        dead.Pawn.GetComponent<ResourceComponent>().ReceiveHeal(healValue, true);
 
                         GiveMetaDataToPlayerTeam(battle,
                             BlessingIdentifier.RevivePrimeiroAliadoAMorrerEmCombate.ToString());
@@ -264,7 +264,7 @@ public class BlessingFactory
                         var health = dead.Pawn.GetComponent<StatsComponent>().GetStats().GetStat(Stat.Health);
                         var healValue = Mathf.CeilToInt(health * percentualHealValue / (float) 100);
                         
-                        dead.Pawn.GetComponent<StatsComponent>().ReceiveHeal(healValue, true);
+                        dead.Pawn.GetComponent<ResourceComponent>().ReceiveHeal(healValue, true);
                         dead.Pawn.GetComponent<MetaDataComponent>().AddMetaData(BlessingIdentifier.RevivePrimeiroAliadoAMorrerEmCombate.ToString());
                     }
                 }
@@ -290,10 +290,10 @@ public class BlessingFactory
 
                         foreach (var enemyPawn in battle.EnemyPawns)
                         {
-                            if (!enemyPawn.Pawn.GetComponent<StatsComponent>().IsAlive)
+                            if (!enemyPawn.Pawn.GetComponent<ResourceComponent>().IsAlive)
                                 continue;
 
-                            enemyPawn.Pawn.GetComponent<StatsComponent>().ReceiveDamage(damage);
+                            enemyPawn.Pawn.GetComponent<ResourceComponent>().ReceiveDamage(damage);
                         }
                     }
                 }
@@ -319,10 +319,10 @@ public class BlessingFactory
 
                         foreach (var enemyPawn in battle.EnemyPawns)
                         {
-                            if (!enemyPawn.Pawn.GetComponent<StatsComponent>().IsAlive)
+                            if (!enemyPawn.Pawn.GetComponent<ResourceComponent>().IsAlive)
                                 continue;
 
-                            enemyPawn.Pawn.GetComponent<StatsComponent>().ReceiveDamage(damage);
+                            enemyPawn.Pawn.GetComponent<ResourceComponent>().ReceiveDamage(damage);
                         }
                     }
                 }
@@ -345,7 +345,7 @@ public class BlessingFactory
                             _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
                         };
                         
-                        attacker.GetComponent<StatsComponent>().ReceiveDamage(damage);
+                        attacker.GetComponent<ResourceComponent>().ReceiveDamage(damage);
                     }
                 }
             },
@@ -355,7 +355,7 @@ public class BlessingFactory
                 new OnBattleStartedListener()
                 {
                     (battle, rarity) =>
-                        battle.PlayerPawns.ForEach(p => p.Pawn.GetComponent<StatsComponent>().GainMana())
+                        battle.PlayerPawns.ForEach(p => p.Pawn.GetComponent<ResourceComponent>().GainMana())
                 }
             },
 

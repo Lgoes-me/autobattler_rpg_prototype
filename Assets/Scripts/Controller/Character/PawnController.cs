@@ -44,8 +44,8 @@ public class PawnController : MonoBehaviour
             CanvasController.Init(Pawn);
         }
 
-        Pawn.GetComponent<StatsComponent>().LostLife += ReceiveAttack;
-        Pawn.GetComponent<StatsComponent>().GainedLife += ReceiveHeal;
+        Pawn.GetComponent<ResourceComponent>().LostLife += ReceiveAttack;
+        Pawn.GetComponent<ResourceComponent>().GainedLife += ReceiveHeal;
     }
 
     public void UpdatePawn(PawnInfo pawnInfo)
@@ -149,7 +149,7 @@ public class PawnController : MonoBehaviour
         if (Pawn == null)
             return;
 
-        if (Pawn.TryGetComponent<StatsComponent>(out var statsComponent) && statsComponent.IsAlive &&
+        if (Pawn.TryGetComponent<ResourceComponent>(out var resourceComponent) && resourceComponent.IsAlive &&
             Pawn.TryGetComponent<PawnBuffsComponent>(out var pawnBuffsComponent))
             pawnBuffsComponent.TickAllBuffs();
 
@@ -236,7 +236,7 @@ public class PawnController : MonoBehaviour
     {
         CharacterController.DoHitStop();
 
-        if (Pawn.GetComponent<StatsComponent>().IsAlive)
+        if (Pawn.GetComponent<ResourceComponent>().IsAlive)
             return;
 
         CharacterController.SetAnimationState(new DeadState());
@@ -251,7 +251,7 @@ public class PawnController : MonoBehaviour
     {
         CharacterController.DoNiceHitStop();
 
-        if (!Pawn.GetComponent<StatsComponent>().IsAlive || PawnState is not DeadState)
+        if (!Pawn.GetComponent<ResourceComponent>().IsAlive || PawnState is not DeadState)
             return;
         
         Ability = null;
@@ -289,7 +289,7 @@ public class PawnController : MonoBehaviour
         if (Pawn == null)
             return;
 
-        Pawn.GetComponent<StatsComponent>().LostLife -= ReceiveAttack;
-        Pawn.GetComponent<StatsComponent>().GainedLife -= ReceiveHeal;
+        Pawn.GetComponent<ResourceComponent>().LostLife -= ReceiveAttack;
+        Pawn.GetComponent<ResourceComponent>().GainedLife -= ReceiveHeal;
     }
 }

@@ -7,10 +7,7 @@ public abstract class PawnComponent
 {
     protected Pawn Pawn { get; private set; }
 
-    public delegate void PawnDomainChanged();
-    public delegate void PawnDomainChanged<in T>(T param);
-
-    public void Init(Pawn pawn)
+    public virtual void Init(Pawn pawn)
     {
         Pawn = pawn;
     }
@@ -144,97 +141,23 @@ public class EnemyComponent : PawnComponent
 
 public class StatsComponent : PawnComponent
 {
-    public int Health => GetStats().GetStat(Stat.Health) - MissingHealth;
-    private int MissingHealth { get; set; }
-    public int Mana { get; private set; }
     public int Level { get; private set; }
-
     private Stats Stats { get; }
     private LevelUpStats LevelUpStats { get; }
-
-    public bool HasMana => GetStats().GetStat(Stat.Mana) > 0;
-    public bool IsAlive => Health > 0;
-
-    public event PawnDomainChanged<Pawn> LostLife;
-    public event PawnDomainChanged GainedLife;
-    public event PawnDomainChanged ManaChanged;
-
-    public event PawnDomainChanged BattleStarted;
-    public event PawnDomainChanged BattleFinished;
 
     public StatsComponent(Stats stats, LevelUpStats levelUpStats)
     {
         Stats = stats;
         LevelUpStats = levelUpStats;
-
-        MissingHealth = 0;
-        Mana = 0;
         Level = 0;
     }
 
     public void ApplyLevel(int level)
     {
         Level = level;
-        LevelUpStats.EvaluateLevel(Level);
+        LevelUpStats.EvaluateLevel(level);
     }
-
-    public void StartBattle()
-    {
-        Mana = 0;
-
-        BattleStarted?.Invoke();
-        ManaChanged?.Invoke();
-    }
-
-    public void EndBattle()
-    {
-        BattleFinished?.Invoke();
-    }
-
-    public void ReceiveDamage(DamageDomain damage)
-    {
-        var reducedDamage = GetStats().GetReducedDamage(damage);
-
-        MissingHealth = Mathf.Clamp(MissingHealth + reducedDamage, 0, GetStats().GetStat(Stat.Health));
-
-        LostLife?.Invoke(damage.Attacker);
-    }
-
-    public void ReceiveDamage(int damage)
-    {
-        MissingHealth = Mathf.Clamp(MissingHealth + damage, 0, GetStats().GetStat(Stat.Health));
-        LostLife?.Invoke(null);
-    }
-
-    public void ReceiveHeal(int healValue, bool canRevive)
-    {
-        if (!canRevive && !IsAlive)
-            return;
-        
-        var modifiedHeal = healValue * (1 + GetStats().GetStat(Stat.HealPower));
-
-        MissingHealth = Mathf.Clamp(MissingHealth - modifiedHeal, 0, GetStats().GetStat(Stat.Health));
-        GainedLife?.Invoke();
-    }
-
-    public void EndOfBattleHeal()
-    {
-        MissingHealth = Mathf.Clamp(MissingHealth - 15, 0, GetStats().GetStat(Stat.Health));
-        GainedLife?.Invoke();
-    }
-
-    public void GainMana()
-    {
-        Mana = Mathf.Clamp(Mana + 10, 0, GetStats().GetStat(Stat.Mana));
-        ManaChanged?.Invoke();
-    }
-
-    public void SpentMana(int manaCost)
-    {
-        Mana = Mathf.Clamp(Mana - manaCost, 0, GetStats().GetStat(Stat.Mana));
-        ManaChanged?.Invoke();
-    }
-
+    
     public Stats GetStats()
     {
         var stats = Stats + LevelUpStats.CurrentStats;
@@ -264,9 +187,6 @@ public class StatsComponent : PawnComponent
     public override void SetPawnInfo(PawnInfo pawnInfo)
     {
         ApplyLevel(pawnInfo.Level);
-
-        MissingHealth = pawnInfo.MissingHealth;
-        Mana = 0;
     }
 }
 
@@ -274,7 +194,7 @@ public class PawnBuffsComponent : PawnComponent
 {
     public List<string> PermanentBuffs { get; private set; }
     public Dictionary<string, Buff> Buffs { get; private set; }
-    public event PawnDomainChanged BuffsChanged;
+    public event Pawn.PawnDomainChanged BuffsChanged;
 
     public PawnBuffsComponent()
     {
@@ -384,7 +304,7 @@ public class FocusComponent : PawnComponent
 public class ConsumableComponent : PawnComponent
 {
     public List<ConsumableData> Consumables { get; }
-    public event PawnDomainChanged ConsumablesUpdated;
+    public event Pawn.PawnDomainChanged ConsumablesUpdated;
 
     public ConsumableComponent()
     {
@@ -412,9 +332,84 @@ public class ConsumableComponent : PawnComponent
 
 public class ResourceComponent : PawnComponent
 {
+    public int Health => StatsComponent.GetStats().GetStat(Stat.Health) - MissingHealth;
+    public int MissingHealth { get; private set; }
+    public int Mana { get; private set; }
+
+    public bool HasMana => StatsComponent.GetStats().GetStat(Stat.Mana) > 0;
+    public bool IsAlive => Health > 0;
+
+    public event Pawn.PawnDomainChanged<Pawn> LostLife;
+    public event Pawn.PawnDomainChanged GainedLife;
+    
+    public event Pawn.PawnDomainChanged LostMana;
+    public event Pawn.PawnDomainChanged GainedMana;
+    
+    private StatsComponent StatsComponent { get; set; }
+
     public ResourceComponent()
     {
-        
+        MissingHealth = 0;
+        Mana = 0;
+    }
+
+    public override void Init(Pawn pawn)
+    {
+        base.Init(pawn);
+        StatsComponent = Pawn.GetComponent<StatsComponent>();
+    }
+
+    public void StartBattle()
+    {
+        Mana = 0;
+    }
+
+    public void ReceiveDamage(DamageDomain damage)
+    {
+        var reducedDamage = StatsComponent.GetStats().GetReducedDamage(damage);
+        ReceiveDamage(reducedDamage);
+    }
+
+    public void ReceiveDamage(int damage)
+    {
+        MissingHealth = Mathf.Clamp(MissingHealth + damage, 0, StatsComponent.GetStats().GetStat(Stat.Health));
+        LostLife?.Invoke(null);
+    }
+
+    public void ReceiveHeal(int healValue, bool canRevive)
+    {
+        if (!canRevive && !IsAlive)
+            return;
+
+        var stats = StatsComponent.GetStats();
+        var modifiedHeal = healValue * (1 + stats.GetStat(Stat.HealPower));
+
+        MissingHealth = Mathf.Clamp(MissingHealth - modifiedHeal, 0, stats.GetStat(Stat.Health));
+        GainedLife?.Invoke();
+    }
+
+    public void EndOfBattleHeal()
+    {
+        var healValue = 15;
+        ReceiveHeal(healValue, true);
+    }
+
+    public void GainMana()
+    {
+        Mana = Mathf.Clamp(Mana + 10, 0, StatsComponent.GetStats().GetStat(Stat.Mana));
+        GainedMana?.Invoke();
+    }
+
+    public void SpentMana(int manaCost)
+    {
+        Mana = Mathf.Clamp(Mana - manaCost, 0, StatsComponent.GetStats().GetStat(Stat.Mana));
+        LostMana?.Invoke();
+    }
+
+    public override void SetPawnInfo(PawnInfo pawnInfo)
+    {
+        MissingHealth = pawnInfo.MissingHealth;
+        Mana = 0;
     }
 }
 
