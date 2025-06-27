@@ -244,8 +244,8 @@ public class PawnController : MonoBehaviour
         NavMeshAgent.ResetPath();
         Ability = null;
 
-        Application.Instance.GetManager<BattleEventsManager>().DoPawnDeathEvent(Battle, this, damageDomain.Attacker);
-        Application.Instance.GetManager<BattleEventsManager>().DoHealthLostEvent(Battle, this, damageDomain.Value);
+        Application.Instance.GetManager<BattleEventsManager>().DoPawnDeathEvent(Battle, this, damageDomain);
+        Application.Instance.GetManager<BattleEventsManager>().DoHealthLostEvent(Battle, this, damageDomain);
         
     }
 

@@ -4,16 +4,16 @@ using System.Linq;
 public delegate void ResourceDelegate(Battle battle, PawnController pawnController, int value, Rarity rarity);
 
 
-public class OnHealthLostListener : BaseBattleEventListener<Func<Battle, PawnController, bool>, ResourceDelegate>
+public class OnHealthLostListener : BaseBattleEventListener<Func<Battle, PawnController, DamageDomain, bool>, PawnDamagedDelegate>
 {
-    public void OnHealthLost(Battle battle, PawnController pawnController, int value, Rarity rarity)
+    public void OnHealthLost(Battle battle, PawnController pawnController, DamageDomain damage, Rarity rarity)
     {
-        if (Validators.Any(validator => !validator(battle, pawnController)))
+        if (Validators.Any(validator => !validator(battle, pawnController, damage)))
             return;
 
         foreach (var modifier in Modifiers)
         {
-            modifier(battle, pawnController, value, rarity);
+            modifier(battle, pawnController, damage, rarity);
         }
     }
 }

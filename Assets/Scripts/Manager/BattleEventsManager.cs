@@ -48,16 +48,16 @@ public class BattleEventsManager : IManager
         }
     }
     
-    public void DoPawnDeathEvent(Battle battle, PawnController dead, Pawn attacker)
+    public void DoPawnDeathEvent(Battle battle, PawnController dead, DamageDomain damage)
     {
         foreach (var blessing in BlessingManager.Blessings)
         {
-            blessing.DoPawnDeathEvent(battle, dead, attacker);
+            blessing.DoPawnDeathEvent(battle, dead, damage);
         }
         
         foreach (var archetype in ArchetypeManager.Archetypes)
         {
-            archetype.DoPawnDeathEvent(battle, dead, attacker);
+            archetype.DoPawnDeathEvent(battle, dead, damage);
         }
     }
     
@@ -74,16 +74,16 @@ public class BattleEventsManager : IManager
         }
     }
     
-    public void DoHealthLostEvent(Battle battle, PawnController pawnController, int value)
+    public void DoHealthLostEvent(Battle battle, PawnController pawnController, DamageDomain damage)
     {
         foreach (var blessing in BlessingManager.Blessings)
         {
-            blessing.DoHealthLostEvent(battle, pawnController, value);
+            blessing.DoHealthLostEvent(battle, pawnController, damage);
         }
         
         foreach (var archetype in ArchetypeManager.Archetypes)
         {
-            archetype.DoHealthLostEvent(battle, pawnController, value);
+            archetype.DoHealthLostEvent(battle, pawnController, damage);
         }
     }
     

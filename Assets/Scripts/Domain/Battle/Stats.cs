@@ -24,6 +24,7 @@ public class Stats
         {
             DamageType.Physical => damageValue - (damageValue * GetStat(Stat.PhysicalDefence) * 10 / 100),
             DamageType.Magical => damageValue - (damageValue * GetStat(Stat.MagicalDefence) * 10 / 100),
+            DamageType.True => damageValue,
             _ => throw new ArgumentOutOfRangeException()
         };
 

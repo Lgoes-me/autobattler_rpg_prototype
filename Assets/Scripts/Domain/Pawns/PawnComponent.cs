@@ -372,14 +372,6 @@ public class ResourceComponent : PawnComponent
         LostLife?.Invoke(damage);
     }
 
-    public void ReceiveDamage(int damage)
-    {
-        var damageDomain = new DamageDomain(damage);
-        
-        MissingHealth = Mathf.Clamp(MissingHealth + damage, 0, StatsComponent.GetStats().GetStat(Stat.Health));
-        LostLife?.Invoke(damageDomain);
-    }
-
     public void ReceiveHeal(int healValue, bool canRevive)
     {
         if (!canRevive && !IsAlive)
