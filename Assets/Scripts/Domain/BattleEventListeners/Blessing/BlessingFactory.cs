@@ -183,10 +183,10 @@ public class BlessingFactory
                         var healPowerValue = rarity switch
                         {
                             Rarity.Deactivated => 0,
-                            Rarity.Diamond => 20,
-                            Rarity.Gold => 10,
-                            Rarity.Silver => 4,
-                            Rarity.Bronze => 1,
+                            Rarity.Diamond => 100,
+                            Rarity.Gold => 50,
+                            Rarity.Silver => 20,
+                            Rarity.Bronze => 10,
                             _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
                         };
 
@@ -367,6 +367,38 @@ public class BlessingFactory
                 }
             },
 
+            BlessingIdentifier.BonusDeStatQuandoRecebeDano => new Blessing(id)
+            {
+                new OnHealthLostListener()
+                {
+                    (_, pawnController, _) => IsPlayerTeam(pawnController),
+                    (_, pawnController, _, rarity) =>
+                    {
+                        var strengthValue = rarity switch
+                        {
+                            Rarity.Deactivated => 0,
+                            Rarity.Diamond => 20,
+                            Rarity.Gold => 10,
+                            Rarity.Silver => 5,
+                            Rarity.Bronze => 2,
+                            _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
+                        };
+
+                        var stat = new StatsData()
+                        {
+                            new StatData(Stat.Strength, strengthValue),
+                        };
+                        
+                        var buff = new Buff(BlessingIdentifier.BonusDeStatQuandoRecebeDano.ToString(), 2)
+                        {
+                            new StatModifierBuff(stat.ToDomain())
+                        };
+                        
+                        pawnController.Pawn.GetComponent<PawnBuffsComponent>().AddBuff(buff);
+                    }
+                }
+            },
+            
             BlessingIdentifier.CuraBaseadaNoDanoCausado => new Blessing(id)
             {
                 new OnHealthLostListener()
@@ -502,15 +534,139 @@ public class BlessingFactory
                 }
             },
             
-            BlessingIdentifier.BattleStartGainMana => new Blessing(id)
+            BlessingIdentifier.RegeneracaoDeMana => new Blessing(id)
             {
                 new OnBattleStartedListener()
                 {
-                    (battle, _) =>
-                        battle.PlayerPawns.ForEach(p => p.Pawn.GetComponent<ResourceComponent>().GainMana())
+                    (battle, rarity) =>
+                    {
+                        var manaValue = rarity switch
+                        {
+                            Rarity.Deactivated => 0,
+                            Rarity.Diamond => 5,
+                            Rarity.Gold => 3,
+                            Rarity.Silver => 2,
+                            Rarity.Bronze => 1,
+                            _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
+                        };
+
+                        var buff = new Buff(BlessingIdentifier.RegeneracaoDeMana.ToString(), -1)
+                        {
+                            new ManaRegenBuff(manaValue, 2)
+                        };
+                        
+                        GiveBuffToPlayerTeam(battle, buff);
+                    }
                 }
             },
+            
+            BlessingIdentifier.ManaNoInicioDaLuta => new Blessing(id)
+            {
+                new OnBattleStartedListener()
+                {
+                    (battle, rarity) =>
+                    {
+                        var manaValue = rarity switch
+                        {
+                            Rarity.Deactivated => 0,
+                            Rarity.Diamond => 50,
+                            Rarity.Gold => 25,
+                            Rarity.Silver => 10,
+                            Rarity.Bronze => 5,
+                            _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
+                        };
 
+                        battle.PlayerPawns.ForEach(p => p.Pawn.GetComponent<ResourceComponent>().GiveMana(manaValue));
+                    }
+                }
+            },
+            
+            BlessingIdentifier.DanoRecebidoViraMana => new Blessing(id)
+            {
+                new OnHealthLostListener()
+                {
+                    (_, pawnController, _) => IsPlayerTeam(pawnController),
+                    (_, pawnController, damage, rarity) =>
+                    {
+                        var percentMana = rarity switch
+                        {
+                            Rarity.Deactivated => 0,
+                            Rarity.Diamond => 50,
+                            Rarity.Gold => 20,
+                            Rarity.Silver => 10,
+                            Rarity.Bronze => 5,
+                            _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
+                        };
+
+                        var manaValue = Mathf.CeilToInt(damage.Value * percentMana / (float) 100);
+                        pawnController.GetComponent<ResourceComponent>().GiveMana(manaValue);
+                    }
+                }
+            },
+            
+            BlessingIdentifier.DobraAQuantidadeDeManaRecebida => new Blessing(id)
+            {
+                new OnBattleStartedListener()
+                {
+                    (battle, rarity) =>
+                    {
+                        var percentIncrease = rarity switch
+                        {
+                            Rarity.Deactivated => 0,
+                            Rarity.Diamond => 50,
+                            Rarity.Gold => 25,
+                            Rarity.Silver => 10,
+                            Rarity.Bronze => 5,
+                            _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
+                        };
+
+                        var stat = new StatsData()
+                        {
+                            new StatData(Stat.ManaGainModifier, percentIncrease),
+                        };
+
+                        var buff = new Buff(BlessingIdentifier.DobraAQuantidadeDeManaRecebida.ToString(), -1)
+                        {
+                            new StatModifierBuff(stat.ToDomain())
+                        };
+
+                        GiveBuffToPlayerTeam(battle, buff);
+                    }
+                }
+            },
+            
+            BlessingIdentifier.BonusDeStatQuandoGanhaMana => new Blessing(id)
+            {
+                new OnManaGainedListener()
+                {
+                    (_, pawnController) => IsPlayerTeam(pawnController),
+                    (_, pawnController, _, rarity) =>
+                    {
+                        var arcaneValue = rarity switch
+                        {
+                            Rarity.Deactivated => 0,
+                            Rarity.Diamond => 20,
+                            Rarity.Gold => 10,
+                            Rarity.Silver => 5,
+                            Rarity.Bronze => 2,
+                            _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
+                        };
+
+                        var stat = new StatsData()
+                        {
+                            new StatData(Stat.Arcane, arcaneValue),
+                        };
+                        
+                        var buff = new Buff(BlessingIdentifier.BonusDeStatQuandoGanhaMana.ToString(), -1)
+                        {
+                            new StatModifierBuff(stat.ToDomain())
+                        };
+                        
+                        pawnController.Pawn.GetComponent<PawnBuffsComponent>().AddBuff(buff);
+                    }
+                }
+            },
+            
             _ => throw new ArgumentOutOfRangeException(nameof(id), id, null)
         };
     }

@@ -28,7 +28,7 @@ public class Stats
             _ => throw new ArgumentOutOfRangeException()
         };
 
-        damageValue = (int) (damageValue + damageValue * GetStat(Stat.DamageModifier) / (float) 100);
+        reducedDamage = (int) (reducedDamage + reducedDamage * GetStat(Stat.DamageModifier) / (float) 100);
 
         return reducedDamage >= 0 ? reducedDamage : 0;
     }
@@ -67,4 +67,5 @@ public enum Stat
     MagicalDefence,
     HealPower,
     DamageModifier,
+    ManaGainModifier,
 }

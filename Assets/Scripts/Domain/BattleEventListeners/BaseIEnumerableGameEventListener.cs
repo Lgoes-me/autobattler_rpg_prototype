@@ -109,3 +109,12 @@ public abstract class BaseIEnumerableGameEventListener : IEnumerable
         return GameEventListeners.GetEnumerator();
     }
 }
+
+public enum Rarity
+{
+    Deactivated = -1,
+    Diamond = 0,
+    Gold = 1,
+    Silver = 2,
+    Bronze = 3,
+}

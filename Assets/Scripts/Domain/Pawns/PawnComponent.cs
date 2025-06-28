@@ -378,9 +378,10 @@ public class ResourceComponent : PawnComponent
             return;
 
         var stats = StatsComponent.GetStats();
-        var modifiedHeal = healValue * (1 + stats.GetStat(Stat.HealPower));
+        
+        healValue = (int) (healValue + healValue * StatsComponent.GetStats().GetStat(Stat.HealPower) / (float) 100);
 
-        MissingHealth = Mathf.Clamp(MissingHealth - modifiedHeal, 0, stats.GetStat(Stat.Health));
+        MissingHealth = Mathf.Clamp(MissingHealth - healValue, 0, stats.GetStat(Stat.Health));
         GainedLife?.Invoke(healValue);
     }
 
@@ -392,8 +393,15 @@ public class ResourceComponent : PawnComponent
 
     public void GainMana()
     {
-        Mana = Mathf.Clamp(Mana + 10, 0, StatsComponent.GetStats().GetStat(Stat.Mana));
-        GainedMana?.Invoke(10);
+        GiveMana(10);
+    }
+    
+    public void GiveMana(int value)
+    {
+        value = (int) (value + value * StatsComponent.GetStats().GetStat(Stat.ManaGainModifier) / (float) 100);
+        
+        Mana = Mathf.Clamp(Mana + value, 0, StatsComponent.GetStats().GetStat(Stat.Mana));
+        GainedMana?.Invoke(value);
     }
 
     public void SpentMana(int manaCost)

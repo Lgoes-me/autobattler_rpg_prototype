@@ -26,6 +26,7 @@ public enum BlessingIdentifier
     DanoEmAreaQuandoAliadoMorre = 02_03,
     DanoEmAreaQuandoInimigoMorre = 02_04,
     DanoDeVingançaNoInimigoQuandoAliadoMorre = 02_05,
+    BonusDeStatQuandoRecebeDano = 02_06,
     
     CuraBaseadaNoDanoCausado = 03_01,
     TransferirComoDanoEmAreaACuraRecebida = 03_02,
@@ -33,6 +34,15 @@ public enum BlessingIdentifier
     ReduzODanoRecebido = 03_04,
     AumentaODanoCausado = 03_05,
     
+    RegeneracaoDeMana = 04_01,
+    ManaNoInicioDaLuta = 04_02,
+    DanoRecebidoViraMana = 04_03,
+    DobraAQuantidadeDeManaRecebida = 04_04,
+    BonusDeStatQuandoGanhaMana = 04_05,
     
-    BattleStartGainMana = 0,
+    MelhoraASorte = 05_01,
+    AumentaAQuantidadeDeEscolhas = 05_02,
+    RemoveBonusNegativos = 05_03,
+    ChanceDeEco = 05_04,
+    ChanceDeReceberPremioSecundario = 05_05,
 }
