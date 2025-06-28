@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using UnityEngine;
 
 public class BlessingFactory
@@ -299,7 +300,6 @@ public class BlessingFactory
 
             BlessingIdentifier.DanoEmAreaQuandoAliadoMorre => new Blessing(id)
             {
-                //TODO Aoe
                 new OnPawnDeathListener()
                 {
                     (_, dead, _) => IsPlayerTeam(dead),
@@ -316,21 +316,13 @@ public class BlessingFactory
                         };
 
                         var damage = new DamageDomain(dead.Pawn, damageValue, DamageType.True);
-
-                        foreach (var enemyPawn in battle.EnemyPawns)
-                        {
-                            if (!enemyPawn.Pawn.GetComponent<ResourceComponent>().IsAlive)
-                                continue;
-
-                            enemyPawn.Pawn.GetComponent<ResourceComponent>().ReceiveDamage(damage);
-                        }
+                        DoAoeAttackToEnemies(battle, damage, dead, 1);
                     }
                 }
             },
 
             BlessingIdentifier.DanoEmAreaQuandoInimigoMorre => new Blessing(id)
             {
-                //TODO Aoe
                 new OnPawnDeathListener()
                 {
                     (_, dead, _) => IsEnemyTeam(dead),
@@ -347,14 +339,7 @@ public class BlessingFactory
                         };
 
                         var damage = new DamageDomain(dead.Pawn, damageValue, DamageType.True);
-                        
-                        foreach (var enemyPawn in battle.EnemyPawns)
-                        {
-                            if (!enemyPawn.Pawn.GetComponent<ResourceComponent>().IsAlive)
-                                continue;
-
-                            enemyPawn.Pawn.GetComponent<ResourceComponent>().ReceiveDamage(damage);
-                        }
+                        DoAoeAttackToEnemies(battle, damage, dead, 1);
                     }
                 }
             },
@@ -407,7 +392,6 @@ public class BlessingFactory
             
             BlessingIdentifier.TransferirComoDanoEmAreaACuraRecebida => new Blessing(id)
             {
-                //TODO Aoe
                 new OnHealthGainedListener()
                 {
                     (_, pawnController) => IsPlayerTeam(pawnController),
@@ -426,24 +410,17 @@ public class BlessingFactory
                         var damageValue = Mathf.CeilToInt(healing * percentDamage / (float) 100);
                         var damage = new DamageDomain(pawnController.Pawn, damageValue, DamageType.True);
                         
-                        foreach (var enemyPawn in battle.EnemyPawns)
-                        {
-                            if (!enemyPawn.Pawn.GetComponent<ResourceComponent>().IsAlive)
-                                continue;
-
-                            enemyPawn.Pawn.GetComponent<ResourceComponent>().ReceiveDamage(damage);
-                        }
+                        DoAoeAttackToEnemies(battle, damage, pawnController, 1);
                     }
                 }
             },
             
             BlessingIdentifier.TransferirComoDanoEmAreaODanoRecebido => new Blessing(id)
             {
-                //TODO Aoe
                 new OnHealthLostListener()
                 {
                     (_, pawnController, _) => IsPlayerTeam(pawnController),
-                    (battle, pawnController, damage, rarity) =>
+                    (battle, pawnController, damageReceived, rarity) =>
                     {
                         var percentDamage = rarity switch
                         {
@@ -455,16 +432,10 @@ public class BlessingFactory
                             _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
                         };
 
-                        var damageValue = Mathf.CeilToInt(damage.Value * percentDamage / (float) 100);
-                        var newDamage = new DamageDomain(pawnController.Pawn, damageValue, DamageType.True);
+                        var damageValue = Mathf.CeilToInt(damageReceived.Value * percentDamage / (float) 100);
+                        var damage = new DamageDomain(pawnController.Pawn, damageValue, DamageType.True);
                         
-                        foreach (var enemyPawn in battle.EnemyPawns)
-                        {
-                            if (!enemyPawn.Pawn.GetComponent<ResourceComponent>().IsAlive)
-                                continue;
-
-                            enemyPawn.Pawn.GetComponent<ResourceComponent>().ReceiveDamage(newDamage);
-                        }
+                        DoAoeAttackToEnemies(battle, damage, pawnController, 1);
                     }
                 }
             },
@@ -568,6 +539,17 @@ public class BlessingFactory
         foreach (var p in battle.PlayerPawns)
         {
             p.Pawn.GetComponent<MetaDataComponent>().AddMetaData(data);
+        }
+    }
+
+    private void DoAoeAttackToEnemies(Battle battle, DamageDomain damage, PawnController center, float range)
+    {
+        var closePawns = battle.EnemyPawns
+            .Where(p => Vector3.Distance(center.transform.position, p.transform.position) < range).ToList();
+
+        foreach (var pawn in closePawns)
+        {
+            pawn.GetComponent<ResourceComponent>().ReceiveDamage(damage);
         }
     }
 }
