@@ -79,36 +79,3 @@ public class CombatEncounterData
     [field: SerializeReference] [field: SerializeField] public GameAction OnVictory { get; private set; }
     [field: SerializeReference] [field: SerializeField] public GameAction OnDefeat { get; private set; }
 }
-
-[Serializable]
-public class EnemyData
-{
-    [field: HideInInspector] public string name;
-    [field: SerializeField] public bool IsBoss { get; set; }
-    [field: SerializeField] public EnemyInfo EnemyInfo { get; set; }
-    [field: SerializeField] private string Animation { get; set; }
-    [field: SerializeField] private bool Forward { get; set; }
-    public PawnController PawnController { get; set; }
-    
-    public void PreparePawn(PawnController pawnController)
-    {
-        PawnController = pawnController;
-        PawnController.Init(EnemyInfo.ToDomain(TeamType.Enemies));
-        PawnController.CharacterController.SetDirection((Forward ? 1 : -1) * PawnController.transform.forward);
-        PawnController.CharacterController.SetAnimationState(new DefaultState(Animation, () => PawnController.CharacterController.SetAnimationState(new IdleState())));
-    }
-}
-
-[Serializable]
-public class EnemyInfo
-{
-    [field: SerializeField] private PawnData PawnData { get; set; }
-    [field: SerializeField] private WeaponType WeaponType { get; set; }
-    [field: SerializeField] private CharacterController Mount { get; set; }
-    [field: SerializeField] private int Level { get; set; } = 1;
-
-    public Pawn ToDomain(TeamType teamType)
-    {
-        return PawnData.ToDomain(PawnStatus.Enemy, teamType, Level, WeaponType, new MountComponent(Mount));
-    }
-}

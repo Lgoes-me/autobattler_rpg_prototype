@@ -1,15 +1,18 @@
-﻿public class SummonEffect : AbilityEffect
-{
-    private EnemyInfo EnemyInfo { get; set; }
+﻿using UnityEngine;
 
-    public SummonEffect(PawnController abilityUser, EnemyInfo enemyInfo) : base(abilityUser)
+public class SummonEffect : AbilityEffect
+{
+    private EnemyData EnemyData { get; set; }
+
+    public SummonEffect(PawnController abilityUser, EnemyData enemyData) : base(abilityUser)
     {
-        EnemyInfo = enemyInfo;
+        EnemyData = enemyData;
     }
 
     public override void DoAbilityEffect(PawnController focus)
     {
-        var pawn = EnemyInfo.ToDomain(AbilityUser.Pawn.Team);
-        AbilityUser.SummonPawn(pawn);
+        //TODO REFACTOR ENEMYDATA
+        //var pawn = EnemyInfo.ToDomain(AbilityUser.Pawn.Team);
+        //AbilityUser.SummonPawn(pawn);
     }
 }

@@ -3,10 +3,10 @@
 [System.Serializable]
 public class SummonEffectData : EffectData
 {
-    [field: SerializeField] private EnemyInfo EnemyInfo { get; set; }
+    [field: SerializeField] private EnemyData EnemyData { get; set; }
 
     public override AbilityEffect ToDomain(PawnController abilityUser)
     {
-        return new SummonEffect(abilityUser, EnemyInfo);
+        return new SummonEffect(abilityUser, EnemyData);
     }
 }

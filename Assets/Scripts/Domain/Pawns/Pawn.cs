@@ -15,8 +15,8 @@ public class Pawn
     
     private PawnStatus Status { get; set; }
     public TeamType Team { get; }
-    public int Level { get; }
-    public WeaponType WeaponType { get; }
+    public int Level { get; private set; } = 1;
+    public WeaponType WeaponType { get; private set; } = WeaponType.None;
     
     public PawnController Focus { get; set; }
 
@@ -45,22 +45,21 @@ public class Pawn
     public Pawn(
         string id,
         List<PawnComponent> components,
-        PawnStatus status,
-        TeamType team,
-        int level,
-        WeaponType weaponType, 
-        MountComponent mount) : this(id, components)
+        PawnStatus status,  
+        TeamType team) : this(id, components)
     {
         Status = status;
         Team = team;
-        Level = level;
-        WeaponType = weaponType;
+    }
 
-        if (mount != null && !HasComponent<MountComponent>())
-        {
-            mount.Init(this);
-            AddComponent(mount);
-        }
+    public void SetLevel(int level)
+    {
+        Level = level;
+    }
+    
+    public void SetWeaponType(WeaponType weaponType)
+    {
+        WeaponType = weaponType;
     }
 
     public void AddComponent<T>(T component) where T : PawnComponent

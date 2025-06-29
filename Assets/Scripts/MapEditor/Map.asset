@@ -60,32 +60,11 @@ MonoBehaviour:
   <CombatEncounters>k__BackingField:
   - <Enemies>k__BackingField:
     - name: FrontEnemy
-      <IsBoss>k__BackingField: 1
-      <EnemyInfo>k__BackingField:
-        <PawnData>k__BackingField: {fileID: 11400000, guid: dc2b5ccfd2ced1e47877dc6503421d6a, type: 2}
-        <WeaponType>k__BackingField: 0
-        <Mount>k__BackingField: {fileID: 0}
-        <Level>k__BackingField: 1
-      <Animation>k__BackingField: Dance
-      <Forward>k__BackingField: 0
+      <Components>k__BackingField: []
     - name: LeftEnemy
-      <IsBoss>k__BackingField: 0
-      <EnemyInfo>k__BackingField:
-        <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
-        <WeaponType>k__BackingField: 0
-        <Mount>k__BackingField: {fileID: 0}
-        <Level>k__BackingField: 1
-      <Animation>k__BackingField: 
-      <Forward>k__BackingField: 1
+      <Components>k__BackingField: []
     - name: RightEnemy
-      <IsBoss>k__BackingField: 0
-      <EnemyInfo>k__BackingField:
-        <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
-        <WeaponType>k__BackingField: 0
-        <Mount>k__BackingField: {fileID: 0}
-        <Level>k__BackingField: 1
-      <Animation>k__BackingField: 
-      <Forward>k__BackingField: 1
+      <Components>k__BackingField: []
     <OnVictory>k__BackingField:
       rid: 7514022947442655232
     <OnDefeat>k__BackingField:
@@ -165,23 +144,9 @@ MonoBehaviour:
   <CombatEncounters>k__BackingField:
   - <Enemies>k__BackingField:
     - name: Grunt 1
-      <IsBoss>k__BackingField: 0
-      <EnemyInfo>k__BackingField:
-        <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
-        <WeaponType>k__BackingField: 0
-        <Mount>k__BackingField: {fileID: 0}
-        <Level>k__BackingField: 1
-      <Animation>k__BackingField: 
-      <Forward>k__BackingField: 0
+      <Components>k__BackingField: []
     - name: Grunt 2
-      <IsBoss>k__BackingField: 0
-      <EnemyInfo>k__BackingField:
-        <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
-        <WeaponType>k__BackingField: 0
-        <Mount>k__BackingField: {fileID: 0}
-        <Level>k__BackingField: 1
-      <Animation>k__BackingField: 
-      <Forward>k__BackingField: 0
+      <Components>k__BackingField: []
     <OnVictory>k__BackingField:
       rid: 7514022924109742086
     <OnDefeat>k__BackingField:
@@ -256,23 +221,9 @@ MonoBehaviour:
   <CombatEncounters>k__BackingField:
   - <Enemies>k__BackingField:
     - name: Grunt 1
-      <IsBoss>k__BackingField: 0
-      <EnemyInfo>k__BackingField:
-        <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
-        <WeaponType>k__BackingField: 0
-        <Mount>k__BackingField: {fileID: 0}
-        <Level>k__BackingField: 1
-      <Animation>k__BackingField: 
-      <Forward>k__BackingField: 1
+      <Components>k__BackingField: []
     - name: Grunt 2
-      <IsBoss>k__BackingField: 0
-      <EnemyInfo>k__BackingField:
-        <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
-        <WeaponType>k__BackingField: 0
-        <Mount>k__BackingField: {fileID: 0}
-        <Level>k__BackingField: 1
-      <Animation>k__BackingField: 
-      <Forward>k__BackingField: 1
+      <Components>k__BackingField: []
     <OnVictory>k__BackingField:
       rid: 7514022924109742082
     <OnDefeat>k__BackingField:
@@ -324,23 +275,11 @@ MonoBehaviour:
   <CombatEncounters>k__BackingField:
   - <Enemies>k__BackingField:
     - name: 
-      <IsBoss>k__BackingField: 0
-      <EnemyInfo>k__BackingField:
-        <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
-        <WeaponType>k__BackingField: 0
-        <Mount>k__BackingField: {fileID: 0}
-        <Level>k__BackingField: 1
-      <Animation>k__BackingField: 
-      <Forward>k__BackingField: 1
+      <Components>k__BackingField:
+      - rid: 7514023554536439895
     - name: 
-      <IsBoss>k__BackingField: 0
-      <EnemyInfo>k__BackingField:
-        <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
-        <WeaponType>k__BackingField: 0
-        <Mount>k__BackingField: {fileID: 0}
-        <Level>k__BackingField: 1
-      <Animation>k__BackingField: 
-      <Forward>k__BackingField: 0
+      <Components>k__BackingField:
+      - rid: 7514023554536439896
     <OnVictory>k__BackingField:
       rid: 7514022973428465664
     <OnDefeat>k__BackingField:
@@ -356,6 +295,14 @@ MonoBehaviour:
       type: {class: MarkGameEvent, ns: , asm: Assembly-CSharp}
       data:
         <EventId>k__BackingField: FirstDeath
+    - rid: 7514023554536439895
+      type: {class: PawnDataComponentData, ns: , asm: Assembly-CSharp}
+      data:
+        <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
+    - rid: 7514023554536439896
+      type: {class: PawnDataComponentData, ns: , asm: Assembly-CSharp}
+      data:
+        <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
 --- !u!114 &-568945341746448962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -508,87 +455,31 @@ MonoBehaviour:
   <CombatEncounters>k__BackingField:
   - <Enemies>k__BackingField:
     - name: Boss
-      <IsBoss>k__BackingField: 1
-      <EnemyInfo>k__BackingField:
-        <PawnData>k__BackingField: {fileID: 11400000, guid: dc2b5ccfd2ced1e47877dc6503421d6a, type: 2}
-        <WeaponType>k__BackingField: 0
-        <Mount>k__BackingField: {fileID: 0}
-        <Level>k__BackingField: 3
-      <Animation>k__BackingField: 
-      <Forward>k__BackingField: 1
+      <Components>k__BackingField: []
     - name: Enemy
-      <IsBoss>k__BackingField: 0
-      <EnemyInfo>k__BackingField:
-        <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
-        <WeaponType>k__BackingField: 0
-        <Mount>k__BackingField: {fileID: 0}
-        <Level>k__BackingField: 1
-      <Animation>k__BackingField: 
-      <Forward>k__BackingField: 1
+      <Components>k__BackingField: []
     - name: Enemy
-      <IsBoss>k__BackingField: 0
-      <EnemyInfo>k__BackingField:
-        <PawnData>k__BackingField: {fileID: 11400000, guid: 180912f05649d1f47a8289a506df4a5f, type: 2}
-        <WeaponType>k__BackingField: 0
-        <Mount>k__BackingField: {fileID: 0}
-        <Level>k__BackingField: 1
-      <Animation>k__BackingField: 
-      <Forward>k__BackingField: 0
+      <Components>k__BackingField: []
     - name: Enemy
-      <IsBoss>k__BackingField: 0
-      <EnemyInfo>k__BackingField:
-        <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
-        <WeaponType>k__BackingField: 0
-        <Mount>k__BackingField: {fileID: 0}
-        <Level>k__BackingField: 1
-      <Animation>k__BackingField: 
-      <Forward>k__BackingField: 0
+      <Components>k__BackingField: []
     <OnVictory>k__BackingField:
       rid: 7514023172666556417
     <OnDefeat>k__BackingField:
       rid: 7514022924109742080
   - <Enemies>k__BackingField:
     - name: Enemy
-      <IsBoss>k__BackingField: 0
-      <EnemyInfo>k__BackingField:
-        <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
-        <WeaponType>k__BackingField: 0
-        <Mount>k__BackingField: {fileID: 0}
-        <Level>k__BackingField: 1
-      <Animation>k__BackingField: 
-      <Forward>k__BackingField: 0
+      <Components>k__BackingField: []
     - name: Enemy
-      <IsBoss>k__BackingField: 0
-      <EnemyInfo>k__BackingField:
-        <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
-        <WeaponType>k__BackingField: 0
-        <Mount>k__BackingField: {fileID: 0}
-        <Level>k__BackingField: 1
-      <Animation>k__BackingField: 
-      <Forward>k__BackingField: 0
+      <Components>k__BackingField: []
     <OnVictory>k__BackingField:
       rid: 7514022924109742084
     <OnDefeat>k__BackingField:
       rid: -2
   - <Enemies>k__BackingField:
     - name: Enemy
-      <IsBoss>k__BackingField: 0
-      <EnemyInfo>k__BackingField:
-        <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
-        <WeaponType>k__BackingField: 0
-        <Mount>k__BackingField: {fileID: 0}
-        <Level>k__BackingField: 1
-      <Animation>k__BackingField: 
-      <Forward>k__BackingField: 0
+      <Components>k__BackingField: []
     - name: Enemy
-      <IsBoss>k__BackingField: 0
-      <EnemyInfo>k__BackingField:
-        <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
-        <WeaponType>k__BackingField: 0
-        <Mount>k__BackingField: {fileID: 0}
-        <Level>k__BackingField: 1
-      <Animation>k__BackingField: 
-      <Forward>k__BackingField: 0
+      <Components>k__BackingField: []
     <OnVictory>k__BackingField:
       rid: -2
     <OnDefeat>k__BackingField:

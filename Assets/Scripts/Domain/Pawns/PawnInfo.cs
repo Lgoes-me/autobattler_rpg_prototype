@@ -109,8 +109,6 @@ public class PawnInfo
         Buffs = updatedPawnInfo.Buffs;
         Consumables = updatedPawnInfo.Consumables;
     }
-
-    //Status
 }
 
 public enum PawnStatus
