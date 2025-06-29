@@ -6,7 +6,7 @@ public class ArchetypeFactory
     {
         return id switch
         {
-            ArchetypeIdentifier.Cavaleiros => new Archetype(id, currentAmount, new[] {6, 4, 2})
+            ArchetypeIdentifier.Cavaleiros => new Archetype(id, currentAmount, new[] {2, 4, 6})
             {
                 new OnBattleStartedListener()
                 {
@@ -42,7 +42,7 @@ public class ArchetypeFactory
                 }
             },
 
-            ArchetypeIdentifier.Magos => new Archetype(id, currentAmount, new[] {6, 4, 1})
+            ArchetypeIdentifier.Magos => new Archetype(id, currentAmount, new[] {1, 4, 6})
             {
                 new OnSpecialAttackEventListener()
                 {
@@ -66,7 +66,7 @@ public class ArchetypeFactory
                 }
             },
 
-            ArchetypeIdentifier.Herois => new Archetype(id, currentAmount, new[] {8, 1})
+            ArchetypeIdentifier.Herois => new Archetype(id, currentAmount, new[] {1, 8})
             {
                 new OnBattleStartedListener()
                 {
@@ -94,7 +94,7 @@ public class ArchetypeFactory
             },
             
 
-            ArchetypeIdentifier.Hunters => new Archetype(id, currentAmount, new[] {8, 2})
+            ArchetypeIdentifier.Hunters => new Archetype(id, currentAmount, new[] {2, 8})
             {
                 new OnBattleStartedListener()
                 {
@@ -118,7 +118,7 @@ public class ArchetypeFactory
                 }
             },
             
-            ArchetypeIdentifier.Weakener => new Archetype(id, currentAmount, new[] {8, 1})
+            ArchetypeIdentifier.Weakener => new Archetype(id, currentAmount, new[] {1, 8})
             {
                 new OnBattleStartedListener()
                 {

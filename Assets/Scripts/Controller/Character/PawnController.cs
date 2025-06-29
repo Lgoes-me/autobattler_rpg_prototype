@@ -46,6 +46,8 @@ public class PawnController : MonoBehaviour
 
         Pawn.GetComponent<ResourceComponent>().LostLife += ReceiveAttack;
         Pawn.GetComponent<ResourceComponent>().GainedLife += ReceiveHeal;
+        Pawn.GetComponent<ResourceComponent>().LostMana += LostMana;
+        Pawn.GetComponent<ResourceComponent>().GainedMana += GainedMana;
     }
 
     public void UpdatePawn(PawnInfo pawnInfo)
@@ -95,11 +97,11 @@ public class PawnController : MonoBehaviour
         if (!PawnState.AbleToFight)
             return;
 
-        Application.Instance.GetManager<BattleEventsManager>().DoAttackEvent(Battle, this, ability);
+        Application.Instance.GetManager<BattleEventsManager>().DoAttackEvent(this, ability);
         
         if (ability.IsSpecial)
         {
-            Application.Instance.GetManager<BattleEventsManager>().DoSpecialAttackEvent(Battle, this, ability);
+            Application.Instance.GetManager<BattleEventsManager>().DoSpecialAttackEvent(this, ability);
         }
 
         if (Pawn.TryGetComponent<WeaponComponent>(out var component) && component.Weapon != null)
@@ -244,14 +246,14 @@ public class PawnController : MonoBehaviour
         NavMeshAgent.ResetPath();
         Ability = null;
 
-        Application.Instance.GetManager<BattleEventsManager>().DoPawnDeathEvent(Battle, this, damageDomain);
-        Application.Instance.GetManager<BattleEventsManager>().DoHealthLostEvent(Battle, this, damageDomain);
+        Application.Instance.GetManager<BattleEventsManager>().DoPawnDeathEvent(this, damageDomain);
+        Application.Instance.GetManager<BattleEventsManager>().DoHealthLostEvent(this, damageDomain);
         
     }
 
     private void ReceiveHeal(int value)
     {
-        Application.Instance.GetManager<BattleEventsManager>().DoHealthGainedEvent(Battle, this, value);
+        Application.Instance.GetManager<BattleEventsManager>().DoHealthGainedEvent(this, value);
         
         CharacterController.DoNiceHitStop();
 
@@ -263,6 +265,16 @@ public class PawnController : MonoBehaviour
         RealizeTurn();
     }
 
+    private void LostMana(int value)
+    {
+        Application.Instance.GetManager<BattleEventsManager>().DoManaLostEvent(this, value);
+    }
+    
+    private void GainedMana(int value)
+    {
+        Application.Instance.GetManager<BattleEventsManager>().DoManaGainedEvent(this, value);
+    }
+    
     public void SummonPawn(EnemyData enemyData)
     {
         var roomScene = FindFirstObjectByType<RoomController>();

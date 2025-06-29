@@ -20,9 +20,16 @@ public class BattleController : MonoBehaviour
 
             if (enemy.IsBoss(out var bossComponentData))
             {
-                //TODO REFACTOR ENEMYDATA
                 enemyController.RemoveCanvasController();
-                Application.Instance.GetManager<InterfaceManager>().BossCanvas.Init(enemyController.Pawn);
+
+                var bossModifiers = bossComponentData.ToDomain();
+
+                Application.Instance.GetManager<BattleEventsManager>().SetBoss(enemyController, bossModifiers);
+
+                var bossCanvas = Application.Instance.GetManager<InterfaceManager>().BossCanvas;
+                
+                bossCanvas.Init(enemyController.Pawn);
+                bossCanvas.SetModifiers(bossModifiers);
             }
 
             AddPawn(enemyController, TeamType.Enemies);
@@ -37,8 +44,10 @@ public class BattleController : MonoBehaviour
         {
             pawnController.StartBattle(Battle);
         }
-        
-        Application.Instance.GetManager<BattleEventsManager>().DoBattleStartEvent(Battle);
+
+        var battleEventsManager = Application.Instance.GetManager<BattleEventsManager>();
+        battleEventsManager.PrepareBattle(Battle);
+        battleEventsManager.DoBattleStartEvent();
 
         StartCoroutine(BattleCoroutine());
     }
@@ -129,6 +138,10 @@ public class BattleController : MonoBehaviour
             }
         }
         
+        var battleEventsManager = Application.Instance.GetManager<BattleEventsManager>();
+        battleEventsManager.DoBattleFinishedEvent();
+        battleEventsManager.FinishBattle();
+
         yield return new WaitForSeconds(2f);
         
         foreach (var pawn in Battle.PlayerPawns)

@@ -2,11 +2,11 @@
 
 public class BossModifierFactory
 {
-    public BossModifier CreateArchetype(BossModifierIdentifier id)
+    public BossModifier CreateBossModifier(BossModifierIdentifier id, Rarity rarity)
     {
         return id switch
         {
-            BossModifierIdentifier.Unknown => new BossModifier(id)
+            BossModifierIdentifier.Unknown => new BossModifier(id, rarity)
             {
             },
 

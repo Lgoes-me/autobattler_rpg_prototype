@@ -5,16 +5,28 @@ using UnityEngine;
 [Serializable]
 public abstract class EnemyDataComponent : IComponentData
 {
-    public abstract void PreparePawn(PawnController pawnController);
+    public virtual void PreparePawn(PawnController pawnController)
+    {
+
+    }
 }
 
 public class BossComponentData : EnemyDataComponent
 {
-    [field: SerializeField] private List<BossModifier> Modifiers { get; set; }
+    [field: SerializeField] public List<BossModifierData> Modifiers { get; private set; }
 
-    public override void PreparePawn(PawnController pawnController)
+    public List<BossModifier> ToDomain()
     {
-        
+        var factory = new BossModifierFactory();
+        var result = new List<BossModifier>();
+
+        foreach (var modifierData in Modifiers)
+        {
+            var modifier = modifierData.ToDomain(factory);
+            result.Add(modifier);
+        }
+
+        return result;
     }
 }
 

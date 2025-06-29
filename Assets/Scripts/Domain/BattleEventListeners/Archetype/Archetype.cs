@@ -1,10 +1,10 @@
 ﻿public class Archetype : BaseIEnumerableGameEventListener
 {
-    public ArchetypeIdentifier Identifier { get; set; }
-    public int CurrentAmount { get; set; }
-    public int[] AmountSteps { get; set; }
+    public ArchetypeIdentifier Identifier { get; }
+    public int CurrentAmount { get; }
+    public int[] AmountSteps { get; }
     
-    public Archetype(ArchetypeIdentifier identifier, int currentAmount, int[] amountSteps) : base()
+    public Archetype(ArchetypeIdentifier identifier, int currentAmount, int[] amountSteps)
     {
         Identifier = identifier;
         CurrentAmount = currentAmount;
@@ -19,7 +19,6 @@
             if (CurrentAmount >= step)
             {
                 Rarity = (Rarity) index;
-                break;
             }
         }
     }

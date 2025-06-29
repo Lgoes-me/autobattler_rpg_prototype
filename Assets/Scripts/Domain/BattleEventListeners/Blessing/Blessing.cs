@@ -1,11 +1,11 @@
 ﻿public class Blessing : BaseIEnumerableGameEventListener
 {
-    public BlessingIdentifier Identifier { get; set; }
+    public BlessingIdentifier Identifier { get; }
 
     public Blessing(BlessingIdentifier identifier)
     {
         Identifier = identifier;
-        Rarity = Rarity.Bronze;
+        Rarity = Rarity.Common;
     }
 }
 

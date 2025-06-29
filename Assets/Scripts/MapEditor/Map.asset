@@ -221,7 +221,7 @@ MonoBehaviour:
     <SceneDestination>k__BackingField: 6285dd07-935a-47d7-9bad-17d94dc781d6
     <DoorDestination>k__BackingField: 4ad61d87-6a66-485a-8ab3-51dfacaede3b
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: 166.99997, y: -70.00004}
+  <Position>k__BackingField: {x: 167, y: -70}
   <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 667d20764247d8c478b70a952361348a, type: 3}
   <CombatEncounters>k__BackingField:
   - <Enemies>k__BackingField:
@@ -277,7 +277,7 @@ MonoBehaviour:
     <SceneDestination>k__BackingField: e366a721-bd24-4f71-adcd-83a7a465e7e2
     <DoorDestination>k__BackingField: 35cd2e48-8229-4668-90d8-b799307e8fad
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: 1611.444, y: -70.00002}
+  <Position>k__BackingField: {x: 1611, y: -70.00002}
   <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 4c3b47dbe3784b8479a098b17016cdca, type: 3}
   <CombatEncounters>k__BackingField:
   - <Enemies>k__BackingField:
@@ -449,13 +449,16 @@ MonoBehaviour:
     <SceneDestination>k__BackingField: 5156dcbf-99fe-410b-b6c8-6e7496024057
     <DoorDestination>k__BackingField: 69690e82-0343-458c-8dcc-f75d91b8ca70
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: 866, y: -70.00005}
+  <Position>k__BackingField: {x: 866, y: -70}
   <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 19dd903d99158e5409d93f9499a6abee, type: 3}
   <CombatEncounters>k__BackingField:
   - <Enemies>k__BackingField:
     - name: Boss
-      <PawnData>k__BackingField: {fileID: 0}
-      <Components>k__BackingField: []
+      <PawnData>k__BackingField: {fileID: 11400000, guid: dc2b5ccfd2ced1e47877dc6503421d6a, type: 2}
+      <Components>k__BackingField:
+      - rid: 7514023554536439909
+      - rid: 7514023554536439910
+      - rid: 7514023554536439911
     - name: Enemy
       <PawnData>k__BackingField: {fileID: 0}
       <Components>k__BackingField: []
@@ -508,3 +511,16 @@ MonoBehaviour:
       type: {class: ShowVictoryScreen, ns: , asm: Assembly-CSharp}
       data:
         <SpawnName>k__BackingField: Intro
+    - rid: 7514023554536439909
+      type: {class: BossComponentData, ns: , asm: Assembly-CSharp}
+      data:
+        <Modifiers>k__BackingField: []
+    - rid: 7514023554536439910
+      type: {class: LevelComponentData, ns: , asm: Assembly-CSharp}
+      data:
+        <Level>k__BackingField: 4
+    - rid: 7514023554536439911
+      type: {class: AnimationComponentData, ns: , asm: Assembly-CSharp}
+      data:
+        <Animation>k__BackingField: Dance
+        <Forward>k__BackingField: 1

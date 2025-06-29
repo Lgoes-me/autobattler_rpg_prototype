@@ -1,11 +1,26 @@
-﻿public class BossModifier : BaseIEnumerableGameEventListener
-{
-    public BossModifierIdentifier Identifier { get; set; }
+﻿using System;
+using UnityEngine;
 
-    public BossModifier(BossModifierIdentifier identifier)
+[Serializable]
+public class BossModifierData
+{
+    [field: SerializeField] private BossModifierIdentifier Identifier { get; set; }
+    [field: SerializeField] private Rarity Rarity { get; set; }
+
+    public BossModifier ToDomain(BossModifierFactory factory)
+    {
+        return factory.CreateBossModifier(Identifier, Rarity);
+    }
+}
+
+public class BossModifier : BaseIEnumerableGameEventListener
+{
+    public BossModifierIdentifier Identifier { get; }
+
+    public BossModifier(BossModifierIdentifier identifier, Rarity rarity)
     {
         Identifier = identifier;
-        Rarity = Rarity.Bronze;
+        Rarity = rarity;
     }
 }
 

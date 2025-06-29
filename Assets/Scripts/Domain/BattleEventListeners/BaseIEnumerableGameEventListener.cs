@@ -22,6 +22,17 @@ public abstract class BaseIEnumerableGameEventListener : IEnumerable
         }
     }
 
+    public void DoBattleFinishedEvent(Battle battle)
+    {
+        foreach (var listener in GameEventListeners)
+        {
+            if (listener is not OnBattleFinishedListener onBattleFinishedListener)
+                continue;
+
+            onBattleFinishedListener.OnBattleFinished(battle, Rarity);
+        }
+    }
+    
     public void DoAttackEvent(Battle battle, PawnController abilityUser, Ability ability)
     {
         foreach (var listener in GameEventListeners)
@@ -113,8 +124,9 @@ public abstract class BaseIEnumerableGameEventListener : IEnumerable
 public enum Rarity
 {
     Deactivated = -1,
-    Diamond = 0,
-    Gold = 1,
-    Silver = 2,
-    Bronze = 3,
+    Common = 0, // grey
+    Uncommon = 1, // green
+    Rare = 2, // blue
+    Epic = 3, // purple 
+    Legendary = 4, // orange 
 }

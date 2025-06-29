@@ -19,10 +19,11 @@ public class BlessingFactory
                         var healValue = rarity switch
                         {
                             Rarity.Deactivated => 0,
-                            Rarity.Diamond => 50,
-                            Rarity.Gold => 20,
-                            Rarity.Silver => 10,
-                            Rarity.Bronze => 5,
+                            Rarity.Legendary => 75,
+                            Rarity.Epic => 50,
+                            Rarity.Rare => 20,
+                            Rarity.Uncommon => 10,
+                            Rarity.Common => 5,
                             _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
                         };
 
@@ -41,10 +42,11 @@ public class BlessingFactory
                         var healValue = rarity switch
                         {
                             Rarity.Deactivated => 0,
-                            Rarity.Diamond => 50,
-                            Rarity.Gold => 20,
-                            Rarity.Silver => 10,
-                            Rarity.Bronze => 5,
+                            Rarity.Legendary => 75,
+                            Rarity.Epic => 50,
+                            Rarity.Rare => 20,
+                            Rarity.Uncommon => 10,
+                            Rarity.Common => 5,
                             _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
                         };
 
@@ -64,10 +66,11 @@ public class BlessingFactory
                         var healValue = rarity switch
                         {
                             Rarity.Deactivated => 0,
-                            Rarity.Diamond => 50,
-                            Rarity.Gold => 20,
-                            Rarity.Silver => 10,
-                            Rarity.Bronze => 5,
+                            Rarity.Legendary => 75,
+                            Rarity.Epic => 50,
+                            Rarity.Rare => 20,
+                            Rarity.Uncommon => 10,
+                            Rarity.Common => 5,
                             _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
                         };
 
@@ -86,10 +89,11 @@ public class BlessingFactory
                         var healValue = rarity switch
                         {
                             Rarity.Deactivated => 0,
-                            Rarity.Diamond => 50,
-                            Rarity.Gold => 20,
-                            Rarity.Silver => 10,
-                            Rarity.Bronze => 5,
+                            Rarity.Legendary => 75,
+                            Rarity.Epic => 50,
+                            Rarity.Rare => 20,
+                            Rarity.Uncommon => 10,
+                            Rarity.Common => 5,
                             _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
                         };
 
@@ -108,10 +112,11 @@ public class BlessingFactory
                         var healValue = rarity switch
                         {
                             Rarity.Deactivated => 0,
-                            Rarity.Diamond => 50,
-                            Rarity.Gold => 20,
-                            Rarity.Silver => 10,
-                            Rarity.Bronze => 5,
+                            Rarity.Legendary => 75,
+                            Rarity.Epic => 50,
+                            Rarity.Rare => 20,
+                            Rarity.Uncommon => 10,
+                            Rarity.Common => 5,
                             _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
                         };
 
@@ -133,10 +138,11 @@ public class BlessingFactory
                         var healValue = rarity switch
                         {
                             Rarity.Deactivated => 0,
-                            Rarity.Diamond => 50,
-                            Rarity.Gold => 20,
-                            Rarity.Silver => 10,
-                            Rarity.Bronze => 5,
+                            Rarity.Legendary => 75,
+                            Rarity.Epic => 50,
+                            Rarity.Rare => 20,
+                            Rarity.Uncommon => 10,
+                            Rarity.Common => 5,
                             _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
                         };
 
@@ -157,10 +163,11 @@ public class BlessingFactory
                         var healValue = rarity switch
                         {
                             Rarity.Deactivated => 0,
-                            Rarity.Diamond => 50,
-                            Rarity.Gold => 20,
-                            Rarity.Silver => 10,
-                            Rarity.Bronze => 5,
+                            Rarity.Legendary => 75,
+                            Rarity.Epic => 50,
+                            Rarity.Rare => 20,
+                            Rarity.Uncommon => 10,
+                            Rarity.Common => 5,
                             _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
                         };
 
@@ -183,10 +190,11 @@ public class BlessingFactory
                         var healPowerValue = rarity switch
                         {
                             Rarity.Deactivated => 0,
-                            Rarity.Diamond => 100,
-                            Rarity.Gold => 50,
-                            Rarity.Silver => 20,
-                            Rarity.Bronze => 10,
+                            Rarity.Legendary => 150,
+                            Rarity.Epic => 100,
+                            Rarity.Rare => 50,
+                            Rarity.Uncommon => 20,
+                            Rarity.Common => 10,
                             _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
                         };
 
@@ -215,10 +223,11 @@ public class BlessingFactory
                         var strengthValue = rarity switch
                         {
                             Rarity.Deactivated => 0,
-                            Rarity.Diamond => 20,
-                            Rarity.Gold => 10,
-                            Rarity.Silver => 5,
-                            Rarity.Bronze => 2,
+                            Rarity.Legendary => 50,
+                            Rarity.Epic => 20,
+                            Rarity.Rare => 10,
+                            Rarity.Uncommon => 5,
+                            Rarity.Common => 2,
                             _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
                         };
 
@@ -251,10 +260,11 @@ public class BlessingFactory
                         var percentHealing = rarity switch
                         {
                             Rarity.Deactivated => 0,
-                            Rarity.Diamond => 100,
-                            Rarity.Gold => 75,
-                            Rarity.Silver => 50,
-                            Rarity.Bronze => 15,
+                            Rarity.Legendary => 150,
+                            Rarity.Epic => 100,
+                            Rarity.Rare => 75,
+                            Rarity.Uncommon => 50,
+                            Rarity.Common => 15,
                             _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
                         };
 
@@ -282,10 +292,11 @@ public class BlessingFactory
                         var percentHealing = rarity switch
                         {
                             Rarity.Deactivated => 0,
-                            Rarity.Diamond => 100,
-                            Rarity.Gold => 75,
-                            Rarity.Silver => 50,
-                            Rarity.Bronze => 15,
+                            Rarity.Legendary => 150,
+                            Rarity.Epic => 100,
+                            Rarity.Rare => 75,
+                            Rarity.Uncommon => 50,
+                            Rarity.Common => 15,
                             _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
                         };
 
@@ -308,10 +319,11 @@ public class BlessingFactory
                         var damageValue = rarity switch
                         {
                             Rarity.Deactivated => 0,
-                            Rarity.Diamond => 100,
-                            Rarity.Gold => 75,
-                            Rarity.Silver => 50,
-                            Rarity.Bronze => 15,
+                            Rarity.Legendary => 150,
+                            Rarity.Epic => 100,
+                            Rarity.Rare => 75,
+                            Rarity.Uncommon => 50,
+                            Rarity.Common => 15,
                             _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
                         };
 
@@ -331,10 +343,11 @@ public class BlessingFactory
                         var damageValue = rarity switch
                         {
                             Rarity.Deactivated => 0,
-                            Rarity.Diamond => 100,
-                            Rarity.Gold => 75,
-                            Rarity.Silver => 50,
-                            Rarity.Bronze => 15,
+                            Rarity.Legendary => 150,
+                            Rarity.Epic => 100,
+                            Rarity.Rare => 75,
+                            Rarity.Uncommon => 50,
+                            Rarity.Common => 15,
                             _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
                         };
 
@@ -354,10 +367,11 @@ public class BlessingFactory
                         var damageValue = rarity switch
                         {
                             Rarity.Deactivated => 0,
-                            Rarity.Diamond => 100,
-                            Rarity.Gold => 75,
-                            Rarity.Silver => 50,
-                            Rarity.Bronze => 15,
+                            Rarity.Legendary => 150,
+                            Rarity.Epic => 100,
+                            Rarity.Rare => 75,
+                            Rarity.Uncommon => 50,
+                            Rarity.Common => 15,
                             _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
                         };
 
@@ -377,10 +391,11 @@ public class BlessingFactory
                         var strengthValue = rarity switch
                         {
                             Rarity.Deactivated => 0,
-                            Rarity.Diamond => 20,
-                            Rarity.Gold => 10,
-                            Rarity.Silver => 5,
-                            Rarity.Bronze => 2,
+                            Rarity.Legendary => 50,
+                            Rarity.Epic => 20,
+                            Rarity.Rare => 10,
+                            Rarity.Uncommon => 5,
+                            Rarity.Common => 2,
                             _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
                         };
 
@@ -409,10 +424,11 @@ public class BlessingFactory
                         var percentHealing = rarity switch
                         {
                             Rarity.Deactivated => 0,
-                            Rarity.Diamond => 100,
-                            Rarity.Gold => 50,
-                            Rarity.Silver => 20,
-                            Rarity.Bronze => 10,
+                            Rarity.Legendary => 150,
+                            Rarity.Epic => 100,
+                            Rarity.Rare => 50,
+                            Rarity.Uncommon => 20,
+                            Rarity.Common => 10,
                             _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
                         };
 
@@ -432,10 +448,11 @@ public class BlessingFactory
                         var percentDamage = rarity switch
                         {
                             Rarity.Deactivated => 0,
-                            Rarity.Diamond => 100,
-                            Rarity.Gold => 50,
-                            Rarity.Silver => 20,
-                            Rarity.Bronze => 10,
+                            Rarity.Legendary => 150,
+                            Rarity.Epic => 100,
+                            Rarity.Rare => 50,
+                            Rarity.Uncommon => 20,
+                            Rarity.Common => 10,
                             _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
                         };
 
@@ -457,10 +474,11 @@ public class BlessingFactory
                         var percentDamage = rarity switch
                         {
                             Rarity.Deactivated => 0,
-                            Rarity.Diamond => 100,
-                            Rarity.Gold => 50,
-                            Rarity.Silver => 20,
-                            Rarity.Bronze => 10,
+                            Rarity.Legendary => 150,
+                            Rarity.Epic => 100,
+                            Rarity.Rare => 50,
+                            Rarity.Uncommon => 20,
+                            Rarity.Common => 10,
                             _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
                         };
 
@@ -481,10 +499,11 @@ public class BlessingFactory
                         var percentReduction = rarity switch
                         {
                             Rarity.Deactivated => 0,
-                            Rarity.Diamond => 50,
-                            Rarity.Gold => 25,
-                            Rarity.Silver => 10,
-                            Rarity.Bronze => 5,
+                            Rarity.Legendary => 75,
+                            Rarity.Epic => 50,
+                            Rarity.Rare => 25,
+                            Rarity.Uncommon => 10,
+                            Rarity.Common => 5,
                             _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
                         };
 
@@ -512,10 +531,11 @@ public class BlessingFactory
                         var percentIncrease = rarity switch
                         {
                             Rarity.Deactivated => 0,
-                            Rarity.Diamond => 50,
-                            Rarity.Gold => 25,
-                            Rarity.Silver => 10,
-                            Rarity.Bronze => 5,
+                            Rarity.Legendary => 75,
+                            Rarity.Epic => 50,
+                            Rarity.Rare => 25,
+                            Rarity.Uncommon => 10,
+                            Rarity.Common => 5,
                             _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
                         };
 
@@ -543,10 +563,11 @@ public class BlessingFactory
                         var manaValue = rarity switch
                         {
                             Rarity.Deactivated => 0,
-                            Rarity.Diamond => 5,
-                            Rarity.Gold => 3,
-                            Rarity.Silver => 2,
-                            Rarity.Bronze => 1,
+                            Rarity.Legendary => 10,
+                            Rarity.Epic => 5,
+                            Rarity.Rare => 3,
+                            Rarity.Uncommon => 2,
+                            Rarity.Common => 1,
                             _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
                         };
 
@@ -569,10 +590,11 @@ public class BlessingFactory
                         var manaValue = rarity switch
                         {
                             Rarity.Deactivated => 0,
-                            Rarity.Diamond => 50,
-                            Rarity.Gold => 25,
-                            Rarity.Silver => 10,
-                            Rarity.Bronze => 5,
+                            Rarity.Legendary => 75,
+                            Rarity.Epic => 50,
+                            Rarity.Rare => 25,
+                            Rarity.Uncommon => 10,
+                            Rarity.Common => 5,
                             _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
                         };
 
@@ -591,10 +613,11 @@ public class BlessingFactory
                         var percentMana = rarity switch
                         {
                             Rarity.Deactivated => 0,
-                            Rarity.Diamond => 50,
-                            Rarity.Gold => 20,
-                            Rarity.Silver => 10,
-                            Rarity.Bronze => 5,
+                            Rarity.Legendary => 75,
+                            Rarity.Epic => 50,
+                            Rarity.Rare => 20,
+                            Rarity.Uncommon => 10,
+                            Rarity.Common => 5,
                             _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
                         };
 
@@ -613,10 +636,11 @@ public class BlessingFactory
                         var percentIncrease = rarity switch
                         {
                             Rarity.Deactivated => 0,
-                            Rarity.Diamond => 50,
-                            Rarity.Gold => 25,
-                            Rarity.Silver => 10,
-                            Rarity.Bronze => 5,
+                            Rarity.Legendary => 75,
+                            Rarity.Epic => 50,
+                            Rarity.Rare => 25,
+                            Rarity.Uncommon => 10,
+                            Rarity.Common => 5,
                             _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
                         };
 
@@ -645,10 +669,11 @@ public class BlessingFactory
                         var arcaneValue = rarity switch
                         {
                             Rarity.Deactivated => 0,
-                            Rarity.Diamond => 20,
-                            Rarity.Gold => 10,
-                            Rarity.Silver => 5,
-                            Rarity.Bronze => 2,
+                            Rarity.Legendary => 50,
+                            Rarity.Epic => 20,
+                            Rarity.Rare => 10,
+                            Rarity.Uncommon => 5,
+                            Rarity.Common => 2,
                             _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
                         };
 
