@@ -34,6 +34,15 @@ MonoBehaviour:
     - rid: 2079880286154260487
       type: {class: InstantActionData, ns: , asm: Assembly-CSharp}
       data: 
+    - rid: 7514023554536439922
+      type: {class: LevelComponentData, ns: , asm: Assembly-CSharp}
+      data:
+        <Level>k__BackingField: 1
+    - rid: 7514023554536439923
+      type: {class: AnimationComponentData, ns: , asm: Assembly-CSharp}
+      data:
+        <Animation>k__BackingField: Dance
+        <Forward>k__BackingField: 0
     - rid: 7923229286425952257
       type: {class: CloseEnemyModifier, ns: , asm: Assembly-CSharp}
       data:
@@ -46,9 +55,12 @@ MonoBehaviour:
     - rid: 7923229286425952274
       type: {class: SummonEffectData, ns: , asm: Assembly-CSharp}
       data:
-        <EnemyInfo>k__BackingField:
+        <EnemyData>k__BackingField:
+          name: 
           <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
-          <Level>k__BackingField: 1
+          <Components>k__BackingField:
+          - rid: 7514023554536439922
+          - rid: 7514023554536439923
     - rid: 7923229286425952275
       type: {class: SelfFocusComponentData, ns: , asm: Assembly-CSharp}
       data: 

@@ -27,4 +27,6 @@ public class BossModifier : BaseIEnumerableGameEventListener
 public enum BossModifierIdentifier
 {
     Unknown = 0,
+    
+    InimigosSeCuramAoAtacar = 01_01,
 }

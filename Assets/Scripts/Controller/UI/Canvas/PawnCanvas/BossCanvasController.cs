@@ -5,6 +5,7 @@ using UnityEngine;
 public class BossCanvasController : LifeBarCanvasController
 {
     [field: SerializeField] private TextMeshProUGUI Name { get; set; }
+    [field: SerializeField] private BossModifierCanvasHolderController BossModifierCanvasHolderController { get; set; }
     
     public override void Init(Pawn pawn)
     {
@@ -22,6 +23,6 @@ public class BossCanvasController : LifeBarCanvasController
 
     public void SetModifiers(List<BossModifier> modifiers)
     {
-        
+        BossModifierCanvasHolderController.UpdateItems(modifiers);
     }
 }

@@ -460,13 +460,16 @@ MonoBehaviour:
       - rid: 7514023554536439910
       - rid: 7514023554536439911
     - name: Enemy
-      <PawnData>k__BackingField: {fileID: 0}
-      <Components>k__BackingField: []
+      <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
+      <Components>k__BackingField:
+      - rid: 7514023554536439912
     - name: Enemy
-      <PawnData>k__BackingField: {fileID: 0}
-      <Components>k__BackingField: []
+      <PawnData>k__BackingField: {fileID: 11400000, guid: 180912f05649d1f47a8289a506df4a5f, type: 2}
+      <Components>k__BackingField:
+      - rid: 7514023554536439913
+      - rid: 7514023554536439914
     - name: Enemy
-      <PawnData>k__BackingField: {fileID: 0}
+      <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
       <Components>k__BackingField: []
     <OnVictory>k__BackingField:
       rid: 7514023172666556417
@@ -474,10 +477,10 @@ MonoBehaviour:
       rid: 7514022924109742080
   - <Enemies>k__BackingField:
     - name: Enemy
-      <PawnData>k__BackingField: {fileID: 0}
+      <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
       <Components>k__BackingField: []
     - name: Enemy
-      <PawnData>k__BackingField: {fileID: 0}
+      <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
       <Components>k__BackingField: []
     <OnVictory>k__BackingField:
       rid: 7514022924109742084
@@ -485,10 +488,10 @@ MonoBehaviour:
       rid: -2
   - <Enemies>k__BackingField:
     - name: Enemy
-      <PawnData>k__BackingField: {fileID: 0}
+      <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
       <Components>k__BackingField: []
     - name: Enemy
-      <PawnData>k__BackingField: {fileID: 0}
+      <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
       <Components>k__BackingField: []
     <OnVictory>k__BackingField:
       rid: -2
@@ -514,7 +517,9 @@ MonoBehaviour:
     - rid: 7514023554536439909
       type: {class: BossComponentData, ns: , asm: Assembly-CSharp}
       data:
-        <Modifiers>k__BackingField: []
+        <Modifiers>k__BackingField:
+        - <Identifier>k__BackingField: 101
+          <Rarity>k__BackingField: 1
     - rid: 7514023554536439910
       type: {class: LevelComponentData, ns: , asm: Assembly-CSharp}
       data:
@@ -524,3 +529,15 @@ MonoBehaviour:
       data:
         <Animation>k__BackingField: Dance
         <Forward>k__BackingField: 1
+    - rid: 7514023554536439912
+      type: {class: LevelComponentData, ns: , asm: Assembly-CSharp}
+      data:
+        <Level>k__BackingField: 2
+    - rid: 7514023554536439913
+      type: {class: WeaponComponentData, ns: , asm: Assembly-CSharp}
+      data:
+        <WeaponType>k__BackingField: 6
+    - rid: 7514023554536439914
+      type: {class: MountedEnemyComponentData, ns: , asm: Assembly-CSharp}
+      data:
+        <Mount>k__BackingField: {fileID: 3138497934422905829, guid: f4267771a1770594fa2468539ad0e5a6, type: 3}
