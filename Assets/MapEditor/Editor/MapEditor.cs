@@ -1,3 +1,4 @@
+using System;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -5,8 +6,7 @@ using UnityEngine.UIElements;
 public class MapEditor : EditorWindow
 {
     private MapEditorView MapEditorView { get; set; }
-    private InspectorView InspectorView { get; set; }
-
+    
     [MenuItem("GameTools/MapEditor")]
     public static void OpenWindow()
     {
@@ -25,7 +25,6 @@ public class MapEditor : EditorWindow
         root.styleSheets.Add(styleSheet);
 
         MapEditorView = root.Q<MapEditorView>();
-        InspectorView = root.Q<InspectorView>();
 
         var asset = AssetDatabase.LoadAssetAtPath<MapData>("Assets/MapEditor/Map.asset");
 
@@ -44,7 +43,9 @@ public class MapEditor : EditorWindow
 
     private void OnNodeSelectionChanged(BaseNodeView nodeView)
     {
-        InspectorView.UpdateSelection(nodeView);
+        if(nodeView == null)
+            return;
+        
+        Selection.SetActiveObjectWithContext(nodeView.NodeData, this);
     }
-    
 }

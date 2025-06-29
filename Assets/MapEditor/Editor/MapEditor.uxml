@@ -1,10 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <SplitView fixed-pane-initial-dimension="300">
-        <ui:VisualElement name="left-panel" style="flex-grow: 1;">
-            <InspectorView />
-        </ui:VisualElement>
-        <ui:VisualElement name="right-panel" style="flex-grow: 1;">
-            <MapEditorView style="flex-grow: 1;" />
-        </ui:VisualElement>
-    </SplitView>
+    <ui:VisualElement name="right-panel" style="flex-grow: 1;">
+        <MapEditorView style="flex-grow: 1;" />
+    </ui:VisualElement>
 </ui:UXML>
