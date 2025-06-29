@@ -18,16 +18,6 @@ public class BossComponentData : EnemyDataComponent
     }
 }
 
-public class PawnDataComponentData : EnemyDataComponent
-{
-    [field: SerializeField] private PawnData PawnData { get; set; }
-
-    public override void PreparePawn(PawnController pawnController)
-    {
-        pawnController.Init(PawnData.ToDomain(PawnStatus.Enemy, TeamType.Enemies));
-    }
-}
-
 public class WeaponComponentData : EnemyDataComponent
 {
     [field: SerializeField] private WeaponType WeaponType { get; set; }

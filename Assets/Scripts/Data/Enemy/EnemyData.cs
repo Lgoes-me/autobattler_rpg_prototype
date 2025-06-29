@@ -9,12 +9,14 @@ public class EnemyData
     [field: HideInInspector] public string name;
     public PawnController PawnController { get; set; }
 
+    [field: SerializeField] private PawnData PawnData { get; set; }
     [field: SerializeReference] [field: SerializeField] private List<EnemyDataComponent> Components { get; set; }
     
-    public void PreparePawn(PawnController pawnController)
+    public void PreparePawn(PawnController pawnController, TeamType team)
     {
         PawnController = pawnController;
-
+        PawnController.Init(PawnData.ToDomain(PawnStatus.Battle, team));
+        
         foreach (var component in Components)
         {
             component.PreparePawn(PawnController);

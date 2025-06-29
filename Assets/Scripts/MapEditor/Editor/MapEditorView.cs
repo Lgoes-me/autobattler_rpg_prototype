@@ -6,13 +6,9 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class MapEditorView : GraphView
+[UxmlElement]
+public partial class MapEditorView : GraphView
 {
-    public new class UxmlFactory : UxmlFactory<MapEditorView, UxmlTraits>
-    {
-        
-    }
-
     public Action<BaseNodeView> OnNodeSelected;
     public MapData MapData { get; private set; }
 

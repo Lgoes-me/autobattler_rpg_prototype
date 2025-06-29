@@ -11,8 +11,6 @@ public class SummonEffect : AbilityEffect
 
     public override void DoAbilityEffect(PawnController focus)
     {
-        //TODO REFACTOR ENEMYDATA
-        //var pawn = EnemyInfo.ToDomain(AbilityUser.Pawn.Team);
-        //AbilityUser.SummonPawn(pawn);
+        AbilityUser.SummonPawn(EnemyData);
     }
 }

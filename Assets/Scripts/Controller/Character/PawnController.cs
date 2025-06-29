@@ -263,7 +263,7 @@ public class PawnController : MonoBehaviour
         RealizeTurn();
     }
 
-    public void SummonPawn(Pawn pawn)
+    public void SummonPawn(EnemyData enemyData)
     {
         var roomScene = FindFirstObjectByType<RoomController>();
         var prefab = Application.Instance.GetManager<PartyManager>().BasePawnPrefab;
@@ -272,9 +272,9 @@ public class PawnController : MonoBehaviour
         var pawnController = Instantiate(prefab, transform.position + randomRotation, Quaternion.identity,
             roomScene.transform);
 
-        pawnController.Init(pawn);
+        enemyData.PreparePawn(pawnController, Pawn.Team);
 
-        switch (pawn.Team)
+        switch (Pawn.Team)
         {
             case TeamType.Player:
                 Battle.AddPlayerPawn(pawnController);

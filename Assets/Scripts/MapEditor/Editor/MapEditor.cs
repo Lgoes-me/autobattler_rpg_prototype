@@ -4,6 +4,7 @@ using UnityEngine.UIElements;
 
 public class MapEditor : EditorWindow
 {
+    
     private MapEditorView MapEditorView { get; set; }
     
     [MenuItem("GameTools/MapEditor")]

@@ -25,7 +25,7 @@ public class EnemyAreaController : MonoBehaviour
         {
             var enemy = CombatEncounter.Enemies[index];
             var enemyController = EnemyControllers[index];
-            enemy.PreparePawn(enemyController.PawnController);
+            enemy.PreparePawn(enemyController.PawnController, TeamType.Enemies);
             enemyController.Init(this);
         }
     }
