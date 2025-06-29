@@ -1,4 +1,3 @@
-using System;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -18,15 +17,15 @@ public class MapEditor : EditorWindow
     {
         var root = rootVisualElement;
 
-        var visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/MapEditor/Editor/MapEditor.uxml");
+        var visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Scripts/MapEditor/Editor/MapEditor.uxml");
         visualTreeAsset.CloneTree(root);
 
-        var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/MapEditor/Editor/MapEditor.uss");
+        var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Scripts/MapEditor/Editor/MapEditor.uss");
         root.styleSheets.Add(styleSheet);
 
         MapEditorView = root.Q<MapEditorView>();
 
-        var asset = AssetDatabase.LoadAssetAtPath<MapData>("Assets/MapEditor/Map.asset");
+        var asset = AssetDatabase.LoadAssetAtPath<MapData>("Assets/Scripts/MapEditor/Map.asset");
 
         MapEditorView.OnNodeSelected = OnNodeSelectionChanged;
         MapEditorView.focusable = true;

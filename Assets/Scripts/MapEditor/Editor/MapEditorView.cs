@@ -25,7 +25,7 @@ public class MapEditorView : GraphView
         this.AddManipulator(new SelectionDragger());
         this.AddManipulator(new RectangleSelector());
 
-        var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/MapEditor/Editor/MapEditor.uss");
+        var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Scripts/MapEditor/Editor/MapEditor.uss");
         styleSheets.Add(styleSheet);
     }
 
