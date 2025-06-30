@@ -28,6 +28,37 @@ MonoBehaviour:
   references:
     version: 2
     RefIds: []
+--- !u!114 &-7368266576444716754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69c61ae9e200eb14393b209fd5577f3e, type: 3}
+  m_Name: OpeningCutscene
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: OpeningCutscene
+  <Id>k__BackingField: 230b631c-65c1-4331-b9d2-6245511d1e68
+  <Doors>k__BackingField:
+  - <Name>k__BackingField: entrance
+    <Id>k__BackingField: 1524b677-ff24-4987-8832-d04e77cd7450
+    <Port>k__BackingField: input
+    <SceneDestination>k__BackingField: Start
+    <DoorDestination>k__BackingField: ad607460-dd61-47e2-a853-39246edb7edb
+    <SetUp>k__BackingField: 1
+  - <Name>k__BackingField: exit
+    <Id>k__BackingField: 9625b3c5-d47b-4eed-b9c1-66db7d9f9920
+    <Port>k__BackingField: output
+    <SceneDestination>k__BackingField: f5ac78fe-1bdd-49a7-a27f-a067e3d70473
+    <DoorDestination>k__BackingField: 8b1650e0-deda-45b9-b85a-dc45f9a4f00f
+    <SetUp>k__BackingField: 1
+  <Position>k__BackingField: {x: 865.99994, y: -454}
+  <CutsceneRoomPrefab>k__BackingField: {fileID: 8965248114039853605, guid: 0a0047fa6a32bb642a202ff7c4baa092, type: 3}
+  <DialogueData>k__BackingField: {fileID: 11400000, guid: bd2d1176735994f438ac62a13ebb7228, type: 2}
+  <PostProcessProfile>k__BackingField: {fileID: 11400000, guid: 0d2fdc4948ba68144ac41b1fa7ed95a2, type: 2}
 --- !u!114 &-7062591825236621593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,8 +214,8 @@ MonoBehaviour:
   - <Name>k__BackingField: 
     <Id>k__BackingField: 988c01e7-a0ec-4e6e-9ec5-cdfea84ec1c9
     <Port>k__BackingField: input
-    <SceneDestination>k__BackingField: 4476e2d4-11f8-4381-9574-27858a7ecb10
-    <DoorDestination>k__BackingField: c56e9169-ffe3-44d7-b859-af13ae7abf4a
+    <SceneDestination>k__BackingField: f5ac78fe-1bdd-49a7-a27f-a067e3d70473
+    <DoorDestination>k__BackingField: cd85f23f-0f07-4959-98c3-7b3406a8eaa6
     <SetUp>k__BackingField: 1
   - <Name>k__BackingField: 
     <Id>k__BackingField: c9bff11e-b46e-4cbd-89ee-e8208df58c19
@@ -302,7 +333,7 @@ MonoBehaviour:
       type: {class: MarkGameEvent, ns: , asm: Assembly-CSharp}
       data:
         <EventId>k__BackingField: FirstDeath
---- !u!114 &-568945341746448962
+--- !u!114 &-1172974192621517246
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -312,30 +343,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a2fc1121b5478849afcf06dae390f8b, type: 3}
-  m_Name: 
+  m_Name: f5ac78fe-1bdd-49a7-a27f-a067e3d70473
   m_EditorClassIdentifier: 
   <Name>k__BackingField: startFork
-  <Id>k__BackingField: 4476e2d4-11f8-4381-9574-27858a7ecb10
+  <Id>k__BackingField: f5ac78fe-1bdd-49a7-a27f-a067e3d70473
   <Doors>k__BackingField:
   - <Name>k__BackingField: in1
-    <Id>k__BackingField: 65fb13c9-4eb0-43a2-860f-1b273ad44156
+    <Id>k__BackingField: 7e5c5650-ab7e-46e7-9d9e-6c0f2c40823a
     <Port>k__BackingField: input
     <SceneDestination>k__BackingField: e366a721-bd24-4f71-adcd-83a7a465e7e2
     <DoorDestination>k__BackingField: 43c9be69-a3ef-4073-ada3-ebfcbb64e65d
     <SetUp>k__BackingField: 1
   - <Name>k__BackingField: in2
-    <Id>k__BackingField: 65e45a20-4516-497e-90d9-d9136cf82eb0
+    <Id>k__BackingField: 8b1650e0-deda-45b9-b85a-dc45f9a4f00f
     <Port>k__BackingField: input
-    <SceneDestination>k__BackingField: Start
-    <DoorDestination>k__BackingField: ad607460-dd61-47e2-a853-39246edb7edb
+    <SceneDestination>k__BackingField: 230b631c-65c1-4331-b9d2-6245511d1e68
+    <DoorDestination>k__BackingField: 9625b3c5-d47b-4eed-b9c1-66db7d9f9920
     <SetUp>k__BackingField: 1
   - <Name>k__BackingField: exit
-    <Id>k__BackingField: c56e9169-ffe3-44d7-b859-af13ae7abf4a
+    <Id>k__BackingField: cd85f23f-0f07-4959-98c3-7b3406a8eaa6
     <Port>k__BackingField: output
     <SceneDestination>k__BackingField: 5c8c2e46-539f-4ee5-ab39-c7ec46be45aa
     <DoorDestination>k__BackingField: 988c01e7-a0ec-4e6e-9ec5-cdfea84ec1c9
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: 1185.96, y: -220}
+  <Position>k__BackingField: {x: 1247.5408, y: -414.45724}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,9 +388,10 @@ MonoBehaviour:
   - {fileID: 4440864553048067359}
   - {fileID: -7062591825236621593}
   - {fileID: -6513498626437232033}
-  - {fileID: -568945341746448962}
   - {fileID: 3059956691839919840}
   - {fileID: -8674134143133493879}
+  - {fileID: -7368266576444716754}
+  - {fileID: -1172974192621517246}
 --- !u!114 &3059956691839919840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -400,10 +432,10 @@ MonoBehaviour:
   - <Name>k__BackingField: 
     <Id>k__BackingField: ad607460-dd61-47e2-a853-39246edb7edb
     <Port>k__BackingField: output
-    <SceneDestination>k__BackingField: 4476e2d4-11f8-4381-9574-27858a7ecb10
-    <DoorDestination>k__BackingField: 65e45a20-4516-497e-90d9-d9136cf82eb0
+    <SceneDestination>k__BackingField: 230b631c-65c1-4331-b9d2-6245511d1e68
+    <DoorDestination>k__BackingField: 1524b677-ff24-4987-8832-d04e77cd7450
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: 1044, y: -233}
+  <Position>k__BackingField: {x: 740.78925, y: -454}
 --- !u!114 &6909170025742541972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,8 +460,8 @@ MonoBehaviour:
   - <Name>k__BackingField: MainTunnelExit
     <Id>k__BackingField: 43c9be69-a3ef-4073-ada3-ebfcbb64e65d
     <Port>k__BackingField: output
-    <SceneDestination>k__BackingField: 4476e2d4-11f8-4381-9574-27858a7ecb10
-    <DoorDestination>k__BackingField: 65fb13c9-4eb0-43a2-860f-1b273ad44156
+    <SceneDestination>k__BackingField: f5ac78fe-1bdd-49a7-a27f-a067e3d70473
+    <DoorDestination>k__BackingField: 7e5c5650-ab7e-46e7-9d9e-6c0f2c40823a
     <SetUp>k__BackingField: 1
   - <Name>k__BackingField: SecondaryTunnelEntrance
     <Id>k__BackingField: e3b1933f-9893-40fb-83ac-6c3f081ebaae
@@ -449,7 +481,7 @@ MonoBehaviour:
     <SceneDestination>k__BackingField: 5156dcbf-99fe-410b-b6c8-6e7496024057
     <DoorDestination>k__BackingField: 69690e82-0343-458c-8dcc-f75d91b8ca70
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: 866, y: -70}
+  <Position>k__BackingField: {x: 866, y: -69.00001}
   <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 19dd903d99158e5409d93f9499a6abee, type: 3}
   <CombatEncounters>k__BackingField:
   - <Enemies>k__BackingField:

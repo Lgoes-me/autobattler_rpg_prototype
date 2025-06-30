@@ -8,7 +8,7 @@ public class ForkedNodeData : BaseNodeData
         var dataParams = (ForkedNodeDataParams) nodeDataParams;
 
         Id = dataParams.Id;
-        Name = name;
+        Name = name = Id;
 
         Doors = new List<DoorData>();
 

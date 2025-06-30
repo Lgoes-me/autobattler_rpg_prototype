@@ -50,13 +50,7 @@ public class NpcController : MonoBehaviour, IInteractableListener
 
     public void Select(Action callback)
     {
-        Application.Instance.GetManager<PauseManager>().PauseGame();
-        
-        Application.Instance.GetManager<DialogueManager>().OpenDialogue(Dialogue, () =>
-        {
-            Application.Instance.GetManager<PauseManager>().ResumeGame();
-            callback();
-        });
+        Application.Instance.GetManager<DialogueManager>().OpenDialogue(Dialogue, callback);
     }
 
     public void UnSelect()

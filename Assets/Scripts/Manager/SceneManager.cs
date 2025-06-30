@@ -18,7 +18,7 @@ public class SceneManager : MonoBehaviour, IManager
 
     private Map Map { get; set; }
 
-    private RoomController CurrentRoom { get; set; }
+    private BaseRoomController CurrentRoom { get; set; }
 
     public void Prepare()
     {
@@ -120,9 +120,22 @@ public class SceneManager : MonoBehaviour, IManager
         InterfaceManager.ShowBattleCanvas();
     }
 
-    private void WatchCutscene(CutsceneNode cutsceneNode, Spawn spawn)
+    private async void WatchCutscene(CutsceneNode cutsceneNode, Spawn spawn)
     {
-        
+        await LoadNewRoom();
+
+        if (CurrentRoom != null)
+        {
+            Destroy(CurrentRoom.gameObject);
+        }
+
+        await this.WaitEndOfFrame();
+
+        CurrentRoom = Instantiate(cutsceneNode.CutsceneRoomPrefab).Init(cutsceneNode);
+        CurrentRoom.SpawnPlayerAt(spawn.Id, Blend);
+        GameSaveManager.SetSpawn(spawn);
+
+        CurrentRoom.PlayMusic();
     }
     
     public async void RespawnAtBonfire()

@@ -5,7 +5,7 @@ using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class RoomController : MonoBehaviour
+public class RoomController : BaseRoomController
 {
     [field:SerializeField] public List<CorridorAreaController> Doors { get; private set; }
     [field:SerializeField] public List<EnemyAreaController> EnemyAreas { get; private set; }
@@ -41,13 +41,13 @@ public class RoomController : MonoBehaviour
         
         return this;
     }
-
-    public void PlayMusic()
+    
+    public override void PlayMusic()
     {
         Application.Instance.GetManager<AudioManager>().PlayMusic(MusicType);
     }
-    
-    public void SpawnPlayerAt(string spawn, CinemachineBlendDefinition blend)
+
+    public override void SpawnPlayerAt(string spawn, CinemachineBlendDefinition blend)
     {
         var door = Doors.FirstOrDefault(d => d.Id == spawn);
         

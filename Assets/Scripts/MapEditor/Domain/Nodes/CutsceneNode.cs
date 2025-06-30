@@ -5,8 +5,8 @@ public class CutsceneNode : BaseSceneNode
 {
     public Transition Entrance { get; }
     public Transition Exit { get; }
-    private CutsceneRoomController CutsceneRoomPrefab { get; }
-    private DialogueData DialogueData { get; }
+    public CutsceneRoomController CutsceneRoomPrefab { get; }
+    public DialogueData DialogueData { get; }
     public VolumeProfile PostProcessProfile { get; }
     public MusicType Music { get; }
     

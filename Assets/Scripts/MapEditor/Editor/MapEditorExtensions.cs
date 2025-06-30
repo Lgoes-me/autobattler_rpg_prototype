@@ -7,6 +7,7 @@ public static class MapEditorExtensions
         return node switch
         {
             SceneNodeData sceneNode => new SceneNodeView(sceneNode),
+            CutsceneNodeData cutseneNode => new CutsceneNodeView(cutseneNode),
             SpawnNodeData spawnNode => new SpawnNodeView(spawnNode),
             BlockedEventNodeData blockedEventNode => new BlockedEventNodeView(blockedEventNode),
             ForkedNodeData forkedNodeData => new ForkedNodeView(forkedNodeData),

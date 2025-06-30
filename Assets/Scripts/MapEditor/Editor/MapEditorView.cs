@@ -195,6 +195,23 @@ public partial class MapEditorView : GraphView
             CreateNode<SceneNodeData>(eventInfoLocalMousePosition, nodeParams);
         }
     }
+    
+    private void CreateCutsceneNode(Vector2 eventInfoLocalMousePosition)
+    {
+        var path = EditorUtility.OpenFilePanel("Choose prefab", "Assets/Prefabs/Rooms", "prefab");
+
+        if (path != null)
+        {
+            string[] separatedPath = path.Split(new[] {"Assets"}, StringSplitOptions.None);
+            
+            var id = Guid.NewGuid().ToString();
+            var prefab = AssetDatabase.LoadAssetAtPath<CutsceneRoomController>("Assets" + separatedPath[1]);
+            
+            var nodeParams = new CutsceneNodeDataParams(id, prefab);
+            
+            CreateNode<CutsceneNodeData>(eventInfoLocalMousePosition, nodeParams);
+        }
+    }
 
     private void CreateSpawnNode(Vector2 eventInfoLocalMousePosition)
     {
@@ -243,6 +260,7 @@ public partial class MapEditorView : GraphView
         
         evt.menu.AppendAction("Spawn", _ => CreateSpawnNode(mousePosition));
         evt.menu.AppendAction("Scene", _ => CreateSceneNode(mousePosition));
+        evt.menu.AppendAction("Cutscene", _ => CreateCutsceneNode(mousePosition));
         evt.menu.AppendAction("BlockedByEvent", _ => CreateBlockedEventNode(mousePosition));
         evt.menu.AppendAction("Fork", _ => CreateForkedNode(mousePosition));
     }

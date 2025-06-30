@@ -18,11 +18,17 @@ public class PlayerManager : MonoBehaviour, IManager
 
     public void DisablePlayerInput()
     {
+        if(PlayerController == null)
+            return;
+        
         PlayerController.Disable();
     }
 
     public void EnablePlayerInput()
     {
+        if(PlayerController == null)
+            return;
+
         PlayerController.Enable();
     }
 
