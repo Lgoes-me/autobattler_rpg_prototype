@@ -1,18 +1,23 @@
 ﻿using Cinemachine;
 
-public class CutsceneRoomController : BaseRoomController
+public class CutsceneRoomController : BaseRoomController<CutsceneNode>
 {
     private DialogueData DialogueData { get; set; }
     private Transition Exit { get; set; }
     
-    public CutsceneRoomController Init(CutsceneNode sceneData)
+    protected override BaseRoomController<CutsceneNode> InternalInit(CutsceneNode data, Spawn spawn, CinemachineBlendDefinition blend)
     {
-        DialogueData = sceneData.DialogueData;
-        Exit = sceneData.Exit;
+        DialogueData = data.DialogueData;
+        Exit = data.Exit;
+        
+        Application.Instance.GetManager<GameSaveManager>().SetSpawn(spawn);
+        Application.Instance.GetManager<AudioManager>().PlayMusic(data.Music);
+        
+        StartCutscene();
         return this;
     }
     
-    public override void SpawnPlayerAt(string spawn, CinemachineBlendDefinition blend)
+    private void StartCutscene()
     {
         Application.Instance.GetManager<DialogueManager>().OpenDialogue(DialogueData, () =>
         {

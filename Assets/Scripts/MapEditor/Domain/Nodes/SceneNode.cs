@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine.Rendering;
 
 public class SceneNode : BaseSceneNode
-
 {
+    public override BaseRoomController Prefab => RoomPrefab;
     public RoomController RoomPrefab { get; }
     public List<CombatEncounterData> CombatEncounters { get; }
     public VolumeProfile PostProcessProfile { get; }
     public List<Transition> Doors { get; }
     public MusicType Music { get; }
     
-    protected SceneNode(string id) : base(id)
+    private SceneNode(string id) : base(id)
     {
         RoomPrefab = null;
         CombatEncounters = new List<CombatEncounterData>();

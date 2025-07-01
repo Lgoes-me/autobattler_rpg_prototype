@@ -79,27 +79,10 @@ public class SceneManager : MonoBehaviour, IManager
         if (node is not SceneNode sceneData)
             return;
 
-        Instantiate(sceneData.RoomPrefab).Init(sceneData);
+        Instantiate(sceneData.RoomPrefab).Init(sceneData, spawn, Blend);
     }
 
-    private void DoTransition(BaseSceneNode baseNode, Spawn spawn)
-    {
-        switch (baseNode)
-        {
-            case SceneNode sceneNode:
-            {
-                EnterRoom(sceneNode, spawn);
-                break;
-            }
-            case CutsceneNode cutsceneNode:
-            {
-                WatchCutscene(cutsceneNode, spawn);
-                break;
-            }
-        }
-    }
-
-    private async void EnterRoom(SceneNode sceneNode, Spawn spawn)
+    private async void DoTransition(BaseSceneNode node, Spawn spawn)
     {
         await LoadNewRoom();
 
@@ -110,32 +93,7 @@ public class SceneManager : MonoBehaviour, IManager
 
         await this.WaitEndOfFrame();
 
-        CurrentRoom = Instantiate(sceneNode.RoomPrefab).Init(sceneNode);
-        CurrentRoom.SpawnPlayerAt(spawn.Id, Blend);
-        GameSaveManager.SetSpawn(spawn);
-
-        PartyManager.SetPartyToFollow(true);
-        CurrentRoom.PlayMusic();
-
-        InterfaceManager.ShowBattleCanvas();
-    }
-
-    private async void WatchCutscene(CutsceneNode cutsceneNode, Spawn spawn)
-    {
-        await LoadNewRoom();
-
-        if (CurrentRoom != null)
-        {
-            Destroy(CurrentRoom.gameObject);
-        }
-
-        await this.WaitEndOfFrame();
-
-        CurrentRoom = Instantiate(cutsceneNode.CutsceneRoomPrefab).Init(cutsceneNode);
-        CurrentRoom.SpawnPlayerAt(spawn.Id, Blend);
-        GameSaveManager.SetSpawn(spawn);
-
-        CurrentRoom.PlayMusic();
+        CurrentRoom = Instantiate(node.Prefab).Init(node, spawn, Blend);
     }
     
     public async void RespawnAtBonfire()

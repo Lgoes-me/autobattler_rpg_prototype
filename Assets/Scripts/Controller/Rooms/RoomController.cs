@@ -5,7 +5,7 @@ using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class RoomController : BaseRoomController
+public class RoomController : BaseRoomController<SceneNode>
 {
     [field:SerializeField] public List<CorridorAreaController> Doors { get; private set; }
     [field:SerializeField] public List<EnemyAreaController> EnemyAreas { get; private set; }
@@ -15,14 +15,13 @@ public class RoomController : BaseRoomController
     
     private MusicType MusicType { get; set; }
     
-    public RoomController Init(SceneNode data)
+    protected override BaseRoomController<SceneNode> InternalInit(SceneNode data, Spawn spawn, CinemachineBlendDefinition blend)
     {
         Surface.BuildNavMesh();
         
         foreach (var door in Doors)
         {
-            var spawn = data.Doors.First(d => d.Start.Id == door.Id);
-            door.Init(spawn);
+            door.Init(data.Doors.First(d => d.Start.Id == door.Id));
         }
 
         if (Bonfire != null)
@@ -39,15 +38,17 @@ public class RoomController : BaseRoomController
         MusicType = data.Music;
         PostProcessVolume.profile = data.PostProcessProfile;
         
+        SpawnPlayerAt(spawn.Id, blend);
+        
+        Application.Instance.GetManager<GameSaveManager>().SetSpawn(spawn);
+        Application.Instance.GetManager<PartyManager>().SetPartyToFollow(true);
+        Application.Instance.GetManager<InterfaceManager>().ShowBattleCanvas();
+        Application.Instance.GetManager<AudioManager>().PlayMusic(MusicType);
+        
         return this;
     }
-    
-    public override void PlayMusic()
-    {
-        Application.Instance.GetManager<AudioManager>().PlayMusic(MusicType);
-    }
 
-    public override void SpawnPlayerAt(string spawn, CinemachineBlendDefinition blend)
+    private void SpawnPlayerAt(string spawn, CinemachineBlendDefinition blend)
     {
         var door = Doors.FirstOrDefault(d => d.Id == spawn);
         

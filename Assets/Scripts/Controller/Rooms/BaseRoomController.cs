@@ -1,15 +1,15 @@
 ﻿using Cinemachine;
 using UnityEngine;
 
-public class BaseRoomController : MonoBehaviour
+public abstract class BaseRoomController<T> : BaseRoomController where T : BaseSceneNode
 {
-    public virtual void PlayMusic()
-    {
-        
-    }
+    public override BaseRoomController Init(BaseSceneNode data, Spawn spawn, CinemachineBlendDefinition blend)
+        => InternalInit((T) data, spawn, blend);
     
-    public virtual void SpawnPlayerAt(string spawn, CinemachineBlendDefinition blend)
-    {
-        
-    }
+    protected abstract BaseRoomController<T> InternalInit(T data, Spawn spawn, CinemachineBlendDefinition blend);
+}
+
+public abstract class BaseRoomController : MonoBehaviour
+{
+    public abstract BaseRoomController Init(BaseSceneNode data, Spawn spawn, CinemachineBlendDefinition blend);
 }

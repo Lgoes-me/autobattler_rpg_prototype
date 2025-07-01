@@ -3,10 +3,11 @@ using UnityEngine.Rendering;
 
 public class CutsceneNode : BaseSceneNode
 {
-    public Transition Entrance { get; }
-    public Transition Exit { get; }
+    public override BaseRoomController Prefab => CutsceneRoomPrefab;
     public CutsceneRoomController CutsceneRoomPrefab { get; }
     public DialogueData DialogueData { get; }
+    public Transition Entrance { get; }
+    public Transition Exit { get; }
     public VolumeProfile PostProcessProfile { get; }
     public MusicType Music { get; }
     
