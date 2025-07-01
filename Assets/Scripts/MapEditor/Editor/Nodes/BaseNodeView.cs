@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class BaseNodeView: Node
+public class BaseNodeView: UnityEditor.Experimental.GraphView.Node
 {
     public Action<BaseNodeView> OnNodeSelected;
     public BaseNodeData NodeData { get; }

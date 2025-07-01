@@ -42,6 +42,15 @@ public class CutsceneNode : BaseSceneNode
 
     public override bool IsOpen(Map map, Spawn spawn)
     {
-        return true;
+        if (spawn == Entrance.Start)
+        {
+            return true;
+        }
+        if (spawn == Exit.Start)
+        {
+            return false;
+        }
+        
+        return false;
     }
 }

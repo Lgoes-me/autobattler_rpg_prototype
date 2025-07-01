@@ -35,7 +35,7 @@ public class ForkedNodeData : BaseNodeData
         Doors.Add(exit);
     }
 
-    public override BaseSceneNode ToDomain()
+    public override BaseNode ToDomain()
     {
         return new ForkedNode(Doors[0].ToDomain(Id), Doors[1].ToDomain(Id), Doors[2].ToDomain(Id), Id);
     }

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-public class BlockedEventNode : BaseSceneNode
+public class BlockedEventNode : BaseNode
 {
     public string EventId { get; }
     public DialogueData Dialogue { get; }

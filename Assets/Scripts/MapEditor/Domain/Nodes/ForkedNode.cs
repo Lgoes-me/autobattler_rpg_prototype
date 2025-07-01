@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class ForkedNode : BaseSceneNode
+public class ForkedNode : BaseNode
 {
     private Transition In1 { get; }
     private Transition In2 { get; }

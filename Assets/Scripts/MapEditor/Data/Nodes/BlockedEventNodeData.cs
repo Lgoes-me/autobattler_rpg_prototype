@@ -40,7 +40,7 @@ public class BlockedEventNodeData : BaseNodeData
         EventId = Name;
     }
 
-    public override BaseSceneNode ToDomain()
+    public override BaseNode ToDomain()
     {
         var doors = Doors.Select(d => d.ToDomain(Id)).ToList();
         return new BlockedEventNode(EventId, Dialogue, Id, doors);

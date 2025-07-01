@@ -15,29 +15,29 @@ public class RoomController : BaseRoomController
     
     private MusicType MusicType { get; set; }
     
-    public RoomController Init(SceneNode sceneData)
+    public RoomController Init(SceneNode data)
     {
         Surface.BuildNavMesh();
         
         foreach (var door in Doors)
         {
-            var spawn = sceneData.Doors.First(d => d.Start.Id == door.Id);
+            var spawn = data.Doors.First(d => d.Start.Id == door.Id);
             door.Init(spawn);
         }
 
         if (Bonfire != null)
         {
-            Bonfire.Init(sceneData.Id);
+            Bonfire.Init(data.Id);
         }
 
         for (var index = 0; index < EnemyAreas.Count; index++)
         {
             var enemyArea = EnemyAreas[index];
-            enemyArea.Init(sceneData.Id, sceneData.CombatEncounters[index]);
+            enemyArea.Init(data.Id, data.CombatEncounters[index]);
         }
 
-        MusicType = sceneData.Music;
-        PostProcessVolume.profile = sceneData.PostProcessProfile;
+        MusicType = data.Music;
+        PostProcessVolume.profile = data.PostProcessProfile;
         
         return this;
     }

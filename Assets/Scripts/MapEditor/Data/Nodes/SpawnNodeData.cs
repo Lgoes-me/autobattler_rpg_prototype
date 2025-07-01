@@ -26,7 +26,7 @@ public class SpawnNodeData : BaseNodeData
         Id = Name;
     }
 
-    public override BaseSceneNode ToDomain()
+    public override BaseNode ToDomain()
     {
         return new SpawnNode(Id, Doors[0].ToDomain(Id));
     }

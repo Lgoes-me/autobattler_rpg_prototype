@@ -1,24 +1,7 @@
-﻿using System;
-
-public abstract class BaseSceneNode
+﻿public abstract class BaseSceneNode : BaseNode
 {
-    public string Id { get; }
-
-    private BaseSceneNode()
+    protected BaseSceneNode(string id) : base(id)
     {
-        Id = string.Empty;
-    }
-    
-    protected BaseSceneNode(string id) : this()
-    {
-        Id = id;
-    }
-
-    public abstract void DoTransition(Map map, Spawn spawn, Action<BaseSceneNode, Spawn> callback);
-    public abstract bool IsOpen(Map map, Spawn spawn);
-
-    public virtual DialogueData GetDialogue(Map map, Spawn spawn)
-    {
-        return null;
+        
     }
 }

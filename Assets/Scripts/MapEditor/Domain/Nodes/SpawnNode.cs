@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class SpawnNode : BaseSceneNode
+public class SpawnNode : BaseNode
 {
     public Transition Spawn { get; }
     

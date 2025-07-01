@@ -4,9 +4,9 @@ using System.Linq;
 
 public class Map
 {
-    internal Dictionary<string, BaseSceneNode> AllNodesById { get; set; }
+    internal Dictionary<string, BaseNode> AllNodesById { get; set; }
 
-    public Map(List<BaseSceneNode> nodes)
+    public Map(List<BaseNode> nodes)
     {
         AllNodesById = nodes.ToDictionary(n => n.Id, n => n);
     }

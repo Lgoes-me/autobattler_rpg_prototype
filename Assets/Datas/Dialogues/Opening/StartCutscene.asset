@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e4daecf96b9e460fba37aa4e87f58092, type: 3}
-  m_Name: TutorialCutscene
+  m_Name: StartCutscene
   m_EditorClassIdentifier: 
   <Pawn>k__BackingField: {fileID: 11400000, guid: 41bae653165f78748b456c8346ffda6c, type: 2}
   <DialogueVariation>k__BackingField:
@@ -24,15 +24,9 @@ MonoBehaviour:
       type: {class: Dialogue, ns: , asm: Assembly-CSharp}
       data:
         <Lines>k__BackingField:
-        - rid: 5882033753707511809
-        - rid: 5882033753707511810
-    - rid: 5882033753707511809
+        - rid: 8813334712271503373
+    - rid: 8813334712271503373
       type: {class: Line, ns: , asm: Assembly-CSharp}
       data:
-        <Text>k__BackingField: Era uma vez...
-        <Info>k__BackingField: 
-    - rid: 5882033753707511810
-      type: {class: Line, ns: , asm: Assembly-CSharp}
-      data:
-        <Text>k__BackingField: Em uma dungeon...
-        <Info>k__BackingField: 
+        <Text>k__BackingField: teste
+        <CharacterInfoIdentifier>k__BackingField: 

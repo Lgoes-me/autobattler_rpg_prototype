@@ -22,7 +22,7 @@ public abstract class BaseNodeData : ScriptableObject
         OnNodeDataUpdated?.Invoke();
     }
     
-    public abstract BaseSceneNode ToDomain();
+    public abstract BaseNode ToDomain();
     public abstract void Init(NodeDataParams nodeDataParams);
 }
 

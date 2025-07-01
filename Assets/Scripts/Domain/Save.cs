@@ -43,8 +43,7 @@ public class Save : ISavable
         
         Blessings = new List<BlessingIdentifier>()
         {
-            BlessingIdentifier.RevivePrimeiroAliadoAMorrerEmCombate,
-            //BlessingIdentifier.OnAttackHeal,
+            
         };
         
         AvailableParty = new List<string>()

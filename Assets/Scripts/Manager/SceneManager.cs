@@ -74,17 +74,17 @@ public class SceneManager : MonoBehaviour, IManager
         return tcs.Task;
     }
 
-    private void VisualizeRoom(BaseSceneNode sceneNode, Spawn spawn)
+    private void VisualizeRoom(BaseSceneNode node, Spawn spawn)
     {
-        if (sceneNode is not SceneNode sceneData)
+        if (node is not SceneNode sceneData)
             return;
 
         Instantiate(sceneData.RoomPrefab).Init(sceneData);
     }
 
-    private void DoTransition(BaseSceneNode baseSceneNode, Spawn spawn)
+    private void DoTransition(BaseSceneNode baseNode, Spawn spawn)
     {
-        switch (baseSceneNode)
+        switch (baseNode)
         {
             case SceneNode sceneNode:
             {

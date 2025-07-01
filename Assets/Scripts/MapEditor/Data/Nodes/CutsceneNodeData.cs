@@ -35,7 +35,7 @@ public class CutsceneNodeData : BaseNodeData
         Doors.Add(exit);
     }
 
-    public override BaseSceneNode ToDomain()
+    public override BaseNode ToDomain()
     {
         return new CutsceneNode(
             Id, 

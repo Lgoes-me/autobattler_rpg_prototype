@@ -18,10 +18,10 @@ MonoBehaviour:
   - <Name>k__BackingField: NorthCorridor
     <Id>k__BackingField: 8d53df9c-343c-46df-879b-97eb641bfc25
     <Port>k__BackingField: input
-    <SceneDestination>k__BackingField: Intro
-    <DoorDestination>k__BackingField: b4cadc1d-8968-4ffe-b4fd-62fa4f06f4b1
+    <SceneDestination>k__BackingField: dbc10a88-e52b-4654-8b22-ea37b003cfde
+    <DoorDestination>k__BackingField: 3b0ff930-26fb-4fa6-a0f0-1c364dd33200
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: -199.4439, y: 300.5001}
+  <Position>k__BackingField: {x: 43, y: 312}
   <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 6aa02b2c25df3704b9a65c2290e435d5, type: 3}
   <CombatEncounters>k__BackingField: []
   <PostProcessProfile>k__BackingField: {fileID: 0}
@@ -225,6 +225,37 @@ MonoBehaviour:
     <SetUp>k__BackingField: 1
   <Position>k__BackingField: {x: 1425.4868, y: -208.50005}
   <Dialogue>k__BackingField: {fileID: 11400000, guid: b843c87cf3b21834ab249250c5b073d3, type: 2}
+--- !u!114 &-3241335778992063709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69c61ae9e200eb14393b209fd5577f3e, type: 3}
+  m_Name: OpeningCutscene
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: OpeningCutscene
+  <Id>k__BackingField: dbc10a88-e52b-4654-8b22-ea37b003cfde
+  <Doors>k__BackingField:
+  - <Name>k__BackingField: entrance
+    <Id>k__BackingField: 9067e57e-f022-4f9c-9c62-58797e404c28
+    <Port>k__BackingField: input
+    <SceneDestination>k__BackingField: Intro
+    <DoorDestination>k__BackingField: b4cadc1d-8968-4ffe-b4fd-62fa4f06f4b1
+    <SetUp>k__BackingField: 1
+  - <Name>k__BackingField: exit
+    <Id>k__BackingField: 3b0ff930-26fb-4fa6-a0f0-1c364dd33200
+    <Port>k__BackingField: output
+    <SceneDestination>k__BackingField: 90e7e48b-ea0c-44c8-a614-49b2c0bbd018
+    <DoorDestination>k__BackingField: 8d53df9c-343c-46df-879b-97eb641bfc25
+    <SetUp>k__BackingField: 1
+  <Position>k__BackingField: {x: -200, y: 312}
+  <CutsceneRoomPrefab>k__BackingField: {fileID: 8965248114039853605, guid: 0a0047fa6a32bb642a202ff7c4baa092, type: 3}
+  <DialogueData>k__BackingField: {fileID: 11400000, guid: 77df2a221b04b0144a04ba19cf1bcdc0, type: 2}
+  <PostProcessProfile>k__BackingField: {fileID: 11400000, guid: 0d2fdc4948ba68144ac41b1fa7ed95a2, type: 2}
 --- !u!114 &-2735476827861547487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,6 +423,7 @@ MonoBehaviour:
   - {fileID: -8674134143133493879}
   - {fileID: -7368266576444716754}
   - {fileID: -1172974192621517246}
+  - {fileID: -3241335778992063709}
 --- !u!114 &3059956691839919840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -410,8 +442,8 @@ MonoBehaviour:
   - <Name>k__BackingField: 
     <Id>k__BackingField: b4cadc1d-8968-4ffe-b4fd-62fa4f06f4b1
     <Port>k__BackingField: output
-    <SceneDestination>k__BackingField: 90e7e48b-ea0c-44c8-a614-49b2c0bbd018
-    <DoorDestination>k__BackingField: 8d53df9c-343c-46df-879b-97eb641bfc25
+    <SceneDestination>k__BackingField: dbc10a88-e52b-4654-8b22-ea37b003cfde
+    <DoorDestination>k__BackingField: 9067e57e-f022-4f9c-9c62-58797e404c28
     <SetUp>k__BackingField: 1
   <Position>k__BackingField: {x: -331.99988, y: 312.37393}
 --- !u!114 &4440864553048067359

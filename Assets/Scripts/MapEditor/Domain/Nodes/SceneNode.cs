@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.Rendering;
 
 public class SceneNode : BaseSceneNode
+
 {
     public RoomController RoomPrefab { get; }
     public List<CombatEncounterData> CombatEncounters { get; }
