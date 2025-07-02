@@ -4,21 +4,21 @@ using UnityEngine.Rendering;
 public class CutsceneNode : BaseSceneNode
 {
     public override BaseRoomController Prefab => CutsceneRoomPrefab;
-    public CutsceneRoomController CutsceneRoomPrefab { get; }
     public DialogueData DialogueData { get; }
     public Transition Entrance { get; }
     public Transition Exit { get; }
-    public VolumeProfile PostProcessProfile { get; }
-    public MusicType Music { get; }
     
-    private CutsceneNode(string id) : base(id)
+    private CutsceneRoomController CutsceneRoomPrefab { get; }
+    
+    private CutsceneNode(
+        VolumeProfile postProcessProfile, 
+        MusicType music, 
+        string id) : base(postProcessProfile, music, id)
     {
         Entrance = null;
         Exit = null;
         CutsceneRoomPrefab = null;
         DialogueData = null;
-        PostProcessProfile = null;
-        Music = MusicType.Dungeon;
     }
 
     public CutsceneNode(
@@ -27,13 +27,13 @@ public class CutsceneNode : BaseSceneNode
         Transition exit, 
         CutsceneRoomController cutsceneRoomPrefab, 
         DialogueData dialogueData,
-        VolumeProfile postProcessProfile) : this(id)
+        VolumeProfile postProcessProfile,
+        MusicType music) : this(postProcessProfile, music, id)
     {
         Entrance = entrance;
         Exit = exit;
         CutsceneRoomPrefab = cutsceneRoomPrefab;
         DialogueData = dialogueData;
-        PostProcessProfile = postProcessProfile;
     }
 
     public override void DoTransition(Map map, Spawn spawn, Action<BaseSceneNode, Spawn> callback)

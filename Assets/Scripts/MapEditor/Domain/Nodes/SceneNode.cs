@@ -5,19 +5,16 @@ using UnityEngine.Rendering;
 public class SceneNode : BaseSceneNode
 {
     public override BaseRoomController Prefab => RoomPrefab;
-    public RoomController RoomPrefab { get; }
     public List<CombatEncounterData> CombatEncounters { get; }
-    public VolumeProfile PostProcessProfile { get; }
     public List<Transition> Doors { get; }
-    public MusicType Music { get; }
     
-    private SceneNode(string id) : base(id)
+    private RoomController RoomPrefab { get; }
+    
+    private SceneNode(VolumeProfile postProcessProfile, MusicType music, string id) : base(postProcessProfile, music, id)
     {
         RoomPrefab = null;
         CombatEncounters = new List<CombatEncounterData>();
-        PostProcessProfile = null;
         Doors = new List<Transition>();
-        Music = MusicType.Dungeon;
     }
     
     public SceneNode(
@@ -25,12 +22,12 @@ public class SceneNode : BaseSceneNode
         List<Transition> doors,
         RoomController roomPrefab,
         List<CombatEncounterData> combatEncounters,
-        VolumeProfile postProcessProfile) : this(id)
+        VolumeProfile postProcessProfile,
+        MusicType music) : this(postProcessProfile, music, id)
     {
         Doors = doors;
         RoomPrefab = roomPrefab;
         CombatEncounters = combatEncounters;
-        PostProcessProfile = postProcessProfile;
     }
 
     public override void DoTransition(Map map, Spawn spawn, Action<BaseSceneNode, Spawn> callback)

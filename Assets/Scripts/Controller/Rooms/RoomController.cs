@@ -3,7 +3,6 @@ using System.Linq;
 using Cinemachine;
 using Unity.AI.Navigation;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class RoomController : BaseRoomController<SceneNode>
 {
@@ -11,12 +10,11 @@ public class RoomController : BaseRoomController<SceneNode>
     [field:SerializeField] public List<EnemyAreaController> EnemyAreas { get; private set; }
     [field:SerializeField] private BonfireController Bonfire { get; set; }
     [field:SerializeField] private NavMeshSurface Surface { get; set; }
-    [field:SerializeField] private Volume PostProcessVolume { get; set; }
-    
-    private MusicType MusicType { get; set; }
-    
+
     protected override BaseRoomController<SceneNode> InternalInit(SceneNode data, Spawn spawn, CinemachineBlendDefinition blend)
     {
+        base.InternalInit(data, spawn, blend);
+        
         Surface.BuildNavMesh();
         
         foreach (var door in Doors)
@@ -35,30 +33,20 @@ public class RoomController : BaseRoomController<SceneNode>
             enemyArea.Init(data.Id, data.CombatEncounters[index]);
         }
 
-        MusicType = data.Music;
-        PostProcessVolume.profile = data.PostProcessProfile;
+        var doorToSpawn = Doors.FirstOrDefault(d => d.Id == spawn.Id);
         
-        SpawnPlayerAt(spawn.Id, blend);
-        
-        Application.Instance.GetManager<GameSaveManager>().SetSpawn(spawn);
-        Application.Instance.GetManager<PartyManager>().SetPartyToFollow(true);
-        Application.Instance.GetManager<InterfaceManager>().ShowBattleCanvas();
-        Application.Instance.GetManager<AudioManager>().PlayMusic(MusicType);
-        
-        return this;
-    }
-
-    private void SpawnPlayerAt(string spawn, CinemachineBlendDefinition blend)
-    {
-        var door = Doors.FirstOrDefault(d => d.Id == spawn);
-        
-        if (door != null)
+        if (doorToSpawn != null)
         {
-            door.SpawnPlayer(blend);
+            doorToSpawn.SpawnPlayer(blend);
         }
-        else if (Bonfire != null && Bonfire.Spawn.Id == spawn)
+        else if (Bonfire != null && Bonfire.Spawn.Id == spawn.Id)
         {
             Bonfire.Spawn.SpawnPlayer(blend);
         }
+
+        Application.Instance.GetManager<PartyManager>().SetPartyToFollow(true);
+        Application.Instance.GetManager<InterfaceManager>().ShowBattleCanvas();
+        
+        return this;
     }
 }

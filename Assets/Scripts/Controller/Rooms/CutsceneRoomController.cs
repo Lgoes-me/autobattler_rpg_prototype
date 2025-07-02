@@ -2,26 +2,15 @@
 
 public class CutsceneRoomController : BaseRoomController<CutsceneNode>
 {
-    private DialogueData DialogueData { get; set; }
-    private Transition Exit { get; set; }
-    
     protected override BaseRoomController<CutsceneNode> InternalInit(CutsceneNode data, Spawn spawn, CinemachineBlendDefinition blend)
     {
-        DialogueData = data.DialogueData;
-        Exit = data.Exit;
+        base.InternalInit(data, spawn, blend);
         
-        Application.Instance.GetManager<GameSaveManager>().SetSpawn(spawn);
-        Application.Instance.GetManager<AudioManager>().PlayMusic(data.Music);
-        
-        StartCutscene();
-        return this;
-    }
-    
-    private void StartCutscene()
-    {
-        Application.Instance.GetManager<DialogueManager>().OpenDialogue(DialogueData, () =>
+        Application.Instance.GetManager<DialogueManager>().OpenDialogue(data.DialogueData, () =>
         {
-            Application.Instance.GetManager<SceneManager>().ChangeContext(Exit.Destination);
+            Application.Instance.GetManager<SceneManager>().ChangeContext(data.Exit.Destination);
         });
+        
+        return this;
     }
 }

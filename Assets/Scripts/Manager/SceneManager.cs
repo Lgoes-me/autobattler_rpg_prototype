@@ -76,10 +76,7 @@ public class SceneManager : MonoBehaviour, IManager
 
     private void VisualizeRoom(BaseSceneNode node, Spawn spawn)
     {
-        if (node is not SceneNode sceneData)
-            return;
-
-        Instantiate(sceneData.RoomPrefab).Init(sceneData, spawn, Blend);
+        Instantiate(node.Prefab);//.Init(node, spawn, Blend);
     }
 
     private async void DoTransition(BaseSceneNode node, Spawn spawn)

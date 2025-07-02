@@ -143,6 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c081519123c4af2985951f0c75560f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <PostProcessVolume>k__BackingField: {fileID: 7535834632119186064}
 --- !u!114 &7535834632119186064
 MonoBehaviour:
   m_ObjectHideFlags: 0

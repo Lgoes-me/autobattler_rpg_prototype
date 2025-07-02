@@ -9,6 +9,7 @@ public class CutsceneNodeData : BaseNodeData
     [field: SerializeField] public CutsceneRoomController CutsceneRoomPrefab { get; private set; }
     [field: SerializeField] private DialogueData DialogueData { get; set; }
     [field: SerializeField] private VolumeProfile PostProcessProfile { get; set; }
+    [field: SerializeField] private MusicType Music { get; set; }
 
     public override void Init(NodeDataParams nodeDataParams)
     {
@@ -43,7 +44,8 @@ public class CutsceneNodeData : BaseNodeData
             Doors[1].ToDomain(Id), 
             CutsceneRoomPrefab, 
             DialogueData, 
-            PostProcessProfile);
+            PostProcessProfile,
+            Music);
     }
 }
 

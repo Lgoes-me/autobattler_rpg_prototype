@@ -9,6 +9,7 @@ public class SceneNodeData : BaseNodeData
     [field: SerializeField] public RoomController RoomPrefab { get; private set; }
     [field: SerializeField] private List<CombatEncounterData> CombatEncounters { get; set; }
     [field: SerializeField] private VolumeProfile PostProcessProfile { get; set; }
+    [field: SerializeField] private MusicType Music { get; set; }
 
     public override void Init(NodeDataParams nodeDataParams)
     {
@@ -56,7 +57,14 @@ public class SceneNodeData : BaseNodeData
     public override BaseNode ToDomain()
     {
         var doors = Doors.Select(d => d.ToDomain(Id)).ToList();
-        return new SceneNode(Id, doors, RoomPrefab, CombatEncounters, PostProcessProfile);
+        
+        return new SceneNode(
+            Id, 
+            doors,
+            RoomPrefab,
+            CombatEncounters, 
+            PostProcessProfile,
+            Music);
     }
 }
 
