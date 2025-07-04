@@ -50,7 +50,6 @@ public class EnemyAreaController : MonoBehaviour
         Id = Guid.NewGuid().ToString();
     }
 
-
     public CombatEncounterData ToCombatEncounterData()
     {
         var enemies = EnemyControllers.Select(e => e.ToEnemyData()).ToList();

@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 
 public class SceneNodeData : BaseNodeData
 {
-    [field: SerializeField] public RoomController RoomPrefab { get; private set; }
+    public RoomController RoomPrefab { get; private set; }
     [field: SerializeField] private List<CombatEncounterData> CombatEncounters { get; set; }
     [field: SerializeField] private VolumeProfile PostProcessProfile { get; set; }
     [field: SerializeField] private MusicType Music { get; set; }
@@ -16,18 +17,26 @@ public class SceneNodeData : BaseNodeData
         var dataParams = (SceneNodeDataParams) nodeDataParams;
 
         Id = dataParams.Id;
+        
+        if(dataParams.RoomPrefab == null)
+            return;
+
         Name = name = dataParams.RoomPrefab.name;
         RoomPrefab = dataParams.RoomPrefab;
 
-        Doors = RoomPrefab.GetDoorDatas();
-        CombatEncounters = RoomPrefab.GetCombatEncountersDatas();
+        Doors = RoomPrefab.GetDoorDatas;
+        CombatEncounters = RoomPrefab.GetCombatEncountersDatas;
     }
 
-    protected override void OnValidate()
+    [ContextMenu("Update")]
+    public void Update()
     {
-        base.OnValidate();
+        if(RoomPrefab == null)
+            return;
         
-        var newCombatEncounters = RoomPrefab.GetCombatEncountersDatas();
+        Doors = RoomPrefab.GetDoorDatas;
+        
+        var newCombatEncounters = RoomPrefab.GetCombatEncountersDatas;
 
         foreach (var newCombatEncounter in newCombatEncounters)
         {
@@ -50,6 +59,10 @@ public class SceneNodeData : BaseNodeData
         }
 
         CombatEncounters = newCombatEncounters;
+        
+#if UNITY_EDITOR
+        EditorUtility.SetDirty(this);        
+#endif
     }
 
     public override BaseNode ToDomain()
@@ -81,14 +94,9 @@ public class SceneNodeDataParams : NodeDataParams
 [Serializable]
 public class CombatEncounterData
 {
-    [field: SerializeField] public string Id { get; internal set; }
+    [field: HideInInspector] public string Id { get; internal set; }
     [field: SerializeField] public List<EnemyData> Enemies { get; internal set; }
 
-    [field: SerializeReference]
-    [field: SerializeField]
-    public GameAction OnVictory { get; private set; }
-
-    [field: SerializeReference]
-    [field: SerializeField]
-    public GameAction OnDefeat { get; private set; }
+    [field: SerializeReference] [field: SerializeField] public GameAction OnVictory { get; private set; }
+    [field: SerializeReference] [field: SerializeField] public GameAction OnDefeat { get; private set; }
 }

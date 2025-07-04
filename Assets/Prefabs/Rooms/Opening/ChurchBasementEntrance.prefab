@@ -41,9 +41,8 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1745467365122916077}
   m_Enabled: 1
-  serializedVersion: 10
+  serializedVersion: 11
   m_Type: 1
-  m_Shape: 0
   m_Color: {r: 0.9433962, g: 0.90049344, b: 0.77874684, a: 1}
   m_Intensity: 1
   m_Range: 10
@@ -93,8 +92,12 @@ Light:
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
 --- !u!114 &4395745673649830509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,9 +196,8 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8781725587473661469}
   m_Enabled: 1
-  serializedVersion: 10
+  serializedVersion: 11
   m_Type: 1
-  m_Shape: 0
   m_Color: {r: 0.9433962, g: 0.90049344, b: 0.77874684, a: 1}
   m_Intensity: 1
   m_Range: 10
@@ -245,8 +247,12 @@ Light:
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
 --- !u!114 &3776828893540506691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1232,15 +1238,15 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5242244253733173045, guid: 88ce5f1a7b1526a45b9e3e65d5064074, type: 3}
-      propertyPath: <Doors>k__BackingField.Array.data[0]
+      propertyPath: '<Doors>k__BackingField.Array.data[0]'
       value: 
       objectReference: {fileID: 2463460466927591778}
     - target: {fileID: 5242244253733173045, guid: 88ce5f1a7b1526a45b9e3e65d5064074, type: 3}
-      propertyPath: <Doors>k__BackingField.Array.data[1]
+      propertyPath: '<Doors>k__BackingField.Array.data[1]'
       value: 
       objectReference: {fileID: 8672527501154369851}
     - target: {fileID: 5242244253733173045, guid: 88ce5f1a7b1526a45b9e3e65d5064074, type: 3}
-      propertyPath: <Doors>k__BackingField.Array.data[2]
+      propertyPath: '<Doors>k__BackingField.Array.data[2]'
       value: 
       objectReference: {fileID: 2861553194627000920}
     - target: {fileID: 5242244253733173045, guid: 88ce5f1a7b1526a45b9e3e65d5064074, type: 3}
@@ -1252,7 +1258,7 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5242244253733173045, guid: 88ce5f1a7b1526a45b9e3e65d5064074, type: 3}
-      propertyPath: <EnemyAreas>k__BackingField.Array.data[0]
+      propertyPath: '<EnemyAreas>k__BackingField.Array.data[0]'
       value: 
       objectReference: {fileID: 3791867546602650747}
     - target: {fileID: 5378461042654118985, guid: 88ce5f1a7b1526a45b9e3e65d5064074, type: 3}
@@ -2336,23 +2342,23 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
-      propertyPath: <Enemies>k__BackingField.Array.data[0]
+      propertyPath: '<Enemies>k__BackingField.Array.data[0]'
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
-      propertyPath: <Enemies>k__BackingField.Array.data[1]
+      propertyPath: '<Enemies>k__BackingField.Array.data[1]'
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
-      propertyPath: <Enemies>k__BackingField.Array.data[2]
+      propertyPath: '<Enemies>k__BackingField.Array.data[2]'
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
-      propertyPath: <Enemies>k__BackingField.Array.data[3]
+      propertyPath: '<Enemies>k__BackingField.Array.data[3]'
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
-      propertyPath: managedReferences[2079880573573660673]
+      propertyPath: 'managedReferences[2079880573573660673]'
       value: Assembly-CSharp OpenBlessingPrize
       objectReference: {fileID: 0}
     - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
@@ -2360,11 +2366,11 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
-      propertyPath: <EnemyControllers>k__BackingField.Array.data[0]
+      propertyPath: '<EnemyControllers>k__BackingField.Array.data[0]'
       value: 
       objectReference: {fileID: 6968121576306377016}
     - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}
-      propertyPath: <EnemyControllers>k__BackingField.Array.data[1]
+      propertyPath: '<EnemyControllers>k__BackingField.Array.data[1]'
       value: 
       objectReference: {fileID: 2381104810047861669}
     - target: {fileID: 6885538796895007570, guid: cdd88cf5717152b47bd3a91d0a117372, type: 3}

@@ -110,7 +110,7 @@ public partial class MapEditorView : GraphView
                 nodeView.RemoveInput(data.Id);
                 AddElement(edge);
             }
-
+            
             FrameAll();
         }
     }
