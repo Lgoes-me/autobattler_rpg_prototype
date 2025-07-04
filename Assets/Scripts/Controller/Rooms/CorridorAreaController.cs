@@ -68,4 +68,13 @@ public class CorridorAreaController : SpawnController
         playerManager.DisablePlayerInput();
         Application.Instance.GetManager<SceneManager>().ChangeContext(Transition.Destination);
     }
+
+    public DoorData ToDoorData()
+    {
+        return new DoorData
+        {
+            Name = gameObject.name,
+            Id = Id
+        };
+    }
 }

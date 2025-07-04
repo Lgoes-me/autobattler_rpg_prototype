@@ -77,4 +77,12 @@ public class EnemyController : MonoBehaviour
         PawnController.CharacterController.SetSpeed(0);
         enabled = false;
     }
+
+    public EnemyData ToEnemyData()
+    {
+        return new EnemyData()
+        {
+            name = name,
+        };
+    }
 }

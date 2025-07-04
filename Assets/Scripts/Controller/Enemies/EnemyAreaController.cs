@@ -1,9 +1,10 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 public class EnemyAreaController : MonoBehaviour
 {
-    [field: SerializeField] public EnemyController[] EnemyControllers { get; private set; }
+    [field: SerializeField] private EnemyController[] EnemyControllers { get; set; }
     [field: SerializeField] private BattleController BattleController { get; set; }
     
     private CombatEncounterData CombatEncounter { get; set; }
@@ -47,5 +48,17 @@ public class EnemyAreaController : MonoBehaviour
             return;
         
         Id = Guid.NewGuid().ToString();
+    }
+
+
+    public CombatEncounterData ToCombatEncounterData()
+    {
+        var enemies = EnemyControllers.Select(e => e.ToEnemyData()).ToList();
+
+        return new CombatEncounterData()
+        {
+            Id = Id,
+            Enemies = enemies,
+        };
     }
 }

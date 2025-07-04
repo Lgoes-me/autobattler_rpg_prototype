@@ -18,22 +18,20 @@ public class CutsceneNodeData : BaseNodeData
         Id = dataParams.Id;
         Name = name = dataParams.CutsceneRoomPrefab.name;
         CutsceneRoomPrefab = dataParams.CutsceneRoomPrefab;
-        Doors = new List<DoorData>();
-       
-        var entrance = new DoorData
-        {
-            Name = "entrance",
-            Id = Guid.NewGuid().ToString()
-        };
-
-        var exit = new DoorData
-        {
-            Name = "exit",
-            Id = Guid.NewGuid().ToString()
-        };
         
-        Doors.Add(entrance);
-        Doors.Add(exit);
+        Doors = new List<DoorData>()
+        {
+            new()
+            {
+                Name = "entrance",
+                Id = Guid.NewGuid().ToString()
+            },
+            new()
+            {
+                Name = "exit",
+                Id = Guid.NewGuid().ToString()
+            }
+        };
     }
 
     public override BaseNode ToDomain()

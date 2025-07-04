@@ -10,29 +10,24 @@ public class ForkedNodeData : BaseNodeData
         Id = dataParams.Id;
         Name = name = Id;
 
-        Doors = new List<DoorData>();
-
-        var in1 = new DoorData
+        Doors = new List<DoorData>()
         {
-            Name = "in1",
-            Id = Guid.NewGuid().ToString()
+            new()
+            {
+                Name = "in1",
+                Id = Guid.NewGuid().ToString()
+            },
+            new()
+            {
+                Name = "in2",
+                Id = Guid.NewGuid().ToString()
+            },
+            new()
+            {
+                Name = "exit",
+                Id = Guid.NewGuid().ToString()
+            }
         };
-
-        var in2 = new DoorData
-        {
-            Name = "in2",
-            Id = Guid.NewGuid().ToString()
-        };
-
-        var exit = new DoorData
-        {
-            Name = "exit",
-            Id = Guid.NewGuid().ToString()
-        };
-
-        Doors.Add(in1);
-        Doors.Add(in2);
-        Doors.Add(exit);
     }
 
     public override BaseNode ToDomain()

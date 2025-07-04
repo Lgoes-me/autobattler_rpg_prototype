@@ -18,51 +18,49 @@ public class SceneNodeData : BaseNodeData
         Id = dataParams.Id;
         Name = name = dataParams.RoomPrefab.name;
         RoomPrefab = dataParams.RoomPrefab;
-        Doors = new List<DoorData>();
-        CombatEncounters = new List<CombatEncounterData>();
 
-        foreach (var corridorController in RoomPrefab.Doors)
+        Doors = RoomPrefab.GetDoorDatas();
+        CombatEncounters = RoomPrefab.GetCombatEncountersDatas();
+    }
+
+    protected override void OnValidate()
+    {
+        base.OnValidate();
+        
+        var newCombatEncounters = RoomPrefab.GetCombatEncountersDatas();
+
+        foreach (var newCombatEncounter in newCombatEncounters)
         {
-            var door = new DoorData
+            var combatEncounter = CombatEncounters.FirstOrDefault(c => c.Id == newCombatEncounter.Id);
+
+            if (combatEncounter == null)
+                continue;
+
+            for (var index = 0; index < newCombatEncounter.Enemies.Count; index++)
             {
-                Name = corridorController.gameObject.name,
-                Id = corridorController.Id
-            };
+                var newEnemy = newCombatEncounter.Enemies[index];
+                
+                var enemy = combatEncounter.Enemies.FirstOrDefault(e => e.name == newEnemy.name);
 
-            Doors.Add(door);
-        }
+                if (enemy == null)
+                    continue;
 
-        foreach (var enemyArea in RoomPrefab.EnemyAreas)
-        {
-            var enemyDataList = new List<EnemyData>();
-            
-            foreach (var enemyController in enemyArea.EnemyControllers)
-            {
-                var enemyData = new EnemyData()
-                {
-                    name = enemyController.name,
-                };
-
-                enemyDataList.Add(enemyData);
+                newCombatEncounter.Enemies[index] = enemy;
             }
-            var combatEncounter = new CombatEncounterData()
-            {
-                Enemies = enemyDataList,
-            };
-            
-            CombatEncounters.Add(combatEncounter);
         }
+
+        CombatEncounters = newCombatEncounters;
     }
 
     public override BaseNode ToDomain()
     {
         var doors = Doors.Select(d => d.ToDomain(Id)).ToList();
-        
+
         return new SceneNode(
-            Id, 
+            Id,
             doors,
             RoomPrefab,
-            CombatEncounters, 
+            CombatEncounters,
             PostProcessProfile,
             Music);
     }
@@ -83,7 +81,14 @@ public class SceneNodeDataParams : NodeDataParams
 [Serializable]
 public class CombatEncounterData
 {
+    [field: SerializeField] public string Id { get; internal set; }
     [field: SerializeField] public List<EnemyData> Enemies { get; internal set; }
-    [field: SerializeReference] [field: SerializeField] public GameAction OnVictory { get; private set; }
-    [field: SerializeReference] [field: SerializeField] public GameAction OnDefeat { get; private set; }
+
+    [field: SerializeReference]
+    [field: SerializeField]
+    public GameAction OnVictory { get; private set; }
+
+    [field: SerializeReference]
+    [field: SerializeField]
+    public GameAction OnDefeat { get; private set; }
 }

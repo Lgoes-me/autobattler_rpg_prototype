@@ -9,15 +9,14 @@ public class SpawnNodeData : BaseNodeData
         Id = dataParams.Id;
         Name = name = dataParams.Id;
 
-        Doors = new List<DoorData>();
-
-        var spawn = new DoorData
+        Doors = new List<DoorData>
         {
-            Name = string.Empty,
-            Id = Id
+            new()
+            {
+                Name = string.Empty,
+                Id = Id
+            }
         };
-
-        Doors.Add(spawn);
     }
 
     protected override void OnValidate()

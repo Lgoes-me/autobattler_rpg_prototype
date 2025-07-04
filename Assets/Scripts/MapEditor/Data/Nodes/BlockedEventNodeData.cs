@@ -15,22 +15,19 @@ public class BlockedEventNodeData : BaseNodeData
         Id = dataParams.Id;
         Name = name;
 
-        Doors = new List<DoorData>();
-
-        var door1 = new DoorData
+        Doors = new List<DoorData>()
         {
-            Name = string.Empty,
-            Id = Guid.NewGuid().ToString()
+            new()
+            {
+                Name = string.Empty,
+                Id = Guid.NewGuid().ToString()
+            },
+            new()
+            {
+                Name = string.Empty,
+                Id = Guid.NewGuid().ToString()
+            }
         };
-
-        var door2 = new DoorData
-        {
-            Name = string.Empty,
-            Id = Guid.NewGuid().ToString()
-        };
-
-        Doors.Add(door1);
-        Doors.Add(door2);
     }
 
     protected override void OnValidate()

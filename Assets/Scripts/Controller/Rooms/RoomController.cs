@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class RoomController : BaseRoomController<SceneNode>
 {
-    [field:SerializeField] public List<CorridorAreaController> Doors { get; private set; }
-    [field:SerializeField] public List<EnemyAreaController> EnemyAreas { get; private set; }
+    [field:SerializeField] private List<CorridorAreaController> Doors { get; set; }
+    [field:SerializeField] private List<EnemyAreaController> EnemyAreas { get; set; }
     [field:SerializeField] private BonfireController Bonfire { get; set; }
     [field:SerializeField] private NavMeshSurface Surface { get; set; }
 
@@ -48,5 +48,15 @@ public class RoomController : BaseRoomController<SceneNode>
         Application.Instance.GetManager<InterfaceManager>().ShowBattleCanvas();
         
         return this;
+    }
+
+    public List<DoorData> GetDoorDatas()
+    {
+        return Doors.Select(d => d.ToDoorData()).ToList();
+    }
+    
+    public List<CombatEncounterData> GetCombatEncountersDatas()
+    {
+        return EnemyAreas.Select(e => e.ToCombatEncounterData()).ToList();
     }
 }
