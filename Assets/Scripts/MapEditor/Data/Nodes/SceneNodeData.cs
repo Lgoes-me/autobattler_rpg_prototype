@@ -7,7 +7,7 @@ using UnityEngine.Rendering;
 
 public class SceneNodeData : BaseNodeData
 {
-    public RoomController RoomPrefab { get; private set; }
+    [field: HideInInspector] [field: SerializeField] public RoomController RoomPrefab { get; private set; }
     [field: SerializeField] private List<CombatEncounterData> CombatEncounters { get; set; }
     [field: SerializeField] private VolumeProfile PostProcessProfile { get; set; }
     [field: SerializeField] private MusicType Music { get; set; }
