@@ -254,6 +254,8 @@ public partial class MapEditorView : GraphView
         EditorUtility.SetDirty(node);
         AssetDatabase.SaveAssets();
     }
+    
+    
     public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
     {
         var mousePosition = evt.mousePosition;

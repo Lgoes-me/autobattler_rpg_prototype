@@ -17,9 +17,6 @@ public class SceneNodeData : BaseNodeData
         var dataParams = (SceneNodeDataParams) nodeDataParams;
 
         Id = dataParams.Id;
-        
-        if(dataParams.RoomPrefab == null)
-            return;
 
         Name = name = dataParams.RoomPrefab.name;
         RoomPrefab = dataParams.RoomPrefab;
@@ -31,11 +28,6 @@ public class SceneNodeData : BaseNodeData
     [ContextMenu("Update")]
     public void Update()
     {
-        if(RoomPrefab == null)
-            return;
-        
-        Doors = RoomPrefab.GetDoorDatas;
-        
         var newCombatEncounters = RoomPrefab.GetCombatEncountersDatas;
 
         foreach (var newCombatEncounter in newCombatEncounters)
