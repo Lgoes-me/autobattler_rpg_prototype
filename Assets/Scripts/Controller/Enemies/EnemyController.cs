@@ -5,7 +5,7 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour
 {
     [field: SerializeField] public PawnController PawnController { get; private set; }
-    
+
     [field: SerializeField] private NavMeshAgent NavMeshAgent { get; set; }
     [field: SerializeField] private List<Transform> Nodes { get; set; }
 
@@ -27,18 +27,19 @@ public class EnemyController : MonoBehaviour
             NavMeshAgent.SetDestination(Nodes[CurrentNode].transform.position);
         }
     }
-    
+
     private void Update()
     {
-        if(!Initialized)
+        if (!Initialized)
             return;
-        
+
         PawnController.CharacterController.SetSpeed(NavMeshAgent.velocity.magnitude);
         PawnController.CharacterController.SetDirection(NavMeshAgent.velocity);
-        
+
         var player = Application.Instance.GetManager<PlayerManager>().PlayerTransform;
+
         var distance = Vector3.Distance(player.position, transform.position);
-        
+
         if (Following)
         {
             NavMeshAgent.SetDestination(player.position);
@@ -56,6 +57,7 @@ public class EnemyController : MonoBehaviour
 
             NavMeshAgent.SetDestination(Nodes[CurrentNode].transform.position);
         }
+
         if (distance < PawnController.Pawn.GetComponent<EnemyComponent>().AttackRange)
         {
             NavMeshAgent.ResetPath();

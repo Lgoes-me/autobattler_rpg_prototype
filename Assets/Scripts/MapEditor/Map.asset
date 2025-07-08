@@ -79,8 +79,8 @@ MonoBehaviour:
   - <Name>k__BackingField: LeftCorridor
     <Id>k__BackingField: 7286d0a8-a9b7-4fe0-8fd0-a69552c0e1af
     <Port>k__BackingField: input
-    <SceneDestination>k__BackingField: e06d4e38-2c0e-4fb9-b250-934e7f7e22fc
-    <DoorDestination>k__BackingField: 8d53df9c-343c-46df-879b-97eb641bfc25
+    <SceneDestination>k__BackingField: 10d76659-2c92-4d76-ae86-e4f307ee827c
+    <DoorDestination>k__BackingField: f144a3cc-f824-41fb-b86a-ac7267eeda57
     <SetUp>k__BackingField: 1
   - <Name>k__BackingField: RightCorridor
     <Id>k__BackingField: ba9e4921-22ec-4914-a4ff-cc08f334b4b0
@@ -88,18 +88,18 @@ MonoBehaviour:
     <SceneDestination>k__BackingField: 5561663c-72db-4b8e-b75e-09e085a009f1
     <DoorDestination>k__BackingField: f36263e0-0c3b-41b9-9969-7d79145e5f33
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: -146.94106, y: -70.00013}
+  <Position>k__BackingField: {x: -181, y: -70}
   <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: ef4a395c16fd5fd45b1aa0cf77e1babe, type: 3}
   <CombatEncounters>k__BackingField:
   - <Enemies>k__BackingField:
     - name: FrontEnemy
-      <PawnData>k__BackingField: {fileID: 0}
+      <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
       <Components>k__BackingField: []
     - name: LeftEnemy
-      <PawnData>k__BackingField: {fileID: 0}
+      <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
       <Components>k__BackingField: []
     - name: RightEnemy
-      <PawnData>k__BackingField: {fileID: 0}
+      <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
       <Components>k__BackingField: []
     <OnVictory>k__BackingField:
       rid: -2
@@ -130,10 +130,10 @@ MonoBehaviour:
   - <Name>k__BackingField: NorthCorridor
     <Id>k__BackingField: 8d53df9c-343c-46df-879b-97eb641bfc25
     <Port>k__BackingField: output
-    <SceneDestination>k__BackingField: baad970a-c2af-4565-8356-1085b8e4c996
-    <DoorDestination>k__BackingField: 7286d0a8-a9b7-4fe0-8fd0-a69552c0e1af
+    <SceneDestination>k__BackingField: 10d76659-2c92-4d76-ae86-e4f307ee827c
+    <DoorDestination>k__BackingField: e21c8c49-7918-49fa-808e-3993531ca8d1
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: -460.9411, y: -69.99994}
+  <Position>k__BackingField: {x: -863, y: -182}
   <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 6aa02b2c25df3704b9a65c2290e435d5, type: 3}
   <CombatEncounters>k__BackingField: []
   <PostProcessProfile>k__BackingField: {fileID: 11400000, guid: 8a3446411764f774397df5ddf73b0720, type: 2}
@@ -182,7 +182,7 @@ MonoBehaviour:
       <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
       <Components>k__BackingField: []
     - name: Grunt 2
-      <PawnData>k__BackingField: {fileID: 0}
+      <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
       <Components>k__BackingField: []
     <OnVictory>k__BackingField:
       rid: -2
@@ -283,15 +283,15 @@ MonoBehaviour:
     <SceneDestination>k__BackingField: 6285dd07-935a-47d7-9bad-17d94dc781d6
     <DoorDestination>k__BackingField: 4ad61d87-6a66-485a-8ab3-51dfacaede3b
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: 155, y: -70}
+  <Position>k__BackingField: {x: 170, y: -70}
   <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 667d20764247d8c478b70a952361348a, type: 3}
   <CombatEncounters>k__BackingField:
   - <Enemies>k__BackingField:
     - name: Grunt 1
-      <PawnData>k__BackingField: {fileID: 0}
+      <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
       <Components>k__BackingField: []
     - name: Grunt 2
-      <PawnData>k__BackingField: {fileID: 0}
+      <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
       <Components>k__BackingField: []
     <OnVictory>k__BackingField:
       rid: -2
@@ -345,12 +345,12 @@ MonoBehaviour:
       <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
       <Components>k__BackingField: []
     - name: Grunt 2
-      <PawnData>k__BackingField: {fileID: 0}
+      <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
       <Components>k__BackingField: []
     <OnVictory>k__BackingField:
       rid: -2
     <OnDefeat>k__BackingField:
-      rid: -2
+      rid: 7325121467387740276
   <PostProcessProfile>k__BackingField: {fileID: 11400000, guid: 0d2fdc4948ba68144ac41b1fa7ed95a2, type: 2}
   <Music>k__BackingField: 1
   references:
@@ -358,6 +358,10 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 7325121467387740276
+      type: {class: MarkGameEvent, ns: , asm: Assembly-CSharp}
+      data:
+        <EventId>k__BackingField: FirstDeath
 --- !u!114 &-1172974192621517246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -391,7 +395,7 @@ MonoBehaviour:
     <SceneDestination>k__BackingField: 5c8c2e46-539f-4ee5-ab39-c7ec46be45aa
     <DoorDestination>k__BackingField: 988c01e7-a0ec-4e6e-9ec5-cdfea84ec1c9
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: 1247.5408, y: -414.45724}
+  <Position>k__BackingField: {x: 1247, y: -427.49994}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,6 +422,7 @@ MonoBehaviour:
   - {fileID: -7368266576444716754}
   - {fileID: -1172974192621517246}
   - {fileID: -3241335778992063709}
+  - {fileID: 6273511969857015052}
 --- !u!114 &3059956691839919840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -462,6 +467,57 @@ MonoBehaviour:
     <DoorDestination>k__BackingField: 1524b677-ff24-4987-8832-d04e77cd7450
     <SetUp>k__BackingField: 1
   <Position>k__BackingField: {x: 740.78925, y: -454}
+--- !u!114 &6273511969857015052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 258b9a247b0d4766aef8d7549746b2a0, type: 3}
+  m_Name: VerticalCorridor
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: VerticalCorridor
+  <Id>k__BackingField: 10d76659-2c92-4d76-ae86-e4f307ee827c
+  <Doors>k__BackingField:
+  - <Name>k__BackingField: BottomCorridor
+    <Id>k__BackingField: e21c8c49-7918-49fa-808e-3993531ca8d1
+    <Port>k__BackingField: input
+    <SceneDestination>k__BackingField: e06d4e38-2c0e-4fb9-b250-934e7f7e22fc
+    <DoorDestination>k__BackingField: 8d53df9c-343c-46df-879b-97eb641bfc25
+    <SetUp>k__BackingField: 1
+  - <Name>k__BackingField: RightCorridor
+    <Id>k__BackingField: f144a3cc-f824-41fb-b86a-ac7267eeda57
+    <Port>k__BackingField: output
+    <SceneDestination>k__BackingField: baad970a-c2af-4565-8356-1085b8e4c996
+    <DoorDestination>k__BackingField: 7286d0a8-a9b7-4fe0-8fd0-a69552c0e1af
+    <SetUp>k__BackingField: 1
+  <Position>k__BackingField: {x: -523, y: -182}
+  <RoomPrefab>k__BackingField: {fileID: 1919176016559511633, guid: 421efed6a7af48241b071b28d95e8b04, type: 3}
+  <CombatEncounters>k__BackingField:
+  - <Enemies>k__BackingField:
+    - name: FrontEnemy
+      <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
+      <Components>k__BackingField: []
+    - name: LeftEnemy
+      <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
+      <Components>k__BackingField: []
+    - name: RightEnemy
+      <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
+      <Components>k__BackingField: []
+    <OnVictory>k__BackingField:
+      rid: -2
+    <OnDefeat>k__BackingField:
+      rid: -2
+  <PostProcessProfile>k__BackingField: {fileID: 11400000, guid: 8a3446411764f774397df5ddf73b0720, type: 2}
+  <Music>k__BackingField: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!114 &6909170025742541972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -507,21 +563,34 @@ MonoBehaviour:
     <SceneDestination>k__BackingField: 5156dcbf-99fe-410b-b6c8-6e7496024057
     <DoorDestination>k__BackingField: 69690e82-0343-458c-8dcc-f75d91b8ca70
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: 927.00006, y: -70}
+  <Position>k__BackingField: {x: 932.749, y: -68.99998}
   <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 19dd903d99158e5409d93f9499a6abee, type: 3}
   <CombatEncounters>k__BackingField:
   - <Enemies>k__BackingField:
     - name: Boss
-      <PawnData>k__BackingField: {fileID: 0}
+      <PawnData>k__BackingField: {fileID: 11400000, guid: dc2b5ccfd2ced1e47877dc6503421d6a, type: 2}
+      <Components>k__BackingField:
+      - rid: 7325121467387740272
+      - rid: 7325121467387740273
+    - name: Enemy
+      <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
       <Components>k__BackingField: []
     - name: Enemy
-      <PawnData>k__BackingField: {fileID: 0}
+      <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
       <Components>k__BackingField: []
     - name: Enemy
-      <PawnData>k__BackingField: {fileID: 0}
+      <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
+      <Components>k__BackingField: []
+    <OnVictory>k__BackingField:
+      rid: -2
+    <OnDefeat>k__BackingField:
+      rid: 7325121467387740275
+  - <Enemies>k__BackingField:
+    - name: Enemy
+      <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
       <Components>k__BackingField: []
     - name: Enemy
-      <PawnData>k__BackingField: {fileID: 0}
+      <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
       <Components>k__BackingField: []
     <OnVictory>k__BackingField:
       rid: -2
@@ -529,21 +598,10 @@ MonoBehaviour:
       rid: -2
   - <Enemies>k__BackingField:
     - name: Enemy
-      <PawnData>k__BackingField: {fileID: 0}
+      <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
       <Components>k__BackingField: []
     - name: Enemy
-      <PawnData>k__BackingField: {fileID: 0}
-      <Components>k__BackingField: []
-    <OnVictory>k__BackingField:
-      rid: -2
-    <OnDefeat>k__BackingField:
-      rid: -2
-  - <Enemies>k__BackingField:
-    - name: Enemy
-      <PawnData>k__BackingField: {fileID: 0}
-      <Components>k__BackingField: []
-    - name: Enemy
-      <PawnData>k__BackingField: {fileID: 0}
+      <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
       <Components>k__BackingField: []
     <OnVictory>k__BackingField:
       rid: -2
@@ -556,3 +614,17 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 7325121467387740272
+      type: {class: LevelComponentData, ns: , asm: Assembly-CSharp}
+      data:
+        <Level>k__BackingField: 2
+    - rid: 7325121467387740273
+      type: {class: BossComponentData, ns: , asm: Assembly-CSharp}
+      data:
+        <Modifiers>k__BackingField:
+        - <Identifier>k__BackingField: 101
+          <Rarity>k__BackingField: 4
+    - rid: 7325121467387740275
+      type: {class: MarkGameEvent, ns: , asm: Assembly-CSharp}
+      data:
+        <EventId>k__BackingField: FirstDeath

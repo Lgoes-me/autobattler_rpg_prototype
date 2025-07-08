@@ -26,13 +26,7 @@ public class RoomController : BaseRoomController<SceneNode>
         {
             Bonfire.Init(data.Id);
         }
-
-        for (var index = 0; index < EnemyAreas.Count; index++)
-        {
-            var enemyArea = EnemyAreas[index];
-            enemyArea.Init(data.Id, data.CombatEncounters[index]);
-        }
-
+        
         var doorToSpawn = Doors.FirstOrDefault(d => d.Id == spawn.Id);
         
         if (doorToSpawn != null)
@@ -42,6 +36,12 @@ public class RoomController : BaseRoomController<SceneNode>
         else if (Bonfire != null && Bonfire.Spawn.Id == spawn.Id)
         {
             Bonfire.Spawn.SpawnPlayer(blend);
+        }
+
+        for (var index = 0; index < EnemyAreas.Count; index++)
+        {
+            var enemyArea = EnemyAreas[index];
+            enemyArea.Init(data.Id, data.CombatEncounters[index]);
         }
 
         Application.Instance.GetManager<PartyManager>().SetPartyToFollow(true);
