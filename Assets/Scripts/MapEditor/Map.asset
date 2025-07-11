@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 258b9a247b0d4766aef8d7549746b2a0, type: 3}
   m_Name: Camp 1
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Camp 1
+  <Name>k__BackingField: Forest Camp
   <Id>k__BackingField: e06d4e38-2c0e-4fb9-b250-934e7f7e22fc
   <Doors>k__BackingField:
   - <Name>k__BackingField: NorthCorridor
@@ -133,7 +133,7 @@ MonoBehaviour:
     <SceneDestination>k__BackingField: 10d76659-2c92-4d76-ae86-e4f307ee827c
     <DoorDestination>k__BackingField: e21c8c49-7918-49fa-808e-3993531ca8d1
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: -863, y: -182}
+  <Position>k__BackingField: {x: -863.0002, y: -182.00006}
   <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 6aa02b2c25df3704b9a65c2290e435d5, type: 3}
   <CombatEncounters>k__BackingField: []
   <PostProcessProfile>k__BackingField: {fileID: 11400000, guid: 8a3446411764f774397df5ddf73b0720, type: 2}
@@ -433,7 +433,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f42d0481cd21e584b905e353d21bb461, type: 3}
-  m_Name: b4cadc1d-8968-4ffe-b4fd-62fa4f06f4b1
+  m_Name: Intro
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Intro
   <Id>k__BackingField: Intro
@@ -455,7 +455,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f42d0481cd21e584b905e353d21bb461, type: 3}
-  m_Name: ad607460-dd61-47e2-a853-39246edb7edb
+  m_Name: Start
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Start
   <Id>k__BackingField: Start

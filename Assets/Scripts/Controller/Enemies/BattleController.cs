@@ -6,7 +6,7 @@ public class BattleController : MonoBehaviour
     private Battle Battle { get; set; }
     private CombatEncounterData CombatEncounter { get; set; }
 
-    public void ActivateBattleScene(string battleId, CombatEncounterData combatEncounter)
+    public void Init(string battleId, CombatEncounterData combatEncounter)
     {
         CombatEncounter = combatEncounter;
         
@@ -135,6 +135,7 @@ public class BattleController : MonoBehaviour
             {
                 pawn.Dance();
                 pawn.Pawn.GetComponent<ResourceComponent>().EndOfBattleHeal();
+                pawn.GiveXp(CombatEncounter.Experience);
             }
         }
         

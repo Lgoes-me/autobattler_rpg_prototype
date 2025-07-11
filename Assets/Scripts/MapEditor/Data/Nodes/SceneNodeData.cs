@@ -21,14 +21,14 @@ public class SceneNodeData : BaseNodeData
         Name = name = dataParams.RoomPrefab.name;
         RoomPrefab = dataParams.RoomPrefab;
 
-        Doors = RoomPrefab.GetDoorDatas;
-        CombatEncounters = RoomPrefab.GetCombatEncountersDatas;
+        Doors = RoomPrefab.GetDoorDataList;
+        CombatEncounters = RoomPrefab.GetCombatEncountersDataList;
     }
 
     [ContextMenu("Update")]
     public void Update()
     {
-        var newCombatEncounters = RoomPrefab.GetCombatEncountersDatas;
+        var newCombatEncounters = RoomPrefab.GetCombatEncountersDataList;
 
         foreach (var newCombatEncounter in newCombatEncounters)
         {
@@ -87,6 +87,7 @@ public class SceneNodeDataParams : NodeDataParams
 public class CombatEncounterData
 {
     [field: HideInInspector] public string Id { get; internal set; }
+    [field: SerializeField] public int Experience { get; internal set; }
     [field: SerializeField] public List<EnemyData> Enemies { get; internal set; }
 
     [field: SerializeReference] [field: SerializeField] public GameAction OnVictory { get; private set; }

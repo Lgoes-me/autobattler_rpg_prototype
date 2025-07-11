@@ -39,7 +39,7 @@ public class EnemyAreaController : MonoBehaviour
         }
         
         Application.Instance.GetManager<PlayerManager>().DisablePlayerInput();
-        BattleController.ActivateBattleScene(Id, CombatEncounter);
+        BattleController.Init(Id, CombatEncounter);
     }
     
     private void OnValidate()

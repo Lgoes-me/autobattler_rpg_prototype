@@ -50,7 +50,7 @@ public class RoomController : BaseRoomController<SceneNode>
         return this;
     }
 
-    public List<DoorData> GetDoorDatas =>  Doors.Select(d => d.ToDoorData()).ToList();
-    public List<CombatEncounterData> GetCombatEncountersDatas => EnemyAreas.Select(e => e.ToCombatEncounterData()).ToList();
+    public List<DoorData> GetDoorDataList =>  Doors.Select(d => d.ToDoorData()).ToList();
+    public List<CombatEncounterData> GetCombatEncountersDataList => EnemyAreas.Select(e => e.ToCombatEncounterData()).ToList();
     
 }

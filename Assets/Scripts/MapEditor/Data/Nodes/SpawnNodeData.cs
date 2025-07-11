@@ -22,7 +22,7 @@ public class SpawnNodeData : BaseNodeData
     protected override void OnValidate()
     {
         base.OnValidate();
-        Id = Name;
+        name = Id = Name;
     }
 
     public override BaseNode ToDomain()

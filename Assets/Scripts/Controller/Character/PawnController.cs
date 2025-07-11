@@ -308,4 +308,9 @@ public class PawnController : MonoBehaviour
         Pawn.GetComponent<ResourceComponent>().LostLife -= ReceiveAttack;
         Pawn.GetComponent<ResourceComponent>().GainedLife -= ReceiveHeal;
     }
+
+    public void GiveXp(int combatEncounterExperience)
+    {
+        throw new System.NotImplementedException();
+    }
 }
