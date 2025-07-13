@@ -68,4 +68,5 @@ public enum Stat
     HealPower,
     DamageModifier,
     ManaGainModifier,
+    ExperienceToLevelUp
 }

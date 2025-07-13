@@ -5,6 +5,7 @@ public class PawnInfo
 {
     public string Name { get; set; }
     public int Level { get; set; }
+    public int Experience { get; set; }
     public int MissingHealth { get; set; }
     public PawnStatus Status { get; set; }
     public WeaponType WeaponType { get; set; }
@@ -17,6 +18,7 @@ public class PawnInfo
     {
         Name = string.Empty;
         Level = 1;
+        Experience = 0;
         MissingHealth = 0;
         WeaponType = WeaponType.None;
         Weapon = string.Empty;
@@ -101,6 +103,7 @@ public class PawnInfo
     public void Update(PawnInfo updatedPawnInfo)
     {
         Level = updatedPawnInfo.Level;
+        Experience = updatedPawnInfo.Experience;
         MissingHealth = updatedPawnInfo.MissingHealth;
         Status = updatedPawnInfo.Status;
         WeaponType = updatedPawnInfo.WeaponType;

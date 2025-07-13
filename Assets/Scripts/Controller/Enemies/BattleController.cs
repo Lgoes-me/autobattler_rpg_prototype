@@ -135,7 +135,7 @@ public class BattleController : MonoBehaviour
             {
                 pawn.Dance();
                 pawn.Pawn.GetComponent<ResourceComponent>().EndOfBattleHeal();
-                pawn.GiveXp(CombatEncounter.Experience);
+                pawn.Pawn.GetComponent<ResourceComponent>().GiveXp(CombatEncounter.Experience);
             }
         }
         

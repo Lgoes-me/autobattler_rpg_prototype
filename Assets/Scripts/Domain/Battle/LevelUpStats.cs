@@ -26,4 +26,23 @@ public class LevelUpStats
         
         CurrentStats = new Stats(newStats);
     }
+    
+    public int EvaluateExperience(int experience)
+    {
+        var level = 0;
+        
+        for (int i = 0; i < 10; i++)
+        {
+            var percent = LevelUpCurve.Evaluate(i / (float) 10);
+            var totalExp = MaxLevelStats.GetStat(Stat.ExperienceToLevelUp);
+            var levelExp = Mathf.CeilToInt(totalExp * percent);
+            
+            if (levelExp > experience)
+                break;
+
+            level = i;
+        }
+
+        return level;
+    }
 }

@@ -233,7 +233,7 @@ public class PawnController : MonoBehaviour
             projectile.OverrideSprite(CharacterController.GetProjectileSprite());
         }
     }
-
+    
     private void ReceiveAttack(DamageDomain damageDomain)
     {
         CharacterController.DoHitStop();
@@ -307,10 +307,5 @@ public class PawnController : MonoBehaviour
 
         Pawn.GetComponent<ResourceComponent>().LostLife -= ReceiveAttack;
         Pawn.GetComponent<ResourceComponent>().GainedLife -= ReceiveHeal;
-    }
-
-    public void GiveXp(int combatEncounterExperience)
-    {
-        throw new System.NotImplementedException();
     }
 }

@@ -157,6 +157,14 @@ public class StatsComponent : PawnComponent
         Level = level;
         LevelUpStats.EvaluateLevel(level);
     }
+
+    public void LevelUp(int currentExperience)
+    {
+        Level = LevelUpStats.EvaluateExperience(currentExperience);
+        LevelUpStats.EvaluateLevel(Level);
+        
+        Debug.Log($"Level {Level}");
+    }
     
     public Stats GetStats()
     {
@@ -334,7 +342,10 @@ public class ResourceComponent : PawnComponent
 {
     public int Health => StatsComponent.GetStats().GetStat(Stat.Health) - MissingHealth;
     public int MissingHealth { get; private set; }
+    
     public int Mana { get; private set; }
+    
+    public int Experience { get; private set; }
 
     public bool HasMana => StatsComponent.GetStats().GetStat(Stat.Mana) > 0;
     public bool IsAlive => Health > 0;
@@ -345,12 +356,16 @@ public class ResourceComponent : PawnComponent
     public event Pawn.PawnDomainChanged<int> LostMana;
     public event Pawn.PawnDomainChanged<int> GainedMana;
     
+    public event Pawn.PawnDomainChanged<int> GainedExperience;
+    public event Pawn.PawnDomainChanged<int> GainedLevel;
+    
     private StatsComponent StatsComponent { get; set; }
 
     public ResourceComponent()
     {
         MissingHealth = 0;
         Mana = 0;
+        Experience = 0;
     }
 
     public override void Init(Pawn pawn)
@@ -409,10 +424,28 @@ public class ResourceComponent : PawnComponent
         Mana = Mathf.Clamp(Mana - manaCost, 0, StatsComponent.GetStats().GetStat(Stat.Mana));
         LostMana?.Invoke(manaCost);
     }
+    
+    public void GiveXp(int combatEncounterExperience)
+    {
+        Experience += combatEncounterExperience;
+        GainedExperience?.Invoke(combatEncounterExperience);
+        
+        Debug.Log($"Gained {combatEncounterExperience} xp");
+
+        var currentLevelExperience = StatsComponent.GetStats().GetStat(Stat.ExperienceToLevelUp);
+        
+        if (currentLevelExperience > 0 && Experience >= currentLevelExperience)
+        {
+            Debug.Log($"Level up");
+            StatsComponent.LevelUp(Experience);
+            GainedLevel?.Invoke(StatsComponent.Level);
+        }
+    }
 
     public override void SetPawnInfo(PawnInfo pawnInfo)
     {
         MissingHealth = pawnInfo.MissingHealth;
+        Experience = pawnInfo.Experience;
         Mana = 0;
     }
 }

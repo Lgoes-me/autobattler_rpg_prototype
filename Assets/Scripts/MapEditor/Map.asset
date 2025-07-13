@@ -46,10 +46,10 @@ MonoBehaviour:
   <Doors>k__BackingField:
   - <Name>k__BackingField: entrance
     <Id>k__BackingField: 1524b677-ff24-4987-8832-d04e77cd7450
-    <Port>k__BackingField: input
-    <SceneDestination>k__BackingField: Start
-    <DoorDestination>k__BackingField: ad607460-dd61-47e2-a853-39246edb7edb
-    <SetUp>k__BackingField: 1
+    <Port>k__BackingField: 
+    <SceneDestination>k__BackingField: 
+    <DoorDestination>k__BackingField: 
+    <SetUp>k__BackingField: 0
   - <Name>k__BackingField: exit
     <Id>k__BackingField: 9625b3c5-d47b-4eed-b9c1-66db7d9f9920
     <Port>k__BackingField: output
@@ -88,10 +88,11 @@ MonoBehaviour:
     <SceneDestination>k__BackingField: 5561663c-72db-4b8e-b75e-09e085a009f1
     <DoorDestination>k__BackingField: f36263e0-0c3b-41b9-9969-7d79145e5f33
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: -181, y: -70}
+  <Position>k__BackingField: {x: -181.00008, y: -69.99998}
   <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: ef4a395c16fd5fd45b1aa0cf77e1babe, type: 3}
   <CombatEncounters>k__BackingField:
-  - <Enemies>k__BackingField:
+  - <Experience>k__BackingField: 100
+    <Enemies>k__BackingField:
     - name: FrontEnemy
       <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
       <Components>k__BackingField: []
@@ -129,10 +130,10 @@ MonoBehaviour:
   <Doors>k__BackingField:
   - <Name>k__BackingField: NorthCorridor
     <Id>k__BackingField: 8d53df9c-343c-46df-879b-97eb641bfc25
-    <Port>k__BackingField: output
-    <SceneDestination>k__BackingField: 10d76659-2c92-4d76-ae86-e4f307ee827c
-    <DoorDestination>k__BackingField: e21c8c49-7918-49fa-808e-3993531ca8d1
-    <SetUp>k__BackingField: 1
+    <Port>k__BackingField: 
+    <SceneDestination>k__BackingField: 
+    <DoorDestination>k__BackingField: 
+    <SetUp>k__BackingField: 0
   <Position>k__BackingField: {x: -863.0002, y: -182.00006}
   <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 6aa02b2c25df3704b9a65c2290e435d5, type: 3}
   <CombatEncounters>k__BackingField: []
@@ -177,7 +178,8 @@ MonoBehaviour:
   <Position>k__BackingField: {x: 516.3221, y: -69.999985}
   <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 4e44b34c9e749e247ae10a7f53b0a88f, type: 3}
   <CombatEncounters>k__BackingField:
-  - <Enemies>k__BackingField:
+  - <Experience>k__BackingField: 0
+    <Enemies>k__BackingField:
     - name: Grunt 1
       <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
       <Components>k__BackingField: []
@@ -286,7 +288,8 @@ MonoBehaviour:
   <Position>k__BackingField: {x: 170, y: -70}
   <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 667d20764247d8c478b70a952361348a, type: 3}
   <CombatEncounters>k__BackingField:
-  - <Enemies>k__BackingField:
+  - <Experience>k__BackingField: 50
+    <Enemies>k__BackingField:
     - name: Grunt 1
       <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
       <Components>k__BackingField: []
@@ -340,7 +343,8 @@ MonoBehaviour:
   <Position>k__BackingField: {x: 1636.9996, y: -70}
   <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 4c3b47dbe3784b8479a098b17016cdca, type: 3}
   <CombatEncounters>k__BackingField:
-  - <Enemies>k__BackingField:
+  - <Experience>k__BackingField: 0
+    <Enemies>k__BackingField:
     - name: Grunt 1
       <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
       <Components>k__BackingField: []
@@ -463,10 +467,10 @@ MonoBehaviour:
   - <Name>k__BackingField: 
     <Id>k__BackingField: ad607460-dd61-47e2-a853-39246edb7edb
     <Port>k__BackingField: output
-    <SceneDestination>k__BackingField: 230b631c-65c1-4331-b9d2-6245511d1e68
-    <DoorDestination>k__BackingField: 1524b677-ff24-4987-8832-d04e77cd7450
+    <SceneDestination>k__BackingField: 10d76659-2c92-4d76-ae86-e4f307ee827c
+    <DoorDestination>k__BackingField: e21c8c49-7918-49fa-808e-3993531ca8d1
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: 740.78925, y: -454}
+  <Position>k__BackingField: {x: -672.9998, y: -531.00006}
 --- !u!114 &6273511969857015052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -485,8 +489,8 @@ MonoBehaviour:
   - <Name>k__BackingField: BottomCorridor
     <Id>k__BackingField: e21c8c49-7918-49fa-808e-3993531ca8d1
     <Port>k__BackingField: input
-    <SceneDestination>k__BackingField: e06d4e38-2c0e-4fb9-b250-934e7f7e22fc
-    <DoorDestination>k__BackingField: 8d53df9c-343c-46df-879b-97eb641bfc25
+    <SceneDestination>k__BackingField: Start
+    <DoorDestination>k__BackingField: ad607460-dd61-47e2-a853-39246edb7edb
     <SetUp>k__BackingField: 1
   - <Name>k__BackingField: RightCorridor
     <Id>k__BackingField: f144a3cc-f824-41fb-b86a-ac7267eeda57
@@ -497,7 +501,8 @@ MonoBehaviour:
   <Position>k__BackingField: {x: -523, y: -182}
   <RoomPrefab>k__BackingField: {fileID: 1919176016559511633, guid: 421efed6a7af48241b071b28d95e8b04, type: 3}
   <CombatEncounters>k__BackingField:
-  - <Enemies>k__BackingField:
+  - <Experience>k__BackingField: 300
+    <Enemies>k__BackingField:
     - name: FrontEnemy
       <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
       <Components>k__BackingField: []
@@ -566,7 +571,8 @@ MonoBehaviour:
   <Position>k__BackingField: {x: 932.749, y: -68.99998}
   <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 19dd903d99158e5409d93f9499a6abee, type: 3}
   <CombatEncounters>k__BackingField:
-  - <Enemies>k__BackingField:
+  - <Experience>k__BackingField: 0
+    <Enemies>k__BackingField:
     - name: Boss
       <PawnData>k__BackingField: {fileID: 11400000, guid: dc2b5ccfd2ced1e47877dc6503421d6a, type: 2}
       <Components>k__BackingField:
@@ -585,7 +591,8 @@ MonoBehaviour:
       rid: -2
     <OnDefeat>k__BackingField:
       rid: 7325121467387740275
-  - <Enemies>k__BackingField:
+  - <Experience>k__BackingField: 0
+    <Enemies>k__BackingField:
     - name: Enemy
       <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
       <Components>k__BackingField: []
@@ -596,7 +603,8 @@ MonoBehaviour:
       rid: -2
     <OnDefeat>k__BackingField:
       rid: -2
-  - <Enemies>k__BackingField:
+  - <Experience>k__BackingField: 0
+    <Enemies>k__BackingField:
     - name: Enemy
       <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
       <Components>k__BackingField: []
