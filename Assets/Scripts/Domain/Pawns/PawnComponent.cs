@@ -162,8 +162,6 @@ public class StatsComponent : PawnComponent
     {
         Level = LevelUpStats.EvaluateExperience(currentExperience);
         LevelUpStats.EvaluateLevel(Level);
-        
-        Debug.Log($"Level {Level}");
     }
     
     public Stats GetStats()
@@ -430,13 +428,10 @@ public class ResourceComponent : PawnComponent
         Experience += combatEncounterExperience;
         GainedExperience?.Invoke(combatEncounterExperience);
         
-        Debug.Log($"Gained {combatEncounterExperience} xp");
-
         var currentLevelExperience = StatsComponent.GetStats().GetStat(Stat.ExperienceToLevelUp);
         
         if (currentLevelExperience > 0 && Experience >= currentLevelExperience)
         {
-            Debug.Log($"Level up");
             StatsComponent.LevelUp(Experience);
             GainedLevel?.Invoke(StatsComponent.Level);
         }

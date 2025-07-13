@@ -21,7 +21,7 @@ public class GameSaveManager : IManager
         SaveManager = new SaveManager();
     }
 
-    public bool FirstTimePlaying()
+    public bool IsFirstTimePlaying()
     {
         return SaveManager.LoadList<Save>().Where(l => l!= null && l.LastBonfireSpawn != null).ToList().Count == 0;
     }
@@ -59,11 +59,6 @@ public class GameSaveManager : IManager
         Save = new Save().CreateNewSaveForIntro(selectedParty);
     }
 
-    public void AddToSelectedParty(PawnInfo pawnInfo)
-    {
-        Save.SelectedParty.Add(pawnInfo);
-    }
-
     public void LoadSave()
     {
         Save = SaveManager.LoadList<Save>()
@@ -71,16 +66,12 @@ public class GameSaveManager : IManager
             .OrderBy(l => DateTime.Now - l.Metadata.LastSaved)
             .First();
     }
-
+    
+    //Get
+    
     public Spawn GetSpawn()
     {
         return Save.Spawn;
-    }
-
-    public void SetSpawn(Spawn spawn)
-    {
-        Save.Spawn = spawn;
-        SaveData();
     }
 
     public Spawn GetBonfireSpawn()
@@ -88,39 +79,106 @@ public class GameSaveManager : IManager
         return Save.LastBonfireSpawn;
     }
 
-    public void ResetPawnInfos()
+    public List<PawnInfo> GetSelectedParty()
     {
-        Save.SelectedParty = PartyManager.Party.Select(p => p.Pawn.ResetPawnInfo()).ToList();
+        return Save.SelectedParty;
+    }
 
-        SaveData();
+    public List<BlessingIdentifier> GetBlessings()
+    {
+        return Save.Blessings;
+    }
+
+    public List<Pawn> GetAvailableParty()
+    {
+        return Save.AvailableParty.Select(id => ContentManager.GetPawnFromId(id)).ToList();
     }
     
-    public void ClearDefeatedEnemies()
+    public PawnInfo GetPawnInfo(Pawn pawn)
     {
-        Save.DefeatedEnemies.Clear();
-        
-        SaveData();
+        return Save.SelectedParty.First(p => p.Name == pawn.Id);
     }
 
-    public void SetBonfireSpawn(Spawn spawn)
+    public float GetSavedTime()
     {
+        return Save.CurrentTime;
+    }
+
+    //GameState
+    
+    public void SaveCurrentGameState()
+    {
+        Save.Blessings = BlessingManager.Blessings.Select(j => j.Identifier).ToList();
+        Save.SelectedParty = PartyManager.Party.Select(p => p.Pawn.GetPawnInfo()).ToList();
+        
+        Save.CurrentTime = TimeManager.HorarioEmJogo;
+        SaveManager.SaveData(Save);
+    }
+
+    public void ResetCurrentGameState(Spawn spawn)
+    {
+        Save.SelectedParty = PartyManager.Party.Select(p => p.Pawn.ResetPawnInfo()).ToList();
+        
+        Save.SelectedParty = Save.SelectedParty
+            .Where(p => p.Status != PawnStatus.Transient)
+            .ToList();
+
+        Save.DefeatedEnemies.Clear();
+
         Save.Spawn = spawn;
         Save.LastBonfireSpawn = spawn;
-
-        SaveData();
+        
+        Save.CurrentTime = TimeManager.HorarioEmJogo;
+        SaveManager.SaveData(Save);
     }
 
-    public void SaveBattle(Battle battle)
+    //Checks
+    
+    public bool HasReadDialogue(string id)
     {
-        Save.SelectedParty = PartyManager.Party.Select(p => p.Pawn.GetPawnInfo()).ToList();
-        Save.DefeatedEnemies.Add(battle.Id);
-
-        SaveData();
+        return Save.Dialogues.Contains(id);
     }
-
+    
+    public bool ContainsEvent(string eventName)
+    {
+        return Save.Events.Contains(eventName);
+    }
+    
     public bool ContainsBattle(string battleId)
     {
         return Save.DefeatedEnemies.Contains(battleId);
+    }
+
+    //ADD
+
+    public void AddBattle(Battle battle)
+    {
+        Save.DefeatedEnemies.Add(battle.Id);
+    }
+    
+    public void AddToSelectedParty(PawnInfo pawnInfo)
+    {
+        Save.SelectedParty.Add(pawnInfo);
+    }
+    
+    public void AddEvent(string eventName)
+    {
+        Save.Events.Add(eventName);
+    }
+    
+    public void AddDialogue(SkippableDialogue dialogue)
+    {
+        Save.Dialogues.Add(dialogue.Id);
+    }
+
+    public void AddToAvailableParty(PawnData pawnData)
+    {
+        Save.AvailableParty.Add(pawnData.Id);
+    }
+
+    public void SetSpawn(Spawn spawn)
+    {
+        Save.Spawn = spawn;
     }
 
     public void SetParty(List<Pawn> newSelectedParty)
@@ -136,94 +194,5 @@ public class GameSaveManager : IManager
                 p.GetComponent<ConsumableComponent>().Consumables,
                 p.GetComponent<PawnBuffsComponent>().PermanentBuffs))
             .ToList();
-
-        SaveData();
-    }
-
-    public List<PawnInfo> GetSelectedParty()
-    {
-        return Save.SelectedParty;
-    }
-
-    public List<BlessingIdentifier> GetBlessings()
-    {
-        return Save.Blessings;
-    }
-
-    public void SetBlessings()
-    {
-        Save.Blessings = BlessingManager.Blessings.Select(j => j.Identifier).ToList();
-
-        SaveData();
-    }
-
-    public void ApplyPawnInfo(Pawn pawn)
-    {
-        var pawnInfo = Save.SelectedParty.First(p => p.Name == pawn.Id);
-        pawn.SetPawnInfo(pawnInfo);
-    }
-
-    public void SavePawnInfo(PawnInfo updatedPawnInfo)
-    {
-        var pawnInfo = Save.SelectedParty.First(p => p.Name == updatedPawnInfo.Name);
-        pawnInfo.Update(updatedPawnInfo);
-
-        SaveData();
-    }
-
-    public List<Pawn> GetAvailableParty()
-    {
-        return Save.AvailableParty.Select(id => ContentManager.GetPawnFromId(id)).ToList();
-    }
-
-    public void AddToAvailableParty(PawnData pawnData)
-    {
-        Save.AvailableParty.Add(pawnData.Id);
-
-        SaveData();
-    }
-
-    public bool HasReadDialogue(string id)
-    {
-        return Save.Dialogues.Contains(id);
-    }
-
-    public void SaveDialogue(SkippableDialogue dialogue)
-    {
-        Save.Dialogues.Add(dialogue.Id);
-        
-        SaveData();
-    }
-    
-    public bool ContainsEvent(string eventName)
-    {
-        return Save.Events.Contains(eventName);
-    }
-    
-    public void AddEvent(string eventName)
-    {
-        Save.Events.Add(eventName);
-        
-        SaveData();
-    }
-
-    private void SaveData()
-    {
-        Save.CurrentTime = TimeManager.HorarioEmJogo;
-        SaveManager.SaveData(Save);
-    }
-
-    public float GetSavedTime()
-    {
-        return Save.CurrentTime;
-    }
-
-    public void ClearParty()
-    {
-        Save.SelectedParty = Save.SelectedParty
-            .Where(p => p.Status != PawnStatus.Transient)
-            .ToList();
-
-        SaveData();
     }
 }

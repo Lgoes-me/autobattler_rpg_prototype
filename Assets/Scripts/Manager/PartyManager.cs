@@ -60,6 +60,7 @@ public class PartyManager : MonoBehaviour, IManager
     public void SetSelectedParty(List<Pawn> newSelectedParty)
     {
         GameSaveManager.SetParty(newSelectedParty);
+        GameSaveManager.SaveCurrentGameState();
     }
 
     public void SetPartyToFollow(bool transportToPlayer)
@@ -93,6 +94,7 @@ public class PartyManager : MonoBehaviour, IManager
     public void AddToAvailableParty(PawnData pawnData)
     {
         GameSaveManager.AddToAvailableParty(pawnData);
+        GameSaveManager.SaveCurrentGameState();
     }
 
     public bool Contains(PawnData pawn)
@@ -103,6 +105,7 @@ public class PartyManager : MonoBehaviour, IManager
     public void UpdatePawn(PawnInfo pawnInfo)
     {
         Party.FirstOrDefault(p => p.Pawn.Id == pawnInfo.Name)?.UpdatePawn(pawnInfo);
+        GameSaveManager.SaveCurrentGameState();
     }
 
     public PawnController AddToCurrentParty(Vector3 position, PawnInfo pawnInfo, bool randomEnabled)
@@ -111,7 +114,10 @@ public class PartyManager : MonoBehaviour, IManager
         var pawnInstance = Instantiate(PawnControllerPrefab, position + randomRotation, Quaternion.identity, transform);
 
         var pawn = ContentManager.GetPawnFromInfo(pawnInfo);
-        GameSaveManager.ApplyPawnInfo(pawn);
+        var savedPawnInfo = GameSaveManager.GetPawnInfo(pawn);
+        
+        pawn.SetPawnInfo(savedPawnInfo);
+
         pawnInstance.Init(pawn);
         Party.Add(pawnInstance);
         

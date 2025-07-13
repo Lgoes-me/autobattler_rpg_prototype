@@ -16,13 +16,13 @@ public class BonfireScene : MonoBehaviour
     public IBonfirePanel BonfirePanel { get; set; }
     public bool IsDragging { get; set; }
 
-    public void Init(Action callback)
+    public void Init(Spawn bonfireSpawn, Action callback)
     {
         Callback = callback;
         FinishButton.onClick.AddListener(EndBonfireScene);
         
-        Application.Instance.GetManager<PlayerManager>().ClearPlayer();
         var gameSaveManager = Application.Instance.GetManager<GameSaveManager>();
+        gameSaveManager.ResetCurrentGameState(bonfireSpawn);
 
         FriendsPanelController.Init(gameSaveManager, this);
         PartyPanelController.Init(gameSaveManager, this);

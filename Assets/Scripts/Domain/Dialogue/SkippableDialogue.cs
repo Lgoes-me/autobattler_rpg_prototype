@@ -22,7 +22,10 @@ public class SkippableDialogue : IDialogue
                 yield return line.ReadDialogue(dialogueManager, pawn);
             }
             
-            Application.Instance.GetManager<GameSaveManager>().SaveDialogue(this);
+            var gameSaveManager = Application.Instance.GetManager<GameSaveManager>();
+
+            gameSaveManager.AddDialogue(this);
+            gameSaveManager.SaveCurrentGameState();
         }
     }
 }

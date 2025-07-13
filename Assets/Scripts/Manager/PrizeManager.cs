@@ -29,6 +29,7 @@ public class PrizeManager : IManager
     
     private void CompletePrize()
     {
+        GameSaveManager.SaveCurrentGameState();
         PauseManager.ResumeGame();
         PlayerManager.EnablePlayerInput();
     }
@@ -43,7 +44,6 @@ public class PrizeManager : IManager
         var pawnInfo = selectedPrize.PawnInfo;
         
         pawnInfo.LevelUp();
-        GameSaveManager.SavePawnInfo(pawnInfo);
         PartyManager.UpdatePawn(pawnInfo);
 
         CompletePrize();
@@ -71,6 +71,7 @@ public class PrizeManager : IManager
         var pawnInfo = selectedPrize.PawnInfo;
         
         GameSaveManager.AddToSelectedParty(pawnInfo);
+        
         PartyManager.AddToCurrentParty(Application.Instance.GetManager<PlayerManager>().PlayerTransform.position, pawnInfo, true);
         PartyManager.SetPartyToFollow(false);
         
@@ -86,7 +87,6 @@ public class PrizeManager : IManager
 
         selectedPrize.ApplyPrize();
         
-        GameSaveManager.SavePawnInfo(selectedPrize.PawnInfo);
         PartyManager.UpdatePawn(selectedPrize.PawnInfo);
         
         CompletePrize();
@@ -101,7 +101,6 @@ public class PrizeManager : IManager
 
         selectedPrize.ApplyPrize();
         
-        GameSaveManager.SavePawnInfo(selectedPrize.PawnInfo);
         PartyManager.UpdatePawn(selectedPrize.PawnInfo);
         
         CompletePrize();
@@ -116,7 +115,6 @@ public class PrizeManager : IManager
 
         selectedPrize.ApplyPrize();
         
-        GameSaveManager.SavePawnInfo(selectedPrize.PawnInfo);
         PartyManager.UpdatePawn(selectedPrize.PawnInfo);
         
         CompletePrize();
@@ -131,7 +129,6 @@ public class PrizeManager : IManager
 
         selectedPrize.ApplyPrize();
         
-        GameSaveManager.SavePawnInfo(selectedPrize.PawnInfo);
         PartyManager.UpdatePawn(selectedPrize.PawnInfo);
 
         CompletePrize();

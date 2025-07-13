@@ -44,15 +44,4 @@ public class PlayerManager : MonoBehaviour, IManager
         
         PlayerController.SetDestination(mouseInput);
     }
-
-    public void ClearPlayer()
-    {
-        var gameSaveManager = Application.Instance.GetManager<GameSaveManager>();
-        
-        gameSaveManager.ClearParty();
-        gameSaveManager.ResetPawnInfos();
-        gameSaveManager.ClearDefeatedEnemies();
-        
-        Application.Instance.GetManager<BlessingManager>().ClearBlessings();
-    }
 }

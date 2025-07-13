@@ -128,7 +128,10 @@ public class MarkGameEvent : GameAction
     [field: SerializeField] private string EventId { get; set; }
     public override void Invoke()
     {
-        Application.Instance.GetManager<GameSaveManager>().AddEvent(EventId);
+        var gameSaveManager = Application.Instance.GetManager<GameSaveManager>();
+        
+        gameSaveManager.AddEvent(EventId);
+        gameSaveManager.SaveCurrentGameState();
     }
 }
 
@@ -143,9 +146,6 @@ public class ShowVictoryScreen : GameAction
         
         Application.Instance.GetManager<InterfaceManager>().ShowDungeonVictoryCanvas(() =>
         {
-            Application.Instance.GetManager<PlayerManager>().ClearPlayer();
-            Application.Instance.GetManager<PlayerManager>().EnablePlayerInput();
-            
             Application.Instance.GetManager<SceneManager>().GoToSpawn(SpawnName);
         });
     }

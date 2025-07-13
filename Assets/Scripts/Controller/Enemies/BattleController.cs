@@ -154,6 +154,10 @@ public class BattleController : MonoBehaviour
         
         Application.Instance.GetManager<PlayerManager>().EnablePlayerInput();
         Application.Instance.GetManager<PartyManager>().SetPartyToFollow(false);
-        Application.Instance.GetManager<GameSaveManager>().SaveBattle(Battle);
+        
+        var gameSaveManager = Application.Instance.GetManager<GameSaveManager>();
+        
+        gameSaveManager.AddBattle(Battle);
+        gameSaveManager.SaveCurrentGameState();
     }
 }

@@ -15,6 +15,7 @@ public class SceneManager : MonoBehaviour, IManager
     private InterfaceManager InterfaceManager { get; set; }
     private GameSaveManager GameSaveManager { get; set; }
     private PartyManager PartyManager { get; set; }
+    private PlayerManager PlayerManager { get; set; }
 
     private Map Map { get; set; }
 
@@ -25,6 +26,7 @@ public class SceneManager : MonoBehaviour, IManager
         InterfaceManager = Application.Instance.GetManager<InterfaceManager>();
         GameSaveManager = Application.Instance.GetManager<GameSaveManager>();
         PartyManager = Application.Instance.GetManager<PartyManager>();
+        PlayerManager = Application.Instance.GetManager<PlayerManager>();
 
         Map = MapData.ToDomain();
     }
@@ -46,9 +48,13 @@ public class SceneManager : MonoBehaviour, IManager
         Map.SpawnAt("Start", DoTransition);
     }
 
-    public void GoToSpawn(string spawn)
+    public void GoToSpawn(string spawnKey)
     {
-        Map.SpawnAt(spawn, DoTransition);
+        Map.SpawnAt(spawnKey, (node, spawn) =>
+        {
+            GameSaveManager.ResetCurrentGameState(spawn);
+            DoTransition(node, spawn);
+        });
     }
 
     public void ChangeContext(Spawn spawn)
@@ -81,6 +87,8 @@ public class SceneManager : MonoBehaviour, IManager
 
     private async void DoTransition(BaseSceneNode node, Spawn spawn)
     {
+        PlayerManager.DisablePlayerInput();
+        
         await LoadNewRoom();
 
         if (CurrentRoom != null)
@@ -91,6 +99,8 @@ public class SceneManager : MonoBehaviour, IManager
         await this.WaitEndOfFrame();
 
         CurrentRoom = Instantiate(node.Prefab).Init(node, spawn, Blend);
+        
+        PlayerManager.EnablePlayerInput();
     }
     
     public async void RespawnAtBonfire()
@@ -128,9 +138,9 @@ public class SceneManager : MonoBehaviour, IManager
         {
             PartyManager.StopPartyFollow();
             InterfaceManager.HideBattleCanvas();
-            GameSaveManager.SetBonfireSpawn(bonfireSpawn);
+            Application.Instance.GetManager<BlessingManager>().ClearBlessings();
 
-            FindFirstObjectByType<BonfireScene>().Init(callback);
+            FindFirstObjectByType<BonfireScene>().Init(bonfireSpawn, callback);
         };
     }
 

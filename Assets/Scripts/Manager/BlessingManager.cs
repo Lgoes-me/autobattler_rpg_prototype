@@ -33,14 +33,16 @@ public class BlessingManager : IManager
     public void AddBlessing(BlessingIdentifier identifier)
     {
         Blessings.Add(BlessingFactory.CreateBlessing(identifier));
-        GameSaveManager.SetBlessings();
         InterfaceManager.UpdateBlessingsCanvas(Blessings);
+        
+        GameSaveManager.SaveCurrentGameState();
     }
     
     public void ClearBlessings()
     {
         Blessings.Clear();
-        GameSaveManager.SetBlessings();
         InterfaceManager.UpdateBlessingsCanvas(Blessings);
+        
+        GameSaveManager.SaveCurrentGameState();
     }
 }

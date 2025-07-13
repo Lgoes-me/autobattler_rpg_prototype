@@ -13,7 +13,11 @@ public abstract class BaseRoomController<T> : BaseRoomController where T : BaseS
     {
         PostProcessVolume.profile = data.PostProcessProfile;
         
-        Application.Instance.GetManager<GameSaveManager>().SetSpawn(spawn);
+        var gameSaveManager = Application.Instance.GetManager<GameSaveManager>();
+        
+        gameSaveManager.SetSpawn(spawn);
+        gameSaveManager.SaveCurrentGameState();
+        
         Application.Instance.GetManager<AudioManager>().PlayMusic(data.Music);
 
         return this;

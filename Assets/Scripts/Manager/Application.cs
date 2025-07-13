@@ -74,7 +74,7 @@ public class Application : MonoBehaviour
         configManager.Init();
         tutorialManager.Init();
 
-        if (gameSaveManager.FirstTimePlaying())
+        if (gameSaveManager.IsFirstTimePlaying())
         {
             gameSaveManager.StartNewSave();
             timeManager.StartClock();
