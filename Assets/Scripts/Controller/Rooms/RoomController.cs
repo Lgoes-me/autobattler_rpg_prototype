@@ -37,6 +37,9 @@ public class RoomController : BaseRoomController<SceneNode>
         {
             Bonfire.Spawn.SpawnPlayer(blend);
         }
+        
+        Application.Instance.GetManager<PartyManager>().SetPartyToFollow(true);
+        Application.Instance.GetManager<InterfaceManager>().ShowBattleCanvas();
 
         for (var index = 0; index < EnemyAreas.Count; index++)
         {
@@ -44,9 +47,11 @@ public class RoomController : BaseRoomController<SceneNode>
             enemyArea.Init(data.Id, data.CombatEncounters[index]);
         }
 
-        Application.Instance.GetManager<PartyManager>().SetPartyToFollow(true);
-        Application.Instance.GetManager<InterfaceManager>().ShowBattleCanvas();
+        var gameSaveManager = Application.Instance.GetManager<GameSaveManager>();
         
+        gameSaveManager.SetSpawn(spawn);
+        gameSaveManager.SaveCurrentGameState();
+
         return this;
     }
 

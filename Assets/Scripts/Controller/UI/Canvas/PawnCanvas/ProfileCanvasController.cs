@@ -11,6 +11,9 @@ public class ProfileCanvasController : LifeBarCanvasController
 
     [field: SerializeField] private Image ProfilePicture { get; set; }
     [field: SerializeField] private TextMeshProUGUI Name { get; set; }
+    
+    [field: SerializeField] private Image ExperienceBar { get; set; }
+    [field: SerializeField] private TextMeshProUGUI Level { get; set; }
 
     public override void Init(Pawn pawn)
     {
@@ -20,6 +23,10 @@ public class ProfileCanvasController : LifeBarCanvasController
         CanvasGroup.alpha = 0.5f;
         
         Pawn.GetComponent<ConsumableComponent>().ConsumablesUpdated += UpdateConsumablesCanvas;
+        
+        var resource = Pawn.GetComponent<ResourceComponent>();
+        resource.GainedExperience += UpdateExperience;
+        resource.GainedLevel += UpdateLevel;
         
         UpdateProfile("default");
         UpdateConsumablesCanvas();
@@ -72,7 +79,24 @@ public class ProfileCanvasController : LifeBarCanvasController
         Application.Instance.GetManager<AudioManager>().PlaySfx(info.Audio);
     }
     
-    
+    private void UpdateExperience(int value)
+    {
+        var stats = Pawn.GetComponent<StatsComponent>();
+        var experienceToLevelUp = stats.GetStats().GetStat(Stat.ExperienceToLevelUp);
+        
+        if (experienceToLevelUp == 0)
+            return;
+        
+        var resource = Pawn.GetComponent<ResourceComponent>();
+        
+        ExperienceBar.fillAmount = resource.Experience / (float) experienceToLevelUp;
+    }
+
+    private void UpdateLevel(int value)
+    {
+        Level.text = $"{value}";
+    }
+
     protected override void OnDestroy()
     {
         base.OnDestroy();
@@ -80,6 +104,10 @@ public class ProfileCanvasController : LifeBarCanvasController
         if(Pawn == null)
             return;
         
+        var resource = Pawn.GetComponent<ResourceComponent>();
+        resource.GainedExperience -= UpdateExperience;
+        resource.GainedLevel -= UpdateLevel;
+
         Pawn.GetComponent<ConsumableComponent>().ConsumablesUpdated -= UpdateConsumablesCanvas;
     }
 }

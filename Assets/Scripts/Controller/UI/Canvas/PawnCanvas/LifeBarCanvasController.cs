@@ -71,7 +71,7 @@ public class LifeBarCanvasController : BasePawnCanvasController
 
         ManaBar.fillAmount = resource.Mana / (float) stats.GetStats().GetStat(Stat.Mana);
     }
-
+    
     protected virtual void UpdateBuffs()
     {
     }
