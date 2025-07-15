@@ -22,6 +22,10 @@ public class ProfileCanvasController : LifeBarCanvasController
         Name.SetText(Pawn.Id);
         CanvasGroup.alpha = 0.5f;
         
+        UpdateConsumablesCanvas();
+        UpdateExperience(0);
+        UpdateLevel(0);
+        
         Pawn.GetComponent<ConsumableComponent>().ConsumablesUpdated += UpdateConsumablesCanvas;
         
         var resource = Pawn.GetComponent<ResourceComponent>();
@@ -85,7 +89,10 @@ public class ProfileCanvasController : LifeBarCanvasController
         var experienceToLevelUp = stats.GetStats().GetStat(Stat.ExperienceToLevelUp);
         
         if (experienceToLevelUp == 0)
+        {
+            ExperienceBar.fillAmount = 0;
             return;
+        }
         
         var resource = Pawn.GetComponent<ResourceComponent>();
         
@@ -94,7 +101,8 @@ public class ProfileCanvasController : LifeBarCanvasController
 
     private void UpdateLevel(int value)
     {
-        Level.text = $"{value}";
+        var stats = Pawn.GetComponent<StatsComponent>();
+        Level.text = $"{stats.Level}";
     }
 
     protected override void OnDestroy()

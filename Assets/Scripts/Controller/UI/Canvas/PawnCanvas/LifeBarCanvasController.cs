@@ -16,13 +16,10 @@ public class LifeBarCanvasController : BasePawnCanvasController
         var resource = Pawn.GetComponent<ResourceComponent>();
         var buffs = Pawn.GetComponent<PawnBuffsComponent>();
         
-        var fillAmount = resource.Health / (float) stats.GetStats().GetStat(Stat.Health);
+        UpdateLife(0);
+        UpdateMana(0);
+        UpdateBuffs();
 
-        LifeBar.fillAmount = fillAmount;
-        BackgroundLifeBar.fillAmount = fillAmount;
-
-        ManaBar.fillAmount = resource.HasMana ? resource.Mana / (float) stats.GetStats().GetStat(Stat.Mana) : 0;
-        
         resource.LostLife += ReceiveAttack;
         resource.GainedLife += UpdateLife;
         
@@ -67,7 +64,10 @@ public class LifeBarCanvasController : BasePawnCanvasController
         var resource = Pawn.GetComponent<ResourceComponent>();
         
         if (!resource.HasMana)
+        {
+            ManaBar.fillAmount = 0;
             return;
+        }
 
         ManaBar.fillAmount = resource.Mana / (float) stats.GetStats().GetStat(Stat.Mana);
     }

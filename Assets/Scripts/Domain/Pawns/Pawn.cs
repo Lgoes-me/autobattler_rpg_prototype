@@ -113,7 +113,8 @@ public class Pawn
     {
         var pawnInfo = new PawnInfo(
             Id,
-            GetComponent<StatsComponent>().Level,
+            0,
+            0,
             0,
             Status,
             GetComponent<WeaponComponent>().Weapon,
@@ -131,6 +132,7 @@ public class Pawn
             Id,
             GetComponent<StatsComponent>().Level,
             GetComponent<ResourceComponent>().MissingHealth,
+            GetComponent<ResourceComponent>().Experience,
             Status,
             GetComponent<WeaponComponent>().Weapon,
             GetComponent<AbilitiesComponent>().Abilities,

@@ -50,6 +50,7 @@ public class PartyMemberPrize : BasePrize<PawnPrizeItem>
                         p.Id,
                         level,
                         0,
+                        0,
                         PawnStatus.Transient,
                         p.GetComponent<WeaponComponent>().Weapon,
                         p.GetComponent<AbilitiesComponent>().Abilities,

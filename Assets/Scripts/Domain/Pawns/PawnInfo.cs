@@ -31,6 +31,7 @@ public class PawnInfo
         string name,
         int level,
         int missingHealth,
+        int experience,
         PawnStatus status,
         Weapon weapon,
         List<AbilityData> abilities,
@@ -40,6 +41,7 @@ public class PawnInfo
         Name = name;
         Level = level;
         MissingHealth = missingHealth;
+        Experience = experience;
         Status = status;
         
         if(weapon != null)

@@ -342,7 +342,6 @@ public class ResourceComponent : PawnComponent
     public int MissingHealth { get; private set; }
     
     public int Mana { get; private set; }
-    
     public int Experience { get; private set; }
 
     public bool HasMana => StatsComponent.GetStats().GetStat(Stat.Mana) > 0;

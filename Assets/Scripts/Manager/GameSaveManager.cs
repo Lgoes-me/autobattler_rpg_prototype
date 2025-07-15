@@ -38,6 +38,7 @@ public class GameSaveManager : IManager
                 farmer.Id,
                 1,
                 0,
+                0,
                 PawnStatus.Main,
                 farmer.GetComponent<WeaponComponent>().Weapon,
                 farmer.GetComponent<AbilitiesComponent>().Abilities,
@@ -49,6 +50,7 @@ public class GameSaveManager : IManager
             new PawnInfo(
                 hunter.Id,
                 1,
+                0,
                 0,
                 PawnStatus.Unlocked,
                 hunter.GetComponent<WeaponComponent>().Weapon,
@@ -186,7 +188,8 @@ public class GameSaveManager : IManager
         Save.SelectedParty = newSelectedParty
             .Select(p => new PawnInfo(
                 p.Id,
-                1,
+                0,
+                0,
                 0,
                 PawnStatus.Unlocked,
                 p.GetComponent<WeaponComponent>().Weapon,
