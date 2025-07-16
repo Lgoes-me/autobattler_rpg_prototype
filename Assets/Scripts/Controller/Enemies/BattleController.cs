@@ -127,11 +127,7 @@ public class BattleController : MonoBehaviour
         {
             pawn.EndBattle();
 
-            if (pawn.Pawn.Team == TeamType.Enemies)
-            {
-                pawn.gameObject.SetActive(false);
-            }
-            else
+            if (pawn.Pawn.Team != TeamType.Enemies)
             {
                 pawn.Dance();
                 pawn.Pawn.GetComponent<ResourceComponent>().EndOfBattleHeal();

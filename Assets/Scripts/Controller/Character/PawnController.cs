@@ -188,10 +188,13 @@ public class PawnController : MonoBehaviour
     {
         Pawn.EndBattle();
 
-        CharacterController.SetAnimationState(new IdleState());
-
         enabled = false;
         Battle = null;
+
+        if (!Pawn.GetComponent<ResourceComponent>().IsAlive)
+            return;
+        
+        CharacterController.SetAnimationState(new IdleState());
     }
 
     public void Dance()
@@ -244,6 +247,7 @@ public class PawnController : MonoBehaviour
         CharacterController.SetAnimationState(new DeadState());
         
         NavMeshAgent.ResetPath();
+        NavMeshAgent.enabled = false;
         Ability = null;
 
         Application.Instance.GetManager<BattleEventsManager>().DoPawnDeathEvent(this, damageDomain);
@@ -260,6 +264,7 @@ public class PawnController : MonoBehaviour
         if (!Pawn.GetComponent<ResourceComponent>().IsAlive || PawnState is not DeadState)
             return;
         
+        NavMeshAgent.enabled = true;
         Ability = null;
         CharacterController.SetAnimationState(new IdleState());
         RealizeTurn();
