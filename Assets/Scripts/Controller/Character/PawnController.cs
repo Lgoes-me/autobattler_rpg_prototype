@@ -30,7 +30,7 @@ public class PawnController : MonoBehaviour
 
         if (Pawn.TryGetComponent<StatsComponent>(out var statsComponent))
         {
-            statsComponent.ApplyLevel(Pawn.Level);
+            statsComponent.ApplyLevel(statsComponent.Level);
         }
 
         if (Pawn.TryGetComponent<WeaponComponent>(out var weaponComponent))

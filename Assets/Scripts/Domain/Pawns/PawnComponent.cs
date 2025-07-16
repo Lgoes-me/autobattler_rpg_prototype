@@ -149,7 +149,7 @@ public class StatsComponent : PawnComponent
     {
         Stats = stats;
         LevelUpStats = levelUpStats;
-        Level = 0;
+        Level = 1;
     }
 
     public void ApplyLevel(int level)
@@ -158,10 +158,21 @@ public class StatsComponent : PawnComponent
         LevelUpStats.EvaluateLevel(level);
     }
 
-    public void LevelUp(int currentExperience)
+    public bool TryLevelUp(int experience, out int remainingXp)
     {
-        Level = LevelUpStats.EvaluateExperience(currentExperience);
-        LevelUpStats.EvaluateLevel(Level);
+        remainingXp = 0;
+        
+        var currentLevelExperience = GetStats().GetStat(Stat.ExperienceToLevelUp);
+
+        if (currentLevelExperience > 0 && experience >= currentLevelExperience)
+        {
+            Level = LevelUpStats.EvaluateExperience(experience, out var resto);
+            LevelUpStats.EvaluateLevel(Level);
+            remainingXp = resto;
+            return true;
+        }
+
+        return false;
     }
     
     public Stats GetStats()
@@ -192,7 +203,8 @@ public class StatsComponent : PawnComponent
 
     public override void SetPawnInfo(PawnInfo pawnInfo)
     {
-        ApplyLevel(pawnInfo.Level);
+        Level = pawnInfo.Level;
+        ApplyLevel(Level);
     }
 }
 
@@ -425,15 +437,14 @@ public class ResourceComponent : PawnComponent
     public void GiveXp(int combatEncounterExperience)
     {
         Experience += combatEncounterExperience;
-        GainedExperience?.Invoke(combatEncounterExperience);
-        
-        var currentLevelExperience = StatsComponent.GetStats().GetStat(Stat.ExperienceToLevelUp);
-        
-        if (currentLevelExperience > 0 && Experience >= currentLevelExperience)
+
+        if (StatsComponent.TryLevelUp(Experience, out var remaining))
         {
-            StatsComponent.LevelUp(Experience);
+            Experience = remaining;
             GainedLevel?.Invoke(StatsComponent.Level);
         }
+        
+        GainedExperience?.Invoke(Experience);
     }
 
     public override void SetPawnInfo(PawnInfo pawnInfo)

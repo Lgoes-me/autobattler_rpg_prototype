@@ -27,9 +27,10 @@ public class LevelUpStats
         CurrentStats = new Stats(newStats);
     }
     
-    public int EvaluateExperience(int experience)
+    public int EvaluateExperience(int experience, out int remaining)
     {
         var level = 0;
+        remaining = 0;
         
         for (int i = 0; i < 10; i++)
         {
@@ -39,8 +40,9 @@ public class LevelUpStats
             
             if (levelExp > experience)
                 break;
-
+            
             level = i;
+            remaining = experience - levelExp;
         }
 
         return level;

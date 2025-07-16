@@ -188,7 +188,7 @@ public class GameSaveManager : IManager
         Save.SelectedParty = newSelectedParty
             .Select(p => new PawnInfo(
                 p.Id,
-                0,
+                1,
                 0,
                 0,
                 PawnStatus.Unlocked,

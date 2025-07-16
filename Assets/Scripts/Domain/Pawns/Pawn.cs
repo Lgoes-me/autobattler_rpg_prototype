@@ -15,8 +15,7 @@ public class Pawn
     
     private PawnStatus Status { get; set; }
     public TeamType Team { get; }
-    public int Level { get; private set; } = 1;
-    public WeaponType WeaponType { get; private set; } = WeaponType.None;
+    public WeaponType WeaponType { get; private set; }
     
     public PawnController Focus { get; set; }
 
@@ -50,11 +49,6 @@ public class Pawn
     {
         Status = status;
         Team = team;
-    }
-
-    public void SetLevel(int level)
-    {
-        Level = level;
     }
     
     public void SetWeaponType(WeaponType weaponType)
@@ -113,7 +107,7 @@ public class Pawn
     {
         var pawnInfo = new PawnInfo(
             Id,
-            0,
+            1,
             0,
             0,
             Status,
