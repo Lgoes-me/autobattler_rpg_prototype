@@ -57,6 +57,12 @@ public class ConsumableCanvasController : BaseCanvasHolderItemController<Consuma
         if (Physics.Raycast(ray, out var hit, 10000, Mask))
         {
             var pawn = hit.transform.GetComponent<PawnController>();
+
+            if (pawn.Pawn.Team != Data.Consumable.Focus)
+            {
+                return;
+            }
+            
             var effect = Data.Consumable.Effect.ToDomain(pawn);
 
             effect.DoAbilityEffect(pawn);

@@ -4,6 +4,7 @@ using UnityEngine;
 public class ConsumableData : ScriptableObject
 {
     [field: SerializeField] public string Id { get; private set; }
+    [field: SerializeField] public TeamType Focus { get; private set; }
     [field: SerializeField] public bool UsableOutsideCombat { get; private set; }
     [field: SerializeField] [field: SerializeReference] public EffectData Effect { get; private set; }
 }

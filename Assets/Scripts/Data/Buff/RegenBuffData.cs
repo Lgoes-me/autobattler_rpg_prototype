@@ -8,7 +8,6 @@ public class RegenBuffData : BuffComponentData
 
     public override BuffComponent ToDomain(Pawn pawn)
     {
-        var regen = Regen;// * abilityUser.Pawn.Stats.Strength;
-        return new RegenBuff(regen, TickRate);
+        return new RegenBuff(Regen, TickRate);
     }
 }

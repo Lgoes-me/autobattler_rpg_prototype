@@ -1,4 +1,6 @@
-﻿public class DamageEffect : AbilityEffect
+﻿using UnityEngine;
+
+public class DamageEffect : AbilityEffect
 {
     private DamageDomain Damage { get; set; }
 
@@ -13,6 +15,14 @@
 
         if (!resources.IsAlive)
             return;
+
+        var vamp = AbilityUser.Pawn.GetComponent<StatsComponent>().GetStats().GetStat(Stat.Vampirismo);
+        
+        if (vamp > 0)
+        {
+            var heal = Mathf.CeilToInt(Damage.Value * vamp / (float) 100);
+            AbilityUser.Pawn.GetComponent<ResourceComponent>().ReceiveHeal(heal, false);
+        }
 
         resources.ReceiveDamage(Damage);
     }

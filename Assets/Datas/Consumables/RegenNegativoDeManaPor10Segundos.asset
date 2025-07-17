@@ -10,17 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 11b55d6e47b56384286a772dd008f0bb, type: 3}
-  m_Name: Potion
+  m_Name: RegenNegativoDeManaPor10Segundos
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: Potion
-  <UsableOutsideCombat>k__BackingField: 1
+  <Id>k__BackingField: RegenNegativoDeManaPor10Segundos
+  <Focus>k__BackingField: 1
+  <UsableOutsideCombat>k__BackingField: 0
   <Effect>k__BackingField:
-    rid: 7923229649925308416
+    rid: 7325121692960555088
   references:
     version: 2
     RefIds:
-    - rid: 7923229649925308416
-      type: {class: StaticHealEffectData, ns: , asm: Assembly-CSharp}
+    - rid: 7325121692960555088
+      type: {class: BuffEffectData, ns: , asm: Assembly-CSharp}
       data:
-        <HealValue>k__BackingField: 20
-        <CanRevive>k__BackingField: 0
+        <BuffData>k__BackingField: {fileID: 11400000, guid: b1a04099325769344af669bde9a8fac7, type: 2}
+        <Duration>k__BackingField: 10

@@ -68,5 +68,6 @@ public enum Stat
     HealPower,
     DamageModifier,
     ManaGainModifier,
-    ExperienceToLevelUp
+    ExperienceToLevelUp,
+    Vampirismo
 }

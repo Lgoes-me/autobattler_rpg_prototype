@@ -1429,13 +1429,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <AvailablePawns>k__BackingField:
-  - {fileID: 11400000, guid: 03c6cd9aa7bdabe4d846ae86d92a1213, type: 2}
+  - {fileID: 11400000, guid: 9d06824eb6c63cc429db046ab5109a2e, type: 2}
   - {fileID: 11400000, guid: 7ceaba2773ad11243af0685fbfdad469, type: 2}
+  - {fileID: 11400000, guid: 03c6cd9aa7bdabe4d846ae86d92a1213, type: 2}
   <AvailableWeapons>k__BackingField:
   - {fileID: 11400000, guid: cd31aca81c366d643bb7c5e6c911a4ec, type: 2}
   - {fileID: 11400000, guid: c100948fa67640f428b6c11fce040be7, type: 2}
   - {fileID: 11400000, guid: 8a52abe442785a54da608366eb5bbbc1, type: 2}
   - {fileID: 11400000, guid: 5809fa7e25bda9b43accefaaf4f375ba, type: 2}
+  - {fileID: 11400000, guid: d7ad807c48b30a542854525bf42eb6e2, type: 2}
   <AvailableAbilities>k__BackingField:
   - {fileID: 11400000, guid: 4d5322942f707264790c540024917a6c, type: 2}
   - {fileID: 11400000, guid: e08670137b4a16145a7141712200c678, type: 2}
@@ -1446,10 +1448,24 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a5b812c23350d624ca41e1a9720f448b, type: 2}
   - {fileID: 11400000, guid: 1c1cb2f3723e43b419a2771ed0fd8feb, type: 2}
   <AvailableBuffs>k__BackingField:
+  - {fileID: 11400000, guid: 0bb712a612897eb4aa70704e9168191d, type: 2}
+  - {fileID: 11400000, guid: 246f5b512be1a67419ca3057974df881, type: 2}
+  - {fileID: 11400000, guid: b1a04099325769344af669bde9a8fac7, type: 2}
+  - {fileID: 11400000, guid: 6bf3a522d4f53384b8aeeedddba4a0de, type: 2}
   - {fileID: 11400000, guid: c5e0ac80332e41d4ba372d23eef9f26e, type: 2}
   - {fileID: 11400000, guid: 3b8f7bc3ad5038f4fb3950314f19f98a, type: 2}
+  - {fileID: 11400000, guid: 7f0b66f23f304074a8b1c411c4de6e56, type: 2}
   <AvailableConsumables>k__BackingField:
+  - {fileID: 11400000, guid: 8db4c749d1c8f484cb031604f6e6fc10, type: 2}
+  - {fileID: 11400000, guid: 92308f5479cabef4c85ad09fab032099, type: 2}
+  - {fileID: 11400000, guid: 56329e8b28494d04f85f229b3fb6cb80, type: 2}
+  - {fileID: 11400000, guid: 556a16d209dd19143a2e9397d8d2833a, type: 2}
   - {fileID: 11400000, guid: 37b3c93670b6f774eba82458f45ca543, type: 2}
+  - {fileID: 11400000, guid: a0fdc9c5ac1f62d478573eeb8ab3d29b, type: 2}
+  - {fileID: 11400000, guid: 6e8594012b3dff849b9a90716ed70cd9, type: 2}
+  - {fileID: 11400000, guid: 4b8f549bba925044e8b9c27cf8497180, type: 2}
+  - {fileID: 11400000, guid: 5a86193d1398d3c409d67f58c3a63ed9, type: 2}
+  - {fileID: 11400000, guid: 133a7f6900744c64aa268578c2795492, type: 2}
 --- !u!1001 &1164712636
 PrefabInstance:
   m_ObjectHideFlags: 0

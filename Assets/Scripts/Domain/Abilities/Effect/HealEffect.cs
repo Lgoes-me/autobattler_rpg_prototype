@@ -1,4 +1,6 @@
-﻿public class HealEffect : AbilityEffect
+﻿using UnityEngine;
+
+public class HealEffect : AbilityEffect
 {
     private float HealValue { get; set; }
     private bool CanRevive { get; set; }
@@ -40,5 +42,29 @@ public class StaticHealEffect : AbilityEffect
             return;
         
         resources.ReceiveHeal(HealValue, CanRevive);
+    }
+}
+
+public class PercentStaticHealEffect : AbilityEffect
+{
+    private float HealPercent { get; set; }
+    private bool CanRevive { get; set; }
+
+    public PercentStaticHealEffect(PawnController abilityUser, float healPercent, bool canRevive) : base(abilityUser)
+    {
+        HealPercent = healPercent;
+        CanRevive = canRevive;
+    }
+
+    public override void DoAbilityEffect(PawnController focus)
+    {
+        var resources = focus.Pawn.GetComponent<ResourceComponent>();
+
+        if (!CanRevive && !resources.IsAlive)
+            return;
+        
+        var maxHealth = focus.Pawn.GetComponent<StatsComponent>().GetStats().GetStat(Stat.Health);
+        var healValue = Mathf.CeilToInt(maxHealth * HealPercent);
+        resources.ReceiveHeal(healValue, CanRevive);
     }
 }

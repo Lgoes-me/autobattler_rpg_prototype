@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 11b55d6e47b56384286a772dd008f0bb, type: 3}
-  m_Name: Potion
+  m_Name: FullHealPotion
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: Potion
+  <Id>k__BackingField: FullHealPotion
   <UsableOutsideCombat>k__BackingField: 1
   <Effect>k__BackingField:
-    rid: 7923229649925308416
+    rid: 7325121692960555087
   references:
     version: 2
     RefIds:
-    - rid: 7923229649925308416
-      type: {class: StaticHealEffectData, ns: , asm: Assembly-CSharp}
+    - rid: 7325121692960555087
+      type: {class: PercentStaticHealEffectData, ns: , asm: Assembly-CSharp}
       data:
-        <HealValue>k__BackingField: 20
+        <HealPercent>k__BackingField: 1
         <CanRevive>k__BackingField: 0
