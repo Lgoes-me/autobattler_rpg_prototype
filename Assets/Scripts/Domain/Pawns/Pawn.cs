@@ -124,7 +124,7 @@ public class Pawn
     {
         return new PawnInfo(
             Id,
-            GetComponent<StatsComponent>().Level,
+            TryGetComponent<LevelUpStatsComponent>(out var stats) ? stats.Level : 1,
             GetComponent<ResourceComponent>().MissingHealth,
             GetComponent<ResourceComponent>().Experience,
             Status,

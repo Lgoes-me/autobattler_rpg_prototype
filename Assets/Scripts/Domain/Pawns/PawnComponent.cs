@@ -141,44 +141,22 @@ public class EnemyComponent : PawnComponent
 
 public class StatsComponent : PawnComponent
 {
-    public int Level { get; private set; }
     private Stats Stats { get; }
-    private LevelUpStats LevelUpStats { get; }
 
-    public StatsComponent(Stats stats, LevelUpStats levelUpStats)
+    public StatsComponent(Stats stats)
     {
         Stats = stats;
-        LevelUpStats = levelUpStats;
-        Level = 1;
-    }
-
-    public void ApplyLevel(int level)
-    {
-        Level = level;
-        LevelUpStats.EvaluateLevel(level);
-    }
-
-    public bool TryLevelUp(int experience, out int remainingXp)
-    {
-        remainingXp = 0;
-        
-        var currentLevelExperience = GetStats().GetStat(Stat.ExperienceToLevelUp);
-
-        if (currentLevelExperience > 0 && experience >= currentLevelExperience)
-        {
-            Level = LevelUpStats.EvaluateExperience(experience, out var resto);
-            LevelUpStats.EvaluateLevel(Level);
-            remainingXp = resto;
-            return true;
-        }
-
-        return false;
     }
     
     public Stats GetStats()
     {
-        var stats = Stats + LevelUpStats.CurrentStats;
+        var stats = Stats;
 
+        if (Pawn.TryGetComponent<LevelUpStatsComponent>(out var levelUpStatsComponent))
+        {
+            stats += levelUpStatsComponent.LevelUpStats.CurrentStats;
+        }
+        
         if (Pawn.TryGetComponent<WeaponComponent>(out var weaponComponent))
         {
             stats += weaponComponent.Weapon.Stats;
@@ -200,7 +178,43 @@ public class StatsComponent : PawnComponent
 
         return stats;
     }
+}
 
+public class LevelUpStatsComponent : PawnComponent
+{
+    public int Level { get; private set; }
+    public LevelUpStats LevelUpStats { get; }
+
+    public LevelUpStatsComponent(LevelUpStats levelUpStats)
+    {
+        LevelUpStats = levelUpStats;
+        Level = 1;
+    }
+
+    public void ApplyLevel(int level)
+    {
+        Level = level;
+        LevelUpStats.EvaluateLevel(level);
+    }
+
+    public bool TryLevelUp(int experience, out int remainingXp)
+    {
+        remainingXp = 0;
+
+        var stats = Pawn.GetComponent<StatsComponent>().GetStats();
+        var currentLevelExperience = stats.GetStat(Stat.ExperienceToLevelUp);
+
+        if (currentLevelExperience > 0 && experience >= currentLevelExperience)
+        {
+            Level = LevelUpStats.EvaluateExperience(experience, out var resto);
+            LevelUpStats.EvaluateLevel(Level);
+            remainingXp = resto;
+            return true;
+        }
+
+        return false;
+    }
+    
     public override void SetPawnInfo(PawnInfo pawnInfo)
     {
         Level = pawnInfo.Level;
@@ -436,12 +450,15 @@ public class ResourceComponent : PawnComponent
     
     public void GiveXp(int combatEncounterExperience)
     {
+        if (!Pawn.TryGetComponent<LevelUpStatsComponent>(out var levelUpStatsComponent))
+            return;
+
         Experience += combatEncounterExperience;
 
-        if (StatsComponent.TryLevelUp(Experience, out var remaining))
+        if (levelUpStatsComponent.TryLevelUp(Experience, out var remaining))
         {
             Experience = remaining;
-            GainedLevel?.Invoke(StatsComponent.Level);
+            GainedLevel?.Invoke(levelUpStatsComponent.Level);
         }
         
         GainedExperience?.Invoke(Experience);

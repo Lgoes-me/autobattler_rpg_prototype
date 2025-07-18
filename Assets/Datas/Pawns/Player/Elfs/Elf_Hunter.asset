@@ -17,6 +17,7 @@ MonoBehaviour:
   - rid: 7923229791535759367
   - rid: 7923229791535759368
   - rid: 7923229791535759369
+  - rid: 7325121692960555114
   - rid: 2203596694783000576
   - rid: 7923229791535759370
   - rid: 7923229791535759371
@@ -37,6 +38,44 @@ MonoBehaviour:
     - rid: 2203596695900782595
       type: {class: PawnBuffsComponentData, ns: , asm: Assembly-CSharp}
       data: 
+    - rid: 7325121692960555114
+      type: {class: LevelUpStatsComponentData, ns: , asm: Assembly-CSharp}
+      data:
+        <LevelUpStats>k__BackingField:
+          <MaxLevelStatsStats>k__BackingField:
+            <Stats>k__BackingField:
+            - <Stat>k__BackingField: 0
+              <Value>k__BackingField: 600
+            - <Stat>k__BackingField: 1
+              <Value>k__BackingField: 150
+            - <Stat>k__BackingField: 2
+              <Value>k__BackingField: 120
+            - <Stat>k__BackingField: 4
+              <Value>k__BackingField: 20
+          <LevelUpCurve>k__BackingField:
+            serializedVersion: 2
+            m_Curve:
+            - serializedVersion: 3
+              time: 0
+              value: 0
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            - serializedVersion: 3
+              time: 1
+              value: 1
+              inSlope: 2
+              outSlope: 2
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
     - rid: 7923229791535759367
       type: {class: FocusComponentData, ns: , asm: Assembly-CSharp}
       data:

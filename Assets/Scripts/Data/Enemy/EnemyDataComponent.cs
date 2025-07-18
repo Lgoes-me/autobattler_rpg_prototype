@@ -63,7 +63,7 @@ public class LevelComponentData : EnemyDataComponent
 
     public override void PreparePawn(PawnController pawnController)
     {
-        if (pawnController.Pawn.TryGetComponent<StatsComponent>(out var statsComponent))
+        if (pawnController.Pawn.TryGetComponent<LevelUpStatsComponent>(out var statsComponent))
         {
             statsComponent.ApplyLevel(Level);
         }

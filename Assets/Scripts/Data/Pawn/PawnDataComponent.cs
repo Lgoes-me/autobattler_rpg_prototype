@@ -63,13 +63,23 @@ public class EnemyComponentData : PawnDataComponent
 public class StatsComponentData : PawnDataComponent
 {
     [field: SerializeField] private StatsData BaseStats { get; set; }
+
+    public override PawnComponent ToDomain()
+    {
+        return new StatsComponent(BaseStats.ToDomain());
+    }
+}
+
+public class LevelUpStatsComponentData : PawnDataComponent
+{
     [field: SerializeField] private LevelUpStatsData LevelUpStats { get; set; }
 
     public override PawnComponent ToDomain()
     {
-        return new StatsComponent(BaseStats.ToDomain(), LevelUpStats.ToDomain());
+        return new LevelUpStatsComponent(LevelUpStats.ToDomain());
     }
 }
+
 public class PawnBuffsComponentData : PawnDataComponent
 {
     public override PawnComponent ToDomain()

@@ -17,6 +17,7 @@ MonoBehaviour:
   - rid: 7923229791535759360
   - rid: 7923229791535759361
   - rid: 7923229791535759362
+  - rid: 7325121692960555113
   - rid: 2203596694783000577
   - rid: 7923229791535759363
   - rid: 7923229791535759364
@@ -42,6 +43,46 @@ MonoBehaviour:
       type: {class: MountComponentData, ns: , asm: Assembly-CSharp}
       data:
         <Mount>k__BackingField: {fileID: 3138497934422905829, guid: f4267771a1770594fa2468539ad0e5a6, type: 3}
+    - rid: 7325121692960555113
+      type: {class: LevelUpStatsComponentData, ns: , asm: Assembly-CSharp}
+      data:
+        <LevelUpStats>k__BackingField:
+          <MaxLevelStatsStats>k__BackingField:
+            <Stats>k__BackingField:
+            - <Stat>k__BackingField: 0
+              <Value>k__BackingField: 600
+            - <Stat>k__BackingField: 1
+              <Value>k__BackingField: 150
+            - <Stat>k__BackingField: 2
+              <Value>k__BackingField: 120
+            - <Stat>k__BackingField: 4
+              <Value>k__BackingField: 20
+            - <Stat>k__BackingField: 9
+              <Value>k__BackingField: 1000
+          <LevelUpCurve>k__BackingField:
+            serializedVersion: 2
+            m_Curve:
+            - serializedVersion: 3
+              time: 0
+              value: 0
+              inSlope: 0
+              outSlope: 0
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            - serializedVersion: 3
+              time: 1
+              value: 1
+              inSlope: 2
+              outSlope: 2
+              tangentMode: 0
+              weightedMode: 0
+              inWeight: 0
+              outWeight: 0
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
     - rid: 7923229791535759360
       type: {class: FocusComponentData, ns: , asm: Assembly-CSharp}
       data:

@@ -28,9 +28,9 @@ public class PawnController : MonoBehaviour
             CharacterController.SetMount(mountComponent.Mount);
         }
 
-        if (Pawn.TryGetComponent<StatsComponent>(out var statsComponent))
+        if (Pawn.TryGetComponent<LevelUpStatsComponent>(out var levelUpStatsComponent))
         {
-            statsComponent.ApplyLevel(statsComponent.Level);
+            levelUpStatsComponent.ApplyLevel(levelUpStatsComponent.Level);
         }
 
         if (Pawn.TryGetComponent<WeaponComponent>(out var weaponComponent))

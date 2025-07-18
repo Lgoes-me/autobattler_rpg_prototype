@@ -11,7 +11,7 @@ public class ProfileCanvasController : LifeBarCanvasController
 
     [field: SerializeField] private Image ProfilePicture { get; set; }
     [field: SerializeField] private TextMeshProUGUI Name { get; set; }
-    
+
     [field: SerializeField] private Image ExperienceBar { get; set; }
     [field: SerializeField] private TextMeshProUGUI Level { get; set; }
 
@@ -21,17 +21,17 @@ public class ProfileCanvasController : LifeBarCanvasController
 
         Name.SetText(Pawn.Id);
         CanvasGroup.alpha = 0.5f;
-        
+
         UpdateConsumablesCanvas();
         UpdateExperience(0);
         UpdateLevel(0);
-        
+
         Pawn.GetComponent<ConsumableComponent>().ConsumablesUpdated += UpdateConsumablesCanvas;
-        
+
         var resource = Pawn.GetComponent<ResourceComponent>();
         resource.GainedExperience += UpdateExperience;
         resource.GainedLevel += UpdateLevel;
-        
+
         UpdateProfile("default");
         UpdateConsumablesCanvas();
         Show();
@@ -42,27 +42,28 @@ public class ProfileCanvasController : LifeBarCanvasController
         CanvasGroup.alpha = 1;
 
         ConsumableCanvasHolderController.StartBattle();
-        
+
         UpdateProfile("battle");
     }
 
     protected override void FinishBattle()
     {
         CanvasGroup.alpha = 0.5f;
-        
+
         UpdateProfile("default");
-        
+
         ConsumableCanvasHolderController.FinishBattle();
-        
+
         HideMana();
     }
-    
+
     private void UpdateConsumablesCanvas()
     {
-        var consumables = Pawn.GetComponent<ConsumableComponent>().Consumables.Select(c => new ConsumableCanvasControllerData(Pawn, c)).ToList();
+        var consumables = Pawn.GetComponent<ConsumableComponent>().Consumables
+            .Select(c => new ConsumableCanvasControllerData(Pawn, c)).ToList();
         ConsumableCanvasHolderController.UpdateItems(consumables);
     }
-    
+
     protected override void UpdateBuffs()
     {
         var buffs = Pawn.GetComponent<PawnBuffsComponent>().Buffs.Select(b => b.Value).ToList();
@@ -78,40 +79,42 @@ public class ProfileCanvasController : LifeBarCanvasController
     private void UpdateProfile(string identificador)
     {
         var info = Pawn.GetComponent<CharacterInfoComponent>().GetCharacterInfo(identificador);
-            
+
         ProfilePicture.sprite = info.Portrait;
         Application.Instance.GetManager<AudioManager>().PlaySfx(info.Audio);
     }
-    
+
     private void UpdateExperience(int value)
     {
         var stats = Pawn.GetComponent<StatsComponent>();
         var experienceToLevelUp = stats.GetStats().GetStat(Stat.ExperienceToLevelUp);
-        
+
         if (experienceToLevelUp == 0)
         {
             ExperienceBar.fillAmount = 0;
             return;
         }
-        
+
         var resource = Pawn.GetComponent<ResourceComponent>();
-        
+
         ExperienceBar.fillAmount = resource.Experience / (float) experienceToLevelUp;
     }
 
     private void UpdateLevel(int value)
     {
-        var stats = Pawn.GetComponent<StatsComponent>();
+        if (!Pawn.TryGetComponent<LevelUpStatsComponent>(out var stats)) 
+            return;
+        
         Level.text = $"{stats.Level}";
     }
 
     protected override void OnDestroy()
     {
         base.OnDestroy();
-        
-        if(Pawn == null)
+
+        if (Pawn == null)
             return;
-        
+
         var resource = Pawn.GetComponent<ResourceComponent>();
         resource.GainedExperience -= UpdateExperience;
         resource.GainedLevel -= UpdateLevel;
