@@ -220,4 +220,17 @@ public class BattleEventsManager : IManager
             }
         }
     }
+    
+    public void DoBlessingGainedEvent()
+    {
+        foreach (var blessing in BlessingManager.Blessings)
+        {
+            blessing.DoBlessingGainedEvent();
+        }
+        
+        foreach (var archetype in ArchetypeManager.Archetypes)
+        {
+            archetype.DoBlessingGainedEvent();
+        }
+    }
 }

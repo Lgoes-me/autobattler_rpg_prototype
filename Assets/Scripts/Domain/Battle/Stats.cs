@@ -69,5 +69,6 @@ public enum Stat
     DamageModifier,
     ManaGainModifier,
     ExperienceToLevelUp,
-    Vampirismo
+    Vampirismo,
+    OpcoesExtras,
 }

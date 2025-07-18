@@ -9,6 +9,8 @@ public class PrizeManager : IManager
     private InterfaceManager InterfaceManager { get; set; }
     private PauseManager PauseManager { get; set; }
     private PlayerManager PlayerManager { get; set; }
+
+    private int NumberOfOptions => 3 + PlayerManager.PlayerStats.GetStat(Stat.OpcoesExtras);
     
     public void Prepare()
     {
@@ -38,7 +40,7 @@ public class PrizeManager : IManager
     {
         PreparePrize();
         
-        var prizes = new LevelUpPrize(3, GameSaveManager.GetSelectedParty());
+        var prizes = new LevelUpPrize(NumberOfOptions, GameSaveManager.GetSelectedParty());
         var selectedPrize = await InterfaceManager.ShowPrizeCanvas(prizes);
 
         var pawnInfo = selectedPrize.PawnInfo;
@@ -53,7 +55,7 @@ public class PrizeManager : IManager
     {
         PreparePrize();
 
-        var prizes = new BlessingPrize(3, blessings);
+        var prizes = new BlessingPrize(NumberOfOptions, blessings);
         var selectedPrize = await InterfaceManager.ShowPrizeCanvas(prizes);
         
         BlessingManager.AddBlessing(selectedPrize.Blessing);
@@ -65,7 +67,7 @@ public class PrizeManager : IManager
     {
         PreparePrize();
 
-        var prizes = new PartyMemberPrize(3, 1, PartyManager.Party, ContentManager);
+        var prizes = new PartyMemberPrize(NumberOfOptions, 1, PartyManager.Party, ContentManager);
         var selectedPrize = await InterfaceManager.ShowPrizeCanvas(prizes);
         
         var pawnInfo = selectedPrize.PawnInfo;
@@ -82,7 +84,7 @@ public class PrizeManager : IManager
     {
         PreparePrize();
 
-        var prizes = new WeaponPrize(3, ContentManager, GameSaveManager.GetSelectedParty());
+        var prizes = new WeaponPrize(NumberOfOptions, ContentManager, GameSaveManager.GetSelectedParty());
         var selectedPrize = await InterfaceManager.ShowPrizeCanvas(prizes);
 
         selectedPrize.ApplyPrize();
@@ -96,7 +98,7 @@ public class PrizeManager : IManager
     {
         PreparePrize();
 
-        var prizes = new AbilityPrize(3, ContentManager, GameSaveManager.GetSelectedParty());
+        var prizes = new AbilityPrize(NumberOfOptions, ContentManager, GameSaveManager.GetSelectedParty());
         var selectedPrize = await InterfaceManager.ShowPrizeCanvas(prizes);
 
         selectedPrize.ApplyPrize();
@@ -110,7 +112,7 @@ public class PrizeManager : IManager
     {
         PreparePrize();
         
-        var prizes = new BuffPrize(3, ContentManager, GameSaveManager.GetSelectedParty());
+        var prizes = new BuffPrize(NumberOfOptions, ContentManager, GameSaveManager.GetSelectedParty());
         var selectedPrize = await InterfaceManager.ShowPrizeCanvas(prizes);
 
         selectedPrize.ApplyPrize();
@@ -124,7 +126,7 @@ public class PrizeManager : IManager
     {
         PreparePrize();
 
-        var prizes = new ConsumablePrize(3, ContentManager, GameSaveManager.GetSelectedParty());
+        var prizes = new ConsumablePrize(NumberOfOptions, ContentManager, GameSaveManager.GetSelectedParty());
         var selectedPrize = await InterfaceManager.ShowPrizeCanvas(prizes);
 
         selectedPrize.ApplyPrize();

@@ -692,6 +692,29 @@ public class BlessingFactory
                 }
             },
             
+            BlessingIdentifier.OpcoesExtrasNosPremios => new Blessing(id)
+            {
+                new BlessingCreatedListener()
+                {
+                    (rarity) =>
+                    {
+                        var opcoes = rarity switch
+                        {
+                            Rarity.Deactivated => 0,
+                            Rarity.Legendary => 3,
+                            Rarity.Epic => 2,
+                            Rarity.Rare => 2,
+                            Rarity.Uncommon => 1,
+                            Rarity.Common => 1,
+                            _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
+                        };
+                        
+                        Application.Instance.GetManager<PlayerManager>().
+                            PlayerStats.StatsDictionary.Add(Stat.OpcoesExtras, opcoes);
+                    }
+                }
+            },
+            
             _ => throw new ArgumentOutOfRangeException(nameof(id), id, null)
         };
     }

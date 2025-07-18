@@ -45,4 +45,6 @@ public enum BlessingIdentifier
     RemoveBonusNegativos = 05_03,
     ChanceDeEco = 05_04,
     ChanceDeReceberPremioSecundario = 05_05,
+    
+    OpcoesExtrasNosPremios = 06_01,
 }
