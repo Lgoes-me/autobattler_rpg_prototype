@@ -715,6 +715,57 @@ public class BlessingFactory
                 }
             },
             
+            
+            BlessingIdentifier.EscudoParaEquipe => new Blessing(id)
+            {
+                new OnBattleStartedListener()
+                {
+                    (battle, rarity) =>
+                    {
+                        var shieldValue = rarity switch
+                        {
+                            Rarity.Deactivated => 0,
+                            Rarity.Legendary => 50,
+                            Rarity.Epic => 25,
+                            Rarity.Rare => 20,
+                            Rarity.Uncommon => 15,
+                            Rarity.Common => 10,
+                            _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
+                        };
+
+                        foreach (var p in battle.PlayerPawns)
+                        {
+                            p.Pawn.GetComponent<ResourceComponent>().GiveShield(shieldValue);
+                        }
+                    }
+                }
+            },
+            
+            BlessingIdentifier.InvocaCachorro => new Blessing(id)
+            {
+                new OnBattleStartedListener()
+                {
+                    (battle, rarity) =>
+                    {
+                        var dogLevel = rarity switch
+                        {
+                            Rarity.Deactivated => 0,
+                            Rarity.Legendary => 10,
+                            Rarity.Epic => 7,
+                            Rarity.Rare => 5,
+                            Rarity.Uncommon => 3,
+                            Rarity.Common => 2,
+                            _ => throw new ArgumentOutOfRangeException(nameof(rarity), rarity, null)
+                        };
+
+                        var dog = Application.Instance.GetManager<ContentManager>().GetSummon("dog");
+                        dog.Components.Add(new LevelComponentData() { Level = dogLevel });
+
+                        battle.PlayerPawns.First().SummonPawn(dog);
+                    }
+                }
+            },
+
             _ => throw new ArgumentOutOfRangeException(nameof(id), id, null)
         };
     }

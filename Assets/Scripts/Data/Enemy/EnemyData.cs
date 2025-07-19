@@ -7,10 +7,10 @@ using UnityEngine;
 public class EnemyData
 {
     [field: HideInInspector] public string name;
-    public PawnController PawnController { get; set; }
+    public PawnController PawnController { get; private set; }
 
     [field: SerializeField] private PawnData PawnData { get; set; }
-    [field: SerializeReference] [field: SerializeField] private List<EnemyDataComponent> Components { get; set; }
+    [field: SerializeReference] [field: SerializeField] public List<EnemyDataComponent> Components { get; private set; }
     
     public void PreparePawn(PawnController pawnController, TeamType team)
     {

@@ -370,6 +370,8 @@ public class ResourceComponent : PawnComponent
     public int Mana { get; private set; }
     public int Experience { get; private set; }
 
+    public int Escudo { get; private set; }
+    
     public bool HasMana => StatsComponent.GetStats().GetStat(Stat.Mana) > 0;
     public bool IsAlive => Health > 0;
 
@@ -405,7 +407,16 @@ public class ResourceComponent : PawnComponent
     public void ReceiveDamage(DamageDomain damage)
     {
         var reducedDamage = StatsComponent.GetStats().GetReducedDamage(damage);
-        
+
+        if (reducedDamage > Escudo)
+        {
+            Escudo -= reducedDamage;
+            return;
+        }
+
+        reducedDamage -= Escudo;
+        Escudo = 0;
+
         MissingHealth = Mathf.Clamp(MissingHealth + reducedDamage, 0, StatsComponent.GetStats().GetStat(Stat.Health));
         LostLife?.Invoke(damage);
     }
@@ -469,6 +480,11 @@ public class ResourceComponent : PawnComponent
         MissingHealth = pawnInfo.MissingHealth;
         Experience = pawnInfo.Experience;
         Mana = 0;
+    }
+
+    public void GiveShield(int shieldValue)
+    {
+        Escudo += shieldValue;
     }
 }
 

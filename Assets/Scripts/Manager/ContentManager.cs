@@ -13,6 +13,7 @@ public class ContentManager : MonoBehaviour, IManager
     [field: SerializeField] public List<AbilityData> AvailableAbilities { get; private set; }
     [field: SerializeField] public List<BuffData> AvailableBuffs { get; private set; }
     [field: SerializeField] public List<ConsumableData> AvailableConsumables { get; private set; }
+    [field: SerializeField] public List<EnemyData> AvailabeSummons { get; private set; }
 
     public Pawn GetPawnFromId(string id)
     {
@@ -46,6 +47,12 @@ public class ContentManager : MonoBehaviour, IManager
     public ConsumableData GetConsumableFromId(string id)
     {
         return AvailableConsumables.First(a => a.Id == id);
+    }
+    
+    public EnemyData GetSummon(string id)
+    {
+        return AvailabeSummons
+            .First(p => p.name == id);
     }
 
 #if UNITY_EDITOR

@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class SummonEffect : AbilityEffect
+﻿public class SummonEffect : AbilityEffect
 {
     private EnemyData EnemyData { get; set; }
 

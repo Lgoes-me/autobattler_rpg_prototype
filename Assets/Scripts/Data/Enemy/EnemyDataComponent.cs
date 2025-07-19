@@ -59,7 +59,7 @@ public class MountedEnemyComponentData : EnemyDataComponent
 
 public class LevelComponentData : EnemyDataComponent
 {
-    [field: SerializeField] private int Level { get; set; }
+    [field: SerializeField] public int Level { get; set; }
 
     public override void PreparePawn(PawnController pawnController)
     {

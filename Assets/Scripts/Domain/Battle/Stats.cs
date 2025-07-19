@@ -70,5 +70,5 @@ public enum Stat
     ManaGainModifier,
     ExperienceToLevelUp,
     Vampirismo,
-    OpcoesExtras,
+    OpcoesExtras
 }

@@ -47,4 +47,8 @@ public enum BlessingIdentifier
     ChanceDeReceberPremioSecundario = 05_05,
     
     OpcoesExtrasNosPremios = 06_01,
+    
+    EscudoParaEquipe = 07_01,
+    
+    InvocaCachorro = 08_01,
 }
