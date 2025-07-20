@@ -19,53 +19,6 @@ public class HealToPartyEffectData : IBattleStartedEffect, IBattleFinishedEffect
 }
 
 [Serializable]
-public class RegenToPartyEffectData : IBattleStartedEffect
-{
-    [field: SerializeField] private int RegenValue { get; set; }
-
-    public void OnBattleStarted(Battle battle) => DoEffect(battle);
-
-    private void DoEffect(Battle battle)
-    {
-        var buff = new Buff(BlessingIdentifier.CuraAoLongoDoTempo.ToString(), -1)
-        {
-            new RegenBuff(RegenValue, 2)
-        };
-
-        foreach (var p in battle.PlayerPawns)
-        {
-            p.Pawn.GetComponent<PawnBuffsComponent>().AddBuff(buff);
-        }
-    }
-}
-
-[Serializable]
-public class AumentaCuraPercentualmenteToPartyEffectData : IBattleStartedEffect
-{
-    [field: SerializeField] private int HealPowerValue { get; set; }
-
-    public void OnBattleStarted(Battle battle) => DoEffect(battle);
-
-    private void DoEffect(Battle battle)
-    {
-        var stats = new StatsData()
-        {
-            new StatData(Stat.HealPower, HealPowerValue),
-        };
-
-        var buff = new Buff(BlessingIdentifier.AumentaCuraPercentualmente.ToString(), -1)
-        {
-            new StatModifierBuff(stats.ToDomain())
-        };
-
-        foreach (var p in battle.PlayerPawns)
-        {
-            p.Pawn.GetComponent<PawnBuffsComponent>().AddBuff(buff);
-        }
-    }
-}
-
-[Serializable]
 public class HealPlayerPawnEffectData : IPawnDeathEffect, IAttackEffect, ISpecialAttackEffect, IManaLostEffect
 {
     [field: SerializeField] private int HealValue { get; set; }

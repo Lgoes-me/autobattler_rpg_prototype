@@ -2,27 +2,6 @@
 using UnityEngine;
 
 [Serializable]
-public class RegeneracaoDeManaToPartyEffectData : IBattleStartedEffect
-{
-    [field: SerializeField] private int RegenValue { get; set; }
-
-    public void OnBattleStarted(Battle battle) => DoEffect(battle);
-
-    private void DoEffect(Battle battle)
-    {
-        var buff = new Buff(BlessingIdentifier.RegeneracaoDeMana.ToString(), -1)
-        {
-            new ManaRegenBuff(RegenValue, 2)
-        };
-
-        foreach (var p in battle.PlayerPawns)
-        {
-            p.Pawn.GetComponent<PawnBuffsComponent>().AddBuff(buff);
-        }
-    }
-}
-
-[Serializable]
 public class ManaToPartyEffectData : IBattleStartedEffect
 {
     [field: SerializeField] private int ManaValue { get; set; }
@@ -37,33 +16,6 @@ public class ManaToPartyEffectData : IBattleStartedEffect
         }
     }
 }
-
-[Serializable]
-public class AumentaManaRecebidaPercentualmenteToPartyEffectData : IBattleStartedEffect
-{
-    [field: SerializeField] private int PercentIncrease { get; set; }
-
-    public void OnBattleStarted(Battle battle) => DoEffect(battle);
-
-    private void DoEffect(Battle battle)
-    {
-        var stat = new StatsData()
-        {
-            new StatData(Stat.ManaGainModifier, PercentIncrease),
-        };
-
-        var buff = new Buff(BlessingIdentifier.DobraAQuantidadeDeManaRecebida.ToString(), -1)
-        {
-            new StatModifierBuff(stat.ToDomain())
-        };
-        
-        foreach (var p in battle.PlayerPawns)
-        {
-            p.Pawn.GetComponent<PawnBuffsComponent>().AddBuff(buff);
-        }
-    }
-}
-
 
 [Serializable]
 public class PercentualDoDanoViraManaEffectData : IHealthLostEffect, IHealthGainedEffect

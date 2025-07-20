@@ -3,32 +3,6 @@ using System.Linq;
 using UnityEngine;
 
 [Serializable]
-public class ReduzDanoPercentualmenteToPartyEffectData : IBattleStartedEffect
-{
-    [field: SerializeField] private int PercentReduction { get; set; }
-
-    public void OnBattleStarted(Battle battle) => DoEffect(battle);
-
-    private void DoEffect(Battle battle)
-    {
-        var stat = new StatsData()
-        {
-            new StatData(Stat.DamageModifier, -PercentReduction),
-        };
-
-        var buff = new Buff(BlessingIdentifier.ReduzODanoRecebido.ToString(), -1)
-        {
-            new StatModifierBuff(stat.ToDomain())
-        };
-
-        foreach (var p in battle.PlayerPawns)
-        {
-            p.Pawn.GetComponent<PawnBuffsComponent>().AddBuff(buff);
-        }
-    }
-}
-
-[Serializable]
 public class DanoParaEnemyPartyEffectData : IBattleStartedEffect
 {
     [field: SerializeField] private int Dano { get; set; }
