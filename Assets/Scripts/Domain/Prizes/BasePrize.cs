@@ -23,10 +23,17 @@ public class LevelUpPrize : BasePrize<PawnPrizeItem>
 
 public class BlessingPrize : BasePrize<BlessingPrizeItem>
 {
-    public BlessingPrize(int numberOfOptions, List<BlessingIdentifier> blessings)
+    public BlessingPrize(int numberOfOptions, ContentManager contentManager,
+        List<BlessingIdentifier> blessingIdentifiers)
     {
-        Options =
-            blessings
+        var availableBlessings = contentManager.AvailableBlessings;
+        
+        if (blessingIdentifiers != null)
+        {
+            availableBlessings = availableBlessings.Where(b => blessingIdentifiers.Contains(b.Id)).ToList();
+        }
+        
+        Options = availableBlessings
                 .OrderBy(_ => Guid.NewGuid())
                 .Take(numberOfOptions)
                 .Select(b => new BlessingPrizeItem(b)).ToList();

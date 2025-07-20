@@ -21,9 +21,9 @@ public class PawnPrizeItem : BasePrizeItem
 
 public class BlessingPrizeItem : BasePrizeItem
 {
-    public BlessingIdentifier Blessing { get; }
+    public BlessingData Blessing { get; }
 
-    public BlessingPrizeItem(BlessingIdentifier blessing)
+    public BlessingPrizeItem(BlessingData blessing)
     {
         Name = blessing.ToString();
         Blessing = blessing;

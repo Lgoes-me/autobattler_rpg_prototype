@@ -19,8 +19,33 @@ public class HealToPartyEffectData : IBattleStartedEffect, IBattleFinishedEffect
 }
 
 [Serializable]
-public class HealPlayerPawnEffectData : IPawnDeathEffect, IAttackEffect, ISpecialAttackEffect, IManaLostEffect
+public class HealPlayerPawnEffectData : IAttackEffect, ISpecialAttackEffect, IManaLostEffect
 {
+    [field: SerializeField] private TeamType Team { get; set; }
+    [field: SerializeField] private int HealValue { get; set; }
+
+    public void OnAttack(Battle battle, PawnController pawnController, Ability ability) =>
+        DoEffect(pawnController);
+
+    public void OnSpecialAttack(Battle battle, PawnController pawnController, Ability ability) =>
+        DoEffect(pawnController);
+
+    public void OnManaLost(Battle battle, PawnController pawnController, int value) =>
+        DoEffect(pawnController);
+    
+    private void DoEffect(PawnController pawnController)
+    {
+        if (pawnController.Pawn.Team != Team)
+            return;
+
+        pawnController.Pawn.GetComponent<ResourceComponent>().ReceiveHeal(HealValue, false);
+    }
+}
+
+[Serializable]
+public class HealToPartyPlayerPawnEffectData : IPawnDeathEffect, IAttackEffect, ISpecialAttackEffect, IManaLostEffect
+{
+    [field: SerializeField] private TeamType Team { get; set; }
     [field: SerializeField] private int HealValue { get; set; }
 
     public void OnPawnDeath(Battle battle, PawnController pawnController, DamageDomain damage) =>
@@ -37,7 +62,7 @@ public class HealPlayerPawnEffectData : IPawnDeathEffect, IAttackEffect, ISpecia
     
     private void DoEffect(Battle battle, PawnController pawnController)
     {
-        if (pawnController.Pawn.Team != TeamType.Player)
+        if (pawnController.Pawn.Team != Team)
             return;
 
         foreach (var p in battle.PlayerPawns)

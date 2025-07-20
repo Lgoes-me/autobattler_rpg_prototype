@@ -24,25 +24,20 @@ public class BlessingManager : IManager
 
     public void LoadBlessings()
     {
-        var blessings = GameSaveManager.GetBlessings();
+        var blessingIdentifiers = GameSaveManager.GetBlessings();
 
-        foreach (var blessing in blessings)
+        foreach (var identifier in blessingIdentifiers)
         {
+            var blessing = ContentManager.GetBlessingFromIdAndRarity(identifier, Rarity.Common);
             AddBlessing(blessing, false);
         }
     }
 
-    public void AddBlessing(BlessingIdentifier identifier, bool newBlessing = true)
+    public void AddBlessing(BlessingData blessing, bool newBlessing = true)
     {
-        var blessing = ContentManager.GetBlessingFromIdAndRarity(identifier, Rarity.Common);
         blessing.DoBlessingCreatedEvent();
 
         Blessings.Add(blessing);
-
-        if (newBlessing)
-        {
-            BattleEventsManager.DoBlessingGainedEvent();
-        }
 
         InterfaceManager.UpdateBlessingsCanvas(Blessings);
 

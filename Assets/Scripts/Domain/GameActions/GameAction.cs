@@ -52,8 +52,7 @@ public class OpenBlessingPrize : GameAction
 {
     public override void Invoke()
     {
-        var blessings = Enum.GetValues(typeof(BlessingIdentifier)).Cast<BlessingIdentifier>().ToList();
-        Application.Instance.GetManager<PrizeManager>().CreateBlessingPrize(blessings);
+        Application.Instance.GetManager<PrizeManager>().CreateBlessingPrize();
     }
 }
 

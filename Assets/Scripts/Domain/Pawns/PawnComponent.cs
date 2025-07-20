@@ -409,7 +409,7 @@ public class ResourceComponent : PawnComponent
     {
         var reducedDamage = StatsComponent.GetStats().GetReducedDamage(damage);
 
-        if (reducedDamage > Escudo)
+        if (reducedDamage < Escudo)
         {
             Escudo -= reducedDamage;
             return;

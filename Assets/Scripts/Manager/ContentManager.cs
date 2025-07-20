@@ -54,7 +54,6 @@ public class ContentManager : MonoBehaviour, IManager
         return AvailableBlessings.First(b => b.Id == id && b.Rarity == rarity);
     }
     
-
 #if UNITY_EDITOR
     [ContextMenu("ForceLoadContent")]
     void DoSomething()
@@ -64,6 +63,7 @@ public class ContentManager : MonoBehaviour, IManager
         AvailableAbilities = Extensions.FindAllScriptableObjectsOfType<AbilityData>().Where(a => !string.IsNullOrWhiteSpace(a.Id)).ToList();
         AvailableBuffs = Extensions.FindAllScriptableObjectsOfType<BuffData>(); 
         AvailableConsumables = Extensions.FindAllScriptableObjectsOfType<ConsumableData>();
+        AvailableBlessings = Extensions.FindAllScriptableObjectsOfType<BlessingData>();
 
         EditorUtility.SetDirty(this);
         AssetDatabase.SaveAssets();

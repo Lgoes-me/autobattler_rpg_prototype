@@ -51,11 +51,11 @@ public class PrizeManager : IManager
         CompletePrize();
     }
 
-    public async void CreateBlessingPrize(List<BlessingIdentifier> blessings)
+    public async void CreateBlessingPrize(List<BlessingIdentifier> blessings = null)
     {
         PreparePrize();
 
-        var prizes = new BlessingPrize(NumberOfOptions, blessings);
+        var prizes = new BlessingPrize(NumberOfOptions, ContentManager, blessings);
         var selectedPrize = await InterfaceManager.ShowPrizeCanvas(prizes);
         
         BlessingManager.AddBlessing(selectedPrize.Blessing);
