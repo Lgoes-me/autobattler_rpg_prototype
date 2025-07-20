@@ -120,8 +120,7 @@ public abstract class BaseIEnumerableGameEventListener : IEnumerable
             blessingGainedListener.OnBlessingGained(Rarity);
         }
     }
-    
-    
+
     public void DoBlessingCreatedEvent()
     {
         foreach (var listener in GameEventListeners)
@@ -142,14 +141,4 @@ public abstract class BaseIEnumerableGameEventListener : IEnumerable
     {
         return GameEventListeners.GetEnumerator();
     }
-}
-
-public enum Rarity
-{
-    Deactivated = -1,
-    Common = 0, // grey
-    Uncommon = 1, // green
-    Rare = 2, // blue
-    Epic = 3, // purple 
-    Legendary = 4, // orange 
 }

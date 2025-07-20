@@ -1,4 +1,4 @@
-﻿public class BlessingCanvasHolderController : BaseCanvasHolderController<BlessingCanvasController, Blessing>
+﻿public class BlessingCanvasHolderController : BaseCanvasHolderController<BlessingCanvasController, BlessingData>
 {
     
 }

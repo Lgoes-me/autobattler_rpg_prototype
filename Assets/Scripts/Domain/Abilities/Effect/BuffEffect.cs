@@ -14,10 +14,7 @@
         
         if (!resources.IsAlive)
             return;
-
-        if (buffs.AddBuff(Buff))
-        {
-            Buff.Init(focus.Pawn);
-        }
+        
+        buffs.AddBuff(Buff);
     }    
 }

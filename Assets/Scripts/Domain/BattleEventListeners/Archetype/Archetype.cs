@@ -33,5 +33,14 @@ public enum ArchetypeIdentifier
     Herois,
     Weakener,
     Hunters,
+}
 
+public enum Rarity
+{
+    Deactivated = -1,
+    Common = 0, // grey
+    Uncommon = 1, // green
+    Rare = 2, // blue
+    Epic = 3, // purple 
+    Legendary = 4, // orange 
 }

@@ -21,7 +21,7 @@ public class InterfaceManager : MonoBehaviour, IManager
         ProfileCanvasHolderController.UpdateItems(playerPawns);
     }
 
-    public void UpdateBlessingsCanvas(List<Blessing> blessings)
+    public void UpdateBlessingsCanvas(List<BlessingData> blessings)
     {
         BlessingCanvasHolderController.UpdateItems(blessings);
     }

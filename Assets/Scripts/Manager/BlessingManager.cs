@@ -2,21 +2,21 @@
 
 public class BlessingManager : IManager
 {
-    public List<Blessing> Blessings { get; private set; }
-    private BlessingFactory BlessingFactory { get; set; }
+    public List<BlessingData> Blessings { get; private set; }
 
+    private ContentManager ContentManager { get; set; }
     private InterfaceManager InterfaceManager { get; set; }
     private GameSaveManager GameSaveManager { get; set; }
     private BattleEventsManager BattleEventsManager { get; set; }
 
     public BlessingManager()
     {
-        BlessingFactory = new BlessingFactory();
-        Blessings = new List<Blessing>();
+        Blessings = new List<BlessingData>();
     }
 
     public void Prepare()
     {
+        ContentManager = Application.Instance.GetManager<ContentManager>();
         InterfaceManager = Application.Instance.GetManager<InterfaceManager>();
         GameSaveManager = Application.Instance.GetManager<GameSaveManager>();
         BattleEventsManager = Application.Instance.GetManager<BattleEventsManager>();
@@ -34,7 +34,7 @@ public class BlessingManager : IManager
 
     public void AddBlessing(BlessingIdentifier identifier, bool newBlessing = true)
     {
-        var blessing = BlessingFactory.CreateBlessing(identifier);
+        var blessing = ContentManager.GetBlessingFromIdAndRarity(identifier, Rarity.Common);
         blessing.DoBlessingCreatedEvent();
 
         Blessings.Add(blessing);

@@ -1,13 +1,13 @@
 ﻿using TMPro;
 using UnityEngine;
 
-public class BlessingCanvasController : BaseCanvasHolderItemController<Blessing>
+public class BlessingCanvasController : BaseCanvasHolderItemController<BlessingData>
 {
     [field: SerializeField] private TextMeshProUGUI Name { get; set; }
     
-    public override BaseCanvasHolderItemController<Blessing> Init(Blessing blessing)
+    public override BaseCanvasHolderItemController<BlessingData> Init(BlessingData blessing)
     {
-        Name.SetText(blessing.Identifier.ToString());
+        Name.SetText(blessing.Id.ToString());
         Show();
 
         return this;

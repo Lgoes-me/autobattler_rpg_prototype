@@ -110,7 +110,7 @@ public class GameSaveManager : IManager
     
     public void SaveCurrentGameState()
     {
-        Save.Blessings = BlessingManager.Blessings.Select(j => j.Identifier).ToList();
+        Save.Blessings = BlessingManager.Blessings.Select(j => j.Id).ToList();
         Save.SelectedParty = PartyManager.Party.Select(p => p.Pawn.GetPawnInfo()).ToList();
         
         Save.CurrentTime = TimeManager.HorarioEmJogo;

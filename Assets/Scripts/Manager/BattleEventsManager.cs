@@ -225,7 +225,7 @@ public class BattleEventsManager : IManager
     {
         foreach (var blessing in BlessingManager.Blessings)
         {
-            blessing.DoBlessingGainedEvent();
+            //blessing.DoBlessingGainedEvent();
         }
         
         foreach (var archetype in ArchetypeManager.Archetypes)

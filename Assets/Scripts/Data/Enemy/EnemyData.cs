@@ -10,7 +10,7 @@ public class EnemyData
     public PawnController PawnController { get; private set; }
 
     [field: SerializeField] private PawnData PawnData { get; set; }
-    [field: SerializeReference] [field: SerializeField] public List<EnemyDataComponent> Components { get; private set; }
+    [field: SerializeReference] [field: SerializeField] private List<EnemyDataComponent> Components { get; set; }
     
     public void PreparePawn(PawnController pawnController, TeamType team)
     {

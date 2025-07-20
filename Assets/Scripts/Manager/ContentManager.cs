@@ -12,8 +12,8 @@ public class ContentManager : MonoBehaviour, IManager
     [field: SerializeField] public List<WeaponData> AvailableWeapons { get; private set; }
     [field: SerializeField] public List<AbilityData> AvailableAbilities { get; private set; }
     [field: SerializeField] public List<BuffData> AvailableBuffs { get; private set; }
-    [field: SerializeField] public List<ConsumableData> AvailableConsumables { get; private set; }
-    [field: SerializeField] public List<EnemyData> AvailabeSummons { get; private set; }
+    [field: SerializeField] public List<ConsumableData> AvailableConsumables { get; private set; } 
+    [field: SerializeField] public List<BlessingData> AvailableBlessings { get; private set; } 
 
     public Pawn GetPawnFromId(string id)
     {
@@ -41,19 +41,19 @@ public class ContentManager : MonoBehaviour, IManager
     
     public BuffData GetBuffFromId(string id)
     {
-        return AvailableBuffs.First(a => a.Id == id);
+        return AvailableBuffs.First(b => b.Id == id);
     }
     
     public ConsumableData GetConsumableFromId(string id)
     {
-        return AvailableConsumables.First(a => a.Id == id);
+        return AvailableConsumables.First(c => c.Id == id);
     }
     
-    public EnemyData GetSummon(string id)
+    public BlessingData GetBlessingFromIdAndRarity(BlessingIdentifier id, Rarity rarity)
     {
-        return AvailabeSummons
-            .First(p => p.name == id);
+        return AvailableBlessings.First(b => b.Id == id && b.Rarity == rarity);
     }
+    
 
 #if UNITY_EDITOR
     [ContextMenu("ForceLoadContent")]

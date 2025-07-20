@@ -251,18 +251,19 @@ public class PawnBuffsComponent : PawnComponent
         RemoveAllBuffs();
     }
 
-    public bool AddBuff(Buff newBuff)
+    public void AddBuff(Buff newBuff)
     {
         if (Buffs.TryGetValue(newBuff.Id, out var buff))
         {
             buff.TryReapplyBuff();
-            return false;
+            return;
         }
 
+        newBuff.Init(Pawn);
         Buffs.Add(newBuff.Id, newBuff);
-
+        
         BuffsChanged?.Invoke();
-        return true;
+        return;
     }
 
     public void TickAllBuffs()
