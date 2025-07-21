@@ -28,7 +28,7 @@ public class BlessingManager : IManager
 
         foreach (var identifier in blessingIdentifiers)
         {
-            var blessing = ContentManager.GetBlessingFromIdAndRarity(identifier, Rarity.Common);
+            var blessing = ContentManager.GetBlessingFromIdAndRarity(identifier);
             AddBlessing(blessing, false);
         }
     }

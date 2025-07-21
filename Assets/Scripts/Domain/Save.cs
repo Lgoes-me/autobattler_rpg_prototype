@@ -9,7 +9,7 @@ public class Save : ISavable
     public Spawn LastBonfireSpawn { get; set; }
     public List<PawnInfo> SelectedParty { get; set; }
     public List<string> DefeatedEnemies { get; set; }
-    public List<BlessingIdentifier> Blessings { get; set; }
+    public List<string> Blessings { get; set; }
     public List<string> AvailableParty { get; set; }
     public List<string> Dialogues { get; set; }
     public List<string> Events { get; set; }
@@ -22,7 +22,7 @@ public class Save : ISavable
         LastBonfireSpawn = null;
         SelectedParty = new List<PawnInfo>();
         DefeatedEnemies = new List<string>();
-        Blessings = new List<BlessingIdentifier>();
+        Blessings = new List<string>();
         AvailableParty = new List<string>();
         Dialogues = new List<string>();
         Events = new List<string>();
@@ -41,7 +41,7 @@ public class Save : ISavable
 
         DefeatedEnemies = new List<string>();
         
-        Blessings = new List<BlessingIdentifier>()
+        Blessings = new List<string>()
         {
             
         };

@@ -10,21 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9196a5a3c54b413387f783c4b9ff3a47, type: 3}
-  m_Name: CuraFimDaLuta_Legendary
+  m_Name: DanoEmAreaComBaseNoDanoRecebido_Common
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: 102
-  <Rarity>k__BackingField: 4
+  <Id>k__BackingField: 206
+  <Rarity>k__BackingField: 0
   <Events>k__BackingField:
-  - rid: 7325121734641713296
+  - rid: 7325121777269473367
   references:
     version: 2
     RefIds:
-    - rid: 7325121734641713296
-      type: {class: BattleFinishedEventListenerData, ns: , asm: Assembly-CSharp}
+    - rid: 7325121777269473367
+      type: {class: HealthLostEventListenerData, ns: , asm: Assembly-CSharp}
       data:
         <Effect>k__BackingField:
-          rid: 7325121734641713297
-    - rid: 7325121734641713297
-      type: {class: HealToPartyEffectData, ns: , asm: Assembly-CSharp}
+          rid: 7325121777269473368
+    - rid: 7325121777269473368
+      type: {class: DanoDeVingancaEmAreaEffectData, ns: , asm: Assembly-CSharp}
       data:
-        <HealValue>k__BackingField: 100
+        <Percentual>k__BackingField: 10
+        <Range>k__BackingField: 1.5

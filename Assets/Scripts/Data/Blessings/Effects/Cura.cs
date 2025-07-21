@@ -82,7 +82,7 @@ public class HealPercentualPlayerPawnEffectData : IHealthLostEffect
     
     private void DoEffect(PawnController pawnController, DamageDomain damage)
     {
-        if (pawnController.Pawn.Team != TeamType.Enemies || damage.Attacker == null)
+        if (pawnController.Pawn.Team == TeamType.Player || damage.Attacker == null || damage.Attacker.Team == TeamType.Enemies)
             return;
 
         var healValue = Mathf.CeilToInt(damage.Value * Percentual / (float) 100);

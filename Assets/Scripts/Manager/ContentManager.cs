@@ -49,9 +49,9 @@ public class ContentManager : MonoBehaviour, IManager
         return AvailableConsumables.First(c => c.Id == id);
     }
     
-    public BlessingData GetBlessingFromIdAndRarity(BlessingIdentifier id, Rarity rarity)
+    public BlessingData GetBlessingFromIdAndRarity(string id)
     {
-        return AvailableBlessings.First(b => b.Id == id && b.Rarity == rarity);
+        return AvailableBlessings.First(b => b.name == id);
     }
     
 #if UNITY_EDITOR

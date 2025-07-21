@@ -51,7 +51,7 @@ public class PrizeManager : IManager
         CompletePrize();
     }
 
-    public async void CreateBlessingPrize(List<BlessingIdentifier> blessings = null)
+    public async void CreateBlessingPrize(List<BlessingData> blessings = null)
     {
         PreparePrize();
 

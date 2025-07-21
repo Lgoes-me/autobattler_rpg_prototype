@@ -59,7 +59,7 @@ public class OpenBlessingPrize : GameAction
 [Serializable]
 public class OpenBlessingPrizeFromPool : GameAction
 {
-    [field: SerializeField] private List<BlessingIdentifier> Pool { get; set; }
+    [field: SerializeField] private List<BlessingData> Pool { get; set; }
     
     public override void Invoke()
     {

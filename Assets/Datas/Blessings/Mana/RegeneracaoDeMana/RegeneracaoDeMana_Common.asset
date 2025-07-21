@@ -10,21 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9196a5a3c54b413387f783c4b9ff3a47, type: 3}
-  m_Name: CuraInicioDaLuta_Epic
+  m_Name: RegeneracaoDeMana_Common
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: 101
-  <Rarity>k__BackingField: 3
+  <Id>k__BackingField: 401
+  <Rarity>k__BackingField: 0
   <Events>k__BackingField:
-  - rid: 7325121734641713294
+  - rid: 7325121777269473377
   references:
     version: 2
     RefIds:
-    - rid: 7325121734641713294
+    - rid: 7325121777269473377
       type: {class: BattleStartedEventListenerData, ns: , asm: Assembly-CSharp}
       data:
         <Effect>k__BackingField:
-          rid: 7325121734641713295
-    - rid: 7325121734641713295
-      type: {class: HealToPartyEffectData, ns: , asm: Assembly-CSharp}
+          rid: 7325121777269473378
+    - rid: 7325121777269473378
+      type: {class: BuffToPartyEffectData, ns: , asm: Assembly-CSharp}
       data:
-        <HealValue>k__BackingField: 50
+        <Id>k__BackingField: BlessingManaRegen
+        <Buffs>k__BackingField:
+        - rid: 7325121777269473379
+    - rid: 7325121777269473379
+      type: {class: ManaRegenBuffData, ns: , asm: Assembly-CSharp}
+      data:
+        <Regen>k__BackingField: 5
+        <TickRate>k__BackingField: 2

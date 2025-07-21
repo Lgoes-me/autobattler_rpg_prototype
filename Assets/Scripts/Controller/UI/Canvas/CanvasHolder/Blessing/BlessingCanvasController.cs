@@ -7,7 +7,7 @@ public class BlessingCanvasController : BaseCanvasHolderItemController<BlessingD
     
     public override BaseCanvasHolderItemController<BlessingData> Init(BlessingData blessing)
     {
-        Name.SetText(blessing.Id.ToString());
+        Name.SetText(blessing.name.ToString());
         Show();
 
         return this;

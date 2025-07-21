@@ -10,30 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9196a5a3c54b413387f783c4b9ff3a47, type: 3}
-  m_Name: BonusDeStatQuandoRecebeDano_Common
+  m_Name: ReduzDanoRecebido_Common
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: 204
+  <Id>k__BackingField: 207
   <Rarity>k__BackingField: 0
   <Events>k__BackingField:
-  - rid: 7325121762829795445
+  - rid: 7325121777269473370
   references:
     version: 2
     RefIds:
-    - rid: 7325121762829795445
-      type: {class: HealthLostEventListenerData, ns: , asm: Assembly-CSharp}
+    - rid: 7325121777269473370
+      type: {class: BattleStartedEventListenerData, ns: , asm: Assembly-CSharp}
       data:
         <Effect>k__BackingField:
-          rid: 7325121762829795446
-    - rid: 7325121762829795446
-      type: {class: BuffToPawnEffectData, ns: , asm: Assembly-CSharp}
+          rid: 7325121777269473371
+    - rid: 7325121777269473371
+      type: {class: BuffToPartyEffectData, ns: , asm: Assembly-CSharp}
       data:
-        <Id>k__BackingField: BlessingBuffWhenDamaged
+        <Id>k__BackingField: BlessingReducedReceivedDamage
         <Buffs>k__BackingField:
-        - rid: 7325121762829795447
-    - rid: 7325121762829795447
+        - rid: 7325121777269473372
+    - rid: 7325121777269473372
       type: {class: StatsBuffData, ns: , asm: Assembly-CSharp}
       data:
         <StatsVariation>k__BackingField:
           <Stats>k__BackingField:
-          - <Stat>k__BackingField: 2
-            <Value>k__BackingField: 3
+          - <Stat>k__BackingField: 7
+            <Value>k__BackingField: -10

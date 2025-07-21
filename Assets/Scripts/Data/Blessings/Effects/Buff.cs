@@ -67,6 +67,35 @@ public class BuffToPartyEffectData : IBattleStartedEffect
 }
 
 [Serializable]
+public class BuffToEnemiesEffectData : IBattleStartedEffect
+{
+    [field: SerializeField] public string Id { get; private set; }
+
+    [field: SerializeReference]
+    [field: SerializeField]
+    private List<BuffComponentData> Buffs { get; set; }
+
+    public void OnBattleStarted(Battle battle) => DoEffect(battle);
+
+    private void DoEffect(Battle battle)
+    {
+        foreach (var p in battle.EnemyPawns)
+        {
+            var buff = new Buff(Id, -1);
+
+            foreach (var buffComponentData in Buffs)
+            {
+                var buffComponent = buffComponentData.ToDomain(p.Pawn);
+                buff.Add(buffComponent);
+            }
+
+            p.Pawn.GetComponent<PawnBuffsComponent>().AddBuff(buff);
+        }
+    }
+}
+
+
+[Serializable]
 public class AddMetadataToPartyEffectData : IBattleStartedEffect
 {
     [field: SerializeField] public string MetaDataString { get; private set; }

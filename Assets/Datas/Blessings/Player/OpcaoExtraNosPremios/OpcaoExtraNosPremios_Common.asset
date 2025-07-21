@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9196a5a3c54b413387f783c4b9ff3a47, type: 3}
-  m_Name: CuraInicioDaLuta_Legendary
+  m_Name: OpcaoExtraNosPremios_Common
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: 101
-  <Rarity>k__BackingField: 4
+  <Id>k__BackingField: 601
+  <Rarity>k__BackingField: 0
   <Events>k__BackingField:
-  - rid: 7325121734641713294
+  - rid: 7325121762829795452
   references:
     version: 2
     RefIds:
-    - rid: 7325121734641713294
-      type: {class: BattleStartedEventListenerData, ns: , asm: Assembly-CSharp}
+    - rid: 7325121762829795452
+      type: {class: BlessingCreatedEventListenerData, ns: , asm: Assembly-CSharp}
       data:
         <Effect>k__BackingField:
-          rid: 7325121734641713295
-    - rid: 7325121734641713295
-      type: {class: HealToPartyEffectData, ns: , asm: Assembly-CSharp}
+          rid: 7325121762829795453
+    - rid: 7325121762829795453
+      type: {class: OpcoesExtrasEffectData, ns: , asm: Assembly-CSharp}
       data:
-        <HealValue>k__BackingField: 100
+        <OpcoesExtras>k__BackingField: 1

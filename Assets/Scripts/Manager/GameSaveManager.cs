@@ -86,7 +86,7 @@ public class GameSaveManager : IManager
         return Save.SelectedParty;
     }
 
-    public List<BlessingIdentifier> GetBlessings()
+    public List<string> GetBlessings()
     {
         return Save.Blessings;
     }
@@ -110,7 +110,7 @@ public class GameSaveManager : IManager
     
     public void SaveCurrentGameState()
     {
-        Save.Blessings = BlessingManager.Blessings.Select(j => j.Id).ToList();
+        Save.Blessings = BlessingManager.Blessings.Select(j => j.name).ToList();
         Save.SelectedParty = PartyManager.Party.Select(p => p.Pawn.GetPawnInfo()).ToList();
         
         Save.CurrentTime = TimeManager.HorarioEmJogo;
