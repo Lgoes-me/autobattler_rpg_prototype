@@ -1467,8 +1467,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5a86193d1398d3c409d67f58c3a63ed9, type: 2}
   - {fileID: 11400000, guid: 133a7f6900744c64aa268578c2795492, type: 2}
   <AvailableBlessings>k__BackingField:
+  - {fileID: 11400000, guid: 73903c16d8ae4704088a8730dcbbed10, type: 2}
+  - {fileID: 11400000, guid: 35053458db2aa624aa56ac1cb4a07a3f, type: 2}
+  - {fileID: 11400000, guid: 7fe652b7250331d41a10938630ddcc0e, type: 2}
   - {fileID: 11400000, guid: 5cb2a2adb8621814db919a9b4f314c2b, type: 2}
   - {fileID: 11400000, guid: 8dff2b02ad85e3e4d81b1ff5cb16df8f, type: 2}
+  - {fileID: 11400000, guid: 9d5277b8d3acdd648a1aaffb925d8008, type: 2}
   - {fileID: 11400000, guid: 6ad47c6166b4b334da89b92f60fb7faa, type: 2}
   - {fileID: 11400000, guid: b9bf91dd63178a641af0f009eeccde21, type: 2}
   - {fileID: 11400000, guid: 8a1d13789bcd50c4e8b301bc7730ec00, type: 2}
@@ -1481,6 +1485,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: efe159fba0925dd41819c4712fbf0baf, type: 2}
   - {fileID: 11400000, guid: 6f0612f4c59f31448b08f89fe71729bb, type: 2}
   - {fileID: 11400000, guid: 489d9b39b5ac4ca4e9007ba2e076614c, type: 2}
+  - {fileID: 11400000, guid: e0b976b9cd90cca44b2924f783b19986, type: 2}
+  - {fileID: 11400000, guid: e422bfcc348377b4c95aca544b83b022, type: 2}
 --- !u!1001 &1164712636
 PrefabInstance:
   m_ObjectHideFlags: 0

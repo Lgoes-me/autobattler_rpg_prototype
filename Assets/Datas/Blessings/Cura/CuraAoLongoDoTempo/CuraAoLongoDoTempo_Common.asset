@@ -27,4 +27,11 @@ MonoBehaviour:
     - rid: 7325121753067290720
       type: {class: BuffToPartyEffectData, ns: , asm: Assembly-CSharp}
       data:
-        <BuffData>k__BackingField: {fileID: 0}
+        <Id>k__BackingField: BlessingRegen
+        <Buffs>k__BackingField:
+        - rid: 7325121753067290722
+    - rid: 7325121753067290722
+      type: {class: RegenBuffData, ns: , asm: Assembly-CSharp}
+      data:
+        <Regen>k__BackingField: 5
+        <TickRate>k__BackingField: 2

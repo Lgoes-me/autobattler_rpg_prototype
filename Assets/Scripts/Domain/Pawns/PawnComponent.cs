@@ -491,7 +491,7 @@ public class ResourceComponent : PawnComponent
 
 public class MetaDataComponent : PawnComponent
 {
-    private List<string> Data { get; }
+    public List<string> Data { get; }
 
     public MetaDataComponent()
     {
@@ -506,6 +506,11 @@ public class MetaDataComponent : PawnComponent
     public void AddMetaData(string data)
     {
         Data.Add(data);
+    }
+    
+    public void RemoveMetaData(string data)
+    {
+        Data.Remove(data);
     }
 
     public bool CheckMetaData(string data)

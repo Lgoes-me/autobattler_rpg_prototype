@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -244,7 +245,8 @@ public class PawnController : MonoBehaviour
         if (Pawn.GetComponent<ResourceComponent>().IsAlive)
             return;
 
-        CharacterController.SetAnimationState(new DeadState());
+        var canRevive = Pawn.GetComponent<MetaDataComponent>().Data.Any(c => c.Contains("Revive"));
+        CharacterController.SetAnimationState(new DeadState(canRevive));
         
         NavMeshAgent.ResetPath();
         NavMeshAgent.enabled = false;
