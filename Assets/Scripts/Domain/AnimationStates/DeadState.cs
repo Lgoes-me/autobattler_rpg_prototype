@@ -2,12 +2,13 @@
 {
     public override string Animation => "Dead";
     public override bool CanBeTargeted => false;
-    public override bool AbleToFight => WillRevive;
+    public override bool AbleToFight => false;
+    public override bool WillRevive => _willRevive;
     
-    private bool WillRevive { get; }
-
+    private readonly bool _willRevive;
+    
     public DeadState(bool willRevive)
     {
-        WillRevive = willRevive;
+        _willRevive = willRevive;
     }
 }

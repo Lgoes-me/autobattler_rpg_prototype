@@ -29,7 +29,7 @@ MonoBehaviour:
       type: {class: ReviveTodosAliadosAMorrerEmCombateEffectData, ns: , asm: Assembly-CSharp}
       data:
         <MetaDataKey>k__BackingField: ReviveParty
-        <PercentHealing>k__BackingField: 10
+        <PercentHealing>k__BackingField: 15
     - rid: 7325121762829795412
       type: {class: BattleStartedEventListenerData, ns: , asm: Assembly-CSharp}
       data:

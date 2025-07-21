@@ -523,7 +523,7 @@ MonoBehaviour:
     <SceneDestination>k__BackingField: baad970a-c2af-4565-8356-1085b8e4c996
     <DoorDestination>k__BackingField: 7286d0a8-a9b7-4fe0-8fd0-a69552c0e1af
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: -523, y: -182.00005}
+  <Position>k__BackingField: {x: -523, y: -182}
   <RoomPrefab>k__BackingField: {fileID: 1919176016559511633, guid: 421efed6a7af48241b071b28d95e8b04, type: 3}
   <CombatEncounters>k__BackingField:
   - <Experience>k__BackingField: 15
@@ -551,7 +551,7 @@ MonoBehaviour:
     - rid: 7325121692960555132
       type: {class: OpenBlessingPrizeFromPool, ns: , asm: Assembly-CSharp}
       data:
-        <Pool>k__BackingField: c9000000
+        <Pool>k__BackingField: ca000000
 --- !u!114 &6909170025742541972
 MonoBehaviour:
   m_ObjectHideFlags: 0

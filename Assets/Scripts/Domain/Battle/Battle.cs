@@ -10,8 +10,8 @@ public class Battle
     public List<PawnController> PlayerPawns { get; }
     public List<PawnController> Pawns { get; }
 
-    public bool HasEnemies => EnemyPawns.Count(e => e.PawnState.AbleToFight) > 0;
-    public bool HasPlayers => PlayerPawns.Count(e => e.PawnState.AbleToFight) > 0;
+    public bool HasEnemies => EnemyPawns.Count(e => e.PawnState.AbleToFight || e.PawnState.WillRevive) > 0;
+    public bool HasPlayers => PlayerPawns.Count(e => e.PawnState.AbleToFight || e.PawnState.WillRevive) > 0;
 
     public Battle(string id)
     {
@@ -27,7 +27,7 @@ public class Battle
         EnemyPawns.Add(enemyPawn);
         Pawns.Add(enemyPawn);
     }
-    
+
     public void AddPlayerPawn(PawnController playerPawn)
     {
         PlayerPawns.Add(playerPawn);
@@ -43,7 +43,7 @@ public class Battle
     public PawnController QueryAlly(PawnController user, FocusType focusType, bool canTargetSelf)
     {
         var pawns = user.Pawn.Team == TeamType.Player ? EnemyPawns : PlayerPawns;
-        
+
         if (!canTargetSelf)
         {
             pawns.Remove(user);
@@ -51,10 +51,10 @@ public class Battle
 
         return Query(pawns, user, focusType);
     }
-    
+
     private PawnController Query(List<PawnController> pawns, PawnController user, FocusType focusType)
     {
-        var selectedPawns = 
+        var selectedPawns =
             pawns
                 .Where(p => p.PawnState.CanBeTargeted)
                 .OrderBy(OrderPredicate)
@@ -72,7 +72,7 @@ public class Battle
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
-        
+
         if (selectedPawns.Count == 0)
             return null;
 
