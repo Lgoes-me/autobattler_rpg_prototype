@@ -144,12 +144,10 @@ public enum BlessingIdentifier
     AumentaCuraPercentualmente = 01_08,
     BonusDeStatQuandoCuraAcontece = 01_09,
     
-    RevivePrimeiroAliadoAMorrerEmCombate = 02_01,
-    ReviveTodosAliadosAMorreremEmCombate = 02_02,
-    DanoEmAreaQuandoAliadoMorre = 02_03,
-    DanoEmAreaQuandoInimigoMorre = 02_04,
-    DanoDeVingançaNoInimigoQuandoAliadoMorre = 02_05,
-    BonusDeStatQuandoRecebeDano = 02_06,
+    DanoEmAreaQuandoAliadoMorre = 02_01,
+    DanoEmAreaQuandoInimigoMorre = 02_02,
+    DanoDeVingançaNoInimigoQuandoAliadoMorre = 02_03,
+    BonusDeStatQuandoRecebeDano = 02_04,
     
     CuraBaseadaNoDanoCausado = 03_01,
     TransferirComoDanoEmAreaACuraRecebida = 03_02,
@@ -174,4 +172,7 @@ public enum BlessingIdentifier
     EscudoParaEquipe = 07_01,
     
     InvocaCachorro = 08_01,
+    
+    RevivePrimeiroAliadoAMorrerEmCombate = 09_01,
+    ReviveTodosAliadosAMorreremEmCombate = 09_02,
 }

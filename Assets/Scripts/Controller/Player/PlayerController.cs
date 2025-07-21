@@ -135,7 +135,6 @@ public class PlayerController : MonoBehaviour
     public void Disable()
     {
         enabled = false;
-        NavMeshAgent.ResetPath();
         NavMeshAgent.velocity = Vector3.zero;
     }
 

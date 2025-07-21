@@ -21,8 +21,9 @@ public class DanoParaEnemyPartyEffectData : IBattleStartedEffect
 }
 
 [Serializable]
-public class DanoEmAreaPartindoDoAliadoEffectData : IPawnDeathEffect
+public class DanoEmAreaPartindoDoPawnEffectData : IPawnDeathEffect
 {
+    [field: SerializeField] private TeamType Team { get; set; }
     [field: SerializeField] private int Dano { get; set; }
     [field: SerializeField] private float Range { get; set; }
 
@@ -31,37 +32,10 @@ public class DanoEmAreaPartindoDoAliadoEffectData : IPawnDeathEffect
 
     private void DoEffect(Battle battle, PawnController pawnController)
     {
-        if (pawnController.Pawn.Team != TeamType.Player)
+        if (pawnController.Pawn.Team != Team)
             return;
 
         var damage = new DamageDomain(pawnController.Pawn, Dano, DamageType.True);
-
-        var enemiesInRange = battle.EnemyPawns
-            .Where(p => Vector3.Distance(pawnController.transform.position, p.transform.position) < Range)
-            .ToList();
-
-        foreach (var pawn in enemiesInRange)
-        {
-            pawn.GetComponent<ResourceComponent>().ReceiveDamage(damage);
-        }
-    }
-}
-
-[Serializable]
-public class DanoEmAreaPartindoDoInimigoEffectData : IPawnDeathEffect
-{
-    [field: SerializeField] private int Dano { get; set; }
-    [field: SerializeField] private float Range { get; set; }
-
-    public void OnPawnDeath(Battle battle, PawnController pawnController, DamageDomain damage) =>
-        DoEffect(battle, pawnController);
-
-    private void DoEffect(Battle battle, PawnController pawnController)
-    {
-        if (pawnController.Pawn.Team != TeamType.Enemies)
-            return;
-
-        var damage = new DamageDomain(null, Dano, DamageType.True);
 
         var enemiesInRange = battle.EnemyPawns
             .Where(p => Vector3.Distance(pawnController.transform.position, p.transform.position) < Range)
