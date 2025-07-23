@@ -5,7 +5,7 @@ public class BattleEventsManager : IManager
     private BlessingManager BlessingManager { get; set; }
     private ArchetypeManager ArchetypeManager { get; set; }
     private PawnController Boss { get; set; }
-    private List<BossModifier> BossModifiers { get; set; }
+    private List<BossModifierData> BossModifiers { get; set; }
     private Battle Battle { get; set; }
 
     public void Prepare()
@@ -14,7 +14,7 @@ public class BattleEventsManager : IManager
         ArchetypeManager = Application.Instance.GetManager<ArchetypeManager>();
     }
 
-    public void SetBoss(PawnController boss, List<BossModifier> bossModifiers)
+    public void SetBoss(PawnController boss, List<BossModifierData> bossModifiers)
     {
         Boss = boss;
         BossModifiers = bossModifiers;

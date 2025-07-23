@@ -1,4 +1,4 @@
-﻿public class ArchetypeCanvasHolderController : BaseCanvasHolderController<ArchetypeCanvasController, Archetype>
+﻿public class ArchetypeCanvasHolderController : BaseCanvasHolderController<ArchetypeCanvasController, ArchetypeData>
 {
     
 }

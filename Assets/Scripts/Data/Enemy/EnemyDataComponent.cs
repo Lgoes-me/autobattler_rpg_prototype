@@ -14,20 +14,6 @@ public abstract class EnemyDataComponent : IComponentData
 public class BossComponentData : EnemyDataComponent
 {
     [field: SerializeField] public List<BossModifierData> Modifiers { get; private set; }
-
-    public List<BossModifier> ToDomain()
-    {
-        var factory = new BossModifierFactory();
-        var result = new List<BossModifier>();
-
-        foreach (var modifierData in Modifiers)
-        {
-            var modifier = modifierData.ToDomain(factory);
-            result.Add(modifier);
-        }
-
-        return result;
-    }
 }
 
 public class WeaponComponentData : EnemyDataComponent

@@ -24,7 +24,7 @@ public class HealToPartyEffectData : IBattleEffect, IDamageReveivedEffect, IAtta
 }
 
 [Serializable]
-public class HealPlayerPawnEffectData : IAttackEffect, IResourceChangedEffect
+public class HealPawnEffectData : IAttackEffect, IResourceChangedEffect
 {
     [field: SerializeField] private int HealValue { get; set; }
 
@@ -36,7 +36,6 @@ public class HealPlayerPawnEffectData : IAttackEffect, IResourceChangedEffect
         pawnController.Pawn.GetComponent<ResourceComponent>().ReceiveHeal(HealValue, false);
     }
 }
-
 
 [Serializable]
 public class HealPercentualPlayerPawnEffectData : IDamageReveivedEffect

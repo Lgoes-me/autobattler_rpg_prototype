@@ -5,15 +5,12 @@ public class ArchetypeManager : IManager
 {
     private InterfaceManager InterfaceManager { get; set; }
     
-    public List<Archetype> Archetypes { get; private set; }
-    private ArchetypeFactory ArchetypeFactory { get; set; }
+    public List<ArchetypeData> Archetypes { get; private set; }
     
     public void Prepare()
     {
         InterfaceManager = Application.Instance.GetManager<InterfaceManager>();
-        
-        Archetypes = new List<Archetype>();
-        ArchetypeFactory = new ArchetypeFactory();
+        Archetypes = new List<ArchetypeData>();
     }
 
     public void CreateArchetypes(List<PawnController> party)
@@ -29,7 +26,8 @@ public class ArchetypeManager : IManager
 
         foreach (var pair in archetypes)
         {
-            Archetypes.Add(ArchetypeFactory.CreateArchetype(pair.Key, pair.Count));
+        
+            //Archetypes.Add(ArchetypeFactory.CreateArchetype(pair.Key, pair.Count));
         }
 
         InterfaceManager.UpdateProfileCanvas(party);

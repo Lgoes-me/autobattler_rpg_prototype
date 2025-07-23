@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class BaseGameEventListenerData : ScriptableObject
 {
-    [field: SerializeField] [field: SerializeReference] private BaseEventListenerData[] Events { get; set; }
+    [field: SerializeField] [field: SerializeReference] protected virtual BaseEventListenerData[] Events { get; set; }
 
     public void DoBattleStartEvent(Battle battle)
     {

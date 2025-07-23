@@ -26,7 +26,7 @@ public class InterfaceManager : MonoBehaviour, IManager
         BlessingCanvasHolderController.UpdateItems(blessings);
     }
 
-    public void UpdateArchetypesCanvas(List<Archetype> archetypes)
+    public void UpdateArchetypesCanvas(List<ArchetypeData> archetypes)
     {
         ArchetypeCanvasHolderController.UpdateItems(archetypes);
     }

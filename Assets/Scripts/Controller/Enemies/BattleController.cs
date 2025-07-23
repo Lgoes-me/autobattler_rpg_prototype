@@ -22,7 +22,7 @@ public class BattleController : MonoBehaviour
             {
                 enemyController.RemoveCanvasController();
 
-                var bossModifiers = bossComponentData.ToDomain();
+                var bossModifiers = bossComponentData.Modifiers;
 
                 Application.Instance.GetManager<BattleEventsManager>().SetBoss(enemyController, bossModifiers);
 

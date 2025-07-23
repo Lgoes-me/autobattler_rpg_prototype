@@ -1,4 +1,4 @@
-﻿public class BossModifierCanvasHolderController : BaseCanvasHolderController<BossModifierCanvasController, BossModifier>
+﻿public class BossModifierCanvasHolderController : BaseCanvasHolderController<BossModifierCanvasController, BossModifierData>
 {
     
 }

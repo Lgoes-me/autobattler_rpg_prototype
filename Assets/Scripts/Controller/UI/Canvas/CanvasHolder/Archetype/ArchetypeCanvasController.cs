@@ -1,14 +1,14 @@
 ﻿using TMPro;
 using UnityEngine;
 
-public class ArchetypeCanvasController : BaseCanvasHolderItemController<Archetype>
+public class ArchetypeCanvasController : BaseCanvasHolderItemController<ArchetypeData>
 {
     [field: SerializeField] private TextMeshProUGUI Name { get; set; }
     [field: SerializeField] private TextMeshProUGUI Quantidade { get; set; }
     
-    public override BaseCanvasHolderItemController<Archetype> Init(Archetype archetype)
+    public override BaseCanvasHolderItemController<ArchetypeData> Init(ArchetypeData archetype)
     {
-        Name.SetText(archetype.Identifier.ToString());
+        Name.SetText(archetype.name);
 
         var nextStep = archetype.CurrentAmount;
         

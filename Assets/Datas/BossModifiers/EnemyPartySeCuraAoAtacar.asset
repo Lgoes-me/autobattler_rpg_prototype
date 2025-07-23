@@ -9,27 +9,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9196a5a3c54b413387f783c4b9ff3a47, type: 3}
-  m_Name: CuraAoAtacar_Common
+  m_Script: {fileID: 11500000, guid: db8178cbbf3a4ef5b95f2f911fcac5f8, type: 3}
+  m_Name: EnemyPartySeCuraAoAtacar
   m_EditorClassIdentifier: 
   <Events>k__BackingField:
-  - rid: 7325121734641713298
+  - rid: 7325121806122090634
   <Rarity>k__BackingField: 0
   references:
     version: 2
     RefIds:
-    - rid: 7325121734641713298
+    - rid: 7325121806122090634
       type: {class: AttackEventListenerData, ns: , asm: Assembly-CSharp}
       data:
         <Validator>k__BackingField:
-          rid: 7325121806122090602
+          rid: 7325121806122090635
         <Effect>k__BackingField:
-          rid: 7325121806122090638
-    - rid: 7325121806122090602
+          rid: 7325121806122090637
+    - rid: 7325121806122090635
       type: {class: PawnControllerTeamValidator, ns: , asm: Assembly-CSharp}
       data:
-        <Team>k__BackingField: 0
-    - rid: 7325121806122090638
+        <Team>k__BackingField: 1
+    - rid: 7325121806122090637
       type: {class: HealPawnEffectData, ns: , asm: Assembly-CSharp}
       data:
         <HealValue>k__BackingField: 10

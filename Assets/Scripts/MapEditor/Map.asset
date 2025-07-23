@@ -661,8 +661,7 @@ MonoBehaviour:
       type: {class: BossComponentData, ns: , asm: Assembly-CSharp}
       data:
         <Modifiers>k__BackingField:
-        - <Identifier>k__BackingField: 101
-          <Rarity>k__BackingField: 4
+        - {fileID: 0}
     - rid: 7325121467387740275
       type: {class: MarkGameEvent, ns: , asm: Assembly-CSharp}
       data:

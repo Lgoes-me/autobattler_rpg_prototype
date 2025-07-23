@@ -21,7 +21,7 @@ public class BossCanvasController : LifeBarCanvasController
         }
     }
 
-    public void SetModifiers(List<BossModifier> modifiers)
+    public void SetModifiers(List<BossModifierData> modifiers)
     {
         BossModifierCanvasHolderController.UpdateItems(modifiers);
     }

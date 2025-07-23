@@ -24,12 +24,12 @@ MonoBehaviour:
         <Validator>k__BackingField:
           rid: 7325121806122090603
         <Effect>k__BackingField:
-          rid: 7325121753067290625
-    - rid: 7325121753067290625
-      type: {class: HealPlayerPawnEffectData, ns: , asm: Assembly-CSharp}
-      data:
-        <HealValue>k__BackingField: 5
+          rid: 7325121806122090639
     - rid: 7325121806122090603
       type: {class: PawnControllerTeamValidator, ns: , asm: Assembly-CSharp}
       data:
         <Team>k__BackingField: 0
+    - rid: 7325121806122090639
+      type: {class: HealPawnEffectData, ns: , asm: Assembly-CSharp}
+      data:
+        <HealValue>k__BackingField: 10
