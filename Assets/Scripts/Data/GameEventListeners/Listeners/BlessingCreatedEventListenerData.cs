@@ -1,7 +1,7 @@
 ﻿using System;
 
 [Serializable]
-public class BlessingCreatedEventListenerData : BaseEventListenerData<IBlessingCreatedValidatorEffect, IBlessingCreatedEffect>
+public class BlessingCreatedEventListenerData : BaseEventListenerData<IBlessingCreatedValidator, IBlessingCreatedEffect>
 {
     public void OnBlessingCreated()
     {
@@ -12,7 +12,7 @@ public class BlessingCreatedEventListenerData : BaseEventListenerData<IBlessingC
     }
 }
 
-public interface IBlessingCreatedValidatorEffect : IEventValidatorData
+public interface IBlessingCreatedValidator : IEventValidatorData
 {
     bool Validate();
 }

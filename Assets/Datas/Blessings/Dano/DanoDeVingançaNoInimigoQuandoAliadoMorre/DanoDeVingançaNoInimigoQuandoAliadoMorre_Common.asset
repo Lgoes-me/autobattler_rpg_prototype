@@ -12,19 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9196a5a3c54b413387f783c4b9ff3a47, type: 3}
   m_Name: "DanoDeVingan\xE7aNoInimigoQuandoAliadoMorre_Common"
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: 203
-  <Rarity>k__BackingField: 0
   <Events>k__BackingField:
   - rid: 7325121762829795443
+  <Rarity>k__BackingField: 0
   references:
     version: 2
     RefIds:
     - rid: 7325121762829795443
       type: {class: PawnDeathEventListenerData, ns: , asm: Assembly-CSharp}
       data:
+        <Validator>k__BackingField:
+          rid: 7325121806122090612
         <Effect>k__BackingField:
           rid: 7325121762829795444
     - rid: 7325121762829795444
       type: {class: DanoDeVingancaEffectData, ns: , asm: Assembly-CSharp}
       data:
         <Dano>k__BackingField: 10
+    - rid: 7325121806122090612
+      type: {class: PawnControllerTeamValidator, ns: , asm: Assembly-CSharp}
+      data:
+        <Team>k__BackingField: 0

@@ -3,11 +3,11 @@ using System.Linq;
 using UnityEngine;
 
 [Serializable]
-public class SummonCreatureEffectData : IBattleStartedEffect
+public class SummonCreatureEffectData : IBattleEffect
 {
     [field: SerializeField] private EnemyData Summon { get; set; }
 
-    public void OnBattleStarted(Battle battle) => DoEffect(battle);
+    public void OnBattleStateChanged(Battle battle) => DoEffect(battle);
 
     private void DoEffect(Battle battle)
     {

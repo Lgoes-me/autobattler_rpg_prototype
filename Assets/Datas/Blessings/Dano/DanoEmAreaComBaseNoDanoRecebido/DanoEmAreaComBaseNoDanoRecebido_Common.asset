@@ -12,20 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9196a5a3c54b413387f783c4b9ff3a47, type: 3}
   m_Name: DanoEmAreaComBaseNoDanoRecebido_Common
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: 206
-  <Rarity>k__BackingField: 0
   <Events>k__BackingField:
   - rid: 7325121777269473367
+  <Rarity>k__BackingField: 0
   references:
     version: 2
     RefIds:
     - rid: 7325121777269473367
       type: {class: HealthLostEventListenerData, ns: , asm: Assembly-CSharp}
       data:
+        <Validator>k__BackingField:
+          rid: 7325121806122090614
         <Effect>k__BackingField:
           rid: 7325121777269473368
     - rid: 7325121777269473368
       type: {class: DanoDeVingancaEmAreaEffectData, ns: , asm: Assembly-CSharp}
       data:
+        <Team>k__BackingField: 1
         <Percentual>k__BackingField: 10
         <Range>k__BackingField: 1.5
+    - rid: 7325121806122090614
+      type: {class: PawnControllerTeamValidator, ns: , asm: Assembly-CSharp}
+      data:
+        <Team>k__BackingField: 0

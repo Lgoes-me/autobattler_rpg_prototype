@@ -12,19 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9196a5a3c54b413387f783c4b9ff3a47, type: 3}
   m_Name: CuraBaseadaNoDanoCausado_Common
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: 110
-  <Rarity>k__BackingField: 0
   <Events>k__BackingField:
   - rid: 7325121777269473359
+  <Rarity>k__BackingField: 0
   references:
     version: 2
     RefIds:
     - rid: 7325121777269473359
       type: {class: HealthLostEventListenerData, ns: , asm: Assembly-CSharp}
       data:
+        <Validator>k__BackingField:
+          rid: 7325121806122090610
         <Effect>k__BackingField:
           rid: 7325121777269473360
     - rid: 7325121777269473360
       type: {class: HealPercentualPlayerPawnEffectData, ns: , asm: Assembly-CSharp}
       data:
         <Percentual>k__BackingField: 15
+    - rid: 7325121806122090610
+      type: {class: PawnControllerTeamValidator, ns: , asm: Assembly-CSharp}
+      data:
+        <Team>k__BackingField: 0

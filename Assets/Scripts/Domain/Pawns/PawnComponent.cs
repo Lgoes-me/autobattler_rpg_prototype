@@ -485,7 +485,7 @@ public class ResourceComponent : PawnComponent
 
     public void GiveShield(int shieldValue)
     {
-        Escudo += shieldValue;
+        Escudo = Math.Max(Escudo, shieldValue);
     }
 }
 

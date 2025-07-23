@@ -1,7 +1,7 @@
 ﻿using System;
 
 [Serializable]
-public class AttackEventListenerData : BaseEventListenerData<IAttackValidatorEffect, IAttackEffect>
+public class AttackEventListenerData : BaseEventListenerData<IAttackValidator, IAttackEffect>
 {
     public void OnAttack(Battle battle, PawnController abilityUser, Ability ability)
     {
@@ -12,7 +12,7 @@ public class AttackEventListenerData : BaseEventListenerData<IAttackValidatorEff
     }
 }
 
-public interface IAttackValidatorEffect : IEventValidatorData
+public interface IAttackValidator : IEventValidatorData
 {
     bool Validate(Battle battle, PawnController abilityUser, Ability ability);
 }

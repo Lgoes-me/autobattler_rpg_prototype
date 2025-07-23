@@ -12,18 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9196a5a3c54b413387f783c4b9ff3a47, type: 3}
   m_Name: EscudoQuandoUsaAtaqueEspecial_Common
   m_EditorClassIdentifier: 
-  <Rarity>k__BackingField: 0
   <Events>k__BackingField:
   - rid: 7325121806122090496
+  <Rarity>k__BackingField: 0
   references:
     version: 2
     RefIds:
     - rid: 7325121806122090496
       type: {class: SpecialAttackEventListenerData, ns: , asm: Assembly-CSharp}
       data:
+        <Validator>k__BackingField:
+          rid: 7325121806122090623
         <Effect>k__BackingField:
-          rid: 7325121806122090577
-    - rid: 7325121806122090577
-      type: {class: GiveShieldToPartyEffectData, ns: , asm: Assembly-CSharp}
+          rid: 7325121806122090622
+    - rid: 7325121806122090622
+      type: {class: GiveShieldToPawnEffectData, ns: , asm: Assembly-CSharp}
       data:
-        <ShieldValue>k__BackingField: 10
+        <ShieldValue>k__BackingField: 5
+    - rid: 7325121806122090623
+      type: {class: PawnControllerTeamValidator, ns: , asm: Assembly-CSharp}
+      data:
+        <Team>k__BackingField: 0

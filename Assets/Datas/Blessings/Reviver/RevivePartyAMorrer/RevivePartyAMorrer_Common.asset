@@ -12,17 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9196a5a3c54b413387f783c4b9ff3a47, type: 3}
   m_Name: RevivePartyAMorrer_Common
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: 202
-  <Rarity>k__BackingField: 0
   <Events>k__BackingField:
   - rid: 7325121762829795412
   - rid: 7325121753067290727
+  <Rarity>k__BackingField: 0
   references:
     version: 2
     RefIds:
     - rid: 7325121753067290727
       type: {class: PawnDeathEventListenerData, ns: , asm: Assembly-CSharp}
       data:
+        <Validator>k__BackingField:
+          rid: 7325121806122090632
         <Effect>k__BackingField:
           rid: 7325121753067290730
     - rid: 7325121753067290730
@@ -38,4 +39,10 @@ MonoBehaviour:
     - rid: 7325121762829795413
       type: {class: AddMetadataToPartyEffectData, ns: , asm: Assembly-CSharp}
       data:
+        <Team>k__BackingField: 0
         <MetaDataString>k__BackingField: ReviveParty
+    - rid: 7325121806122090632
+      type: {class: PawnControllerTeamAndMetadataValidator, ns: , asm: Assembly-CSharp}
+      data:
+        <Team>k__BackingField: 0
+        <MetaDataKey>k__BackingField: ReviveParty

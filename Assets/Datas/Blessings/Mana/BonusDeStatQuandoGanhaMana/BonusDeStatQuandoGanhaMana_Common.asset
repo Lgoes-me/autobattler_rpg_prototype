@@ -12,17 +12,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9196a5a3c54b413387f783c4b9ff3a47, type: 3}
   m_Name: BonusDeStatQuandoGanhaMana_Common
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: 405
-  <Rarity>k__BackingField: 0
   <Events>k__BackingField:
   - rid: 7325121777269473388
+  <Rarity>k__BackingField: 0
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
     - rid: 7325121777269473388
       type: {class: ManaGainedEventListenerData, ns: , asm: Assembly-CSharp}
       data:
+        <Validator>k__BackingField:
+          rid: 7325121806122090624
         <Effect>k__BackingField:
-          rid: -2
+          rid: 7325121806122090625
+    - rid: 7325121806122090624
+      type: {class: PawnControllerTeamValidator, ns: , asm: Assembly-CSharp}
+      data:
+        <Team>k__BackingField: 0
+    - rid: 7325121806122090625
+      type: {class: BuffToPawnEffectData, ns: , asm: Assembly-CSharp}
+      data:
+        <Id>k__BackingField: BlessingStatBuffManaReceived
+        <Duration>k__BackingField: 2
+        <Buffs>k__BackingField:
+        - rid: 7325121806122090626
+    - rid: 7325121806122090626
+      type: {class: StatsBuffData, ns: , asm: Assembly-CSharp}
+      data:
+        <StatsVariation>k__BackingField:
+          <Stats>k__BackingField:
+          - <Stat>k__BackingField: 3
+            <Value>k__BackingField: 2

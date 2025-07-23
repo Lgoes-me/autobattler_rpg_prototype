@@ -3,17 +3,19 @@ using System.Linq;
 using UnityEngine;
 
 [Serializable]
-public class DanoParaEnemyPartyEffectData : IBattleStartedEffect
+public class DanoParaPartyEffectData : IBattleEffect
 {
+    [field: SerializeField] private TeamType Team { get; set; }
     [field: SerializeField] private int Dano { get; set; }
 
-    public void OnBattleStarted(Battle battle) => DoEffect(battle);
+    public void OnBattleStateChanged(Battle battle) => DoEffect(battle);
 
     private void DoEffect(Battle battle)
     {
+        var team = Team == TeamType.Player ? battle.PlayerPawns : battle.EnemyPawns;
         var damage = new DamageDomain(null, Dano, DamageType.True);
-
-        foreach (var p in battle.EnemyPawns)
+        
+        foreach (var p in team)
         {
             p.Pawn.GetComponent<ResourceComponent>().ReceiveDamage(damage);
         }
@@ -21,23 +23,21 @@ public class DanoParaEnemyPartyEffectData : IBattleStartedEffect
 }
 
 [Serializable]
-public class DanoEmAreaPartindoDoPawnEffectData : IPawnDeathEffect
+public class DanoEmAreaPartindoDoPawnEffectData : IDamageReveivedEffect
 {
     [field: SerializeField] private TeamType Team { get; set; }
     [field: SerializeField] private int Dano { get; set; }
     [field: SerializeField] private float Range { get; set; }
 
-    public void OnPawnDeath(Battle battle, PawnController pawnController, DamageDomain damage) =>
-        DoEffect(battle, pawnController);
+    public void OnDamageReceived(Battle battle, PawnController pawnController, DamageDomain damage) => DoEffect(battle, pawnController);
 
     private void DoEffect(Battle battle, PawnController pawnController)
     {
-        if (pawnController.Pawn.Team != Team)
-            return;
-
+        var team = Team == TeamType.Player ? battle.PlayerPawns : battle.EnemyPawns;
+        
         var damage = new DamageDomain(pawnController.Pawn, Dano, DamageType.True);
 
-        var enemiesInRange = battle.EnemyPawns
+        var enemiesInRange = team
             .Where(p => Vector3.Distance(pawnController.transform.position, p.transform.position) < Range)
             .ToList();
 
@@ -49,16 +49,15 @@ public class DanoEmAreaPartindoDoPawnEffectData : IPawnDeathEffect
 }
 
 [Serializable]
-public class DanoDeVingancaEffectData : IPawnDeathEffect
+public class DanoDeVingancaEffectData : IDamageReveivedEffect
 {
     [field: SerializeField] private int Dano { get; set; }
 
-    public void OnPawnDeath(Battle battle, PawnController pawnController, DamageDomain damage) =>
-        DoEffect(pawnController, damage);
+    public void OnDamageReceived(Battle battle, PawnController pawnController, DamageDomain damage) => DoEffect(pawnController, damage);
 
     private void DoEffect(PawnController pawnController, DamageDomain damage)
     {
-        if (pawnController.Pawn.Team != TeamType.Player || damage.Attacker == null)
+        if (damage.Attacker == null)
             return;
 
         var newDamage = new DamageDomain(pawnController.Pawn, Dano, DamageType.True);
@@ -67,29 +66,23 @@ public class DanoDeVingancaEffectData : IPawnDeathEffect
 }
 
 [Serializable]
-public class DanoDeVingancaEmAreaEffectData : IPawnDeathEffect, IHealthLostEffect, IHealthGainedEffect
+public class DanoDeVingancaEmAreaEffectData : IDamageReveivedEffect, IResourceChangedEffect
 {
+    [field: SerializeField] private TeamType Team { get; set; }
     [field: SerializeField] private int Percentual { get; set; }
     [field: SerializeField] private float Range { get; set; }
 
-    public void OnPawnDeath(Battle battle, PawnController pawnController, DamageDomain damage) =>
-        DoEffect(battle, pawnController, damage.Value);
-
-    public void OnHealthLost(Battle battle, PawnController pawnController, DamageDomain damage) =>
-        DoEffect(battle, pawnController, damage.Value);
-    
-    public void OnHealthGained(Battle battle, PawnController pawnController, int value) =>
-        DoEffect(battle, pawnController, value);
+    public void OnDamageReceived(Battle battle, PawnController pawnController, DamageDomain damage) => DoEffect(battle, pawnController, damage.Value);
+    public void OnResourceChanged(Battle battle, PawnController pawnController, int value) => DoEffect(battle, pawnController, value);
 
     private void DoEffect(Battle battle, PawnController pawnController, int value)
     {
-        if (pawnController.Pawn.Team != TeamType.Player)
-            return;
+        var team = Team == TeamType.Player ? battle.PlayerPawns : battle.EnemyPawns;
 
         var damageValue = Mathf.CeilToInt(value * Percentual / (float) 100);
         var newDamage = new DamageDomain(pawnController.Pawn, damageValue, DamageType.True);
 
-        var enemiesInRange = battle.EnemyPawns
+        var enemiesInRange = team
             .Where(p => Vector3.Distance(pawnController.transform.position, p.transform.position) < Range)
             .ToList();
 

@@ -2,20 +2,15 @@
 using UnityEngine;
 
 [Serializable]
-public class RevivePrimeiroAliadoAMorrerEmCombateEffectData : IPawnDeathEffect
+public class RevivePrimeiroAliadoAMorrerEmCombateEffectData : IDamageReveivedEffect
 {
     [field: SerializeField] private string MetaDataKey { get; set; }
     [field: SerializeField] private int PercentHealing { get; set; }
 
-    public void OnPawnDeath(Battle battle, PawnController pawnController, DamageDomain damage) =>
-        DoEffect(battle, pawnController);
+    public void OnDamageReceived(Battle battle, PawnController pawnController, DamageDomain damage) => DoEffect(battle, pawnController);
 
     private void DoEffect(Battle battle, PawnController pawnController)
     {
-        if (pawnController.Pawn.Team != TeamType.Player ||
-            !pawnController.Pawn.GetComponent<MetaDataComponent>().CheckMetaData(MetaDataKey))
-            return;
-
         var health = pawnController.Pawn.GetComponent<StatsComponent>().GetStats().GetStat(Stat.Health);
         var healValue = Mathf.CeilToInt(health * PercentHealing / (float) 100);
 
@@ -29,20 +24,15 @@ public class RevivePrimeiroAliadoAMorrerEmCombateEffectData : IPawnDeathEffect
 }
 
 [Serializable]
-public class ReviveTodosAliadosAMorrerEmCombateEffectData : IPawnDeathEffect
+public class ReviveTodosAliadosAMorrerEmCombateEffectData : IDamageReveivedEffect
 {
     [field: SerializeField] private string MetaDataKey { get; set; }
     [field: SerializeField] private int PercentHealing { get; set; }
 
-    public void OnPawnDeath(Battle battle, PawnController pawnController, DamageDomain damage) =>
-        DoEffect(pawnController);
+    public void OnDamageReceived(Battle battle, PawnController pawnController, DamageDomain damage) => DoEffect(pawnController);
 
     private void DoEffect(PawnController pawnController)
     {
-        if (pawnController.Pawn.Team != TeamType.Player ||
-            !pawnController.Pawn.GetComponent<MetaDataComponent>().CheckMetaData(MetaDataKey))
-            return;
-
         var health = pawnController.Pawn.GetComponent<StatsComponent>().GetStats().GetStat(Stat.Health);
         var healValue = Mathf.CeilToInt(health * PercentHealing / (float) 100);
 

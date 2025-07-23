@@ -12,20 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9196a5a3c54b413387f783c4b9ff3a47, type: 3}
   m_Name: CuraQuandoAliadoMorre_Common
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: 105
-  <Rarity>k__BackingField: 0
   <Events>k__BackingField:
   - rid: 7325121753067290626
+  <Rarity>k__BackingField: 0
   references:
     version: 2
     RefIds:
     - rid: 7325121753067290626
       type: {class: PawnDeathEventListenerData, ns: , asm: Assembly-CSharp}
       data:
+        <Validator>k__BackingField:
+          rid: 7325121806122090605
         <Effect>k__BackingField:
-          rid: 7325121753067290709
-    - rid: 7325121753067290709
-      type: {class: HealToPartyPlayerPawnEffectData, ns: , asm: Assembly-CSharp}
+          rid: 7325121806122090604
+    - rid: 7325121806122090604
+      type: {class: HealToPartyEffectData, ns: , asm: Assembly-CSharp}
       data:
         <Team>k__BackingField: 0
-        <HealValue>k__BackingField: 5
+        <HealValue>k__BackingField: 10
+    - rid: 7325121806122090605
+      type: {class: PawnControllerTeamValidator, ns: , asm: Assembly-CSharp}
+      data:
+        <Team>k__BackingField: 0
