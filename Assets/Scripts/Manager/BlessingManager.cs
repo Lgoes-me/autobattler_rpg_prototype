@@ -29,11 +29,15 @@ public class BlessingManager : IManager
         foreach (var identifier in blessingIdentifiers)
         {
             var blessing = ContentManager.GetBlessingFromIdAndRarity(identifier);
-            AddBlessing(blessing, false);
+            
+            blessing.DoBlessingCreatedEvent();
+            Blessings.Add(blessing);
         }
+        
+        InterfaceManager.UpdateBlessingsCanvas(Blessings);
     }
 
-    public void AddBlessing(BlessingData blessing, bool newBlessing = true)
+    public void AddBlessing(BlessingData blessing)
     {
         blessing.DoBlessingCreatedEvent();
 

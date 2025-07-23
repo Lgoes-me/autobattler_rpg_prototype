@@ -109,28 +109,6 @@ public abstract class BaseIEnumerableGameEventListener : IEnumerable
             onManaLostListener.OnManaLost(battle, pawnController, value, Rarity);
         }
     }
-    
-    public void DoBlessingGainedEvent()
-    {
-        foreach (var listener in GameEventListeners)
-        {
-            if (listener is not BlessingGainedListener blessingGainedListener)
-                continue;
-
-            blessingGainedListener.OnBlessingGained(Rarity);
-        }
-    }
-
-    public void DoBlessingCreatedEvent()
-    {
-        foreach (var listener in GameEventListeners)
-        {
-            if (listener is not BlessingCreatedListener blessingCreatedListener)
-                continue;
-
-            blessingCreatedListener.OnBlessingCreated(Rarity);
-        }
-    }
 
     public void Add(BaseBattleEventListener item)
     {

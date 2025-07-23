@@ -88,7 +88,7 @@ MonoBehaviour:
     <SceneDestination>k__BackingField: 5561663c-72db-4b8e-b75e-09e085a009f1
     <DoorDestination>k__BackingField: f36263e0-0c3b-41b9-9969-7d79145e5f33
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: -166.68005, y: -97.00008}
+  <Position>k__BackingField: {x: -180.99995, y: -92.97727}
   <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: ef4a395c16fd5fd45b1aa0cf77e1babe, type: 3}
   <CombatEncounters>k__BackingField:
   - <Experience>k__BackingField: 23
@@ -123,21 +123,19 @@ MonoBehaviour:
     - rid: 7325121762829795414
       type: {class: LevelComponentData, ns: , asm: Assembly-CSharp}
       data:
-        <Level>k__BackingField: 3
+        <Level>k__BackingField: 1
     - rid: 7325121762829795419
       type: {class: LevelComponentData, ns: , asm: Assembly-CSharp}
       data:
-        <Level>k__BackingField: 3
+        <Level>k__BackingField: 1
     - rid: 7325121762829795420
       type: {class: LevelComponentData, ns: , asm: Assembly-CSharp}
       data:
-        <Level>k__BackingField: 3
+        <Level>k__BackingField: 1
     - rid: 7325121762829795421
       type: {class: BossComponentData, ns: , asm: Assembly-CSharp}
       data:
-        <Modifiers>k__BackingField:
-        - <Identifier>k__BackingField: 101
-          <Rarity>k__BackingField: 0
+        <Modifiers>k__BackingField: []
 --- !u!114 &-6513498626437232033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -310,7 +308,7 @@ MonoBehaviour:
     <SceneDestination>k__BackingField: 6285dd07-935a-47d7-9bad-17d94dc781d6
     <DoorDestination>k__BackingField: 4ad61d87-6a66-485a-8ab3-51dfacaede3b
     <SetUp>k__BackingField: 1
-  <Position>k__BackingField: {x: 170, y: -70}
+  <Position>k__BackingField: {x: 169.99998, y: -70.00002}
   <RoomPrefab>k__BackingField: {fileID: 7354856677576511643, guid: 667d20764247d8c478b70a952361348a, type: 3}
   <CombatEncounters>k__BackingField:
   - <Experience>k__BackingField: 50
@@ -322,7 +320,7 @@ MonoBehaviour:
       <PawnData>k__BackingField: {fileID: 11400000, guid: 898d430b49b69644a807e57a9b834d7d, type: 2}
       <Components>k__BackingField: []
     <OnVictory>k__BackingField:
-      rid: -2
+      rid: 7325121787830206555
     <OnDefeat>k__BackingField:
       rid: -2
   <PostProcessProfile>k__BackingField: {fileID: 11400000, guid: 0d2fdc4948ba68144ac41b1fa7ed95a2, type: 2}
@@ -332,6 +330,9 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 7325121787830206555
+      type: {class: OpenBlessingPrize, ns: , asm: Assembly-CSharp}
+      data: 
 --- !u!114 &-1375947148364262921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -552,7 +553,7 @@ MonoBehaviour:
       type: {class: OpenBlessingPrizeFromPool, ns: , asm: Assembly-CSharp}
       data:
         <Pool>k__BackingField:
-        - {fileID: 11400000, guid: e0b976b9cd90cca44b2924f783b19986, type: 2}
+        - {fileID: 11400000, guid: c3e3ba16d7c0aea4eb0c09bac480dd82, type: 2}
 --- !u!114 &6909170025742541972
 MonoBehaviour:
   m_ObjectHideFlags: 0

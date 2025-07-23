@@ -7,9 +7,7 @@ public class BuffToPawnEffectData : IHealthGainedEffect, IHealthLostEffect, IMan
 {
     [field: SerializeField] public string Id { get; private set; }
 
-    [field: SerializeReference]
-    [field: SerializeField]
-    private List<BuffComponentData> Buffs { get; set; }
+    [field: SerializeReference] [field: SerializeField] private List<BuffComponentData> Buffs { get; set; }
 
     public void OnHealthGained(Battle battle, PawnController pawnController, int value) => DoEffect(pawnController);
 
@@ -43,9 +41,7 @@ public class BuffToPartyEffectData : IBattleStartedEffect
 {
     [field: SerializeField] public string Id { get; private set; }
 
-    [field: SerializeReference]
-    [field: SerializeField]
-    private List<BuffComponentData> Buffs { get; set; }
+    [field: SerializeReference] [field: SerializeField] private List<BuffComponentData> Buffs { get; set; }
 
     public void OnBattleStarted(Battle battle) => DoEffect(battle);
 
@@ -71,9 +67,7 @@ public class BuffToEnemiesEffectData : IBattleStartedEffect
 {
     [field: SerializeField] public string Id { get; private set; }
 
-    [field: SerializeReference]
-    [field: SerializeField]
-    private List<BuffComponentData> Buffs { get; set; }
+    [field: SerializeReference] [field: SerializeField]private List<BuffComponentData> Buffs { get; set; }
 
     public void OnBattleStarted(Battle battle) => DoEffect(battle);
 

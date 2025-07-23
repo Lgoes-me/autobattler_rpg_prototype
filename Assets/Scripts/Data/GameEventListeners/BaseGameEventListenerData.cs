@@ -1,14 +1,9 @@
 ﻿using System;
 using UnityEngine;
 
-[CreateAssetMenu]
-public class BlessingData : ScriptableObject
+public abstract class BaseGameEventListenerData : ScriptableObject
 {
-    [field: SerializeField] public Rarity Rarity { get; private set; }
-
-    [field: SerializeField]
-    [field: SerializeReference]
-    private BaseBattleEventListenerData[] Events { get; set; }
+    [field: SerializeField] [field: SerializeReference] private BaseEventListenerData[] Events { get; set; }
 
     public void DoBattleStartEvent(Battle battle)
     {
@@ -122,10 +117,25 @@ public class BlessingData : ScriptableObject
 }
 
 [Serializable]
-public abstract class BaseBattleEventListenerData : IComponentData
+public abstract class BaseEventListenerData : IComponentData
+{
+    
+}
+
+
+[Serializable]
+public abstract class BaseEventListenerData<T, T1>: BaseEventListenerData 
+    where T : IEventValidatorData 
+    where T1 : IEventEffectData
+{
+    [field: SerializeField] [field: SerializeReference] protected T Validator { get; set; }
+    [field: SerializeField] [field: SerializeReference] protected T1 Effect { get; set; }
+}
+
+public interface IEventValidatorData : IComponentData
 {
 }
 
-public interface IBlessingEffectData : IComponentData
+public interface IEventEffectData : IComponentData
 {
 }
