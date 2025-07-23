@@ -4,17 +4,49 @@ using UnityEngine;
 [CreateAssetMenu]
 public class ArchetypeData : BaseGameEventListenerData
 {
-    protected override BaseEventListenerData[] Events => CurrentArchetypeGroup.Events;
+    [field: SerializeField] public ArchetypeIdentifier Identifier { get; set; }
+    [field: SerializeField] public ArchetypeStep[] Archetypes { get; set; }
     
-    [field: SerializeField] private ArchetypeGroup[] ArchetypeGroups { get; set; }
-    private ArchetypeGroup CurrentArchetypeGroup { get; set; }
+    public ArchetypeStep CurrentArchetype { get; private set; }
+    public ArchetypeStep NextArchetype { get; private set; }
     
-    public int CurrentAmount { get; }
-    public int[] AmountSteps { get; }
+    public override Rarity GetRarity() => CurrentArchetype.Rarity;
+    protected override BaseEvent[] GetEvents() => CurrentArchetype.Events;
+    
+    public void Setup(int pawns)
+    {
+        CurrentArchetype = null;
+        NextArchetype = null;
+        
+        foreach (var archetype in Archetypes)
+        {
+            if(archetype.Pawns > pawns)
+            {
+                NextArchetype = archetype;
+                break;
+            }
+            
+            CurrentArchetype = archetype;
+        }
+    }
 }
 
 [Serializable]
-public class ArchetypeGroup
+public class ArchetypeStep
 {
-    [field: SerializeField] [field: SerializeReference] public BaseEventListenerData[] Events { get; set; }
+    [field: SerializeField] public int Pawns { get; set; }
+    
+    [field: SerializeField] public Rarity Rarity { get; set; }
+    [field: SerializeField] [field: SerializeReference] public BaseEvent[] Events { get; set; }
+}
+
+
+public enum ArchetypeIdentifier
+{
+    Unknown,
+    Cavaleiros,
+    Magos,
+    Herois,
+    Weakener,
+    Hunters,
 }

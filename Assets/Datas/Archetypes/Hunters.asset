@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50d6a5cd28934a4884083a1a74ae59f6, type: 3}
+  m_Name: Hunters
+  m_EditorClassIdentifier: 
+  <Identifier>k__BackingField: 5
+  <Archetypes>k__BackingField:
+  - <Pawns>k__BackingField: 2
+    <Rarity>k__BackingField: 2
+    <Events>k__BackingField:
+    - rid: 7325121823382437963
+  - <Pawns>k__BackingField: 8
+    <Rarity>k__BackingField: 3
+    <Events>k__BackingField:
+    - rid: 7325121823382437963
+  references:
+    version: 2
+    RefIds:
+    - rid: 7325121823382437963
+      type: {class: BattleStartedEventListenerData, ns: , asm: Assembly-CSharp}
+      data:
+        <Effect>k__BackingField:
+          rid: 7325121823382437964
+    - rid: 7325121823382437964
+      type: {class: BuffToPartyEffectData, ns: , asm: Assembly-CSharp}
+      data:
+        <Team>k__BackingField: 1
+        <Id>k__BackingField: ArchetypeHuntersBuff
+        <Duration>k__BackingField: -1
+        <Buffs>k__BackingField:
+        - rid: 7325121823382437965
+    - rid: 7325121823382437965
+      type: {class: StatsBuffData, ns: , asm: Assembly-CSharp}
+      data:
+        <StatsVariation>k__BackingField:
+          <Stats>k__BackingField:
+          - <Stat>k__BackingField: 4
+            <Value>k__BackingField: -5

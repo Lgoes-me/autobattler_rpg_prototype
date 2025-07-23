@@ -4,12 +4,14 @@ using System.Linq;
 public class ArchetypeManager : IManager
 {
     private InterfaceManager InterfaceManager { get; set; }
+    private ContentManager ContentManager { get; set; }
     
     public List<ArchetypeData> Archetypes { get; private set; }
     
     public void Prepare()
     {
         InterfaceManager = Application.Instance.GetManager<InterfaceManager>();
+        ContentManager = Application.Instance.GetManager<ContentManager>();
         Archetypes = new List<ArchetypeData>();
     }
 
@@ -26,8 +28,10 @@ public class ArchetypeManager : IManager
 
         foreach (var pair in archetypes)
         {
-        
-            //Archetypes.Add(ArchetypeFactory.CreateArchetype(pair.Key, pair.Count));
+            var archetype = ContentManager.GetArchetypeFromId(pair.Key);
+            archetype.Setup(pair.Count);
+            
+            Archetypes.Add(archetype);
         }
 
         InterfaceManager.UpdateProfileCanvas(party);

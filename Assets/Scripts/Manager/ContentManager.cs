@@ -14,6 +14,7 @@ public class ContentManager : MonoBehaviour, IManager
     [field: SerializeField] public List<BuffData> AvailableBuffs { get; private set; }
     [field: SerializeField] public List<ConsumableData> AvailableConsumables { get; private set; } 
     [field: SerializeField] public List<BlessingData> AvailableBlessings { get; private set; } 
+    [field: SerializeField] public List<ArchetypeData> AvailableArchetypes { get; private set; } 
 
     public Pawn GetPawnFromId(string id)
     {
@@ -49,9 +50,14 @@ public class ContentManager : MonoBehaviour, IManager
         return AvailableConsumables.First(c => c.Id == id);
     }
     
-    public BlessingData GetBlessingFromIdAndRarity(string id)
+    public BlessingData GetBlessingFromId(string id)
     {
         return AvailableBlessings.First(b => b.name == id);
+    }
+    
+    public ArchetypeData GetArchetypeFromId(ArchetypeIdentifier id)
+    {
+        return AvailableArchetypes.First(b => b.Identifier == id);
     }
     
 #if UNITY_EDITOR
@@ -64,6 +70,7 @@ public class ContentManager : MonoBehaviour, IManager
         AvailableBuffs = Extensions.FindAllScriptableObjectsOfType<BuffData>(); 
         AvailableConsumables = Extensions.FindAllScriptableObjectsOfType<ConsumableData>();
         AvailableBlessings = Extensions.FindAllScriptableObjectsOfType<BlessingData>();
+        AvailableArchetypes = Extensions.FindAllScriptableObjectsOfType<ArchetypeData>();
 
         EditorUtility.SetDirty(this);
         AssetDatabase.SaveAssets();

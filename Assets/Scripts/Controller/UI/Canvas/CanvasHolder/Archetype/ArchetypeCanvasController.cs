@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class ArchetypeCanvasController : BaseCanvasHolderItemController<ArchetypeData>
@@ -10,18 +11,10 @@ public class ArchetypeCanvasController : BaseCanvasHolderItemController<Archetyp
     {
         Name.SetText(archetype.name);
 
-        var nextStep = archetype.CurrentAmount;
+        var currentNumberOfPawns = archetype.CurrentArchetype?.Pawns ?? 0;
+        var nextNumberOfPawns = archetype.NextArchetype?.Pawns ?? archetype.CurrentArchetype?.Pawns ?? archetype.Archetypes.First().Pawns;
         
-        foreach (var step in archetype.AmountSteps)
-        {
-            if (step < archetype.CurrentAmount) 
-                continue;
-            
-            nextStep = step;
-            break;
-        }
-
-        Quantidade.SetText($"{archetype.CurrentAmount} / {nextStep}");
+        Quantidade.SetText($"{currentNumberOfPawns} / {nextNumberOfPawns}");
         
         Show();
         

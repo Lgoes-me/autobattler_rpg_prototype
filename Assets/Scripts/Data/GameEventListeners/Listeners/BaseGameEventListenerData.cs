@@ -3,11 +3,12 @@ using UnityEngine;
 
 public abstract class BaseGameEventListenerData : ScriptableObject
 {
-    [field: SerializeField] [field: SerializeReference] protected virtual BaseEventListenerData[] Events { get; set; }
+    public abstract Rarity GetRarity();
+    protected abstract BaseEvent[] GetEvents();
 
     public void DoBattleStartEvent(Battle battle)
     {
-        foreach (var listener in Events)
+        foreach (var listener in GetEvents())
         {
             if (listener is not BattleStartedEventListenerData onBattleStartedEventListener)
                 continue;
@@ -18,7 +19,7 @@ public abstract class BaseGameEventListenerData : ScriptableObject
 
     public void DoBattleFinishedEvent(Battle battle)
     {
-        foreach (var listener in Events)
+        foreach (var listener in GetEvents())
         {
             if (listener is not BattleFinishedEventListenerData onBattleFinishedListener)
                 continue;
@@ -29,7 +30,7 @@ public abstract class BaseGameEventListenerData : ScriptableObject
 
     public void DoAttackEvent(Battle battle, PawnController abilityUser, Ability ability)
     {
-        foreach (var listener in Events)
+        foreach (var listener in GetEvents())
         {
             if (listener is not AttackEventListenerData onAttackEventListener)
                 continue;
@@ -40,7 +41,7 @@ public abstract class BaseGameEventListenerData : ScriptableObject
 
     public void DoSpecialAttackEvent(Battle battle, PawnController abilityUser, Ability ability)
     {
-        foreach (var listener in Events)
+        foreach (var listener in GetEvents())
         {
             if (listener is not SpecialAttackEventListenerData onSpecialAttackEventListener)
                 continue;
@@ -51,7 +52,7 @@ public abstract class BaseGameEventListenerData : ScriptableObject
 
     public void DoPawnDeathEvent(Battle battle, PawnController dead, DamageDomain damage)
     {
-        foreach (var listener in Events)
+        foreach (var listener in GetEvents())
         {
             if (listener is not PawnDeathEventListenerData onPawnDeathListener)
                 continue;
@@ -62,7 +63,7 @@ public abstract class BaseGameEventListenerData : ScriptableObject
 
     public void DoHealthGainedEvent(Battle battle, PawnController pawnController, int value)
     {
-        foreach (var listener in Events)
+        foreach (var listener in GetEvents())
         {
             if (listener is not HealthGainedEventListenerData onHealthGainedListener)
                 continue;
@@ -73,7 +74,7 @@ public abstract class BaseGameEventListenerData : ScriptableObject
 
     public void DoHealthLostEvent(Battle battle, PawnController pawnController, DamageDomain damage)
     {
-        foreach (var listener in Events)
+        foreach (var listener in GetEvents())
         {
             if (listener is not HealthLostEventListenerData onHealthLostListener)
                 continue;
@@ -84,7 +85,7 @@ public abstract class BaseGameEventListenerData : ScriptableObject
 
     public void DoManaGainedEvent(Battle battle, PawnController pawnController, int value)
     {
-        foreach (var listener in Events)
+        foreach (var listener in GetEvents())
         {
             if (listener is not ManaGainedEventListenerData onManaGainedListener)
                 continue;
@@ -95,7 +96,7 @@ public abstract class BaseGameEventListenerData : ScriptableObject
 
     public void DoManaLostEvent(Battle battle, PawnController pawnController, int value)
     {
-        foreach (var listener in Events)
+        foreach (var listener in GetEvents())
         {
             if (listener is not ManaLostEventListenerData onManaLostListener)
                 continue;
@@ -106,7 +107,7 @@ public abstract class BaseGameEventListenerData : ScriptableObject
 
     public void DoBlessingCreatedEvent()
     {
-        foreach (var listener in Events)
+        foreach (var listener in GetEvents())
         {
             if (listener is not BlessingCreatedEventListenerData blessingCreatedListener)
                 continue;
@@ -117,14 +118,14 @@ public abstract class BaseGameEventListenerData : ScriptableObject
 }
 
 [Serializable]
-public abstract class BaseEventListenerData : IComponentData
+public abstract class BaseEvent : IComponentData
 {
     
 }
 
 
 [Serializable]
-public abstract class BaseEventListenerData<T, T1>: BaseEventListenerData 
+public abstract class BaseEventListenerData<T, T1>: BaseEvent 
     where T : IEventValidatorData 
     where T1 : IEventEffectData
 {
@@ -138,4 +139,14 @@ public interface IEventValidatorData : IComponentData
 
 public interface IEventEffectData : IComponentData
 {
+}
+
+public enum Rarity
+{
+    Deactivated = -1,
+    Common = 0, // grey
+    Uncommon = 1, // green
+    Rare = 2, // blue
+    Epic = 3, // purple 
+    Legendary = 4, // orange 
 }

@@ -1496,6 +1496,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 65a15078ae8ad61429824f2acd90ee03, type: 2}
   - {fileID: 11400000, guid: e0b976b9cd90cca44b2924f783b19986, type: 2}
   - {fileID: 11400000, guid: e422bfcc348377b4c95aca544b83b022, type: 2}
+  <AvailableArchetypes>k__BackingField:
+  - {fileID: 11400000, guid: 3bf76a2a1f13bac41a87afadefbdb5a2, type: 2}
 --- !u!1001 &1164712636
 PrefabInstance:
   m_ObjectHideFlags: 0

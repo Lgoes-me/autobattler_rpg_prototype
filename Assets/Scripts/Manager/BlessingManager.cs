@@ -28,7 +28,7 @@ public class BlessingManager : IManager
 
         foreach (var identifier in blessingIdentifiers)
         {
-            var blessing = ContentManager.GetBlessingFromIdAndRarity(identifier);
+            var blessing = ContentManager.GetBlessingFromId(identifier);
             
             blessing.DoBlessingCreatedEvent();
             Blessings.Add(blessing);

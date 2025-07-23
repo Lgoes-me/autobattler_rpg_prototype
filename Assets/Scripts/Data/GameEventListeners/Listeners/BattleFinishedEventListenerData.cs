@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [Serializable]
-public class BattleFinishedEventListenerData : BaseEventListenerData
+public class BattleFinishedEventListenerData : BaseEvent
 {
     [field: SerializeField] [field: SerializeReference] protected IBattleEffect Effect { get; set; }
     
