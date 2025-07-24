@@ -3,12 +3,27 @@ using System.Linq;
 using UnityEngine;
 
 [Serializable]
-public class DanoParaPartyEffectData : IBattleEffect
+public class DanoParaPartyEffectData : 
+    IBattleStartedEffect,
+    IAttackEffect,
+    ISpecialAttackEffect,
+    IPawnDeathEffect,
+    IHealthGainedEffect,
+    IHealthLostEffect,
+    IManaGainedEffect,
+    IManaLostEffect
 {
     [field: SerializeField] private TeamType Team { get; set; }
     [field: SerializeField] private int Dano { get; set; }
 
-    public void OnBattleStateChanged(Battle battle) => DoEffect(battle);
+    public void OnBattleStarted(Battle battle) => DoEffect(battle);
+    public void OnAttack(Battle battle, PawnController abilityUser, Ability ability) => DoEffect(battle);
+    public void OnSpecialAttack(Battle battle, PawnController abilityUser, Ability ability) => DoEffect(battle);
+    public void OnPawnDeath(Battle battle, PawnController pawnController, DamageDomain damage) => DoEffect(battle);
+    public void OnHealthGained(Battle battle, PawnController pawnController, int value) => DoEffect(battle);
+    public void OnHealthLost(Battle battle, PawnController pawnController, DamageDomain damage) => DoEffect(battle);
+    public void OnManaGained(Battle battle, PawnController pawnController, int value) => DoEffect(battle);    
+    public void OnManaLost(Battle battle, PawnController pawnController, int value) => DoEffect(battle);
 
     private void DoEffect(Battle battle)
     {
@@ -23,13 +38,16 @@ public class DanoParaPartyEffectData : IBattleEffect
 }
 
 [Serializable]
-public class DanoEmAreaPartindoDoPawnEffectData : IDamageReveivedEffect
+public class DanoEmAreaPartindoDoPawnEffectData : 
+    IPawnDeathEffect,
+    IHealthLostEffect
 {
     [field: SerializeField] private TeamType Team { get; set; }
     [field: SerializeField] private int Dano { get; set; }
     [field: SerializeField] private float Range { get; set; }
 
-    public void OnDamageReceived(Battle battle, PawnController pawnController, DamageDomain damage) => DoEffect(battle, pawnController);
+    public void OnPawnDeath(Battle battle, PawnController pawnController, DamageDomain damage) => DoEffect(battle, pawnController);
+    public void OnHealthLost(Battle battle, PawnController pawnController, DamageDomain damage) => DoEffect(battle, pawnController);
 
     private void DoEffect(Battle battle, PawnController pawnController)
     {
@@ -49,11 +67,14 @@ public class DanoEmAreaPartindoDoPawnEffectData : IDamageReveivedEffect
 }
 
 [Serializable]
-public class DanoDeVingancaEffectData : IDamageReveivedEffect
+public class DanoDeVingancaEffectData : 
+    IPawnDeathEffect,
+    IHealthLostEffect
 {
     [field: SerializeField] private int Dano { get; set; }
-
-    public void OnDamageReceived(Battle battle, PawnController pawnController, DamageDomain damage) => DoEffect(pawnController, damage);
+    
+    public void OnPawnDeath(Battle battle, PawnController pawnController, DamageDomain damage) => DoEffect(pawnController, damage);
+    public void OnHealthLost(Battle battle, PawnController pawnController, DamageDomain damage) => DoEffect(pawnController, damage);
 
     private void DoEffect(PawnController pawnController, DamageDomain damage)
     {
@@ -66,14 +87,22 @@ public class DanoDeVingancaEffectData : IDamageReveivedEffect
 }
 
 [Serializable]
-public class DanoDeVingancaEmAreaEffectData : IDamageReveivedEffect, IResourceChangedEffect
+public class DanoDeVingancaEmAreaEffectData :
+    IPawnDeathEffect,
+    IHealthGainedEffect,
+    IHealthLostEffect,
+    IManaGainedEffect,
+    IManaLostEffect
 {
     [field: SerializeField] private TeamType Team { get; set; }
     [field: SerializeField] private int Percentual { get; set; }
     [field: SerializeField] private float Range { get; set; }
 
-    public void OnDamageReceived(Battle battle, PawnController pawnController, DamageDomain damage) => DoEffect(battle, pawnController, damage.Value);
-    public void OnResourceChanged(Battle battle, PawnController pawnController, int value) => DoEffect(battle, pawnController, value);
+    public void OnPawnDeath(Battle battle, PawnController pawnController, DamageDomain damage) => DoEffect(battle, pawnController, damage.Value);
+    public void OnHealthGained(Battle battle, PawnController pawnController, int value) => DoEffect(battle, pawnController, value);
+    public void OnHealthLost(Battle battle, PawnController pawnController, DamageDomain damage) => DoEffect(battle, pawnController, damage.Value);
+    public void OnManaGained(Battle battle, PawnController pawnController, int value) => DoEffect(battle, pawnController, value);
+    public void OnManaLost(Battle battle, PawnController pawnController, int value) => DoEffect(battle, pawnController, value);
 
     private void DoEffect(Battle battle, PawnController pawnController, int value)
     {
@@ -91,4 +120,5 @@ public class DanoDeVingancaEmAreaEffectData : IDamageReveivedEffect, IResourceCh
             pawn.GetComponent<ResourceComponent>().ReceiveDamage(newDamage);
         }
     }
+
 }

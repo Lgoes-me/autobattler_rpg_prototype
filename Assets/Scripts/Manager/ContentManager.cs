@@ -62,7 +62,7 @@ public class ContentManager : MonoBehaviour, IManager
     
 #if UNITY_EDITOR
     [ContextMenu("ForceLoadContent")]
-    void DoSomething()
+    private void ForceLoadContent()
     {
         AvailablePawns = Extensions.FindAllScriptableObjectsOfType<PawnData>("Assets/Datas/Pawns/Player");
         AvailableWeapons = Extensions.FindAllScriptableObjectsOfType<WeaponData>();

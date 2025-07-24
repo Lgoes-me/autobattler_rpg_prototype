@@ -4,14 +4,24 @@ using UnityEngine;
 
 
 [Serializable]
-public class BuffToPawnEffectData : IResourceChangedEffect, IDamageReveivedEffect
+public class BuffToPawnEffectData :
+    IAttackEffect,
+    ISpecialAttackEffect,
+    IHealthGainedEffect,
+    IHealthLostEffect,
+    IManaGainedEffect,
+    IManaLostEffect
 {
     [field: SerializeField] private string Id { get; set; }
     [field: SerializeField] private int Duration { get; set; }
     [field: SerializeReference] [field: SerializeField] private List<BuffComponentData> Buffs { get; set; }
-
-    public void OnResourceChanged(Battle battle, PawnController pawnController, int value) => DoEffect(pawnController);
-    public void OnDamageReceived(Battle battle, PawnController pawnController, DamageDomain damage) => DoEffect(pawnController);
+    
+    public void OnAttack(Battle battle, PawnController abilityUser, Ability ability) => DoEffect(abilityUser);
+    public void OnSpecialAttack(Battle battle, PawnController abilityUser, Ability ability) => DoEffect(abilityUser);
+    public void OnHealthGained(Battle battle, PawnController pawnController, int value) => DoEffect(pawnController);
+    public void OnHealthLost(Battle battle, PawnController pawnController, DamageDomain damage) => DoEffect(pawnController);
+    public void OnManaGained(Battle battle, PawnController pawnController, int value) => DoEffect(pawnController);   
+    public void OnManaLost(Battle battle, PawnController pawnController, int value) => DoEffect(pawnController);
 
     private void DoEffect(PawnController pawnController)
     {
@@ -28,17 +38,18 @@ public class BuffToPawnEffectData : IResourceChangedEffect, IDamageReveivedEffec
 
         pawnController.Pawn.GetComponent<PawnBuffsComponent>().AddBuff(buff);
     }
+
 }
 
 [Serializable]
-public class BuffToPartyEffectData : IBattleEffect
+public class BuffToPartyEffectData : IBattleStartedEffect
 {
     [field: SerializeField] private TeamType Team { get; set; }
     [field: SerializeField] private string Id { get; set; }
     [field: SerializeField] private int Duration { get; set; }
     [field: SerializeReference] [field: SerializeField] private List<BuffComponentData> Buffs { get; set; }
 
-    public void OnBattleStateChanged(Battle battle) => DoEffect(battle);
+    public void OnBattleStarted(Battle battle) => DoEffect(battle);
 
     private void DoEffect(Battle battle)
     {
@@ -61,12 +72,12 @@ public class BuffToPartyEffectData : IBattleEffect
 
 
 [Serializable]
-public class AddMetadataToPartyEffectData : IBattleEffect
+public class AddMetadataToPartyEffectData : IBattleStartedEffect
 {
     [field: SerializeField] private TeamType Team { get; set; }
     [field: SerializeField] private string MetaDataString { get; set; }
 
-    public void OnBattleStateChanged(Battle battle) => DoEffect(battle);
+    public void OnBattleStarted(Battle battle) => DoEffect(battle);
 
     private void DoEffect(Battle battle)
     {
@@ -80,11 +91,22 @@ public class AddMetadataToPartyEffectData : IBattleEffect
 }
 
 [Serializable]
-public class AddMetadataToPawnEffectData : IDamageReveivedEffect
+public class AddMetadataToPawnEffectData :
+    IAttackEffect,
+    ISpecialAttackEffect,
+    IHealthGainedEffect,
+    IHealthLostEffect,
+    IManaGainedEffect,
+    IManaLostEffect
 {
     [field: SerializeField] private string MetaDataKey { get; set; }
-
-    public void OnDamageReceived(Battle battle, PawnController pawnController, DamageDomain damage) => DoEffect(pawnController);
+    
+    public void OnAttack(Battle battle, PawnController abilityUser, Ability ability) => DoEffect(abilityUser);
+    public void OnSpecialAttack(Battle battle, PawnController abilityUser, Ability ability) => DoEffect(abilityUser);
+    public void OnHealthGained(Battle battle, PawnController pawnController, int value) => DoEffect(pawnController);
+    public void OnHealthLost(Battle battle, PawnController pawnController, DamageDomain damage) => DoEffect(pawnController);
+    public void OnManaGained(Battle battle, PawnController pawnController, int value) => DoEffect(pawnController);
+    public void OnManaLost(Battle battle, PawnController pawnController, int value) => DoEffect(pawnController);
 
     private void DoEffect(PawnController pawnController)
     {
@@ -93,13 +115,27 @@ public class AddMetadataToPawnEffectData : IDamageReveivedEffect
 }
 
 [Serializable]
-public class RemoveMetadataFromPartyEffectData : IBattleEffect, IDamageReveivedEffect
+public class RemoveMetadataFromPartyEffectData : 
+    IBattleStartedEffect,
+    IAttackEffect,
+    ISpecialAttackEffect,
+    IPawnDeathEffect,
+    IHealthGainedEffect,
+    IHealthLostEffect,
+    IManaGainedEffect,
+    IManaLostEffect
 {
     [field: SerializeField] private TeamType Team { get; set; }
     [field: SerializeField] private string MetaDataKey { get; set; }
 
-    public void OnBattleStateChanged(Battle battle) => DoEffect(battle);
-    public void OnDamageReceived(Battle battle, PawnController pawnController, DamageDomain damage) => DoEffect(battle);
+    public void OnBattleStarted(Battle battle) => DoEffect(battle);
+    public void OnAttack(Battle battle, PawnController abilityUser, Ability ability) => DoEffect(battle);
+    public void OnSpecialAttack(Battle battle, PawnController abilityUser, Ability ability) => DoEffect(battle);
+    public void OnPawnDeath(Battle battle, PawnController pawnController, DamageDomain damage) => DoEffect(battle);
+    public void OnHealthGained(Battle battle, PawnController pawnController, int value) => DoEffect(battle);
+    public void OnHealthLost(Battle battle, PawnController pawnController, DamageDomain damage) => DoEffect(battle);
+    public void OnManaGained(Battle battle, PawnController pawnController, int value) => DoEffect(battle);    
+    public void OnManaLost(Battle battle, PawnController pawnController, int value) => DoEffect(battle);
 
     private void DoEffect(Battle battle)
     {
@@ -113,11 +149,22 @@ public class RemoveMetadataFromPartyEffectData : IBattleEffect, IDamageReveivedE
 }
 
 [Serializable]
-public class RemoveMetadataFromPawnEffectData : IDamageReveivedEffect
+public class RemoveMetadataFromPawnEffectData : 
+    IAttackEffect,
+    ISpecialAttackEffect,
+    IHealthGainedEffect,
+    IHealthLostEffect,
+    IManaGainedEffect,
+    IManaLostEffect
 {
     [field: SerializeField] private string MetaDataKey { get; set; }
 
-    public void OnDamageReceived(Battle battle, PawnController pawnController, DamageDomain damage) => DoEffect(pawnController);
+    public void OnAttack(Battle battle, PawnController abilityUser, Ability ability) => DoEffect(abilityUser);
+    public void OnSpecialAttack(Battle battle, PawnController abilityUser, Ability ability) => DoEffect(abilityUser);
+    public void OnHealthGained(Battle battle, PawnController pawnController, int value) => DoEffect(pawnController);
+    public void OnHealthLost(Battle battle, PawnController pawnController, DamageDomain damage) => DoEffect(pawnController);
+    public void OnManaGained(Battle battle, PawnController pawnController, int value) => DoEffect(pawnController);   
+    public void OnManaLost(Battle battle, PawnController pawnController, int value) => DoEffect(pawnController);
 
     private void DoEffect(PawnController pawnController)
     {

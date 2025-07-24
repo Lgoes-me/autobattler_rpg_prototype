@@ -4,20 +4,20 @@ using UnityEngine;
 [Serializable]
 public class BattleStartedEventListenerData : BaseEvent
 {
-    [field: SerializeField] [field: SerializeReference] protected IBattleEffect Effect { get; set; }
+    [field: SerializeField] [field: SerializeReference] protected IBattleStartedEffect Effect { get; set; }
     
     public void OnBattleStarted(Battle battle)
     {
-        Effect.OnBattleStateChanged(battle);
+        Effect.OnBattleStarted(battle);
     }
 }
 
-public interface IBattleValidator : IEventValidatorData
+public interface IBattleStartedValidator : IEventValidatorData
 {
     bool Validate(Battle battle);
 }
 
-public interface IBattleEffect : IEventEffectData
+public interface IBattleStartedEffect : IEventEffectData
 {
-    void OnBattleStateChanged(Battle battle);
+    void OnBattleStarted(Battle battle);
 }

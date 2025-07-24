@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9196a5a3c54b413387f783c4b9ff3a47, type: 3}
   m_Name: DanoEmAreaQuandoInimigoMorre_Common
   m_EditorClassIdentifier: 
+  <Rarity>k__BackingField: 0
   <Events>k__BackingField:
   - rid: 7325121762829795440
-  <Rarity>k__BackingField: 0
   references:
     version: 2
     RefIds:
@@ -28,7 +28,7 @@ MonoBehaviour:
     - rid: 7325121762829795442
       type: {class: DanoEmAreaPartindoDoPawnEffectData, ns: , asm: Assembly-CSharp}
       data:
-        <Team>k__BackingField: 0
+        <Team>k__BackingField: 1
         <Dano>k__BackingField: 10
         <Range>k__BackingField: 2.5
     - rid: 7325121806122090616

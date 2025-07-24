@@ -2,12 +2,12 @@
 using UnityEngine;
 
 [Serializable]
-public class RevivePrimeiroAliadoAMorrerEmCombateEffectData : IDamageReveivedEffect
+public class RevivePrimeiroAliadoAMorrerEmCombateEffectData : IPawnDeathEffect
 {
     [field: SerializeField] private string MetaDataKey { get; set; }
     [field: SerializeField] private int PercentHealing { get; set; }
 
-    public void OnDamageReceived(Battle battle, PawnController pawnController, DamageDomain damage) => DoEffect(battle, pawnController);
+    public void OnPawnDeath(Battle battle, PawnController pawnController, DamageDomain damage) => DoEffect(battle, pawnController);
 
     private void DoEffect(Battle battle, PawnController pawnController)
     {
@@ -24,12 +24,12 @@ public class RevivePrimeiroAliadoAMorrerEmCombateEffectData : IDamageReveivedEff
 }
 
 [Serializable]
-public class ReviveTodosAliadosAMorrerEmCombateEffectData : IDamageReveivedEffect
+public class ReviveTodosAliadosAMorrerEmCombateEffectData : IPawnDeathEffect
 {
     [field: SerializeField] private string MetaDataKey { get; set; }
     [field: SerializeField] private int PercentHealing { get; set; }
 
-    public void OnDamageReceived(Battle battle, PawnController pawnController, DamageDomain damage) => DoEffect(pawnController);
+    public void OnPawnDeath(Battle battle, PawnController pawnController, DamageDomain damage) => DoEffect(pawnController);
 
     private void DoEffect(PawnController pawnController)
     {

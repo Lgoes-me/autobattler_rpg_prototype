@@ -1,23 +1,23 @@
 ﻿using System;
 
 [Serializable]
-public class HealthGainedEventListenerData : BaseEventListenerData<IResourceChangedValidator, IResourceChangedEffect>
+public class HealthGainedEventListenerData : BaseEventListenerData<IHealthGainedValidator, IHealthGainedEffect>
 {
     public void OnHealthGained(Battle battle, PawnController pawnController, int value)
     {
         if (Validator != null && !Validator.Validate(battle, pawnController, value))
             return;
 
-        Effect.OnResourceChanged(battle, pawnController, value);
+        Effect.OnHealthGained(battle, pawnController, value);
     }
 }
 
-public interface IResourceChangedValidator : IEventValidatorData
+public interface IHealthGainedValidator : IEventValidatorData
 {
     bool Validate(Battle battle, PawnController pawnController, int value);
 }
 
-public interface IResourceChangedEffect : IEventEffectData
+public interface IHealthGainedEffect : IEventEffectData
 {
-    void OnResourceChanged(Battle battle, PawnController pawnController, int value);
+    void OnHealthGained(Battle battle, PawnController pawnController, int value);
 }

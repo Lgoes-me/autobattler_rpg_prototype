@@ -2,16 +2,31 @@
 using UnityEngine;
 
 [Serializable]
-public class HealToPartyEffectData : IBattleEffect, IDamageReveivedEffect, IAttackEffect, IResourceChangedEffect
+public class HealToPartyEffectData : 
+    IBattleStartedEffect,
+    IBattleFinishedEffect,
+    IAttackEffect,
+    ISpecialAttackEffect,
+    IPawnDeathEffect,
+    IHealthGainedEffect,
+    IHealthLostEffect,
+    IManaGainedEffect,
+    IManaLostEffect
+
 {
     [field: SerializeField] private TeamType Team { get; set; }
     [field: SerializeField] private int HealValue { get; set; }
-
-    public void OnBattleStateChanged(Battle battle) => DoEffect(battle);
-    public void OnDamageReceived(Battle battle, PawnController pawnController, DamageDomain damage) => DoEffect(battle);
-    public void OnAttack(Battle battle, PawnController pawnController, Ability ability) => DoEffect(battle);
-    public void OnResourceChanged(Battle battle, PawnController pawnController, int value) => DoEffect(battle);
     
+    public void OnBattleStarted(Battle battle) => DoEffect(battle);
+    public void OnBattleFinished(Battle battle) => DoEffect(battle);
+    public void OnAttack(Battle battle, PawnController abilityUser, Ability ability) => DoEffect(battle);
+    public void OnSpecialAttack(Battle battle, PawnController abilityUser, Ability ability) => DoEffect(battle);
+    public void OnPawnDeath(Battle battle, PawnController pawnController, DamageDomain damage) => DoEffect(battle);
+    public void OnHealthGained(Battle battle, PawnController pawnController, int value) => DoEffect(battle);
+    public void OnHealthLost(Battle battle, PawnController pawnController, DamageDomain damage) => DoEffect(battle);
+    public void OnManaGained(Battle battle, PawnController pawnController, int value) => DoEffect(battle);    
+    public void OnManaLost(Battle battle, PawnController pawnController, int value) => DoEffect(battle);
+
     private void DoEffect(Battle battle)
     {
         var team = Team == TeamType.Player ? battle.PlayerPawns : battle.EnemyPawns;
@@ -24,13 +39,23 @@ public class HealToPartyEffectData : IBattleEffect, IDamageReveivedEffect, IAtta
 }
 
 [Serializable]
-public class HealPawnEffectData : IAttackEffect, IResourceChangedEffect
+public class HealPawnEffectData : 
+    IAttackEffect,
+    ISpecialAttackEffect,
+    IHealthGainedEffect,
+    IHealthLostEffect,
+    IManaGainedEffect,
+    IManaLostEffect
 {
     [field: SerializeField] private int HealValue { get; set; }
 
-    public void OnAttack(Battle battle, PawnController pawnController, Ability ability) => DoEffect(pawnController);
-    public void OnResourceChanged(Battle battle, PawnController pawnController, int value) => DoEffect(pawnController);
-    
+    public void OnAttack(Battle battle, PawnController abilityUser, Ability ability) => DoEffect(abilityUser);
+    public void OnSpecialAttack(Battle battle, PawnController abilityUser, Ability ability) => DoEffect(abilityUser);
+    public void OnHealthGained(Battle battle, PawnController pawnController, int value) => DoEffect(pawnController);
+    public void OnHealthLost(Battle battle, PawnController pawnController, DamageDomain damage) => DoEffect(pawnController);
+    public void OnManaGained(Battle battle, PawnController pawnController, int value) => DoEffect(pawnController);   
+    public void OnManaLost(Battle battle, PawnController pawnController, int value) => DoEffect(pawnController);
+
     private void DoEffect(PawnController pawnController)
     {
         pawnController.Pawn.GetComponent<ResourceComponent>().ReceiveHeal(HealValue, false);
@@ -38,11 +63,14 @@ public class HealPawnEffectData : IAttackEffect, IResourceChangedEffect
 }
 
 [Serializable]
-public class HealPercentualPlayerPawnEffectData : IDamageReveivedEffect
+public class HealPercentualPlayerPawnEffectData : 
+    IPawnDeathEffect,
+    IHealthLostEffect
 {
     [field: SerializeField] private int Percentual { get; set; }
 
-    public void OnDamageReceived(Battle battle, PawnController pawnController, DamageDomain damage) => DoEffect(damage);
+    public void OnPawnDeath(Battle battle, PawnController pawnController, DamageDomain damage) => DoEffect(damage);
+    public void OnHealthLost(Battle battle, PawnController pawnController, DamageDomain damage) => DoEffect(damage);
     
     private void DoEffect(DamageDomain damage)
     {
@@ -52,5 +80,4 @@ public class HealPercentualPlayerPawnEffectData : IDamageReveivedEffect
         var healValue = Mathf.CeilToInt(damage.Value * Percentual / (float) 100);
         damage.Attacker.GetComponent<ResourceComponent>().ReceiveHeal(healValue, false);
     }
-
 }

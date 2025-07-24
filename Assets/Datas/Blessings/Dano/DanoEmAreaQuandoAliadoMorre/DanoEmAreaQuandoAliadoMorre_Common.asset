@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9196a5a3c54b413387f783c4b9ff3a47, type: 3}
   m_Name: DanoEmAreaQuandoAliadoMorre_Common
   m_EditorClassIdentifier: 
+  <Rarity>k__BackingField: 0
   <Events>k__BackingField:
   - rid: 7325121762829795440
-  <Rarity>k__BackingField: 0
   references:
     version: 2
     RefIds:
